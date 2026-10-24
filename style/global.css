@@ -232,6 +232,7 @@ input[type=text]:disabled{
     text-shadow: 2px 2px 5px #000;
     z-index:98;
     overflow-y:auto;
+    max-height:60vh;
     font-size:calc(1em + 1vh);
 }
 
@@ -252,6 +253,8 @@ input[type=text]:disabled{
     padding-left:10px;
     vertical-align:top;
     font-size:1.2em;
+    overflow-wrap:anywhere;
+    hyphens:auto;
 }
 
 .room-chatSpeaker img{
@@ -276,6 +279,241 @@ input[type=text]:disabled{
     margin-bottom: 3px;
     font-size: calc(.8em + 1vh);
     vertical-align: top;
+    overflow-wrap:anywhere;
+    hyphens:auto;
+}
+
+.game-language-control {
+    position:absolute;
+    z-index:1000;
+    color:#fff;
+    font-family:Arial, sans-serif;
+    font-size:18px;
+    text-shadow:1px 1px 3px #000;
+}
+
+.game-language-control label {
+    display:block;
+    margin-bottom:4px;
+}
+
+.game-language-select {
+    width:100%;
+    min-height:38px;
+    padding:5px 9px;
+    border:1px solid rgba(255,255,255,.7);
+    border-radius:4px;
+    color:#fff;
+    background:rgba(24,24,32,.94);
+    font:inherit;
+    text-shadow:none;
+}
+
+.game-language-select option {
+    color:#fff;
+    background:#181820;
+}
+
+.start-screen-game-button {
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    box-sizing:border-box;
+    padding:0;
+    border:0;
+    background:transparent;
+    color:#fff;
+    font-family:Arial, sans-serif;
+    font-weight:700;
+    line-height:1;
+    text-align:center;
+    text-shadow:0 2px 2px rgba(0,0,0,.95), 2px 4px 6px rgba(0,0,0,.9);
+    white-space:nowrap;
+}
+
+.start-screen-game-button:hover,
+.start-screen-game-button:focus-visible {
+    filter:brightness(1.15);
+}
+
+.start-screen-game-button:focus-visible {
+    outline:2px solid #ff7fd8;
+    outline-offset:2px;
+}
+
+.phone-menu-button {
+    display:flex;
+    align-items:center;
+    justify-content:flex-start;
+    box-sizing:border-box;
+    padding:0;
+    border:0;
+    background:transparent;
+    color:#fff;
+    font-family:Arial, sans-serif;
+}
+
+.phone-menu-button-icon {
+    display:block;
+    flex:none;
+    width:100%;
+    background-repeat:no-repeat;
+    background-position:center top;
+    pointer-events:none;
+}
+
+.phone-home-panel {
+    background:#131315;
+    pointer-events:none;
+}
+
+.phone-localized-panel-text {
+    display:flex;
+    box-sizing:border-box;
+    overflow:hidden;
+    padding:0;
+    color:#fff;
+    font-family:Arial, sans-serif;
+    pointer-events:none;
+}
+
+.phone-text-button {
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    box-sizing:border-box;
+    margin:0;
+    padding:0 8px;
+    border:1px solid rgba(255,255,255,.14);
+    border-radius:8px;
+    color:#fff;
+    font-family:Arial, sans-serif;
+    text-align:center;
+}
+
+.phone-text-button-setting {
+    border-width:2px;
+    border-style:solid;
+    border-color:#fff;
+    background:linear-gradient(180deg, #737373 0%, #5c5c5c 55%, #454545 100%);
+}
+
+.phone-text-button-setting.is-active {
+    background:linear-gradient(180deg, #c221bd 0%, #81147e 55%, #41033e 100%);
+}
+
+.phone-text-button-action {
+    background:linear-gradient(180deg, #cf21cc 0%, #86127f 55%, #390033 100%);
+}
+
+.phone-text-button-success {
+    border:2px solid #fff;
+    background:linear-gradient(180deg, #00a83b 0%, #006d25 55%, #003b13 100%);
+}
+
+.phone-text-button-primary {
+    border:2px solid #fff;
+    background:linear-gradient(180deg, #123e9e 0%, #05266c 55%, #00143f 100%);
+}
+
+.phone-text-button-danger {
+    border:2px solid #fff;
+    background:linear-gradient(180deg, #a51b0d 0%, #711006 55%, #3d0803 100%);
+}
+
+.phone-text-button span {
+    display:block;
+    line-height:1.1;
+    white-space:nowrap;
+    pointer-events:none;
+}
+
+.room-localized-back {
+    transition:filter .12s ease, transform .12s ease;
+}
+
+.room-localized-back:hover {
+    filter:brightness(1.25);
+    transform:translateY(-1px);
+}
+
+.wardrobe-text-button {
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    box-sizing:border-box;
+    padding:0 4px;
+    border:2px solid #fff;
+    border-radius:7px;
+    background:linear-gradient(180deg, #1674c8 0%, #07519b 55%, #062d68 100%);
+    color:#fff;
+    font-family:Arial, sans-serif;
+    font-weight:600;
+    line-height:1;
+    text-align:center;
+    text-shadow:0 1px 2px rgba(0,0,0,.8);
+    white-space:nowrap;
+}
+
+.wardrobe-text-button.is-masculine {
+    background:linear-gradient(180deg, #1674c8 0%, #07519b 55%, #062d68 100%);
+}
+
+.wardrobe-text-button.is-feminine {
+    background:linear-gradient(180deg, #ed59df 0%, #bd25ae 55%, #74136f 100%);
+}
+
+.wardrobe-text-button:hover,
+.wardrobe-text-button:focus-visible {
+    filter:brightness(1.2);
+}
+
+.phone-achievement-page-control {
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:0;
+    border:0;
+    background:transparent;
+    color:#fff;
+}
+
+.phone-achievement-page-control.is-previous svg {
+    transform:scaleX(-1);
+}
+
+.phone-achievement-page-control:hover:not(:disabled) {
+    color:#ff67d9;
+}
+
+.phone-achievement-page-control:active:not(:disabled) {
+    transform:scale(.9);
+}
+
+.phone-achievement-page-control:disabled {
+    color:#777;
+    cursor:default;
+}
+
+.phone-menu-button-label {
+    position:absolute;
+    right:0;
+    bottom:-18px;
+    left:0;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    height:32px;
+    overflow:hidden;
+    padding:0 4px;
+    color:#fff;
+    font-size:20px;
+    font-weight:bold;
+    line-height:1;
+    text-align:center;
+    text-shadow:0 2px 3px rgba(0,0,0,.95), 1px 3px 5px rgba(0,0,0,.9);
+    white-space:nowrap;
+    pointer-events:none;
 }
 
 .room-chatBtn:hover{
@@ -697,6 +935,8 @@ input[type=text]:disabled{
     margin-top: 15px;
     border-radius: 5px;
     padding: 5px;
+    line-height:1.2;
+    overflow-wrap:anywhere;
     border: solid #000 2px;
     cursor: pointer;
 }
@@ -725,6 +965,9 @@ input[type=text]:disabled{
 .intro-body{
     width:60%;
     margin-top:100px;
+    max-height:calc(100vh - 120px);
+    overflow-y:auto;
+    padding-bottom:20px;
     color:#fff;
     margin-left:auto;
     margin-right:auto;

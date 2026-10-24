@@ -312,15 +312,7 @@ room485.chatcatch = function (callback) {
                 }, 485);
             }
             if (g.pass > 0) {
-                nav.button({
-                    "type": "btn",
-                    "name": "qprev",
-                    "left": 400,
-                    "top": 920,
-                    "width": 225,
-                    "height": 75,
-                    "image": "1001_rand/back_1.png"
-                }, 485);
+            nav.localizedTextButton("qprev", "ui.previous", "Previous", 400, 920, 225, 75, 485);
             }
             nav.button({
                 "type": "btn",

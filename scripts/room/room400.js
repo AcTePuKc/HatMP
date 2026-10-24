@@ -37,6 +37,7 @@ room400.main = function () {
                 "width": 230,
                 "height": 229,
                 "title": "Male Fashion",
+                "titleKey": "room.400.hover.mens",
                 "image": "400_mall/male.png"
             },
             {
@@ -47,6 +48,7 @@ room400.main = function () {
                 "width": 230,
                 "height": 230,
                 "title": "Shoe Store",
+                "titleKey": "room.400.hover.shoe",
                 "image": "400_mall/footsie.png"
             },
             {
@@ -57,6 +59,7 @@ room400.main = function () {
                 "width": 228,
                 "height": 283,
                 "title": "Saucy - Lady's Clothing Store",
+                "titleKey": "room.400.hover.saucy",
                 "image": "400_mall/saucy.png"
             }, 
             {
@@ -67,6 +70,7 @@ room400.main = function () {
                 "width": 301,
                 "height": 286,
                 "title": "Shiny Jewelry",
+                "titleKey": "room.400.hover.bling",
                 "image": "400_mall/bling.png"
             },
             {
@@ -77,6 +81,7 @@ room400.main = function () {
                 "width": 304,
                 "height": 284,
                 "title": "Contacts",
+                "titleKey": "room.400.hover.eyes",
                 "image": "400_mall/eyes.png"
             },
             {
@@ -87,6 +92,7 @@ room400.main = function () {
                 "width": 229,
                 "height": 285,
                 "title": "Sappho's Makeup",
+                "titleKey": "room.400.hover.makeup",
                 "image": "400_mall/makeup.png"
             },
             {
@@ -97,6 +103,7 @@ room400.main = function () {
                 "width": 231,
                 "height": 229,
                 "title": "Electronic Store",
+                "titleKey": "room.400.hover.electronic",
                 "image": "400_mall/electronic.png"
             },
             {
@@ -107,6 +114,7 @@ room400.main = function () {
                 "width": 229,
                 "height": 287,
                 "title": "Sissy Panties and Bras",
+                "titleKey": "room.400.hover.bra",
                 "image": "400_mall/girl.png"
             },
             {
@@ -117,6 +125,7 @@ room400.main = function () {
                 "width": 229,
                 "height": 228,
                 "title": "Mommy's Purse Store",
+                "titleKey": "room.400.hover.purse",
                 "image": "400_mall/purse.png"
             },
             {
@@ -127,6 +136,7 @@ room400.main = function () {
                 "width": 230,
                 "height": 286,
                 "title": "Happy Girl Home Goods",
+                "titleKey": "room.400.hover.happyGirl",
                 "image": "400_mall/happyGirl.png"
             }
         ];

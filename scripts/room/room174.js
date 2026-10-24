@@ -105,6 +105,7 @@ room174.main = function () {
                     "width": 236,
                     "height": 602,
                     "title": "Wardrobe",
+                    "titleKey": "room.10.hover.wardrobe",
                     "image": "10_mainchar/10_wardrobe.png"
                 }, 174);
                 chat(17, 174);
@@ -316,6 +317,7 @@ room174.chatcatch = function (callback) {
                 "width": 790,
                 "height": 1043,
                 "title": "Wardrobe",
+                "titleKey": "room.10.hover.wardrobe",
                 "image": "174_oneOffCase/sissy3.webp"
             }, 174);
             break;
@@ -394,6 +396,7 @@ room174.chatcatch = function (callback) {
                 "width": 236,
                 "height": 602,
                 "title": "Wardrobe",
+                "titleKey": "room.10.hover.wardrobe",
                 "image": "7_mainCharRoomAlt/clickHere.png"
             }, 174);
             break;

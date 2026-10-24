@@ -2,31 +2,92 @@
 //Don't use g.internal
 var room8 = {};
 
+room8.defaultOutfits = [
+    { source: "Work", key: "wardrobe.outfit.default.work" },
+    { source: "Casual", key: "wardrobe.outfit.default.casual" },
+    { source: "Exercise", key: "wardrobe.outfit.default.exercise" },
+    { source: "Outfit 4", key: "wardrobe.outfit.default.slot4" },
+    { source: "Outfit 5", key: "wardrobe.outfit.default.slot5" },
+    { source: "Sleep", key: "wardrobe.outfit.default.sleep" }
+];
+
+room8.outfitName = function (index) {
+    var outfit = cl.saveOutfit[index];
+    var defaultName = room8.defaultOutfits[index];
+    if (defaultName && outfit.name === defaultName.source)
+        return l10n.t(defaultName.key, defaultName.source);
+    return outfit.name;
+};
+
+room8.savedOutfitName = function (index, name) {
+    var defaultName = room8.defaultOutfits[index];
+    if (defaultName && (name === defaultName.source || name === l10n.t(defaultName.key, defaultName.source)))
+        return defaultName.source;
+    return name;
+};
+
+room8.buttonIdentityClass = function () {
+    var identity = gv.get("pronouns");
+    var feminine = identity === "f" || (identity === "a" && gender.isGirl());
+    return feminine ? "is-feminine" : "is-masculine";
+};
+
+room8.addActionButton = function (name, key, fallback, titleKey, titleFallback, left, top, outfitName) {
+    var button = document.createElement("button");
+    var label = l10n.t(key, fallback);
+    button.type = "button";
+    button.className = "room-btn rom-event room-zindex resize wardrobe-text-button " + room8.buttonIdentityClass();
+    button.dataset.name = name;
+    button.dataset.room = "8";
+    button.textContent = label;
+    var actionTitle = l10n.t(titleKey, titleFallback).replace("{name}", outfitName);
+    button.setAttribute("aria-label", actionTitle);
+    button.title = actionTitle;
+    button.style.left = (left * g.ratio) + "px";
+    button.style.top = (top * g.ratio) + "px";
+    button.style.width = (120 * g.ratio) + "px";
+    button.style.height = (40 * g.ratio) + "px";
+    button.style.fontSize = (18 * g.ratio) + "px";
+    document.getElementById("room-buttons").appendChild(button);
+};
+
+room8.localizedTitle = function (title) {
+    var titleKeys = {
+        "Nude": "nude",
+        "Underwear": "underwear",
+        "Bras": "bras",
+        "Pants": "pants",
+        "Shirt": "shirt",
+        "Dress": "dress",
+        "Socks": "socks",
+        "Shoes": "shoes",
+        "Swim": "swim",
+        "PJs": "pjs",
+        "Next": "next",
+        "Butt plug": "buttPlug",
+        "Accessories": "accessories",
+        "Necklace": "necklace",
+        "Earrings": "earrings",
+        "Nose rings": "noseRings",
+        "Belly rings": "bellyRings",
+        "Nipple rings": "nippleRings",
+        "Butt plugs": "buttPlugs",
+        "Prev": "prev"
+    };
+    var key = titleKeys[title];
+    return key ? l10n.t("wardrobe.category." + key, title) : title;
+};
+
 room8.main = function () {
     char.changeMenu("body", false, true);
     var clothingList;
     var w, h;
     $.each(cl.saveOutfit, function (i, v) {
-        nav.button({
-            "type": "btn",
-            "name": "wear_" + i,
-            "left": 350 + (i * 248),
-            "top": 220,
-            "width": 120,
-            "height": 40,
-            "title": "Wear " + v.name,
-            "image": "8_wardrobe/save_wear.png"
-        }, 8);
-        nav.button({
-            "type": "btn",
-            "name": "save_" + i,
-            "left": 470 + (i * 248),
-            "top": 220,
-            "width": 120,
-            "height": 40,
-            "title": "Save " + v.name,
-            "image": "8_wardrobe/save_save.png"
-        }, 8);
+        var outfitName = room8.outfitName(i);
+        room8.addActionButton("wear_" + i, "wardrobe.action.wear", "Wear",
+            "wardrobe.action.wearOutfit", "Wear {name}", 350 + (i * 248), 220, outfitName);
+        room8.addActionButton("save_" + i, "wardrobe.action.save", "Save",
+            "wardrobe.action.saveOutfit", "Save {name}", 470 + (i * 248), 220, outfitName);
 
         nav.inputbox({
             "type": "img",
@@ -35,7 +96,7 @@ room8.main = function () {
             "top": 150,
             "width": 224,
             "height": 40,
-            "title": v.name,
+            "title": room8.outfitName(i),
         }, 8);
     });
 
@@ -136,7 +197,7 @@ room8.btnclick = function (name) {
                 "top": 500 + (Math.floor(j / 10) * 155),
                 "width": 150,
                 "height": 150,
-                "title": "Remove",
+                "title": l10n.t("wardrobe.action.remove", "Remove"),
                 "image": "8_wardrobe/icons/none.png"
             }, 8);
             
@@ -184,7 +245,7 @@ room8.btnclick = function (name) {
                         "top": 500 + (Math.floor(j / 10) * 155),
                         "width": 150,
                         "height": 150,
-                        "title": v.display,
+                        "title": cl.displayName(v),
                         "image": "8_wardrobe/icons/" + v.img
                     }, 8);
                     j++;
@@ -245,7 +306,7 @@ room8.btnclick = function (name) {
     }
     else if (name.startsWith("save_")) {
         var entry = parseInt(name.replace("save_", ""));
-        var saveName = $("input[data-name='save_input_" + entry + "'").val();
+        var saveName = $("input[data-name='save_input_" + entry + "']").val() || "";
         cl.saveOutfit[entry].shoes = cl.c.shoes;
         cl.saveOutfit[entry].socks = cl.c.socks;
         cl.saveOutfit[entry].pants = cl.c.pants;
@@ -259,16 +320,19 @@ room8.btnclick = function (name) {
         var newName = saveName;
         if (newName.length > 20)
             newName = newName.substring(0, 20);
-        cl.saveOutfit[entry].name = g.cleanText(newName);
-        g.popUpNoticeBottom(newName + " outfit saved. ");
+        newName = room8.savedOutfitName(entry, g.cleanText(newName));
+        cl.saveOutfit[entry].name = newName;
+        g.popUpNoticeBottom(l10n.t("wardrobe.outfit.saved", "{name} outfit saved.", {
+            name: room8.outfitName(entry)
+        }) + " ");
     }
     else if (name === "checkSleepEnable") {
         if (cl.c.shoes !== null || cl.c.socks !== null || cl.c.pants !== null || cl.c.shirt !== null ||
             cl.c.dress !== null || cl.c.swimsuit !== null) {
-            $("img[data-name='save_5']").hide();
+            $("[data-name='save_5']").hide();
         }
         else
-            $("img[data-name='save_5']").show();
+            $("[data-name='save_5']").show();
     }
     room8.drawClothingList();
 };
@@ -339,7 +403,7 @@ room8.drawClothingIcons = function (list) {
             "top": 310,
             "width": 125,
             "height": 125,
-            "title": v.title,
+            "title": room8.localizedTitle(v.title),
             "image": "8_wardrobe/icons/_blank.png"
         }, 8);
         nav.button({
@@ -349,7 +413,7 @@ room8.drawClothingIcons = function (list) {
             "top": 300,
             "width": 125,
             "height": 187,
-            "title": v.title,
+            "title": room8.localizedTitle(v.title),
             "image": "8_wardrobe/" + v.img + ".png"
         }, 8);
     });
@@ -464,22 +528,22 @@ room8.chat = function (chatID) {
         {
             chatID: 0,
             speaker: "me",
-            text: "Saved",
+            text: l10n.t("room.8.chat.0", "Saved"),
             button: []
         },
         {
             chatID: 1,
             speaker: "me",
-            text: "This is your wardrobe; it's where you get dressed for the day.",
+            text: l10n.t("room.8.chat.1", "This is your wardrobe; it's where you get dressed for the day."),
             button: [
                 { chatID: 2, text: "...", callback: "" },
-                { chatID: -1, text: "Skip", callback: "" }
+                { chatID: -1, text: l10n.t("chat.button.skip", "Skip"), callback: "" }
             ]
         },
         {
             chatID: 2,
             speaker: "me",
-            text: "To remove all your clothes click the beige icon on the far left of the icons. Your profile will update to the naked avatar.",
+            text: l10n.t("room.8.chat.2", "To remove all your clothes click the beige icon on the far left of the icons. Your profile will update to the naked avatar."),
             button: [
                 { chatID: 3, text: "...", callback: "" }
             ]
@@ -487,8 +551,8 @@ room8.chat = function (chatID) {
         {
             chatID: 3,
             speaker: "me",
-            text: "<span class='hl'>To put on your underwear click the underwear icon</span> next to the nude icon. Click the boxers to wear them. " +
-                "<span class='hl'>To remove your boxers click the red 'X'.</span>",
+            text: l10n.t("room.8.chat.3", "<span class='hl'>To put on your underwear click the underwear icon</span> next to the nude icon. Click the boxers to wear them. " +
+                "<span class='hl'>To remove your boxers click the red 'X'.</span>"),
             button: [
                 { chatID: 4, text: "...", callback: "" }
             ]
@@ -496,7 +560,7 @@ room8.chat = function (chatID) {
         {
             chatID: 4,
             speaker: "me",
-            text: "Currently you don't have that many choices for clothing, but in time your collection will grow. ",
+            text: l10n.t("room.8.chat.4", "Currently you don't have that many choices for clothing, but in time your collection will grow. "),
             button: [
                 { chatID: 5, text: "...", callback: "" }
             ]
@@ -504,7 +568,7 @@ room8.chat = function (chatID) {
         {
             chatID: 5,
             speaker: "me",
-            text: "Before you can go anywhere you must first be properly dressed in the typical clothes for a young man: <span class='hl'>underwear, pants, shirt, and shoes.</span>",
+            text: l10n.t("room.8.chat.5", "Before you can go anywhere you must first be properly dressed in the typical clothes for a young man: <span class='hl'>underwear, pants, shirt, and shoes.</span>"),
             button: [
                 { chatID: 6, text: "...", callback: "" }
             ]
@@ -512,9 +576,9 @@ room8.chat = function (chatID) {
         {
             chatID: 6,
             speaker: "me",
-            text: "You can save your outfits. The line at the top is the name of your outfit that you can update. " +
+            text: l10n.t("room.8.chat.6", "You can save your outfits. The line at the top is the name of your outfit that you can update. " +
                 "Below that line is the <span class='hl'><img src='./images/general/shirt.png'> Wear button</span>. If you click that you can wear " +
-                "that outfit. To update the outfit click the <span class='hl'><img src='./images/general/edit.png'> Save button</span>. ",
+                "that outfit. To update the outfit click the <span class='hl'><img src='./images/general/edit.png'> Save button</span>. "),
             button: [
                 { chatID: 7, text: "...", callback: "" }
             ]
@@ -522,9 +586,9 @@ room8.chat = function (chatID) {
         {
             chatID: 7,
             speaker: "me",
-            text: "<span class='hl'>The first four outfits are for daily wear.</span> The <span class='hl'>last outfit is only for pajamas</span>. " +
+            text: l10n.t("room.8.chat.7", "<span class='hl'>The first four outfits are for daily wear.</span> The <span class='hl'>last outfit is only for pajamas</span>. " +
                 "When you go to sleep you will automatically wear the sleep outfit, so only pajamas can be " +
-                "placed in that outfit. The first four can be selected to wear when you wake up.",
+                "placed in that outfit. The first four can be selected to wear when you wake up."),
             button: [
                 { chatID: 10, text: "...", callback: "" }
             ]
@@ -532,41 +596,41 @@ room8.chat = function (chatID) {
         {
             chatID: 8,
             speaker: "me",
-            text: "You can't save pajamas as regular clothes. Use the 'Sleep' entry to save.",
+            text: l10n.t("room.8.chat.8", "You can't save pajamas as regular clothes. Use the 'Sleep' entry to save."),
             button: [
-                { chatID: -1, text: "Close", callback: "" }
+                { chatID: -1, text: l10n.t("chat.button.close", "Close"), callback: "" }
             ]
         },
         {
             chatID: 9,
             speaker: "me",
-            text: "You have to wear pajamas to bed. Only pajamas can be saved.",
+            text: l10n.t("room.8.chat.9", "You have to wear pajamas to bed. Only pajamas can be saved."),
             button: [
-                { chatID: -1, text: "Close", callback: "" }
+                { chatID: -1, text: l10n.t("chat.button.close", "Close"), callback: "" }
             ]
         },
         {
             chatID: 10,
             speaker: "me",
-            text: "Good luck, dress sharp, and remember clothes make the man.",
+            text: l10n.t("room.8.chat.10", "Good luck, dress sharp, and remember clothes make the man."),
             button: [
-                { chatID: -1, text: "Close", callback: "" }
+                { chatID: -1, text: l10n.t("chat.button.close", "Close"), callback: "" }
             ]
         },
         {
             chatID: 11,
             speaker: "me",
-            text: "OMG, it's so tight. My dick is way too big for this chastity device.",
+            text: l10n.t("room.8.chat.11", "OMG, it's so tight. My dick is way too big for this chastity device."),
             button: [
-                { chatID: -1, text: "Close", callback: "" }
+                { chatID: -1, text: l10n.t("chat.button.close", "Close"), callback: "" }
             ]
         },
         {
             chatID: 12,
             speaker: "me",
-            text: "My butthole is way too tight for that! I'm going to have to work on it so I can fit this in!",
+            text: l10n.t("room.8.chat.12", "My butthole is way too tight for that! I'm going to have to work on it so I can fit this in!"),
             button: [
-                { chatID: -1, text: "Close", callback: "" }
+                { chatID: -1, text: l10n.t("chat.button.close", "Close"), callback: "" }
             ]
         }
     ];

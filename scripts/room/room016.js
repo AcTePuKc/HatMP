@@ -245,6 +245,7 @@ room16.main = function () {
                     "width": 351,
                     "height": 385,
                     "title": "Living Room",
+                    "titleKey": "room.16.hover.livingRoom",
                     "image": "16_livingRoom/livingP.png",
                     "night": "16_livingRoom/livingPN.png"
                 });
@@ -258,6 +259,7 @@ room16.main = function () {
                     "width": 351,
                     "height": 385,
                     "title": "Living Room",
+                    "titleKey": "room.16.hover.livingRoom",
                     "image": "16_livingRoom/livingM.png",
                     "night": "16_livingRoom/livingMN.png"
                 });
@@ -1085,7 +1087,7 @@ room16.chat = function (chatID) {
         {
             chatID: 65,
             speaker: "cult",
-            text: "Oh hey! It's the new slut! Clean your " + g.makeSingular(sc.n("el")) + "'s pussy off " +
+            text: "Oh hey! It's the new slut! Clean your " + sc.el() + "'s pussy off " +
                 "my cock slut!",
             button: [
                 { chatID: 66, text: "Hey! I'm not....", callback: "cumdump4" }

@@ -214,7 +214,7 @@ saves.migrateLegacy = function (db) {
 //---------------------------------------------------------------------------
 
 saves.currentRoomName = function () {
-    var thisRoom = "Unknown";
+    var thisRoom = l10n.t("save.unknownRoom", "Unknown");
     $.each(g.rooms, function (i, v) {
         if (v.roomID === g.roomID) {
             thisRoom = v.name;
@@ -278,7 +278,7 @@ saves.store = function (key, snap) {
     }).catch(function (err) {
         if (!g.saveAlert) {
             g.saveAlert = true;
-            alert("Unable to save. Your browser may be blocking the save or you're in incognito mode that doesn't allow saving.");
+            alert(l10n.t("save.error.cannotSave", "Unable to save. Your browser may be blocking the save or you're in incognito mode that doesn't allow saving."));
         }
         console.error("Save failed:", err);
         return false;
@@ -546,16 +546,20 @@ saves.folder.buildButton = function () {
 
     var btn = $('<span class="sv-tab sv-folder"></span>');
     if (status === "ready") {
-        btn.text("Folder: " + saves.folder.handle.name).attr("title", "Saves are mirrored to this folder. Click to choose another folder.");
+        btn.text(l10n.t("save.folder.ready", "Folder: {name}", { name: saves.folder.handle.name }))
+            .attr("title", l10n.t("save.folder.readyTitle", "Saves are mirrored to this folder. Click to choose another folder."));
         btn.on('click', function () { saves.folder.choose().then(saves.renderScreen); });
     }
     else if (status === "prompt" || status === "error") {
-        btn.addClass("sv-folder-warn").text("Reconnect folder")
-            .attr("title", "Allow access to " + (saves.folder.handle ? saves.folder.handle.name : "the saves folder") + " again to keep writing save files.");
+        btn.addClass("sv-folder-warn").text(l10n.t("save.folder.reconnect", "Reconnect folder"))
+            .attr("title", l10n.t("save.folder.reconnectTitle", "Allow access to {name} again to keep writing save files.", {
+                name: saves.folder.handle ? saves.folder.handle.name : l10n.t("save.folder.defaultName", "the saves folder")
+            }));
         btn.on('click', function () { saves.folder.reconnect().then(saves.renderScreen); });
     }
     else {
-        btn.text("Save to folder…").attr("title", "Pick a folder; every save slot will also be written there as a file.");
+        btn.text(l10n.t("save.folder.choose", "Save to folder…"))
+            .attr("title", l10n.t("save.folder.chooseTitle", "Pick a folder; every save slot will also be written there as a file."));
         btn.on('click', function () { saves.folder.choose().then(saves.renderScreen); });
     }
     return btn;
@@ -577,7 +581,9 @@ saves.slotKeys = function (page) {
 };
 
 saves.slotLabel = function (key) {
-    return key.startsWith("auto-") ? "Auto " + key.substring(5) : "Slot " + key;
+    return key.startsWith("auto-")
+        ? l10n.t("save.slot.auto", "Auto {number}", { number: key.substring(5) })
+        : l10n.t("save.slot.manual", "Slot {number}", { number: key });
 };
 
 saves.restorePage = function () {
@@ -602,7 +608,7 @@ saves.formatRealDate = function (iso) {
     var dt = new Date(iso);
     if (isNaN(dt.getTime()))
         return "";
-    return dt.toLocaleString(undefined, { year: "numeric", month: "short", day: "numeric", hour: "2-digit", minute: "2-digit" });
+    return dt.toLocaleString(l10n.getLanguage(), { year: "numeric", month: "short", day: "numeric", hour: "2-digit", minute: "2-digit" });
 };
 
 saves.formatGameDate = function (iso) {
@@ -611,22 +617,26 @@ saves.formatGameDate = function (iso) {
     var dt = new Date(iso);
     if (isNaN(dt.getTime()))
         return "";
-    var day = Math.floor((dt.getTime() - g.startDate.getTime()) / (1000 * 3600 * 24)) + 1;
-    var days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+    var dayNumber = Math.floor((dt.getTime() - g.startDate.getTime()) / (1000 * 3600 * 24)) + 1;
+    var locale = l10n.getLanguage();
+    var weekday = dt.toLocaleDateString(locale, { weekday: "long" });
     var hours = dt.getHours();
     var minutes = ("0" + dt.getMinutes()).slice(-2);
     var time;
     if (typeof gv !== "undefined" && gv.get("clock24") === "12")
-        time = ((hours % 12) || 12) + ":" + minutes + (hours < 12 ? " AM" : " PM");
+        time = dt.toLocaleTimeString(locale, { hour: "numeric", minute: "2-digit", hour12: true });
     else
         time = ("0" + hours).slice(-2) + ":" + minutes;
-    return { when: days[dt.getDay()] + " " + time, day: "Day " + day };
+    return {
+        when: weekday + " " + time,
+        day: l10n.t("save.day", "Day {number}", { number: dayNumber })
+    };
 };
 
 saves.buildThumb = function (meta) {
     var thumb = $('<div class="sv-thumb"></div>');
     if (!meta.thumb || (!meta.thumb.bg && meta.thumb.layers.length === 0)) {
-        thumb.append($('<div class="sv-thumb-empty"></div>').text(meta.room || "No preview"));
+        thumb.append($('<div class="sv-thumb-empty"></div>').text(meta.room || l10n.t("save.noPreview", "No preview")));
         return thumb;
     }
     var scene = $('<div class="sv-scene"></div>');
@@ -652,7 +662,9 @@ saves.buildCard = function (key, meta, newestKey) {
 
     if (!meta) {
         card.addClass("sv-card-empty");
-        card.append($('<div class="sv-thumb"><div class="sv-thumb-empty">Empty</div></div>'));
+        card.append($('<div class="sv-thumb"></div>').append(
+            $('<div class="sv-thumb-empty"></div>').text(l10n.t("save.empty", "Empty"))
+        ));
         card.append($('<div class="sv-card-info"></div>'));
         if (saves.mode === "save" && !isAuto) {
             card.addClass("sv-card-active").on('click', function () {
@@ -665,12 +677,14 @@ saves.buildCard = function (key, meta, newestKey) {
     var incompatible = meta.version < saves.minVersion;
     if (key === newestKey) {
         card.addClass("sv-card-newest");
-        head.append('<span class="sv-badge">NEW</span>');
+        head.append($('<span class="sv-badge"></span>').text(l10n.t("save.new", "NEW")));
     }
     card.append(saves.buildThumb(meta));
 
     var info = $('<div class="sv-card-info"></div>');
-    info.append($('<div class="sv-card-room"></div>').text(incompatible ? "Incompatible save" : (meta.room || meta.savename)));
+    info.append($('<div class="sv-card-room"></div>').text(incompatible
+        ? l10n.t("save.incompatible", "Incompatible save")
+        : (meta.room || meta.savename)));
     var gameDate = saves.formatGameDate(meta.gameDt); if (gameDate) info.append($('<div class="sv-card-line sv-story"></div>').append($('<span></span>').text(gameDate.when)).append($('<span></span>').text(gameDate.day)));
     if (typeof meta.storyPct === "number")
         info.append($('<div class="sv-card-line sv-story"></div>').append($('<span></span>').text(meta.story || "")).append($('<span></span>').text(meta.storyPct + "%")));
@@ -679,11 +693,13 @@ saves.buildCard = function (key, meta, newestKey) {
 
     var label = saves.slotLabel(key) + " - " + (meta.room || meta.savename);
     var tools = $('<div class="sv-tools"></div>');
-    tools.append($('<span class="sv-tool" title="Export Save">Export</span>').on('click', function (e) {
+    tools.append($('<span class="sv-tool"></span>').attr("title", l10n.t("save.exportTitle", "Export Save"))
+        .text(l10n.t("save.export", "Export")).on('click', function (e) {
         e.stopPropagation();
         saves.exportSlot(key);
     }));
-    tools.append($('<span class="sv-tool sv-tool-del" title="Delete Save">Delete</span>').on('click', function (e) {
+    tools.append($('<span class="sv-tool sv-tool-del"></span>').attr("title", l10n.t("save.deleteTitle", "Delete Save"))
+        .text(l10n.t("save.delete", "Delete")).on('click', function (e) {
         e.stopPropagation();
         saves.confirm("delete", key, label);
     }));
@@ -709,9 +725,9 @@ saves.buildCard = function (key, meta, newestKey) {
 
 saves.confirm = function (action, key, label) {
     var config = {
-        replace: { promptText: "Are you sure you wish to overwrite save: ", promptLeft: 650, image: "999_phone/save.png", cancel: "999_phone/cancel_grey.png" },
-        load: { promptText: "Are you sure you wish to load: ", promptLeft: 750, image: "999_phone/load.png", cancel: "999_phone/cancel.png" },
-        delete: { promptText: "Are you sure you wish to delete: ", promptLeft: 750, image: "999_phone/delete.png", cancel: "999_phone/cancel_grey.png" }
+        replace: { promptText: l10n.t("save.confirm.overwrite", "Are you sure you wish to overwrite save: "), promptLeft: 650, confirmKey: "save.confirm.button.save", confirmFallback: "Save", confirmStyle: "success", cancelStyle: "setting" },
+        load: { promptText: l10n.t("save.confirm.load", "Are you sure you wish to load: "), promptLeft: 750, confirmKey: "save.confirm.button.load", confirmFallback: "Load", confirmStyle: "primary", cancelStyle: "danger" },
+        delete: { promptText: l10n.t("save.confirm.delete", "Are you sure you wish to delete: "), promptLeft: 750, confirmKey: "save.confirm.button.delete", confirmFallback: "Delete", confirmStyle: "danger", cancelStyle: "setting" }
     }[action];
 
     phone.showSaveConfirmDialog({
@@ -720,8 +736,10 @@ saves.confirm = function (action, key, label) {
         promptText: config.promptText,
         labelText: label,
         confirmName: "phone_save_" + action + "_verify_" + key,
-        confirmImage: config.image,
-        cancelImage: config.cancel
+        confirmKey: config.confirmKey,
+        confirmFallback: config.confirmFallback,
+        confirmStyle: config.confirmStyle,
+        cancelStyle: config.cancelStyle
     });
 };
 
@@ -786,16 +804,18 @@ saves.renderScreen = function () {
         var top = $('<div class="sv-top"></div>');
         var tabs = $('<div class="sv-tabs"></div>');
         if (!g.newLoad) {
-            tabs.append($('<span class="sv-tab">Save</span>').toggleClass("sv-tab-current", saves.mode === "save")
+            tabs.append($('<span class="sv-tab"></span>').text(l10n.t("save.tab.save", "Save")).toggleClass("sv-tab-current", saves.mode === "save")
                 .on('click', function () { saves.mode = "save"; saves.renderScreen(); }));
         }
-        tabs.append($('<span class="sv-tab">Load</span>').toggleClass("sv-tab-current", saves.mode === "load")
+        tabs.append($('<span class="sv-tab"></span>').text(l10n.t("save.tab.load", "Load")).toggleClass("sv-tab-current", saves.mode === "load")
             .on('click', function () { saves.mode = "load"; saves.renderScreen(); }));
         top.append(tabs);
-        top.append($('<div class="sv-title"></div>').text(saves.page === 0 ? "Automatic Saves" : "Page " + saves.page));
+        top.append($('<div class="sv-title"></div>').text(saves.page === 0
+            ? l10n.t("save.title.auto", "Automatic Saves")
+            : l10n.t("save.title.page", "Page {number}", { number: saves.page })));
         var actions = $('<div class="sv-actions"></div>');
         actions.append(saves.folder.buildButton());
-        actions.append($('<span class="sv-tab">Import</span>').on('click', function () {
+        actions.append($('<span class="sv-tab"></span>').text(l10n.t("save.import", "Import")).on('click', function () {
             invoker.invoke(9999, "btnclick", "phone_save_import");
         }));
         top.append(actions);

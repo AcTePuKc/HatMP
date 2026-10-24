@@ -31,6 +31,7 @@ room775.main = function () {
                 "width": 236,
                 "height": 602,
                 "title": "Wardrobe",
+                "titleKey": "room.10.hover.wardrobe",
                 "image": "7_mainCharRoomAlt/clickHere.png"
             }, 775);
         }
@@ -43,6 +44,7 @@ room775.main = function () {
                 "width": 236,
                 "height": 602,
                 "title": "Wardrobe",
+                "titleKey": "room.10.hover.wardrobe",
                 "image": "10_mainchar/10_wardrobe.png"
             }, 775);
         }

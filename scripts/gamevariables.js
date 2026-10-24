@@ -705,7 +705,7 @@ gv.init = function () {
 
 gv.init();
 
-gv.i=function(n){var r=-1;for(i=0;i<gv.st.length;i++)if(gv.st[i].n===n){r=i;break}return r}; //returns index for gv.st by name
+gv.i=function(n){var r=-1;for(var i=0;i<gv.st.length;i++)if(gv.st[i].n===n){r=i;break}return r}; //returns index for gv.st by name
 daily.i = function (n) {
     for (i = 0; i < daily.st.length; i++)
         if (daily.st[i] === n) 
@@ -2403,7 +2403,12 @@ trophy.add = function (id) {
             levels.mod("strength", trophy.st[id].strength);
         if (trophy.st[id].money > 0)
             gv.mod("money", trophy.st[id].money);
-        g.popUpNotice("You got an Achievement!!!<br/> " + sc.replace(trophy.st[id].title) + ": " + sc.replace(trophy.st[id].display));
+        const title = sc.replace(l10n.t(
+            "phone.achievements.item." + id + ".title", trophy.st[id].title));
+        const description = sc.replace(l10n.t(
+            "phone.achievements.item." + id + ".description", trophy.st[id].display));
+        g.popUpNotice(l10n.t("phone.achievements.unlocked",
+            "Achievement unlocked!<br/>{title}: {description}", { title: title, description: description }));
     }
 };
 

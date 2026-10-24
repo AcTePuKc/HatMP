@@ -13,6 +13,7 @@ room911.main = function () {
             "width": 157,
             "height": 169,
             "title": "Mayor's Office",
+            "titleKey": "room.911.hover.mayorOffice",
             "image": "911_cityhall/mayor.png"
         },
         {
@@ -23,6 +24,7 @@ room911.main = function () {
             "width": 145,
             "height": 330,
             "title": "Record's Office",
+            "titleKey": "room.911.hover.recordsOffice",
             "image": "911_cityhall/records.png"
         },
     ];

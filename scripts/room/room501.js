@@ -469,6 +469,7 @@ room501.chatcatch = function (callback) {
                 "width": 785,
                 "height": 626,
                 "title": "Wardrobe",
+                "titleKey": "room.10.hover.wardrobe",
                 "image": "501_jadaGame/zoeyForward.jpg"
             }, 501);
             break;
@@ -593,6 +594,7 @@ room501.chatcatch = function (callback) {
                 "width": 151,
                 "height": 100,
                 "title": "Sleep",
+                "titleKey": "room.10.hover.sleep",
                 "image": "501_jadaGame/purse.png"
             }, 501);
 

@@ -249,7 +249,9 @@ char.roomWithoutHistory = function (roomID) {
 $(document).ready(function () {
 
     nav.setRatio();
-    nav.buildRoom();
+    l10n.ready.then(function () {
+        nav.buildRoom();
+    });
     //cl.display();
 
     //$('#ohShitIFoundABug').click(function () {
@@ -709,7 +711,20 @@ char.clearMapPanel = function () {
     $('#room_left_map').html('');
 };
 
-char.addMapText = function (left, top, text, color = "#fff") {
+char.addMapText = function (left, top, text, color = "#fff", localizationKey = null) {
+    if (localizationKey !== null) {
+        var mapText = document.createElement("div");
+        mapText.className = "width-l resize-font killmap";
+        mapText.style.color = color;
+        mapText.style.position = "absolute";
+        mapText.style.fontSize = (20 * g.ratio) + "px";
+        mapText.style.left = (left * g.ratio) + "px";
+        mapText.style.top = ((top + 5) * g.ratio) + "px";
+        mapText.dataset.l10n = localizationKey;
+        mapText.textContent = text;
+        document.getElementById("room_left_map").appendChild(mapText);
+        return mapText;
+    }
     $('#room_left_map').append('<div class="width-l resize-font killmap" style="color: ' + color + '; position:absolute; font-size: ' + 20 * g.ratio + 'px; left: ' + left * g.ratio + 'px; top: ' + (top + 5) * g.ratio + 'px; " >' +
         text +
         '</div>');
@@ -820,7 +835,7 @@ char.map = function () {
                     var newRatio = 45 / g.roomMap[i].height;
                     char.addMapImage("./images/room/" + g.roomMap[i].img, g.roomMap[i].height * newRatio, g.roomMap[i].width * newRatio, ttop, 10);
                     $('#room_left_map').append(char.getMapDayNightIcons(g.roomMap[i], ttop));
-                    char.addMapText(100, ttop, g.roomMap[i].display, "#fff");
+                    char.addMapText(100, ttop, g.roomMap[i].display, "#fff", "map.location." + g.roomMap[i].roomID);
                     ttop += 50;
                 }
             }
@@ -847,7 +862,15 @@ char.friendlyTime = function (hour, ampm = null) {
 char.makeWalk = function () {
     $("#room_left_walk_sub").html("'<br/><br/>");
     if (g.pastSaves.length > 1) {
-        char.addWalkText('<br/><br/><br/><br/>Back to: ' + g.pastSaves[g.pastSaves.length - 2].name);
+        var previousRoom = g.pastSaves[g.pastSaves.length - 2];
+        var previousRoomId = previousRoom.roomID;
+        if (previousRoomId === undefined) {
+            var matchedRoom = g.rooms.find(function (room) { return room.name === previousRoom.name; });
+            if (matchedRoom)
+                previousRoomId = matchedRoom.roomID;
+        }
+        var previousName = l10n.t("location.room." + previousRoomId, previousRoom.name);
+        char.addWalkText('<br/><br/><br/><br/>' + l10n.t("ui.backToLocation", "Back to: {location}", { location: previousName }));
         if ($("#room_left_walk").is(":visible")) {
             $("#help_backButton").show();
         }
@@ -856,9 +879,9 @@ char.makeWalk = function () {
         char.addWalkText('<br/><br/><br/><br/>', 20);
         $("#help_backButton").hide();
     }
-    char.addWalkText('<br/>History:', 30);
+    char.addWalkText('<br/>' + l10n.t("ui.history") + ":", 30);
     if (g.popArray.length === 0) {
-        char.addWalkText('None', 20, "popUpHistory resize-font");
+        char.addWalkText(l10n.t("ui.none", "None"), 20, "popUpHistory resize-font");
     }
     for (let i = 0; i < g.popArray.length; i++) {
         char.addWalkText(g.popArray[i], 20, "popUpHistory resize-font");
@@ -1046,7 +1069,7 @@ menu.makeSaves = function () {
         });
     });
     menu.buildSaveState();
-    g.pastSaves.push({ name: g.getRooms(g.roomID).name, data: menu.save(" ", false) });
+    g.pastSaves.push({ roomID: g.roomID, name: g.getRooms(g.roomID).name, data: menu.save(" ", false) });
     if (g.pastSaves.length > 20)
         g.pastSaves.splice(0, 1);
 };

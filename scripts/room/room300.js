@@ -26,6 +26,7 @@ room300.main = function () {
             "width": 78,
             "height": 407,
             "title": "Go to the second floor. ",
+            "titleKey": "ui.navigation.secondFloor",
             "image": "300_apartment/stairs1.png"
         }, 300);
     }
@@ -50,6 +51,7 @@ room300.main = function () {
                 "width": 132,
                 "height": 236,
                 "title": "Visit Envy ",
+                "titleKey": "room.300.hover.visitEnvy",
                 "image": "300_apartment/door.png"
             },
             {
@@ -60,6 +62,7 @@ room300.main = function () {
                 "width": 78,
                 "height": 407,
                 "title": "Go to the second floor. ",
+                "titleKey": "ui.navigation.secondFloor",
                 "image": "300_apartment/stairs1.png"
             }
         ];

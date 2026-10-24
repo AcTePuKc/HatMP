@@ -14,7 +14,8 @@ room481.main = function () {
             "width": 967,
             "height": 297,
             "image": "481_bedroom/bed.webp",
-            "title": "Sleep"
+            "title": "Sleep",
+            "titleKey": "room.10.hover.sleep"
         }
     ];
    

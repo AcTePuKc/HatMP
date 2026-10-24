@@ -69,7 +69,7 @@ room910.chatcatch = function (callback) {
             break;
         case "changeit":
             var temp = sc.n("me");
-            sc.setcharname("me", gv.get("girlname"));
+            sc.setcharname("me", l10n.characterName("girlname", gv.get("girlname")));
             gv.set("girlname", temp);
             //sc.setstep("govlady", 1);
             char.addtime(30);
@@ -153,7 +153,7 @@ room910.chat = function (chatID) {
             text: "Name changes are $100 and you can only change your name once. It's a big step sweetie. Are you sure?",
             button: [
                 { chatID: -1, text: "Nevermind", callback: "" },
-                { chatID: 9, text: "I'm ready. Change my name to " + gv.get("girlname") + ".", callback: "changeit" }
+                { chatID: 9, text: "I'm ready. Change my name to " + l10n.characterName("girlname", gv.get("girlname")) + ".", callback: "changeit" }
             ]
         },
         {
@@ -178,7 +178,7 @@ room910.chat = function (chatID) {
             text: "Would you like to change your name?",
             button: [
                 { chatID: -1, text: "Nope", callback: "" },
-                { chatID: 12, text: "Yes! change my name to " + gv.get("girlname") + ".", callback: "" },
+                { chatID: 12, text: "Yes! change my name to " + l10n.characterName("girlname", gv.get("girlname")) + ".", callback: "" },
             ]
         },
         {

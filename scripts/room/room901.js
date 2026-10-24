@@ -25,6 +25,7 @@ room901.main = function () {
             "width": 665,
             "height": 151,
             "title": "Change Room",
+            "titleKey": "room.901.hover.changingRoom",
             "image": "901_pool/changeroom.png"
         }, 901);
 
@@ -37,6 +38,7 @@ room901.main = function () {
                 "width": 626,
                 "height": 627,
                 "title": "Dat Booty!!!",
+                "titleKey": "room.901.hover.datBooty",
                 "image": "901_pool/girl1.png"
             }, 901);
         }
@@ -49,6 +51,7 @@ room901.main = function () {
                 "width": 127,
                 "height": 342,
                 "title": "Soooo tan",
+                "titleKey": "room.901.hover.soooTan",
                 "image": "901_pool/boy1.png"
             }, 901);
         }
@@ -423,6 +426,7 @@ room901.chatcatch = function (callback) {
                 "width": 1545,
                 "height": 1080,
                 "title": "Dat Booty!!!",
+                "titleKey": "room.901.hover.datBooty",
                 "image": "901_pool/girl1peek.png"
             }, 901);
             sc.completeMissionTask("cindy", "fuck", 1);
@@ -442,6 +446,7 @@ room901.chatcatch = function (callback) {
                 "width": 920,
                 "height": 1080,
                 "title": "Soooo tan",
+                "titleKey": "room.901.hover.soooTan",
                 "image": "901_pool/boy3.png"
             }, 901);
             break;

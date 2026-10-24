@@ -109,6 +109,7 @@ privateChat.kill = function(){
 
 privateChat.makeChat = function (entry, chatID, roomID) {
     if (entry !== null) {
+        entry = l10n.chatEntry(entry, chatID, roomID);
         var thisSpeaker = privateChat.speakerInfo(entry.speaker);
         $('#room_footer').hide();
         if (!$('#room_chatOverlay').is(":visible")) {

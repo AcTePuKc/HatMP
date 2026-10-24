@@ -309,7 +309,7 @@ inv.canOpenMain = function () {
 
 inv.openMain = function () {
     if (!inv.canOpenMain()) {
-        g.popUpNotice("Inventory not accessable");
+        g.popUpNotice(l10n.t("inventory.notice.cannotAccess", "Inventory isn't accessible here."));
         return false;
     }
 
@@ -356,20 +356,46 @@ inv.gett = function (t) {
     var i;
     for (i = 0; i < inv.t.length; i++) {
         if (inv.t[i].t === t)
-            return inv.t[i].n;
+            return typeof l10n !== "undefined"
+                ? l10n.t("inventory.type." + t, inv.t[i].n)
+                : inv.t[i].n;
     }
     return "NOT FOUND";
 };
 
+inv.relationshipItemTerms = function (itemName) {
+    var landlady = "Landlady";
+    var coTenants = "Co-Tenant";
+    if (typeof sc !== "undefined" && sc.get) {
+        landlady = sc.get("landlord").display || landlady;
+        coTenants = sc.get("el").display || coTenants;
+    }
+    return {
+        landlady: l10n.characterTerm("landlady", "keyLower", landlady, "Landlady"),
+        coTenants: l10n.characterTerm("coTenant", "keyPluralLower", coTenants, "Co-Tenant")
+    };
+};
+
 inv.displayName = function (item) {
-    if (item.display !== undefined && item.display !== null && item.display.trim() !== "")
-        return item.display;
+    var fallback = item.display;
     if (item.type === "3") {
         var posterMatch = item.name.match(/_(\d+)$/);
         if (posterMatch !== null)
-            return "Poster " + posterMatch[1];
+            fallback = "Poster " + posterMatch[1];
     }
-    return inv.gett(item.type);
+    if (fallback === undefined || fallback === null || fallback.trim() === "")
+        fallback = inv.gett(item.type);
+    return typeof l10n !== "undefined"
+        ? l10n.t("inventory.item." + item.name + ".name", fallback,
+            item.name === "landlordKey" || item.name === "flatmateKey" ? inv.relationshipItemTerms(item.name) : undefined)
+        : fallback;
+};
+
+inv.displayDescription = function (item) {
+    return typeof l10n !== "undefined"
+        ? l10n.t("inventory.item." + item.name + ".description", item.desc || "",
+            item.name === "landlordKey" || item.name === "flatmateKey" ? inv.relationshipItemTerms(item.name) : undefined)
+        : (item.desc || "");
 };
 
 inv.isSinglePurchase = function (item) {
@@ -380,8 +406,42 @@ inv.configureActionButton = function (selector, itemType, itemName, actionType, 
     $(selector).attr("data-itype", actionType);
     $(selector).attr("data-type", itemType);
     $(selector).attr("data-name", itemName);
-    $(selector).html(label);
+    inv.updateActionButtonLabel(selector, label);
     $(selector).show();
+};
+
+inv.updateActionButtonLabel = function (selector, label) {
+    $(selector).html(inv.actionLabel(label));
+    $(selector).attr("data-action-state", inv.actionState(label));
+};
+
+inv.actionState = function (label) {
+    if (label === "Take Your Pill") return "take-pill";
+    if (label === "Auto Take Pill<br/>When Hormone < 90") return "auto-take-pill";
+    if (label === "Stop Auto Taking Pill") return "stop-auto-pill";
+    return "";
+};
+
+inv.actionLabel = function (label) {
+    var actionKeys = {
+        "Change Bag": "changeBag",
+        "Snack Attack": "snackAttack",
+        "View List": "viewList",
+        "Read Magazine": "readMagazine",
+        "Change Phone Case": "changePhoneCase",
+        "Change Apartment Picture": "changeApartmentPicture",
+        "Change Room Decoration": "changeRoomDecoration",
+        "Change Left Poster": "changeLeftPoster",
+        "Change Right Poster": "changeRightPoster",
+        "Stop Auto Taking Pill": "stopAutoPill",
+        "Take Your Pill": "takePill",
+        "Auto Take Pill<br/>When Hormone < 90": "autoTakePill"
+    };
+    var match = /^BUY - \$(.+)$/.exec(label);
+    if (match)
+        return l10n.t("shop.action.buy", "BUY - ${price}", { price: match[1] });
+    var actionKey = actionKeys[label];
+    return actionKey ? l10n.t("inventory.action." + actionKey, label) : label;
 };
 
 inv.setPrimaryAction = function (item, actionType, label) {
@@ -399,7 +459,13 @@ inv.hideActions = function (hideCountLine) {
 };
 
 inv.setDisplayInfo = function (text) {
-    $("#menu_displayInfo").html(text);
+    var infoKeys = {
+        "PURCHASED": "inventory.info.purchased",
+        "UPDATED": "inventory.info.updated",
+        "Already Purchased": "shop.status.alreadyPurchased",
+        "Can't Afford": "shop.status.cantAfford"
+    };
+    $("#menu_displayInfo").html(infoKeys[text] ? l10n.t(infoKeys[text], text) : text);
 };
 
 inv.markPurchased = function (hideCountLine) {
@@ -468,7 +534,7 @@ inv.add = function (name) {
             inv.master[i].entry = true;
             if (inv.master[i].count !== null)
                 inv.master[i].count = inv.master[i].count + 1;
-            g.popUpNotice(inv.displayName(inv.master[i]) + " added to inventory. ");
+            g.popUpNotice(l10n.t("inventory.notice.added", "{item} added to inventory.", { item: inv.displayName(inv.master[i]) }) + " ");
             i = 9999999;
         }
     }
@@ -481,10 +547,10 @@ inv.addMulti = function (name, count) {
             inv.master[i].entry = true;
             if (inv.master[i].count !== null) {
                 inv.master[i].count = inv.master[i].count + count;
-                g.popUpNotice("You received " + count + " " + inv.displayName(inv.master[i]));
+                g.popUpNotice(l10n.t("inventory.notice.received", "You received {count} {item}.", { count: count, item: inv.displayName(inv.master[i]) }));
             }
             else
-                g.popUpNotice(inv.displayName(inv.master[i]) + " added to inventory. ");
+                g.popUpNotice(l10n.t("inventory.notice.added", "{item} added to inventory.", { item: inv.displayName(inv.master[i]) }) + " ");
             i = 9999999;
         }
     }
@@ -538,19 +604,19 @@ inv.backpackIcon = function () {
     var hasNew = false;
     for (var i = 0; i < inv.master.length; i++) {
         if (inv.master[i].name === inv.backpack) {
-            $('#room-inv').html('<img src="./images/inv/' + inv.master[i].image + '" title="Inventory" class="display-top">');
+            $('#room-inv').html('<img src="./images/inv/' + inv.master[i].image + '" title="' + l10n.t("inventory.ui.inventory", "Inventory") + '" class="display-top">');
         }
         if (inv.master[i].n)
             hasNew = true;
     }
     if (hasNew)
-        $('#room-inv').append('<img src="./images/inv/new.png" title="New Inventory" class="kill-invNew" class="display-top3">');
+        $('#room-inv').append('<img src="./images/inv/new.png" title="' + l10n.t("inventory.ui.newItems", "New items") + '" class="kill-invNew display-top3">');
 };
 
 inv.phoneIcon = function () {
     for (var i = 0; i < inv.master.length; i++) {
         if (inv.master[i].name === inv.phone) {
-            $('#room-menu').html('<img src="./images/inv/' + inv.master[i].image + '" title="menu" class="display-top">');
+            $('#room-menu').html('<img src="./images/inv/' + inv.master[i].image + '" title="' + l10n.t("inventory.ui.menu", "Menu") + '" class="display-top">');
         }
         if (inv.master[i].n)
             hasNew = true;
@@ -558,9 +624,10 @@ inv.phoneIcon = function () {
 };
 
 inv.renderInventoryEntry = function (counter, item) {
-    $('#menu-bg_' + counter).html('<img src="./images/inv/' + item.image + '" class="menu-select" data-inv="' + item.name + '" title="' + item.display + '">');
+    var displayName = inv.displayName(item);
+    $('#menu-bg_' + counter).html('<img src="./images/inv/' + item.image + '" class="menu-select" data-inv="' + item.name + '" title="' + displayName + '">');
     if (item.n)
-        $('#menu-bg_' + counter).append('<img src="./images/inv/new.png" title="New Inventory" class="display-top3 click-thru" title="' + item.display + '">');
+        $('#menu-bg_' + counter).append('<img src="./images/inv/new.png" title="' + l10n.t("inventory.ui.newItems", "New items") + '" class="display-top3 click-thru" aria-label="' + displayName + '">');
     if (item.count !== null)
         $('#menu-bg_' + counter).append('<div class="menu-popup-count" data-name="' + item.name + '">' + item.count + '</div>');
 };
@@ -582,7 +649,8 @@ inv.filterButtons = function () {
 
 inv.renderFilterButton = function (button) {
     $('.room-main').append('<button class="menu_inventory_grouping" data-val="' + button.value + '" style="' +
-        g.cssText(12) + '; ' + g.makeCss(50, 260, button.top, 90) + '; position:absolute; z-index:2;">' + button.label + '</button>');
+        g.cssText(12) + '; ' + g.makeCss(50, 260, button.top, 90) + '; position:absolute; z-index:2;">' +
+        l10n.t("inventory.filter." + button.value, button.label) + '</button>');
 };
 
 inv.clothingPreviewSlots = function () {
@@ -646,10 +714,10 @@ inv.display = function (typeArray = null) {
         var thisItem = inv.get(thisName);
 
         $('#menu_displayIcon').html('<img src="./images/inv/' + thisItem.image + '"/>');
-        $("#menu_displayCost").html(thisItem.count === null ? "" : "Count: " + thisItem.count);
-        $("#menu_displayName").html(thisItem.display);
+        $("#menu_displayCost").html(thisItem.count === null ? "" : l10n.t("inventory.ui.count", "Count: {count}", { count: thisItem.count }));
+        $("#menu_displayName").html(inv.displayName(thisItem));
         $('#menu_displayType').html(inv.gett(thisItem.type));
-        $("#menu_displayDesc").html(thisItem.desc);
+        $("#menu_displayDesc").html(inv.displayDescription(thisItem));
 
         $("#menu_displayInfo").html("");
        
@@ -665,7 +733,7 @@ inv.display = function (typeArray = null) {
                 break;
             case "e"://energy snack
                 inv.setPrimaryAction(thisItem, "bag", "Snack Attack");
-                $("#menu_displayDesc").append(" - Max Energy: " + gv.get("maxenergy"));
+                $("#menu_displayDesc").append(" - " + l10n.t("inventory.ui.maxEnergy", "Max Energy: {energy}", { energy: gv.get("maxenergy") }));
                 break;
             case "f"://energy snack
                 inv.setPrimaryAction(thisItem, "bag", "View List");
@@ -715,11 +783,11 @@ inv.display = function (typeArray = null) {
     t = 980 * g.ratio;
     l = 60 * g.ratio;
     if(inv.page > 0)
-        $('#room-menuButtons').append('<button id="inv_prev" class="btn btn-default pos-abs" style="width: ' + w + 'px; top: ' + t + 'px; left: ' + l + 'px;" >&lt;&lt; PREV</button>');
-    $('#room-menuButtons').append('<button id="inv_close" class="btn btn-danger pos-abs" style="width: ' + w + 'px; top: ' + t + 'px; left: ' + (l + w) + 'px;" >Close</button>');
+        $('#room-menuButtons').append('<button id="inv_prev" class="btn btn-default pos-abs" style="width: ' + w + 'px; top: ' + t + 'px; left: ' + l + 'px;" >&lt;&lt; ' + l10n.t("inventory.navigation.previous", "PREV") + '</button>');
+    $('#room-menuButtons').append('<button id="inv_close" class="btn btn-danger pos-abs" style="width: ' + w + 'px; top: ' + t + 'px; left: ' + (l + w) + 'px;" >' + l10n.t("inventory.navigation.close", "Close") + '</button>');
     console.log(totalCounter + ":" + inv.page + ":" + counter)
     if (counter === 32 && typeArray === null)
-        $('#room-menuButtons').append('<button id="inv_next" class="btn btn-danger pos-abs" style="width: ' + w + 'px; top: ' + t + 'px; left: ' + (l + (w * 2)) + 'px;" >NEXT &gt;&gt; </button>');
+        $('#room-menuButtons').append('<button id="inv_next" class="btn btn-danger pos-abs" style="width: ' + w + 'px; top: ' + t + 'px; left: ' + (l + (w * 2)) + 'px;" >' + l10n.t("inventory.navigation.next", "NEXT") + ' &gt;&gt;</button>');
     $('#inv_close').on('click', function () {
         inv.close();
     });
@@ -782,20 +850,20 @@ inv.createElements = function (showFilter = true) {
     //500x840
     $('#room-menuButtons').append('<div id="menu_display" class="menu-display" style="width: ' + 500 * g.ratio + 'px; height: ' + 840 * g.ratio + 'px; top: ' + t + 'px; left: ' + ((6 * s) + l) + 'px; z-index:2; "> </div>');
     $('#menu_display').html('<div id="menu_displayIcon" style="width: ' + 300 * g.ratio + 'px; height: ' + 300 * g.ratio + 'px; margin-top:' + 100 * g.ratio + 'px; margin-left:' + 100 * g.ratio + 'px; "></div>' +
-        '<div id="menu_displayCost" class="menu-line" style="' + g.cssText(12) + ' margin-top:' + 30 * g.ratio + 'px;">Cost</div>' +
-        '<div id="menu_displayName" class="menu-line" style="' + g.cssText(12) + ' margin-top:' + 10 * g.ratio + 'px;">Name</div>' +
-        '<div id="menu_displayType" class="menu-line" style="' + g.cssText(12) + ' margin-top:' + 10 * g.ratio + 'px;">Type</div>' +
-        '<div id="menu_displayDesc" class="menu-line-desc" style="' + g.cssText(9) + ' margin-top:' + 10 * g.ratio + 'px;">Description</div>' +
+        '<div id="menu_displayCost" class="menu-line" style="' + g.cssText(12) + ' margin-top:' + 30 * g.ratio + 'px;">' + l10n.t("inventory.ui.cost", "Cost") + '</div>' +
+        '<div id="menu_displayName" class="menu-line" style="' + g.cssText(12) + ' margin-top:' + 10 * g.ratio + 'px;">' + l10n.t("inventory.ui.name", "Name") + '</div>' +
+        '<div id="menu_displayType" class="menu-line" style="' + g.cssText(12) + ' margin-top:' + 10 * g.ratio + 'px;">' + l10n.t("inventory.ui.type", "Type") + '</div>' +
+        '<div id="menu_displayDesc" class="menu-line-desc" style="' + g.cssText(9) + ' margin-top:' + 10 * g.ratio + 'px;">' + l10n.t("inventory.ui.description", "Description") + '</div>' +
         '<div id="menu_displayAdditional" class="menu-line-desc" style="' + g.cssText(9) + ' margin-top:' + 10 * g.ratio + 'px;"></div>' +
         '<div id="menu_displayCountLine" class="menu-line" style="' + g.cssText(12) + ' margin-top:' + 10 * g.ratio + 'px;">' +
         '<button id="menu_displayUp" class="menu-lineB" data-price="0">▲</button>' +
         '<span id="menu_displayCount">0</span>' +
         '<button id="menu_displayDown" class="menu-lineB" data-price="0">▼</button>' +
-        '<div class="menu-line" style="' + g.cssText(8) + ' margin-top:' + 10 * g.ratio + 'px;">How Many</div>' +
+        '<div class="menu-line" style="' + g.cssText(8) + ' margin-top:' + 10 * g.ratio + 'px;">' + l10n.t("inventory.ui.howMany", "How Many") + '</div>' +
         '</div>' +
         '<div id="menu_displayInfo" class="menu-line-desc" style="' + g.cssText(9) + ' margin-top:' + 10 * g.ratio + 'px;"></div>' +
-        '<button id="menu_displayAction" class="menu-action" data-itype="" data-type="" data-name="" style="' + g.cssText(12) + ' margin-top:' + 10 * g.ratio + 'px; padding:' + 5 * g.ratio + 'px;">Action</button>' +
-        '<button id="menu_displayAction2" class="menu-action" data-itype="" data-type="" data-name="" style="' + g.cssText(12) + ' margin-top:' + 10 * g.ratio + 'px; padding:' + 5 * g.ratio + 'px;">Action</button>');
+        '<button id="menu_displayAction" class="menu-action" data-itype="" data-type="" data-name="" style="' + g.cssText(12) + ' margin-top:' + 10 * g.ratio + 'px; padding:' + 5 * g.ratio + 'px;">' + l10n.t("inventory.ui.action", "Action") + '</button>' +
+        '<button id="menu_displayAction2" class="menu-action" data-itype="" data-type="" data-name="" style="' + g.cssText(12) + ' margin-top:' + 10 * g.ratio + 'px; padding:' + 5 * g.ratio + 'px;">' + l10n.t("inventory.ui.action", "Action") + '</button>');
 
     $("#menu_displayCountLine").hide();
     $('#menu_displayAction').hide();
@@ -814,7 +882,7 @@ inv.createElements = function (showFilter = true) {
         var thisCash = gv.get("money");
         if (thisCount * thisCost < thisCash) {
             $("#menu_displayCount").html(thisCount);
-            $("#menu_displayAction").html("BUY - $" + thisCount * thisCost);
+            inv.updateActionButtonLabel("#menu_displayAction", "BUY - $" + thisCount * thisCost);
         }
     });
     $("#menu_displayDown").on('click', function () {
@@ -822,7 +890,7 @@ inv.createElements = function (showFilter = true) {
         var thisCount = parseInt($('#menu_displayCount').html()) - 1;
         if (thisCount > 0) {
             $("#menu_displayCount").html(thisCount);
-            $("#menu_displayAction").html("BUY - $" + thisCount * thisCost);
+            inv.updateActionButtonLabel("#menu_displayAction", "BUY - $" + thisCount * thisCost);
         }
     });
 
@@ -863,7 +931,7 @@ inv.createElements = function (showFilter = true) {
                 if (inv.isSinglePurchase(thisInv)) {
                     thisInv.entry = true;
                     gv.mod("money", (-1 * thisInv.cost));
-                    g.popUpNotice(inv.displayName(thisInv) + " added to inventory. ");
+                    g.popUpNotice(l10n.t("inventory.notice.added", "{item} added to inventory.", { item: inv.displayName(thisInv) }) + " ");
                     inv.markPurchased(false);
                     inv.refreshCurrentPurchaseRoom();
                 }
@@ -879,11 +947,11 @@ inv.createElements = function (showFilter = true) {
                     inv.master[ti].entry = true;
                     gv.mod("money", totalMoney);
                     if (thisCount > 1)
-                        g.popUpNotice("You received " + thisCount + " " + inv.displayName(thisInv));
+                        g.popUpNotice(l10n.t("inventory.notice.received", "You received {count} {item}.", { count: thisCount, item: inv.displayName(thisInv) }));
                     else
-                        g.popUpNotice(inv.displayName(thisInv) + " added to inventory. ");
+                        g.popUpNotice(l10n.t("inventory.notice.added", "{item} added to inventory.", { item: inv.displayName(thisInv) }) + " ");
                     inv.markPurchased(true);
-                    $("#menu_displayAdditional").html("In Inventory: " + inv.master[ti].count);
+                    $("#menu_displayAdditional").html(l10n.t("shop.inventory.count", "In Inventory: {count}", { count: inv.master[ti].count }));
                     inv.refreshCurrentPurchaseRoom();
                 }
             }
@@ -907,7 +975,7 @@ inv.createElements = function (showFilter = true) {
                     else {
                         cl.list[tic].inv = true;
                         gv.mod("money", -1 * cl.list[tic].price);
-                        g.popUpNotice(cl.list[tic].display + " added to inventory. ");
+                        g.popUpNotice(l10n.t("inventory.notice.added", "{item} added to inventory.", { item: cl.displayName(cl.list[tic]) }) + " ");
                         inv.markPurchased(true);
                         if (g.roomID === 401 && typeof room401 !== "undefined")
                             room401.restorePreviewState();
@@ -987,10 +1055,10 @@ inv.createElements = function (showFilter = true) {
                                 console.log("UNK energy: " + thisName);
                         }
 
-                        $("#menu_displayInfo").html("Energy: " + gv.get("energy"));
+                        $("#menu_displayInfo").html(l10n.t("inventory.ui.energy", "Energy: {energy}", { energy: gv.get("energy") }));
                         if (inv.master[eindex].count === 0)
                             $("#menu_displayAction").hide();
-                        $("#menu_displayCost").html("Count: " + inv.master[eindex].count);
+                        $("#menu_displayCost").html(l10n.t("inventory.ui.count", "Count: {count}", { count: inv.master[eindex].count }));
 
                         if (inv.master[eindex].count < 1) {
                             inv.master[eindex].count = 0;
@@ -1075,28 +1143,31 @@ inv.createElements = function (showFilter = true) {
                 case "h":
                     var xh = gv.get("autohormone");
 
-                    if ($("#menu_displayAction").html() === "Take Your Pill") {
+                    var hormoneAction = $("#menu_displayAction").attr("data-action-state");
+                    if (hormoneAction === "take-pill") {
                         daily.set("tookHormonePill");
                         var myPill = inv.getIndex("hormone");
                         gv.mod("hormone", 25);
                         inv.use("hormone");
-                        $("#menu_displayCost").html(inv.master[myPill].count === 0 ? "All out, better get more." : "Count: " + inv.master[myPill].count);
+                        $("#menu_displayCost").html(inv.master[myPill].count === 0
+                            ? l10n.t("inventory.ui.hormoneEmpty", "All out, better get more.")
+                            : l10n.t("inventory.ui.count", "Count: {count}", { count: inv.master[myPill].count }));
                         //$("#menu_displayAction").hide();
 
                         if (xh) {
-                            $("#menu_displayAction").html("Stop Auto Taking Pill");
+                            inv.updateActionButtonLabel("#menu_displayAction", "Stop Auto Taking Pill");
                         }
                         else {
-                            $("#menu_displayAction").html("Auto Take Pill<br/>When Hormone < 90");
+                            inv.updateActionButtonLabel("#menu_displayAction", "Auto Take Pill<br/>When Hormone < 90");
                         }
                     }
-                    else if ($("#menu_displayAction").text() === "Auto Take PillWhen Hormone < 90") {
+                    else if (hormoneAction === "auto-take-pill") {
                         gv.set("autohormone", true);
-                        $("#menu_displayAction").html("Stop Auto Taking Pill");
+                        inv.updateActionButtonLabel("#menu_displayAction", "Stop Auto Taking Pill");
                     }
                     else {
                         gv.set("autohormone", false);
-                        $("#menu_displayAction").html("Auto Take Pill<br/>When Hormone < 90");
+                        inv.updateActionButtonLabel("#menu_displayAction", "Auto Take Pill<br/>When Hormone < 90");
                     }
 
                     
@@ -1116,7 +1187,7 @@ inv.createElements = function (showFilter = true) {
                 gv.set(thisName, true);
                 switch (thisName) {
                     case "magman":
-                        g.popUpNotice("You can buy RAZORS and shave.");
+                        g.popUpNotice(l10n.t("inventory.notice.razorHint", "You can buy razors and shave."));
                         break;
                     case "magcosmo":
                         levels.mod("xdress", 100);
@@ -1134,7 +1205,7 @@ inv.createElements = function (showFilter = true) {
                         levels.mod("piss", 100);
                         break;
                     case "magfemboy":
-                        g.popUpNotice("You can buy LUBE.");
+                        g.popUpNotice(l10n.t("inventory.notice.lubeHint", "You can buy lube."));
                         break;
                 }
             }

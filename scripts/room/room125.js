@@ -1034,9 +1034,7 @@ room125.chatcatch = function (callback) {
         case "Pam":
         case "Jenna":
             sc.modLevel("ralph", 100, 10);
-            sc.char[sc.i("ralph")].display = callback;
-            sc.char[sc.i("ralphsmom")].display = callback + "'s Mom";
-            sc.char[sc.i("ralphsdad")].display = callback + "'s Dad";
+            sc.setcharname("ralph", callback);
             chat(64, 125);
             break;
         case "r1":

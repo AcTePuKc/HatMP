@@ -506,7 +506,8 @@ room226.btnclick = function (name) {
                     "width": 242,
                     "height": 337,
                     "image": "225_sewer/exit.png",
-                    "title": "exit"
+                    "title": "exit",
+                    "titleKey": "ui.direction.exit"
                 }, 226);
                 var missycase226 = missy.activecase();
                 if (missycase226.name === "case_sewer" && !missycase226.isComplete) {
@@ -539,7 +540,8 @@ room226.btnclick = function (name) {
                         "width": 773,
                         "height": 638,
                         "image": "225_sewer/center.png",
-                        "title": "straight"
+                        "title": "straight",
+                        "titleKey": "ui.direction.straight"
                     }, 226);
                 }
                 else {
@@ -552,7 +554,8 @@ room226.btnclick = function (name) {
                         "width": 582,
                         "height": 716,
                         "image": "225_sewer/right.png",
-                        "title": "right"
+                        "title": "right",
+                        "titleKey": "ui.direction.right"
                     }, 226);
                     nav.button({
                         "type": "btn",
@@ -562,7 +565,8 @@ room226.btnclick = function (name) {
                         "width": 582,
                         "height": 716,
                         "image": "225_sewer/left.png",
-                        "title": "left"
+                        "title": "left",
+                        "titleKey": "ui.direction.left"
                     }, 226);
                 }
                 nav.button({
@@ -573,7 +577,8 @@ room226.btnclick = function (name) {
                     "width": 1411,
                     "height": 100,
                     "image": "225_sewer/back.png",
-                    "title": "back"
+                    "title": "back",
+                    "titleKey": "ui.direction.back"
                 }, 226);
 
                 if (g.map.l[g.map.id].e !== null) {

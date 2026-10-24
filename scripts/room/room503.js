@@ -10,6 +10,7 @@ room503.main = function () {
             "width": 594,
             "height": 799,
             "title":"Take a shower",
+            "titleKey": "room.503.hover.shower",
             "image": "503_bathroom/shower.png"
         },
         {
@@ -20,6 +21,7 @@ room503.main = function () {
             "width": 661,
             "height": 526,
             "title": "Look in the mirror",
+            "titleKey": "room.503.hover.mirror",
             "image": "503_bathroom/mirror.png"
         },
         {
@@ -30,6 +32,7 @@ room503.main = function () {
             "width": 227,
             "height": 234,
             "title": "Use the toilet",
+            "titleKey": "room.503.hover.toilet",
             "image": "503_bathroom/toilet.png"
         }
     ];
@@ -43,6 +46,7 @@ room503.main = function () {
             "width": 82,
             "height": 56,
             "title": "Steal her lipstick",
+            "titleKey": "room.503.hover.lipstick",
             "image": "503_bathroom/lipstick.png"
         })
     }

@@ -23,6 +23,7 @@ room40.main = function () {
             "width": 236,
             "height": 602,
             "title": "Wardrobe",
+            "titleKey": "room.10.hover.wardrobe",
             "image": "10_mainchar/10_wardrobe.png"
         }, 40);
         chat(1000, 775);
@@ -303,11 +304,11 @@ room40.chat = function (chatID) {
             {
                 chatID: 14,
                 speaker: "tom",
-                text: "Wow, small world. So your " + g.makeSingular(sc.n("el")) + " is " +
+                text: "Wow, small world. So your " + sc.el() + " is " +
                     sc.n("lola") + "? She was in my biology class last year. Haven't " +
                     "seen her since. It's a big campus.",
                 button: [
-                    { chatID: 15, text: "Oh yeah. She's my " + g.makeSingular(sc.n("el")) + ". ", callback: "" }
+                    { chatID: 15, text: "Oh yeah. She's my " + sc.el() + ". ", callback: "" }
                 ]
             },
             {

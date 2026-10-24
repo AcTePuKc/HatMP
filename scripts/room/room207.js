@@ -9,6 +9,7 @@ room207.main = function () {
         "width": 400,
         "height": 751,
         "title": "Pink Pleasure Club",
+        "titleKey": "room.207.hover.pinkClub",
         "image": "207_door/door_pink.png"
     }, 207);
     nav.button({
@@ -19,6 +20,7 @@ room207.main = function () {
         "width": 91,
         "height": 633,
         "title": "Missy's Finishing School for Sissies",
+        "titleKey": "room.207.hover.school",
         "image": "207_door/door_school.png"
     }, 207);
     
@@ -30,6 +32,7 @@ room207.main = function () {
         "width": 342,
         "height": 311,
         "title": "Exterior Doors",
+        "titleKey": "room.207.hover.exteriorDoors",
         "image": "207_door/door_outside.png",
         "night": "207_door/door_outside_night.png"
     }, 207);
@@ -41,6 +44,7 @@ room207.main = function () {
         "width": 79,
         "height": 136,
         "title": "Pageant Winners",
+        "titleKey": "room.207.hover.pageantWinners",
         "image": gv.get("sissyfinal_pageant") === null ? "207_door/pageant.webp" : "207_door/pageant_x.webp",
     }, 207);
     nav.buildnav([203, 0]);

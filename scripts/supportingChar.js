@@ -10,7 +10,7 @@ sc.init = function () {
         { name: "me", display: "Alex", image: "me.png", step: 0, secret: 0, c: 0, l: 0, show: true, setName: false, phone: -1, p: false, hex: "#D3CBBE" },
 
         { name: "landlord", display: "Landlady", image: "mom.png", step: 0, secret: 0, c: 0, l: 0, show: true, setName: true, phone: 0, p: true, hex: "#D3CBBE" },
-        { name: "el", display: "Co-Tenant", image: "lolaEva.png", step: 0, secret: 0, c: 0, l: 0, show: false, setName: false, phone: -1, p: true, hex: "#D3CBBE" },
+        { name: "el", display: "Co-Tenant", singularDisplay: "Co-Tenant", image: "lolaEva.png", step: 0, secret: 0, c: 0, l: 0, show: false, setName: false, phone: -1, p: true, hex: "#D3CBBE" },
         { name: "lola", display: "Lola", image: "lola.png", step: 0, secret: 0, c: 0, l: 0, show: true, setName: true, phone: 0, p: true, hex: "#D3CBBE" },
         { name: "tom", display: "Tom", image: "tom.png", step: 0, secret: 0, c: 0, l: 0, show: false, setName: true, phone: 0, p: true, hex: "#D3CBBE" },
         { name: "eva", display: "Eva", image: "eva.png", step: 0, secret: 0, c: 0, l: 0, show: true, setName: true, phone: 0, p: true, hex: "#D3CBBE" },
@@ -183,7 +183,7 @@ sc.init = function () {
                         ]
                 },
                 {
-                    missionName: "date", mStatus: 0, title: "Practice dates", desc: "Landlady suggests practice for the real thing.", task:
+                    missionName: "date", mStatus: 0, title: "Practice dates", desc: "{landlord} suggests practice for the real thing.", task:
                         [
                             { id: 0, txt: "You should go on a practice date. ", show: true, mStatus: 0, roomId: 13 },
                             { id: 1, txt: "Give me a day to get ready. ", show: true, mStatus: 0, roomId: 13 },
@@ -214,9 +214,9 @@ sc.init = function () {
                         ]
                 },
                 {
-                    missionName: "tom", mStatus: 0, title: "Tom", desc: "True love in another's arms", task:
+                    missionName: "tom", mStatus: 0, title: "{tom}", desc: "True love in another's arms", task:
                         [
-                            { id: 0, txt: "Set up on date with Tom", show: true, mStatus: 0, roomId: 16 },
+                            { id: 0, txt: "Set up on date with {tom}", show: true, mStatus: 0, roomId: 16 },
                             { id: 1, txt: "He's the best", show: true, mStatus: 0, roomId: 16 },
                             { id: 2, txt: "Bla bla bla [End]", show: true, mStatus: 0, roomId: 16 },
                         ]
@@ -446,7 +446,7 @@ sc.init = function () {
                     missionName: "cult", mStatus: 0, title: "Cult", desc: "Good times at the cult", task:
                         [
                             { id: 0, txt: "Whose the daddy.", show: true, mStatus: 0, roomId: 955 },
-                            { id: 0, txt: "Got the first", show: true, mStatus: 0, roomId: 955 },
+                            { id: 0, localizationId: 1, txt: "Got the first", show: true, mStatus: 0, roomId: 955 },
                         ]
                 },
                 {
@@ -483,7 +483,7 @@ sc.init = function () {
                         ]
                 },
                 {
-                    missionName: "cheating", mStatus: -1, title: "Chloé", desc: "Find out if Chloé is cheating", task:
+                    missionName: "cheating", mStatus: -1, title: "{chloe}", desc: "Find out if {chloe} is cheating", task:
                         [
                             { id: 0, txt: "Spy on her.", show: true, mStatus: 0, roomId: 725 },
                             { id: 1, txt: "Catch her at the club?", show: true, mStatus: 0, roomId: 725 },
@@ -1043,13 +1043,13 @@ sc.init = function () {
                         ]
                 },
                 {
-                    missionName: "*missy", mStatus: 0, title: "Save Missy", desc: "What you need to do ", task:
+                    missionName: "*missy", mStatus: 0, title: "Save {missy}", desc: "What you need to do ", task:
                         [
-                            { id: 0, txt: "Met at Missy's", show: true, mStatus: 0, roomId: 203 },
+                            { id: 0, txt: "Met at {missy}'s", show: true, mStatus: 0, roomId: 203 },
                             { id: 1, txt: "Get More information from the Forest Queen", show: true, mStatus: 0, roomId: 477 },
                             { id: 2, txt: "Bring the letter from the Forest Queen", show: true, mStatus: 0, roomId: 203 },
                             { id: 3, txt: "Ask each person on the list if they have the code", show: true, mStatus: 0, roomId: 0 },
-                            { id: 4, txt: "Report back to Missy's Dective Agency", show: true, mStatus: 0, roomId: 203 },
+                            { id: 4, txt: "Report back to {missy}'s Dective Agency", show: true, mStatus: 0, roomId: 203 },
                             { id: 5, txt: "Go deep past the caves and sneak into the C.U.M. compound", show: true, mStatus: 0, roomId: 445 },
                         ]
                 },
@@ -1315,7 +1315,7 @@ sc.init = function () {
                             { id: 2, txt: "Sissy School, Day 1", show: true, mStatus: 0, roomId: 802 },
                             { id: 3, txt: "Sissy School, Midterm", show: true, mStatus: 0, roomId: 802 },
                             { id: 4, txt: "Sissy School, Final - Find a job", show: true, mStatus: 0, roomId: 802 },
-                            { id: 5, txt: "Ask Zoey about a job", show: true, mStatus: 0, roomId: 525 },
+                            { id: 5, txt: "Ask {zoey} about a job", show: true, mStatus: 0, roomId: 525 },
                             { id: 6, txt: "He has the job. Now let him know. ", show: true, mStatus: 0, roomId: 802 },
                             { id: 7, txt: "Working girl. ", show: true, mStatus: 0, roomId: 526 },
                             { id: 8, txt: "Boyfriend ", show: true, mStatus: 0, roomId: 526 },
@@ -1684,7 +1684,7 @@ sc.init = function () {
                 {
                     missionName: "betray", mStatus: 0, title: "No date", desc: "Not going on that date. ", task:
                         [
-                            { id: 0, txt: "Betrayed him. Told Missy where he is", show: true, mStatus: 0, roomId: 200 },
+                            { id: 0, txt: "Betrayed him. Told {missy} where he is", show: true, mStatus: 0, roomId: 200 },
                             { id: 1, txt: "I just don't want to date you.", show: true, mStatus: 0, roomId: 408 },
                             { id: 2, txt: "You're a boy!", show: true, mStatus: 0, roomId: 750 },
                         ]
@@ -1883,7 +1883,22 @@ sc.n = function (name) {
         return sc.trivial(name).display;
     else if (name.startsWith("*"))
         return rape.char.displayName;
-    return sc.get(name).display;
+    var display = sc.get(name).display;
+    if (typeof l10n !== "undefined" && l10n.characterTerm) {
+        if (name === "landlord")
+            return l10n.characterTerm("landlady", "display", display, "Landlady");
+        if (name === "el")
+            return l10n.characterTerm("coTenant", "singular", sc.get("el").singularDisplay || "Co-Tenant", "Co-Tenant");
+    }
+    if (typeof l10n !== "undefined" && l10n.t && sc.get("ralph").display !== "Ralph") {
+        if (name === "ralphsmom")
+            return l10n.t("names.ralphsmomTransitioned", "{name}'s Mom", { name: sc.n("ralph") });
+        if (name === "ralphsdad")
+            return l10n.t("names.ralphsdadTransitioned", "{name}'s Dad", { name: sc.n("ralph") });
+    }
+    return typeof l10n !== "undefined" && l10n.characterName
+        ? l10n.characterName(name, display)
+        : display;
 };
 
 sc.replace = function (txt) {
@@ -1898,8 +1913,25 @@ sc.replace = function (txt) {
 
  //mStatus 0 = not started, 1 - 99 = inprogress, 100 = complete - success, 101 = complete - fail
 
-sc.el = function () {
-    return g.makeSingular(sc.n("el"));
+sc.el = function (form) {
+    var character = sc.get("el");
+    var singular = character.singularDisplay || "Co-Tenant";
+    var requestedForm = form === "lower" ? "singularLower" :
+        form === "capitalize" ? "singularCapitalized" :
+        form === "upper" ? "singularUpper" : "singular";
+    return typeof l10n !== "undefined" && l10n.characterTerm
+        ? l10n.characterTerm("coTenant", requestedForm, singular, "Co-Tenant")
+        : g.makeSingular(character.display);
+};
+
+sc.els = function (form) {
+    var character = sc.get("el");
+    var requestedForm = form === "lower" ? "pluralLower" :
+        form === "capitalize" ? "pluralCapitalized" :
+        form === "upper" ? "pluralUpper" : "plural";
+    return typeof l10n !== "undefined" && l10n.characterTerm
+        ? l10n.characterTerm("coTenant", requestedForm, character.display, "Co-Tenant")
+        : character.display;
 };
 
 sc.mStatus = function (mStatus) {
@@ -2463,6 +2495,7 @@ sc.save = function () {
             c: sc.char[i].c,
             l: sc.char[i].l,
             display: sc.char[i].display,
+            singularDisplay: sc.char[i].singularDisplay,
             secret: sc.char[i].secret,
             show: sc.char[i].show
         });
@@ -2490,6 +2523,10 @@ sc.load = function (ra) {
         for (j = 0; j < sc.char.length; j++) {
             if (ra.char[i].name === sc.char[j].name) {
                 sc.char[j].display = ra.char[i].display;
+                if (typeof ra.char[i].singularDisplay === "string")
+                    sc.char[j].singularDisplay = ra.char[i].singularDisplay;
+                else if (sc.char[j].name === "el")
+                    sc.char[j].singularDisplay = ra.char[i].display || "Co-Tenant";
                 sc.char[j].step = typeof ra.char[i].step === "number" ? ra.char[i].step : 0;
                 sc.char[j].events = Array.isArray(ra.char[i].events) ? ra.char[i].events.slice() : [];
                 sc.char[j].c = ra.char[i].c;
@@ -3404,24 +3441,24 @@ sc.mainStory.steps = function () {
     const licensed = worked || inv.has("pi_lic");
 
     return [
-        { txt: "Get a job. Use the computer in your room to apply", short: "Get a job", done: ac >= 1 || licensed },
-        { txt: "Work at the construction site", short: "Construction", done: ac >= 2 || licensed },
-        { txt: "Buy a P.I. license at city hall and show it to Missy", short: "P.I. license", done: ac >= 3 || licensed },
-        { txt: "Buy dress clothes at the mall, then go to work at Missy's", short: "First day", done: worked },
-        { txt: "Work 5 days and work out, then do the first case (the park)", short: "First case", done: caseDone(4) },
-        { txt: "Do cases at Missy's until you're caged and in panties", short: "Cage + panties", done: sissy.st[17].ach },
-        { txt: "Go to the sissy school at Missy's (Monday to Thursday)", short: "Sissy school", done: sissy.st[0].ach },
-        { txt: "Raise your Intelligence to level 4 to get the lockpick", short: "Lockpick", done: inv.has("lockpick") },
-        { txt: "Pass the sissy mid-term", short: "Mid-term", done: sissy.st[10].ach },
-        { txt: "Pass the sissy final", short: "Final", done: sissy.st[21].ach },
-        { txt: "Do the Carnival case", short: "Carnival", done: caseDone(18) },
-        { txt: "Do the Farm and Sewer cases", short: "Farm + Sewer", done: caseDone(19) && caseDone(20) },
-        { txt: "Do the Cult case (cabin in the woods, wear the cult robe)", short: "Cult case", done: caseDone(22) },
-        { txt: "Escape the cult", short: "Escape cult", done: gv.get("cultEscape") !== null },
-        { txt: "Meet " + sc.n("p") + " at Missy's Detective Agency", short: "Meet agency", done: pTask(0) },
-        { txt: "Go to the Forest Queen's and bring back evidence to " + sc.n("p"), short: "Forest Queen", done: pTask(1) && pTask(2) },
-        { txt: "Investigate each person on the list and report back to " + sc.n("p"), short: "The list", done: pTask(3) && pTask(4) },
-        { txt: "Go deep into the woods, past the cave, to the very end to save Missy", short: "Save Missy", done: pTask(5) },
+        { id: "getJob", txt: "Get a job. Use the computer in your room to apply", short: "Get a job", done: ac >= 1 || licensed },
+        { id: "construction", txt: "Work at the construction site", short: "Construction", done: ac >= 2 || licensed },
+        { id: "piLicense", txt: "Buy a P.I. license at city hall and show it to " + sc.n("missy"), short: "P.I. license", done: ac >= 3 || licensed },
+        { id: "firstDay", txt: "Buy dress clothes at the mall, then go to work at " + sc.n("missy") + "'s", short: "First day", done: worked },
+        { id: "firstCase", txt: "Work 5 days and work out, then do the first case (the park)", short: "First case", done: caseDone(4) },
+        { id: "cageAndPanties", txt: "Do cases at " + sc.n("missy") + "'s until you're caged and in panties", short: "Cage + panties", done: sissy.st[17].ach },
+        { id: "sissySchool", txt: "Go to the sissy school at " + sc.n("missy") + "'s (Monday to Thursday)", short: "Sissy school", done: sissy.st[0].ach },
+        { id: "lockpick", txt: "Raise your Intelligence to level 4 to get the lockpick", short: "Lockpick", done: inv.has("lockpick") },
+        { id: "midterm", txt: "Pass the sissy mid-term", short: "Mid-term", done: sissy.st[10].ach },
+        { id: "final", txt: "Pass the sissy final", short: "Final", done: sissy.st[21].ach },
+        { id: "carnival", txt: "Do the Carnival case", short: "Carnival", done: caseDone(18) },
+        { id: "farmAndSewer", txt: "Do the Farm and Sewer cases", short: "Farm + Sewer", done: caseDone(19) && caseDone(20) },
+        { id: "cultCase", txt: "Do the Cult case (cabin in the woods, wear the cult robe)", short: "Cult case", done: caseDone(22) },
+        { id: "escapeCult", txt: "Escape the cult", short: "Escape cult", done: gv.get("cultEscape") !== null },
+        { id: "meetAgency", txt: "Meet " + sc.n("p") + " at " + sc.n("missy") + "'s Detective Agency", short: "Meet agency", done: pTask(0) },
+        { id: "forestQueen", txt: "Go to the Forest Queen's and bring back evidence to " + sc.n("p"), short: "Forest Queen", done: pTask(1) && pTask(2) },
+        { id: "theList", txt: "Investigate each person on the list and report back to " + sc.n("p"), short: "The list", done: pTask(3) && pTask(4) },
+        { id: "saveMissy", txt: "Go deep into the woods, past the cave, to the very end to save " + sc.n("missy"), short: "Save " + sc.n("missy"), done: pTask(5) },
     ];
 };
 
@@ -3432,9 +3469,13 @@ sc.mainStory.status = function () {
             steps[i].done = true;
     }
     let caseTxt = "";
-    if (gv.get("cultEscape") === null && missy.get("activeCase") >= 4)
-        caseTxt = missy.activecase().txt.trim();
-    return { steps: steps, current: steps.findIndex(function (s) { return !s.done; }), caseTxt: caseTxt };
+    let caseKey = "";
+    if (gv.get("cultEscape") === null && missy.get("activeCase") >= 4) {
+        const activeCase = missy.activecase();
+        caseTxt = activeCase.txt.trim();
+        caseKey = activeCase.name;
+    }
+    return { steps: steps, current: steps.findIndex(function (s) { return !s.done; }), caseTxt: caseTxt, caseKey: caseKey };
 };
 
 sc.mainStory.nextText = function () {

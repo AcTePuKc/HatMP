@@ -1,4 +1,4 @@
-﻿//Room name
+//Room name
 var room329 = {};
 room329.main = function () {
     if (daily.get("328fight_lose")) {
@@ -417,6 +417,7 @@ room329.btnclick = function (name) {
                     "type": "btn",
                     "name": "east",
                     "title": "East",
+                    "titleKey": "ui.direction.east",
                     "left": 1600,
                     "top": 460,
                     "width": 225,
@@ -438,6 +439,7 @@ room329.btnclick = function (name) {
                     "type": "btn",
                     "name": "west",
                     "title": "West",
+                    "titleKey": "ui.direction.west",
                     "left": 300,
                     "top": 460,
                     "width": 225,
@@ -460,6 +462,7 @@ room329.btnclick = function (name) {
                         "type": "btn",
                         "name": "north",
                         "title": "North",
+                        "titleKey": "ui.direction.north",
                         "left": 840,
                         "top": 200,
                         "width": 225,
@@ -482,6 +485,7 @@ room329.btnclick = function (name) {
                     "type": "btn",
                     "name": "escape",
                     "title": "North",
+                    "titleKey": "ui.direction.north",
                     "left": 840,
                     "top": 200,
                     "width": 225,
@@ -495,6 +499,7 @@ room329.btnclick = function (name) {
                         "type": "btn",
                         "name": "south",
                         "title": "South",
+                        "titleKey": "ui.direction.south",
                         "left": 840,
                         "top": 880,
                         "width": 225,
@@ -508,6 +513,7 @@ room329.btnclick = function (name) {
                     "type": "btn",
                     "name": "exitBarn",
                     "title": "South",
+                    "titleKey": "ui.direction.south",
                     "left": 840,
                     "top": 880,
                     "width": 225,

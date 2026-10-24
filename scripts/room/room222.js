@@ -101,6 +101,7 @@ room222.btnclick = function (name) {
                 "width": 145,
                 "height": 330,
                 "title": "Record's Office",
+                "titleKey": "room.911.hover.recordsOffice",
                 "image": "911_cityhall/records.png"
             }, 222);
             nav.button({
@@ -132,6 +133,7 @@ room222.btnclick = function (name) {
                 "width": 78,
                 "height": 407,
                 "title": "Go to the second floor. ",
+                "titleKey": "ui.navigation.secondFloor",
                 "image": "300_apartment/stairs1.png"
             }, 222);
             break;

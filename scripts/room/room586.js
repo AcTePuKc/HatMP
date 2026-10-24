@@ -9,6 +9,7 @@ room586.main = function () {
         "width": 175,
         "height": 433,
         "title": "Have a beer",
+        "titleKey": "room.586.hover.haveBeer",
         "image": "586_kitchen/keg.png"
     }, 586);
 

@@ -197,6 +197,7 @@ room14.main = function () {
                     "type": "btn",
                     "name": "bedMessy",
                     "title": "Make Bed?",
+                    "titleKey": "room.14.hover.makeBed",
                     "left": 939,
                     "top": 755,
                     "width": 776,

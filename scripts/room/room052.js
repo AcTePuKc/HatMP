@@ -30,6 +30,7 @@ room52.main = function () {
                 "width": 175,
                 "height": 605,
                 "title": "Wardrobe",
+                "titleKey": "room.10.hover.wardrobe",
                 "image": "52_myroom/wardrobe.png",
                 "night": "52_myroom/wardrobeNight.png",
             },
@@ -41,6 +42,7 @@ room52.main = function () {
                 "width": 592,
                 "height": 495,
                 "title": "Sleep",
+                "titleKey": "room.10.hover.sleep",
                 "image": "52_myroom/bed.png",
                 "night": "52_myroom/bedNight.png",
             },
@@ -52,6 +54,7 @@ room52.main = function () {
                 "width": 153,
                 "height": 214,
                 "title": "Toybox",
+                "titleKey": "room.10.hover.toybox",
                 "image": "52_myroom/nightstand.png",
                 "night": "52_myroom/nightstandNight.png"
             },
@@ -89,6 +92,7 @@ room52.main = function () {
                 "width": 236,
                 "height": 251,
                 "title": "Practice Cheerleading",
+                "titleKey": "room.10.hover.practiceCheer",
                 "image": "10_mainchar/cheerleader.png",
             }, 10);
         }

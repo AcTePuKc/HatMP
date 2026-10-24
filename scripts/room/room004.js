@@ -347,42 +347,54 @@ room4.chat = function (chatID) {
         {
             chatID: 0,
             speaker: "me",
+            l10nKey: "lola.massage.opening",
             text: "I know you go swimming a lot, do you need a massage?",
             button: [
-                { chatID: 1, text: "?", callback: "" },
+                { chatID: 1, l10nKey: "lola.massage.opening.choice", text: "?", callback: "" },
             ]
         },
         {
             chatID: 1,
             speaker: "lola",
+            l10nKey: "lola.massage.accept",
             text: "Oh, uh, sure! I guess I could really use a massage. ",
             button: [
-                { chatID: -1, text: "Great, just lay back and relax and I'll take care of you.", callback: "massage0" },
+                { chatID: -1, l10nKey: "lola.massage.begin", text: "Great, just lay back and relax and I'll take care of you.", callback: "massage0" },
             ]
         },
         {
             chatID: 2,
             speaker: "thinking",
+            l10nKey: "lola.massage.thought",
             text: "She's so tight and trim. I really love touching her, but I want to touch her skin. Maybe she'll let me " +
                 "pull up her shirt. It's innocent enough. I'm doing her a favor by giving her a better massage. ",
             button: [
-                { chatID: -1, text: "...", callback: "massage1" },
+                { chatID: -1, l10nKey: "lola.massage.thought.choice", text: "...", callback: "massage1" },
             ]
         },
         {
             chatID: 3,
             speaker: "lola",
+            l10nKey: "lola.massage.decline",
             text: "I don't think I'm ready for that. ",
             button: [
-                { chatID: 4, text: "...", callback: "" },
+                { chatID: 4, l10nKey: "lola.massage.decline.choice", text: "...", callback: "" },
             ]
         },
         {
             chatID: 4,
             speaker: "thinking",
-            text: "I need to improve my relationship with " + sc.n("lola") + ". Maybe I can speed things up by talking her into it. ",
+            l10nKey: "room.4.massage.improveRelationship",
+            l10nValues: { character: sc.n("lola") },
+            text: "I need to improve my relationship with {character}. Maybe I can speed things up by talking her into it. ",
             button: [
-                { chatID: -1, text: "It's worth a try. " + charisma.getStats(g.internal.level + 7).txt, callback: "charRoll" },
+                {
+                    chatID: -1,
+                    l10nKey: "room.4.massage.tryIt",
+                    l10nValues: { roll: charisma.getStats(g.internal.level + 7).txt },
+                    text: "It's worth a try. {roll}",
+                    callback: "charRoll"
+                },
             ]
         },
         {

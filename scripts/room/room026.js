@@ -1635,7 +1635,7 @@ room26.chat = function (chatID) {
             {
                 chatID: 72,
                 speaker: "landlord",
-                text: "Get your fingers out of your " + g.makeSingular(sc.n("el")) + "! Do you two really think I have lost my ability to smell or feel? " +
+                text: "Get your fingers out of your " + sc.el() + "! Do you two really think I have lost my ability to smell or feel? " +
                     sc.n("lola") + " go wash your vagina, it smells! " + sc.n("me") + " stop fingering " + sc.n("lola") + ". Now follow me for your spanking!",
                 button: [
                     { chatID: -1, text: "Awwwww", callback: "spanking" },

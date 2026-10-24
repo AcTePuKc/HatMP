@@ -1402,7 +1402,7 @@ room7.chat = function (chatID) {
             {
                 chatID: 63,
                 speaker: "landlord",
-                text: "You should have thought of this before cumming in your " + g.makeSingular(sc.n("el")) +
+                text: "You should have thought of this before cumming in your " + sc.el() +
                     " while she slept! Get out! Get out now! ",
                 button: [
                     { chatID: 64, text: "I need to get dressed...", callback: "" },

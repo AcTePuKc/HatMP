@@ -232,12 +232,48 @@ nav.button = function (btn, roomNum) {
         }
         if ("char" in btn)
             charAttr = ' data-char="' + btn.char + ' "';
-        line = '<img src="./images/room/' + thisImage + '" class="' + classes + '" data-name="' + btn.name + '" data-room="' + roomNum + '"' + spaceAdvanceAttr + ' title="' + (("title" in btn) ? btn.title : "") + charAttr + '" style="width:' + btnWidth + 'px; height:' + btnHeight + 'px; top:' + top + 'px; left:' + left + 'px;" />';
+        var hoverTitle = "";
+        if ("titleKey" in btn)
+            hoverTitle = l10n.t(btn.titleKey, btn.title || "", btn.titleParams);
+        else if ("title" in btn)
+            hoverTitle = btn.title;
+        var hoverTitleKeyAttr = ("titleKey" in btn) ? ' data-l10n-title="' + btn.titleKey + '"' : "";
+        var hoverTitleParamsAttr = "";
+        if ("titleKey" in btn && "titleParams" in btn) {
+            var encodedTitleParams = JSON.stringify(btn.titleParams)
+                .replace(/&/g, "&amp;")
+                .replace(/\"/g, "&quot;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;");
+            hoverTitleParamsAttr = ' data-l10n-title-params="' + encodedTitleParams + '"';
+        }
+        line = '<img src="./images/room/' + thisImage + '" class="' + classes + '" data-name="' + btn.name + '" data-room="' + roomNum + '"' + spaceAdvanceAttr + ' title="' + hoverTitle + '"' + hoverTitleKeyAttr + hoverTitleParamsAttr + charAttr + ' style="width:' + btnWidth + 'px; height:' + btnHeight + 'px; top:' + top + 'px; left:' + left + 'px;" />';
         $('#room-buttons').append(line);
         if (typeof char !== "undefined" && typeof char.syncVisibleRoomShortcutTitles === "function")
             char.syncVisibleRoomShortcutTitles();
     }
     $('img').on('dragstart', function (event) { event.preventDefault(); });
+};
+
+nav.localizedTextButton = function (name, key, fallback, left, top, width, height, roomID, style = "setting") {
+    var label = l10n.t(key, fallback);
+    var button = document.createElement("button");
+    button.type = "button";
+    button.className = "room-btn rom-event room-zindex phone-text-button phone-text-button-" + style + " is-active room-localized-back";
+    button.dataset.name = name;
+    button.dataset.room = roomID;
+    button.setAttribute("aria-label", label);
+    button.title = label;
+    button.style.left = (left * g.ratio) + "px";
+    button.style.top = (top * g.ratio) + "px";
+    button.style.width = (width * g.ratio) + "px";
+    button.style.height = (height * g.ratio) + "px";
+    var text = document.createElement("span");
+    text.textContent = label;
+    text.style.fontSize = (28 * g.ratio) + "px";
+    button.appendChild(text);
+    document.getElementById("room-buttons").appendChild(button);
+    return button;
 };
 
 nav.tcenter = function (btn, roomNum) {
@@ -371,7 +407,8 @@ nav.buildnav = function (roomIDList, rebuild = false) {
         $.each(g.rooms, function (j, u) {
             if (u.roomID === roomIDList[i]) {
                 if ($('.room-changeRoomBtn[data-roomid="' + u.roomID + '"]').length === 0) {
-                    var line = '<div class="room-changeRoomBtn" data-roomid="' + u.roomID + '"><img src="./images/room/navBtn/' + u.btn + '" /><span>' + u.name + '</span></div>';
+                    var roomName = l10n.t("location.room." + u.roomID, u.name);
+                    var line = '<div class="room-changeRoomBtn" data-roomid="' + u.roomID + '"><img src="./images/room/navBtn/' + u.btn + '" /><span data-l10n="location.room.' + u.roomID + '">' + roomName + '</span></div>';
                     $('#room_footer').append(line);
                 }
                 return false;
@@ -381,20 +418,15 @@ nav.buildnav = function (roomIDList, rebuild = false) {
 };
 
 nav.buildclock = function () {
-    var weekday = new Array(7);
-    weekday[0] = "Sun";
-    weekday[1] = "Mon";
-    weekday[2] = "Tues";
-    weekday[3] = "Wed";
-    weekday[4] = "Thur";
-    weekday[5] = "Fri";
-    weekday[6] = "Sat";
-
     var timeDiff = Math.abs(g.dt.getTime() - g.startDate.getTime());
     var diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24));
+    var weekday = g.dt.toLocaleDateString(l10n.getLanguage(), { weekday: "short" });
 
     $('#char_clock_time').text(nav.friendlyTime());
-    $('#char_clock_dow').text("Day: " + diffDays + ", " + weekday[g.dt.getDay()]);
+    $('#char_clock_dow').text(l10n.t("ui.dayAndWeekday", "Day: {day}, {weekday}", {
+        day: diffDays,
+        weekday: weekday
+    }));
 };
 nav.twodigits = function (n) {
     return n < 10 ? '0' + n : n;

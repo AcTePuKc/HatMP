@@ -1,4 +1,4 @@
-﻿//Room name
+//Room name
 var room211 = {};
 room211.main = function () {
     if (sissy.st[21].ach) {
@@ -11,7 +11,8 @@ room211.main = function () {
             "width": 130,
             "height": 395,
             "image": "211_meeting/elevator.png",
-            "title": "Elevator"
+            "title": "Elevator",
+            "titleKey": "room.211.hover.elevator"
         }, 211);
         nav.buildnav([207, 0]);
         if (sissy.st[21].ach) {
@@ -120,7 +121,8 @@ room211.main = function () {
             "width": 128,
             "height": 404,
             "image": "211_meeting/ralph.png",
-            "title": "Chat"
+            "title": "Chat",
+            "titleKey": "room.211.hover.chat"
         }, 211);
         nav.button({
             "type": "btn",
@@ -130,7 +132,8 @@ room211.main = function () {
             "width": 348,
             "height": 542,
             "image": "211_meeting/philbert.png",
-            "title": "Chat"
+            "title": "Chat",
+            "titleKey": "room.211.hover.chat"
         }, 211);
 
         nav.button({
@@ -141,7 +144,8 @@ room211.main = function () {
             "width": 419,
             "height": 547,
             "image": "211_meeting/sporty.png",
-            "title": "Chat"
+            "title": "Chat",
+            "titleKey": "room.211.hover.chat"
         }, 211);
         nav.button({
             "type": "btn",
@@ -151,7 +155,8 @@ room211.main = function () {
             "width": 468,
             "height": 603,
             "image": "211_meeting/jeremy.png",
-            "title": "Chat"
+            "title": "Chat",
+            "titleKey": "room.211.hover.chat"
         }, 211);
         nav.button({
             "type": "btn",
@@ -161,7 +166,8 @@ room211.main = function () {
             "width": 464,
             "height": 208,
             "image": "211_meeting/class.png",
-            "title": "Class selection screen"
+            "title": "Class selection screen",
+            "titleKey": "room.211.hover.classSelection"
         }, 211);
         nav.button({
             "type": "btn",
@@ -171,7 +177,8 @@ room211.main = function () {
             "width": 130,
             "height": 395,
             "image": "211_meeting/elevator.png",
-            "title": "Elevator"
+            "title": "Elevator",
+            "titleKey": "room.211.hover.elevator"
         }, 211);
     }
 };
@@ -357,7 +364,8 @@ room211.btnclick = function (name) {
                     "width": 464,
                     "height": 208,
                     "image": "211_meeting/class.png",
-                    "title": "Class selection screen"
+                    "title": "Class selection screen",
+                    "titleKey": "room.211.hover.classSelection"
                 }, 211);
                 nav.button({
                     "type": "btn",
@@ -367,7 +375,8 @@ room211.btnclick = function (name) {
                     "width": 130,
                     "height": 395,
                     "image": "211_meeting/elevator.png",
-                    "title": "Elevator"
+                    "title": "Elevator",
+                    "titleKey": "room.211.hover.elevator"
                 }, 211);
             }
             else {
@@ -424,7 +433,8 @@ room211.btnclick = function (name) {
                     "width": 464,
                     "height": 208,
                     "image": "211_meeting/class.png",
-                    "title": "Class selection screen"
+                    "title": "Class selection screen",
+                    "titleKey": "room.211.hover.classSelection"
                 }, 211);
                 nav.button({
                     "type": "btn",
@@ -434,7 +444,8 @@ room211.btnclick = function (name) {
                     "width": 130,
                     "height": 395,
                     "image": "211_meeting/elevator.png",
-                    "title": "Elevator"
+                    "title": "Elevator",
+                    "titleKey": "room.211.hover.elevator"
                 }, 211);
             }
             break;

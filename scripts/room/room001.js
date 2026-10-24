@@ -4,24 +4,6 @@ room1.main = function () {
     var btnList = [
         {
             "type": "btn",
-            "name": "start",
-            "left": 322,
-            "top": 375,
-            "width": 316,
-            "height": 45,
-            "image": "1_startScreen/start.png"
-        },
-        {
-            "type": "btn",
-            "name": "load",
-            "left": 1280,
-            "top": 375,
-            "width": 321,
-            "height": 46,
-            "image": "1_startScreen/load.png"
-        },
-        {
-            "type": "btn",
             "name": "patron",
             "left": 852,
             "top": 375,
@@ -36,6 +18,35 @@ room1.main = function () {
     $('.room-left').hide();
     $('#room_footer').hide();
     $(".room-topper").hide();
+
+    function addTextButton(name, key, fallback, left, top, width, height) {
+        var label = l10n.t(key, fallback);
+        var button = document.createElement("button");
+        button.type = "button";
+        button.className = "room-btn rom-event start-screen-game-button";
+        button.dataset.name = name;
+        button.dataset.room = "1";
+        button.setAttribute("aria-label", label);
+        button.textContent = label;
+        button.style.left = (left * g.ratio) + "px";
+        button.style.top = (top * g.ratio) + "px";
+        button.style.width = (width * g.ratio) + "px";
+        button.style.height = (height * g.ratio) + "px";
+
+        var measure = document.createElement("canvas").getContext("2d");
+        var fontSize = 48 * g.ratio;
+        measure.font = "bold " + fontSize + "px Arial";
+        var availableWidth = (width - 8) * g.ratio;
+        var textWidth = measure.measureText(label).width;
+        if (textWidth > availableWidth)
+            fontSize *= availableWidth / textWidth;
+        button.style.fontSize = fontSize + "px";
+        document.getElementById("room-buttons").appendChild(button);
+    }
+
+    addTextButton("start", "start.menu.startGame", "Start Game", 322, 375, 316, 45);
+    addTextButton("load", "start.menu.loadGame", "Load Game", 1280, 375, 321, 46);
+
     $.each(btnList, function (i, v) {
         nav.button(v, 1);
     });
@@ -48,8 +59,10 @@ room1.main = function () {
         font: 20,
         hex: "#ffffff",
         stroke: "black",
-        text: g.versionText + "<br/>The last release before the next release"
+        text: g.versionText + "<br/>" + l10n.t("start.versionNote", "The last release before the next release")
     }, 1);
+
+    l10n.addSelector("title-language-selector", 40, 130, 320);
 
 };
 

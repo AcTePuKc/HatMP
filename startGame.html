@@ -10,6 +10,9 @@
     <script src="./scripts/global.js" type="text/javascript"></script>
     <script src="./scripts/invoker.js" type="text/javascript"></script>
     <script src="./scripts/gamevariables.js" type="text/javascript"></script>
+    <script src="./l10n/languages.js" type="text/javascript"></script>
+    <script src="./l10n/en.js" type="text/javascript"></script>
+    <script src="./scripts/localization.js" type="text/javascript"></script>
     <script src="./scripts/clothes.js" type="text/javascript"></script>
     <script src="./scripts/clothes_zcl.js" type="text/javascript"></script>
     <script src="./scripts/nav.js" type="text/javascript"></script>
@@ -311,16 +314,16 @@
                 </div>
             </div>
             <div id="room-time" class="room-menu hide-start">
-                <img src="./images/inv/time.png" title="Pass Time" />
+                <img src="./images/inv/time.png" title="Pass Time" data-l10n-title="ui.passTime" />
             </div>
             <div id="room-change" class="room-menu hide-start">
-                <img src="./images/inv/change.png" title="Change Clothes" />
+                <img src="./images/inv/change.png" title="Change Clothes" data-l10n-title="ui.changeClothes" />
             </div>
             <div id="room-inv" class="room-menu hide-start">
-                <img src="./images/inv/backpack.png" title="Inventory" />
+                <img src="./images/inv/backpack.png" title="Inventory" data-l10n-title="ui.inventory" />
             </div>
             <div id="room-menu" class="room-menu hide-start">
-                <img src="./images/inv/phone_basic.png" title="menu" />
+                <img src="./images/inv/phone_basic.png" title="menu" data-l10n-title="ui.menu" />
             </div>
             <div id="room-background"></div>
             <div id="room-buttons"></div>
@@ -362,13 +365,13 @@
                 </div>
                 <div class="char-divider"></div>
                 <button class="char-modBtn" data-t="f">
-                    <img src="./images/general/b1.png" title="Front" />
+                    <img src="./images/general/b1.png" title="Front" data-l10n-title="ui.front" />
                 </button><button class="char-modBtn" data-t="b">
-                    <img src="./images/general/b2.png" title="Back" />
+                    <img src="./images/general/b2.png" title="Back" data-l10n-title="ui.body.back" />
                 </button><button class="char-modBtn" data-t="p">
-                    <img src="./images/general/b3.png" title="Bladder" />
+                    <img src="./images/general/b3.png" title="Bladder" data-l10n-title="ui.bladder" />
                 </button><button class="char-modBtn" data-t="a">
-                    <img src="./images/general/b4.png" title="Sissy Pussy" />
+                    <img src="./images/general/b4.png" title="Sissy Pussy" data-l10n-title="ui.sissyPussy" />
                 </button>
                 <div class="char-divider"></div>
                 <div class="char-statDisplay" id="char_cockDisplay"></div>
@@ -660,17 +663,17 @@
     <div class="char-alert" id="char_alert"> </div>
     <div class="char-alert-bottom" id="char_alert_bottom"> </div>
     <button class="rl-change" data-type="body" style="display:none;">
-        <img src="./images/general/btnTits.jpg" title="Body" style="width:100%;" />
+        <img src="./images/general/btnTits.jpg" title="Body" data-l10n-title="ui.body" style="width:100%;" />
     </button>
     <button class="resize rl-change" data-type="map" style="display:none;">
-        <img src="./images/general/btnMap.jpg" title="Map" style="width:100%;" />
+        <img src="./images/general/btnMap.jpg" title="Map" data-l10n-title="ui.map" style="width:100%;" />
     </button>
     <button class="resize rl-change" data-type="graph" style="display:none;">
-        <img src="./images/general/btnGraph.jpg" title="Graph" style="width:100%;" />
+        <img src="./images/general/btnGraph.jpg" title="Graph" data-l10n-title="ui.graph" style="width:100%;" />
     </button>
     <button class="resize rl-change" data-type="walk" style="display:none;">
-        <img src="./images/general/btnHide.jpg" title="History" style="width:100%;" />
+        <img src="./images/general/btnHide.jpg" title="History" data-l10n-title="ui.history" style="width:100%;" />
     </button>
-    <img src="./images/room/1001_rand/back_1.png" class="help-history hover-noevent" title="Back" style="width: 200px; height: 66.6px; z-index: 100; top:75px; left: 30px; position: absolute; display:none;" id="help_backButton" />
+    <img src="./images/room/1001_rand/back_1.png" class="help-history hover-noevent" title="Back" data-l10n-title="ui.back" style="width: 200px; height: 66.6px; z-index: 100; top:75px; left: 30px; position: absolute; display:none;" id="help_backButton" />
 </body>
 </html>

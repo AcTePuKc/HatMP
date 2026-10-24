@@ -138,6 +138,7 @@ room10.btnclick = function (name) {
                 "width": 236,
                 "height": 602,
                 "title": "Wardrobe",
+                "titleKey": "room.10.hover.wardrobe",
                 "image": "10_mainchar/10_wardrobe.png",
                 "night": "10_mainchar/10_wardrobeNight.png"
             }, 10);
@@ -150,6 +151,7 @@ room10.btnclick = function (name) {
                 "width": 547,
                 "height": 401,
                 "title": "Sleep",
+                "titleKey": "room.10.hover.sleep",
                 "image": "10_mainchar/" + mr_bed10 + ".png",
                 "night": "10_mainchar/" + mr_bed10 + "Night.png"
             }, 10);
@@ -163,6 +165,7 @@ room10.btnclick = function (name) {
                     "width": 202,
                     "height": 115,
                     "title": "Use your computer",
+                    "titleKey": "room.10.hover.useComputer",
                     "image": "10_mainchar/10_computerApply.png",
                 }, 10);
             }
@@ -175,6 +178,7 @@ room10.btnclick = function (name) {
                     "width": 202,
                     "height": 115,
                     "title": "Use your computer",
+                    "titleKey": "room.10.hover.useComputer",
                     "image": "10_mainchar/10_computer.png",
                     "night": "10_mainchar/10_computerNight.png"
                 }, 10);
@@ -223,6 +227,7 @@ room10.btnclick = function (name) {
                         "width": 137,
                         "height": 197,
                         "title": "Toybox - play with your dildos (if you have them)",
+                        "titleKey": "room.10.hover.toybox",
                         "image": "10_mainchar/nightstandPracticeDay.png",
                         "night": "10_mainchar/nightstandPracticeNight.png"
                     }, 10);
@@ -236,6 +241,7 @@ room10.btnclick = function (name) {
                         "width": 137,
                         "height": 197,
                         "title": "Toybox - play with your dildos (if you have them)",
+                        "titleKey": "room.10.hover.toybox",
                         "image": "10_mainchar/10_nightstand.png",
                         "night": "10_mainchar/10_nightstandNight.png"
                     }, 10);
@@ -250,6 +256,7 @@ room10.btnclick = function (name) {
                         "width": 236,
                         "height": 251,
                         "title": "Practice Cheerleading",
+                        "titleKey": "room.10.hover.practiceCheer",
                         "image": "10_mainchar/cheerleader.png",
                     }, 10);
                 }
@@ -263,6 +270,7 @@ room10.btnclick = function (name) {
                         "width": 236,
                         "height": 251,
                         "title": "Practice Walking in heels",
+                        "titleKey": "room.10.hover.practiceHeels",
                         "image": "10_mainchar/heels.png",
                     }, 10);
                 }
@@ -836,6 +844,7 @@ room10.chatcatch = function (callback) {
                 "width": 236,
                 "height": 602,
                 "title": "Wardrobe",
+                "titleKey": "room.10.hover.wardrobe",
                 "image": "10_mainchar/10_wardrobe.png"
             }, 10);
             break;
@@ -1683,7 +1692,7 @@ room10.chat = function (chatID) {
             {
                 chatID: 73,
                 speaker: "thinking",
-                text: "She's so wet. I can feel her pussy juice splash on my legs. My " + g.makeSingular(sc.n("el")) +
+                text: "She's so wet. I can feel her pussy juice splash on my legs. My " + sc.el() +
                     " is so hot and ready for dick. ",
                 button: [
                     { chatID: 74, text: "Finish off", callback: "lola_sleep5" },
@@ -1805,7 +1814,7 @@ room10.chat = function (chatID) {
                 chatID: 87,
                 speaker: "landlord",
                 text: "Listen here " + sc.n("me") + "! You'll share this room and be nice to your " +
-                    g.makeSingular(sc.n("el")) + "! If you two can't get along I'll turn this room into my " +
+                    sc.el() + "! If you two can't get along I'll turn this room into my " +
                     "new craft room and you two will live on the streets! Now be good! ",
                 button: [
                     { chatID: 88, text: "*hrumph*", callback: "" },
@@ -1823,7 +1832,7 @@ room10.chat = function (chatID) {
             {
                 chatID: 89,
                 speaker: "landlord",
-                text: "*sigh* " + sc.n("me") + ", don't harass your " + g.makeSingular(sc.n("el")) + ". If I have to " +
+                text: "*sigh* " + sc.n("me") + ", don't harass your " + sc.el() + ". If I have to " +
                     "come up here again, you're out of here. DON'T interrupt " +
                     "my shows again! ",
                 button: [

@@ -246,9 +246,23 @@ cl.getSet = function (entry) {
     var i;
     for (i = 0; i < cl.set.length; i++) {
         if (cl.set[i].entry === entry)
-            return cl.set[i].name;
+            return cl.localizedStyle(cl.set[i]);
     }
     return "UNK";
+};
+
+cl.displayName = function (item) {
+    if (item.display === undefined || item.display === null || item.display.trim() === "")
+        return "";
+    return typeof l10n !== "undefined"
+        ? l10n.t("clothing.item." + item.type + "." + item.name + ".name", item.display)
+        : item.display;
+};
+
+cl.localizedStyle = function (style) {
+    return typeof l10n !== "undefined"
+        ? l10n.t("clothing.style." + style.entry, style.name)
+        : style.name;
 };
 
 cl.cTemp = {
@@ -340,7 +354,7 @@ cl.remove = function (type, name) {
     if (!cl.clearCurrentSlot(type, name))
         console.log("missing: " + type + ", " + name);
     cl.display();
-    g.popUpNotice("You lost your " + cl.list[clindex].display + ". ");
+    g.popUpNotice(l10n.t("clothing.notice.lost", "You lost your {item}.", { item: cl.displayName(cl.list[clindex]) }) + " ");
 };
 
 cl.showdick = function () {
@@ -906,7 +920,7 @@ cl.getmakeup = function () {
     }
     for (let i = 0; i < cl.makeup.length; i++) {
         if (cl.makeup[i].name === makeup) {
-            if (cl.c.makeup !== "natural") {
+            if (makeup !== "n" && makeup !== "natural") {
                 trophy.add(46);
             }
             return { name: cl.makeup[i].name, image: cl.makeup[i].image };

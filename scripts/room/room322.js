@@ -563,15 +563,7 @@ room322.btnclick = function (name) {
             if (!daily.get("janicePhoneGangbang")) {
                 nav.modbutton("phone_t_6", "322_dog/phone_t_6_ia.webp", null, null)
             }
-            nav.button({
-                "type": "btn",
-                "name": "phoneDraw",
-                "left": 900,
-                "top": 910,
-                "width": 300,
-                "height": 100,
-                "image": "1001_rand/back_1.png"
-            }, 322);
+            nav.localizedTextButton("phoneDraw", "ui.back", "Back", 900, 910, 300, 100, 322);
             break;
         case "phone_t_0":
         case "phone_t_1":
@@ -593,15 +585,7 @@ room322.btnclick = function (name) {
             else {
                 nav.bg("322_dog/" + name + ".webp");
             }
-            nav.button({
-                "type": "btn",
-                "name": "phone_text",
-                "left": 900,
-                "top": 910,
-                "width": 300,
-                "height": 100,
-                "image": "1001_rand/back_1.png"
-            }, 322);
+            nav.localizedTextButton("phone_text", "ui.back", "Back", 900, 910, 300, 100, 322);
             break;
         case "phone_pic":
             nav.kill();
@@ -617,15 +601,7 @@ room322.btnclick = function (name) {
                     "image": "322_dog/phone_i_" + i + "_i.webp"
                 }, 322);
             }
-            nav.button({
-                "type": "btn",
-                "name": "phoneDraw",
-                "left": 900,
-                "top": 910,
-                "width": 300,
-                "height": 100,
-                "image": "1001_rand/back_1.png"
-            }, 322);
+            nav.localizedTextButton("phoneDraw", "ui.back", "Back", 900, 910, 300, 100, 322);
             break;
         case "phone_i_0":
         case "phone_i_1":
@@ -638,15 +614,7 @@ room322.btnclick = function (name) {
         case "phone_i_8":
             nav.kill();
             nav.bg("322_dog/" + name + ".webp");
-            nav.button({
-                "type": "btn",
-                "name": "phone_pic",
-                "left": 900,
-                "top": 910,
-                "width": 300,
-                "height": 100,
-                "image": "1001_rand/back_1.png"
-            }, 322);
+            nav.localizedTextButton("phone_pic", "ui.back", "Back", 900, 910, 300, 100, 322);
             break;
         case "phone_datr":
             nav.kill();
@@ -660,15 +628,7 @@ room322.btnclick = function (name) {
                 "height": 179,
                 "image": "322_dog/datr_messages.webp"
             }, 322);
-            nav.button({
-                "type": "btn",
-                "name": "phoneDraw",
-                "left": 900,
-                "top": 910,
-                "width": 300,
-                "height": 100,
-                "image": "1001_rand/back_1.png"
-            }, 322);
+            nav.localizedTextButton("phoneDraw", "ui.back", "Back", 900, 910, 300, 100, 322);
             break;
         case "phone_datr0":
             nav.kill();
@@ -697,15 +657,7 @@ room322.btnclick = function (name) {
                     text: messagefoo[i]
                 }, 1);
             }
-            nav.button({
-                "type": "btn",
-                "name": "phoneDraw",
-                "left": 900,
-                "top": 910,
-                "width": 300,
-                "height": 100,
-                "image": "1001_rand/back_1.png"
-            }, 322);
+            nav.localizedTextButton("phoneDraw", "ui.back", "Back", 900, 910, 300, 100, 322);
             break;
         case "phone_d_0":
         case "phone_d_1":
@@ -755,15 +707,7 @@ room322.btnclick = function (name) {
                 hex: "#000000",
                 text: g.linebreak(msgtxt, 36)
             }, 1);
-            nav.button({
-                "type": "btn",
-                "name": "phone_datr0",
-                "left": 900,
-                "top": 910,
-                "width": 300,
-                "height": 100,
-                "image": "1001_rand/back_1.png"
-            }, 322);
+            nav.localizedTextButton("phone_datr0", "ui.back", "Back", 900, 910, 300, 100, 322);
             break;
         case "park2_6":
             nav.killbutton("park2_6");
@@ -1210,7 +1154,7 @@ room322.chat = function (chatID) {
         {
             chatID: 16,
             speaker: "janice",
-            text: "Oh hi " + sc.n("eva") + ". Your " + g.makeSingular(sc.n("el")) + "'s my doggy " +
+            text: "Oh hi " + sc.n("eva") + ". Your " + sc.el() + "'s my doggy " +
                 "now. She's been a bad girl, but she does deserve her walks. ",
             button: [
                 { chatID: 17, text: "ugh", callback: "" },
