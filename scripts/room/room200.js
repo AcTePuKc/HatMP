@@ -836,6 +836,7 @@ room200.chat = function (chatID) {
         return {
             chatID: 999,
             speaker: "missy",
+            l10nKey: "room.200.caseNotReady." + g.internal.activeCase.caseId,
             text: g.internal.activeCase.notReadyTxt,
             button: [
                 { chatID: -1, text: "Yes ma'am", callback: "" },
@@ -902,8 +903,9 @@ room200.chat = function (chatID) {
                     "series of run-ins with some crazy cum beast. It seems that someone goes into their wack-off booths " +
                     "and just covers it in their cum. It wouldn't be a problem if they paid for a show, but they just enter and " +
                     "in a matter of minutes they just cover the entire booth in cum and run. It would be quite impressive if " +
-                    sc.n("tiffany") + " and " + sc.n("candy") + " didn't have to spend so much time cleaning it up. " +
+                    "{tiffany} and {candy} didn't have to spend so much time cleaning it up. " +
                     "I need you to go there, watch the booths, and catch that animal. Do you have all this so far?",
+                l10nValues: { tiffany: sc.n("tiffany"), candy: sc.n("candy") },
                 button: [
                     { chatID: 6, text: "Yes ma'am", callback: "case_booth2" }
                 ]
@@ -911,19 +913,21 @@ room200.chat = function (chatID) {
             {
                 chatID: 6,
                 speaker: "missy",
-                text: "OK, I need you to go to the Toys 'n Us and meet with " + sc.n("tiffany") + ", she'll explain what to do. This is your " +
+                text: "OK, I need you to go to the Toys 'n Us and meet with {tiffany}, she'll explain what to do. This is your " +
                     "first big break, don't fuck it up. Now repeat back to me what you're doing.",
+                l10nValues: { tiffany: sc.n("tiffany") },
                 button: [
                     { chatID: 7, text: "Go to the mall and buy new shoes", callback: "hate" },
                     { chatID: 7, text: "Go home and masturbate to Hentai", callback: "hate" },
-                    { chatID: 8, text: "Going straight to Toys 'n Us and follow " + sc.n("tiffany") + "'s orders", callback: "" }
+                    { chatID: 8, text: "Going straight to Toys 'n Us and follow {tiffany}'s orders", callback: "", l10nValues: { tiffany: sc.n("tiffany") } }
                 ]
             },
             {
                 chatID: 7,
                 speaker: "missy",
-                text: "No you moron. Go to Toys 'n Us and do what " + sc.n("tiffany") + " says. Now get out " + 
+                text: "No you moron. Go to Toys 'n Us and do what {tiffany} says. Now get out " +
                     "before your stupidity spreads to me. ",
+                l10nValues: { tiffany: sc.n("tiffany") },
                 button: [
                     { chatID: -1, text: "Yes ma'am", callback: "case_afterExplaniation" }
                 ]
@@ -962,8 +966,9 @@ room200.chat = function (chatID) {
                 chatID: 11,
                 speaker: "missy",
                 text: "If you are on a case, that is your job. You will focus only on the case, and you " +
-                    "won't need to come back here. Once you're complete with your case report to " + sc.n("cecilia") +
+                    "won't need to come back here. Once you're complete with your case report to {cecilia}" +
                     " and she'll inform me. Now ready to start your day? ",
+                l10nValues: { cecilia: sc.n("cecilia") },
                 button: [
                     { chatID: -1, text: "Yes ma'am", callback: "selectJob" }
                 ]
@@ -971,9 +976,10 @@ room200.chat = function (chatID) {
             {
                 chatID: 12,
                 speaker: "missy",
-                text: sc.n("tiffany") + " informed me on what happened. Great work, that cult is always up to something. I'm " +
+                text: "{tiffany} informed me on what happened. Great work, that cult is always up to something. I'm " +
                     "sure this little event will cause them to do their extraction process elsewhere. As promised here's $300 " +
                     "for your fine work on your first case. ",
+                l10nValues: { tiffany: sc.n("tiffany") },
                 button: [
                     { chatID: -1, text: "Thank you ma'am", callback: "case_booth_complete" }
                 ]
@@ -981,8 +987,9 @@ room200.chat = function (chatID) {
             {
                 chatID: 13,
                 speaker: "missy",
-                text: sc.n("tiffany") + " informed me on what happened. All you had to do was sit there and look out of a peep " +
+                text: "{tiffany} informed me on what happened. All you had to do was sit there and look out of a peep " +
                     "hole and you couldn't get that right! I guess your cock is in control of your brain. ",
+                l10nValues: { tiffany: sc.n("tiffany") },
                 button: [
                     { chatID: -1, text: "ma'am", callback: "case_booth_complete_bad" }
                 ]
@@ -1032,8 +1039,9 @@ room200.chat = function (chatID) {
             {
                 chatID: 18,
                 speaker: "missy",
-                text: "Excellent work in tracking down Sanaria. " + sc.n("martha") + " is thrilled to get her daughter back. " +
+                text: "Excellent work in tracking down Sanaria. {martha} is thrilled to get her daughter back. " +
                     "As promised, your $250 reward for a job well done. ",
+                l10nValues: { martha: sc.n("martha") },
                 button: [
                     { chatID: -1, text: "Thank you ma'am!", callback: "case_lostgirl_goodend" }
                 ]
@@ -1051,8 +1059,9 @@ room200.chat = function (chatID) {
             {
                 chatID: 20,
                 speaker: "missy",
-                text: "You tried to fuck " + sc.n("martha") + "'s daughter in a night club bathroom? I don't even know where to " +
+                text: "You tried to fuck {martha}'s daughter in a night club bathroom? I don't even know where to " +
                     "begin. ",
+                l10nValues: { martha: sc.n("martha") },
                 button: [
                     { chatID: -1, text: "...", callback: "case_lostgirl_chastity" }
                 ]
@@ -1130,9 +1139,10 @@ room200.chat = function (chatID) {
             {
                 chatID: 29,
                 speaker: "missy",
-                text: "Go into the last stall. Don't go in the other stalls. I know what " + sc.n("cecilia") + " does in there. " +
+                text: "Go into the last stall. Don't go in the other stalls. I know what {cecilia} does in there. " +
                     "Get the USB Drive taped to the back of that toilet and bring it here. That's it. That's the entire case. " +
                     "Go get a USB drive and bring it back. Do you think you can handle that? ",
+                l10nValues: { cecilia: sc.n("cecilia") },
                 button: [
                     { chatID: 30, text: "...", callback: "hate" },
                     { chatID: 31, text: "Yes ma'am.", callback: "" },
@@ -1314,8 +1324,9 @@ room200.chat = function (chatID) {
             {
                 chatID: 49,
                 speaker: "missy",
-                text: "Yes, babysitter duty. Bill do what " + sc.n("me") + " tells you. Now " +
+                text: "Yes, babysitter duty. Bill do what {me} tells you. Now " +
                     "both of you get. I've got work to do. ",
+                l10nValues: { me: sc.n("me") },
                 button: [
                     { chatID: -1, text: "Yes ma'am. ", callback: "case_goth_0" },
                 ]
@@ -1332,11 +1343,12 @@ room200.chat = function (chatID) {
             {
                 chatID: 51,
                 speaker: "missy",
-                text: "I'll have to compliment " + sc.n("tiffany") + " next time I see her. That " +
+                text: "I'll have to compliment {tiffany} next time I see her. That " +
                     "is such a great look for you. Now that your outsides are starting to match " +
                     "your insides expect a great deal of change. Change in how people look " +
                     "at you, how they treat you, and how they can't keep their secret desires " +
                     "secret. ",
+                l10nValues: { tiffany: sc.n("tiffany") },
                 button: [
                     { chatID: 52, text: "ma'am? ", callback: "" },
                 ]
@@ -1394,10 +1406,11 @@ room200.chat = function (chatID) {
             {
                 chatID: 57,
                 speaker: "missy",
-                text: "I was talking with " + sc.n("p") + " about how cute you look in your new " +
+                text: "I was talking with {p} about how cute you look in your new " +
                     "sissy uniform and she let me know that she could really use your help at " +
                     "the pink room today. I'll let her explain what she needs. Now run along and " +
                     "help her out. ",
+                l10nValues: { p: sc.n("p") },
                 button: [
                     { chatID: -1, text: "Yes ma'am", callback: "pinkRoom0" },
                 ]
@@ -1406,8 +1419,9 @@ room200.chat = function (chatID) {
                 chatID: 58,
                 speaker: "missy",
                 text: "Inside of you is a slutty little girl; it's time to let the world know. " +
-                    "It's time for a shopping trip! I've given " + sc.n("tiffany") + " some money " +
+                    "It's time for a shopping trip! I've given {tiffany} some money " +
                     "to take you out and get you some girly clothing. ",
+                l10nValues: { tiffany: sc.n("tiffany") },
                 button: [
                     { chatID: 59, text: "*Squeal*", callback: "" },
                 ]
@@ -1415,8 +1429,9 @@ room200.chat = function (chatID) {
             {
                 chatID: 59,
                 speaker: "missy",
-                text: "Yes. Squeal. Now go meet " + sc.n("tiffany") + " at the Toys 'n Us and get your new " +
+                text: "Yes. Squeal. Now go meet {tiffany} at the Toys 'n Us and get your new " +
                     "set of clothing. ",
+                l10nValues: { tiffany: sc.n("tiffany") },
                 button: [
                     { chatID: -1, text: "Yes ma'am!", callback: "case_afterExplaniation" },
                 ]
@@ -1630,18 +1645,20 @@ room200.chat = function (chatID) {
             {
                 chatID: 80,
                 speaker: "missy",
-                text: "Hello " + sc.n("me") + " this is " + sc.n("jeffery") + ". " + sc.n("jeffery") + " has a problem that I think " +
+                text: "Hello {me} this is {jeffery}. {jeffery} has a problem that I think " +
                     "you can help him with. ",
+                l10nValues: { me: sc.n("me"), jeffery: sc.n("jeffery") },
                 button: [
-                    { chatID: 81, text: "Hi " + sc.n("jeffery"), callback: "" }
+                    { chatID: 81, text: "Hi {jeffery}", callback: "", l10nValues: { jeffery: sc.n("jeffery") } }
                 ]
             },
             {
                 chatID: 81,
                 speaker: "jeffery",
-                text: "H-H-H-H-H-Hello, " + sc.n("me") + " I'm hoping you can h-h-help me with catch the waitress that has been stealing " +
+                text: "H-H-H-H-H-Hello, {me} I'm hoping you can h-h-help me catch the waitress that has been stealing " +
                     "from me. You'll need to pose as a waitress in my restaurant to gain their trust to try and catch the thief. " +
                     "Do you think you can do that?",
+                l10nValues: { me: sc.n("me") },
                 button: [
                     { chatID: 82, text: "Of course I can! ", callback: "" }
                 ]
@@ -1707,7 +1724,8 @@ room200.chat = function (chatID) {
                 chatID: 89,
                 speaker: "missy",
                 text: "Sissy. Get dressed. Tomorrow report to the Naked Beaver Diner and start investigating the staff to see who and " +
-                    "how they are stealing from " + sc.n("jeffery") + " here. When you're done report back to me.",
+                    "how they are stealing from {jeffery} here. When you're done report back to me.",
+                l10nValues: { jeffery: sc.n("jeffery") },
                 button: [
                     { chatID: -1, text: "Yes ma'am", callback: "case_beaver_start" }
                 ]
@@ -1715,7 +1733,8 @@ room200.chat = function (chatID) {
             {
                 chatID: 90,
                 speaker: "missy",
-                text: "Oh good Sissy, you're here. Let me call " + sc.n("jeffery") + " here. ",
+                text: "Oh good Sissy, you're here. Let me call {jeffery} here. ",
+                l10nValues: { jeffery: sc.n("jeffery") },
                 button: [
                     { chatID: -1, text: "Yes mistress", callback: "case_beaver_end0" }
                 ]
@@ -1723,7 +1742,8 @@ room200.chat = function (chatID) {
             {
                 chatID: 91,
                 speaker: "missy",
-                text: "So " + sc.n("jeffery") + " how did my little detective do?",
+                text: "So {jeffery} how did my little detective do?",
+                l10nValues: { jeffery: sc.n("jeffery") },
                 button: [
                     { chatID: 92, text: "...", callback: "" }
                 ]
@@ -1742,7 +1762,8 @@ room200.chat = function (chatID) {
                 speaker: "missy",
                 text: "I am surprised! I guess you're ready for more responsibility around here. I think a bonus is in order for " +
                     "all your hard work! I'll grant your $500 for not screwing up. I also have a little reward for you. " +
-                    sc.n("jeffery") + " I'm done with you, you may go now.",
+                    "{jeffery} I'm done with you, you may go now.",
+                l10nValues: { jeffery: sc.n("jeffery") },
                 button: [
                     { chatID: 94, text: "Yes mistress! Thank you mistress. ", callback: "bg" }
                 ]
@@ -1769,7 +1790,8 @@ room200.chat = function (chatID) {
             {
                 chatID: 96,
                 speaker: "missy",
-                text: "So " + sc.n("jeffery") + " how did my little detective do?",
+                text: "So {jeffery} how did my little detective do?",
+                l10nValues: { jeffery: sc.n("jeffery") },
                 button: [
                     { chatID: 97, text: "...", callback: "" }
                 ]
@@ -1786,8 +1808,9 @@ room200.chat = function (chatID) {
             {
                 chatID: 98,
                 speaker: "missy",
-                text: "Well " + sc.n("jeffery") + " we don't tolerate failure here. Since he failed you how do you want to see " +
+                text: "Well {jeffery} we don't tolerate failure here. Since he failed you how do you want to see " +
                     "him punished?",
+                l10nValues: { jeffery: sc.n("jeffery") },
                 button: [
                     { chatID: 99, text: "...", callback: "" }
                 ]
@@ -1830,9 +1853,10 @@ room200.chat = function (chatID) {
             {
                 chatID: 103,
                 speaker: "missy",
-                text: "I did promise him your panties. Sissy give " + sc.n("jeffery") + " your panties. NOW!",
+                text: "I did promise him your panties. Sissy give {jeffery} your panties. NOW!",
+                l10nValues: { jeffery: sc.n("jeffery") },
                 button: [
-                    { chatID: 104, text: "[Give " + sc.n("jeffery") + " your panties]", callback: "case_beaver_bad1" }
+                    { chatID: 104, text: "[Give {jeffery} your panties]", callback: "case_beaver_bad1", l10nValues: { jeffery: sc.n("jeffery") } }
                 ]
             },
             {
@@ -1846,7 +1870,8 @@ room200.chat = function (chatID) {
             {
                 chatID: 105,
                 speaker: "missy",
-                text: "Yes " + sc.n("jeffery") + " you can keep them. Now kindly put those in your pocket as we continue.",
+                text: "Yes {jeffery} you can keep them. Now kindly put those in your pocket as we continue.",
+                l10nValues: { jeffery: sc.n("jeffery") },
                 button: [
                     { chatID: 106, text: "...", callback: "case_beaver0" }
                 ]
@@ -1882,10 +1907,11 @@ room200.chat = function (chatID) {
             {
                 chatID: 109,
                 speaker: "missy",
-                text: "UGH, " + sc.n("jeffery") + " if you pull that thing out I'm " +
+                text: "UGH, {jeffery} if you pull that thing out I'm " +
                     "going to cut it off. Now get out, I have work to do. And you. " +
                     "put your clothes back on while I think of a proper punishment " +
                     "for your failure. ",
+                l10nValues: { jeffery: sc.n("jeffery") },
                 button: [
                     { chatID: -1, text: "Yes ma'am", callback: "case_beaver_end_bad" }
                 ]
@@ -1973,8 +1999,8 @@ room200.chat = function (chatID) {
                     "C.U.M. cult has taken her back to their compound. They are currently " +
                     "raping her, beating her, and probably eventually kill her. But that's ok. " +
                     "You couldn't be bothered to walk into the forest and untie her, so I guess " +
-                    "she's dead now. I don't even want to look at you anymore. Go see " + sc.n("black") +
-                    ".",
+                    "she's dead now. I don't even want to look at you anymore. Go see {black}.",
+                l10nValues: { black: sc.n("black") },
                 button: [
                     { chatID: -1, text: "Sorry ma'am!", callback: "case_dam_end_bad" }
                 ]
@@ -1995,9 +2021,10 @@ room200.chat = function (chatID) {
                 chatID: 119,
                 speaker: "missy",
                 text: "You won't find anything going during the day, I need you to sneak in after they close " +
-                    "after " + char.friendlyTime(22) + " and look around. Maybe poke around the tents to see " +
+                    "after {time} and look around. Maybe poke around the tents to see " +
                     "if there's anything that can help us confirm they were there. If you find anything worth " +
                     "looking into give me a call. Don't be a hero, just call me. Ok. ",
+                l10nValues: { time: char.friendlyTime(22) },
                 button: [
                     { chatID: -1, text: "Yes ma'am. Look around the carnival after they close and call if I find anything! ", callback: "case_afterExplaniation" }
                 ]
@@ -2031,11 +2058,12 @@ room200.chat = function (chatID) {
                 chatID: 122,
                 speaker: "missy",
                 text: "I've received word from my informant in the forest that the cult is going " +
-                    "to profile one of my pupils. This must not happen. " + sc.n("ralph") + " has somehow come under " +
+                    "to profile one of my pupils. This must not happen. {ralph} has somehow come under " +
                     "the eye of the CUM cult. I need you to hang out at his house tonight and look for " +
                     "the cult and report back to me if there's anything.",
+                l10nValues: { ralph: sc.n("ralph") },
                 button: [
-                    { chatID: 123, text: sc.n("ralph") + "?", callback: "" }
+                    { chatID: 123, text: "{ralph}?", callback: "", l10nValues: { ralph: sc.n("ralph") } }
                 ]
             },
             {
@@ -2046,7 +2074,7 @@ room200.chat = function (chatID) {
                     "stupid and draw more attention to himself. I'm not even quite sure why they've chosen him " +
                     "since there are much better choices in the class, but chosen them they have. ",
                 button: [
-                    { chatID: -1, text: "Ok. I'll check " + sc.n("ralph") + "'s house tonight for the cult. ", callback: "case_saveralph_start" }
+                    { chatID: -1, text: "Ok. I'll check {ralph}'s house tonight for the cult. ", callback: "case_saveralph_start", l10nValues: { ralph: sc.n("ralph") } }
                 ]
             },
             {
@@ -2079,9 +2107,10 @@ room200.chat = function (chatID) {
                 chatID: 127,
                 speaker: "missy",
                 text: "Oh wow! This is troubling. The cult is getting bolder. Probably ramping for another " +
-                    "big ritual. It's too bad you couldn't stop them, but I'm sure " + sc.n("ralph") +
+                    "big ritual. It's too bad you couldn't stop them, but I'm sure {ralph}" +
                     " is safe... for now. Let me devise a plan to rescue him. It will be hard. Really " +
                     "hard. Until then, you keep your head down. I don't want to lose any more sissies. ",
+                l10nValues: { ralph: sc.n("ralph") },
                 button: [
                     { chatID: -1, text: "Yes ma'am", callback: "case_saveralph_badend" }
                 ]
@@ -2177,10 +2206,11 @@ room200.chat = function (chatID) {
             {
                 chatID: 137,
                 speaker: "cop2",
-                text: "Now we've been over this. There's nothing going on over there. I talked to " + sc.n("rachel") +
+                text: "Now we've been over this. There's nothing going on over there. I talked to {rachel}" +
                     " myself last week. She assured me everything was good. I even talked to one of her hucows, the " +
                     "blue haired one. She said everyone was there of their own free will. Making up stories isn't going " +
                     "to change that.",
+                l10nValues: { rachel: sc.n("rachel") },
                 button: [
                     { chatID: 138, text: "...", callback: "" }
                 ]
@@ -2189,8 +2219,9 @@ room200.chat = function (chatID) {
                 chatID: 138,
                 speaker: "missy",
                 text: "You idiot! You can't just ask someone if they're committing a crime, you have to actually " +
-                    "investigate it!! Now come with me so we can look into it or I'm going to call " + sc.n("wyatt") +
+                    "investigate it!! Now come with me so we can look into it or I'm going to call {wyatt}" +
                     " to let him know you're not doing your job! ",
+                l10nValues: { wyatt: sc.n("wyatt") },
                 button: [
                     { chatID: 139, text: "...", callback: "" }
                 ]
@@ -2208,9 +2239,9 @@ room200.chat = function (chatID) {
                 chatID: 140,
                 speaker: "rachel",
                 text: "Well hello officer. You caught me sunbathing. I hope you don't mind. I didn't have time " +
-                    "to get dressed when I saw you come over. I see you brought that crazy " + gender.pronoun("boy") +
-                    " that's been terrorizing my hucows! You need to get " + gender.pronoun("her") + " out of here. " +
-                    "Just the other day " + gender.pronoun("she") + " was running around my ranch trying to fight everyone! ",
+                    "to get dressed when I saw you come over. I see you brought that crazy [[player:boy|girl]]" +
+                    " that's been terrorizing my hucows! You need to get [[player:him|her]] out of here. " +
+                    "Just the other day [[player:he|she]] was running around my ranch trying to fight everyone! ",
                 button: [
                     { chatID: 141, text: "Don't lie! You're keeping hucows here against their will!", callback: "" }
                 ]
@@ -2218,8 +2249,8 @@ room200.chat = function (chatID) {
             {
                 chatID: 141,
                 speaker: "rachel",
-                text: "See I told you. " + gender.pronoun("she") + "'s crazy. I demand you remove her from my " +
-                    "property and lock " + gender.pronoun("her") + " up if " + gender.pronoun("she") + " tries " +
+                text: "See I told you. [[player:he|she]]'s crazy. I demand you remove her from my " +
+                    "property and lock [[player:him|her]] up if [[player:he|she]] tries " +
                     "to come back! You know who's the biggest contributor to the policeman's ball in this town, " +
                     "don't you! ",
                 button: [
@@ -2229,9 +2260,10 @@ room200.chat = function (chatID) {
             {
                 chatID: 142,
                 speaker: "missy",
-                text: "Just have " + sc.n("me") + " show you where the girls are being held against their will. " +
-                    "Won't take more than 15 minutes. If " + gender.pronoun("she") + "'s wrong I assure you " +
-                    gender.pronoun("she") + "'ll never come back here. Let's go look officer.",
+                text: "Just have {me} show you where the girls are being held against their will. " +
+                    "Won't take more than 15 minutes. If [[player:he|she]]'s wrong I assure you " +
+                    "[[player:he|she]]'ll never come back here. Let's go look officer.",
+                l10nValues: { me: sc.n("me") },
                 button: [
                     { chatID: 143, text: "Yeah let's!", callback: "" }
                 ]
@@ -2241,13 +2273,14 @@ room200.chat = function (chatID) {
                 speaker: "rachel",
                 text: "Fine you can look. But 15 minutes! After that I never want to see you two again! ",
                 button: [
-                    { chatID: 144, text: "Let's go! " + sc.n("kinsey") + "'s probably in the pasture now!", callback: "case_ranch2" }
+                    { chatID: 144, text: "Let's go! {kinsey}'s probably in the pasture now!", callback: "case_ranch2", l10nValues: { kinsey: sc.n("kinsey") } }
                 ]
             },
             {
                 chatID: 144,
                 speaker: "!rancher1",
-                text: "Hey Ms. " + sc.n("rachel") + ". Come to check our hucows? Who's this?",
+                text: "Hey Ms. {rachel}. Come to check our hucows? Who's this?",
+                l10nValues: { rachel: sc.n("rachel") },
                 button: [
                     { chatID: 145, text: "Wait! Where'd all the girls go! There were more here!", callback: "" }
                 ]
@@ -2274,9 +2307,9 @@ room200.chat = function (chatID) {
             {
                 chatID: 147,
                 speaker: "rachel",
-                text: "Keep that pervert away from my award winning horses. Last time " + gender.pronoun("f") +
-                    " was here " + gender.pronoun("she") + " tried to molest poor " + sc.n("horse") + "'s " +
+                text: "Keep that pervert away from my award winning horses. Last time you were here you tried to molest poor {horse}'s " +
                     "penis. A real pervert she is. ",
+                l10nValues: { horse: sc.n("horse") },
                 button: [
                     { chatID: 148, text: "You're lying. The girls are here, you're just hiding them! ", callback: "" }
                 ]
@@ -2296,8 +2329,9 @@ room200.chat = function (chatID) {
                 speaker: "thinking",
                 text: "She had to have hidden the girls when she saw us pull up the road! That must be how she " +
                     "hid the hucows last time this cop came looking. Damn! I have no idea where she would have " +
-                    "hidden them! WAIT! " + sc.n("ppgirl") + "!! She's bolted down and would be hard to move. I " +
+                    "hidden them! WAIT! {ppgirl}!! She's bolted down and would be hard to move. I " +
                     "bet she's still in her stall!!! It's my last chance!!!",
+                l10nValues: { ppgirl: sc.n("ppgirl") },
                 button: [
                     { chatID: 150, text: "[Run past them to her stall]", callback: "case_ranch4" }
                 ]
@@ -2330,8 +2364,9 @@ room200.chat = function (chatID) {
             {
                 chatID: 153,
                 speaker: "cop2",
-                text: "*into his radio* I need all units at " + sc.n("rachel") + "'s ranch. We have a 207, 261 " +
+                text: "*into his radio* I need all units at {rachel}'s ranch. We have a 207, 261 " +
                     "and I don't know how many other crimes. Get me all units down here now!!!",
+                l10nValues: { rachel: sc.n("rachel") },
                 button: [
                     { chatID: 154, text: "oh yeah!", callback: "case_ranch7" }
                 ]
@@ -2339,9 +2374,10 @@ room200.chat = function (chatID) {
             {
                 chatID: 154,
                 speaker: "missy",
-                text: "Great work in there! So it turns out the girl you call " + sc.n("ppgirl") + "'s real " +
+                text: "Great work in there! So it turns out the girl you call {ppgirl}'s real " +
                     "name is Veronica, that fat cop's daughter. I'm hoping this is what the department needs " +
                     "to start taking the cult more seriously, but I'm not going to hold my breath.",
+                l10nValues: { ppgirl: sc.n("ppgirl") },
                 button: [
                     { chatID: 155, text: "What about the girls ma'am?", callback: "" }
                 ]
@@ -2350,9 +2386,10 @@ room200.chat = function (chatID) {
                 chatID: 155,
                 speaker: "missy",
                 text: "They herded them into the forest when we started up the road. All the girls except " +
-                    "one has been accounted for. Some girl named " + sc.n("kinsey") + " made a run for it " +
+                    "one has been accounted for. Some girl named {kinsey} made a run for it " +
                     "and was able to get away. The rest will be at the hospital for a bit for evaluations and " +
                     "treatment.",
+                l10nValues: { kinsey: sc.n("kinsey") },
                 button: [
                     { chatID: 156, text: "So what happens to the ranch now ma'am?", callback: "" }
                 ]
@@ -2391,7 +2428,7 @@ room200.chat = function (chatID) {
                 chatID: 159,
                 speaker: "me",
                 text: "Hello my beautiful collection of cum jars. You thought I left you, didn't you. Don't " +
-                    "worry " + gender.pronoun("mommy") + " has come back for you. Now to get out of this place!  ",
+                    "worry, I've come back for you. Now to get out of this place!  ",
                 button: [
                     { chatID: -1, text: "...", callback: "case_ranchEnd" }
                 ]
@@ -2442,8 +2479,9 @@ room200.chat = function (chatID) {
                 chatID: 164,
                 speaker: "missy",
                 text: "I have good news. I've found out more about our little mad pooper. Seems like he's " +
-                    "been seen hiding out with the local tattoo artist, " + sc.n("stormy") + ". I need you to " +
+                    "been seen hiding out with the local tattoo artist, {stormy}. I need you to " +
                     "go visit her trailer and let me know. ",
+                l10nValues: { stormy: sc.n("stormy") },
                 button: [
                     { chatID: 165, text: "Do I need to take him in ma'am?", callback: "" }
                 ]
@@ -2537,8 +2575,9 @@ room200.chat = function (chatID) {
                 speaker: "missy",
                 text: "That is until a man named Teufel and his followers moved in around 40 " +
                     "years ago and turned the place into into their church. Teufel is long dead, but his " +
-                    "eldest son, " + sc.n("ubel") + " has taken control of the CUM Cult, set on fulfilling " +
+                    "eldest son, {ubel} has taken control of the CUM Cult, set on fulfilling " +
                     "the prophecy his father never could. ",
+                l10nValues: { ubel: sc.n("ubel") },
                 button: [
                     { chatID: 175, text: "...", callback: "case_cult2" },
                 ]
@@ -2548,7 +2587,7 @@ room200.chat = function (chatID) {
                 speaker: "missy",
                 text: "Bringing about the demon Azrael. Like any typical dooms day cult they have stupid " +
                     "rituals and beliefs, but they are dangerous. I believe they've kidnapped no less than 20 " +
-                    "people and are holding them against their will to try and bring this Azreal into this world. ", 
+                    "people and are holding them against their will to try and bring this Azrael into this world. ",
                 button: [
                     { chatID: 176, text: "...", callback: "case_cult3" },
                 ]

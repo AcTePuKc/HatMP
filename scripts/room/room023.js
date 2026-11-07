@@ -1262,20 +1262,29 @@ room23.chat = function (chatID) {
         };
     }
     else if (chatID === 999) {
+        var truthQuestion = g.internal.truths[g.internal.gamephase][g.internal.gamepointer];
         return {
             chatID: 999,
             speaker: "me",
-            text: g.internal.truths[g.internal.gamephase][g.internal.gamepointer].q,
+            l10nKey: "room.23.truth." + truthQuestion.i + ".question",
+            l10nValues: truthQuestion.l10nValues,
+            text: truthQuestion.q,
             button: [
                 { chatID: 998, text: "...", callback: (g.internal.nextTurn === "eva" ? "evatalk lolasit" : "evasit lolatalk") }
             ]
         };
     }
     else if (chatID === 998) {
+        var truthAnswer = g.internal.truths[g.internal.gamephase][g.internal.gamepointer];
+        var truthAnswerKey = g.internal.nextTurn === "lola" ? "l" : "e";
         var c998 = {
             chatID: 998,
             speaker: g.internal.nextTurn,
-            text: g.internal.nextTurn === "lola" ? g.internal.truths[g.internal.gamephase][g.internal.gamepointer].l : g.internal.truths[g.internal.gamephase][g.internal.gamepointer].e,
+            l10nKey: truthAnswer.l10nAnswerKeys && truthAnswer.l10nAnswerKeys[truthAnswerKey]
+                ? truthAnswer.l10nAnswerKeys[truthAnswerKey]
+                : "room.23.truth." + truthAnswer.i + ".answer." + truthAnswerKey,
+            l10nValues: truthAnswer.l10nValues,
+            text: truthAnswer[truthAnswerKey],
             button: [
                 { chatID: -1, text: "...", callback: "nextTurn" }
             ]
@@ -1290,6 +1299,8 @@ room23.chat = function (chatID) {
         return {
             chatID: 801,
             speaker: g.internal.nextTurn,
+            l10nKey: g.internal.replyL10nKey,
+            l10nValues: g.internal.replyL10nValues,
             text: g.internal.reply,
             button: [
                 {
@@ -1310,17 +1321,22 @@ room23.chat = function (chatID) {
             return {
                 chatID: 802,
                 speaker: g.internal.whoTurn,
+                l10nKey: "room.23.dare.noMore",
                 text: "I can't think of anything. Maybe I'm just tired. Let's get some sleep. ",
                 button: [
-                    { chatID: -1, text: "Awwww. ok. ", callback: "endGame" }
+                    { chatID: -1, l10nKey: "room.23.dare.noMore.choice", text: "Awwww. ok. ", callback: "endGame" }
                 ]
             };
         }
         else {
+            var playerDare = g.internal.dares[g.internal.gamephase][g.internal.gamepointer];
+            var playerDareText = l10n.t(playerDare.l10nKey + ".player", playerDare.u, playerDare.uValues);
             return {
                 chatID: 802,
                 speaker: "lola",
-                text: sc.n("eva") + ", " + g.internal.dares[g.internal.gamephase][g.internal.gamepointer].u,
+                l10nKey: "room.23.dare.playerPrompt",
+                l10nValues: { next: sc.n("eva"), dare: playerDareText },
+                text: "{next}, {dare}",
                 button: [
                     { chatID: -1, text: "...", callback: g.internal.dares[g.internal.gamephase][g.internal.gamepointer].dCallback }
                 ]
@@ -1339,17 +1355,22 @@ room23.chat = function (chatID) {
             return {
                 chatID: 851,
                 speaker: g.internal.nextTurn,
+                l10nKey: "room.23.dare.noMore",
                 text: "I can't think of anything. Maybe I'm just tired. Let's get some sleep. ",
                 button: [
-                    { chatID: -1, text: "Awwww. ok. ", callback: "endGame" }
+                    { chatID: -1, l10nKey: "room.23.dare.noMore.choice", text: "Awwww. ok. ", callback: "endGame" }
                 ]
             };
         }
         else {
+            var playerDare = g.internal.dares[g.internal.gamephase][g.internal.gamepointer];
+            var playerDareText = l10n.t(playerDare.l10nKey + ".player", playerDare.u, playerDare.uValues);
             return {
                 chatID: 851,
                 speaker: "eva",
-                text: sc.n("lola") + ", " + g.internal.dares[g.internal.gamephase][g.internal.gamepointer].u,
+                l10nKey: "room.23.dare.playerPrompt",
+                l10nValues: { next: sc.n("lola"), dare: playerDareText },
+                text: "{next}, {dare}",
                 button: [
                     { chatID: -1, text: "...", callback: g.internal.dares[g.internal.gamephase][g.internal.gamepointer].dCallback }
                 ]
@@ -1381,11 +1402,18 @@ room23.chat = function (chatID) {
             },
         ]
         
+        var stripDareEntry = stripDare[g.internal.myphase];
+        var stripSpeakerKey = g.internal.nextTurn === "eva" ? "e" : "l";
         return  {
             chatID: 701,
             speaker: g.internal.nextTurn,
-            text: g.internal.nextTurn === "eva" ? stripDare[g.internal.myphase].e : stripDare[g.internal.myphase].l,
-            button: stripDare[g.internal.myphase].b
+            l10nKey: "room.23.stripDare." + g.internal.myphase + "." + stripSpeakerKey,
+            text: stripDareEntry[stripSpeakerKey],
+            button: stripDareEntry.b.map(function (button, choiceIndex) {
+                var localizedButton = Object.assign({}, button);
+                localizedButton.l10nKey = "room.23.stripDare." + g.internal.myphase + ".choice." + choiceIndex;
+                return localizedButton;
+            })
         }; 
     }
     else if (chatID === 702) {
@@ -1409,23 +1437,28 @@ room23.chat = function (chatID) {
             return {
                 chatID: 702,
                 speaker: g.internal.nextTurn,
+                l10nKey: "room.23.myDare.noMore",
                 text: "I can't think of anything. Maybe I'm just tired. Let's get some sleep. ",
                 button: [
-                    { chatID: -1, text: "Awwww. ok. ", callback: "endGame" }
+                    { chatID: -1, l10nKey: "room.23.dare.noMore.choice", text: "Awwww. ok. ", callback: "endGame" }
                 ]
             }; 
         }
         else {
             var mblist = g.internal.myDare[mp][darepointer].b;
-            mblist.push({ chatID: -1, text: "I'm not doing that. That's enough for tonight.", callback: "endGame" });
+            mblist.push({ chatID: -1, l10nKey: "room.23.myDare.refuse", text: "I'm not doing that. That's enough for tonight.", callback: "endGame" });
             //var mbtxt = g.internal.nextTurn === "eva" ? g.internal.myDare[mp][darepointer].e : g.internal.myDare[mp][darepointer].l;
             var mbtxt = g.internal.whoTurn === "eva" ? g.internal.myDare[mp][darepointer].e : g.internal.myDare[mp][darepointer].l;
+            var currentMyDare = g.internal.myDare[mp][darepointer];
+            var myDareSpeakerKey = g.internal.whoTurn === "eva" ? "e" : "l";
 
             g.internal.myDare[mp].splice(darepointer, 1);
 
             return {
                 chatID: 702,
                 speaker: g.internal.whoTurn,
+                l10nKey: currentMyDare.l10nKey + ".prompt." + myDareSpeakerKey,
+                l10nValues: currentMyDare[myDareSpeakerKey + "Values"],
                 text: mbtxt,
                 button: mblist
             }; 
@@ -1435,10 +1468,14 @@ room23.chat = function (chatID) {
         room23.drawEva("sit");
         room23.drawLola("sit");
         var otherSpeaker = g.internal.nextTurn === "lola" ? sc.n("eva") : sc.n("lola");
+        var currentDare = g.internal.dares[g.internal.gamephase][g.internal.gamepointer];
+        var localizedDare = l10n.t(currentDare.l10nKey + ".text", currentDare.txt, { other: otherSpeaker });
         return {
             chatID: 500,
             speaker: "me",
-            text: sc.n(g.internal.nextTurn) + ", " + g.internal.dares[g.internal.gamephase][g.internal.gamepointer].txt.replace("#other#", otherSpeaker),
+            l10nKey: "room.23.dare.prompt",
+            l10nValues: { next: sc.n(g.internal.nextTurn), dare: localizedDare },
+            text: "{next}, {dare}",
             button: [
                 { chatID: 501, text: "...", callback: "" }
             ]
@@ -1453,10 +1490,14 @@ room23.chat = function (chatID) {
             room23.drawEva("sit");
             room23.drawLola("talk");
         }
+        var responseDare = g.internal.dares[g.internal.gamephase][g.internal.gamepointer];
+        var responseKey = g.internal.nextTurn === "eva" ? "e" : "l";
         return {
             chatID: 500,
             speaker: g.internal.nextTurn,
-            text: (g.internal.nextTurn === "eva" ? g.internal.dares[g.internal.gamephase][g.internal.gamepointer].e : g.internal.dares[g.internal.gamephase][g.internal.gamepointer].l),
+            l10nKey: responseDare.l10nKey + ".response." + responseKey,
+            l10nValues: responseDare[responseKey + "Values"],
+            text: responseDare[responseKey],
             button: [
                 { chatID: -1, text: "...", callback: g.internal.dares[g.internal.gamephase][g.internal.gamepointer].dCallback }
             ]
@@ -1467,6 +1508,7 @@ room23.chat = function (chatID) {
             return {
                 chatID: 0,
                 speaker: "me",
+                l10nKey: "room.23.wine.tooDrunk",
                 text: "I think I'm a bit too drunk. The room is really spinning.....",
                 button: [
                     { chatID: 116, text: "...", callback: "roomblack" }
@@ -1475,17 +1517,25 @@ room23.chat = function (chatID) {
         }
         else {
             var meWineChat;
-            if (g.internal.meWine === 3)
+            var meWineKey;
+            if (g.internal.meWine === 3) {
                 meWineChat = "Yummy!";
-            else if (g.internal.meWine === 2)
+                meWineKey = "room.23.wine.3";
+            }
+            else if (g.internal.meWine === 2) {
                 meWineChat = "Oh wow. I'm starting to feel it.";
-            else if (g.internal.meWine === 1)
+                meWineKey = "room.23.wine.2";
+            }
+            else if (g.internal.meWine === 1) {
                 meWineChat = "I'm really feeling a bit drunk. ";
+                meWineKey = "room.23.wine.1";
+            }
 
             g.internal.meWine--;
             return {
                 chatID: 0,
                 speaker: "me",
+                l10nKey: meWineKey,
                 text: meWineChat,
                 button: [
                     { chatID: -1, text: "...", callback: "nextTurn" }
@@ -1512,9 +1562,11 @@ room23.chat = function (chatID) {
                 case 3: truthchat = "Truth. Don't want to hear your dirty dares. "; break;
             }
         }
+        var truthAccepter = g.internal.nextTurn === "lola" ? "lola" : "eva";
         return {
             chatID: 400,
             speaker: g.internal.nextTurn,
+            l10nKey: "room.23.truth.accept." + truthAccepter + "." + g.internal.gamephase,
             text: truthchat,
             button: [
                 { chatID: -1, text: "...", callback: "truth" }
@@ -1539,9 +1591,11 @@ room23.chat = function (chatID) {
                 case 3: dareChat = "Nothing gross, but I'll take a dare. "; break;
             }
         }
+        var dareAccepter = g.internal.nextTurn === "lola" ? "lola" : "eva";
         return {
             chatID: 400,
             speaker: g.internal.nextTurn,
+            l10nKey: "room.23.dare.accept." + dareAccepter + "." + g.internal.gamephase,
             text: dareChat,
             button: [
                 { chatID: -1, text: "...", callback: "dare" }
@@ -1562,9 +1616,10 @@ room23.chat = function (chatID) {
             {
                 chatID: 1,
                 speaker: "eva",
-                text: "Whatever " + sc.n("lola") + ", you know your inner slut wants " + sc.n("me") + " to go full pervert!",
+                l10nValues: { lola: sc.n("lola"), me: sc.n("me") },
+                text: "Whatever {lola}, you know your inner slut wants {me} to go full pervert!",
                 button: [
-                    { chatID: 2, text: "Don't worry " + sc.n("eva") + ", I'll make sure to include you too.", callback: "" }
+                    { chatID: 2, l10nValues: { eva: sc.n("eva") }, text: "Don't worry {eva}, I'll make sure to include you too.", callback: "" }
                 ]
             },
             {
@@ -1578,7 +1633,8 @@ room23.chat = function (chatID) {
             {
                 chatID: 3,
                 speaker: g.internal.whoTurn,
-                text: sc.n(g.internal.nextTurn ?? "lola") + " truth or dare? ",
+                l10nValues: { nextTurn: sc.n(g.internal.nextTurn ?? "lola") },
+                text: "{nextTurn}, truth or dare? ",
                 button: [
                     { chatID: -1, text: "...", callback: "tord" }
                 ]
@@ -1586,7 +1642,8 @@ room23.chat = function (chatID) {
             {
                 chatID: 4,
                 speaker: g.internal.whoTurn,
-                text: sc.n("me") + " truth or dare?",
+                l10nValues: { me: sc.n("me") },
+                text: "{me} truth or dare?",
                 button: [
                     { chatID: 702, text: "Dare", callback: "" },
                     { chatID: 800, text: "Truth", callback: "" }
@@ -1708,7 +1765,8 @@ room23.chat = function (chatID) {
             {
                 chatID: 21,
                 speaker: "eva",
-                text: sc.n("lola") + " just took a shower! Do you want to eat her asshole? ",
+                l10nValues: { lola: sc.n("lola") },
+                text: "{lola} just took a shower! Do you want to eat her asshole? ",
                 button: [
                     { chatID: 22, text: "...", callback: "evasit lolatalk" }
                 ]
@@ -1741,7 +1799,8 @@ room23.chat = function (chatID) {
             {
                 chatID: 25,
                 speaker: g.internal.whoTurn,
-                text: sc.n("me") + " truth or dare? ",
+                l10nValues: { me: sc.n("me") },
+                text: "{me} truth or dare? ",
                 button: [
                     { chatID: -1, text: "Dare", callback: "myDare" },
                     { chatID: -1, text: "Truth", callback: "myTruth" },
@@ -1801,7 +1860,8 @@ room23.chat = function (chatID) {
             {
                 chatID: 32,
                 speaker: "lola",
-                text: sc.n("eva") + " truth or dare? ",
+                l10nValues: { eva: sc.n("eva") },
+                text: "{eva} truth or dare? ",
                 button: [
                     { chatID: 33, text: "...", callback: "" },
                 ]
@@ -1885,7 +1945,8 @@ room23.chat = function (chatID) {
             {
                 chatID: 43,
                 speaker: "lola",
-                text: "Oh " + sc.n("eva") + ". You're just jealous of my flexibility. ",
+                l10nValues: { eva: sc.n("eva") },
+                text: "Oh {eva}. You're just jealous of my flexibility. ",
                 button: [
                     { chatID: -1, text: "...", callback: "nextTurn" },
                 ]
@@ -1893,19 +1954,21 @@ room23.chat = function (chatID) {
             {
                 chatID: 44,
                 speaker: "lola",
+                l10nValues: { level: g.internal.levelDisplay },
                 text: "Oh my. I hate to be a big ol' chicken, but I don't think I feel comfortable " +
                     "doing that right now. I think it's time for bed. ",
                 button: [
-                    { chatID: -1, text: "Oh. ok. [Need level " + g.internal.levelDisplay + "]", callback: "endGame" },
+                    { chatID: -1, l10nValues: { level: g.internal.levelDisplay }, text: "Oh. ok. [Need level {level}]", callback: "endGame" },
                 ]
             },
             {
                 chatID: 45,
                 speaker: "eva",
+                l10nValues: { level: g.internal.levelDisplay },
                 text: "Oh so that's why you want to play truth or dare? To look at my small, but " +
                     "perky tits? Pervert. We're going to bed! ",
                 button: [
-                    { chatID: -1, text: "Oh. ok. [Need level " + g.internal.levelDisplay + "]", callback: "endGame" },
+                    { chatID: -1, l10nValues: { level: g.internal.levelDisplay }, text: "Oh. ok. [Need level {level}]", callback: "endGame" },
                 ]
             },
             {
@@ -2076,8 +2139,9 @@ room23.chat = function (chatID) {
             {
                 chatID: 66,
                 speaker: "lola",
+                l10nValues: { eva: sc.n("eva") },
                 text: "Since we always do everything together, there's no way I'm sitting here naked " +
-                    "by myself. " + sc.n("eva") + " you have to be naked too! ",
+                    "by myself. {eva} you have to be naked too! ",
                 button: [
                     { chatID: 67, text: "...", callback: "" },
                 ]
@@ -2117,7 +2181,8 @@ room23.chat = function (chatID) {
             {
                 chatID: 71,
                 speaker: "eva",
-                text: "Haha! Not sexy. Maybe awkward! " + sc.n("lola") + " truth or dare. " +
+                l10nValues: { lola: sc.n("lola") },
+                text: "Haha! Not sexy. Maybe awkward! {lola} truth or dare. " +
                     "Awww screw it. Take your panties off too. I don't want to spend the " +
                     "rest of the game with him staring at my pussy. ",
                 button: [
@@ -2160,7 +2225,8 @@ room23.chat = function (chatID) {
             {
                 chatID: 76,
                 speaker: "eva",
-                text: "Hehe. I'm getting so wet! " + sc.n("lola") + " really is a great rug muncher! ",
+                l10nValues: { lola: sc.n("lola") },
+                text: "Hehe. I'm getting so wet! {lola} really is a great rug muncher! ",
                 button: [
                     { chatID: -1, text: "...", callback: "nextTurn" },
                 ]
@@ -2275,7 +2341,7 @@ room23.chat = function (chatID) {
                 speaker: "lola",
                 text: "Hehehe. You did it. I made you jump for joy ",
                 button: [
-                    { chatID: -1, text: "I'd do anything for my " + sc.n("el") + ". ", callback: "nextTurn" },
+                    { chatID: -1, l10nValues: { el: sc.n("el") }, text: "I'd do anything for my {el}. ", callback: "nextTurn" },
                 ]
             },
             {
@@ -2346,7 +2412,8 @@ room23.chat = function (chatID) {
             {
                 chatID: 99,
                 speaker: "me",
-                text: "*sigh* I'm such your bitch " + sc.n("eva") + ". There. Are you happy? ",
+                l10nValues: { eva: sc.n("eva") },
+                text: "*sigh* I'm such your bitch {eva}. There. Are you happy? ",
                 button: [
                     { chatID: 100, text: "...", callback: "" },
                 ]
@@ -2388,7 +2455,7 @@ room23.chat = function (chatID) {
                 speaker: "eva",
                 text: "You can always quit. ",
                 button: [
-                    { chatID: 105, text: "I'm no quitter. " + sc.n("lola") + " give me a pair of your panties. ", callback: "mepanties" },
+                    { chatID: 105, l10nValues: { lola: sc.n("lola") }, text: "I'm no quitter. {lola} give me a pair of your panties. ", callback: "mepanties" },
                     { chatID: -1, text: "I'm not doing that. That's enough for tonight.", callback: "endGame" }
                 ]
             },
@@ -2419,7 +2486,8 @@ room23.chat = function (chatID) {
             {
                 chatID: 108,
                 speaker: "eva",
-                text: sc.n("landlord") + " promised me a puppy, but like always she changed her mind, but " +
+                l10nValues: { landlord: sc.n("landlord") },
+                text: "{landlord} promised me a puppy, but like always she changed her mind, but " +
                     "only after I bought a bunch of stuff for my new little puppy. Now eat it doggy boy! ",
                 button: [
                     { chatID: -1, text: "Hrumph. ", callback: "" },
@@ -2479,7 +2547,8 @@ room23.chat = function (chatID) {
             {
                 chatID: 115,
                 speaker: "lola",
-                text: "Oh " + sc.n("eva") + ". So gross. I'm done. Lets open the window so you can put " +
+                l10nValues: { eva: sc.n("eva") },
+                text: "Oh {eva}. So gross. I'm done. Lets open the window so you can put " +
                     "your ass outside and air it out. This game's so over. ",
                 button: [
                     { chatID: -1, text: "Yeah. It stinks in here I'm out too. ", callback: "endGame" }
@@ -2488,7 +2557,8 @@ room23.chat = function (chatID) {
             {
                 chatID: 116,
                 speaker: "lola",
-                text: sc.n("me") + ".....",
+                l10nValues: { me: sc.n("me") },
+                text: "{me}.....",
                 button: [
                     { chatID: -1, text: "...", callback: "mequitPassout" }
                 ]
@@ -2496,7 +2566,8 @@ room23.chat = function (chatID) {
             {
                 chatID: 117,
                 speaker: g.internal.whoTurn,
-                text: sc.n("me") + ", truth or dare? ",
+                l10nValues: { me: sc.n("me") },
+                text: "{me}, truth or dare? ",
                 button: [
                     { chatID: 701, text: "Dare", callback: "" },
                     { chatID: 118, text: "Truth", callback: "" }
@@ -2523,7 +2594,8 @@ room23.chat = function (chatID) {
             {
                 chatID: 120,
                 speaker: "eva",
-                text: "See, I told you " + sc.n("lola") + " he was a sissy. No one is " +
+                l10nValues: { lola: sc.n("lola") },
+                text: "See, I told you {lola} he was a sissy. No one is " +
                     "that weirdly perverted. You're a sissy girl! Hehehe! Sissy girl, " +
                     "sissy girl! ",
                 button: [
@@ -2542,8 +2614,8 @@ room23.chat = function (chatID) {
             {
                 chatID: 122,
                 speaker: "eva",
-                text: "This game is taking too long! I'm done. Let's go to bed " + 
-                    sc.n("lola") + ". ",
+                l10nValues: { lola: sc.n("lola") },
+                text: "This game is taking too long! I'm done. Let's go to bed {lola}. ",
                 button: [
                     { chatID: 123, text: "awww ", callback: "" },
                 ]
@@ -2619,7 +2691,8 @@ room23.buildInternal = function () {
         {
             q: "Have you ever eaten a booger?",
             l: "Hahaha, once when i was little!",
-            e: "You're so disgusting " + sc.n("me") + ". Never.",
+            e: "You're so disgusting {me}. Never.",
+            l10nValues: { me: sc.n("me") },
             i: "q_1_2"
         },
 
@@ -2655,7 +2728,8 @@ room23.buildInternal = function () {
         },
         {
             q: "Who is the hottest in this group?",
-            l: sc.n("eva") + ", of course!",
+            l: "{eva}, of course!",
+            l10nValues: { eva: sc.n("eva") },
             e: "Me!",
             i: "q_1_8"
         },
@@ -2706,7 +2780,8 @@ room23.buildInternal = function () {
         {
             q: "What is the worst grade you received for a class in school/college?",
             l: "I got a C once. I tried taking dance class and I was so bad at it!",
-            e: "Psssh, you know it's an F. I got the looks, " + sc.n("lola") + " got the brains. ",
+            e: "Psssh, you know it's an F. I got the looks, {lola} got the brains. ",
+            l10nValues: { lola: sc.n("lola") },
             i: "q_2_6"
         },
         {
@@ -2731,13 +2806,15 @@ room23.buildInternal = function () {
         },
         {
             q: "Have you ever peed yourself?",
-            l: "sigh; yes, last month when " + sc.n("eva") + " was tickling me and wouldn't let me go to the bathroom.. I peed just a little squirt in my panties.",
+            l: "sigh; yes, last month when {eva} was tickling me and wouldn't let me go to the bathroom.. I peed just a little squirt in my panties.",
+            l10nValues: { eva: sc.n("eva") },
             e: "My Ex boyfriend asked me to pee my panties, so I did.",
             i: "q_3_2"
         },
         {
             q: "Are you a virgin?",
             l: sc.getMissionTask("lola", "date", 5).success ? "Ummmm, you know I can't say. Why would you ask that? " : "OMG YES!",
+            l10nAnswerKeys: { l: sc.getMissionTask("lola", "date", 5).success ? "room.23.truth.q_3_3.answer.l.notVirgin" : "room.23.truth.q_3_3.answer.l.virgin" },
             e: "Nope! There isn't a hole on me that is!",
             i: "q_3_3"
         },
@@ -2761,13 +2838,15 @@ room23.buildInternal = function () {
         },
         {
             q: "What is your 'I'm getting laid tonight' outfit?",
-            l: "Hmm. I borrowed " + sc.n("eva") + "'s thong once when I went on a date. I don't know why, I totally wasn't going to sleep with him. ",
+            l: "Hmm. I borrowed {eva}'s thong once when I went on a date. I don't know why, I totally wasn't going to sleep with him. ",
+            l10nValues: { eva: sc.n("eva") },
             e: "A skirt with no panties. I love bending over and catching them peeking. Hehehe",
             i: "q_3_7"
         },
         {
             q: "When was the first time you came?",
-            l: "Oh! I guess if I have to tell the truth it was when " + sc.n("eva") + " showed me how. ",
+            l: "Oh! I guess if I have to tell the truth it was when {eva} showed me how. ",
+            l10nValues: { eva: sc.n("eva") },
             e: "I was watching a porn and tried to do what the girl did. Totally worked. I was so scared everyone knew what I did the entire day, but no one said anything.",
             i: "q_3_8"
         },
@@ -2794,7 +2873,8 @@ room23.buildInternal = function () {
         {
             q: "Have you ever licked a pussy? ",
             l: "A girl never tells! ",
-            e: "Hahaha. I've eatin' more pussy than cock! Right " + sc.n("lola") + "! ",
+            e: "Hahaha. I've eatin' more pussy than cock! Right {lola}! ",
+            l10nValues: { lola: sc.n("lola") },
             i: "q_4_4"
         },
         {
@@ -2826,17 +2906,17 @@ room23.buildInternal = function () {
         {
             q: "What's your biggest secret crush? You can tell us!",
             b: [
-                { chatID: 13, text: sc.n("lola"), callback: "lolalike" },
-                { chatID: 14, text: sc.n("eva"), callback: "evalike" },
-                { chatID: -1, text: sc.n("janice"), callback: "lolahate" },
+                { chatID: 13, text: "{lola}", l10nValues: { lola: sc.n("lola") }, callback: "lolalike" },
+                { chatID: 14, text: "{eva}", l10nValues: { eva: sc.n("eva") }, callback: "evalike" },
+                { chatID: -1, text: "{janice}", l10nValues: { janice: sc.n("janice") }, callback: "lolahate" },
                 { chatID: -1, text: "You wouldn't know her, she goes to another school", callback: "charisma" }
             ]
         },
         {
             q: "Which one of us is sexier?",
             b: [
-                { chatID: 13, text: sc.n('lola') + "'s more attractive", callback: "lolalike" },
-                { chatID: 14, text: sc.n('eva') + "'s sexier", callback: "evalike" }
+                { chatID: 13, text: "{lola} is more attractive", l10nValues: { lola: sc.n("lola") }, callback: "lolalike" },
+                { chatID: 14, text: "{eva} is sexier", l10nValues: { eva: sc.n("eva") }, callback: "evalike" }
             ]
         },
         {
@@ -2852,7 +2932,7 @@ room23.buildInternal = function () {
         {
             q: "Are you a virgin?",
             b: [
-                { chatID: 15, text: "Yes, " + sc.n("lola") + " do you want to help me with that!", callback: "lolalike" },
+                { chatID: 15, text: "Yes, {lola}, do you want to help me with that!", l10nValues: { lola: sc.n("lola") }, callback: "lolalike" },
                 { chatID: -1, text: "I am.", callback: "" },
                 { chatID: -1, text: "Nope!", callback: "lolahate" }
             ]
@@ -3012,6 +3092,12 @@ room23.buildInternal = function () {
             ]
         }
     ];
+    myTruth.forEach(function (item, questionIndex) {
+        item.l10nKey = "room.23.myTruth." + questionIndex + ".question";
+        item.b.forEach(function (button, choiceIndex) {
+            button.l10nKey = "room.23.myTruth." + questionIndex + ".choice." + choiceIndex;
+        });
+    });
     myDare.push([ //0 clothing
         {
             e: "I want to you beg. Like a doggy with your tongue out! Then bark. ",
@@ -3079,12 +3165,14 @@ room23.buildInternal = function () {
     ]);
     myDare.push([ //2 underwear only
         {
-            e: "Give " + sc.n("lola") + " a striptease dance. ",
+            e: "Give {lola} a striptease dance. ",
+            eValues: { lola: sc.n("lola") },
             l: null,
             b: [{ chatID: 101, text: "Sexy! I love it. ", callback: "evasit lolatalk" }]
         },
         {
-            e: "Put on a pair of " + sc.n("lola") + "'s panties! ",
+            e: "Put on a pair of {lola}'s panties! ",
+            eValues: { lola: sc.n("lola") },
             l: null,
             b: [{ chatID: 103, text: "Huh? ", callback: "lolatalk evasit" }]
         },
@@ -3127,18 +3215,27 @@ room23.buildInternal = function () {
             b: [{ chatID: -1, text: "Sure", callback: "meDrink" }]
         },
     ]);
+    myDare.forEach(function (phaseDares, phaseIndex) {
+        phaseDares.forEach(function (dare, dareIndex) {
+            dare.l10nKey = "room.23.myDare." + phaseIndex + "." + dareIndex;
+            dare.b.forEach(function (button, choiceIndex) {
+                button.l10nKey = dare.l10nKey + ".choice." + choiceIndex;
+            });
+        });
+    });
     //----------------------------------their dares-----------------------------------------------------
     dares.push([
         {
             txt: "I dare you to make out with your hand. ",
-            e: "Sure! Take some notes " + sc.n("lola"),
+            e: "Sure! Take some notes {lola}",
+            eValues: { lola: sc.n("lola") },
             l: "Sure. What a nice dare. ",
             u: "I dare you to make out with your hand. ",
             dCallback: "dareKissHand",
             i: "d_1_1"
         },
         {
-            txt: "I dare you to kiss #other#. On the lips! ",
+            txt: "I dare you to kiss {other}. On the lips! ",
             e: "Yummy! My favorite person to make out with! ",
             l: "Sure! I love how soft her lips are. ",
             u: null,
@@ -3149,7 +3246,8 @@ room23.buildInternal = function () {
             txt: "I dare you to give me a kiss.",
             e: "Ewwww. You're going to pay for this one! ",
             l: "Oh yes! If I must. ",
-            u: "I dare you to kiss " + sc.n("me") + ". ",
+            u: "I dare you to kiss {me}. ",
+            uValues: { me: sc.n("me") },
             dCallback: "dareKissMe",
             i: "d_1_3"
         },
@@ -3196,7 +3294,7 @@ room23.buildInternal = function () {
     ]);
     dares.push([
         {
-            txt: "Kiss #other#",
+            txt: "Kiss {other}",
             e: "You like watching topless girls making out? ",
             l: "Hehe. I love it when our nipples touch. ",
             u: "Give me a kiss!",
@@ -3207,7 +3305,8 @@ room23.buildInternal = function () {
             txt: "Make out with me. ",
             e: "Really. Just don't try to feel my tits pervert. ",
             l: "Hehe. Sure! ",
-            u: "Make out with " + sc.n("me") + ". ",
+            u: "Make out with {me}. ",
+            uValues: { me: sc.n("me") },
             dCallback: "dareKissMe",
             i: "d_1_3"
         },
@@ -3228,7 +3327,7 @@ room23.buildInternal = function () {
             i: "d_2_2"
         },
         {
-            txt: "Lick #other#'s nipples.",
+            txt: "Lick {other}'s nipples.",
             e: "You better not get a boner watching us. ",
             l: "MMmmmm. She has the cutest nipples. ",
             u: "I dare you to lick my nipples. ",
@@ -3286,7 +3385,7 @@ room23.buildInternal = function () {
             i: "d_3_2"
         },
         {
-            txt: "Let #other# give you a wedgie. ",
+            txt: "Let {other} give you a wedgie. ",
             e: "Awww crap. ",
             l: "Hehehe. I love these hijinks you two come up with! ",
             u: null,
@@ -3344,7 +3443,7 @@ room23.buildInternal = function () {
             i: "d_4_5"
         },
         {
-            txt: "Have #other# sit on your face! ",
+            txt: "Have {other} sit on your face! ",
             e: "Take notes. She's about to show you how to properly eat pussy. ",
             l: "Oh. I guess it's ok that I show you how to do cunnilingus. ",
             u: "I dare you to sit on my face! ",
@@ -3352,7 +3451,7 @@ room23.buildInternal = function () {
             i: "d_4_1"
         },
         {
-            txt: "Put your finger in #other#'s butthole. ",
+            txt: "Put your finger in {other}'s butthole. ",
             e: "What! I know you're weird, but you still surprise me by how really weird you are. ",
             l: "She hates it when I put my finger in... I mean what. Sure. ",
             u: null,
@@ -3376,6 +3475,11 @@ room23.buildInternal = function () {
         //    i: "d_4_4"
         //},
     ]);
+    dares.forEach(function (phaseDares, phaseIndex) {
+        phaseDares.forEach(function (dare, dareIndex) {
+            dare.l10nKey = "room.23.dare." + phaseIndex + "." + dareIndex;
+        });
+    });
     //truth = g.shuffleArray(truth);
     myTruth = g.shuffleArray(myTruth);
     for (let i = 0; i < myDare.length; i++) {
@@ -3420,8 +3524,10 @@ room23.getTheirQuestion = function () {
         room23.drawEva("sit");
         qlist = [
             {
-                q: "Did you really have sex with " + sc.n("chloe") + "? ",
-                a: "Hahaha, Yeah, a while ago, but " + sc.n("river") + " was there too. "
+                q: "Did you really have sex with {chloe}? ",
+                qValues: { chloe: sc.n("chloe") },
+                a: "Hahaha, yeah, a while ago, but {river} was there too. ",
+                aValues: { river: sc.n("river") }
             },
             {
                 q: "Where did my red sweatshirt go?",
@@ -3449,7 +3555,8 @@ room23.getTheirQuestion = function () {
             },
             {
                 q: "When is the last time you apologized?",
-                a: "Last week to " + sc.n("landlord") + ". She caught me stealing her dildo again. She really spanked me good. "
+                a: "Last week to {landlady}. She caught me stealing her dildo again. She really spanked me good. ",
+                aValues: { landlady: sc.n("landlord") }
             },
             {
                 q: "If you could pick one other person to take with you to a deserted island, who would it be?",
@@ -3457,7 +3564,8 @@ room23.getTheirQuestion = function () {
             },
             {
                 q: "Have you ever stolen anything?",
-                a: "Other than " + sc.n("landlord") + "'s dildo and your clothes, nothing. I don't steal. "
+                a: "Other than {landlady}'s dildo and your clothes, nothing. I don't steal. ",
+                aValues: { landlady: sc.n("landlord") }
             },
             {
                 q: "Who was your first celebrity crush?",
@@ -3476,15 +3584,18 @@ room23.getTheirQuestion = function () {
                 a: "Like a mix of milk and boogers, most of the time. But sometimes it's just gross! I can't even explain it. Just gross. "
             },
             {
-                q: "Do you think " + sc.n("me") + " is attractive? ",
+                q: "Do you think {me} is attractive? ",
+                qValues: { me: sc.n("me") },
                 a: "Sexy like a baboon's butt! "
             },
             {
                 q: "What guy would you never date?",
-                a: "You know it's " + sc.n("me") + ". You're not assertive enough. I would make you my slave instead, hahaha."
+                a: "You know it's {me}. You're not assertive enough. I would make you my slave instead, hahaha.",
+                aValues: { me: sc.n("me") }
             },
             {
-                q: "Do you ever get a creepy vibe from " + sc.n("priest") + "?",
+                q: "Do you ever get a creepy vibe from {priest}?",
+                qValues: { priest: sc.n("priest") },
                 a: "Totally! He's so creepy! Everytime I confess something sexual he asks for more details. Once I swear I heard him stoking his dick! "
             },
             {
@@ -3492,6 +3603,9 @@ room23.getTheirQuestion = function () {
                 a: "Malcom. He was awkward. You remember he used to always come over. But he was sweet. "
             },
         ];
+        qlist.forEach(function (item, index) {
+            item.l10nKey = "room.23.exchange.lolaEva." + index;
+        });
         selectedQustion = qlist[g.rand(0, qlist.length)];
     }
     else if (g.internal.whoTurn === "eva" && g.internal.nextTurn === "lola") {
@@ -3500,7 +3614,8 @@ room23.getTheirQuestion = function () {
         qlist = [
             {
                 q: "What is the first letter of your crushes name? ",
-                a: "I guess I can say it. It's the letter " + sc.n("me")[0] + ", but you'll never guess who. "
+                a: "I guess I can say it. It's the letter {initial}, but you'll never guess who. ",
+                aValues: { initial: sc.n("me")[0] }
             },
             {
                 q: "What does your crush do for work? ",
@@ -3528,18 +3643,22 @@ room23.getTheirQuestion = function () {
             },
             {
                 q: "Have you ever had a finger that wasn't yours in your vagina? ",
-                a: sc.n("eva") + " shut up! That's isn't appropriate! You can't ask question you know the answer to! "
+                a: "{eva} shut up! That's isn't appropriate! You can't ask a question you already know the answer to! ",
+                aValues: { eva: sc.n("eva") }
             },
             {
-                q: "Who's a bigger butthead " + sc.n("me") + " or " + sc.n("chad") + "? ",
-                a: "I hate " + sc.n("chad") + " so much. He tried to grab my ass, several times. " + sc.n("me") + " is not a butthead, he would never do that. "
+                q: "Who's a bigger butthead, {me} or {chad}? ",
+                qValues: { me: sc.n("me"), chad: sc.n("chad") },
+                a: "I hate {chad} so much. He tried to grab my ass several times. {me} isn't a butthead; he would never do that. ",
+                aValues: { chad: sc.n("chad"), me: sc.n("me") }
             },
             {
                 q: "Do you know what a wiener looks like? ",
                 a: "Hrumph. You watched that porn with me. I hope real penises aren't that big. It was so huge! "
             },
             {
-                q: "What secret have you never told " + sc.n("landlord") + "?",
+                q: "What secret have you never told {landlady}?",
+                qValues: { landlady: sc.n("landlord") },
                 a: "Hmm. Nothing. I tell her everything. She's really understanding, even with the weird things. "
             },
             {
@@ -3548,21 +3667,27 @@ room23.getTheirQuestion = function () {
             },
             {
                 q: "If you could only suck one dick for the rest of your life who's would it be? ",
-                a: sc.n("eva") + "! You know I can't answer that! Stop! "
+                a: "{eva}! You know I can't answer that! Stop! ",
+                aValues: { eva: sc.n("eva") }
             },
             {
                 q: "Would you ever try anal? ",
                 a: "Oh my! I guess. Only if it didn't hurt. "
             },
             {
-                q: "Would you lick " + sc.n("me") + "'s feet if he asked? ",
+                q: "Would you lick {me}'s feet if he asked? ",
+                qValues: { me: sc.n("me") },
                 a: "Gross. no. Maybe if he washed them really good. But who wants their feet licked? "
             },
             {
-                q: "If you had to have " + sc.n("priest") + " fuck you to save the world, would you let him? ",
+                q: "If you had to have {priest} fuck you to save the world, would you let him? ",
+                qValues: { priest: sc.n("priest") },
                 a: "Oh gross! I guess to save the world, but I would hate every minute of it. "
             },
         ];
+        qlist.forEach(function (item, index) {
+            item.l10nKey = "room.23.exchange.evaLola." + index;
+        });
         selectedQustion = qlist[g.rand(0, qlist.length)];
     }
     else {
@@ -3573,17 +3698,37 @@ room23.getTheirQuestion = function () {
             chatID: 400,
             speaker: g.internal.whoTurn,
             text: g.internal.myTruth[0].q,
-            button: g.internal.myTruth[0].b.map(function (b) { return b.chatID === -1 ? { chatID: -1, text: b.text, callback: (b.callback + " nextTurn").trim() } : b; })
+            l10nKey: g.internal.myTruth[0].l10nKey,
+            button: g.internal.myTruth[0].b.map(function (b) {
+                var button = Object.assign({}, b);
+                if (b.chatID === -1)
+                    button.callback = (b.callback + " nextTurn").trim();
+                return button;
+            })
         };
         g.internal.myTruth.shift();
         return askMeTruth;
     }
     g.internal.reply = selectedQustion.a;
+    g.internal.replyL10nKey = selectedQustion.l10nKey + ".answer";
+    g.internal.replyL10nValues = selectedQustion.aValues;
+
+    var localizedQuestion = l10n.t(
+        selectedQustion.l10nKey + ".question",
+        selectedQustion.q,
+        selectedQustion.qValues
+    );
+    var promptValues = {
+        next: sc.n(g.internal.nextTurn),
+        question: localizedQuestion
+    };
 
     return {
         chatID: 800,
         speaker: g.internal.whoTurn,
-        text: sc.n(g.internal.nextTurn) + ", " + selectedQustion.q,
+        l10nKey: "room.23.exchange.prompt",
+        l10nValues: promptValues,
+        text: "{next}, {question}",
         button: [
             { chatID: 801, text: "...", callback: "" }
         ]

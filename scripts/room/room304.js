@@ -313,7 +313,8 @@ room304.chat = function (chatID) {
         {
             chatID: 1,
             speaker: "thinking",
-            text: "Molly's panties added to inventory. ",
+            text: "{molly}'s panties added to inventory. ",
+            l10nValues: { molly: sc.n("molly") },
             button: [
                 { chatID: -1, text: "...", callback: "mollypanties" }
             ]
@@ -321,7 +322,8 @@ room304.chat = function (chatID) {
         {
             chatID: 2,
             speaker: "thinking",
-            text: "Holly's panties added to inventory. ",
+            text: "{holly}'s panties added to inventory. ",
+            l10nValues: { holly: sc.n("holly") },
             button: [
                 { chatID: -1, text: "...", callback: "hollypanties" }
             ]
@@ -329,7 +331,8 @@ room304.chat = function (chatID) {
         {
             chatID: 3,
             speaker: "thinking",
-            text: "Dolly's panties added to inventory. ",
+            text: "{dolly}'s panties added to inventory. ",
+            l10nValues: { dolly: sc.n("dolly") },
             button: [
                 { chatID: -1, text: "...", callback: "dollypanties" }
             ]

@@ -105,21 +105,21 @@ room205.chat = function (chatID) {
         let sexst = sex.stObject();
         var btn = new Array();
         if (sexst.penisvirgin.total === 0)
-            btn.push({ chatID: 1, text: "No ma'am, I'm a virgin. ", callback: "" });
+            btn.push({ chatID: 1, text: "No ma'am, I'm a virgin. ", l10nKey: "room.205.chastity.choice.virgin", callback: "" });
         if (sexst.penisvirgin.total > 0)
-            btn.push({ chatID: 2, text: "Yes I have ma'am. ", callback: "" });
+            btn.push({ chatID: 2, text: "Yes I have ma'am. ", l10nKey: "room.205.chastity.choice.experience", callback: "" });
         if (sexst.fuckass.total > 0)
-            btn.push({ chatID: 3, text: "I've fucked a butt. ", callback: "" });
+            btn.push({ chatID: 3, text: "I've fucked a butt. ", l10nKey: "room.205.chastity.choice.ass", callback: "" });
         if (sexst.gotbj.total > 0)
-            btn.push({ chatID: 4, text: "I've had a blow job. ", callback: "" });
+            btn.push({ chatID: 4, text: "I've had a blow job. ", l10nKey: "room.205.chastity.choice.blowjob", callback: "" });
         if (sexst.gottitjob.total > 0)
-            btn.push({ chatID: 5, text: "I've had sex with some boobs. ", callback: "" });
+            btn.push({ chatID: 5, text: "I've had sex with some boobs. ", l10nKey: "room.205.chastity.choice.tits", callback: "" });
         if (sexst.gotfootjob.total > 0)
-            btn.push({ chatID: 5, text: "I've received a foot job. ", callback: "" });
+            btn.push({ chatID: 5, text: "I've received a foot job. ", l10nKey: "room.205.chastity.choice.footjob", callback: "" });
         if (sexst.gothandjob.total > 0)
-            btn.push({ chatID: 5, text: "I've had a hand job. ", callback: "" });
+            btn.push({ chatID: 5, text: "I've had a hand job. ", l10nKey: "room.205.chastity.choice.handjob", callback: "" });
         else {
-            btn.push({ chatID: 1, text: "Need to update this with new sex tracker", callback: "" });
+            btn.push({ chatID: 1, text: "Need to update this with new sex tracker", l10nKey: "room.205.chastity.choice.trackerNote", callback: "" });
         }
         return {
             chatID: 1,
@@ -134,7 +134,7 @@ room205.chat = function (chatID) {
             speaker: "missy",
             text: "So you probably think I'm going to punish you for being naughty, don't you? To get compliance from " +
                 "a person sometimes you have to use different approaches. Not everyone reacts to the whip, some people " +
-                "change their behavior through positive conditioning. Strip off your pants and " + cl.pantiesTxt() + ", " +
+                "change their behavior through positive conditioning. Strip off your pants and underwear, " +
                 "drop your tie, and bring that cock over here. ",
             button: [
                 { chatID: 999, text: "Huh? Yes ma'am!", callback: "chast0_0" }

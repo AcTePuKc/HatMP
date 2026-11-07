@@ -69,6 +69,7 @@ room75.chat = function (chatID) {
         {
             chatID: 0,
             speaker: "thinking",
+            l10nKey: "room.75.doorLocked",
             text: "The door's locked.",
             button: [
                 { chatID: -1, text: "...", callback: "leave" }
@@ -77,18 +78,20 @@ room75.chat = function (chatID) {
         {
             chatID: 1,
             speaker: "thinking",
+            l10nKey: "room.75.doorLocked",
             text: "The door's locked.",
             button: [
-                { chatID: -1, text: "Pick the Lock", callback: "pick" },
+                { chatID: -1, l10nKey: "room.75.pickLock", text: "Pick the Lock", callback: "pick" },
                 { chatID: -1, text: "...", callback: "leave" },
             ]
         },
         {
             chatID: 2,
             speaker: "thinking",
+            l10nKey: "room.75.pickFailed",
             text: "Crap! That didn't work.",
             button: [
-                { chatID: -1, text: "Leave", callback: "leave" },
+                { chatID: -1, l10nKey: "room.75.leave", text: "Leave", callback: "leave" },
             ]
         },
     ];

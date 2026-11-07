@@ -11,7 +11,7 @@ async function createGame(locale, clock) {
         console, window: {}, invoker: { registerRoom: () => {} },
         $: () => ({ on: () => {} }),
         localStorage: { getItem: () => locale },
-        document: { documentElement: {} },
+        document: { documentElement: {}, querySelectorAll: () => [] },
         g: {
             version: '28.2', startDate: new Date(2026, 9, 23), dt: new Date(2026, 9, 23, 12),
             gethourdecimal: () => 12,
@@ -20,7 +20,7 @@ async function createGame(locale, clock) {
         }
     });
     for (const file of ['l10n/languages.js', 'l10n/en.js', 'l10n/bg.js', 'l10n/es.js',
-        'scripts/localization.js', 'scripts/gamevariables.js', 'scripts/nav.js',
+        'scripts/l10n-format.js', 'scripts/localization.js', 'scripts/gamevariables.js', 'scripts/nav.js',
         'scripts/supportingChar.js', 'scripts/phone.js']) {
         vm.runInContext(fs.readFileSync(path.join(root, file), 'utf8'), context, { filename: file });
     }

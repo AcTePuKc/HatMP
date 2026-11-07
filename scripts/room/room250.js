@@ -407,7 +407,8 @@ room250.chat = function (chatID) {
         {
             chatID: 9,
             speaker: "holly",
-            text: "No you're not, or you would know " + sc.n("jeffery") + " only interviews in the morning before 10 in the morning.",
+            text: "No you're not, or you would know {jeffery} only interviews in the morning before 10 in the morning.",
+            l10nValues: { jeffery: sc.n("jeffery") },
             button: [
                 { chatID: -1, text: "Oh I guess I'll come back tomorrow.", callback: "" }
             ]
@@ -425,7 +426,8 @@ room250.chat = function (chatID) {
         {
             chatID: 11,
             speaker: "holly",
-            text: "Oh, I thought you would have a beaver... oh well " + sc.n("jeffery") + "'s in the back office",
+            text: "Oh, I thought you would have a beaver... oh well {jeffery}'s in the back office",
+            l10nValues: { jeffery: sc.n("jeffery") },
             button: [
                 { chatID: -1, text: "Thank you [Go to the back office]", callback: "backOffice" }
             ]
@@ -518,7 +520,8 @@ room250.chat = function (chatID) {
         {
             chatID: 22,
             speaker: "holly",
-            text: "hi " + sc.n("me") + ", Here to eat or work?",
+            text: "hi {me}, Here to eat or work?",
+            l10nValues: { me: sc.n("me") },
             button: [
                 { chatID: -1, text: "Here to work a shift. ", callback: "backOffice" },
                 { chatID: 1, text: "I came to get something to eat.", callback: "" },
@@ -556,7 +559,7 @@ room250.chat = function (chatID) {
             button: [
                 { chatID: 1, text: "Yes", callback: "sit" },
                 { chatID: -1, text: "No, Just wandering around I guess", callback: "" },
-                { chatID: -1, text: "Here to see " + sc.n("jeffery") + ". ", callback: "backOffice" },
+                { chatID: -1, text: "Here to see {jeffery}. ", l10nValues: { jeffery: sc.n("jeffery") }, callback: "backOffice" },
             ]
         },
         {
@@ -573,7 +576,7 @@ room250.chat = function (chatID) {
             speaker: "thinking",
             text: "Ok. I'm in. Now to go into his office and look around. ",
             button: [
-                { chatID: -1, text: "[Sneak into " + sc.n("jeffery") + "'s office]", callback: "k1" },
+                { chatID: -1, text: "[Sneak into {jeffery}'s office]", l10nValues: { jeffery: sc.n("jeffery") }, callback: "k1" },
             ]
         },
         {

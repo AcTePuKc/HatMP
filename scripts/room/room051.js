@@ -314,6 +314,7 @@ room51.chat = function (chatID) {
             speaker: "candy",
             text: "Oh awesome, it's " + sc.n("me") + "! I was hoping we could play with him! He looked like so much fun at the store! What is that " +
             "thing he's wearing?",
+            l10nValues: { me: sc.n("me") },
             button: [
                 { chatID: 2, text: "...", callback: "t3" }
             ]
@@ -339,6 +340,7 @@ room51.chat = function (chatID) {
             speaker: "candy",
             text: "Hahaha you are so silly! Why do boys like you always fall for the ugly dress game? You really are the worst, " + sc.n("tiffany") +
                 "! Picking on this simple silly boy!",
+            l10nValues: { tiffany: sc.n("tiffany") },
             button: [
                 { chatID: 5, text: "Hey!", callback: "" }
             ]
@@ -372,6 +374,7 @@ room51.chat = function (chatID) {
             speaker: "candy",
             text: "Aww, you poor thing. You know he's got such a pretty face. He's really pulling off that dress. So " + sc.n("me") + ", do you want " +
                 "to show me what you have under there?",
+            l10nValues: { me: sc.n("me") },
             button: [
                 { chatID: 9, text: "I... uhh...", callback: "t8" }
             ]
@@ -380,6 +383,7 @@ room51.chat = function (chatID) {
             chatID: 9,
             speaker: "tiffany",
             text: "Yeah, show " + sc.n("candy") + " what you've got! Take off your dress!",
+            l10nValues: { candy: sc.n("candy") },
             button: [
                 { chatID: 10, text: "But... shouldn't you take off your clothes?", callback: "t9" }
             ]
@@ -390,6 +394,7 @@ room51.chat = function (chatID) {
             text: "Hahaha, we're not going to take off our clothes for you! You should be happy just being here with us. We both can fuck " +
                 "much hotter and manlier men than you. " + sc.n("tiffany") + " brought you here 'cause we get bored fucking big hot guys all the time, " +
                 "she thought you might be fun.",
+            l10nValues: { tiffany: sc.n("tiffany") },
             button: [
                 { chatID: 11, text: "What?", callback: "" }
             ]
@@ -399,6 +404,7 @@ room51.chat = function (chatID) {
             speaker: "tiffany",
             text: sc.n("missy") + " told me what a sissy you were! I've always wanted to have a sissy best friend that I could dress up, " +
             "tease, and play with. That's why I brought you here!",
+            l10nValues: { missy: sc.n("missy") },
             button: [
                 { chatID: 12, text: "I'm not a sissy...", callback: "t10" },
                 { chatID: 14, text: "I am such a sissy boy, please play with me", callback: "" }
@@ -465,6 +471,7 @@ room51.chat = function (chatID) {
             chatID: 19,
             speaker: "candy",
             text: "Oh gross! Body hair! We need to get rid of that! " + sc.n("tiffany") + " go grab your hair removal cream!",
+            l10nValues: { tiffany: sc.n("tiffany") },
             button: [
                 { chatID: 20, text: "But I like it...", callback: "t14" }
             ]
@@ -540,6 +547,7 @@ room51.chat = function (chatID) {
             chatID: 28,
             speaker: "tiffany",
             text: "Oh " + g.internal + " really is your color! You really know how to make yourself a pretty girl!",
+            l10nValues: { lipColor: l10n.t("room.51.lipColor." + g.internal, g.internal) },
             button: [
                 { chatID: 29, text: "Oh wow", callback: "" }
             ]
@@ -589,6 +597,7 @@ room51.chat = function (chatID) {
             speaker: "tiffany",
             text: sc.n("candy") + "!!! You're going to scare the poor boy! No one is cutting off your boy cock. Let's see the back side, " +
             "turn around girl.",
+            l10nValues: { candy: sc.n("candy") },
             button: [
                 { chatID: 35, text: "[Turn around]", callback: "t23" }
             ]
@@ -653,6 +662,7 @@ room51.chat = function (chatID) {
             chatID: 42,
             speaker: "candy",
             text: "Sorry, but this is a girls-only building. We can't have you accidentally letting " + sc.n("treyvon") + " know we snuck a boy in here.",
+            l10nValues: { treyvon: sc.n("treyvon") },
             button: [
                 { chatID: 43, text: "I won't wear them out, I promise", callback: "" }
             ]
@@ -701,6 +711,7 @@ room51.chat = function (chatID) {
             chatID: 48,
             speaker: "tiffany",
             text: "*Yawn* yes. We'll have time tomorrow to play some more. Your room is at the end of the hallway. Good night " + sc.n("me") + ".",
+            l10nValues: { me: sc.n("me") },
             button: [
                 { chatID: -1, text: "Humph!", callback: "t29" }
             ]
@@ -717,6 +728,16 @@ room51.chat = function (chatID) {
             chatID: 50,
             speaker: "me",
             text: "Before I leave I need to get dressed. <span class='hl'>I'm missing my " + g.internal + ".</span>",
+            l10nValues: { missing: (function () {
+                var missingClothing = String(g.internal).replace(/<[^>]*>/g, "").trim();
+                var missingClothingKey = {
+                    "shirt": "room.775.missing.shirt",
+                    "pants": "room.775.missing.pants",
+                    "shirt and pants": "room.775.missing.shirtAndPants",
+                    "respectable clothing": "room.775.missing.respectableClothing"
+                }[missingClothing];
+                return missingClothingKey ? l10n.t(missingClothingKey, missingClothing) : missingClothing;
+            })() },
             button: []
         },
     ];

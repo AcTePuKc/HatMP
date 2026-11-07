@@ -534,7 +534,7 @@ room8.chat = function (chatID) {
         {
             chatID: 1,
             speaker: "me",
-            text: l10n.t("room.8.chat.1", "This is your wardrobe; it's where you get dressed for the day."),
+            text: l10n.t("room.8.chat.1", "This is your wardrobe; you can change clothes here."),
             button: [
                 { chatID: 2, text: "...", callback: "" },
                 { chatID: -1, text: l10n.t("chat.button.skip", "Skip"), callback: "" }
@@ -543,7 +543,7 @@ room8.chat = function (chatID) {
         {
             chatID: 2,
             speaker: "me",
-            text: l10n.t("room.8.chat.2", "To remove all your clothes click the beige icon on the far left of the icons. Your profile will update to the naked avatar."),
+            text: l10n.t("room.8.chat.2", "To remove all your clothes, click the icon showing the nude male body on the far left. Your profile will update to show your nude avatar."),
             button: [
                 { chatID: 3, text: "...", callback: "" }
             ]
@@ -568,7 +568,7 @@ room8.chat = function (chatID) {
         {
             chatID: 5,
             speaker: "me",
-            text: l10n.t("room.8.chat.5", "Before you can go anywhere you must first be properly dressed in the typical clothes for a young man: <span class='hl'>underwear, pants, shirt, and shoes.</span>"),
+            text: l10n.t("room.8.chat.5", "Before you go out, make sure you're dressed appropriately: <span class='hl'>underwear, pants, a shirt, and shoes.</span>"),
             button: [
                 { chatID: 6, text: "...", callback: "" }
             ]
@@ -586,9 +586,8 @@ room8.chat = function (chatID) {
         {
             chatID: 7,
             speaker: "me",
-            text: l10n.t("room.8.chat.7", "<span class='hl'>The first four outfits are for daily wear.</span> The <span class='hl'>last outfit is only for pajamas</span>. " +
-                "When you go to sleep you will automatically wear the sleep outfit, so only pajamas can be " +
-                "placed in that outfit. The first four can be selected to wear when you wake up."),
+            text: l10n.t("room.8.chat.7", "<span class='hl'>Choose an everyday outfit and click Wear — it's your choice.</span> The <span class='hl'>last slot is only for pajamas</span>. " +
+                "When you go to sleep you will automatically wear the sleep outfit. After you wake up, choose an everyday outfit again."),
             button: [
                 { chatID: 10, text: "...", callback: "" }
             ]

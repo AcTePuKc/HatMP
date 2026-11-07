@@ -217,14 +217,16 @@ room400.chat = function (chatID) {
         {
             chatID: 0,
             speaker: "tiffany",
+            l10nKey: "room.400.tiffanyShopping",
             text: "Ok! First thing is getting the dress, then we know which panties and shoes to get! Let's go to saucy!!",
             button: [
-                { chatID: -1, text: "[Follow " + sc.n("tiffany") + " to Saucy]", callback: "tSaucy" }
+                { chatID: -1, l10nKey: "room.400.followTiffanyToSaucy", l10nValues: { tiffany: sc.n("tiffany") }, text: "[Follow {tiffany} to Saucy]", callback: "tSaucy" }
             ]
         },
         {
             chatID: 1,
             speaker: "me",
+            l10nKey: "room.400.noRoomDecor",
             text: "I don't need any girly room decorations",
             button: [
                 { chatID: -1, text: "...", callback: "" }
@@ -233,6 +235,7 @@ room400.chat = function (chatID) {
         {
             chatID: 2,
             speaker: "me",
+            l10nKey: "room.400.roomDecorComing",
             text: "Next release you'll be able to decorate your room!",
             button: [
                 { chatID: -1, text: "...", callback: "" }
@@ -241,6 +244,7 @@ room400.chat = function (chatID) {
         {
             chatID: 3,
             speaker: "cop2",
+            l10nKey: "room.400.nakedAtMall",
             text: "Ok slut. You can't be running around the mall naked. Time for jail. ",
             button: [
                 { chatID: -1, text: "...", callback: "jail" }

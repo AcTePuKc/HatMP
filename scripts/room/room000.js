@@ -304,6 +304,7 @@ room0.chat = function (chatID) {
             chatID: 2,
             speaker: "me",
             text: room0.chatInput,
+            l10nIgnore: true,
             button: []
         },
         {

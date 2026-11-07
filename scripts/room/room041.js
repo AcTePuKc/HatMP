@@ -40,24 +40,28 @@ room41.chat = function (chatID) {
         {
             chatID: 0,
             speaker: "bigguy",
+            l10nKey: "room.41.busyRatTraps",
             text: "Get lost, kid. Got man's work to do here, unless you want to clean rat traps.",
             button: [
-                { chatID: -1, text: "I'll leave", callback: "" },
-                { chatID: -1, text: "I'll clean up rat traps! Joy!", callback: "room40" },
+                { chatID: -1, l10nKey: "room.41.leave", text: "I'll leave", callback: "" },
+                { chatID: -1, l10nKey: "room.41.cleanRatTraps", text: "I'll clean up rat traps! Joy!", callback: "room40" },
             ]
         },
         {
             chatID: 1,
             speaker: "bigguy",
+            l10nKey: "room.41.busy",
             text: "Get lost kid. Got man's work to do here.",
             button: [
-                { chatID: -1, text: "I'll leave", callback: "" },
+                { chatID: -1, l10nKey: "room.41.leave", text: "I'll leave", callback: "" },
             ]
         },
         {
             chatID: 2,
             speaker: "thinking",
-            text: "It's closed on the weekend, 'cause he's at home fucking my " + sc.n("landlord") + ".",
+            l10nKey: "room.41.closedWeekend",
+            l10nValues: { landlord: sc.n("landlord") },
+            text: "It's closed on the weekend, 'cause he's at home fucking my {landlord}.",
             button: [
                 { chatID: -1, text: "...", callback: "" },
             ]
@@ -65,6 +69,7 @@ room41.chat = function (chatID) {
         {
             chatID: 3,
             speaker: "thinking",
+            l10nKey: "room.41.secretSissy",
             text: "I can't go in there like this! No one knows I'm a secret sissy!",
             button: [
                 { chatID: -1, text: "...", callback: "" },

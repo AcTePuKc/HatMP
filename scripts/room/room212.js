@@ -310,9 +310,9 @@ room212.chat = function (chatID) {
             {
                 chatID: 1,
                 speaker: "!sporty",
-                text: "Oh cool. This is the third time I've come here. My first day your friend " + sc.n("cecilia") +
-                    " was here and helped so much, but she totally kept taking all the dicks. Luckily we got three " +
+                text: "Oh cool. This is the third time I've come here. My first day your friend {cecilia} was here and helped so much, but she totally kept taking all the dicks. Luckily we got three " +
                     "dicks at once and she couldn't reach the third so I got to suck it. It was so fun! ",
+                l10nValues: { cecilia: sc.n("cecilia") },
                 button: [
                     { chatID: 2, text: "Oh. I guess I'm not surprised she can be greedy with the dicks. How was the second day? ", callback: "" }
                 ]
@@ -322,9 +322,10 @@ room212.chat = function (chatID) {
                 speaker: "!sporty",
                 text: "Oh that was a rough day. That's why I'm glad you're here. The entire football team " +
                     "came in. My jaw was so sore by the fourth dick I didn't think I could do anymore. Luckily " +
-                    sc.n("p") + " came in to check on me. When she saw how far behind I was she helped out. " +
+                    "{p} came in to check on me. When she saw how far behind I was she helped out. " +
                     "She was amazing. No guy lasted more than 30 seconds with her blowing them. I was totally " +
                     "amazed. I want so much to be like her someday.",
+                l10nValues: { p: sc.n("p") },
                 button: [
                     { chatID: 3, text: "oh wow!", callback: "" }
                 ]

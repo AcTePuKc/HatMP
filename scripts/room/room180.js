@@ -268,6 +268,7 @@ room180.chat = function (chatID) {
         {
             chatID: 7,
             speaker: "!chris",
+            l10nValues: { me: sc.n("me") },
             text: "I agree with " + sc.n("me") + ". We should do it one at a time. ",
             button: [
                 { chatID: 8, text: "...", callback: "shave1point5" },
@@ -419,8 +420,9 @@ room180.chat = function (chatID) {
         {
             chatID: 25,
             speaker: "martha",
-            text: "To begin our class, I would like you to observe Alex as she demonstrates the proper way to sit in a " +
-                "chair. Alex, would you please take a seat in the chair in the center of the room?",
+            l10nValues: { me: sc.n("me") },
+            text: "To begin our class, I would like you to observe {me} demonstrate the proper way to sit in a " +
+                "chair. {me}, would you please take a seat in the chair in the center of the room?",
             button: [
                 { chatID: 26, text: "...", callback: "fem1" },
             ]
@@ -428,9 +430,10 @@ room180.chat = function (chatID) {
         {
             chatID: 26,
             speaker: "martha",
-            text: "Excellent. Alex here is demonstrating the incorrect way to sit in a chair. Observe how he slouches forward, " +
-                "his mouth drawn down in a frown. His elbows rest on his knees, and his knees are spread wide apart. " +
-                "He appears to be taking up all of the space around him, as if he is entitled to it. ",
+            l10nValues: { me: sc.n("me") },
+            text: "Excellent. {me} here is demonstrating the incorrect way to sit in a chair. Observe the forward slouch, " +
+                "the frown, elbows resting on the knees, and knees spread wide apart. {me} appears to be taking up all of " +
+                "the space around them, as if entitled to it. ",
             button: [
                 { chatID: 27, text: "...", callback: "" },
             ]
@@ -438,6 +441,7 @@ room180.chat = function (chatID) {
         {
             chatID: 27,
             speaker: "martha",
+            l10nValues: { me: sc.n("me") },
             text: "Ladies, I shall now explain how a lady sits in a chair. " + sc.n("me") + ", would you please assist me? " +
                 "Please cross your legs so that your penis is not on display. Place your hands away from your knees. " +
                 "Sit up straight and tall, with your shoulders back and your head held high. Relax your facial muscles and " +
@@ -453,7 +457,8 @@ room180.chat = function (chatID) {
         {
             chatID: 28,
             speaker: "martha",
-            text: "Excellent. Observe how inviting he now appears. By simply changing the way he sits, he has transformed " +
+            l10nValues: { me: sc.n("me") },
+            text: "Excellent. Observe how inviting {me} now appears. By simply changing the way {me} sits, the student has transformed " +
                 "from an unapproachable brute to a warm and inviting lady. When you sit, it is important to be " +
                 "mindful of how you appear to others. As ladies, our true purpose is to serve others. By sitting with grace " +
                 "and poise, we can create an atmosphere of warmth, welcome, and service.",
@@ -714,10 +719,11 @@ room180.chat = function (chatID) {
         {
             chatID: 57,
             speaker: "me",
+            l10nValues: { p: sc.n("p") },
             text: "I know right! I love how soft and breezy it is. I feel like I've lost the " +
                 "weight of my normal clothing and now I'm just floating. It's nice to be around " +
                 "others going through the same thing at the same time. I'm really glad I came here, " +
-                "even if " + sc.n("p") + " seems like she's going to be a bit crazy. ",
+                "even if " + sc.n("p") + " seems like they're going to be a bit crazy. ",
             button: [
                 { chatID: 58, text: "...", callback: "" },
             ]
@@ -725,6 +731,7 @@ room180.chat = function (chatID) {
         {
             chatID: 58,
             speaker: "ralph",
+            l10nValues: { black: sc.n("black") },
             text: "But she's so hot! She can lube me any day. I'm more afraid of " + sc.n("black") +
                 "! I hope she takes it easy on us. I don't even want to take her class. Who likes " +
                 "all that rough stuff? I want a girl to be nice and gentle with me. ",
@@ -736,7 +743,7 @@ room180.chat = function (chatID) {
             chatID: 59,
             speaker: "ralph",
             text: "I saw the upcoming classes. I'm so looking forward to the high heels class! " +
-                "I trip so much when I try to wear them at home. Every time I fall my mom yells " +
+                "I trip so much when I try to wear them at home. Every time I fall someone at home yells " +
                 "at me wondering what I'm doing in my room.",
             button: [
                 { chatID: 60, text: "Hahah, You are though!", callback: "fem103_2" },
@@ -786,6 +793,7 @@ room180.chat = function (chatID) {
         {
             chatID: 64,
             speaker: "ralph",
+            l10nValues: { me: sc.n("me") },
             text: "Hey! " + sc.n("me") + ". Are you daydreaming? ",
             button: [
                 { chatID: 56, text: "Huh? ", callback: "fem103_1" },
@@ -898,7 +906,8 @@ room180.chat = function (chatID) {
         {
             chatID: 76,
             speaker: "philbert",
-            text: "Hahaha! You should change your name from Sporty to Squirty! ",
+            l10nValues: { sporty: sc.n("sporty") },
+            text: "Hahaha! You should change your name from " + sc.n("sporty") + " to Squirty! ",
             button: [
                 { chatID: 77, text: "Shut up Philbert! We're all cramping here!", callback: "enema205_6" }
             ]
@@ -1001,8 +1010,7 @@ room180.chat = function (chatID) {
         {
             chatID: 88,
             speaker: "bimbo",
-            text: "Are you the " + gender.pronoun("girl") + " that needs the laser " +
-                "hair removal?",
+            text: "Are you here for the laser hair removal?",
             button: [
                 { chatID: 89, text: "I am", callback: "" }
             ]
@@ -1011,7 +1019,7 @@ room180.chat = function (chatID) {
             chatID: 89,
             speaker: "bimbo",
             text: "Hehehe cool! I've never done this before, but I had all the classes. " +
-                "They both were really hard, but the teacher said I passed. He even gave " +
+                "They both were really hard, but the teacher said I passed. They even gave " +
                 "me a fancy paper to say I can do this. So are you ready to be hairless " +
                 "from your head down?",
             button: [

@@ -320,10 +320,11 @@ room58.chat = function (chatID) {
         {
             chatID: 0,
             speaker: "thinking",
+            l10nKey: "room.58.chat.0.text",
             text: "I should be naked if I want to attract people. ",
             button: [
-                { chatID: -1, text: "[Strip]", callback: "strip" },
-                { chatID: -1, text: "I don't feel like camming now.", callback: "leave" },
+                { chatID: -1, l10nKey: "room.58.chat.0.choice.0", text: "[Strip]", callback: "strip" },
+                { chatID: -1, l10nKey: "room.58.chat.0.choice.1", text: "I don't feel like camming now.", callback: "leave" },
             ]
         }
     ];
@@ -383,7 +384,7 @@ room58.gameloop = function () {
         top: 1000,
         font: 40,
         hex: "#ffffff",
-        text: "Viewers: " + g.internal.viewers + ". Tips $" + g.internal.money
+        text: l10n.t("room.58.viewersStatus", "Viewers: {viewers}. Tips ${money}", { viewers: g.internal.viewers, money: g.internal.money })
     }, 58);
 
     g.roomTimeout = setTimeout(function () { room58.gameloop(); }, 800);
@@ -393,73 +394,73 @@ room58.sidechat = function (metalk) {
     let thisChat;
     let flirtChat;
     let sidechat = [
-        { user: "shakey998", txt: "Hey, beautiful", hex: "#0a457d" },
-        { user: "XXKillstreakXX", txt: "Hi, pretty girl", hex: "#05193b" },
-        { user: "XXKillstreakXX", txt: "You're all losers!", hex: "#05193b" },
-        { user: "tylie", txt: "Who's a naughty girl?", hex: "#6c2287" },
-        { user: "Jim", txt: "So hot, damn I love stroking it <3", hex: "#0d915a" },
-        { user: "Daddy", txt: "Lol, that's what naughty DADDIES do.", hex: "#13914a" },
-        { user: "Jesus", txt: "Hola, niña bonita", hex: "#6476ed" },
-        { user: "Daddy6969", txt: "Show me your butthole!", hex: "#e33419" },
-        { user: "Hornydad69", txt: "Love those nipples", hex: "#d9d21a" },
-        { user: "XXxGamerBxXX", txt: "Play with your pee pee", hex: "#5448a1" },
-        { user: "sharky-59564", txt: "Dance for us, slut!", hex: "#302e3b" },
-        { user: "LilFucker4206969", txt: "I want to be balls-deep in you", hex: "#ff3300" },
-        { user: "Twekle98", txt: "Shake that ass! Shake for Daddy", hex: "#34e5eb" },
-        { user: "TitsMcGee", txt: "Spread your legs. Show Daddy that pussy", hex: "#e39e1e" },
-        { user: "Roxy420", txt: "Daddy like", hex: "#8a8346" },
-        { user: "DirtyDaddy69", txt: "I need a daughter like you", hex: "#22633e" },
-        { user: "HighTower894", txt: "You look like this ho I know", hex: "#1a1701" },
-        { user: "BigDick420", txt: "Hot, I'm rubbin' my cock", hex: "#a12336" },
-        { user: "Grandpa", txt: "You like older men? I like you :)", hex: "#4a515e" },
-        { user: "Grandpa", txt: "I want to put you over my lap, bby girl", hex: "#4a515e" },
-        { user: "Pisslover", txt: "Drink your piss! I wanna see you pee", hex: "#d3d622" },
-        { user: "AssLicker", txt: "Spread your butthole! Show me that starfish", hex: "#a33329" },
-        { user: "Sissy69", txt: "I love your look", hex: "#df70e0" },
-        { user: "Sissy69", txt: "Play with your cock, bby", hex: "#df70e0" },
-        { user: "CallMeDaddy", txt: "I'm going to suck that clitty", hex: "#910d12" },
-        { user: "CallMeDaddy", txt: "I want to fuck you so bad, lil girl", hex: "#910d12" },
-        { user: "CallMeDaddy", txt: "Put on a show for Daddy", hex: "#910d12" },
-        { user: "GreyHairs", txt: "Yuck! Not enough hair!", hex: "#4a5e5d" },
-        { user: "XXyoungbloodXX", txt: "I think I'm in love", hex: "#475b73" },
-        { user: "XXyoungbloodXX", txt: "You dirty fucking whore", hex: "#475b73" },
-        { user: "XXyoungbloodXX", txt: "I want to spit on your asshole", hex: "#475b73" },
-        { user: "AssLicker", txt: "Mmm, so lickable", hex: "#a33329" },
-        { user: "Grandpa", txt: "🍆🍑💦 I want you!", hex: "#4a515e" },
-        { user: "Grandpa", txt: "🥵 ❤️❤️❤️ I'm in love!", hex: "#4a515e" },
-        { user: "Grandpa", txt: "🍌 I'm gonna stuff your face", hex: "#4a515e" },
-        { user: "BigDick420", txt: "💕 I'm going to wife you", hex: "#a12336" },
-        { user: "sharky-59564", txt: "🥪 Get back to the kitchen! hehe", hex: "#302e3b" },
-        { user: "Twekle98", txt: "I so want to fuck your ass!", hex: "#34e5eb" },
-        { user: "Jim", txt: "I'm cumming! Fuck, you're hot!", hex: "#0d915a" },
-        { user: "Daddy", txt: "Show daddy your cum hole, bby girl", hex: "#13914a" },
-        { user: "LilFucker4206969", txt: "I'm going to fist-rape you", hex: "#ff3300" },
-        { user: "LilFucker4206969", txt: "I'm going to make you my rape slave", hex: "#ff3300" },
-        { user: "XXyoungbloodXX", txt: "Marry me, baby", hex: "#475b73" },
-        { user: "CallMeDaddy", txt: "Perfect ass for spanking.", hex: "#910d12" },
-        { user: "Romeo", txt: "My heart has found its match", hex: "#1aba45" },
-        { user: "Romeo", txt: "Marry me, please!!!!", hex: "#1aba45" },
-        { user: "Romeo", txt: "❤️🧡💛💚💙💜", hex: "#1aba45" },
-        { user: "Romeo", txt: "🥰🔥🔥🥰 My passion is you", hex: "#1aba45" },
+        { user: "shakey998", l10nKey: "room.58.sidechat.0", text: "Hey, beautiful", hex: "#0a457d" },
+        { user: "XXKillstreakXX", l10nKey: "room.58.sidechat.1", text: "Hi, pretty girl", hex: "#05193b" },
+        { user: "XXKillstreakXX", l10nKey: "room.58.sidechat.2", text: "You're all losers!", hex: "#05193b" },
+        { user: "tylie", l10nKey: "room.58.sidechat.3", text: "Who's a naughty girl?", hex: "#6c2287" },
+        { user: "Jim", l10nKey: "room.58.sidechat.4", text: "So hot, damn I love stroking it <3", hex: "#0d915a" },
+        { user: "Daddy", l10nKey: "room.58.sidechat.5", text: "Lol, that's what naughty DADDIES do.", hex: "#13914a" },
+        { user: "Jesus", l10nKey: "room.58.sidechat.6", text: "Hola, niña bonita", hex: "#6476ed" },
+        { user: "Daddy6969", l10nKey: "room.58.sidechat.7", text: "Show me your butthole!", hex: "#e33419" },
+        { user: "Hornydad69", l10nKey: "room.58.sidechat.8", text: "Love those nipples", hex: "#d9d21a" },
+        { user: "XXxGamerBxXX", l10nKey: "room.58.sidechat.9", text: "Play with your pee pee", hex: "#5448a1" },
+        { user: "sharky-59564", l10nKey: "room.58.sidechat.10", text: "Dance for us, slut!", hex: "#302e3b" },
+        { user: "LilFucker4206969", l10nKey: "room.58.sidechat.11", text: "I want to be balls-deep in you", hex: "#ff3300" },
+        { user: "Twekle98", l10nKey: "room.58.sidechat.12", text: "Shake that ass! Shake for Daddy", hex: "#34e5eb" },
+        { user: "TitsMcGee", l10nKey: "room.58.sidechat.13", text: "Spread your legs. Show Daddy that pussy", hex: "#e39e1e" },
+        { user: "Roxy420", l10nKey: "room.58.sidechat.14", text: "Daddy like", hex: "#8a8346" },
+        { user: "DirtyDaddy69", l10nKey: "room.58.sidechat.15", text: "I need a daughter like you", hex: "#22633e" },
+        { user: "HighTower894", l10nKey: "room.58.sidechat.16", text: "You look like this ho I know", hex: "#1a1701" },
+        { user: "BigDick420", l10nKey: "room.58.sidechat.17", text: "Hot, I'm rubbin' my cock", hex: "#a12336" },
+        { user: "Grandpa", l10nKey: "room.58.sidechat.18", text: "You like older men? I like you :)", hex: "#4a515e" },
+        { user: "Grandpa", l10nKey: "room.58.sidechat.19", text: "I want to put you over my lap, bby girl", hex: "#4a515e" },
+        { user: "Pisslover", l10nKey: "room.58.sidechat.20", text: "Drink your piss! I wanna see you pee", hex: "#d3d622" },
+        { user: "AssLicker", l10nKey: "room.58.sidechat.21", text: "Spread your butthole! Show me that starfish", hex: "#a33329" },
+        { user: "Sissy69", l10nKey: "room.58.sidechat.22", text: "I love your look", hex: "#df70e0" },
+        { user: "Sissy69", l10nKey: "room.58.sidechat.23", text: "Play with your cock, bby", hex: "#df70e0" },
+        { user: "CallMeDaddy", l10nKey: "room.58.sidechat.24", text: "I'm going to suck that clitty", hex: "#910d12" },
+        { user: "CallMeDaddy", l10nKey: "room.58.sidechat.25", text: "I want to fuck you so bad, lil girl", hex: "#910d12" },
+        { user: "CallMeDaddy", l10nKey: "room.58.sidechat.26", text: "Put on a show for Daddy", hex: "#910d12" },
+        { user: "GreyHairs", l10nKey: "room.58.sidechat.27", text: "Yuck! Not enough hair!", hex: "#4a5e5d" },
+        { user: "XXyoungbloodXX", l10nKey: "room.58.sidechat.28", text: "I think I'm in love", hex: "#475b73" },
+        { user: "XXyoungbloodXX", l10nKey: "room.58.sidechat.29", text: "You dirty fucking whore", hex: "#475b73" },
+        { user: "XXyoungbloodXX", l10nKey: "room.58.sidechat.30", text: "I want to spit on your asshole", hex: "#475b73" },
+        { user: "AssLicker", l10nKey: "room.58.sidechat.31", text: "Mmm, so lickable", hex: "#a33329" },
+        { user: "Grandpa", l10nKey: "room.58.sidechat.32", text: "🍆🍑💦 I want you!", hex: "#4a515e" },
+        { user: "Grandpa", l10nKey: "room.58.sidechat.33", text: "🥵 ❤️❤️❤️ I'm in love!", hex: "#4a515e" },
+        { user: "Grandpa", l10nKey: "room.58.sidechat.34", text: "🍌 I'm gonna stuff your face", hex: "#4a515e" },
+        { user: "BigDick420", l10nKey: "room.58.sidechat.35", text: "💕 I'm going to wife you", hex: "#a12336" },
+        { user: "sharky-59564", l10nKey: "room.58.sidechat.36", text: "🥪 Get back to the kitchen! hehe", hex: "#302e3b" },
+        { user: "Twekle98", l10nKey: "room.58.sidechat.37", text: "I so want to fuck your ass!", hex: "#34e5eb" },
+        { user: "Jim", l10nKey: "room.58.sidechat.38", text: "I'm cumming! Fuck, you're hot!", hex: "#0d915a" },
+        { user: "Daddy", l10nKey: "room.58.sidechat.39", text: "Show daddy your cum hole, bby girl", hex: "#13914a" },
+        { user: "LilFucker4206969", l10nKey: "room.58.sidechat.40", text: "I'm going to fist-rape you", hex: "#ff3300" },
+        { user: "LilFucker4206969", l10nKey: "room.58.sidechat.41", text: "I'm going to make you my rape slave", hex: "#ff3300" },
+        { user: "XXyoungbloodXX", l10nKey: "room.58.sidechat.42", text: "Marry me, baby", hex: "#475b73" },
+        { user: "CallMeDaddy", l10nKey: "room.58.sidechat.43", text: "Perfect ass for spanking.", hex: "#910d12" },
+        { user: "Romeo", l10nKey: "room.58.sidechat.44", text: "My heart has found its match", hex: "#1aba45" },
+        { user: "Romeo", l10nKey: "room.58.sidechat.45", text: "Marry me, please!!!!", hex: "#1aba45" },
+        { user: "Romeo", l10nKey: "room.58.sidechat.46", text: "❤️🧡💛💚💙💜", hex: "#1aba45" },
+        { user: "Romeo", l10nKey: "room.58.sidechat.47", text: "🥰🔥🔥🥰 My passion is you", hex: "#1aba45" },
     ];
 
     if (metalk === "tips") {
         g.internal.viewers -= Math.floor(Math.random() * 5);
         if (g.internal.excitement > 7 && g.internal.viewers > 10) {
             g.internal.excitement -= 2;
-            g.internal.chat.push({ user: sc.n("me"), txt: "Anyone wanna give me some tips?", hex: "#f587af" });
-            g.internal.chat.push({ user: "DirtyDaddy", txt: "Anything for you, bby girl!", hex: "#1900ff" });
+            g.internal.chat.push({ user: sc.n("me"), l10nKey: "room.58.player.tipsPrompt", text: "Anyone wanna give me some tips?", hex: "#f587af" });
+            g.internal.chat.push({ user: "DirtyDaddy", l10nKey: "room.58.player.tipsReply", text: "Anything for you, bby girl!", hex: "#1900ff" });
             g.internal.money += g.rand(4, 12);
         }
         else if (g.internal.viewers > 5) {
             g.internal.excitement -= 2;
-            g.internal.chat.push({ user: sc.n("me"), txt: "Anyone wanna give me some tips?", hex: "#f587af" });
-            g.internal.chat.push({ user: "XX_assFUCKER69_XX", txt: "No! Show us your butthole!", hex: "#1900ff" });
+            g.internal.chat.push({ user: sc.n("me"), l10nKey: "room.58.player.tipsPrompt", text: "Anyone wanna give me some tips?", hex: "#f587af" });
+            g.internal.chat.push({ user: "XX_assFUCKER69_XX", l10nKey: "room.58.player.tipsRefusal", text: "No! Show us your butthole!", hex: "#1900ff" });
         }
         else {
             g.internal.excitement -= 2;
-            g.internal.chat.push({ user: sc.n("me"), txt: "Anyone wanna give me some tips?", hex: "#f587af" });
-            g.internal.chat.push({ user: sc.n("me"), txt: "Anyone?", hex: "#f587af" });
+            g.internal.chat.push({ user: sc.n("me"), l10nKey: "room.58.player.tipsPrompt", text: "Anyone wanna give me some tips?", hex: "#f587af" });
+            g.internal.chat.push({ user: sc.n("me"), l10nKey: "room.58.player.tipsAnyone", text: "Anyone?", hex: "#f587af" });
         }
     }
     else if (metalk === "flirt") {
@@ -469,20 +470,20 @@ room58.sidechat = function (metalk) {
                 g.internal.viewers -= g.rand(0, 4);
                 g.internal.excitement += .5;
                 flirtChat = [
-                    { user: sc.n("me"), txt: "Fuck me hard " + thisChat.user + "!", hex: "#f587af" },
-                    { user: sc.n("me"), txt: "I want to sit on your dick " + thisChat.user, hex: "#f587af" },
-                    { user: sc.n("me"), txt: thisChat.user + ", pound my sissy hole! ", hex: "#f587af" },
-                    { user: sc.n("me"), txt: "I need your tongue in me " + thisChat.user, hex: "#f587af" },
+                { user: sc.n("me"), l10nKey: "room.58.player.flirtTarget.0", l10nValues: { target: thisChat.user }, text: "Fuck me hard {target}!", hex: "#f587af" },
+                { user: sc.n("me"), l10nKey: "room.58.player.flirtTarget.1", l10nValues: { target: thisChat.user }, text: "I want to sit on your dick {target}", hex: "#f587af" },
+                { user: sc.n("me"), l10nKey: "room.58.player.flirtTarget.2", l10nValues: { target: thisChat.user }, text: "{target}, pound my sissy hole!", hex: "#f587af" },
+                { user: sc.n("me"), l10nKey: "room.58.player.flirtTarget.3", l10nValues: { target: thisChat.user }, text: "I need your tongue in me {target}", hex: "#f587af" },
                 ]
                 g.internal.chat.push(flirtChat[g.rand(0, flirtChat.length)]);
             }
             else {
                 g.internal.viewers -= g.rand(0, 4);
                 flirtChat = [
-                    { user: sc.n("me"), txt: "I need a dick inside me!", hex: "#f587af" },
-                    { user: sc.n("me"), txt: "Bend me over and spank my ass", hex: "#f587af" },
-                    { user: sc.n("me"), txt: "I'm so horny", hex: "#f587af" },
-                    { user: sc.n("me"), txt: "Anyone want to fuck me?", hex: "#f587af" },
+                { user: sc.n("me"), l10nKey: "room.58.player.flirt.0", text: "I need a dick inside me!", hex: "#f587af" },
+                { user: sc.n("me"), l10nKey: "room.58.player.flirt.1", text: "Bend me over and spank my ass", hex: "#f587af" },
+                { user: sc.n("me"), l10nKey: "room.58.player.flirt.2", text: "I'm so horny", hex: "#f587af" },
+                { user: sc.n("me"), l10nKey: "room.58.player.flirt.3", text: "Anyone want to fuck me?", hex: "#f587af" },
                 ]
                 g.internal.chat.push(flirtChat[g.rand(0, flirtChat.length)]);
             }
@@ -490,10 +491,10 @@ room58.sidechat = function (metalk) {
         else {
             g.internal.viewers -= g.rand(0, 4);
             flirtChat = [
-                { user: sc.n("me"), txt: "I need a dick inside me!", hex: "#f587af" },
-                { user: sc.n("me"), txt: "Bend me over and spank my ass", hex: "#f587af" },
-                { user: sc.n("me"), txt: "I'm so horny", hex: "#f587af" },
-                { user: sc.n("me"), txt: "Anyone want to fuck me?", hex: "#f587af" },
+                { user: sc.n("me"), l10nKey: "room.58.player.flirt.0", text: "I need a dick inside me!", hex: "#f587af" },
+                { user: sc.n("me"), l10nKey: "room.58.player.flirt.1", text: "Bend me over and spank my ass", hex: "#f587af" },
+                { user: sc.n("me"), l10nKey: "room.58.player.flirt.2", text: "I'm so horny", hex: "#f587af" },
+                { user: sc.n("me"), l10nKey: "room.58.player.flirt.3", text: "Anyone want to fuck me?", hex: "#f587af" },
             ]
             g.internal.chat.push(flirtChat[g.rand(0, flirtChat.length)]);
         }
@@ -505,10 +506,10 @@ room58.sidechat = function (metalk) {
                 g.internal.viewers -= g.rand(0, 4);
                 g.internal.excitement += .5;
                 flirtChat = [
-                    { user: sc.n("me"), txt: "You have a tiny pp " + thisChat.user + "!", hex: "#f587af" },
-                    { user: sc.n("me"), txt: "Go fuck yourself " + thisChat.user, hex: "#f587af" },
-                    { user: sc.n("me"), txt: thisChat.user + ", is a little bitch ", hex: "#f587af" },
-                    { user: sc.n("me"), txt: "I'm going to crush your balls " + thisChat.user, hex: "#f587af" },
+                { user: sc.n("me"), l10nKey: "room.58.player.insultTarget.0", l10nValues: { target: thisChat.user }, text: "You have a tiny pp {target}!", hex: "#f587af" },
+                { user: sc.n("me"), l10nKey: "room.58.player.insultTarget.1", l10nValues: { target: thisChat.user }, text: "Go fuck yourself {target}", hex: "#f587af" },
+                { user: sc.n("me"), l10nKey: "room.58.player.insultTarget.2", l10nValues: { target: thisChat.user }, text: "{target}, you're a little bitch", hex: "#f587af" },
+                { user: sc.n("me"), l10nKey: "room.58.player.insultTarget.3", l10nValues: { target: thisChat.user }, text: "I'm going to crush your balls, {target}", hex: "#f587af" },
                 ]
                 g.internal.chat.push(flirtChat[g.rand(0, flirtChat.length)]);
             }
@@ -516,10 +517,10 @@ room58.sidechat = function (metalk) {
                 g.internal.viewers -= g.rand(1, 4);
                 g.internal.excitement += .5;
                 flirtChat = [
-                    { user: sc.n("me"), txt: "You're all bitches", hex: "#f587af" },
-                    { user: sc.n("me"), txt: "I hate you guys", hex: "#f587af" },
-                    { user: sc.n("me"), txt: "Everyone shut up!", hex: "#f587af" },
-                    { user: sc.n("me"), txt: "Go fuck yourselves", hex: "#f587af" },
+                { user: sc.n("me"), l10nKey: "room.58.player.insult.0", text: "You're all bitches", hex: "#f587af" },
+                { user: sc.n("me"), l10nKey: "room.58.player.insult.1", text: "I hate you guys", hex: "#f587af" },
+                { user: sc.n("me"), l10nKey: "room.58.player.insult.2", text: "Everyone shut up!", hex: "#f587af" },
+                { user: sc.n("me"), l10nKey: "room.58.player.insult.3", text: "Go fuck yourselves", hex: "#f587af" },
                 ]
                 g.internal.chat.push(flirtChat[g.rand(0, flirtChat.length)]);
             }
@@ -528,10 +529,10 @@ room58.sidechat = function (metalk) {
             g.internal.viewers -= g.rand(1, 4);
             g.internal.excitement += .5;
             flirtChat = [
-                { user: sc.n("me"), txt: "You're all bitches", hex: "#f587af" },
-                { user: sc.n("me"), txt: "I hate you guys", hex: "#f587af" },
-                { user: sc.n("me"), txt: "Everyone shut up!", hex: "#f587af" },
-                { user: sc.n("me"), txt: "Go fuck yourselves", hex: "#f587af" },
+                { user: sc.n("me"), l10nKey: "room.58.player.insult.0", text: "You're all bitches", hex: "#f587af" },
+                { user: sc.n("me"), l10nKey: "room.58.player.insult.1", text: "I hate you guys", hex: "#f587af" },
+                { user: sc.n("me"), l10nKey: "room.58.player.insult.2", text: "Everyone shut up!", hex: "#f587af" },
+                { user: sc.n("me"), l10nKey: "room.58.player.insult.3", text: "Go fuck yourselves", hex: "#f587af" },
             ]
             g.internal.chat.push(flirtChat[g.rand(0, flirtChat.length)]);
         }
@@ -560,7 +561,9 @@ room58.sidechat = function (metalk) {
             top: 134 + (i * 70),
             font: 20,
             hex: "#000000",
-            text: g.internal.chat[i].txt
+            text: g.internal.chat[i].l10nKey
+                ? l10n.t(g.internal.chat[i].l10nKey, g.internal.chat[i].text, g.internal.chat[i].l10nValues)
+                : g.internal.chat[i].text
         }, 58);
     }
 };

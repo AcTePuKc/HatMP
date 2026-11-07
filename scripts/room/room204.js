@@ -301,10 +301,11 @@ room204.chat = function (chatID) {
             {
                 chatID: 0,
                 speaker: "missy",
-                text: "Your first real task working here is filing. " + sc.n('cecilia') + " is incredibly " +
+                text: "Your first real task working here is filing. {cecilia} is incredibly " +
                     "loyal, but she has the reading comprehension of a child." +
                     "I have thousands of files, some I've taken, some I've acquired from the client, " +
                     "and some... through other means.",
+                l10nValues: { cecilia: sc.n("cecilia") },
                 button: [
                     { chatID: 1, text: "...", callback: "buildIntro" }
                 ]
@@ -398,9 +399,10 @@ room204.chat = function (chatID) {
                 speaker: "missy",
                 text: "Not only do you not know your alphabet, but given a 50% chance of picking " +
                     "the right one you picked the wrong one! " +
-                    "I can't tell if you're as big of an airhead as " + sc.n('cecilia') +
+                    "I can't tell if you're as big of an airhead as {cecilia}" +
                     ", or you just don't pay attention. The alphabet goes o, p, q, r, s, t... " +
                     "so Ralph comes before Samuel the piss sucker. Select the picture with Ralph. ",
+                l10nValues: { cecilia: sc.n("cecilia") },
                 button: [
                     { chatID: -1, text: "Try Again", callback: "mhate" }
                 ]

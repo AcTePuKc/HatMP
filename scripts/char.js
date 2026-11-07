@@ -328,10 +328,6 @@ $(document).ready(function () {
             menuBoxImgHeight: 90,
             resizeHeight: 12
         });
-        $("#room_chatskip").css({
-            "height": (54 * g.ratio) + "px",
-            "width": (72 * g.ratio) + "px"
-        });
         $("#help_backButton").css({"width": (200 * g.ratio) + "px", "height": (66.6 * g.ratio) + "px", "top": (75 * g.ratio) + "px", "left": (30 * g.ratio) + "px" });
         char.menu();
     };
@@ -403,6 +399,11 @@ $(document).ready(function () {
         var shortcutIndex = char.getShortcutIndexFromEvent(e);
         if (shortcutIndex === null)
             return;
+        if (g.suppressChatChoiceKeyup) {
+            g.suppressChatChoiceKeyup = false;
+            e.preventDefault();
+            return;
+        }
         if (char.isTypingTarget(e.target))
             return;
         if ($('#room_export').is(":visible"))

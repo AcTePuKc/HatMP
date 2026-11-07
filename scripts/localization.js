@@ -1,6 +1,7 @@
 /* Localization loader and shared translation helpers. */
 var l10n = (function () {
     var storageKey = "hatmp.language";
+    var messageFormat = window.HatMPMessageFormat;
     var languageList = Array.isArray(window.HatMPLanguageList) ? window.HatMPLanguageList : [];
     var languages = languageList.filter(function (language) {
         return language && typeof language.locale === "string" &&
@@ -13,6 +14,20 @@ var l10n = (function () {
     var loading = {};
     var bundledLocales = window.HatMPLocales || {};
     var current = "en";
+    var warnedGlossaryIssues = Object.create(null);
+    var glossaryDefinitions = [
+        { id: "cum", termKey: "glossary.cum.term", descriptionKey: "glossary.cum.description" },
+        { id: "purityApp", termKey: "glossary.purityApp.term", descriptionKey: "glossary.purityApp.description" },
+        { id: "sissyPoints", termKey: "glossary.sissyPoints.term", descriptionKey: "glossary.sissyPoints.description" }
+    ];
+
+    function warnGlossaryIssue(key, message) {
+        if (warnedGlossaryIssues[key])
+            return;
+        warnedGlossaryIssues[key] = true;
+        if (typeof console !== "undefined" && console.warn)
+            console.warn("[l10n] " + message);
+    }
 
     function validateCatalog(code, catalog) {
         if (!catalog || !catalog.strings || typeof catalog.strings !== "object" || Array.isArray(catalog.strings))
@@ -100,18 +115,109 @@ var l10n = (function () {
         });
     }
 
+    var warnedMessageIssues = Object.create(null);
+    function resolveMessage(key, fallback) {
+        var selectedCatalog = catalogs[current];
+        var englishCatalog = catalogs.en;
+        var selected = selectedCatalog && selectedCatalog.strings;
+        var english = englishCatalog && englishCatalog.strings;
+        // Some existing room translations are stored as flat root-level keys.
+        var candidates = [
+            { text: selected && selected[key], language: current },
+            { text: selectedCatalog && selectedCatalog[key], language: current },
+            { text: english && english[key], language: "en" },
+            { text: englishCatalog && englishCatalog[key], language: "en" },
+            { text: fallback, language: "en" }
+        ];
+        for (var i = 0; i < candidates.length; i++) {
+            var candidate = candidates[i];
+            if (candidate.text === undefined || candidate.text === null || candidate.text === "") continue;
+            var parsed = messageFormat.parse(candidate.text);
+            if (!parsed.error) return { parsed: parsed, language: candidate.language };
+            var warningKey = candidate.language + ":" + key + ":" + parsed.error;
+            if (!warnedMessageIssues[warningKey]) {
+                warnedMessageIssues[warningKey] = true;
+                console.warn("[l10n] " + candidate.language + " / " + key + ": " + parsed.error + " Using fallback text.");
+            }
+        }
+        // Never show broken branch syntax, even if the source fallback is malformed.
+        var safeKey = messageFormat.parse(String(key));
+        return { parsed: safeKey.error || safeKey.branched ? messageFormat.parse("") : safeKey, language: "en" };
+    }
+
     function translate(key, fallback, values) {
-        var selected = catalogs[current] && catalogs[current].strings;
-        var english = catalogs.en && catalogs.en.strings;
-        var message = (selected && selected[key]) || (english && english[key]) || fallback || key;
-        if (values) {
-            message = message.replace(/\{([a-zA-Z0-9_]+)\}/g, function (token, name) {
-                return Object.prototype.hasOwnProperty.call(values, name)
-                    ? escapeHtml(values[name])
-                    : token;
+        var resolved = resolveMessage(key, fallback);
+        // Resolve at display time, including appearance mode; do not cache player state.
+        // Select before interpolation so player-entered values cannot become grammar.
+        var feminine = resolved.parsed.branched && typeof gender !== "undefined" &&
+            typeof gender.isGirl === "function" && gender.isGirl();
+        var message = messageFormat.render(resolved.parsed, feminine);
+        if (values || /\{(?:el|els|landlady):[a-zA-Z0-9_]+\}/.test(message)) {
+            message = message.replace(/\{([a-zA-Z0-9_]+)(?::([a-zA-Z0-9_]+))?\}/g, function (token, name, form) {
+                if (!form && values && Object.prototype.hasOwnProperty.call(values, name))
+                    return escapeHtml(values[name]);
+                if (form && typeof sc !== "undefined") {
+                    if (name === "el" && typeof sc.el === "function")
+                        return escapeHtml(sc.el(form));
+                    if (name === "els" && typeof sc.els === "function")
+                        return escapeHtml(sc.els(form));
+                    if (name === "landlady" && typeof sc.landlady === "function")
+                        return escapeHtml(sc.landlady(form));
+                }
+                return token;
             });
         }
         return message;
+    }
+
+    function messageLanguage(key) {
+        return resolveMessage(key).language;
+    }
+
+    function glossaryEntry(id) {
+        var definition = glossaryDefinitions.find(function (entry) { return entry.id === id; });
+        if (!definition) {
+            warnGlossaryIssue("unknown-id:" + id, "Unknown glossary ID '" + id + "'. The source term will be shown without a tooltip.");
+            return null;
+        }
+
+        var selected = catalogs[current] && catalogs[current].strings;
+        var english = catalogs.en && catalogs.en.strings;
+        var hasTerm = (selected && typeof selected[definition.termKey] === "string" && selected[definition.termKey].length > 0) ||
+            (english && typeof english[definition.termKey] === "string" && english[definition.termKey].length > 0);
+        var hasDescription = (selected && typeof selected[definition.descriptionKey] === "string" && selected[definition.descriptionKey].length > 0) ||
+            (english && typeof english[definition.descriptionKey] === "string" && english[definition.descriptionKey].length > 0);
+
+        if (!hasTerm)
+            warnGlossaryIssue("missing-term:" + definition.termKey, "Missing glossary term '" + definition.termKey + "' in the selected and English language packs. The glossary ID will be shown as a fallback.");
+        if (!hasDescription)
+            warnGlossaryIssue("missing-description:" + definition.descriptionKey, "Missing glossary description '" + definition.descriptionKey + "' in the selected and English language packs. The description will be left blank.");
+
+        return {
+            id: definition.id,
+            term: hasTerm ? translate(definition.termKey, definition.id) : definition.id,
+            description: hasDescription ? translate(definition.descriptionKey, "") : ""
+        };
+    }
+
+    function glossaryEntries() {
+        return glossaryDefinitions.map(function (definition) {
+            return glossaryEntry(definition.id);
+        });
+    }
+
+    function applyGlossaryMarkup(container) {
+        if (!container || !container.querySelectorAll)
+            return;
+        Array.prototype.forEach.call(container.querySelectorAll("[data-glossary-id]"), function (element) {
+            var id = element.getAttribute("data-glossary-id");
+            var entry = glossaryEntry(id);
+            if (!entry)
+                return;
+            element.textContent = entry.term;
+            element.title = entry.description;
+            element.setAttribute("aria-label", entry.term + ". " + entry.description);
+        });
     }
 
     function decodeHtml(value) {
@@ -226,6 +332,28 @@ var l10n = (function () {
             return changeCase(caseValue, mode);
         }
         return value;
+    }
+
+    function characterTermForms(name) {
+        var selectedTerms = catalogs[current] && catalogs[current].terms;
+        var selected = selectedTerms && selectedTerms[name];
+        var builtIn = { display: true, lower: true, upper: true, capitalize: true, key: true, keyPlural: true,
+            singular: true, singularLower: true, singularUpper: true, singularCapitalized: true,
+            plural: true, pluralLower: true, pluralUpper: true, pluralCapitalized: true };
+        var forms = [];
+        [selected].forEach(function (entry) {
+            if (!entry) return;
+            Object.keys(entry).forEach(function (form) {
+                if (!builtIn[form] && !forms.includes(form)) forms.push(form);
+            });
+        });
+        return forms.map(function (form) {
+            return {
+                id: form,
+                label: translate("relationship.form." + form, form),
+                suggested: selected[form]
+            };
+        });
     }
 
     function characterName(name, currentName) {
@@ -351,6 +479,7 @@ var l10n = (function () {
             applyStaticTranslations();
             syncSelectors();
             refreshCurrentView();
+            document.dispatchEvent(new CustomEvent("hatmp:languagechange"));
             return true;
         }).catch(function (error) {
             console.warn(error.message);
@@ -366,12 +495,14 @@ var l10n = (function () {
         var copy = Object.assign({}, entry);
         var prefix = "room." + roomID + ".chat." + chatID;
         var textKey = entry.l10nKey || (prefix + ".text");
+        copy.textLanguage = messageLanguage(textKey);
         copy.text = entry.text
             ? translate(textKey, entry.text, entry.l10nValues)
             : entry.text;
         copy.button = (entry.button || []).map(function (button, index) {
             var localizedButton = Object.assign({}, button);
             var key = button.l10nKey || (prefix + ".choice." + index);
+            localizedButton.textLanguage = messageLanguage(key);
             if (button.text)
                 localizedButton.text = translate(key, button.text, button.l10nValues);
             return localizedButton;
@@ -406,7 +537,11 @@ var l10n = (function () {
     return {
         ready: ready,
         t: translate,
+        glossaryEntry: glossaryEntry,
+        glossaryEntries: glossaryEntries,
+        applyGlossaryMarkup: applyGlossaryMarkup,
         characterTerm: characterTerm,
+        characterTermForms: characterTermForms,
         characterName: characterName,
         characterNameSource: characterNameSource,
         setLanguage: setLanguage,

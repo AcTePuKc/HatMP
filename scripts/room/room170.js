@@ -825,10 +825,11 @@ room170.chat = function (chatID) {
             return {
                 chatID: 0,
                 speaker: "bitch",
+                l10nKey: "room.170.check.rose",
                 text: "Is that the Rose Dress? Shut up! No it's not! Put on the rose dress " +
                     "you stupid bimbo! ",
                 button: [
-                    { chatID: -1, text: "Oh. Yeah. I'll put on the pink rose dress", callback: "gotoDressingRoom" }
+                    { chatID: -1, l10nKey: "room.170.check.rose.choice", text: "Oh. Yeah. I'll put on the pink rose dress", callback: "gotoDressingRoom" }
                 ]
             };
         }
@@ -836,9 +837,10 @@ room170.chat = function (chatID) {
             return {
                 chatID: 0,
                 speaker: "bitch",
+                l10nKey: "room.170.check.clown",
                 text: "Are you wearing clown makeup? Go put on normal makeup you stupid bimbo!",
                 button: [
-                    { chatID: -1, text: "Oh. I'll put on different makeup. ", callback: "gotoDressingRoom" }
+                    { chatID: -1, l10nKey: "room.170.check.clown.choice", text: "Oh. I'll put on different makeup. ", callback: "gotoDressingRoom" }
                 ]
             };
         }
@@ -846,9 +848,10 @@ room170.chat = function (chatID) {
             return {
                 chatID: 0,
                 speaker: "bitch",
+                l10nKey: "room.170.check.lipstick",
                 text: "Put on lipstick, you dumb bimbo!",
                 button: [
-                    { chatID: -1, text: "Oh. I'll put on lipstick. ", callback: "gotoDressingRoom" }
+                    { chatID: -1, l10nKey: "room.170.check.lipstick.choice", text: "Oh. I'll put on lipstick. ", callback: "gotoDressingRoom" }
                 ]
             };
         }
@@ -856,9 +859,10 @@ room170.chat = function (chatID) {
             return {
                 chatID: 0,
                 speaker: "bitch",
+                l10nKey: "room.170.check.eyeshadow",
                 text: "Put on eyeshadow, you dumb bimbo!",
                 button: [
-                    { chatID: -1, text: "Oh. I'll put on eyeshadow. ", callback: "gotoDressingRoom" }
+                    { chatID: -1, l10nKey: "room.170.check.eyeshadow.choice", text: "Oh. I'll put on eyeshadow. ", callback: "gotoDressingRoom" }
                 ]
             };
         }
@@ -866,10 +870,11 @@ room170.chat = function (chatID) {
             return {
                 chatID: 0,
                 speaker: "bitch",
+                l10nKey: "room.170.check.socks",
                 text: "Why the fuck are you wearing socks? This isn't a gym. Go take those off " +
                     "you dumb bimbo!",
                 button: [
-                    { chatID: -1, text: "Oh. I'll take off my socks. ", callback: "gotoDressingRoom" }
+                    { chatID: -1, l10nKey: "room.170.check.socks.choice", text: "Oh. I'll take off my socks. ", callback: "gotoDressingRoom" }
                 ]
             };
         }
@@ -877,19 +882,21 @@ room170.chat = function (chatID) {
             return {
                 chatID: 0,
                 speaker: "bitch",
+                l10nKey: "room.170.check.shoes",
                 text: "Go put on some sexy shoes, you knuckle dragger! ",
                 button: [
-                    { chatID: -1, text: "Oh. I'll put on my sexiest shoes. ", callback: "gotoDressingRoom" }
+                    { chatID: -1, l10nKey: "room.170.check.shoes.choice", text: "Oh. I'll put on my sexiest shoes. ", callback: "gotoDressingRoom" }
                 ]
             };
         }
         return {
             chatID: 0,
             speaker: "bitch",
+            l10nKey: "room.170.check.roseReady",
             text: "*ugh* I guess that's good enough. Go out there and don't make an ass " +
                 "of us, you brain dead bimbo! ",
             button: [
-                { chatID: -1, text: "Yes ma'am!", callback: "hallwayCatwalk" }
+                { chatID: -1, l10nKey: "room.170.check.roseReady.choice", text: "Yes ma'am!", callback: "hallwayCatwalk" }
             ]
         };
     }
@@ -898,10 +905,11 @@ room170.chat = function (chatID) {
             return {
                 chatID: 0,
                 speaker: "bitch",
+                l10nKey: "room.170.check.corset",
                 text: "Is that the corset and micro skirt? Shut up! No it's not! Put on the " +
                     "corset and micro skirt you stupid bimbo! ",
                 button: [
-                    { chatID: -1, text: "Oh. Yeah. I'll put on the pink rose dress", callback: "gotoDressingRoom" }
+                    { chatID: -1, l10nKey: "room.170.check.corset.choice", text: "Oh. Yeah. I'll put on the corset and micro skirt", callback: "gotoDressingRoom" }
                 ]
             };
         }
@@ -909,9 +917,10 @@ room170.chat = function (chatID) {
             return {
                 chatID: 0,
                 speaker: "bitch",
+                l10nKey: "room.170.check.clown",
                 text: "Are you wearing clown makeup? Go put on normal makeup you stupid bimbo!",
                 button: [
-                    { chatID: -1, text: "Oh. I'll put on different makeup. ", callback: "gotoDressingRoom" }
+                    { chatID: -1, l10nKey: "room.170.check.clown.choice", text: "Oh. I'll put on different makeup. ", callback: "gotoDressingRoom" }
                 ]
             };
         }
@@ -919,9 +928,10 @@ room170.chat = function (chatID) {
             return {
                 chatID: 0,
                 speaker: "bitch",
+                l10nKey: "room.170.check.lipstick",
                 text: "Put on lipstick, you dumb bimbo!",
                 button: [
-                    { chatID: -1, text: "Oh. I'll put on lipstick. ", callback: "gotoDressingRoom" }
+                    { chatID: -1, l10nKey: "room.170.check.lipstick.choice", text: "Oh. I'll put on lipstick. ", callback: "gotoDressingRoom" }
                 ]
             };
         }
@@ -929,9 +939,10 @@ room170.chat = function (chatID) {
             return {
                 chatID: 0,
                 speaker: "bitch",
+                l10nKey: "room.170.check.eyeshadow",
                 text: "Put on eyeshadow, you dumb bimbo!",
                 button: [
-                    { chatID: -1, text: "Oh. I'll put on eyeshadow. ", callback: "gotoDressingRoom" }
+                    { chatID: -1, l10nKey: "room.170.check.eyeshadow.choice", text: "Oh. I'll put on eyeshadow. ", callback: "gotoDressingRoom" }
                 ]
             };
         }
@@ -939,10 +950,11 @@ room170.chat = function (chatID) {
             return {
                 chatID: 0,
                 speaker: "bitch",
+                l10nKey: "room.170.check.socks",
                 text: "Why the fuck are you wearing socks? This isn't a gym. Go take those off " +
                     "you dumb bimbo!",
                 button: [
-                    { chatID: -1, text: "Oh. I'll take off my socks. ", callback: "gotoDressingRoom" }
+                    { chatID: -1, l10nKey: "room.170.check.socks.choice", text: "Oh. I'll take off my socks. ", callback: "gotoDressingRoom" }
                 ]
             };
         }
@@ -950,9 +962,10 @@ room170.chat = function (chatID) {
             return {
                 chatID: 0,
                 speaker: "bitch",
+                l10nKey: "room.170.check.shoes",
                 text: "Go put on some sexy shoes, you knuckle dragger! ",
                 button: [
-                    { chatID: -1, text: "Oh. I'll put on my sexiest shoes. ", callback: "gotoDressingRoom" }
+                    { chatID: -1, l10nKey: "room.170.check.shoes.choice", text: "Oh. I'll put on my sexiest shoes. ", callback: "gotoDressingRoom" }
                 ]
             };
         }
@@ -960,9 +973,10 @@ room170.chat = function (chatID) {
             return {
                 chatID: 0,
                 speaker: "bitch",
+                l10nKey: "room.170.check.bra",
                 text: "Why are you wearing a bra? Go take that off. It's a stupid bra! ",
                 button: [
-                    { chatID: -1, text: "Oh. I'll remove my bra. ", callback: "gotoDressingRoom" }
+                    { chatID: -1, l10nKey: "room.170.check.bra.choice", text: "Oh. I'll remove my bra. ", callback: "gotoDressingRoom" }
                 ]
             };
         }
@@ -970,10 +984,11 @@ room170.chat = function (chatID) {
             return {
                 chatID: 0,
                 speaker: "bitch",
+                l10nKey: "room.170.check.panties",
                 text: "Oh gross. Go put on some panties. No one wants to see that " +
                     "nasty little dangling thing. Disgusting!",
                 button: [
-                    { chatID: -1, text: "Oh. I'll put on some panties. ", callback: "gotoDressingRoom" }
+                    { chatID: -1, l10nKey: "room.170.check.panties.choice", text: "Oh. I'll put on some panties. ", callback: "gotoDressingRoom" }
                 ]
             };
         }
@@ -982,10 +997,11 @@ room170.chat = function (chatID) {
         return {
             chatID: 0,
             speaker: "jones",
+            l10nKey: "room.170.check.jonesPanties",
             text: "Why is she wearing panties! I didn't design those rags. They " +
                 "look terrible with my design! She'll ruin the show! ",
             button: [
-                { chatID: 10, text: "...", callback: "" }
+                { chatID: 10, l10nKey: "room.170.check.jonesPanties.choice", text: "...", callback: "" }
             ]
         };
     }
@@ -994,10 +1010,11 @@ room170.chat = function (chatID) {
             return {
                 chatID: 0,
                 speaker: "bitch",
+                l10nKey: "room.170.check.clothes",
                 text: "Why are you wearing clothes? Strip it all off! Should I get some " +
                     "Q-tips so you can clean your ears and listen?",
                 button: [
-                    { chatID: -1, text: "Oh. Yeah. I'll remove all my clothes. ", callback: "gotoDressingRoom" }
+                    { chatID: -1, l10nKey: "room.170.check.clothes.choice", text: "Oh. Yeah. I'll remove all my clothes. ", callback: "gotoDressingRoom" }
                 ]
             };
         }
@@ -1005,9 +1022,10 @@ room170.chat = function (chatID) {
             return {
                 chatID: 0,
                 speaker: "bitch",
+                l10nKey: "room.170.check.clown",
                 text: "Are you wearing clown makeup? Go put on normal makeup you stupid bimbo!",
                 button: [
-                    { chatID: -1, text: "Oh. I'll put on different makeup. ", callback: "gotoDressingRoom" }
+                    { chatID: -1, l10nKey: "room.170.check.clown.choice", text: "Oh. I'll put on different makeup. ", callback: "gotoDressingRoom" }
                 ]
             };
         }
@@ -1015,9 +1033,10 @@ room170.chat = function (chatID) {
             return {
                 chatID: 0,
                 speaker: "bitch",
+                l10nKey: "room.170.check.lipstick",
                 text: "Put on lipstick, you dumb bimbo!",
                 button: [
-                    { chatID: -1, text: "Oh. I'll put on lipstick. ", callback: "gotoDressingRoom" }
+                    { chatID: -1, l10nKey: "room.170.check.lipstick.choice", text: "Oh. I'll put on lipstick. ", callback: "gotoDressingRoom" }
                 ]
             };
         }
@@ -1025,9 +1044,10 @@ room170.chat = function (chatID) {
             return {
                 chatID: 0,
                 speaker: "bitch",
+                l10nKey: "room.170.check.eyeshadow",
                 text: "Put on eyeshadow, you dumb bimbo!",
                 button: [
-                    { chatID: -1, text: "Oh. I'll put on eyeshadow. ", callback: "gotoDressingRoom" }
+                    { chatID: -1, l10nKey: "room.170.check.eyeshadow.choice", text: "Oh. I'll put on eyeshadow. ", callback: "gotoDressingRoom" }
                 ]
             };
         }
@@ -1035,12 +1055,13 @@ room170.chat = function (chatID) {
         return {
             chatID: 0,
             speaker: "jones",
+            l10nKey: "room.170.check.welcome",
             text: "Wonderful! You came! You're going to be the final piece of my " +
                 "show, wearing the most beautiful thing a woman can wear. I'm so " +
                 "excited. They'll be talking about this for years! Assistant, you " +
                 "can go. I'll take it from here. ",
             button: [
-                { chatID: 20, text: "...", callback: "ex317_102" }
+                { chatID: 20, l10nKey: "room.170.check.welcome.choice", text: "...", callback: "ex317_102" }
             ]
         };
     }
@@ -1049,45 +1070,63 @@ room170.chat = function (chatID) {
         let txtAppend = "";
         let tscore = 0;
         let nextChat = 0;
+        let competitionKey = "";
+        let scoreKey = "";
         switch (g.map.event) {
             case 1:
             case 2:
+                competitionKey = "swimsuit";
                 txtAppend = "Let's see how this fine young woman did in the swimsuit competition. "
                 tscore = g.map.score0;
                 nextChat = 56;
                 break;
             case 3:
+                competitionKey = "talent";
                 txtAppend = "Let's see how this fine young woman did in the talent competition. "
                 tscore = g.map.score1;
                 nextChat = 74;
                 break;
             case 4:
+                competitionKey = "judges";
                 txtAppend = "Judges? "
                 tscore = g.map.score2;
                 nextChat = 72;
                 break;
             case 5:
+                competitionKey = "judges";
                 txtAppend = "Judges? "
                 tscore = g.map.score3;
                 nextChat = 96;
                 break;
         }
-        if (tscore < 25)
+        if (tscore < 25) {
+            scoreKey = "disappointing";
             txt = "We have a disappointing score of " + tscore + ". ";
-        else if (tscore < 37)
+        }
+        else if (tscore < 37) {
+            scoreKey = "respectable";
             txt = "We have a respectable score of " + tscore + ". ";
-        else if (tscore < 45)
+        }
+        else if (tscore < 45) {
+            scoreKey = "amazing";
             txt = "We have an amazing score of " + tscore + ". ";
-        else if (tscore < 50)
+        }
+        else if (tscore < 50) {
+            scoreKey = "spectacular";
             txt = "I am stunned! She has a truly spectacular score of " + tscore + ". ";
-        else
+        }
+        else {
+            scoreKey = "perfect";
             txt = "I have never seen this before for this competition! A perfect score from all the judges!!!";
+        }
         return {
             chatID: 0,
             speaker: "p",
+            l10nKey: "room.170.score." + competitionKey + "." + scoreKey,
+            l10nValues: { score: tscore },
             text: txtAppend + txt,
             button: [
-                { chatID: nextChat, text: "[Return to the dressing room]", callback: "fashion20" }
+                { chatID: nextChat, l10nKey: "room.170.score.back", text: "[Return to the dressing room]", callback: "fashion20" }
             ]
         };
     }
@@ -1113,6 +1152,7 @@ room170.chat = function (chatID) {
             {
                 chatID: 2,
                 speaker: "bitch",
+                l10nValues: { black: sc.n("black") },
                 text: "These must be the *ugh* sissies that are going to model for Mr. Jones. " +
                     "You can go " + sc.n("black") + ". I'll take them from here. ",
                 button: [
@@ -1246,6 +1286,7 @@ room170.chat = function (chatID) {
             {
                 chatID: 16,
                 speaker: "jones",
+                l10nValues: { black: sc.n("black") },
                 text: "I was just talking with " + sc.n("black") + " here about you. Love " +
                     "your look and energy! I'm going to do a private show and I " +
                     "must have you model at it. It lines up with your next class date, so " +
@@ -1327,6 +1368,7 @@ room170.chat = function (chatID) {
             {
                 chatID: 23,
                 speaker: "jones",
+                l10nValues: { black: sc.n("black") },
                 text: "No? No one ever tells me no! Get out of here! I'm going to ruin " +
                     "your career! You'll never model for another soul again! I should " +
                     "have known you were just another air head, idiot bimbo! Get out " +
@@ -1340,6 +1382,7 @@ room170.chat = function (chatID) {
             {
                 chatID: 24,
                 speaker: "missy",
+                l10nValues: { black: sc.n("black") },
                 text: "What the hell? Why are you streaking across my foyer? Is " +
                     "this one of " + sc.n("black") + "'s tasks?",
                 button: [
@@ -1349,6 +1392,7 @@ room170.chat = function (chatID) {
             {
                 chatID: 25,
                 speaker: "missy",
+                l10nValues: { black: sc.n("black") },
                 text: "What the hell? Why are you streaking across my foyer? Is " +
                     "this one of " + sc.n("black") + "'s tasks?",
                 button: [
@@ -1358,6 +1402,7 @@ room170.chat = function (chatID) {
             {
                 chatID: 26,
                 speaker: "missy",
+                l10nValues: { jones: sc.n("jones") },
                 text: sc.n("jones") + " is an idiot that surrounds himself with sycophants. " +
                     "No one really cares about his options they just hold on to his kite " +
                     "string for their own financial gain. Don't worry about anything he " +
@@ -1399,6 +1444,7 @@ room170.chat = function (chatID) {
             {
                 chatID: 30,
                 speaker: "bitch",
+                l10nValues: { jones: sc.n("jones") },
                 text: "*ugh* " + sc.n("jones") + " ordered me to tell you that he " +
                     "loves how you've modeled his creations. You are invited to his " +
                     "mansion in the North East corner of the residential section of the city " +
@@ -1411,6 +1457,7 @@ room170.chat = function (chatID) {
             {
                 chatID: 31,
                 speaker: "bitch",
+                l10nValues: { jones: sc.n("jones") },
                 text: "We always do what " + sc.n("jones") + " tells us to do. No questions asked, " +
                     "no matter what. He told me to tell you to come, but he didn't say I couldn't " +
                     "make your life miserable if you do show. Now, I've got to go, you just take " +
@@ -1450,6 +1497,7 @@ room170.chat = function (chatID) {
             {
                 chatID: 35,
                 speaker: "me",
+                l10nValues: { judge: sc.n("!judge") },
                 text: "Aaaaah. The curious mind. I do love a lady who is always looking for a little " +
                     "more. I'm " + sc.n("!judge") + ", one of the judges for the show. Tell me are you one of the " +
                     "contestants?",
@@ -1576,6 +1624,7 @@ room170.chat = function (chatID) {
             {
                 chatID: 48,
                 speaker: "p",
+                l10nValues: { judge: sc.n("!judge") },
                 text: "Our first judge is " + sc.n("!judge") + ", the world famous " +
                     "pathfinder. He doesn't just visit places, he immerses himself in " +
                     "them. With a well-worn passport and an open heart, he seeks out " +
@@ -1588,6 +1637,7 @@ room170.chat = function (chatID) {
             {
                 chatID: 49,
                 speaker: "p",
+                l10nValues: { airwrecka: sc.n("!airwrecka"), year: new Date().getFullYear() - 3 },
                 text: "Our next judge is " + sc.n("!airwrecka") + ", " + (new Date().getFullYear() - 3) +
                     "'s Miss Fetville. She went on to win State and has been a member of our community " +
                     "helping future young ladies in their own pageant journey.",
@@ -1598,6 +1648,7 @@ room170.chat = function (chatID) {
             {
                 chatID: 50,
                 speaker: "p",
+                l10nValues: { tudor: sc.n("tudor") },
                 text: sc.n("tudor") + " our wonderful financier and a huge supporter " +
                     "of the arts in Fetville. He's not only built multinational businesses, " +
                     "but he's also built a community of love and understanding. ",
@@ -1608,6 +1659,7 @@ room170.chat = function (chatID) {
             {
                 chatID: 51,
                 speaker: "p",
+                l10nValues: { jones: sc.n("jones") },
                 text: "Next is the legend " + sc.n("jones") + ". A man who not just knows " +
                     "fashion, but has molded and shaped it. ",
                 button: [
@@ -1617,6 +1669,7 @@ room170.chat = function (chatID) {
             {
                 chatID: 52,
                 speaker: "p",
+                l10nValues: { orchid: sc.n("orchid") },
                 text: "Finally, our own lovely " + sc.n("orchid") + ". Last year's winner " +
                     "of this competition and a rapidly growing flower of our town. She's going " +
                     "to come up here and speak on the importance of finding yourself while our " +
@@ -1807,9 +1860,10 @@ room170.chat = function (chatID) {
             {
                 chatID: 73,
                 speaker: "p",
+                l10nValues: { me: sc.n("me") },
                 text: "Isn't she beautiful? When " + sc.n("me") + " first came to our " +
                     "school, she, or I should say, he, was just another ugly boy. Now look " +
-                    "at here, the envy of women and the desire of men. Let's see what the " +
+                    "at her, the envy of women and the desire of men. Let's see what the " +
                     "judges think.",
                 button: [
                     { chatID: -1, text: "...", callback: "formal29" },
@@ -2054,6 +2108,7 @@ room170.chat = function (chatID) {
             {
                 chatID: 98,
                 speaker: "p",
+                l10nValues: { kareem: sc.n("!kareem") },
                 text: "Our Sissy Runner up is.... " + sc.n("!kareem") + "! She has " +
                     "shown real growth and poise on her transformation from just another " +
                     "lame boy to this radiant girl you see before you. I remember the first " +
@@ -2066,6 +2121,7 @@ room170.chat = function (chatID) {
             {
                 chatID: 99,
                 speaker: "p",
+                l10nValues: { timothy: sc.n("!timothy") },
                 text: "And the winner is.... " + sc.n("!timothy") + "!!! Sissies " +
                     "everywhere want to be her; men want to breed her. Her brain is " +
                     "empty, her tits are perky, her clitty is a nub, and her bussy is both " +
@@ -2088,6 +2144,7 @@ room170.chat = function (chatID) {
             {
                 chatID: 101,
                 speaker: "p",
+                l10nValues: { me: sc.n("me") },
                 text: "And the winner is.... " + sc.n("me") + "!!! Sissies " +
                     "everywhere want to be her; men want to breed her. She has come " +
                     "such a long way on this journey and has proven she is the sissiest of " +

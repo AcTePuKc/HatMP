@@ -190,8 +190,8 @@ room207.chat = function (chatID) {
         {
             chatID: 5,
             speaker: !g.isNight() ? "!missyguardday" : "!missyguardnight",
-            text: "You're a bit early. Show starts at " + char.friendlyTime(18) +
-                " Did you want to go in and wait, or come back?",
+            text: "You're a bit early. The show starts at {time}. Did you want to go in and wait, or come back?",
+            l10nValues: { time: char.friendlyTime(18) },
             button: [
                 { chatID: -1, text: "I'll go in early. ", callback: "fashionShow" },
                 { chatID: -1, text: "I'll come back ", callback: "" },

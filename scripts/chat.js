@@ -1,10 +1,22 @@
 ﻿var privateChat = {};
 
+privateChat.skipTimer = null;
+privateChat.currentEntry = null;
+
+privateChat.stopSkipping = function () {
+    clearTimeout(privateChat.skipTimer);
+    privateChat.skipTimer = null;
+    g.skipChat = false;
+};
+
 privateChat.resetButtons = function () {
     $('.room-chatBtnClick').html('').hide().data('chatid', 0).data('roomid', 0).data('callback', '');
 };
 
 privateChat.hideOverlay = function () {
+    privateChat.stopSkipping();
+    if (typeof dialogue !== "undefined") dialogue.show(false);
+    privateChat.currentEntry = null;
     $('#room_chatOverlay').hide();
     $('#room_footerSpeach').html("");
     $('#room_chatSpeaker').html('');
@@ -17,29 +29,30 @@ privateChat.close = function () {
     g.skipChat = false;
 };
 
-privateChat.setButton = function (index, text, chatID, roomID, callback) {
+privateChat.setButton = function (index, text, chatID, roomID, callback, language) {
     $('#room_chatBtn' + index)
-        .html(text)
+        .html('<span class="dialogue-shortcut" aria-hidden="true">' + (index + 1) + '</span><span class="dialogue-choice-label">' + text + '</span>')
         .data('chatid', chatID)
         .data('roomid', roomID)
         .data('callback', callback)
-        .attr('title', 'Shortcut: ' + (index + 1))
+        .attr('title', l10n.t('dialogue.shortcut', 'Shortcut: {number}', { number: index + 1 }))
+        .attr('lang', language || l10n.getLanguage())
         .show();
 };
 
 privateChat.updateSkipButton = function (buttonCount) {
-    if (g.skipChat) {
-        setTimeout(function () {
+    clearTimeout(privateChat.skipTimer);
+    $("#room_chatskip").toggle(buttonCount === 1);
+    if (g.skipChat && buttonCount === 1) {
+        privateChat.skipTimer = setTimeout(function () {
             privateChat.skipChat();
         }, 100);
     }
-    else if (buttonCount === 1)
-        $("#room_chatskip").show();
-    else
-        $("#room_chatskip").hide();
+    else if (buttonCount !== 1) privateChat.stopSkipping();
 };
 
 privateChat.visibleButtons = function () {
+    if (typeof dialogue !== "undefined" && dialogue.isHidden()) return $();
     return $('.room-chatBtnClick:visible');
 };
 
@@ -86,6 +99,8 @@ privateChat.isTypingTarget = function (target) {
 privateChat.canHandleSpace = function (target) {
     return $('#room_chatOverlay').is(":visible") &&
         !$('#room_export').is(":visible") &&
+        !(typeof dialogue !== "undefined" && (dialogue.isOpen() || dialogue.isHidden())) &&
+        !$(target).closest('button, a, summary').length &&
         !privateChat.isTypingTarget(target);
 };
 
@@ -107,8 +122,10 @@ privateChat.kill = function(){
     privateChat.resetButtons();
 };
 
-privateChat.makeChat = function (entry, chatID, roomID) {
+privateChat.makeChat = function (entry, chatID, roomID, record) {
     if (entry !== null) {
+        clearTimeout(privateChat.skipTimer);
+        privateChat.currentEntry = { entry: entry, chatID: chatID, roomID: roomID };
         entry = l10n.chatEntry(entry, chatID, roomID);
         var thisSpeaker = privateChat.speakerInfo(entry.speaker);
         $('#room_footer').hide();
@@ -118,27 +135,39 @@ privateChat.makeChat = function (entry, chatID, roomID) {
         }
         var counter = 0;
         privateChat.resetButtons();
-        $('#room_footerSpeach').html(entry.text);
+        $('#room_footerSpeach').html(entry.text).attr('lang', entry.textLanguage || l10n.getLanguage());
+        if (entry.text && entry.text.indexOf("data-glossary-id") !== -1)
+            l10n.applyGlossaryMarkup(document.getElementById("room_footerSpeach"));
         $('#room_chatSpeaker').html('<img src="' + thisSpeaker.img + '" /><br/>' + (thisSpeaker.name === "Random" ? "" : thisSpeaker.name));
         if (entry.button.length === 0) {
-            privateChat.setButton(0, 'Close', -1, roomID, '');
+            privateChat.setButton(0, l10n.t("chat.button.close", "Close"), -1, roomID, '');
             counter = 1;
         }
         else {
             $.each(entry.button, function (i, v) {
-                privateChat.setButton(i, v.text, v.chatID, roomID, v.callback);
+                privateChat.setButton(i, v.text, v.chatID, roomID, v.callback, v.textLanguage);
                 counter++;
             });
         }
         counter = (counter === 0 ? counter = 1 : counter);
-        $('.room-chatBtn').css('width', "calc(" + (100 / counter) + '% - ' + ((72 * g.ratio) / counter) + "px)");
+        $('.room-chatBtn').css('width', (100 / counter) + '%');
         privateChat.updateSkipButton(counter);
+        if (typeof dialogue !== "undefined") dialogue.onEntry(entry, thisSpeaker, record);
+        else $('.room-chatBox').scrollTop(0);
     }
     else {
         g.error("chat", "chatID:" + chatID + " roomID: " + roomID);
         $('#room_footer').show();
     }
 }
+
+privateChat.refreshLanguage = function () {
+    var current = privateChat.currentEntry;
+    if (!current || !$('#room_chatOverlay').is(":visible")) return;
+    privateChat.stopSkipping();
+    // Re-render the captured entry, never invoke a room's chat handler twice.
+    privateChat.makeChat(current.entry, current.chatID, current.roomID, false);
+};
 
 privateChat.images = function (charName) {
     charName = charName.toLowerCase();
@@ -177,7 +206,7 @@ privateChat.speakerInfo = function (charName) {
                 else {
                     return {
                         img: "./images/speaker/" + sc.char[i].image,
-                        name: sc.char[i].display
+                        name: charName === "thinking" ? l10n.t("speaker.thinking", "Thinking") : sc.n(charName)
                     };
                 }
             }
@@ -189,6 +218,10 @@ privateChat.speakerInfo = function (charName) {
 };
 
 privateChat.skipChat = function () {
+    if (typeof dialogue !== "undefined" && (dialogue.isOpen() || dialogue.isHidden())) {
+        privateChat.stopSkipping();
+        return;
+    }
     var buttons = privateChat.visibleButtons();
     if (buttons.length === 1) {
         buttons.eq(0).trigger('click');
@@ -200,7 +233,13 @@ privateChat.skipChat = function () {
 
 $(document).ready(function () {
     $(document).on('keydown', function (e) {
+        if (e.repeat || (e.originalEvent && e.originalEvent.repeat)) {
+            if (privateChat.canHandleSpace(e.target) && (e.which === 32 || privateChat.getShortcutIndexFromEvent(e) !== null))
+                e.preventDefault();
+            return;
+        }
         if (e.which === 32) {//space bar
+            if (e.altKey || e.ctrlKey || e.metaKey || e.shiftKey) return;
             if (!privateChat.canHandleSpace(e.target))
                 return;
 
@@ -217,8 +256,11 @@ $(document).ready(function () {
         if (!privateChat.canHandleSpace(e.target))
             return;
 
-        if (privateChat.selectButtonByIndex(shortcutIndex))
+        if (shortcutIndex < privateChat.visibleButtons().length) {
+            g.suppressChatChoiceKeyup = true;
+            privateChat.selectButtonByIndex(shortcutIndex);
             e.preventDefault();
+        }
     });
 
     $(document).on('keyup', function (e) {
@@ -234,9 +276,9 @@ $(document).ready(function () {
                 e.preventDefault();
         }
         else if(e.which === 83){
-            if ($("#room_chatskip").is(":visible")) {
+            if (!e.altKey && !e.ctrlKey && !e.metaKey && !e.shiftKey && privateChat.canHandleSpace(e.target) && $("#room_chatskip").is(":visible")) {
                 if (g.skipChat) {
-                    g.skipChat = false;
+                    privateChat.stopSkipping();
                 }
                 else {
                     g.skipChat = true;
@@ -252,6 +294,7 @@ $(document).ready(function () {
     });
 
     $('.room-chatBtnClick').on('click', function () {
+        if (typeof dialogue !== "undefined" && (dialogue.isHidden() || dialogue.isOpen())) return;
         var roomID = $(this).data('roomid');
         var chatID = $(this).data('chatid');
         var callback = $(this).data('callback');

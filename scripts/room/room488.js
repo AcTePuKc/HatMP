@@ -118,7 +118,8 @@ room488.chat = function (chatID) {
         {
             chatID: 6,
             speaker: "thinking",
-            text: "Should I go visit " + sc.n("daria") + " again? ",
+            l10nValues: { daria: sc.n("daria") },
+            text: "Should I go visit {daria} again? ",
             button: [
                 { chatID: -1, text: "[Go in]", callback: "inside" },
                 { chatID: -1, text: "[Leave]", callback: "leave" },

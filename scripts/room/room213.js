@@ -565,11 +565,11 @@ room213.chat = function (chatID) {
         {
             chatID: 9,
             speaker: "!g",
-            text: "Ugh. Another idiot sissy. I don't know why " + sc.n("p") + " keeps you idiots " +
-                "around. I swear every one of you has two brain cells fighting for second place. " +
+            text: "Ugh. Another idiot sissy. I don't know why {p} keeps you idiots around. I swear every one of you has two brain cells fighting for second place. " +
                 "*snort* You best fit will be a wine holder. I have just the setup to hold the wine " +
                 "and ensure you don't pester our customers with the drivel that pours out of your " +
                 "mouth. ",
+            l10nValues: { p: sc.n("p") },
             button: [
                 { chatID: 10, text: "..but how will I greet people? ", callback: "" }
             ]
@@ -650,8 +650,8 @@ room213.chat = function (chatID) {
         {
             chatID: 18,
             speaker: "bossman",
-            text: "Oh shit! " + sc.n("me") + "! I didn't know you're a slut! You should come " +
-                "put in some hours at the site, I could use some lunch time anal. ",
+            text: "Oh shit! {me}! I didn't know you're a slut! You should come put in some hours at the site, I could use some lunch time anal. ",
+            l10nValues: { me: sc.n("me") },
             button: [
                 { chatID: -1, text: "mmMmmMmmmm", callback: "_1" }
             ]
@@ -700,8 +700,9 @@ room213.chat = function (chatID) {
             chatID: 23,
             speaker: "!chris",
             text: "That's so beautiful. I want my own mommy dommy. And a daddy dommy. I just want " +
-                "to be fucked. " + sc.n("me") + ", I'm going to grab a glass of your wine and get " +
+                "to be fucked. {me}, I'm going to grab a glass of your wine and get " +
                 "back to the glory holes. I need to get fucked some more!",
+            l10nValues: { me: sc.n("me") },
             button: [
                 { chatID: -1, text: "hhhmmmm mmmm!", callback: "_2" }
             ]

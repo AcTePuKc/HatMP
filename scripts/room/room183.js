@@ -235,8 +235,9 @@ room183.chat = function (chatID) {
             chatID: 0,
             speaker: "random",
             text: chat100[g.internal.customer],
+            l10nKey: "room.183.chat.100." + g.internal.customer + ".text",
             button: [
-                { chatID: -1, text: "Come and get it!", callback: "fuck1" },
+                { chatID: -1, text: "Come and get it!", callback: "fuck1", l10nKey: "room.183.chat.100.choice.0" },
             ]
         };
     }
@@ -251,9 +252,10 @@ room183.chat = function (chatID) {
             chatID: 101,
             speaker: "random",
             text: chat101[g.internal.customer],
+            l10nKey: "room.183.chat.101." + g.internal.customer + ".text",
             button: [
-                { chatID: -1, text: "OoooooOOoooOOo", callback: "leave" },
-                { chatID: -1, text: "Hang out in your room for a bit", callback: "relax" }
+                { chatID: -1, text: "OoooooOOoooOOo", callback: "leave", l10nKey: "room.183.chat.101.choice.0" },
+                { chatID: -1, text: "Hang out in your room for a bit", callback: "relax", l10nKey: "room.183.chat.101.choice.1" }
             ]
         };
     }
@@ -265,22 +267,23 @@ room183.chat = function (chatID) {
                 "whore! I take that back, I do believe it. Bending over for this man that you don't even know to " +
                 "show your sissy pussy and get violated by his cock. I don't even know what to say! ",
             button: [
-                { chatID: 1, text: sc.n("landlord") + "?", callback: "ll2" }
+                { chatID: 1, text: "{landlord}?", callback: "ll2", l10nValues: { landlord: sc.n("landlord") } }
             ]
         },
         {
             chatID: 1,
             speaker: "river",
-            text: "You got yelled at by your " + sc.n("landlord") + "! I always knew you were a loser, ever since I hung " +
+            text: "You got yelled at by your {landlord}! I always knew you were a loser, ever since I hung " +
                 "you up by your underwear in the hallway and got the entire school to call you skid mark. ",
+            l10nValues: { landlord: sc.n("landlord") },
             button: [
-                { chatID: 2, text: "Shut up " + sc.n("river") + ". ", callback: "ll3" }
+                { chatID: 2, text: "Shut up {river}. ", callback: "ll3", l10nValues: { river: sc.n("river") } }
             ]
         },
         {
             chatID: 2,
             speaker: "landlord",
-            text: "You were going to have sex with this boy that made fun of you for money? I had hoped I raised you better, " +
+            text: "You were going to have sex with this boy that made fun of you for money? I had hoped you knew better, " +
                 "but I guess this is what you are. ",
             button: [
                 { chatID: 3, text: "I wasn't going to have sex with him! ", callback: "ll4" }
@@ -298,8 +301,8 @@ room183.chat = function (chatID) {
         {
             chatID: 4,
             speaker: "landlord",
-            text: "Oh my. You are cute but I was just here because I heard my little girl was working as a prostitute. I " +
-                "had to see for myself. But.... If she's going to be a whore I guess this may be a good lesson for her. " +
+            text: "Oh my. You are cute, but I came here because I heard you were working as a prostitute. I " +
+                "had to see for myself. But... if you're going to be a whore, I guess this may be a good lesson. " +
                 "Get up. Get on your knees. Open your mouth like a good prostitute. ",
             button: [
                 { chatID: 5, text: "!", callback: "ll5" }
@@ -345,7 +348,7 @@ room183.chat = function (chatID) {
             chatID: 9,
             speaker: "landlord",
             text: "Even when you hate this bully you can't help but show what a cock hungry whore you are.  " +
-                "Bend over my little slutty girl and show him how hungry for cock you are. ",
+                "Bend over, you slutty little whore, and show him how hungry for cock you are. ",
             button: [
                 { chatID: 10, text: "What? No no no no no! Not him! Please don't do this. ", callback: "ll9" }
             ]
@@ -353,7 +356,7 @@ room183.chat = function (chatID) {
         {
             chatID: 10,
             speaker: "landlord",
-            text: "Jam your cock in my little sissy girl. Make her squeal like a whore.",
+            text: "Jam your cock in that little sissy. Make her squeal like a whore.",
             button: [
                 { chatID: 11, text: "....Oh no...", callback: "ll10" }
             ]
@@ -369,7 +372,12 @@ room183.chat = function (chatID) {
         {
             chatID: 12,
             speaker: "landlord",
-            text: "That's a good girl. Take it all the way. Be a good little cum dump for " + sc.n("landlord") + ". ",
+            text: "That's a good girl. Take it all the way. Be a good little cum dump for {landlordDefinite}. ",
+            l10nValues: {
+                landlordDefinite: typeof l10n !== "undefined" && l10n.characterTerm
+                    ? l10n.characterTerm("landlady", "definite", sc.get("landlord").display, "Landlady")
+                    : sc.n("landlord")
+            },
             button: [
                 { chatID: 13, text: "Gaaaaa  mmMMmmmmm", callback: "" }
             ]
@@ -385,9 +393,10 @@ room183.chat = function (chatID) {
         {
             chatID: 14,
             speaker: "landlord",
-            text: "See. Doesn't that feel right. When " + sc.n("bigguy") + " makes love to me there is no better feeling than " +
+            text: "See. Doesn't that feel right. When {bigguy} makes love to me there is no better feeling than " +
                 "letting his cum drip out before I run to my toilet and squeeze it out. I see this is what you are now, " +
                 "a cum dump whore. Wear it with pride. Cum is what built our home and put food on our table...",
+            l10nValues: { bigguy: sc.n("bigguy") },
             button: [
                 { chatID: 15, text: "...", callback: "ll13" }
             ]

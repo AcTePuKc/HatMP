@@ -271,11 +271,13 @@ room327.chat = function (chatID) {
             "I wonder who had the most cum in their butt in all of history, and is that on video?",
             "If someone pees in your ass, do you absorb that and they pee in now floating around your body?"
         ];
+        var thoughtIndex = Math.floor(Math.random() * chararr.length);
         if (sc.getMission("rachel", "ranch").notStarted) {
             return {
                 chatID: 999,
+                l10nKey: "room.327.chat.999.text." + thoughtIndex,
                 speaker: "thinking",
-                text: chararr[Math.floor(Math.random() * chararr.length)],
+                text: chararr[thoughtIndex],
                 button: [
                     { chatID: 0, text: "...", callback: "m2" }
                 ]
@@ -283,8 +285,9 @@ room327.chat = function (chatID) {
         }
         return {
             chatID: 999,
+            l10nKey: "room.327.chat.999.text." + thoughtIndex,
             speaker: "thinking",
-            text: chararr[Math.floor(Math.random() * chararr.length)],
+            text: chararr[thoughtIndex],
             button: [
                 { chatID: 998, text: "...", callback: "m2" }
             ]
@@ -300,8 +303,10 @@ room327.chat = function (chatID) {
             g.map.trust += 2;
             return {
                 chatID: 999,
+                l10nKey: "room.327.chat.998.lowMilk.text",
+                l10nValues: { milk: parseInt(milk) },
                 speaker: "rachel",
-                text: "Only " + parseInt(milk) + " milliliters of milk. You need to eat more and try harder cow! ",
+                text: "Only {milk} milliliters of milk. You need to eat more and try harder cow! ",
                 button: [
                     { chatID: -1, text: "...", callback: "r328" }
                 ]
@@ -310,8 +315,10 @@ room327.chat = function (chatID) {
         invoker.invoke(328, "btnclick", "addtrust");
         return {
             chatID: 999,
+            l10nKey: "room.327.chat.998.goodMilk.text",
+            l10nValues: { milk: parseInt(milk) },
             speaker: "thinking",
-            text: "Not bad " + parseInt(milk) + " milliliters of milk. I'm going to keep you around! ",
+            text: "Not bad, {milk} milliliters of milk. I'm going to keep you around! ",
             button: [
                 { chatID: -1, text: "...", callback: "r328" }
             ]
@@ -444,7 +451,8 @@ room327.chat = function (chatID) {
         {
             chatID: 15,
             speaker: "thinking",
-            text: "Oh yeah. I need to get soda from Spanky.",
+            l10nValues: { spanky: sc.n("spanky") },
+            text: "Oh yeah. I need to get soda from " + sc.n("spanky") + ".",
             button: [
                 { chatID: -1, text: "...", callback: "" }
             ]
@@ -503,7 +511,7 @@ room327.chat = function (chatID) {
             text: "I'll get in trouble if I drink it out here. You'll have to hide it in my ass so I can drink it when I go back to " +
                 "the stables tonight. Shove it in quick before they come back.",
             button: [
-                { chatID: 23, text: "Shove the can of energy drink in Kinsey's ass", callback: "kinsey42" }
+                { chatID: 23, l10nValues: { kinsey: sc.n("kinsey") }, text: "Shove the can of energy drink in {kinsey}'s ass", callback: "kinsey42" }
             ]
         },
         {
@@ -529,7 +537,7 @@ room327.chat = function (chatID) {
             speaker: "kinsey",
             text: "You are one of the nice ones. I'm sorry I was so mean to you.",
             button: [
-                { chatID: 0, text: "I get it. I'm almost done with my milking. Rachel will be by any moment.", callback: "m2" }
+                { chatID: 0, l10nValues: { rachel: sc.n("rachel") }, text: "I get it. I'm almost done with my milking. {rachel} will be by any moment.", callback: "m2" }
             ]
         },
         {
@@ -543,9 +551,11 @@ room327.chat = function (chatID) {
         {
             chatID: 27,
             speaker: "envy",
+            l10nKey: "room.327.chat.27.text",
+            l10nValues: { kinsey: sc.n("kinsey") },
             text: "I'm sooooo glad you brought me here! Not only do I get to be a Hucow at night they take me to the barn " +
-                "and the farm hands and security guards fuck all my holes! Drake said I'm way better than " + sc.n("kinsey") +
-                " at taking cock and not complaining!",
+                "and the farm hands and security guards fuck all my holes! Drake said I'm way better than {kinsey} " +
+                "at taking cock and not complaining!",
             button: [
                 { chatID: 28, text: "...", callback: "" }
             ]
@@ -553,6 +563,7 @@ room327.chat = function (chatID) {
         {
             chatID: 28,
             speaker: "kinsey",
+            l10nKey: "room.327.chat.28.text",
             text: "I'm glad you're here too. I get so tired of being used by everyone in the barn, it's nice having another " +
                 "hucow around, and your pussy tastes sweet, even after taking all those cocks.",
             button: [
@@ -562,6 +573,7 @@ room327.chat = function (chatID) {
         {
             chatID: 29,
             speaker: "envy",
+            l10nKey: "room.327.chat.29.text",
             text: "I love your pussy too! I've never had a girlfriend before, but you're the best!",
             button: [
                 { chatID: 999, text: "...", callback: "m2" }
@@ -570,9 +582,11 @@ room327.chat = function (chatID) {
         {
             chatID: 30,
             speaker: "envy",
-            text: "You'll never believe what we did last night! " + sc.n("kinsey") + " was talking back to Drake saying " +
+            l10nKey: "room.327.chat.30.text",
+            l10nValues: { kinsey: sc.n("kinsey") },
+            text: "You'll never believe what we did last night! {kinsey} was talking back to Drake saying " +
                 "he was too rough, so I said to Drake just fuck my ass tonight. So he said I'm too easy, he likes a challenge, " +
-                "so " + sc.n("kinsey") + " said Drake's biggest challenge was to get laid with that ugly face. So he got so mad! " +
+                "so {kinsey} said Drake's biggest challenge was to get laid with that ugly face. So he got so mad! " +
                 "He said he was going to punish both of us!",
             button: [
                 { chatID: 31, text: "...", callback: "" }
@@ -581,9 +595,11 @@ room327.chat = function (chatID) {
         {
             chatID: 31,
             speaker: "envy",
+            l10nKey: "room.327.chat.31.text",
+            l10nValues: { kinsey: sc.n("kinsey") },
             text: "So he tied us up together facing each other with a dildo in both of us and covered us in itching powder. He said " +
-                "he would only scratch our itchies if " + sc.n("kinsey") + " begged for all their cocks in her ass. I was so itchy " +
-                "I begged them all to fuck me, but Drake said " + sc.n("kinsey") + " had to beg. I told her she didn't have to, " +
+                "he would only scratch our itchies if {kinsey} begged for all their cocks in her ass. I was so itchy " +
+                "I begged them all to fuck me, but Drake said {kinsey} had to beg. I told her she didn't have to, " +
                 "but my entire body was crawling. I didn't think she was going to do it. She said they could all fuck themselves " +
                 "but after an hour we were rubbing each other to get some relief, but it was no use.",
             button: [
@@ -593,11 +609,13 @@ room327.chat = function (chatID) {
         {
             chatID: 32,
             speaker: "envy",
+            l10nKey: "room.327.chat.32.text",
+            l10nValues: { kinsey: sc.n("kinsey") },
             text: "She begged, but they said it wasn't good enough, so she had to scream for each cock to fuck her ass. They even " +
                 "shoved two at a time in her. She's such a champ! After they were all done they even let me eat the cum out of her " +
                 "ass and a couple of them fucked me so I wasn't left out. I hope they let us sleep tonight. I'm so tired.",
             button: [
-                { chatID: 33, text: "Oh wow. Are you ok " + sc.n("kinsey") + "?", callback: "" }
+                { chatID: 33, l10nKey: "room.327.chat.32.choice.0", l10nValues: { kinsey: sc.n("kinsey") }, text: "Oh wow. Are you ok {kinsey}?", callback: "" }
             ]
         },
         {

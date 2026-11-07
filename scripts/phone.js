@@ -457,7 +457,10 @@ phone.openExternal = function (url) {
     window.open(url, "_blank");
 };
 
-phone.help = function () {
+phone.help = function (page) {
+    if (page === "glossary")
+        return phone.helpGlossary();
+
     phone.clear(false);
     $('#room-buttons').append('<div class="room-img resize" data-name="phone_help_bg" style="position:absolute; z-index:2; ' +
         g.makeCss(815, 1185, 155, 451) + ' background:#111114;"></div>');
@@ -538,6 +541,84 @@ phone.help = function () {
         text: l10n.t("phone.help.directClicks", "Some scenes still require direct clicks.")
     }, 9999);
 
+    nav.localizedTextButton("phone_help_glossary", "phone.help.glossary", "Glossary",
+        550, 735, 360, 68, 9999, "setting");
+    phone.addHelpLink(830);
+};
+
+phone.helpGlossary = function () {
+    phone.clear(false);
+    $('#room-buttons').append('<div class="room-img resize" data-name="phone_help_bg" style="position:absolute; z-index:2; ' +
+        g.makeCss(815, 1185, 155, 451) + ' background:#111114;"></div>');
+    $('#room-buttons').append('<div class="room-img resize" data-name="phone_help_inner" style="position:absolute; z-index:2; ' +
+        g.makeCss(735, 1095, 195, 496) + ' background:#19191d; border:2px solid #2f3140; border-radius:18px;"></div>');
+
+    nav.t({
+        type: "zimg",
+        name: "phone_help_glossary",
+        left: 550,
+        top: 225,
+        font: 42,
+        hex: "#ffffff",
+        text: l10n.t("phone.help.glossary", "Glossary")
+    }, 9999);
+    var glossaryIntro = document.createElement("div");
+    glossaryIntro.setAttribute("data-name", "phone_help_glossary_intro");
+    glossaryIntro.style.position = "absolute";
+    glossaryIntro.style.left = (550 * g.ratio) + "px";
+    glossaryIntro.style.top = (285 * g.ratio) + "px";
+    glossaryIntro.style.width = (980 * g.ratio) + "px";
+    glossaryIntro.style.color = "#ffd7f5";
+    glossaryIntro.style.fontFamily = "Arial, sans-serif";
+    glossaryIntro.style.fontSize = (22 * g.ratio) + "px";
+    glossaryIntro.style.lineHeight = "1.2";
+    glossaryIntro.style.textShadow = "2px 2px 5px #000";
+    glossaryIntro.style.zIndex = "3";
+    glossaryIntro.textContent = l10n.t("phone.help.glossaryIntro", "Story terms and abbreviations. Some entries contain spoilers.");
+    $('#room-buttons').append(glossaryIntro);
+
+    var glossaryList = document.createElement("div");
+    glossaryList.setAttribute("data-name", "phone_help_glossary_list");
+    glossaryList.style.position = "absolute";
+    glossaryList.style.zIndex = "3";
+    glossaryList.style.left = (550 * g.ratio) + "px";
+    glossaryList.style.top = (355 * g.ratio) + "px";
+    glossaryList.style.width = (980 * g.ratio) + "px";
+    glossaryList.style.height = (385 * g.ratio) + "px";
+    glossaryList.style.boxSizing = "border-box";
+    glossaryList.style.overflowY = "auto";
+    glossaryList.style.paddingRight = (8 * g.ratio) + "px";
+    glossaryList.style.color = "#ffffff";
+    glossaryList.style.fontFamily = "Arial, sans-serif";
+    glossaryList.style.textShadow = "2px 2px 5px #000";
+
+    l10n.glossaryEntries().forEach(function (entry) {
+        var section = document.createElement("section");
+        section.style.marginBottom = (16 * g.ratio) + "px";
+        section.style.paddingBottom = (10 * g.ratio) + "px";
+        section.style.borderBottom = "1px solid #45414a";
+        var title = document.createElement("div");
+        title.textContent = entry.term;
+        title.style.fontSize = (34 * g.ratio) + "px";
+        title.style.fontWeight = "bold";
+        title.style.marginBottom = (7 * g.ratio) + "px";
+        var description = document.createElement("div");
+        description.textContent = entry.description;
+        description.style.fontSize = (30 * g.ratio) + "px";
+        description.style.lineHeight = "1.25";
+        description.style.overflowWrap = "anywhere";
+        section.appendChild(title);
+        section.appendChild(description);
+        glossaryList.appendChild(section);
+    });
+    $('#room-buttons').append(glossaryList);
+
+    nav.localizedTextButton("phone_help_shortcuts", "phone.help.shortcuts", "Keyboard Shortcuts",
+        550, 735, 360, 68, 9999, "setting");
+    phone.addHelpLink(830);
+};
+
+phone.addHelpLink = function (top) {
     var guideLinkText = l10n.t("phone.help.gameGuide", "Stuck? The guide is one click away!");
     var guideLinkFont = 26;
     var guideLinkMeasure = document.createElement("canvas").getContext("2d");
@@ -552,12 +633,12 @@ phone.help = function () {
     }
 
     $('#room-buttons').append('<div class="room-img resize" data-name="phone_help_site" style="position:absolute; z-index:2; ' +
-        g.makeCss(68, guideLinkWidth, 735, 550) + ' background:#1f3a8a; border:2px solid #ffffff; border-radius:12px;"></div>');
+        g.makeCss(68, guideLinkWidth, top, 550) + ' background:#1f3a8a; border:2px solid #ffffff; border-radius:12px;"></div>');
     nav.button({
         "type": "zbtn",
         "name": "phone_help_site",
         "left": 550,
-        "top": 735,
+        "top": top,
         "width": guideLinkWidth,
         "height": 68,
         "image": "1002_quickfight/black20Alpha.png",
@@ -566,7 +647,7 @@ phone.help = function () {
         type: "zbtn",
         name: "phone_help_site",
         left: 550 + ((guideLinkWidth * g.ratio - guideLinkTextWidth) / (2 * g.ratio)),
-        top: 755,
+        top: top + 20,
         font: guideLinkFont,
         hex: "#ffffff",
         text: guideLinkText
@@ -1105,7 +1186,18 @@ phone.settings = function () {
             925 + (v.x * (600/v.b)), 220 + (v.y * 125), 600/v.b, 50, v.active);
     });
 
-    l10n.addSelector("phone_language_selector", 925, 850, 500);
+    l10n.addSelector("phone_language_selector", 925, 810, 500);
+    var readingButton = document.createElement("button");
+    readingButton.type = "button";
+    readingButton.className = "room-img resize phone-text-button phone-text-button-setting is-active";
+    readingButton.dataset.name = "phone_dialogue_settings";
+    var readingLabel = l10n.t("dialogue.settings", "Reading settings");
+    readingButton.setAttribute("aria-label", readingLabel);
+    readingButton.style.cssText = "position:absolute; z-index:3; " + g.makeCss(50, 600, 907, 925) +
+        "font-size:" + (20 * g.ratio) + "px;";
+    readingButton.textContent = readingLabel;
+    readingButton.addEventListener("click", function () { dialogue.open("settings"); });
+    document.getElementById("room-buttons").appendChild(readingButton);
 }
 
 phone.pictures = function () {
@@ -1163,64 +1255,162 @@ phone.characters = function () {
     }
 };
 
-phone.relationshipTermsEditor = function () {
+phone.relationshipTermsEditor = function (section) {
     phone.clear(false);
     phone.showPanel("999_phone/rel_bg.jpg");
 
-    var values = { lola: sc.n("lola"), eva: sc.n("eva") };
+    var editingLandlady = section === "landlady";
     phone.addLocalizedPanelText("relationships_title", "phone.section.relationships",
         "Relationships", 610, 870, 1000, 55, { font: 30, background: "#111111" });
-    phone.addLocalizedPanelText("relationship_terms_title", "phone.relationshipTerms.title",
-        "Relationship with {lola} and {eva}", 560, 220, 980, 55,
-        { font: 32, background: "#111111", values: values });
-    phone.addLocalizedPanelText("relationship_terms_plural_label", "phone.relationshipTerms.plural",
-        "For both of them (plural)", 560, 315, 980, 42, { font: 27 });
-    phone.addLocalizedPanelText("relationship_terms_singular_label", "phone.relationshipTerms.singular",
-        "For one of them (singular)", 560, 465, 980, 42, { font: 27 });
-    phone.addLocalizedPanelText("relationship_terms_help", "phone.relationshipTerms.help",
-        "These forms are used when the game refers to them together or individually. Existing saves keep their current terms until you change them here.",
-        560, 610, 980, 90, { font: 22, wrap: true, color: "#dddddd" });
+    phone.addLocalizedButton("phone_relationship_terms_cotenants", "phone.relationshipTerms.cotenantsTab",
+        "Lola and Eva", 560, 140, 390, 55, !editingLandlady, "setting");
+    phone.addLocalizedButton("phone_relationship_terms_landlady", "phone.relationshipTerms.landladyTab",
+        "Landlady", 980, 140, 390, 55, editingLandlady, "setting");
+    var content = document.createElement("div");
+    content.className = "room-img room-zindex resize phone-relationship-editor-scroll";
+    content.dataset.name = "phone_relationship_editor";
+    content.dataset.room = "9999";
+    content.style.left = (560 * g.ratio) + "px";
+    content.style.top = (215 * g.ratio) + "px";
+    content.style.width = (980 * g.ratio) + "px";
+    content.style.height = (545 * g.ratio) + "px";
+    content.style.overflowY = "auto";
+    content.style.overflowX = "hidden";
+    content.style.boxSizing = "border-box";
+    content.style.padding = (8 * g.ratio) + "px " + (18 * g.ratio) + "px";
+    content.style.background = "rgba(17,17,17,.35)";
+    content.style.color = "#ffffff";
+    content.style.fontFamily = "Arial, sans-serif";
+    content.style.zIndex = "9999";
+    document.getElementById("room-buttons").appendChild(content);
 
-    function addTermInput(id, label, top, labelKey, fallback) {
+    function addSectionTitle(key, fallback, values) {
+        var title = document.createElement("div");
+        title.className = "phone-relationship-editor-title";
+        title.textContent = l10n.t(key, fallback, values);
+        content.appendChild(title);
+    }
+
+    function addTermInput(id, labelKey, fallback, value) {
+        var label = document.createElement("label");
+        label.className = "phone-relationship-editor-field";
+        label.textContent = l10n.t(labelKey, fallback);
         var input = document.createElement("input");
         input.type = "text";
         input.id = id;
         input.name = id;
-        input.className = "room-img room-zindex resize phone-relationship-term-input";
+        input.className = "phone-relationship-term-input";
         input.dataset.name = id;
         input.dataset.room = "9999";
-        input.value = label;
+        input.value = value;
         input.maxLength = 80;
         input.autocomplete = "off";
-        input.setAttribute("aria-label", l10n.t(labelKey, fallback));
-        input.style.position = "absolute";
-        input.style.left = (560 * g.ratio) + "px";
-        input.style.top = (top * g.ratio) + "px";
-        input.style.width = (900 * g.ratio) + "px";
-        input.style.height = (58 * g.ratio) + "px";
-        input.style.boxSizing = "border-box";
-        input.style.padding = (8 * g.ratio) + "px " + (12 * g.ratio) + "px";
-        input.style.fontSize = (26 * g.ratio) + "px";
-        input.style.color = "#ffffff";
-        input.style.background = "#24242a";
-        input.style.border = (2 * g.ratio) + "px solid #777777";
-        input.style.borderRadius = (6 * g.ratio) + "px";
-        input.style.zIndex = "9999";
-        document.getElementById("room-buttons").appendChild(input);
+        input.setAttribute("aria-label", label.textContent);
+        label.appendChild(input);
+        content.appendChild(label);
+        return input;
     }
 
-    addTermInput("phone_relationship_plural", sc.els(), 365,
-        "phone.relationshipTerms.plural", "For both of them (plural)");
-    addTermInput("phone_relationship_singular", sc.el(), 515,
-        "phone.relationshipTerms.singular", "For one of them (singular)");
+    var extraForms = l10n.characterTermForms(editingLandlady ? "landlady" : "coTenant");
+    if (editingLandlady) {
+        var initialLandladyName = sc.n("landlord");
+        var initialLandladyForms = {};
+        addSectionTitle("phone.relationshipTerms.landladyTitle", "How do you refer to {landlady}?",
+            { landlady: sc.n("landlord") });
+        addTermInput("phone_landlady_relationship", "setup.landladyRelationship",
+            "What do you call her?", initialLandladyName);
+        extraForms.forEach(function (form) {
+            var value = sc.get("landlord").relationshipForms && sc.get("landlord").relationshipForms[form.id];
+            initialLandladyForms[form.id] = sc.landlady(form.id);
+            addTermInput("phone_landlady_form_" + form.id, "relationship.form." + form.id,
+                form.label, typeof value === "string" ? value : initialLandladyForms[form.id]);
+        });
+        $("#phone_landlady_relationship").on("input", function () {
+            if ($(this).val() !== initialLandladyName) {
+                extraForms.forEach(function (form) {
+                    if (!sc.get("landlord").relationshipForms || typeof sc.get("landlord").relationshipForms[form.id] !== "string") {
+                        var field = $("#phone_landlady_form_" + form.id);
+                        if (field.val() === initialLandladyForms[form.id]) field.val("");
+                    }
+                });
+            }
+            else {
+                extraForms.forEach(function (form) {
+                    var field = $("#phone_landlady_form_" + form.id);
+                    if (!field.val()) field.val(initialLandladyForms[form.id]);
+                });
+            }
+        });
+        var landladyHelp = document.createElement("p");
+        landladyHelp.className = "phone-relationship-editor-help";
+        landladyHelp.textContent = l10n.t("phone.relationshipTerms.landladyHelp",
+            "Use the additional field when a line needs a different grammatical form. Old saves keep their current name unless you edit it.");
+        content.appendChild(landladyHelp);
+    }
+    else {
+        var initialCoTenantPlural = sc.els();
+        var initialCoTenantSingular = sc.el();
+        var initialCoTenantForms = {};
+        addSectionTitle("phone.relationshipTerms.title", "Relationship with {lola} and {eva}",
+            { lola: sc.n("lola"), eva: sc.n("eva") });
+        addTermInput("phone_relationship_plural", "phone.relationshipTerms.plural",
+            "For both of them (plural)", initialCoTenantPlural);
+        addTermInput("phone_relationship_singular", "phone.relationshipTerms.singular",
+            "For one of them (singular)", initialCoTenantSingular);
+        extraForms.forEach(function (form) {
+            var value = sc.get("el").relationshipForms && sc.get("el").relationshipForms[form.id];
+            initialCoTenantForms[form.id] = sc.el(form.id);
+            addTermInput("phone_relationship_form_" + form.id, "relationship.form." + form.id,
+                form.label, typeof value === "string" ? value : initialCoTenantForms[form.id]);
+        });
+        $("#phone_relationship_plural, #phone_relationship_singular").on("input", function () {
+            var usesInitialTerms = $("#phone_relationship_plural").val() === initialCoTenantPlural &&
+                $("#phone_relationship_singular").val() === initialCoTenantSingular;
+            extraForms.forEach(function (form) {
+                var field = $("#phone_relationship_form_" + form.id);
+                var hasSavedForm = sc.get("el").relationshipForms &&
+                    typeof sc.get("el").relationshipForms[form.id] === "string";
+                if (!usesInitialTerms && !hasSavedForm && field.val() === initialCoTenantForms[form.id])
+                    field.val("");
+                else if (usesInitialTerms && !field.val())
+                    field.val(initialCoTenantForms[form.id]);
+            });
+        });
+        var coTenantHelp = document.createElement("p");
+        coTenantHelp.className = "phone-relationship-editor-help";
+        coTenantHelp.textContent = l10n.t("phone.relationshipTerms.help",
+            "These forms are used when the game refers to them together or individually. Existing saves keep their current terms until you change them here.");
+        content.appendChild(coTenantHelp);
+    }
 
-    phone.addLocalizedButton("phone_relationship_terms_save", "phone.relationshipTerms.save",
-        "Save", 700, 770, 260, 65, true, "setting");
+    phone.addLocalizedButton(editingLandlady ? "phone_relationship_terms_save_landlady" : "phone_relationship_terms_save",
+        "phone.relationshipTerms.save", "Save", 700, 790, 260, 65, true, "setting");
     phone.addLocalizedButton("phone_relationship_terms_back", "phone.relationshipTerms.back",
-        "Back", 1060, 770, 260, 65, false, "setting");
+        "Back", 1060, 790, 260, 65, false, "setting");
 };
 
-phone.saveRelationshipTerms = function () {
+phone.saveRelationshipTerms = function (section) {
+    if (section === "landlady") {
+        var name = g.cleanText($("#phone_landlady_relationship").val() || "").trim();
+        if (!name) {
+            g.popUpNoticeBottom(l10n.t("setup.landladyRequired", "Enter what you call her."));
+            return;
+        }
+        var defaultName = l10n.characterTerm("landlady", "display", "Landlady", "Landlady");
+        var forms = {};
+        var existingForms = sc.get("landlord").relationshipForms || {};
+        l10n.characterTermForms("landlady").forEach(function (form) {
+            var value = g.cleanText($("#phone_landlady_form_" + form.id).val() || "").trim();
+            var currentValue = sc.landlady(form.id);
+            if (value && (value !== currentValue || typeof existingForms[form.id] === "string"))
+                forms[form.id] = value;
+        });
+        sc.get("landlord").display = name === defaultName ? "Landlady" : name;
+        sc.get("landlord").relationshipForms = forms;
+        g.popUpNoticeBottom(l10n.t("phone.relationshipTerms.saved", "Relationship terms saved."));
+        phone.characters();
+        return;
+    }
     var plural = g.cleanText($("#phone_relationship_plural").val() || "").trim();
     var singular = g.cleanText($("#phone_relationship_singular").val() || "").trim();
     if (!plural || !singular) {
@@ -1230,8 +1420,17 @@ phone.saveRelationshipTerms = function () {
 
     var defaultPlural = l10n.characterTerm("coTenant", "plural", "Co-Tenant", "Co-Tenant");
     var defaultSingular = l10n.characterTerm("coTenant", "singular", "Co-Tenant", "Co-Tenant");
+    var relationshipForms = {};
+    var existingRelationshipForms = sc.get("el").relationshipForms || {};
+    l10n.characterTermForms("coTenant").forEach(function (form) {
+        var value = g.cleanText($("#phone_relationship_form_" + form.id).val() || "").trim();
+        var currentValue = sc.el(form.id);
+        if (value && (value !== currentValue || typeof existingRelationshipForms[form.id] === "string"))
+            relationshipForms[form.id] = value;
+    });
     sc.get("el").display = plural === defaultPlural ? "Co-Tenant" : plural;
     sc.get("el").singularDisplay = singular === defaultSingular ? "Co-Tenant" : singular;
+    sc.get("el").relationshipForms = relationshipForms;
     g.popUpNoticeBottom(l10n.t("phone.relationshipTerms.saved", "Relationship terms saved."));
     phone.characters();
 };
@@ -2041,8 +2240,17 @@ room9999.btnclick = function (name) {
             case "phone_relationship_terms_edit":
                 phone.relationshipTermsEditor();
                 break;
+            case "phone_relationship_terms_cotenants":
+                phone.relationshipTermsEditor("cotenants");
+                break;
+            case "phone_relationship_terms_landlady":
+                phone.relationshipTermsEditor("landlady");
+                break;
             case "phone_relationship_terms_save":
                 phone.saveRelationshipTerms();
+                break;
+            case "phone_relationship_terms_save_landlady":
+                phone.saveRelationshipTerms("landlady");
                 break;
             case "phone_relationship_terms_back":
                 phone.characters();
@@ -2058,6 +2266,12 @@ room9999.btnclick = function (name) {
                 break;
             case "phone_help":
                 phone.help();
+                break;
+            case "phone_help_glossary":
+                phone.help("glossary");
+                break;
+            case "phone_help_shortcuts":
+                phone.help("shortcuts");
                 break;
             case "phone_help_site":
                 phone.openExternal("http://fapforce5.com");

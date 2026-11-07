@@ -370,6 +370,7 @@ room151.chat = function (chatID) {
             chatID: 7,
             speaker: "govlady",
             text: "Ok. Follow me to your place. " + sc.n("p") + " told me you already had training on how to walk like a lady. Remember that training and make this dress sexy.",
+            l10nValues: { p: sc.n("p") },
             button: [
                 { chatID: 8, text: "Oh.. but...", callback: "" }
             ]
@@ -594,6 +595,7 @@ room151.chat = function (chatID) {
             chatID: 35,
             speaker: "govlady",
             text: "Come with me to the hallway. " + sc.n("jones") + " is there, you can tell him.",
+            l10nValues: { jones: sc.n("jones") },
             button: [
                 { chatID: 36, text: "I will!", callback: "changeRoomxd6" }
             ]

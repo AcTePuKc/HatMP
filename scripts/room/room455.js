@@ -35,9 +35,10 @@ room455.chat = function (chatID) {
         return {
             chatID: 0,
             speaker: "me",
+            l10nKey: "room.455.runProgress.low",
             text: "I HATE running, I have a ways to go before I'm not fat...",
             button: [
-                { chatID: -1, text: "Complete My Run", callback: "Complete" }
+                { chatID: -1, l10nKey: "room.455.completeRun", text: "Complete My Run", callback: "Complete" }
             ]
         };
     }
@@ -45,9 +46,10 @@ room455.chat = function (chatID) {
         return {
             chatID: 0,
             speaker: "me",
+            l10nKey: "room.455.runProgress.quarter",
             text: "I Dislike running. I'm more than a quarter of the way to not being fat. ",
             button: [
-                { chatID: -1, text: "Complete My Run", callback: "Complete" }
+                { chatID: -1, l10nKey: "room.455.completeRun", text: "Complete My Run", callback: "Complete" }
             ]
         };
     }
@@ -55,9 +57,10 @@ room455.chat = function (chatID) {
         return {
             chatID: 0,
             speaker: "me",
+            l10nKey: "room.455.runProgress.half",
             text: "I don't mind running. I'm more than half way there. Starting to feel sexy. ",
             button: [
-                { chatID: -1, text: "Complete My Run", callback: "Complete" }
+                { chatID: -1, l10nKey: "room.455.completeRun", text: "Complete My Run", callback: "Complete" }
             ]
         };
     }
@@ -65,9 +68,10 @@ room455.chat = function (chatID) {
         return {
             chatID: 0,
             speaker: "me",
+            l10nKey: "room.455.runProgress.almost",
             text: "Ok I hate running again. I'm almost there. Almost a sexy man.. ",
             button: [
-                { chatID: -1, text: "Complete My Run", callback: "Complete" }
+                { chatID: -1, l10nKey: "room.455.completeRun", text: "Complete My Run", callback: "Complete" }
             ]
         };
     }

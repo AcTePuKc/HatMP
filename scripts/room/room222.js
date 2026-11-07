@@ -361,8 +361,9 @@ room222.chat = function (chatID) {
             chatID: 0,
             speaker: "missy",
             text: "I need you to pick up some files from the police station. Ask for the police report " +
-                "for a Ms. " + sc.n("sammi") + ". If that idiot cop asks what it's for tell him it's for " +
+                "for a Ms. {sammi}. If that idiot cop asks what it's for tell him it's for " +
                 "a missing persons case. Here's $50 to cover the filing fee.",
+            l10nValues: { sammi: sc.n("sammi") },
             button: [
                 { chatID: -1, text: "Got it. Thanks", callback: "case0-1" }
             ]
@@ -370,7 +371,8 @@ room222.chat = function (chatID) {
         {
             chatID: 1,
             speaker: "me",
-            text: "Hi I need the police report for " + sc.n("sammi") + " please. ",
+            text: "Hi I need the police report for {sammi} please. ",
+            l10nValues: { sammi: sc.n("sammi") },
             button: [
                 { chatID: 2, text: "...", callback: "" }
             ]
@@ -399,7 +401,7 @@ room222.chat = function (chatID) {
                 "her. She's nothing but a thorn in my side. Tell her to let the real police handle " +
                 "the crime in this town. ",
             button: [
-                { chatID: -1, text: "Use charisma " + charisma.getStats(6).txt, callback: "case0-2-char" },
+                { chatID: -1, text: "Use charisma [Charisma Roll: {roll}%]", l10nValues: { roll: charisma.getStats(6).n }, callback: "case0-2-char" },
                 { chatID: -1, text: "How about you give me those files for a bj?", callback: "case0-2-bj" },
                 { chatID: 7, text: "Missy said you're an idiot and to just give me the files", callback: "" },
             ]

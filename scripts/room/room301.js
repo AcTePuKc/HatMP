@@ -934,8 +934,8 @@ room301.chatcatch = function (callback) {
 room301.chat = function (chatID) {
     if (chatID === 1000) {
         var c = 0;
-        var evneyStep = sc.taskGetStep("envy", "hypno");
-        switch (evneyStep) {
+        var envyStep = sc.taskGetStep("envy", "hypno");
+        switch (envyStep) {
             case 1: c = 0; break;
             case 2: c = 1; break;
             case 3: c = 2; break;
@@ -955,8 +955,9 @@ room301.chat = function (chatID) {
             chatID: 1000,
             speaker: "envy",
             text: replay[c],
+            l10nKey: "room.301.hypno.replay." + c + ".text",
             button: [
-                { chatID: 49, text: "...", callback: "hypnoLoop1" }
+                { chatID: 49, text: "...", l10nKey: "room.301.hypno.replay.continue", callback: "hypnoLoop1" }
             ]
         };
     }
@@ -984,7 +985,8 @@ room301.chat = function (chatID) {
             chatID: 1000,
             speaker: "envy",
             text: replay1001[d],
-            button: [ button1001[d] ]
+            l10nKey: "room.301.hypno.game." + d + ".text",
+            button: [ Object.assign({}, button1001[d], { l10nKey: "room.301.hypno.game." + d + ".choice.0" }) ]
         };
     }
     else if (chatID === 1002) {
@@ -1009,8 +1011,9 @@ room301.chat = function (chatID) {
             chatID: 1002,
             speaker: "thinking",
             text: replayx[d],
+            l10nKey: "room.301.hypno.thought." + d + ".text",
             button: [
-                { chatID: -1, text: "Bye " + sc.n("envy") + ". Feel better. ", callback: "hypnoLoopEnd" }
+                { chatID: -1, text: "Bye {envy}. Feel better. ", l10nKey: "room.301.hypno.thought.exit", l10nValues: { envy: sc.n("envy") }, callback: "hypnoLoopEnd" }
             ]
         };
     }
@@ -1232,7 +1235,8 @@ room301.chat = function (chatID) {
             {
                 chatID: 24,
                 speaker: "spanky",
-                text: "Hey, I saw you coming out of " + sc.n("envy") + "'s place. Are you fucking her? ",
+                text: "Hey, I saw you coming out of {envy}'s place. Are you fucking her? ",
+                l10nValues: { envy: sc.n("envy") },
                 button: [
                     { chatID: 25, text: "Oh no, we're just friends ", callback: "" }
                 ]
@@ -1293,7 +1297,8 @@ room301.chat = function (chatID) {
                 speaker: "spanky",
                 text: "I'll tell you what. I'm such an awesome guy I'll sell you the hypno videos. Stop by my " +
                     "store. If I sell them to you, you gotta play them though. Don't be a little bitch boy and " +
-                    "hold on to them. Also they only work on " + sc.n("envy") + " so don't go fuckin' around with 'em. ",
+                    "hold on to them. Also they only work on {envy} so don't go fuckin' around with 'em. ",
+                l10nValues: { envy: sc.n("envy") },
                 button: [
                     { chatID: 31, text: "I won't", callback: "" }
                 ]
@@ -1416,7 +1421,7 @@ room301.chat = function (chatID) {
             },
             {
                 chatID: 45,
-                speaker: "evny",
+                speaker: "envy",
                 text: "Hey! No touching! Let's play the game. ",
                 button: [
                     { chatID: 33, text: "Sorry. Yes let's play the game. ", callback: "boardgameset" },
@@ -1424,7 +1429,7 @@ room301.chat = function (chatID) {
             },
             {
                 chatID: 46,
-                speaker: "evny",
+                speaker: "envy",
                 text: "That was the weirdest movie. I can't even remember what it was, but it really made my blood flow. What " +
                     "was the name of it again?",
                 button: [
@@ -1433,7 +1438,7 @@ room301.chat = function (chatID) {
             },
             {
                 chatID: 47,
-                speaker: "evny",
+                speaker: "envy",
                 text: "I've never heard of that one. I do love documentaries. They really make you feel the moment within. " +
                     "Do you know if any of the streaming services have it, or do they have it at the library?",
                 button: [
@@ -1442,7 +1447,7 @@ room301.chat = function (chatID) {
             },
             {
                 chatID: 48,
-                speaker: "evny",
+                speaker: "envy",
                 text: "So what do you want to do? ",
                 button: [
                     { chatID: -1, text: "Watch a movie. Turn her into your personal slut! [Hypno Path]", callback: "hypnoLoop0" },
@@ -1451,7 +1456,7 @@ room301.chat = function (chatID) {
             },
             {
                 chatID: 49,
-                speaker: "evny",
+                speaker: "envy",
                 text: "Sorry, I have the biggest headache. I think I'm going to lay down. I'll catch you later. ",
                 button: [
                     { chatID: 1002, text: "....", callback: "" }
@@ -1459,7 +1464,7 @@ room301.chat = function (chatID) {
             },
             {
                 chatID: 50,
-                speaker: "evny",
+                speaker: "envy",
                 text: "Soooo, notice anything different? ",
                 button: [
                     { chatID: 51, text: "Like how a clown put on your makeup? Just kidding. You look great.", callback: "" }
@@ -1467,7 +1472,7 @@ room301.chat = function (chatID) {
             },
             {
                 chatID: 51,
-                speaker: "evny",
+                speaker: "envy",
                 text: "You're such a butt. This is why I don't date much.  ",
                 button: [
                     { chatID: 119, text: "...", callback: "" }
@@ -1619,7 +1624,7 @@ room301.chat = function (chatID) {
             {
                 chatID: 68,
                 speaker: "envy",
-                text: "My virginity. I don't know what it is about you, but I desperately need to make love with you. Even since " +
+                text: "My virginity. I don't know what it is about you, but I desperately need to make love with you. Ever since " +
                     "you came to my door my brain has been obsessing over you. Just filled with dirty thoughts all the time. " +
                     "so much that I can't think of anything else. I've failed out of school because I can't stop thinking " +
                     "about sex with you. I need you. ",
@@ -1688,7 +1693,8 @@ room301.chat = function (chatID) {
             {
                 chatID: 76,
                 speaker: "me",
-                text: sc.n("spanky") + "!!!",
+                text: "{spanky}!!!",
+                l10nValues: { spanky: sc.n("spanky") },
                 button: [
                     { chatID: 77, text: "...", callback: "step13_1" }
                 ]
@@ -1716,8 +1722,9 @@ room301.chat = function (chatID) {
                 speaker: "spanky",
                 text: "Oh hahahaha. With that last tape she's too far gone. This bitch is a mindless fuck slut now! She'll do anything " +
                     "you tell her. I've already cum in her ass twice and made her lick it up. She even ate my asshole. Check it out. " +
-                    sc.n("envy") + " we tricked you into watching hypno tapes to make you a fuck hole. You really should be mad " + 
+                    "{envy} we tricked you into watching hypno tapes to make you a fuck hole. You really should be mad " +
                     "and kick us out. ",
+                l10nValues: { envy: sc.n("envy") },
                 button: [
                     { chatID: 80, text: "Huh...", callback: "step13_2" }
                 ]
@@ -1736,7 +1743,7 @@ room301.chat = function (chatID) {
                 text: "Get in there. Just shove your cock in her mouth. You don't even have to ask. Fuck this bitch's face bro. " +
                     "for a new slut she sucks so good. Go on bro, fuck her face. ",
                 button: [
-                    { chatID: -1, text: "Gobble up " + sc.n("envy") + " here comes my cock. ", callback: "step13_3" },
+                    { chatID: -1, text: "Gobble up {envy} here comes my cock. ", l10nValues: { envy: sc.n("envy") }, callback: "step13_3" },
                     { chatID: -1, text: "Oh. That's ok. I'm going to go. ", callback: "step13badend" },
                 ]
             },
@@ -1776,7 +1783,8 @@ room301.chat = function (chatID) {
             {
                 chatID: 86,
                 speaker: "envy",
-                text: "Hi " + sc.n("me") + ". Did you want a turn too? ",
+                text: "Hi {me}. Did you want a turn too? ",
+                l10nValues: { me: sc.n("me") },
                 button: [
                     { chatID: 87, text: "Uhhh, what? ", callback: "" },
                 ]
@@ -1818,7 +1826,8 @@ room301.chat = function (chatID) {
             {
                 chatID: 91,
                 speaker: "thinking",
-                text: "I've been waiting here for hours! Finally " + sc.n("envy") + " is going to bed! ",
+                text: "I've been waiting here for hours! Finally {envy} is going to bed! ",
+                l10nValues: { envy: sc.n("envy") },
                 button: [
                     { chatID: 92, text: "...", callback: "envy152" },
                 ]
@@ -1842,9 +1851,10 @@ room301.chat = function (chatID) {
             {
                 chatID: 94,
                 speaker: "envy",
-                text: "Why hello there. It's been a while " + sc.n("me") + ". I miss that cock of yours. ",
+                text: "Why hello there. It's been a while {me}. I miss that cock of yours. ",
+                l10nValues: { me: sc.n("me") },
                 button: [
-                    { chatID: 95, text: "Hi. " + sc.n("spanky") + ", you're here too? ", callback: "" },
+                    { chatID: 95, text: "Hi. {spanky}, you're here too? ", l10nValues: { spanky: sc.n("spanky") }, callback: "" },
                 ]
             },
             {
@@ -1862,16 +1872,17 @@ room301.chat = function (chatID) {
                 chatID: 96,
                 speaker: "thinking",
                 text: "That dude really can talk! " +
-                    "I need to get " + sc.n("envy") + " alone for a second so I can talk her into becoming a hucow. I'll ask " +
+                    "I need to get {envy} alone for a second so I can talk her into becoming a hucow. I'll ask " +
                     "him to run to his store for us! ",
+                l10nValues: { envy: sc.n("envy") },
                 button: [
-                    { chatID: 97, text: sc.n("spanky") + " can you run to your store and grab some wine for us? ", callback: "" },
+                    { chatID: 97, text: "{spanky}, can you run to your store and grab some wine for us? ", l10nValues: { spanky: sc.n("spanky") }, callback: "" },
                 ]
             },
             {
                 chatID: 97,
                 speaker: "spanky",
-                text: "Fuck yeah! I love how your think! We should shove it in her ass and have her pour it into our mouths. " +
+                text: "Fuck yeah! I love how you think! We should shove it in her ass and have her pour it into our mouths. " +
                     "This one time I saw this girl put some champagne up her ass and shake it. It sprayed everywhere! " + 
                     "That was some funny fuckin' shit. Save a load for when I get back we'll have some fun!",
                 button: [
@@ -1942,7 +1953,7 @@ room301.chat = function (chatID) {
                 speaker: "envy",
                 text: "Fuck yes! Let's go right now! I want to get milked soooo bad!",
                 button: [
-                    { chatID: 106, text: "I don't think " + sc.n("rachel") + " is awake now. How about the morning?", callback: "" },
+                    { chatID: 106, text: "I don't think {rachel} is awake now. How about the morning?", l10nValues: { rachel: sc.n("rachel") }, callback: "" },
                 ]
             },
             {
@@ -1951,7 +1962,7 @@ room301.chat = function (chatID) {
                 text: "Ok. You have to sleep with me then! I'm not going to let you get away from me! Crawl in and snuggle " +
                     "me to sleep. ",
                 button: [
-                    { chatID: 107, text: "Sure. But what about " + sc.n("spanky") + "?", callback: "" },
+                    { chatID: 107, text: "Sure. But what about {spanky}?", l10nValues: { spanky: sc.n("spanky") }, callback: "" },
                 ]
             },
             {
@@ -1966,7 +1977,8 @@ room301.chat = function (chatID) {
             {
                 chatID: 108,
                 speaker: "me",
-                text: "Hey " + sc.n("rachel") + " I've got a new Hucow for you! This is " + sc.n("envy") + ". ",
+                text: "Hey {rachel}, I've got a new Hucow for you! This is {envy}. ",
+                l10nValues: { rachel: sc.n("rachel"), envy: sc.n("envy") },
                 button: [
                     { chatID: 109, text: "...", callback: "" },
                 ]
@@ -1982,8 +1994,9 @@ room301.chat = function (chatID) {
             {
                 chatID: 110,
                 speaker: "rachel",
-                text: "Well howdy there. You'll do nicely in my little farm. Come with me little lady while we set you up." +
-                    sc.n("me") + ", here's your Hucow bonus for bringing in this little cow. *wink* ",
+                text: "Well howdy there. You'll do nicely in my little farm. Come with me little lady while we set you up. " +
+                    "{me}, here's your Hucow bonus for bringing in this little cow. *wink* ",
+                l10nValues: { me: sc.n("me") },
                 button: [
                     { chatID: -1, text: "...", callback: "envy" },
                 ]
@@ -1991,9 +2004,9 @@ room301.chat = function (chatID) {
             {
                 chatID: 111,
                 speaker: "spanky",
-                text: "I was just laying thinking.. oh gross, but then this bitch just starts eating it off my face. Licked " +
+                text: "I was just lying here thinking... oh, gross, but then this bitch just started eating it off my face. Licked " +
                     "me clean. So I thought, if she'll eat cum off my face she'll totally eat ass. So I just stuck my asshole " +
-                    "right in her face, and she goes all crazy on my shit hole! Really loving it and shit. She start stroking my cock " +
+                    "right in her face, and she goes all crazy on my shit hole! Really loving it and shit. She started stroking my cock " +
                     "and playing with my balls. I couldn't hold it back anymore and shot my load all over her pillow. She scrapes it off " +
                     "the pillow and shoves it up her ass to save it for later! This slut is the best! ",
                 button: [
@@ -2012,10 +2025,11 @@ room301.chat = function (chatID) {
             {
                 chatID: 113,
                 speaker: "me",
-                text: sc.n("envy") + " I have to confess. The movie we watched last night was a " +
+                text: "{envy}, I have to confess. The movie we watched last night was a " +
                     "hypno movie. I ran into Spanky in the hallway a few days ago and he told me that he made " +
                     "some videos that would... basically turn you on. I thought he was full of crap so I plugged " +
                     "it in last time and it looks like it worked. I didn't mean to hurt you. ",
+                l10nValues: { envy: sc.n("envy") },
                 button: [
                     { chatID: 114, text: "...", callback: "" }
                 ]
@@ -2065,7 +2079,7 @@ room301.chat = function (chatID) {
             },
             {
                 chatID: 119,
-                speaker: "evny",
+                speaker: "envy",
                 text: "So what do you want to do? ",
                 button: [
                     { chatID: -1, text: "It's working! Let's watch another movie!", callback: "hypnoLoop0" },
@@ -2078,8 +2092,9 @@ room301.chat = function (chatID) {
                 text: "What have I done? I've taken a girl with a future and turned her into " +
                     "an empty headed cum jar. No one here cares about her, they all just want " +
                     "to cum in something. Anything. That guy is even pissing on her recliner and " +
-                    "no one cares, least of all " + sc.n("envy") + ". I have to search for a new " +
+                    "no one cares, least of all {envy}. I have to search for a new " +
                     "purpose for her! I've got to save her to be something more than a cum dump!",
+                l10nValues: { envy: sc.n("envy") },
                 button: [
                     { chatID: -1, text: "...", callback: "reset" },
                 ]
@@ -2139,13 +2154,13 @@ room301.chat = function (chatID) {
                 speaker: "envy",
                 text: "So you have the tape to fix me?  ",
                 button: [
-                    { chatID: 128, text: "I did talk to " + sc.n("spanky") + " and he said there isn't a fix. You're just going to be horny. ", callback: "gf_1" },
+                    { chatID: 128, text: "I did talk to {spanky} and he said there isn't a fix. You're just going to be horny. ", l10nValues: { spanky: sc.n("spanky") }, callback: "gf_1" },
                 ]
             },
             {
                 chatID: 128,
                 speaker: "envy",
-                text: "I can't be like this forever! I have way to much to do! I can't just sit " +
+                text: "I can't be like this forever! I have way too much to do! I can't just sit " +
                     "around and masturbate all day! I have 4 papers to finish, 2 experiments for " +
                     "school, and I'm tracking the Coeus comet! In the span of an afternoon you " +
                     "have ruined my life all because I didn't have sex with you on the first date! " +
@@ -2213,8 +2228,8 @@ room301.chat = function (chatID) {
                 chatID: 135,
                 speaker: "envy",
                 text: "oh....... hmmmmm....... That may not be as dumb as I thought. Wait how " +
-                    "does it work. Do I just point it at my vulva and it give me an orgasm? Won't " +
-                    "people get suspicious if I'm point the pink 'U' shaped thing at my privates? ",
+                    "does it work. Do I just point it at my vulva to make me orgasm? Won't " +
+                    "people get suspicious if I'm pointing the pink 'U' shaped thing at my privates? ",
                 button: [
                     { chatID: 136, text: "Oh no. You wear it. Like panties, but not like panties. ", callback: "gf_3" },
                 ]
@@ -2298,7 +2313,8 @@ room301.chat = function (chatID) {
                 text: "Well maybe you shouldn't hypnotize someone against their will. I've got a " +
                     "huge test tomorrow on the Physics of Planets that I have to study for. Now that " +
                     "I think about it, I'm going to need your help tomorrow morning. Be here " +
-                    "tomorrow before " + nav.convertTime(14, 0) + "! Don't be late. I'm counting on you!",
+                    "tomorrow before {time}! Don't be late. I'm counting on you!",
+                l10nValues: { time: nav.convertTime(14, 0) },
                 button: [
                     { chatID: 145, text: "Tomorrow?", callback: "" },
                 ]

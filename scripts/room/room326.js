@@ -453,6 +453,7 @@ room326.chat = function (chatID) {
         {
             chatID: 6,
             speaker: "me",
+            l10nValues: { horse: sc.n("horse") },
             text: "I'll just put " + sc.n("horse") + " back and never speak of this.",
             button: [
                 { chatID: -1, text: "...", callback: "badEnd" }

@@ -83,7 +83,7 @@ room182.btnclick = function (name) {
                     top: 500,
                     font: 60,
                     hex: "#ffffff",
-                    text: "TEST COMPLETE. GRADE: " + g.getGrade(totalCard)
+                    text: l10n.t("room.182.test.complete", "TEST COMPLETE. GRADE: {grade}", { grade: g.getGrade(totalCard) })
                 }, 1);
                 if (totalCard > 73)
                     chat(42, 182);
@@ -555,47 +555,47 @@ room182.chat = function (chatID) {
         var hairtxt, bdyhair, cumface, chastity, shower;
         var grade = 100;
         if (cl.c.hairLength > 2) {
-            hairtxt = "Great hair length, lovely style. ";
+            hairtxt = l10n.t("room.182.feedback.hair.long", "Great hair length, lovely style.");
         }
         else if (cl.c.hairLength > 1) {
-            hairtxt = "Good hair length. You would look lovely with longer hair. ";
+            hairtxt = l10n.t("room.182.feedback.hair.medium", "Good hair length. You would look lovely with longer hair.");
             grade -= 3;
         }
         else if (cl.c.hairLength === 1) {
-            hairtxt = "Hair length is fine, but you need to grow it out. I recommend taking the hormone class after this. ";
+            hairtxt = l10n.t("room.182.feedback.hair.short", "Hair length is fine, but you need to grow it out. I recommend taking the hormone class after this.");
             grade-= 10;
         }
         else {
-            hairtxt = "Your hair is much too short. It's unsightly. "
+            hairtxt = l10n.t("room.182.feedback.hair.veryShort", "Your hair is much too short. It's unsightly.");
             grade -= 20;
         }
 
         if (cl.getBodyHair() === null) {
-            bdyhair = "Clean shaven like a sissy should be. ";
+            bdyhair = l10n.t("room.182.feedback.bodyHair.clean", "Clean shaven like a sissy should be.");
         }
         else {
-            bdyhair = "You need to shave that disgusting hair. ";
+            bdyhair = l10n.t("room.182.feedback.bodyHair.present", "You need to shave that disgusting hair.");
             grade-=20;
         }
 
         if (!cl.c.cumface)
             cumface = "";
         else {
-            cumface = "A lady doesn't walk around with cum on her face. ";
+            cumface = l10n.t("room.182.feedback.cumFace", "A lady doesn't walk around with cum on her face.");
             grade-=5;
         }
 
         if (cl.c.chastity === null) {
-            chastity = "You need to wear your cage. No wants to see that dirty thing poking out. ";
+            chastity = l10n.t("room.182.feedback.chastity.missing", "You need to wear your cage. No one wants to see that dirty thing poking out.");
             grade-=10;
         }
         else
-            chastity = "Chastity cage.. check. ";
+            chastity = l10n.t("room.182.feedback.chastity.present", "Chastity cage... check.");
 
         if (!cl.stinky())
-            shower = "Your smell is lovely. ";
+            shower = l10n.t("room.182.feedback.shower.clean", "Your smell is lovely.");
         else {
-            shower = "You need to shower. You smell like a vagrant. ";
+            shower = l10n.t("room.182.feedback.shower.stinky", "You need to shower. You smell like a vagrant.");
             grade-= 7;
         }
         if (grade < 0)
@@ -604,10 +604,19 @@ room182.chat = function (chatID) {
         return {
             chatID: 999,
             speaker: "martha",
-            text: sc.n("me") + ". Let us see how you did. " + hairtxt + bdyhair + cumface + chastity + shower +
-                "For a final grade of " + g.getGrade(grade) + ".",
+            text: "{me}. Let us see how you did. {hair}{bodyHair}{cumFace}{chastity}{shower}For a final grade of {grade}.",
+            l10nKey: "room.182.chat.999.text",
+            l10nValues: {
+                me: sc.n("me"),
+                hair: hairtxt + " ",
+                bodyHair: bdyhair + " ",
+                cumFace: cumface,
+                chastity: chastity + " ",
+                shower: shower + " ",
+                grade: g.getGrade(grade)
+            },
             button: [
-                { chatID: 22, text: "...", callback: "t1_10" }
+                { chatID: 22, text: "...", callback: "t1_10", l10nKey: "room.182.chat.999.choice.0" }
             ]
         };
     }
@@ -617,8 +626,10 @@ room182.chat = function (chatID) {
                 chatID: 0,
                 speaker: "p",
                 text: "Not bad slut. You get a " + g.getGrade(g.internal.analtest) + ". NEXT!",
+                l10nKey: "room.182.chat.998.good",
+                l10nValues: { grade: g.getGrade(g.internal.analtest) },
                 button: [
-                    { chatID: 46, text: "*groan*", callback: "" }
+                    { chatID: 46, text: "*groan*", callback: "", l10nKey: "room.182.chat.998.good.choice.0" }
                 ]
             };
         else
@@ -626,8 +637,10 @@ room182.chat = function (chatID) {
                 chatID: 0,
                 speaker: "p",
                 text: "You need to do more homework. You get a " + g.getGrade(g.internal.analtest) + ". NEXT!",
+                l10nKey: "room.182.chat.998.low",
+                l10nValues: { grade: g.getGrade(g.internal.analtest) },
                 button: [
-                    { chatID: 46, text: "*whimper*", callback: "" }
+                    { chatID: 46, text: "*whimper*", callback: "", l10nKey: "room.182.chat.998.low.choice.0" }
                 ]
             };
     }
@@ -639,8 +652,10 @@ room182.chat = function (chatID) {
                 "to survive. It's too bad too. If you did last longer I had a real treat for " +
                 "you. You got a " + g.getGrade(g.internal.bdsmtest) +
                 " for my test. Now get back upstairs for the ceremony. ",
+                l10nKey: "room.182.chat.997.text",
+                l10nValues: { grade: g.getGrade(g.internal.bdsmtest) },
             button: [
-                { chatID: 75, text: "Yes ma'am", callback: "t1_46" }
+                { chatID: 75, text: "Yes ma'am", callback: "t1_46", l10nKey: "room.182.chat.997.choice.0" }
             ]
         };
     }
@@ -680,9 +695,10 @@ room182.chat = function (chatID) {
             {
                 chatID: 3,
                 speaker: "missy",
-                text: "Over here we have " + sc.n("cecilia") + ". She's a graduate of the sissy school. " +
-                    "Her clitty is small and tits continue to slowly grow now that she's on hormones. " + sc.n("cecilia") + " when's " +
+                text: "Over here we have {cecilia}. She's a graduate of the sissy school. " +
+                    "Her clitty is small and tits continue to slowly grow now that she's on hormones. {cecilia}, when's " +
                     "the last time your clitty was hard?",
+                l10nValues: { cecilia: sc.n("cecilia") },
                 button: [
                     { chatID: 4, text: "...", callback: "" }
                 ]
@@ -698,8 +714,9 @@ room182.chat = function (chatID) {
             {
                 chatID: 5,
                 speaker: "missy",
-                text: "A year without an erection! She knows her true purpose. Bend over " + sc.n("cecilia") +
+                text: "A year without an erection! She knows her true purpose. Bend over {cecilia}" +
                     " and show everyone that purpose.",
+                l10nValues: { cecilia: sc.n("cecilia") },
                 button: [
                     { chatID: 6, text: "...", callback: "t1_3" }
                 ]
@@ -708,7 +725,8 @@ room182.chat = function (chatID) {
                 chatID: 6,
                 speaker: "missy",
                 text: "Look at that resting gape! She's always ready to get fucked in her sissy pussy. " +
-                    sc.n("cecilia") + " what are you thinking about right now? ",
+                    "{cecilia}, what are you thinking about right now? ",
+                l10nValues: { cecilia: sc.n("cecilia") },
                 button: [
                     { chatID: 7, text: "...", callback: "" }
                 ]
@@ -743,9 +761,10 @@ room182.chat = function (chatID) {
             {
                 chatID: 10,
                 speaker: "missy",
-                text: "Interesting. " + sc.n("me") + " I'm surprised that you've denied your true self. " +
+                text: "Interesting. {me}, I'm surprised that you've denied your true self. " +
                     "Tell me you wouldn't want to be tied to my bed posts, bent over with your " +
                     "ass out. Ready to take my strap on in your anus. ",
+                l10nValues: { me: sc.n("me") },
                 button: [
                     { chatID: 11, text: "I would love that!", callback: "mantestd" },
                     { chatID: 12, text: "No. I would rather fuck you. ", callback: "mantestf" },
@@ -771,7 +790,8 @@ room182.chat = function (chatID) {
             {
                 chatID: 13,
                 speaker: "missy",
-                text: sc.n("ralph") + " why are you in the men's group? Do you think you're a man? ",
+                text: "{ralph}, why are you in the men's group? Do you think you're a man? ",
+                l10nValues: { ralph: sc.n("ralph") },
                 button: [
                     { chatID: 14, text: "...", callback: "" },
                 ]
@@ -797,8 +817,9 @@ room182.chat = function (chatID) {
             {
                 chatID: 16,
                 speaker: "missy",
-                text: "Everyone sit back down on your butts. Thank you Malik and " + sc.n("cecilia") +
+                text: "Everyone sit back down on your butts. Thank you Malik and {cecilia}" +
                     " you're dismissed. Martha will now give you your next test. ",
+                l10nValues: { cecilia: sc.n("cecilia") },
                 button: [
                     { chatID: 17, text: "...", callback: "t1_6" },
                 ]
@@ -932,8 +953,9 @@ room182.chat = function (chatID) {
             {
                 chatID: 31,
                 speaker: "martha",
-                text: "And last we have " + sc.n("ralph") + ". I suppose you're going to try and use " +
+                text: "And last we have {ralph}. I suppose you're going to try and use " +
                     "the small penis excuse for not wearing your chastity cage. ",
+                l10nValues: { ralph: sc.n("ralph") },
                 button: [
                     { chatID: 32, text: "...", callback: "" },
                 ]
@@ -950,7 +972,8 @@ room182.chat = function (chatID) {
                 chatID: 33,
                 speaker: "ralph",
                 text: "Regardless you must wear your cage. I shall give you a 'C'. This concludes my " +
-                    "evaluation. " + sc.n("p") + " they are all yours.",
+                    "evaluation. {p}, they are all yours.",
+                l10nValues: { p: sc.n("p") },
                 button: [
                     { chatID: 34, text: "...", callback: "" },
                 ]
@@ -985,8 +1008,9 @@ room182.chat = function (chatID) {
             {
                 chatID: 37,
                 speaker: "p",
-                text: "Ok " + sc.n("me") + " your turn. Hop on up that dildo and show us " +
+                text: "Ok {me}, your turn. Hop on up that dildo and show us " +
                     "how much your bussy can take. ",
+                l10nValues: { me: sc.n("me") },
                 button: [
                     { chatID: 44, text: "...", callback: "" },
                 ]
@@ -1112,9 +1136,10 @@ room182.chat = function (chatID) {
             {
                 chatID: 50,
                 speaker: "ralph",
-                text: sc.n("me") + " I'm scared of " + sc.n("black") + ". Last time I went down " +
+                text: "{me}, I'm scared of {black}. Last time I went down " +
                     "there she tortured me until I cried. It hurt so bad I couldn't sit down. I had " +
                     "to sleep on my stomach for two nights. ",
+                l10nValues: { me: sc.n("me"), black: sc.n("black") },
                 button: [
                     { chatID: 51, text: "Oh yeah. I don't like her at all. She's just mean. ", callback: "" },
                 ]
@@ -1125,7 +1150,7 @@ room182.chat = function (chatID) {
                 text: "I know right. Look at poor Martin over there who just got back. He's just " +
                     "laying in a puddle of tears. Do you think I can just quit once I get in there? ",
                 button: [
-                    { chatID: 52, text: "I don't really know. You never know what " + sc.n("black") + "'s going to do. Maybe. ", callback: "" },
+                    { chatID: 52, text: "I don't really know. You never know what {black} is going to do. Maybe. ", callback: "", l10nValues: { black: sc.n("black") } },
                 ]
             },
             {
@@ -1317,7 +1342,7 @@ room182.chat = function (chatID) {
                 speaker: "black",
                 text: "Hehehe! You like that baby? You like it when I rape your asshole with my " +
                     "big black ridged dildo? Don't try to say no. I know you want to get fucked slut. " +
-                    "Show Mommy how much you like getting raped. ",
+                    "Show me how much you like getting raped. ",
                 button: [
                     { chatID: 73, text: "...", callback: "t1_44" },
                 ]
@@ -1377,7 +1402,8 @@ room182.chat = function (chatID) {
                 speaker: "missy",
                 text: "Now that you've all viewed your tests, it's time to announce our star " +
                     "sissy. This sissy is my personal favorite and I expected her to get this " +
-                    "award. " + sc.n("me") + ", please set forward to receive your crown. ",
+                    "award. {me}, please step forward to receive your crown. ",
+                l10nValues: { me: sc.n("me") },
                 button: [
                     { chatID: 79, text: "*squeal*", callback: "crown0" },
                 ]
@@ -1405,8 +1431,9 @@ room182.chat = function (chatID) {
             {
                 chatID: 81,
                 speaker: "missy",
-                text: "And now for the worst student. " + sc.n("me") + ", please step forward to " +
+                text: "And now for the worst student. {me}, please step forward to " +
                     "receive the piggy nose. ",
+                l10nValues: { me: sc.n("me") },
                 button: [
                     { chatID: 83, text: "...", callback: "piggy0" },
                 ]
@@ -1414,8 +1441,9 @@ room182.chat = function (chatID) {
             {
                 chatID: 82,
                 speaker: "missy",
-                text: "And now for the worst student. " + sc.n("ralph") + ", please step forward to " +
+                text: "And now for the worst student. {ralph}, please step forward to " +
                     "receive the piggy nose. ",
+                l10nValues: { ralph: sc.n("ralph") },
                 button: [
                     { chatID: 83, text: "...", callback: "piggy0a" },
                 ]

@@ -425,31 +425,33 @@ room171.chatcatch = function (callback) {
 room171.chat = function (chatID) {
     if (chatID === 999) {
         var c = [
-            "Nice hole, slut.",
-            "You're as loose as a drunk goose.",
-            "Thanks ma'am. I needed that nut.",
-            "Queer duck.",
-            "Fuck, I love that hole!",
-            "Ugh. I can't believe I fucked such a nasty slut. What will my girlfriend say?",
-            "Love that hole!",
-            "Thanks",
-            "I'm going to tell my friends about you!",
-            "When you're done here, find me. I'm looking for a bride.",
-            "Damn, sugar! You too fine!",
-            "I love an easy cum dump.",
-            "You have something on your asshole... Oh wait, that's my cum.",
-            "Nasty slut.",
-            "I do love an easy sissy.",
-            "Sissies have the best bussy!",
-            "I do love fucking an easy bussy.",
-            "Whore."
+            { key: "room.171.glory.0", text: "Nice hole, slut." },
+            { key: "room.171.glory.1", text: "You're as loose as a drunk goose." },
+            { key: "room.171.glory.2", text: "Thanks ma'am. I needed that nut." },
+            { key: "room.171.glory.3", text: "Queer duck." },
+            { key: "room.171.glory.4", text: "Fuck, I love that hole!" },
+            { key: "room.171.glory.5", text: "Ugh. I can't believe I fucked such a nasty slut. What will my girlfriend say?" },
+            { key: "room.171.glory.6", text: "Love that hole!" },
+            { key: "room.171.glory.7", text: "Thanks" },
+            { key: "room.171.glory.8", text: "I'm going to tell my friends about you!" },
+            { key: "room.171.glory.9", text: "When you're done here, find me. I'm looking for a bride." },
+            { key: "room.171.glory.10", text: "Damn, sugar! You too fine!" },
+            { key: "room.171.glory.11", text: "I love an easy cum dump." },
+            { key: "room.171.glory.12", text: "You have something on your asshole... Oh wait, that's my cum." },
+            { key: "room.171.glory.13", text: "Nasty slut." },
+            { key: "room.171.glory.14", text: "I do love an easy sissy." },
+            { key: "room.171.glory.15", text: "Sissies have the best bussy!" },
+            { key: "room.171.glory.16", text: "I do love fucking an easy bussy." },
+            { key: "room.171.glory.17", text: "Whore." }
         ];
+        var gloryLine = c[g.rand(0, c.length)];
         return {
             chatID: 1,
             speaker: "!glory",
-            text: c[g.rand(0, c.length)],
+            l10nKey: gloryLine.key,
+            text: gloryLine.text,
             button: [
-                { chatID: -1, text: "Thanks?", callback: "" }
+                { chatID: -1, l10nKey: "room.171.glory.thanks", text: "Thanks?", callback: "" }
             ]
         };
     }

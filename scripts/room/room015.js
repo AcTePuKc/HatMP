@@ -300,7 +300,8 @@ room15.chat = function (chatID) {
         {
             chatID: 7,
             speaker: "landlord",
-            text: "*hiccup* Get in there and make " + sc.n("landlord") + " a happy girl!",
+            text: "*hiccup* Get in there and make {landlady} a happy girl!",
+            l10nValues: { landlady: sc.landlady("definite") },
             button: [
                 { chatID: -1, text: "MMMmmmMMMMmm", callback: "ll3" },
             ]
@@ -326,14 +327,13 @@ room15.chat = function (chatID) {
             speaker: "landlord",
             text: "Wow! You sure know how to eat a pussy. Thanks honey. Now run along.",
             button: [
-                { chatID: -1, text: "You're welcome " + sc.n("landlord") + "!", callback: "ll8" },
+                { chatID: -1, text: "You're welcome {landlady}!", l10nValues: { landlady: sc.landlady("display") }, callback: "ll8" },
             ]
         },
         {
             chatID: 11,
             speaker: "landlord",
-            text: "So you like to slap your " + sc.n("landlord") + " on her ass? Well I like to smack asses too! " +
-                "Come with me to my room. Now! ",
+            text: "So you like to slap me on my ass? Well I like to smack asses too! Come with me to my room. Now! ",
             button: [
                 { chatID: -1, text: "Yes!", callback: "slap1" },
             ]
@@ -349,9 +349,10 @@ room15.chat = function (chatID) {
         {
             chatID: 13,
             speaker: "lola",
-            text: "Gross " + sc.n("landlord") + "!",
+            text: "Gross {landlady}!",
+            l10nValues: { landlady: sc.landlady("display") },
             button: [
-                { chatID: 14, text: "Oh hi " + sc.n("lola") + ".", callback: "" },
+                { chatID: 14, text: "Oh hi {lola}.", l10nValues: { lola: sc.n("lola") }, callback: "" },
             ]
         },
         {

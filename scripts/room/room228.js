@@ -75,14 +75,16 @@ room228.chat = function (chatID) {
         {
             chatID: 0,
             speaker: "cop2",
+            l10nKey: "room.228.prostitutionWarning",
             text: "Alright. If you're going to prostitute yourself for sex be less obvious about it and wear some clothes.",
             button: [
-                { chatID: -1, text: "But officer, I wasn't....", callback: "tojail" }
+                { chatID: -1, l10nKey: "room.228.protest", text: "But officer, I wasn't....", callback: "tojail" }
             ]
         },
         {
             chatID: 1,
             speaker: "me",
+            l10nKey: "room.228.sewerEnergy",
             text: "I need more energy to wander around the sewers.",
             button: [
                 { chatID: -1, text: "...", callback: "" }

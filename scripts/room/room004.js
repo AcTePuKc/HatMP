@@ -400,6 +400,7 @@ room4.chat = function (chatID) {
         {
             chatID: 5,
             speaker: "me",
+            l10nKey: "room.4.massage.stripOffer",
             text: "Hey baby you want to strip them clothes? ",
             button: [
                 { chatID: 6, text: "...", callback: "" },
@@ -408,14 +409,16 @@ room4.chat = function (chatID) {
         {
             chatID: 6,
             speaker: "lola",
+            l10nKey: "room.4.massage.done",
             text: "No! We're done here. ",
             button: [
-                { chatID: -1, text: "ok. ", callback: "massageFinish" },
+                { chatID: -1, l10nKey: "room.4.massage.ok", text: "ok. ", callback: "massageFinish" },
             ]
         },
         {
             chatID: 7,
             speaker: "me",
+            l10nKey: "room.4.massage.liftShirt",
             text: "You know it would be better if I lifted your shirt up. Just to give you a much better massage. ",
             button: [
                 { chatID: 8, text: "...", callback: "" },
@@ -424,6 +427,7 @@ room4.chat = function (chatID) {
         {
             chatID: 8,
             speaker: "lola",
+            l10nKey: "room.4.massage.thatsOkay",
             text: "I guess that's ok. ",
             button: [
                 { chatID: -1, text: "...", callback: "" },
@@ -432,14 +436,16 @@ room4.chat = function (chatID) {
         {
             chatID: 9,
             speaker: "lola",
+            l10nKey: "room.4.massage.lovesHands",
             text: "MmmmmmmMMMm I love your hands. So powerful. You're really the best! ",
             button: [
-                { chatID: -1, text: "[Finish the massage]", callback: "massageFinish" }
+                { chatID: -1, l10nKey: "room.4.massage.finish", text: "[Finish the massage]", callback: "massageFinish" }
             ]
         },
         {
             chatID: 10,
             speaker: "me",
+            l10nKey: "room.4.massage.takeShirtOff",
             text: "Do you want to take your shirt off? Just to give you the best massage. ",
             button: [
                 { chatID: 11, text: "...", callback: "" }
@@ -448,30 +454,36 @@ room4.chat = function (chatID) {
         {
             chatID: 11,
             speaker: "lola",
+            l10nKey: "room.4.massage.noFunnyBusiness",
+            l10nValues: { el: sc.get("el").singularDisplay || sc.n("el") },
             text: "I guess that's ok. You won't try any funny business with your " + sc.n("el") + ". ",
             button: [
-                { chatID: -1, text: "Nope. No funny business here. ", callback: "massage1" }
+                { chatID: -1, l10nKey: "room.4.massage.noFunnyBusiness.choice", text: "Nope. No funny business here. ", callback: "massage1" }
             ]
         },
         {
             chatID: 12,
             speaker: "lola",
+            l10nKey: "room.4.massage.tightLegs",
             text: "Hey, my legs are really really tight. Can you massage them for me? ",
             button: [
-                { chatID: 13, text: "Sure! Your dress is really thick. Do you mind taking it off so I can give you a proper massage? ", callback: "" }
+                { chatID: 13, l10nKey: "room.4.massage.removeDress", text: "Sure! Your dress is really thick. Do you mind taking it off so I can give you a proper massage? ", callback: "" }
             ]
         },
         {
             chatID: 13,
             speaker: "lola",
+            l10nKey: "room.4.massage.pantiesOkay",
+            l10nValues: { el: sc.get("el").singularDisplay || sc.n("el") },
             text: "Well... I guess that's ok if you see me in my panties. I'm your " + sc.n("el") + " after all. ",
             button: [
-                { chatID: -1, text: "Ok.", callback: "massage2" }
+                { chatID: -1, l10nKey: "room.4.massage.okay", text: "Ok.", callback: "massage2" }
             ]
         },
         {
             chatID: 14,
             speaker: "me",
+            l10nKey: "room.4.massage.glutes",
             text: "You know... I noticed how tight your glutes are. With as much stress as you put on them, they could use " +
                 "a good massage. Tight glutes give you bad posture. ",
             button: [
@@ -481,14 +493,16 @@ room4.chat = function (chatID) {
         {
             chatID: 15,
             speaker: "lola",
+            l10nKey: "room.4.massage.noNoZones",
             text: "Really? That makes sense. I'm game, but don't you dare touch my no no zones. ",
             button: [
-                { chatID: -1, text: "I would never!", callback: "massage3" }
+                { chatID: -1, l10nKey: "room.4.massage.never", text: "I would never!", callback: "massage3" }
             ]
         },
         {
             chatID: 16,
             speaker: "thinking",
+            l10nKey: "room.4.massage.arousedThought",
             text: "She is so horny, I can smell her arousal. I wonder if she'll let me slide her panties to the side and rub her pussy... ",
             button: [
                 { chatID: -1, text: "...", callback: "massage4" }
@@ -497,6 +511,7 @@ room4.chat = function (chatID) {
         {
             chatID: 17,
             speaker: "thinking",
+            l10nKey: "room.4.massage.pantiesThought",
             text: "She's not stopping me! Let's see if she lets me pull off her panties. ",
             button: [
                 { chatID: -1, text: "...", callback: "massage5" }
@@ -505,6 +520,7 @@ room4.chat = function (chatID) {
         {
             chatID: 18,
             speaker: "thinking",
+            l10nKey: "room.4.massage.wetThought",
             text: "She's so horny and wet. Maybe I can eat her out or fuck her. Let's see how far she'll let me go! ",
             button: [
                 { chatID: 19, text: "...", callback: "massage6" },
@@ -513,6 +529,7 @@ room4.chat = function (chatID) {
         {
             chatID: 19,
             speaker: "lola",
+            l10nKey: "room.4.massage.huh",
             text: "Huh? ",
             button: [
                 { chatID: 20, text: "...", callback: "massage6_1" },
@@ -521,6 +538,7 @@ room4.chat = function (chatID) {
         {
             chatID: 20,
             speaker: "eva",
+            l10nKey: "room.4.massage.standingHere",
             text: "I'm standing right here! ",
             button: [
                 { chatID: 21, text: "...", callback: "" },
@@ -529,23 +547,26 @@ room4.chat = function (chatID) {
         {
             chatID: 21,
             speaker: "lola",
+            l10nKey: "room.4.massage.inappropriate",
             text: "Oh oh. Yes. Sorry, I was very relaxed. You need to get off me so I can get dressed. I'm so sorry. This " +
                 "is just inappropriate. ",
             button: [
-                { chatID: -1, text: "oh yeah.", callback: "massageFinish" },
+                { chatID: -1, l10nKey: "room.4.massage.ohYeah", text: "oh yeah.", callback: "massageFinish" },
             ]
         },
         {
             chatID: 22,
             speaker: "lola",
+            l10nKey: "room.4.massage.slickHands",
             text: "Not so fast, mister Slick-Hands. These are staying on!",
             button: [
-                { chatID: -1, text: "oh yeah.", callback: "massageFinish" },
+                { chatID: -1, l10nKey: "room.4.massage.ohYeah", text: "oh yeah.", callback: "massageFinish" },
             ]
         },
         {
             chatID: 23,
             speaker: "me",
+            l10nKey: "room.4.massage.anotherMassage",
             text: "I'll bet you could use another massage.",
             button: [
                 { chatID: 24, text: "...", callback: "" },
@@ -554,6 +575,7 @@ room4.chat = function (chatID) {
         {
             chatID: 24,
             speaker: "lola",
+            l10nKey: "room.4.massage.handsy",
             text: "I'm still good from the one you gave me earlier today, Mr. Handsy. ",
             button: [
                 { chatID: -1, text: "...", callback: "leave" },

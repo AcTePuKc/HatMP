@@ -229,6 +229,7 @@ room315.chat = function (chatID) {
         {
             chatID: 0,
             speaker: "thinking",
+            l10nIgnore: true,
             text: "not used ",
             button: []
         },
@@ -276,9 +277,11 @@ room315.chat = function (chatID) {
         {
             chatID: 6,
             speaker: "me",
-            text: "That sounds like " + sc.n("janice") + "! I better see if she's ok!",
+            l10nKey: "room.315.chat.6.text",
+            l10nValues: { janice: sc.n("janice") },
+            text: "That sounds like {janice}! I better see if she's ok!",
             button: [
-                { chatID: -1, text: "[Go save her!]", callback: "goinside" },
+                { chatID: -1, l10nKey: "room.315.chat.6.choice.0", text: "[Go save her!]", callback: "goinside" },
             ]
         },
         {
@@ -309,8 +312,9 @@ room315.chat = function (chatID) {
         {
             chatID: 10,
             speaker: "thinking",
-            text: "I have a date with " + sc.n("janice") + " this weekend. I can come on either " +
-                "Friday or Saturday. I'll come back then.",
+            l10nKey: "room.315.chat.10.text",
+            l10nValues: { janice: sc.n("janice") },
+            text: "I have a date with {janice} this weekend. I can come on either Friday or Saturday. I'll come back then.",
             button: [
                 { chatID: -1, text: "...", callback: "" },
             ]
@@ -327,8 +331,9 @@ room315.chat = function (chatID) {
         {
             chatID: 12,
             speaker: "thinking",
-            text: "I'm way totally late for our date! I'll have to come back next Friday or " +
-                "Saturday before " + nav.convertTime(21, 0) + ".",
+            l10nKey: "room.315.chat.12.text",
+            l10nValues: { time: nav.convertTime(21, 0) },
+            text: "I'm way totally late for our date! I'll have to come back next Friday or Saturday before {time}.",
             button: [
                 { chatID: -1, text: "I'll have to come back another day.", callback: "" },
             ]
@@ -392,13 +397,15 @@ room315.chat = function (chatID) {
             text: "Ok viewers! This pussy is for you! Keep donating to turn my vibrator " +
                 "up soooo high I'll be spraying pussy juice all over my living room!",
             button: [
-                { chatID: 20, text: sc.n("janice") + "!!!!", callback: "bitch_1" },
+                { chatID: 20, l10nKey: "room.315.chat.19.choice.0", l10nValues: { janice: sc.n("janice") }, text: "{janice}!!!!", callback: "bitch_1" },
             ]
         },
         {
             chatID: 20,
             speaker: "janice",
-            text: "AAAAAAkkkk! " + sc.n("me") + "!!! W-w-w-w",
+            l10nKey: "room.315.chat.20.text",
+            l10nValues: { me: sc.n("me") },
+            text: "AAAAAAkkkk! {me}!!! W-w-w-w",
             button: [
                 { chatID: 21, text: "Who are you talking to!", callback: "bitch_2" },
             ]
@@ -483,7 +490,9 @@ room315.chat = function (chatID) {
         {
             chatID: 29,
             speaker: "janice",
-            text: "Hey " + sc.n("me") + "! What are you doing here? ",
+            l10nKey: "room.315.chat.29.text",
+            l10nValues: { me: sc.n("me") },
+            text: "Hey {me}! What are you doing here? ",
             button: [
                 { chatID: 30, text: "Just thought I would come by. Saw you wanted to hang out?", callback: "" },
             ]

@@ -135,10 +135,21 @@ invoker.registerRoom(40, room40);
 
 room40.chat = function (chatID) {
     if (chatID === 1000) {
+        var missingClothing = String(g.internal).replace(/<[^>]*>/g, "").trim();
+        var missingClothingKey = {
+            "shirt": "room.775.missing.shirt",
+            "pants": "room.775.missing.pants",
+            "shirt and pants": "room.775.missing.shirtAndPants",
+            "respectable clothing": "room.775.missing.respectableClothing"
+        }[missingClothing];
+        if (missingClothingKey)
+            missingClothing = l10n.t(missingClothingKey, missingClothing);
         return {
             chatID: 1000,
+            l10nKey: "room.40.chat.1000.text",
+            l10nValues: { missing: missingClothing },
             speaker: "thinking",
-            text: "Before I work I need to get dressed. <span class='hl'>I'm missing my " + g.internal + ".</span>",
+            text: "Before I work I need to get dressed. <span class='hl'>I'm missing my {missing}.</span>",
             button: []
         };
     }
@@ -147,9 +158,11 @@ room40.chat = function (chatID) {
         if (pastRent > 0) {
             return {
                 chatID: 1000,
+                l10nKey: "room.40.chat.999.owing.text",
+                l10nValues: { pastRent: pastRent },
                 speaker: "bigguy",
                 text: "I'm proud of you. A man takes care of his bills, and you're " +
-                    "on your way. You still owe me $" + pastRent + ". I'll see you Saturday to see if you can " +
+                    "on your way. You still owe me ${pastRent}. I'll see you Saturday to see if you can " +
                     "be a man and pay your bills proper. ",
                 button: [
                     { chatID: -1, text: "ok", callback: "leave" }
@@ -159,6 +172,7 @@ room40.chat = function (chatID) {
         else {
             return {
                 chatID: 1000,
+                l10nKey: "room.40.chat.999.paid.text",
                 speaker: "bigguy",
                 text: "I'm proud of you. A man takes care of his bills, and you've " +
                     "taken care of yours. I'll see you Saturday to see if you can " +
@@ -174,7 +188,8 @@ room40.chat = function (chatID) {
             {
                 chatID: 0,
                 speaker: "bigguy",
-                text: "So this is my shop. Tom here is my right hand man. He's been " +
+                l10nValues: { tom: sc.n("tom") },
+                text: "So this is my shop. {tom} here is my right hand man. He's been " +
                     "working on cars for a few years now so he knows what he's doing. " +
                     "The problem is we're both so busy with a back log of cars that I " +
                     "need someone to do the bitch work. Since you know shit about cars " +
@@ -186,8 +201,9 @@ room40.chat = function (chatID) {
             {
                 chatID: 1,
                 speaker: "bigguy",
+                l10nValues: { tom: sc.n("tom") },
                 text: "A man's gotta start at the bottom and work their way up. " +
-                    "You should have seen Tom here clean the traps on his first day. " +
+                    "You should have seen {tom} here clean the traps on his first day. " +
                     "He dropped the cage and that damn rat ran up his leg! Watching " +
                     "him hop around almost made me piss my damn pants!",
                 button: [
@@ -250,7 +266,8 @@ room40.chat = function (chatID) {
             {
                 chatID: 8,
                 speaker: "me",
-                text: "So, you work for " + sc.n("bigguy") + "?",
+                l10nValues: { bigguy: sc.n("bigguy") },
+                text: "So, you work for {bigguy}?",
                 button: [
                     { chatID: 9, text: "...", callback: "" }
                 ]
@@ -295,8 +312,8 @@ room40.chat = function (chatID) {
             {
                 chatID: 13,
                 speaker: "tom",
-                text: "So I got to talking with " + sc.n("bigguy") + ". He's dating " +
-                    "your " + sc.n("landlord") + "? ",
+                l10nValues: { bigguy: sc.n("bigguy"), landlady: sc.landlady("definite") },
+                text: "So I got to talking with {bigguy}. He's dating {landlady}? ",
                 button: [
                     { chatID: 14, text: "yeah", callback: "" }
                 ]
@@ -304,11 +321,11 @@ room40.chat = function (chatID) {
             {
                 chatID: 14,
                 speaker: "tom",
-                text: "Wow, small world. So your " + sc.el() + " is " +
-                    sc.n("lola") + "? She was in my biology class last year. Haven't " +
+                l10nValues: { el: sc.el("singularLower"), lola: sc.n("lola") },
+                text: "Wow, small world. So your {el} is {lola}? She was in my biology class last year. Haven't " +
                     "seen her since. It's a big campus.",
                 button: [
-                    { chatID: 15, text: "Oh yeah. She's my " + sc.el() + ". ", callback: "" }
+                    { chatID: 15, text: "Oh yeah. {lola} is my {el}. ", l10nValues: { el: sc.el("singularLower"), lola: sc.n("lola") }, callback: "" }
                 ]
             },
             {
@@ -323,20 +340,22 @@ room40.chat = function (chatID) {
             {
                 chatID: 16,
                 speaker: "thinking",
-                text: "Hmmmm. He's really nice, and I don't think he would even have sex with " + sc.n("eva") + " since " +
-                    "she's way too wild for him. He might make a good boyfriend for " + sc.n("lola") + ". " +
-                    "Way better than " + sc.n("chad") + ". But maybe " + sc.n("lola") + " needs a bad boy to " +
-                    "snap her into reality. Hmmm. I wonder if I should try to set him up or let " + sc.n("lola") +
-                    " date " + sc.n("chad") + ".",
+                l10nValues: { tom: sc.n("tom"), eva: sc.n("eva"), lola: sc.n("lola"), chad: sc.n("chad") },
+                text: "Hmmmm. He's really nice, and I don't think he would even have sex with {eva} since " +
+                    "she's way too wild for him. He might make a good boyfriend for {lola}. " +
+                    "Way better than {chad}. But maybe {lola} needs a bad boy to " +
+                    "snap her into reality. Hmmm. I wonder if I should try to set him up or let {lola}" +
+                    " date {chad}.",
                 button: [
-                    { chatID: 17, text: "Try to set up " + sc.n("tom") + " with " + sc.n("lola") + ". ", callback: "" },
-                    { chatID: 23, text: "Let " + sc.n("lola") + " date " + sc.n("chad") + ". ", callback: "" }
+                    { chatID: 17, text: "Try to set up {tom} with {lola}. ", l10nValues: { tom: sc.n("tom"), lola: sc.n("lola") }, callback: "" },
+                    { chatID: 23, text: "Let {lola} date {chad}. ", l10nValues: { lola: sc.n("lola"), chad: sc.n("chad") }, callback: "" }
                 ]
             },
             {
                 chatID: 17,
                 speaker: "me",
-                text: "Hey " + sc.n("tom") + " what do you think of " + sc.n("lola") + "? ",
+                l10nValues: { tom: sc.n("tom"), lola: sc.n("lola") },
+                text: "Hey {tom}, what do you think of {lola}? ",
                 button: [
                     { chatID: 18, text: "...", callback: "" }
                 ]
@@ -370,8 +389,9 @@ room40.chat = function (chatID) {
             {
                 chatID: 21,
                 speaker: "me",
-                text: "Hahah. Ok. I'll text " + sc.n("eva") + " now and have her set it up. Be " +
-                    "good to her or " + sc.n("eva") + " will get one of her boyfriends to beat " +
+                l10nValues: { eva: sc.n("eva") },
+                text: "Hahah. Ok. I'll text {eva} now and have her set it up. Be " +
+                    "good to her or {eva} will get one of her boyfriends to beat " +
                     "you up! ",
                 button: [
                     { chatID: 22, text: "...", callback: "" }
@@ -389,8 +409,9 @@ room40.chat = function (chatID) {
             {
                 chatID: 23,
                 speaker: "thinking",
-                text: "Hehehe! I'm going to see how far " + sc.n("lola") + " goes with " + sc.n("chad") + ". " +
-                    "Way more entertaining than boring, lame Tom.",
+                l10nValues: { lola: sc.n("lola"), chad: sc.n("chad"), tom: sc.n("tom") },
+                text: "Hehehe! I'm going to see how far {lola} goes with {chad}. " +
+                    "Way more entertaining than boring, lame {tom}.",
                 button: [
                     { chatID: -1, text: "...", callback: "endlolaboyChad" }
                 ]

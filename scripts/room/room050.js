@@ -173,6 +173,7 @@ room50.chat = function (chatID) {
             chatID: 2,
             speaker: "treyvon",
             text: "Hey " + sc.n("tiffany") + ", welcome home. Who's this cutie you have with you?",
+            l10nValues: { tiffany: sc.n("tiffany") },
             button: [
                 { chatID: 3, text: "...", callback: "" }
             ]
@@ -214,7 +215,7 @@ room50.chat = function (chatID) {
             speaker: "treyvon",
             text: "I know. You don't squeeze the fruit until you buy it hehe. So what's your name, girl?",
             button: [
-                { chatID: 8, text: "It's... ahh... ummmm... " + l10n.characterName("girlname", gv.get("girlname")) + "...", callback: "" }
+                { chatID: 8, text: "It's... ahh... ummmm... " + l10n.characterName("girlname", gv.get("girlname")) + "...", l10nValues: { girlname: l10n.characterName("girlname", gv.get("girlname")) }, callback: "" }
             ]
         },
         {
@@ -222,6 +223,7 @@ room50.chat = function (chatID) {
             speaker: "treyvon",
             text: l10n.characterName("girlname", gv.get("girlname")) + ". That's a really pretty name for a really pretty girl. I'm " + sc.n("treyvon") + ". " +
             "I'll get you anything you need — just scream my name. *wink*",
+            l10nValues: { girlname: l10n.characterName("girlname", gv.get("girlname")), treyvon: sc.n("treyvon") },
             button: [
                 { chatID: 9, text: "...", callback: "" }
             ]
@@ -231,8 +233,9 @@ room50.chat = function (chatID) {
             speaker: "tiffany",
             text: "You two are really hitting it off. I guess I could give you two some alone time... Oh yeah, I forgot " + sc.n("candy") + " wanted " +
                 "to see you. Sorry " + sc.n("treyvon") + ", but I have to get " + l10n.characterName("girlname", gv.get("girlname")) + " home.",
+            l10nValues: { candy: sc.n("candy"), treyvon: sc.n("treyvon"), girlname: l10n.characterName("girlname", gv.get("girlname")) },
             button: [
-                { chatID: -1, text: "[Follow " + sc.n("tiffany") + " home]", callback: "followtif" }
+                { chatID: -1, text: "[Follow " + sc.n("tiffany") + " home]", l10nValues: { tiffany: sc.n("tiffany") }, callback: "followtif" }
             ]
         },
         {
@@ -379,6 +382,7 @@ room50.chat = function (chatID) {
             text: sc.n("treyvon") + " only fucks a bitch once. Need to spread my seed far and wide, ya know. " +
                 "Start fucking the same bitch too many times and you get hooked. Why do you think I work here. " +
                 "New opportunities keep flowing to this dick. ",
+            l10nValues: { treyvon: sc.n("treyvon") },
             button: [
                 { chatID: -1, text: "oh. So about that code. Did I convince you? ", callback: "t8" },
             ]

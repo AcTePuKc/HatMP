@@ -330,7 +330,7 @@ room28.main = function () {
                             top: 500,
                             font: 40,
                             hex: "#def8ff",
-                            text: "Estrogen level low. "
+                            text: l10n.t("room.28.notice.estrogenLow", "Estrogen level low.")
                         }, 28);
                         if (!qdress.st[15].ach) {
                             nav.t({
@@ -340,7 +340,7 @@ room28.main = function () {
                                 top: 550,
                                 font: 20,
                                 hex: "#def8ff",
-                                text: "Progress in the game till you can take the FEM 201 Sissy Class"
+                                text: l10n.t("room.28.notice.classProgress", "Progress in the game till you can take the FEM 201 Sissy Class")
                             }, 28);
                         }
                         else {
@@ -351,7 +351,7 @@ room28.main = function () {
                                 top: 550,
                                 font: 20,
                                 hex: "#def8ff",
-                                text: "Take your pills sissy"
+                                text: l10n.t("room.28.notice.takePills", "Take your pills sissy")
                             }, 28);
                         }
                     }
@@ -871,30 +871,40 @@ room28.chat = function (chatID) {
     if (chatID === 999) {
         return {
             chatID: 999,
+            l10nKey: "room.28.chat.999.text",
+            l10nValues: { name: g.sissy[g.internal].name },
             speaker: "me",
-            text: "You've unlocked <span class='hl-pink'>" + g.sissy[g.internal].name + "</span>.",
+            text: "You've unlocked <span class='hl-pink'>{name}</span>.",
             button: [
-                { chatID: -1, text: "Sweet", callback: "returnToRoom" }
+                { chatID: -1, text: "Sweet", l10nKey: "room.28.chat.special.choice.0", callback: "returnToRoom" }
             ]
         };
     }
     else if (chatID > 999) {
         var thisChat = "";
-        if (chatID === 1000)
+        var specialKey = "room.28.chat.1003";
+        if (chatID === 1000) {
             thisChat = "Take one of these experimental pills and you'll see some growth in your chest my little sissy in training.";
-        else if (chatID === 1001)
+            specialKey = "room.28.chat.1000";
+        }
+        else if (chatID === 1001) {
             thisChat = "Take one of these experimental pills and you'll wake up with a more feminine butt my little sissy in training.";
-        else if (chatID === 1002)
+            specialKey = "room.28.chat.1001";
+        }
+        else if (chatID === 1002) {
             thisChat = "So my little sissy in training wants to shrink their little clitty so they'll be forced to only use her " +
                 "sissy pussy. Take this pill tonight my slut.";
+            specialKey = "room.28.chat.1002";
+        }
         else
             thisChat = "You'll look so pretty with dick sucking lips! I'm so glad you know what a slut you are. ";
         return {
             chatID: 998,
+            l10nKey: specialKey + ".text",
             speaker: "missy",
             text: thisChat,
             button: [
-                { chatID: 3, text: "Sweet", callback: "" }
+                { chatID: 3, text: "Sweet", l10nKey: "room.28.chat.special.choice.0", callback: "" }
             ]
         };
     }
@@ -1050,9 +1060,10 @@ room28.chat = function (chatID) {
             {
                 chatID: 16,
                 speaker: "thinking",
+                l10nValues: { landlord: sc.n("landlord") },
                 text: "Holy fuck that was hot. Her wet slippery tongue twisting around my mouth " +
                     "while she played with my dick. Fuck!! This is so wrong! I really " +
-                    "shouldn't keep pushing it with my " + sc.n("landlord") + ". What would people " +
+                    "shouldn't keep pushing it with my {landlord}. What would people " +
                     "think? I should stop. I'm taking advantage of her just so I can nut, but I don't " +
                     "know if I can stop. I need her. I need to be inside her.",
                 button: [
@@ -1184,7 +1195,8 @@ room28.chat = function (chatID) {
             {
                 chatID: 29,
                 speaker: "thinking",
-                text: "I need to make sure I feed " + sc.n("dog") + " tomorrow. ",
+                l10nValues: { dog: sc.n("dog") },
+                text: "I need to make sure I feed {dog} tomorrow. ",
                 button: [
                     { chatID: -1, text: "...", callback: "endDream" }
                 ]

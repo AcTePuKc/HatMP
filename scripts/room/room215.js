@@ -271,10 +271,11 @@ room215.chat = function (chatID) {
             return {
                 chatID: 900,
                 speaker: "!skank",
+                l10nKey: "room.215.chat.900.stinky",
                 text: "Bitch, you smell like an unflushed toilet. You need to take your " +
                     "ass out of here. You're scaring away MY customers.",
                 button: [
-                    { chatID: -1, text: "...bitch", callback: "" }
+                    { chatID: -1, l10nKey: "room.215.chat.900.choice", text: "...bitch", callback: "" }
                 ]
             };
         }
@@ -282,25 +283,28 @@ room215.chat = function (chatID) {
             return {
                 chatID: 900,
                 speaker: "!skank",
+                l10nKey: "room.215.chat.900.bigCock",
                 text: "You need to take that big dick of yours and swing it out of here! ",
                 button: [
-                    { chatID: -1, text: "I do have a big dick 😊", callback: "" }
+                    { chatID: -1, l10nKey: "room.215.chat.900.bigCock.choice", text: "I do have a big dick 😊", callback: "" }
                 ]
             };
         }
         else {
             let txtRand = [
-                "Hahaha! You have such a tiny dick I would charge you double if you tried to fuck me since it would take so long to find it!",
-                "Go back to your room. We all know these guys want to fuck a pussy.",
-                "I don't know why you're trying to sell your ass. Everyone knows sissies give it up for free.",
-                "Your farts smell like cum. ",
+                { key: "room.215.chat.900.random.0", text: "Hahaha! You have such a tiny dick I would charge you double if you tried to fuck me since it would take so long to find it!" },
+                { key: "room.215.chat.900.random.1", text: "Go back to your room. We all know these guys want to fuck a pussy." },
+                { key: "room.215.chat.900.random.2", text: "I don't know why you're trying to sell your ass. Everyone knows sissies give it up for free." },
+                { key: "room.215.chat.900.random.3", text: "Your farts smell like cum. " },
             ];
+            let randomLine = txtRand[g.rand(0, txtRand.length)];
             return {
                 chatID: 900,
                 speaker: "!skank",
-                text: txtRand[g.rand(0, txtRand.length)],
+                l10nKey: randomLine.key,
+                text: randomLine.text,
                 button: [
-                    { chatID: -1, text: "...bitch", callback: "" }
+                    { chatID: -1, l10nKey: "room.215.chat.900.choice", text: "...bitch", callback: "" }
                 ]
             };
         }
@@ -360,7 +364,7 @@ room215.chat = function (chatID) {
             speaker: "river",
             text: "Hey slut! You want my dick up your butt? ",
             button: [
-                { chatID: 6, text: "Fuck off " + sc.n("river") + "! I'm never fucking you! ", callback: "" },
+                { chatID: 6, text: "Fuck off {river}! I'm never fucking you! ", l10nValues: { river: sc.n("river") }, callback: "" },
             ]
         },
         {
@@ -385,15 +389,16 @@ room215.chat = function (chatID) {
             text: "Hey skidmark. figures a loser like you would be in here. I'm going to show you what a real man's cock " +
                 "looks like.",
             button: [
-                { chatID: 9, text: "Fuck off " + sc.n("river") + "! I'm never fucking you! ", callback: "river1" },
+                { chatID: 9, text: "Fuck off {river}! I'm never fucking you! ", l10nValues: { river: sc.n("river") }, callback: "river1" },
             ]
         },
         {
             chatID: 9,
             speaker: "landlord",
-            text: sc.n("me") + "! What the hell! Both of you, get in that room this instant!",
+            text: "{me}! What the hell! Both of you, get in that room this instant!",
+            l10nValues: { me: sc.n("me") },
             button: [
-                { chatID: -1, text: sc.n("landlord") + "! What are you doing here?", callback: "riverstart0" }
+                { chatID: -1, text: "{landlord}! What are you doing here?", l10nValues: { landlord: sc.n("landlord") }, callback: "riverstart0" }
             ]
         },
         {

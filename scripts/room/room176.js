@@ -387,6 +387,7 @@ room176.chat = function (chatID) {
         if(g.internal.love < 1)
         return {
             chatID: 1000,
+            l10nKey: "room.176.oral.feedback.1000.cold",
             speaker: "p",
             text: "That's her piss hole. Try kissing her thigh. ",
             button: [
@@ -395,6 +396,7 @@ room176.chat = function (chatID) {
             };
         return {
             chatID: 1000,
+            l10nKey: "room.176.oral.feedback.1000.warm",
             speaker: "p",
             text: "That's her piss hole. Focus on a different part of her pussy. ",
             button: [
@@ -406,6 +408,7 @@ room176.chat = function (chatID) {
         if (g.internal.love < 1)
             return {
                 chatID: 1001,
+                l10nKey: "room.176.oral.feedback.1001.cold",
                 speaker: "p",
                 text: "She's not a sissy, leave her asshole alone. Try kissing her thigh. ",
                 button: [
@@ -414,6 +417,7 @@ room176.chat = function (chatID) {
             };
         return {
             chatID: 1001,
+            l10nKey: "room.176.oral.feedback.1001.warm",
             speaker: "p",
             text: "She's not a sissy, leave her asshole alone. Focus on her pussy. ",
             button: [
@@ -425,6 +429,7 @@ room176.chat = function (chatID) {
         if (g.internal.love < 1)
             return {
                 chatID: 1002,
+                l10nKey: "room.176.oral.feedback.1002.cold",
                 speaker: "p",
                 text: "You have to warm her up first.  Try kissing her thigh. ",
                 button: [
@@ -433,6 +438,7 @@ room176.chat = function (chatID) {
             };
         return {
             chatID: 1002,
+            l10nKey: "room.176.oral.feedback.1002.warm",
             speaker: "p",
             text: "You have to warm her a bit more before focusing on her clit. Arouse her some more. ",
             button: [
@@ -444,6 +450,7 @@ room176.chat = function (chatID) {
         if (g.internal.love === 2)
             return {
                 chatID: 1003,
+                l10nKey: "room.176.oral.feedback.1003.ready",
                 speaker: "p",
                 text: "Good girl. Now she's warmed up. Lick her clit. ",
                 button: [
@@ -453,6 +460,7 @@ room176.chat = function (chatID) {
         else if (g.internal.love < 1) {
             return {
                 chatID: 1002,
+                l10nKey: "room.176.oral.feedback.1003.cold",
                 speaker: "p",
                 text: "You have to warm her a bit more. Kiss her thigh. ",
                 button: [
@@ -462,6 +470,7 @@ room176.chat = function (chatID) {
         }
         return {
             chatID: 1002,
+            l10nKey: "room.176.oral.feedback.1003.warm",
             speaker: "p",
             text: "Good girl. Keep it up. ",
             button: [
@@ -473,14 +482,16 @@ room176.chat = function (chatID) {
         if (g.internal.love < 2)
             return {
                 chatID: 1002,
+                l10nKey: "room.176.oral.feedback.1004.warm",
                 speaker: "p",
-                text: "Good girl. Now focus on her rose pedals.",
+                text: "Good girl. Now focus on her rose petals.",
                 button: [
                     { chatID: -1, text: "Oh. ok", callback: "oral203_icons" },
                 ]
             };
         return {
             chatID: 1002,
+            l10nKey: "room.176.oral.feedback.1004.ready",
             speaker: "p",
             text: "Good girl. Do it again to warm her up. ",
             button: [
@@ -503,6 +514,7 @@ room176.chat = function (chatID) {
             {
                 chatID: 1,
                 speaker: "!sporty",
+                l10nValues: { p: sc.n("p") },
                 text: "You know we're in Sissy School right? Why would someone as hot as " + sc.n("p") + " fuck someone in this school? " +
                     "Plus what do you think the dildos are for? ",
                 button: [
@@ -529,6 +541,7 @@ room176.chat = function (chatID) {
             {
                 chatID: 4,
                 speaker: "!philbert",
+                l10nValues: { black: sc.n("black") },
                 text: "Didn't you see the flyer? Those chicks are all hot. Even " + sc.n("black") + ". I'm going to fuck them all! " +
                     "Cream in them till all their holes are drooling my cum. Just watch. ",
                 button: [
@@ -692,6 +705,7 @@ room176.chat = function (chatID) {
             {
                 chatID: 22,
                 speaker: "!sporty",
+                l10nValues: { me: sc.n("me") },
                 text: "I hate you guys. I just wanted to suck my dildo, but since " + sc.n("me") + " said yes, I guess I'm in. ",
                 button: [
                     { chatID: 23, text: "Yeah! You better make her cum! ", callback: "oral10" },
@@ -785,11 +799,12 @@ room176.chat = function (chatID) {
             {
                 chatID: 33,
                 speaker: "!philbert",
-                text: "So are your " + sc.n("el") + "'s " + sc.n("eva") + " and " + sc.n("lola") + "? You know I know them " +
+                l10nValues: { els: sc.n("els"), eva: sc.n("eva"), lola: sc.n("lola") },
+                text: "So are " + sc.n("eva") + " and " + sc.n("lola") + " your " + sc.n("els") + "? You know I know them " +
                     "from school. ",
                 button: [
                     { chatID: 36, text: "They are ", callback: "oral20" },
-                    { chatID: -1, text: "Who? I don't know them. " + charisma.getStats(8).txt, callback: "oral20Check" },
+                    { chatID: -1, text: "Who? I don't know them. {charisma}", l10nValues: { charisma: charisma.getStats(8).txt }, callback: "oral20Check" },
                 ]
             },
             {
@@ -833,6 +848,7 @@ room176.chat = function (chatID) {
             {
                 chatID: 38,
                 speaker: "!philbert",
+                l10nValues: { el: sc.n("el") },
                 text: "You can run from me, but you can't run from yourself. I guess your " + sc.n("el") + " will just have to get " +
                     "a text of the true you. Should be interesting when you get home. Unless you want to, you know, do what " +
                     "you were meant to do. ",
@@ -853,7 +869,8 @@ room176.chat = function (chatID) {
             {
                 chatID: 40,
                 speaker: "thinking",
-                text: "Fuck! I just got a text from " + sc.n("eva") + " he really told them! They put together everything! They " +
+                l10nValues: { eva: sc.n("eva") },
+                text: "Fuck! I just got a text from " + sc.n("eva") + ". He really told them! They put together everything! They " +
                     "know I'm a sissy. I don't know if I can show my face at home ever again. Crap. Just because I didn't suck " +
                     "his dick he goes and ruins my life. Fuck! ",
                 button: [
@@ -863,7 +880,8 @@ room176.chat = function (chatID) {
             {
                 chatID: 41,
                 speaker: "thinking",
-                text: "Fuck! I just got a text from " + sc.n("eva") + " he really told them! I was able to convince her he's " +
+                l10nValues: { eva: sc.n("eva") },
+                text: "Fuck! I just got a text from " + sc.n("eva") + ". He really told them! I was able to convince her he's " +
                     "lying, but I don't know if I can slip up with them ever or they'll be able to piece it together. I have to " +
                     "try harder to keep my secret. ",
                 button: [
@@ -907,7 +925,7 @@ room176.chat = function (chatID) {
             {
                 chatID: 46,
                 speaker: "thinking",
-                text: "He totally blackmailed me into sucking his dick. Came on face face and left. He totally used me like some " +
+                text: "He totally blackmailed me into sucking his dick. He came on my face and left. He totally used me like some " +
                     "kind of whore. Fuck I hate him. I'm not his whore. ",
                 button: [
                     { chatID: -1, text: "...", callback: "oralEnd" },
@@ -926,6 +944,7 @@ room176.chat = function (chatID) {
             {
                 chatID: 48,
                 speaker: "!timothy",
+                l10nValues: { p: sc.n("p") },
                 text: "But, " + sc.n("p") + ", I thought sissies only suck cock? Why are we learning about pussies? ",
                 button: [
                     { chatID: 49, text: "...", callback: "" },
@@ -934,6 +953,7 @@ room176.chat = function (chatID) {
             {
                 chatID: 49,
                 speaker: "p",
+                l10nValues: { timothy: sc.n("!timothy") },
                 text: "For once you have a great question " + sc.n("!timothy") + ". As you know, most girls don't want " +
                     "anything to do with a sissy besides shopping. I'm teaching you how to eat pussy in case any of you " +
                     "end up in a threesome, or orgy, and need to please a woman while you're getting fucked in your sloppy " +
@@ -967,6 +987,7 @@ room176.chat = function (chatID) {
             {
                 chatID: 52,
                 speaker: "p",
+                l10nValues: { kareem: sc.n("!kareem") },
                 text: "Wow! We do have some great questions today! Yes " + sc.n("!kareem") + " some girls only cum " +
                     "with a vibrator. In those cases just use the vibrator on her clit and lick or finger her vaginal hole. " +
                     "If there's a real man in the room you can hold the vibrator while he fucks her, or you can eat her ass. " +
@@ -986,6 +1007,7 @@ room176.chat = function (chatID) {
             {
                 chatID: 54,
                 speaker: "p",
+                l10nValues: { chris: sc.n("!chris") },
                 text: "Oh sweet, simple " + sc.n("!chris") + ". Vaginas taste and smell wonderful, unless she " +
                     "has a problem. It's rare and I wouldn't worry too much about the smell. Just put your tongue in " +
                     "there and get to work. A sissy like you will love the smell and taste. ",
@@ -996,6 +1018,7 @@ room176.chat = function (chatID) {
             {
                 chatID: 55,
                 speaker: "p",
+                l10nValues: { me: sc.n("me") },
                 text: "Now enough chit chat. Time for the real thing. My friend Svetlana is kind enough to " +
                     "lend us her pussy to practice on. Each of you will get a turn trying to please her. It " +
                     "shouldn't be too hard. Svetlana is multiorgasmic, cums really easy. " + sc.n("me") +
@@ -1117,10 +1140,11 @@ room176.chat = function (chatID) {
             {
                 chatID: 66,
                 speaker: "tudor",
+                l10nValues: { time: nav.convertTime(18, 0) },
                 text: "So I know the life of a student is a busy one which is why I'll give you a full " +
                     "week to get these tasks done. Don't forget to attend the event at the strip club on " +
                     "Friday all night and our beauty contest in the Pink Room Next door on Saturday before " +
-                    nav.convertTime(18, 0) + ". The girl with the highest score will get a special prize. ",
+                    "{time}. The girl with the highest score will get a special prize. ",
                 button: [
                     { chatID: 67, text: "...", callback: "" },
                 ]
@@ -1179,6 +1203,7 @@ room176.chat = function (chatID) {
             {
                 chatID: 73,
                 speaker: "black",
+                l10nValues: { martha: sc.n("martha") },
                 text: "Like " + sc.n("martha") + " was saying. The school will remain unlocked between " +
                     "classes. For those of you that know you're still disgusting little piggies that " +
                     "need to be punished you can take the elevator to the black room and receive your " +
@@ -1190,6 +1215,7 @@ room176.chat = function (chatID) {
             {
                 chatID: 74,
                 speaker: "p",
+                l10nValues: { martha: sc.n("martha"), black: sc.n("black") },
                 text: "While you will find both " + sc.n("martha") + " and " + sc.n("black") +
                     " here at the school, you'll find me across the hallway in the Pink Room. " +
                     "We all know that makeup, dresses, panties, and sexy lingerie is really " +
@@ -1217,6 +1243,7 @@ room176.chat = function (chatID) {
             {
                 chatID: 76,
                 speaker: "missy",
+                l10nValues: { thomas: sc.n("!thomas"), me: sc.n("me") },
                 text: "...I can't say enough nice things about " + sc.n("!thomas") + 
                     "here. And finally " + sc.n("me") + ". A diamond in the rough " +
                     "when I found her. Step up to thank each of us. ",
@@ -1227,6 +1254,7 @@ room176.chat = function (chatID) {
             {
                 chatID: 77,
                 speaker: "me",
+                l10nValues: { p: sc.n("p") },
                 text: "Thank you " + sc.n("p") + " for the pleasure of serving you " +
                     "and for teaching me how to open up and use my holes. ",
                 button: [
@@ -1236,6 +1264,7 @@ room176.chat = function (chatID) {
             {
                 chatID: 78,
                 speaker: "me",
+                l10nValues: { black: sc.n("black") },
                 text: "Thank you " + sc.n("black") + " for the pleasure of serving you " +
                     "and for teaching me how to handle the pain of servitude. ",
                 button: [
@@ -1245,6 +1274,7 @@ room176.chat = function (chatID) {
             {
                 chatID: 79,
                 speaker: "me",
+                l10nValues: { martha: sc.n("martha") },
                 text: "Thank you " + sc.n("martha") + " for the pleasure of serving you " +
                     "and for teaching me to be a proper lady. ",
                 button: [
@@ -1254,6 +1284,7 @@ room176.chat = function (chatID) {
             {
                 chatID: 80,
                 speaker: "me",
+                l10nValues: { missy: sc.n("missy") },
                 text: "Thank you " + sc.n("missy") + " for the pleasure of serving you " +
                     "and for teaching me that I am truly a sissy. ",
                 button: [
@@ -1289,6 +1320,7 @@ room176.chat = function (chatID) {
             {
                 chatID: 84,
                 speaker: "!kareem",
+                l10nValues: { chris: sc.n("!chris") },
                 text: "It's so crazy that it's over. I feel like a totally new girl " +
                     "and can't remember life before this school. I'll miss seeing all " +
                     "of you, but I guess I'll see you around. Hey, where's " + sc.n("!chris") +
@@ -1300,6 +1332,7 @@ room176.chat = function (chatID) {
             {
                 chatID: 85,
                 speaker: "!thomas",
+                l10nValues: { sporty: sc.n("sporty") },
                 text: "She's already inside. A better question is why are you naked " + 
                     sc.n("sporty") + "? We're in the middle of a public hallway!",
                 button: [

@@ -586,15 +586,17 @@ room16.chat = function (chatID) {
         {
             chatID: 5,
             speaker: "lola",
-            text: sc.n("eva") + " and I are so excited you're allowed back! Quick, come upstairs to our room!",
+            text: "{eva} and I are so excited you're allowed back! Quick, come upstairs to our room!",
+            l10nValues: { eva: sc.n("eva") },
             button: [
-                { chatID: -1, text: "Follow Lola", callback: "upstairs" }
+                { chatID: -1, text: "Follow {lola}", l10nValues: { lola: sc.n("lola") }, callback: "upstairs" }
             ]
         },
         {
             chatID: 6,
             speaker: "landlord",
-            text: "Oh my, " + sc.n("me") + ", there's something different about you.",
+            text: "Oh my, {me}, there's something different about you.",
+            l10nValues: { me: sc.n("me") },
             button: [
                 { chatID: 7, text: "oh, hahaha, what?", callback: "" }
             ]
@@ -618,9 +620,10 @@ room16.chat = function (chatID) {
         {
             chatID: 9,
             speaker: "lola",
-            text: "I support you! We should have known this entire time. I'm so happy now I have two " + sc.n("el") + ". I feel so bad I never knew until now. It must have been so hard having these feelings and not telling anyone.",
+            text: "I support you! We should have known this entire time. I'm so happy now I have two {els}. I feel so bad I never knew until now. It must have been so hard having these feelings and not telling anyone.",
+            l10nValues: { els: sc.els() },
             button: [
-                { chatID: 10, text: "Oh well, thank you " + sc.n("lola") + ".", callback: "" }
+                { chatID: 10, text: "Oh well, thank you {lola}.", l10nValues: { lola: sc.n("lola") }, callback: "" }
             ]
         },
         {
@@ -634,7 +637,8 @@ room16.chat = function (chatID) {
         {
             chatID: 11,
             speaker: "lola",
-            text: sc.n("eva") + "!! Don't be mean! " + sc.n("me") + " is going through a lot right now and you're just being a butt...",
+            text: "{eva}!! Don't be mean! {me} is going through a lot right now and you're just being a butt...",
+            l10nValues: { eva: sc.n("eva"), me: sc.n("me") },
             button: [
                 { chatID: 12, text: "...", callback: "" }
             ]
@@ -642,7 +646,8 @@ room16.chat = function (chatID) {
         {
             chatID: 12,
             speaker: "landlord",
-            text: "Enough, you two. " + sc.n("me") + ", I'm sorry you're going through a lot right now. We all support you, don't we, " + sc.n("eva") + "?",
+            text: "Enough, you two. {me}, I'm sorry you're going through a lot right now. We all support you, don't we, {eva}?",
+            l10nValues: { me: sc.n("me"), eva: sc.n("eva") },
             button: [
                 { chatID: 13, text: "...", callback: "" }
             ]
@@ -650,7 +655,8 @@ room16.chat = function (chatID) {
         {
             chatID: 13,
             speaker: "eva",
-            text: "Yes " + sc.n("landlord") + ".",
+            text: "Yes {landlord}.",
+            l10nValues: { landlord: sc.n("landlord") },
             button: [
                 { chatID: 14, text: "...", callback: "" }
             ]
@@ -658,7 +664,8 @@ room16.chat = function (chatID) {
         {
             chatID: 14,
             speaker: "landlord",
-            text: "I know this is hard, but we are all going to help you with your change. I'm so happy to have a house full of girls. We're going to help you on your journey to becoming our little girl. Girls, I'm going to take " + sc.n("me") + " and help her start her journey. You girls, run along.",
+            text: "I know this is hard, but we are all going to help you with your change. I'm so happy to have a house full of girls. We're going to help you on your journey to becoming our little girl. Girls, I'm going to take {me} and help her start her journey. You girls, run along.",
+            l10nValues: { me: sc.n("me") },
             button: [
                 { chatID: 15, text: "...", callback: "" }
             ]
@@ -666,9 +673,10 @@ room16.chat = function (chatID) {
         {
             chatID: 15,
             speaker: "lola",
-            text: "Yes " + sc.n("landlord") + ". " + sc.n("me") + ", we're really happy to have a new girl around the house and we'll help you with anything you need!",
+            text: "Yes {landlord}. {me}, we're really happy to have a new girl around the house and we'll help you with anything you need!",
+            l10nValues: { landlord: sc.n("landlord"), me: sc.n("me") },
             button: [
-                { chatID: 16, text: "Thanks " + sc.n("lola") + ", I'm glad you support me.", callback: "" }
+                { chatID: 16, text: "Thanks {lola}, I'm glad you support me.", l10nValues: { lola: sc.n("lola") }, callback: "" }
             ]
         },
         {
@@ -797,7 +805,7 @@ room16.chat = function (chatID) {
             speaker: "landlord",
             text: "Awww, how cute. Now lick it up like a good girl.",
             button: [
-                { chatID: 32, text: "Yes " + sc.n("landlord"), callback: "s15" }
+                { chatID: 32, text: "Yes {landlord}", l10nValues: { landlord: sc.n("landlord") }, callback: "s15" }
             ]
         },
         {
@@ -844,7 +852,8 @@ room16.chat = function (chatID) {
         {
             chatID: 37,
             speaker: "landlord",
-            text: "Now cum for " + sc.n("landlord") + " like a good little girl.",
+            text: "Now cum for {landlord} like a good little girl.",
+            l10nValues: { landlord: sc.n("landlord") },
             button: [
                 { chatID: 38, text: "*groan*", callback: "s14" }
             ]
@@ -862,7 +871,7 @@ room16.chat = function (chatID) {
             speaker: "landlord",
             text: "Good girl. Now scram and let me watch my shows.",
             button: [
-                { chatID: -1, text: "Yes " + sc.n("landlord"), callback: "s16x" }
+                { chatID: -1, text: "Yes {landlord}", l10nValues: { landlord: sc.n("landlord") }, callback: "s16x" }
             ]
         },
         {
@@ -870,7 +879,7 @@ room16.chat = function (chatID) {
             speaker: "landlord",
             text: "You've lost your mind thinking you can just waltz in here after what you pulled. I'm not ready to let you back into MY house!",
             button: [
-                { chatID: 41, text: "Yes " + sc.n("landlord"), callback: "leave" }
+                { chatID: 41, text: "Yes {landlord}", l10nValues: { landlord: sc.n("landlord") }, callback: "leave" }
             ]
         },
         {
@@ -886,13 +895,14 @@ room16.chat = function (chatID) {
             speaker: "landlord",
             text: "Let's check to make sure you're wearing your chastity cage if you're coming into my home. Show it to me.",
             button: [
-                { chatID: -1, text: "Yes " + sc.n("landlord") + ".", callback: "inspect" }
+                { chatID: -1, text: "Yes {landlord}.", l10nValues: { landlord: sc.n("landlord") }, callback: "inspect" }
             ]
         },
         {
             chatID: 43,
             speaker: "landlord",
-            text: "That's a good " + gender.pronoun("girl") + ".",
+            text: "That's a good {girl}.",
+            l10nValues: { girl: gender.pronoun("girl") },
             button: [
                 { chatID: -1, text: "🤭", callback: "resetundo" }
             ]
@@ -952,9 +962,10 @@ room16.chat = function (chatID) {
         {
             chatID: 50,
             speaker: "landlord",
-            text: "It does my heart good to hear that. From now on you and " + sc.n("lola") + " are going to " +
-                "share her room. " + sc.n("eva") + " will get your room. I'm sure she could use the privacy. Also " +
+            text: "It does my heart good to hear that. From now on you and {lola} are going to " +
+                "share her room. {eva} will get your room. I'm sure she could use the privacy. Also " +
                 "you can attend to her needs now. A pregnant woman has many needs that have to be met. ",
+            l10nValues: { lola: sc.n("lola"), eva: sc.n("eva") },
             button: [
                 { chatID: 51, text: "...", callback: "" }
             ]
@@ -1003,7 +1014,8 @@ room16.chat = function (chatID) {
         {
             chatID: 56,
             speaker: "lola",
-            text: "Oh. You know " + sc.n("tom") + ". He's my fiance! We're set to be married! ",
+            text: "Oh. You know {tom}. He's my fiance! We're set to be married! ",
+            l10nValues: { tom: sc.n("tom") },
             button: [
                 { chatID: 57, text: "oh", callback: "" }
             ]
@@ -1012,12 +1024,13 @@ room16.chat = function (chatID) {
             chatID: 57,
             speaker: "landlord",
             text: "Oh honey. When we heard about what happened we thought you were gone for good. We all " +
-                "cried for a week. Luckily " + sc.n("tom") + " was here for " + sc.n("lola") + " and really " +
+                "cried for a week. Luckily {tom} was here for {lola} and really " +
                 "he was here for all of us. And when we found out he was living on the street we invited " +
-                "him into our home. Now " + sc.n("lola") + "'s my little girl, but she's not a little " +
-                "girl anymore. That's why I let him sleep in " + sc.n("lola") + "'s room. ",
+                "him into our home. Now {lola}'s my little girl, but she's not a little " +
+                "girl anymore. That's why I let him sleep in {lola}'s room. ",
+            l10nValues: { tom: sc.n("tom"), lola: sc.n("lola") },
             button: [
-                { chatID: 58, text: "Cool, so where does " + sc.n("eva") + " sleep? ", callback: "" }
+                { chatID: 58, text: "Cool, so where does {eva} sleep? ", l10nValues: { eva: sc.n("eva") }, callback: "" }
             ]
         },
         {
@@ -1032,9 +1045,10 @@ room16.chat = function (chatID) {
         {
             chatID: 59,
             speaker: "landlord",
-            text: "*sigh* So I can't just kick " + sc.n("tom") + " into the streets. And there's no way I'm " +
-                "going to make either of you leave, so " + sc.n("eva") + " and " + sc.n("me") + " will just " +
+            text: "*sigh* So I can't just kick {tom} into the streets. And there's no way I'm " +
+                "going to make either of you leave, so {eva} and {me} will just " +
                 "have to share your room. It's only for now until these two can get their own place. ",
+            l10nValues: { tom: sc.n("tom"), eva: sc.n("eva"), me: sc.n("me") },
             button: [
                 { chatID: 60, text: "Wha? ", callback: "" }
             ]
@@ -1051,10 +1065,11 @@ room16.chat = function (chatID) {
         {
             chatID: 61,
             speaker: "landlord",
-            text: "Enough. I don't want to hear it. You two will share and that's the end of it. " + sc.n("me") +
-                " we're all so glad you're back if you need anything just let us know. ",
+            text: "Enough. I don't want to hear it. You two will share and that's the end of it. {me}," +
+                " we're all so glad you're back. If you need anything, just let us know. ",
+            l10nValues: { me: sc.n("me") },
             button: [
-                { chatID: -1, text: "Thanks " + sc.n("landlord") + ". ", callback: "reset" }
+                { chatID: -1, text: "Thanks {landlord}.", l10nValues: { landlord: sc.n("landlord") }, callback: "reset" }
             ]
         },
         {
@@ -1077,9 +1092,10 @@ room16.chat = function (chatID) {
         {
             chatID: 64,
             speaker: "thinking",
-            text: "What the hell! Where's my " + sc.n("landlord") + "? She would kill any of us if she " +
-                "caught us fucking on her couch! And " + sc.n("lola") + " just taking cock without any " +
+            text: "What the hell! Where's {landlord}? She would kill any of us if she " +
+                "caught us fucking on her couch! And {lola} just taking cock without any " +
                 "embarrassment. Also who the hell is that? ",
+            l10nValues: { landlord: sc.n("landlord"), lola: sc.n("lola") },
             button: [
                 { chatID: 65, text: "...", callback: "cumdump3" }
             ]
@@ -1087,8 +1103,8 @@ room16.chat = function (chatID) {
         {
             chatID: 65,
             speaker: "cult",
-            text: "Oh hey! It's the new slut! Clean your " + sc.el() + "'s pussy off " +
-                "my cock slut!",
+            text: "Oh hey! It's the new slut! Clean your {el}'s pussy off my cock, slut!",
+            l10nValues: { el: sc.el() },
             button: [
                 { chatID: 66, text: "Hey! I'm not....", callback: "cumdump4" }
             ]
@@ -1122,9 +1138,10 @@ room16.chat = function (chatID) {
         {
             chatID: 69,
             speaker: "lola",
-            text: "Oh my. Yes! I tried to read a book in my room, but " + sc.n("eva") + "'s so loud " +
+            text: "Oh my. Yes! I tried to read a book in my room, but {eva}'s so loud " +
                 "when she has sex. So I came down here to read and that guy just walked in and bent me " +
                 "over. I'll never finish my book! ",
+            l10nValues: { eva: sc.n("eva") },
             button: [
                 { chatID: 70, text: "....", callback: "cumdump7" }
             ]
@@ -1140,11 +1157,12 @@ room16.chat = function (chatID) {
         {
             chatID: 71,
             speaker: "landlord",
-            text: "*sigh* Yes. Again. It's a long story, but " + sc.n("bigguy") + " said a girl's purpose is to be bred. If a girl " +
+            text: "*sigh* Yes. Again. It's a long story, but {bigguy} said a girl's purpose is to be bred. If a girl " +
                 "can't be bred she has no purpose. He then took all our birth control pills and flushed them down " +
-                "the toilet and invited all his friends at CUM over. Made me put everything in his name. It was a rough losing my Sperm " +
+                "the toilet and invited all his friends at CUM over. He made me put everything in his name. It was rough losing my Sperm " +
                 "Bank, but we are better now that we are cum receptacles. Gives life a new meaning. No " +
                 "need to worry about silly things like school or work. We're better as mothers. ",
+            l10nValues: { bigguy: sc.n("bigguy") },
             button: [
                 { chatID: -1, text: "but...", callback: "cumdump8" }
             ]
@@ -1152,11 +1170,12 @@ room16.chat = function (chatID) {
         {
             chatID: 72,
             speaker: "landlord",
-            text: "Shhh. No thinking. You're wearing too many clothes to be in this house. " + sc.n("bigguy") +
+            text: "Shhh. No thinking. You're wearing too many clothes to be in this house. {bigguy}" +
                 " also said cum sluts don't wear clothes at home. Now be a good little girl and strip off " +
                 "those nasty clothes. ",
+            l10nValues: { bigguy: sc.n("bigguy") },
             button: [
-                { chatID: -1, text: "Yes " + sc.n("landlord") + " [strip slut]", callback: "cumdump9" },
+                { chatID: -1, text: "Yes {landlord} [strip slut]", l10nValues: { landlord: sc.n("landlord") }, callback: "cumdump9" },
                 { chatID: -1, text: "No way! Run away from home! ", callback: "leave" },
             ]
         },
@@ -1165,9 +1184,10 @@ room16.chat = function (chatID) {
             speaker: "landlord",
             text: "Oh my! They really did give you a vagina! I can't wait for the boys to get you pregnant! " +
                 "You're going to look so cute with a baby in you! It really does make the skin glow. I'm sure " +
-                "the boys will be so excited to see who can impregnate you first. When " + sc.n("bigguy") +
-                " let the boys come over the first time, poor " + sc.n("lola") + " had so many penises ejaculate " +
+                "the boys will be so excited to see who can impregnate you first. When {bigguy}" +
+                " let the boys come over the first time, poor {lola} had so many penises ejaculate " +
                 "in her vagina she kept slipping on all the cum leaking out of her. ",
+            l10nValues: { bigguy: sc.n("bigguy"), lola: sc.n("lola") },
             button: [
                 { chatID: 75, text: "...", callback: "" },
             ]
@@ -1189,7 +1209,7 @@ room16.chat = function (chatID) {
             text: "Remember, a girl never says no to the boys. We're happiest when they're happy. Now " +
                 "you three run along and play. I'm going to catch up on my shows while I have a chance. ",
             button: [
-                { chatID: -1, text: "Yes " + sc.n("landlord") + ". ", callback: "reset" },
+                { chatID: -1, text: "Yes {landlord}.", l10nValues: { landlord: sc.n("landlord") }, callback: "reset" },
             ]
         },
     ];

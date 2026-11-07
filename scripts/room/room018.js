@@ -94,16 +94,18 @@ room18.chat = function (chatID) {
         {
             chatID: 1,
             speaker: "me",
+            l10nKey: "room.18.enoughForToday",
             text: "I think I've played with my butthole enough today.",
             button: []
         },
         {
             chatID: 2,
             speaker: "me",
+            l10nKey: "room.18.lubeThought",
             text: "hmmm slut lube for my butt",
             button: [
-                { chatID: -1, text: "I want to work on stretching my butthole.", callback: "loadRoom19" },
-                { chatID: -1, text: "Not in the mood to play backdoor tag.", callback: "" }
+                { chatID: -1, l10nKey: "room.18.stretchChoice", text: "I want to work on stretching my butthole.", callback: "loadRoom19" },
+                { chatID: -1, l10nKey: "room.18.notInMoodChoice", text: "Not in the mood to play backdoor tag.", callback: "" }
             ]
         }
     ];

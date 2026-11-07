@@ -35,10 +35,24 @@ room320.chatcatch = function (callback) {
 
 room320.chat = function (chatID) {
     if (chatID === 999) {
+        var missingClothing = String(cl.hasoutfit("public")).replace(/<[^>]*>/g, "").trim();
+        var missingClothingKey = {
+            "shirt": "room.316.missing.shirt",
+            "pants": "room.316.missing.pants",
+            "shirt and pants": "room.316.missing.shirtAndPants",
+            "underwear": "room.316.missing.underwear",
+            "boy's underwear": "room.316.missing.boysUnderwear",
+            "Can't wear a bra": "room.316.missing.bra",
+            "bra": "room.316.missing.bra"
+        }[missingClothing];
+        if (missingClothingKey)
+            missingClothing = l10n.t(missingClothingKey, missingClothing);
         return {
             chatID: 999,
             speaker: "thinking",
-            text: "I'm missing my " + cl.hasoutfit("public") + ". ",
+            l10nKey: "room.320.chat.999.text",
+            l10nValues: { missing: missingClothing },
+            text: "I'm missing my {missing}.",
             button: []
         };
     }

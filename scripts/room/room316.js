@@ -1338,11 +1338,11 @@ room316.chat = function (chatID) {
             return {
                 chatID: 999,
                 speaker: "janice",
-                text: "Great! I've heard such great things about Dorcia. Come pick me up " +
-                    "tomorrow before " + nav.convertTime(20, 0) + "! I'll make it worth your time and money! It's a bit pricey " +
-                    "so don't forget your wallet. Hehe",
+                l10nKey: "room.316.chat.999.saturday.text",
+                l10nValues: { time: nav.convertTime(20, 0) },
+                text: "Great! I've heard such great things about Dorcia. Come pick me up tomorrow before {time}! I'll make it worth your time and money! It's a bit pricey so don't forget your wallet. Hehe",
                 button: [
-                    { chatID: 14, text: "Oh yeah. That place is like $100 for the two of us. ", callback: "" }
+                    { chatID: 14, l10nKey: "room.316.chat.999.choice.0", text: "Oh yeah. That place is like $100 for the two of us. ", callback: "" }
                 ]
             }
         }
@@ -1350,11 +1350,11 @@ room316.chat = function (chatID) {
             return {
                 chatID: 999,
                 speaker: "janice",
-                text: "Great! I've heard such great things about Dorcia. Come pick me up " +
-                    "on Friday before " + nav.convertTime(20, 0) + ". I'll make it worth your time and money! It's a bit pricey " +
-                    "so don't forget your wallet. Hehe",
+                l10nKey: "room.316.chat.999.friday.text",
+                l10nValues: { time: nav.convertTime(20, 0) },
+                text: "Great! I've heard such great things about Dorcia. Come pick me up on Friday before {time}. I'll make it worth your time and money! It's a bit pricey so don't forget your wallet. Hehe",
                 button: [
-                    { chatID: 14, text: "Oh yeah. That place is like $100 for the two of us. ", callback: "" }
+                    { chatID: 14, l10nKey: "room.316.chat.999.choice.0", text: "Oh yeah. That place is like $100 for the two of us. ", callback: "" }
                 ]
             }
         }
@@ -1364,9 +1364,10 @@ room316.chat = function (chatID) {
             return {
                 chatID: 998,
                 speaker: "me",
+                l10nKey: "room.316.chat.998.shortMoney.text",
                 text: "I have a confession. I don't quite have enough for Dorcia. ",
                 button: [
-                    { chatID: 16, text: "...", callback: "" }
+                    { chatID: 16, l10nKey: "room.316.chat.998.shortMoney.choice.0", text: "...", callback: "" }
                 ]
             };
         }
@@ -1375,10 +1376,11 @@ room316.chat = function (chatID) {
             return {
                 chatID: 998,
                 speaker: "janice",
-                text: "Hi you! I'm so excited for our date! Let me change really quick. Come " +
-                    "with me " + sc.n("dog") + ". ",
+                l10nKey: "room.316.chat.998.ready.text",
+                l10nValues: { dog: sc.n("dog") },
+                text: "Hi you! I'm so excited for our date! Let me change really quick. Come with me, {dog}.",
                 button: [
-                    { chatID: 17, text: "Sure.", callback: "time" }
+                    { chatID: 17, l10nKey: "room.316.chat.998.choice.0", text: "Sure.", callback: "time" }
                 ]
             };
         }
@@ -1387,18 +1389,33 @@ room316.chat = function (chatID) {
         return {
             chatID: 997,
             speaker: "me",
-            text: "Oh. I only have $" + g.internal + ". It's all yours to help pay your bills. ",
+            l10nKey: "room.316.chat.997.text",
+            l10nValues: { amount: g.internal },
+            text: "Oh. I only have ${amount}. It's all yours to help pay your bills. ",
             button: [
                 { chatID: -1, text: "...", callback: "buildMenu" }
             ]
         };
     }
     else if (chatID === 800) {
-        var neededClothing = cl.hasoutfit("public");
+        var missingClothing = String(cl.hasoutfit("public")).replace(/<[^>]*>/g, "").trim();
+        var missingClothingKey = {
+            "shirt": "room.316.missing.shirt",
+            "pants": "room.316.missing.pants",
+            "shirt and pants": "room.316.missing.shirtAndPants",
+            "underwear": "room.316.missing.underwear",
+            "boy's underwear": "room.316.missing.boysUnderwear",
+            "Can't wear a bra": "room.316.missing.bra",
+            "bra": "room.316.missing.bra"
+        }[missingClothing];
+        if (missingClothingKey)
+            missingClothing = l10n.t(missingClothingKey, missingClothing);
         return {
             chatID: 800,
             speaker: "thinking",
-            text: "I can't leave. I'm missing my " + neededClothing,
+            l10nKey: "room.316.chat.800.text",
+            l10nValues: { missing: missingClothing },
+            text: "I can't leave without my {missing}.",
             button: [
                 { chatID: -1, text: "...", callback: "reset" }
             ]
@@ -1489,8 +1506,9 @@ room316.chat = function (chatID) {
             {
                 chatID: 0,
                 speaker: "janice",
-                text: "I'm so glad you came by! I was just about to take " + sc.n("dog") + " for a " +
-                    "walk. Join me. ",
+                l10nKey: "room.316.chat.0.text",
+                l10nValues: { dog: sc.n("dog") },
+                text: "I'm so glad you came by! I was just about to take {dog} for a walk. Join me.",
                 button: [
                     { chatID: 1, text: "Sure", callback: "walk" }
                 ]
@@ -1545,8 +1563,9 @@ room316.chat = function (chatID) {
             {
                 chatID: 6,
                 speaker: "janice",
-                text: "Let's head back. My back is getting sore. My little " + sc.n("dog") + " could walk for " +
-                    "miles if I let him. ",
+                l10nKey: "room.316.chat.6.text",
+                l10nValues: { dog: sc.n("dog") },
+                text: "Let's head back. My back is getting sore. My little {dog} could walk for miles if I let him.",
                 button: [
                     { chatID: 7, text: "Sure ", callback: "talk" }
                 ]
@@ -1620,8 +1639,9 @@ room316.chat = function (chatID) {
             {
                 chatID: 15,
                 speaker: "janice",
-                text: "Hi you! I'm so excited for our date! Let me change really quick. Come " +
-                    "with me " + sc.n("dog") + ". ",
+                l10nKey: "room.316.chat.15.text",
+                l10nValues: { dog: sc.n("dog") },
+                text: "Hi you! I'm so excited for our date! Let me change really quick. Come with me, {dog}.",
                 button: [
                     { chatID: 17, text: "Sure.", callback: "time" }
                 ]
@@ -1897,6 +1917,7 @@ room316.chat = function (chatID) {
             {
                 chatID: 47,
                 speaker: "janice",
+                l10nIgnore: true,
                 text: "Not used ",
                 button: [
                     { chatID: 48, text: "Oh yeah. Probably for the best. ", callback: "" }
@@ -1905,7 +1926,9 @@ room316.chat = function (chatID) {
             {
                 chatID: 48,
                 speaker: "janice",
-                text: "Yes. For the best. I like you locked up like that. Good night. Come to bed " + sc.n("dog") + ".",
+                l10nKey: "room.316.chat.48.text",
+                l10nValues: { dog: sc.n("dog") },
+                text: "Yes. For the best. I like you locked up like that. Good night. Come to bed, {dog}.",
                 button: [
                     { chatID: -1, text: "G'night.", callback: "leave" }
                 ]
@@ -1913,10 +1936,9 @@ room316.chat = function (chatID) {
             {
                 chatID: 49,
                 speaker: "janice",
-                text: "Hehe. I'm such a good girlfriend. Don't expect that every time mister. " +
-                    "That was just a thank you for taking me out to my new favorite restaurant. Now " +
-                    "me and " + sc.n("dog") + " need to get some sleep. Nighty night my big strong " +
-                    "handsome man. Love you! ",
+                l10nKey: "room.316.chat.49.text",
+                l10nValues: { dog: sc.n("dog") },
+                text: "Hehe. I'm such a good girlfriend. Don't expect that every time, mister. That was just a thank you for taking me out to my new favorite restaurant. Now {dog} and I need to get some sleep. Nighty night, my big strong handsome man. Love you!",
                 button: [
                     { chatID: -1, text: "Love you too", callback: "leave" }
                 ]
@@ -1948,8 +1970,9 @@ room316.chat = function (chatID) {
             {
                 chatID: 53,
                 speaker: "janice",
-                text: "Oh my god. No. I just bent over to pick up some trash and " + sc.n("dog") + 
-                    " here jumped on me and knocked me over! I'm so embarrassed. He surprised me.  ",
+                l10nKey: "room.316.chat.53.text",
+                l10nValues: { dog: sc.n("dog") },
+                text: "Oh my god. No. I just bent over to pick up some trash and {dog} here jumped on me and knocked me over! I'm so embarrassed. He surprised me.",
                 button: [
                     { chatID: 54, text: "Oh...", callback: "task3_4" }
                 ]
@@ -2121,10 +2144,9 @@ room316.chat = function (chatID) {
             {
                 chatID: 73,
                 speaker: "janice",
-                text: "Oh my god. I'm so glad you stopped by! I have to run and help my aunt Bess for a " +
-                    "week and I can't take " + sc.n("dog") + ". I hate to do this to you, but I don't " +
-                    "have anyone I can trust. Can you be the best boyfriend ever and watch " + sc.n("dog") +
-                    "? I would mean the world to me and I would owe you big time! ",
+                l10nKey: "room.316.chat.73.text",
+                l10nValues: { dog: sc.n("dog") },
+                text: "Oh my god. I'm so glad you stopped by! I have to run and help my aunt Bess for a week and I can't take {dog}. I hate to do this to you, but I don't have anyone I can trust. Can you be the best boyfriend ever and watch {dog}? It would mean the world to me and I would owe you big time!",
                 button: [
                     { chatID: 84, text: "How big time? ", callback: "" },
                 ]
@@ -2132,9 +2154,9 @@ room316.chat = function (chatID) {
             {
                 chatID: 74,
                 speaker: "janice",
-                text: "Oh my. I guess you haven't met " + sc.n("dog") + " yet. He thinks he's the " +
-                    "alpha and gets angry if there's some he perceives as a threat to me. Quick get " +
-                    "down on all fours and put your head to the floor to show you're not a threat. ",
+                l10nKey: "room.316.chat.74.text",
+                l10nValues: { dog: sc.n("dog") },
+                text: "Oh my. I guess you haven't met {dog} yet. He thinks he's the alpha and gets angry if he perceives someone as a threat to me. Quick, get down on all fours and put your head to the floor to show you're not a threat.",
                 button: [
                     { chatID: 76, text: "[Be the beta]", callback: "task0_2" },
                     { chatID: 115, text: "I'm not getting on my knees! I'm the Alpha!", callback: "task0_1a" },
@@ -2143,8 +2165,9 @@ room316.chat = function (chatID) {
             {
                 chatID: 75,
                 speaker: "janice",
-                text: "Well I can't date someone who doesn't respect " + sc.n("dog") + "! We're " +
-                    "over! I never want to see such a mean-y again! ",
+                l10nKey: "room.316.chat.75.text",
+                l10nValues: { dog: sc.n("dog") },
+                text: "Well I can't date someone who doesn't respect {dog}! We're over! I never want to see such a meanie again!",
                 button: [
                     { chatID: -1, text: "Fine! Bye.", callback: "breakupFirst" },
                 ]
@@ -2228,11 +2251,9 @@ room316.chat = function (chatID) {
             {
                 chatID: 85,
                 speaker: "janice",
-                text: "I knew you would! The dog food is next to his bowl, come by once a day to feed, water " +
-                    "and play with him. I'll be back in a week. " +
-                    "Please take care of my precious little " + sc.n("dog") + " for me. He's my world! " +
-                    "This is really important, don't give him any peanut butter, just the dog food. He goes crazy " +
-                    "for peanut butter and gets hard to control.  ",
+                l10nKey: "room.316.chat.85.text",
+                l10nValues: { dog: sc.n("dog") },
+                text: "I knew you would! The dog food is next to his bowl. Come by once a day to feed him, give him water, and play with him. I'll be back in a week. Please take care of my precious little {dog} for me. He's my world! This is really important: don't give him peanut butter, just dog food. He goes crazy for peanut butter and gets hard to control.",
                 button: [
                     { chatID: 86, text: "Feed and water him every day.", callback: "" },
                 ]
@@ -2309,8 +2330,9 @@ room316.chat = function (chatID) {
             {
                 chatID: 94,
                 speaker: "me",
-                text: "OUCH! Hey, give me back my clothes! How embarrassing that I'm " + sc.n("dog") +
-                    "'s submissive.",
+                l10nKey: "room.316.chat.94.text",
+                l10nValues: { dog: sc.n("dog") },
+                text: "OUCH! Hey, give me back my clothes! How embarrassing that I'm {dog}'s submissive.",
                 button: [
                     { chatID: -1, text: "...", callback: "reset" },
                 ]
@@ -2336,7 +2358,9 @@ room316.chat = function (chatID) {
             {
                 chatID: 97,
                 speaker: "me",
-                text: "Aaaaaaa!!! Bad " + sc.n("dog") + "! No. No. Don't put that in there! Bad! ",
+                l10nKey: "room.316.chat.97.text",
+                l10nValues: { dog: sc.n("dog") },
+                text: "Aaaaaaa!!! Bad {dog}! No. No. Don't put that in there! Bad! ",
                 button: [
                     { chatID: 98, text: "...", callback: "dsex2" },
                 ]
@@ -2371,11 +2395,9 @@ room316.chat = function (chatID) {
             {
                 chatID: 101,
                 speaker: "me",
-                text: "Oh man. That was the most embarrassing thing ever to happen to me. Do " +
-                    "you think they posted that online. I would hate for anyone I know to see it. " +
-                    "And " + sc.n("cecilia") + " seeing me and not helping. And you, " + sc.n("dog") +
-                    " have to stop doing that in public! *sigh* I know you won't since I'm your bitch, " +
-                    "and you do what ever you want to me. But really. Please stop raping me in public. ",
+                l10nKey: "room.316.chat.101.text",
+                l10nValues: { cecilia: sc.n("cecilia"), dog: sc.n("dog") },
+                text: "Oh man. That was the most embarrassing thing ever to happen to me. Do you think they posted that online? I would hate for anyone I know to see it. And {cecilia} saw me and didn't help. And you, {dog}, have to stop doing that in public! *sigh* I know you won't since I'm your bitch, and you do whatever you want to me. But really. Please stop raping me in public. ",
                 button: [
                     { chatID: -1, text: "...", callback: "reset" },
                 ]
@@ -2383,11 +2405,9 @@ room316.chat = function (chatID) {
             {
                 chatID: 102,
                 speaker: "janice",
-                text: "You didn't feed my poor little doggy every day! The poor thing! If you " +
-                    "can't respect me enough to take care of my doggy, then you don't deserve " +
-                    "these big round beautiful tits! Take a long look, because this is the last " +
-                    "time you'll ever see them! We're over! Bye bye loser! Now get out before I sick " +
-                    sc.n("dog") + " on you! ",
+                l10nKey: "room.316.chat.102.text",
+                l10nValues: { dog: sc.n("dog") },
+                text: "You didn't feed my poor little doggy every day! The poor thing! If you can't respect me enough to take care of my doggy, then you don't deserve these big round beautiful tits! Take a long look, because this is the last time you'll ever see them! We're over! Bye bye loser! Now get out before I sic {dog} on you! ",
                 button: [
                     { chatID: -1, text: "aw crap. Ok, bye", callback: "breakupDogsit" },
                 ]
@@ -2395,8 +2415,9 @@ room316.chat = function (chatID) {
             {
                 chatID: 103,
                 speaker: "janice",
-                text: "Thank you so much for watching " + sc.n("dog") + ", he is going to be " +
-                    "so happy to see you too! ",
+                l10nKey: "room.316.chat.103.text",
+                l10nValues: { dog: sc.n("dog") },
+                text: "Thank you so much for watching {dog}. He's going to be so happy to see you too! ",
                 button: [
                     { chatID: -1, text: "Awww thanks!", callback: "checkDog" },
                 ]
@@ -2404,7 +2425,9 @@ room316.chat = function (chatID) {
             {
                 chatID: 104,
                 speaker: "janice",
-                text: sc.n("dog") + "!!! What are you doing!?!",
+                l10nKey: "room.316.chat.104.text",
+                l10nValues: { dog: sc.n("dog") },
+                text: "{dog}!!! What are you doing!?!",
                 button: [
                     { chatID: 105, text: "aaaakk!!", callback: "checkDogPanties" },
                 ]
@@ -2488,8 +2511,9 @@ room316.chat = function (chatID) {
             {
                 chatID: 113,
                 speaker: "thinking",
-                text: "Oh no! We must have woken " + sc.n("janice") + "! I must get out " +
-                    "of here!",
+                l10nKey: "room.316.chat.113.text",
+                l10nValues: { janice: sc.n("janice") },
+                text: "Oh no! We must have woken {janice}! I must get out of here!",
                 button: [
                     { chatID: -1, text: "[Run away!]", callback: "leave" },
                 ]
@@ -2497,9 +2521,9 @@ room316.chat = function (chatID) {
             {
                 chatID: 114,
                 speaker: "me",
-                text: "*whispering* Really " + sc.n("dog") + "? You're going " +
-                    "to bark at me after you've raped my ass? I guess I'm just " +
-                    "a hole to fuck, and once you're done you don't want me around? ",
+                l10nKey: "room.316.chat.114.text",
+                l10nValues: { dog: sc.n("dog") },
+                text: "*whispering* Really {dog}? You're going to bark at me after you've raped my ass? I guess I'm just a hole to fuck, and once you're done you don't want me around?",
                 button: [
                     { chatID: -1, text: "[Run away!]", callback: "leave" },
                 ]
@@ -2507,9 +2531,9 @@ room316.chat = function (chatID) {
             {
                 chatID: 115,
                 speaker: "janice",
-                text: "If you respect " + sc.n("dog") + " and I you will get down on all fours " +
-                    "and show him you're the beta. I can't date someone who is going to cause " +
-                    "problems with my little doggy!",
+                l10nKey: "room.316.chat.115.text",
+                l10nValues: { dog: sc.n("dog") },
+                text: "If you respect {dog} and me, you will get down on all fours and show him you're the beta. I can't date someone who is going to cause problems for my little doggy!",
                 button: [
                     { chatID: 76, text: "[Be the beta]", callback: "task0_2" },
                     { chatID: 75, text: "Dating you isn't worth getting on my hands and knees! ", callback: "task0_1a" },

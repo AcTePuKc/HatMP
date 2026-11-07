@@ -503,6 +503,8 @@ room57.chat = function (chatID) {
         {
             chatID: 35,
             speaker: "tiffany",
+            l10nKey: "room.57.chat.35.text",
+            l10nValues: { me: sc.n("me") },
             text: "It's my turn. I want to sit on your face, " + sc.n("me") + ".",
             button: [
                 { chatID: 36, text: "...", callback: "c11" },

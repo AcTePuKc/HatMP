@@ -286,17 +286,18 @@ room52.chat = function (chatID) {
             speaker: "me",
             text: "What to wear.",
             button: [
-                { chatID: -1, text: '<img src="./images/general/shirt.png" /> ' + cl.saveOutfit[0].name, callback: "o0" },
-                { chatID: -1, text: '<img src="./images/general/shirt.png" /> ' + cl.saveOutfit[1].name, callback: "o1" },
-                { chatID: -1, text: '<img src="./images/general/shirt.png" /> ' + cl.saveOutfit[2].name, callback: "o2" },
-                { chatID: -1, text: '<img src="./images/general/shirt.png" /> ' + cl.saveOutfit[3].name, callback: "o3" },
-                { chatID: -1, text: '<img src="./images/general/shirt.png" /> ' + cl.saveOutfit[4].name, callback: "o4" },
+                { chatID: -1, l10nIgnore: true, text: '<img src="./images/general/shirt.png" /> ' + cl.saveOutfit[0].name, callback: "o0" },
+                { chatID: -1, l10nIgnore: true, text: '<img src="./images/general/shirt.png" /> ' + cl.saveOutfit[1].name, callback: "o1" },
+                { chatID: -1, l10nIgnore: true, text: '<img src="./images/general/shirt.png" /> ' + cl.saveOutfit[2].name, callback: "o2" },
+                { chatID: -1, l10nIgnore: true, text: '<img src="./images/general/shirt.png" /> ' + cl.saveOutfit[3].name, callback: "o3" },
+                { chatID: -1, l10nIgnore: true, text: '<img src="./images/general/shirt.png" /> ' + cl.saveOutfit[4].name, callback: "o4" },
                 { chatID: -1, text: "Get Up", callback: "o5" }
             ]
         },
         {
             chatID: 2,
             speaker: "tiffany",
+            l10nValues: { me: sc.n("me") },
             text: sc.n("me") + "! I thought we told you no more boys clothes! ",
             button: [
                 { chatID: 3, text: "wha", callback: "" }

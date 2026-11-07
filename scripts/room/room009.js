@@ -669,6 +669,7 @@ room9.chat = function(chatID){
         {
             chatID: 1,
             speaker: "thinking",
+            l10nKey: "room.9.chat.1.text",
             text: "I applied to be a nurse. I need to go to the hospital downtown.",
             button: [
                 { chatID: -1, text: "Nursing is kind of a feminine job.", callback: "internet" }
@@ -677,6 +678,8 @@ room9.chat = function(chatID){
         {
             chatID: 2,
             speaker: "thinking",
+            l10nKey: "room.9.chat.2.text",
+            l10nValues: { jeffery: sc.n("jeffery") },
             text: "I applied to be a waitress at the Naked Beaver Diner. I need to visit " + sc.n("jeffery") + " at the diner.",
             button: [
                 { chatID: -1, text: "Waitressing is kind of a feminine job.", callback: "internet" }
@@ -715,6 +718,8 @@ room9.chat = function(chatID){
         {
             chatID: 7,
             speaker: "landlord",
+            l10nKey: "room.9.chat.7.text",
+            l10nValues: { bigguy: sc.n("bigguy") },
             text: "It's ok sweetie. You know your dad used to jack off 10 times a day. He was always playing " +
                 "with his penis. That man would have had enough sperm to keep my store stocked up for a year. " +
                 sc.n("bigguy") + " on the other hand, never masturbates. He says his hands don't feel as good " +
@@ -726,10 +731,12 @@ room9.chat = function(chatID){
         {
             chatID: 8,
             speaker: "landlord",
+            l10nKey: "room.9.chat.8.text",
+            l10nValues: { landlord: sc.n("landlord") },
             text: "Someday you'll meet a nice young woman and have sex, but it's good to explore your body. I know a few tricks from the store. Show " + sc.n("landlord") + " your penis and I'll help you practice for the real thing.",
             button: [
                 { chatID: 11, text: "[Show her your penis]", callback: "jackoff3" },
-                { chatID: 15, text: sc.n("landlord") + "! AAAakkkk please leave!", callback: "" },
+                { chatID: 15, l10nKey: "room.9.chat.8.choice.1", l10nValues: { landlord: sc.n("landlord") }, text: sc.n("landlord") + "! AAAakkkk please leave!", callback: "" },
             ]
         },
         {
@@ -737,7 +744,7 @@ room9.chat = function(chatID){
             speaker: "landlord",
             text: "Is that porn? Are you masturbating?!",
             button: [
-                { chatID: 10, text: "Aaak " + sc.n("landlord") + "! You didn't knock!", callback: "" }
+                { chatID: 10, l10nKey: "room.9.chat.9.choice.0", l10nValues: { landlord: sc.n("landlord") }, text: "Aaak " + sc.n("landlord") + "! You didn't knock!", callback: "" }
             ]
         },
         {
@@ -745,7 +752,7 @@ room9.chat = function(chatID){
             speaker: "landlord",
             text: "It's my house. I don't need to knock. Now put your penis away and do something with your life. And stop wasting sperm. Ugh! Boys are so nasty!",
             button: [
-                { chatID: 16, text: "Yes " + sc.n("landlord") + ".", callback: "porn" }
+                { chatID: 16, l10nKey: "room.9.chat.10.choice.0", l10nValues: { landlord: sc.n("landlord") }, text: "Yes " + sc.n("landlord") + ".", callback: "porn" }
             ]
         },
         {
@@ -775,7 +782,9 @@ room9.chat = function(chatID){
         {
             chatID: 14,
             speaker: "landlord",
-            text: "It's a good thing your " + sc.n("el") + " never leave their room. I don't think I'd be able to explain how your cum got all over me.",
+            l10nKey: "room.9.chat.14.text",
+            l10nValues: { els: sc.els("lower") },
+            text: "It's a good thing your " + sc.els("lower") + " never leave their room. I don't think I'd be able to explain how your cum got all over me.",
             button: [
                 { chatID: -1, text: "haha yeah", callback: "jackoffEnd" }
             ]

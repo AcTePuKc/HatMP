@@ -72,18 +72,19 @@ room589.chat = function (chatID) {
         {
             chatID: 0,
             speaker: "stacy",
-            text: "What are you doing in here? I told you that's MY dick. You know " +
-                "what happens when you piss me off?",
+            l10nKey: "room.589.stacyConfrontation",
+            text: "What are you doing in here? I told you that's MY dick. You know what happens when you piss me off?",
             button: [
-                { chatID: 1, text: "huh? ", callback: "stacy_1" }
+                { chatID: 1, l10nKey: "room.589.confused", text: "huh? ", callback: "stacy_1" }
             ]
         },
         {
             chatID: 1,
             speaker: "stacy",
+            l10nKey: "room.589.this",
             text: "This!",
             button: [
-                { chatID: -1, text: "AAaaaaaaaaaa", callback: "black" }
+                { chatID: -1, l10nKey: "room.589.scream", text: "AAaaaaaaaaaa", callback: "black" }
             ]
         },
 

@@ -165,16 +165,18 @@ room602.chat = function (chatID) {
         {
             chatID: 5,
             speaker: "!sporty",
+            l10nKey: "room.602.sissyEvent.intro",
             text: "I'm so excited that you're all here! We're going to have so much " +
                 "fun dancing all over those hard cocks out there! I can't believe everyone " +
                 "came! ",
             button: [
-                { chatID: 6, text: "Speaking of everyone where's " + sc.n("!philbert") + "?", callback: "" }
+                { chatID: 6, l10nKey: "room.602.sissyEvent.wherePhilbert", l10nValues: { philbert: sc.n("!philbert") }, text: "Speaking of everyone where's " + sc.n("!philbert") + "?", callback: "" }
             ]
         },
         {
             chatID: 6,
             speaker: "!chris",
+            l10nKey: "room.602.sissyEvent.philbertCloset",
             text: "That boy's still in the closet. There's no way he'll show his face in public. " +
                 "He still thinks he's some kind of alpha male that wears panties and fingers his " +
                 "prostate. But... I won't complain. He is sexy, has a good dick, and really knows " +
@@ -186,6 +188,8 @@ room602.chat = function (chatID) {
         {
             chatID: 7,
             speaker: "!kareem",
+            l10nKey: "room.602.sissyEvent.jeremy",
+            l10nValues: { jeremy: sc.n("!jeremy") },
             text: "Hahah! Fo' real. He's made it all the way through the Sissy School, but " +
                 "he thinks he's some kinda dom! Remember " + sc.n("!jeremy") + "? He knew this wasn't " +
                 "for him. ",
@@ -196,6 +200,7 @@ room602.chat = function (chatID) {
         {
             chatID: 8,
             speaker: "!timothy",
+            l10nKey: "room.602.sissyEvent.farm",
             text: "Yeah. What happened to him? He always talked about growing up on " +
                 "a farm. I bet he's going to go back, get a wife, and raise a dozen kids. " +
                 "I hope he's at least happy. ",
@@ -206,6 +211,8 @@ room602.chat = function (chatID) {
         {
             chatID: 9,
             speaker: "!martin",
+            l10nKey: "room.602.sissyEvent.deeper",
+            l10nValues: { thomas: sc.n("!thomas") },
             text: "Oh fuckkkkk " + sc.n("!thomas") + "! Deeper! I'm almost there!!!",
             button: [
                 { chatID: 10, text: "?", callback: "sissy2" }
@@ -214,6 +221,7 @@ room602.chat = function (chatID) {
         {
             chatID: 10,
             speaker: "!martin",
+            l10nKey: "room.602.sissyEvent.neededThat",
             text: "YES!!! Fuck I needed that!",
             button: [
                 { chatID: 11, text: "...", callback: "sissy3" }
@@ -222,6 +230,8 @@ room602.chat = function (chatID) {
         {
             chatID: 11,
             speaker: "!chris",
+            l10nKey: "room.602.sissyEvent.getReady",
+            l10nValues: { thomas: sc.n("!thomas"), martin: sc.n("!martin") },
             text: "You go ahead and get ready. I'm going to make sure " + sc.n("!thomas") +
                 " licks up all of " + sc.n("!martin") + "'s cummies. We'll see you out there " +
                 "honey. ",

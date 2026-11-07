@@ -154,18 +154,20 @@ room310.chat = function (chatID) {
                 return {
                     chatID: 900,
                     speaker: "dollmaker",
+                    l10nKey: "room.310.chat.900.initial.text",
                     text: "Dollies don't say no!",
                     button: [
-                        { chatID: -1, text: "*gulp*", callback: "roomaway" }
+                        { chatID: -1, l10nKey: "room.310.chat.900.gulp", text: "*gulp*", callback: "roomaway" }
                     ]
                 };
             default:
                 return {
                     chatID: 900,
                     speaker: "dollmaker",
+                    l10nKey: "room.310.chat.900.repeat.text",
                     text: "You're making me angry!",
                     button: [
-                        { chatID: 15, text: "*gulp*", callback: "roombang" }
+                        { chatID: 15, l10nKey: "room.310.chat.900.gulp", text: "*gulp*", callback: "roombang" }
                     ]
                 };
         }
@@ -282,7 +284,7 @@ room310.chat = function (chatID) {
             {
                 chatID: 13,
                 speaker: "!dolly0",
-                text: "*pssst* *whipsering* If you get a chance escape. Don't stay here, you're in danger.",
+                text: "*pssst* *whispering* If you get a chance escape. Don't stay here, you're in danger.",
                 button: [
                     { chatID: -1, text: "No. I'm not doing that!", callback: "roomreturn" },
                 ]
@@ -307,10 +309,10 @@ room310.chat = function (chatID) {
             {
                 chatID: 16,
                 speaker: "dollmaker",
-                text: "Good dolly. Now put these cuffs on your ankels.",
+                text: "Good dolly. Now put these cuffs on your ankles.",
                 button: [
                     { chatID: 15, text: "I'm not doing that", callback: "roombang" },
-                    { chatID: 17, text: "[Cuff your ankels together]", callback: "roomCuff" },
+                    { chatID: 17, text: "[Cuff your ankles together]", callback: "roomCuff" },
                 ]
             },
             {

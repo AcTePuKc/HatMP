@@ -139,7 +139,9 @@ room199.chat = function (chatID) {
         return {
             chatID: 999,
             speaker: "missy",
-            text: "You need to get dressed to work out. You're missing your " + g.internal + ". ",
+            l10nKey: "room.199.chat.999.text",
+            l10nValues: { clothing: g.internal },
+            text: "You need to get dressed to work out. You're missing your {clothing}. ",
             button: [
                 { chatID: -1, text: "Yes ma'am", callback: "change" }
             ]

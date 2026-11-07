@@ -252,7 +252,8 @@ room25.chat = function (chatID) {
         {
             chatID: 1,
             speaker: "landlord",
-            text: sc.n("bigguy") + ". ",
+            l10nValues: { bigguy: sc.n("bigguy") },
+            text: "{bigguy}.",
             button: [
                 { chatID: 2, text: "...", callback: "" }
             ]
@@ -290,7 +291,7 @@ room25.chat = function (chatID) {
             speaker: "landlord",
             text: "OK, I'll take your word for it, I know you're a good boy. I've got to get to work now, be good.",
             button: [
-                { chatID: -1, text: "I will " + sc.n("landlord") + "!", callback: "passtime4" }
+                { chatID: -1, l10nValues: { landlord: sc.n("landlord") }, text: "I will, {landlord}!", callback: "passtime4" }
             ]
         },
         {
@@ -298,7 +299,7 @@ room25.chat = function (chatID) {
             speaker: "landlord",
             text: "So much sperm moving in and out of my office... Run along I need my rest.",
             button: [
-                { chatID: -1, text: "Yes " + sc.n("landlord"), callback: "motherPassTime" }
+                { chatID: -1, l10nValues: { landlord: sc.n("landlord") }, text: "Yes, {landlord}.", callback: "motherPassTime" }
             ]
         },
         {
@@ -334,7 +335,8 @@ room25.chat = function (chatID) {
         {
             chatID: 10,
             speaker: "lola",
-            text: "Hey " + sc.n("me") + ". " + sc.n('eva') + " and I were just talking about you.",
+            l10nValues: { me: sc.n("me"), eva: sc.n("eva") },
+            text: "Hey {me}. {eva} and I were just talking about you.",
             button: [
                 { chatID: 11, text: "Me?", callback: "" }
             ]
@@ -375,7 +377,8 @@ room25.chat = function (chatID) {
         {
             chatID: 15,
             speaker: "lola",
-            text: sc.n('landlord') + " will kill us if we fail too. She's still so mad at you for dropping out. I don't think she'll " +
+            l10nValues: { landlord: sc.n("landlord") },
+            text: "{landlord} will kill us if we fail too. She's still so mad at you for dropping out. I don't think she'll " +
                 "ever forget that.",
             button: [
                 { chatID: 16, text: "...", callback: "" }
@@ -386,16 +389,16 @@ room25.chat = function (chatID) {
             speaker: "eva",
             text: "Yeah, she didn't even get mad at me when she caught me sneaking in after dark. Thanks for taking one for the team!",
             button: [
-                { chatID: 17, text: "Sure " + sc.n('eva'), callback: "" }
+                { chatID: 17, l10nValues: { eva: sc.n("eva") }, text: "Sure, {eva}.", callback: "" }
             ]
         },
         {
             chatID: 17,
             speaker: "lola",
-            text: "Hahah yeah, you're so lucky " + sc.n('eva') + ". We're going to head out. I know great things will happen for you " +
-                sc.n("me") + ".",
+            l10nValues: { eva: sc.n("eva"), me: sc.n("me") },
+            text: "Hahah yeah, you're so lucky, {eva}. We're going to head out. I know great things will happen for you, {me}.",
             button: [
-                { chatID: -1, text: "Thanks " + sc.n("lola") +". ", callback: "passTimeLE" }
+                { chatID: -1, l10nValues: { lola: sc.n("lola") }, text: "Thanks, {lola}.", callback: "passTimeLE" }
             ]
         },
         {
@@ -409,7 +412,8 @@ room25.chat = function (chatID) {
         {
             chatID: 19,
             speaker: "lola",
-            text: sc.n("eva") + " is just cranky if her feet haven't been rubbed in a while!",
+            l10nValues: { eva: sc.n("eva") },
+            text: "{eva} is just cranky if her feet haven't been rubbed in a while!",
             button: [
                 { chatID: 20, text: "Aww I can help you with that", callback: "" }
             ]
@@ -475,8 +479,8 @@ room25.chat = function (chatID) {
         {
             chatID: 27,
             speaker: "eva",
-            text: "HAHAHAHA! Real smooth there, pervert! What a weirdo. C'mon " + sc.n("lola") +
-                ", we're heading out.",
+            l10nValues: { lola: sc.n("lola") },
+            text: "HAHAHAHA! Real smooth there, pervert! What a weirdo. C'mon, {lola}, we're heading out.",
             button: [
                 { chatID: -1, text: "Er.. I mean...", callback: "passTimeLE" }
             ]
@@ -492,7 +496,8 @@ room25.chat = function (chatID) {
         {
             chatID: 29,
             speaker: "lola",
-            text: "I've only drank twice before, and only " + sc.n("eva") + " knows about what happened one of those times.",
+            l10nValues: { eva: sc.n("eva") },
+            text: "I've only drank twice before, and only {eva} knows about what happened one of those times.",
             button: [
                 { chatID: 30, text: "Oh really, what happened?", callback: "" }
             ]
@@ -500,10 +505,11 @@ room25.chat = function (chatID) {
         {
             chatID: 30,
             speaker: "eva",
-            text: "She totally lost her panties at a party! " + sc.n("lola") + " the virgin can't keep her panties on when she's " +
+            l10nValues: { lola: sc.n("lola") },
+            text: "She totally lost her panties at a party! {lola} the virgin can't keep her panties on when she's " +
                 "drunk!",
             button: [
-                { chatID: 31, text: sc.n("lola") + "...", callback: "" }
+                { chatID: 31, l10nValues: { lola: sc.n("lola") }, text: "{lola}...", callback: "" }
             ]
         },
         {
@@ -517,9 +523,10 @@ room25.chat = function (chatID) {
         {
             chatID: 32,
             speaker: "eva",
-            text: "You know " + sc.n("me") + ", you may be a dirty pervert, but you're also a great guy.",
+            l10nValues: { me: sc.n("me") },
+            text: "You know, {me}, you may be a dirty pervert, but you're also a great guy.",
             button: [
-                { chatID: 33, text: sc.n('eva') + " with a compliment?", callback: "" }
+                { chatID: 33, l10nValues: { eva: sc.n("eva") }, text: "{eva} with a compliment?", callback: "" }
             ]
         },
         {
@@ -533,9 +540,10 @@ room25.chat = function (chatID) {
         {
             chatID: 34,
             speaker: "lola",
-            text: "Awwww, the rare compliment from " + sc.n("eva") + ". You should feel honored " + sc.n("me") + ".",
+            l10nValues: { eva: sc.n("eva"), me: sc.n("me") },
+            text: "Awwww, the rare compliment from {eva}. You should feel honored, {me}.",
             button: [
-                { chatID: 35, text: "I truly am honored. You're not bad yourself " + sc.n("eva") + ".", callback: "" }
+                { chatID: 35, l10nValues: { eva: sc.n("eva") }, text: "I truly am honored. You're not bad yourself, {eva}.", callback: "" }
             ]
         },
         {
@@ -543,13 +551,14 @@ room25.chat = function (chatID) {
             speaker: "eva",
             text: "Shut up you guys! I hate you both.",
             button: [
-                { chatID: 36, text: "Awww we love you " + sc.n("eva") + ".", callback: "" }
+                { chatID: 36, l10nValues: { eva: sc.n("eva") }, text: "Awww, we love you, {eva}.", callback: "" }
             ]
         },
         {
             chatID: 36,
             speaker: "lola",
-            text: "I think we've teased her enough. Let's get going " + sc.n("eva") + ".",
+            l10nValues: { eva: sc.n("eva") },
+            text: "I think we've teased her enough. Let's get going, {eva}.",
             button: [
                 { chatID: -1, text: "Ok, see ya", callback: "passTimeLE" }
             ]
@@ -557,7 +566,8 @@ room25.chat = function (chatID) {
         {
             chatID: 37,
             speaker: "lola",
-            text: sc.n("eva") + " and I were just talking about some boys at school. " + sc.n("eva") + " has a crush on one!",
+            l10nValues: { eva: sc.n("eva") },
+            text: "{eva} and I were just talking about some boys at school. {eva} has a crush on one!",
             button: [
                 { chatID: 38, text: "Really?", callback: "" }
             ]
@@ -609,24 +619,26 @@ room25.chat = function (chatID) {
             speaker: "landlord",
             text: "You don't have to pretend with me honey. I know you're an odd little boy.",
             button: [
-                { chatID: -1, text: sc.n("landlord") + "!!!", callback: "passtime5" }
+                { chatID: -1, l10nValues: { landlord: sc.n("landlord") }, text: "{landlord}!!!", callback: "passtime5" }
             ]
         },
         {
             chatID: 44,
             speaker: "landlord",
-            text: "You know my boyfriend " + sc.n("bigguy") + " is such a great lover. Maybe he could show you some tricks to attract a pretty girl " +
+            l10nValues: { bigguy: sc.n("bigguy") },
+            text: "You know my boyfriend, {bigguy}, is such a great lover. Maybe he could show you some tricks to attract a pretty girl " +
                 "or whatever you're into. I bet you could make a girl very happy.",
             button: [
-                { chatID: 45, text: sc.n("landlord"), callback: "" }
+                { chatID: 45, l10nValues: { landlord: sc.n("landlord") }, text: "{landlord}", callback: "" }
             ]
         },
         {
             chatID: 45,
             speaker: "landlord",
-            text: "Oh hahaha I'm only kidding... run along now, " + sc.n("landlord") + " has some fantasies to get back to.",
+            l10nValues: { landlord: sc.n("landlord") },
+            text: "Oh hahaha I'm only kidding... run along now, {landlord} has some fantasies to get back to.",
             button: [
-                { chatID: -1, text: "OK " + sc.n("landlord"), callback: "passtime6" }
+                { chatID: -1, l10nValues: { landlord: sc.n("landlord") }, text: "OK, {landlord}.", callback: "passtime6" }
             ]
         },
         {
@@ -634,7 +646,7 @@ room25.chat = function (chatID) {
             speaker: "landlord",
             text: "I'm going to have so much fun making you into a pretty girl, but right now I need my coffee so run along.",
             button: [
-                { chatID: -1, text: "OK " + sc.n("landlord"), callback: "" }
+                { chatID: -1, l10nValues: { landlord: sc.n("landlord") }, text: "OK, {landlord}.", callback: "" }
             ]
         },
         

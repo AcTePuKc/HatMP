@@ -19,6 +19,7 @@ Thumbs.db
 # Build artifacts (if applicable)
 *.log
 node_modules/
+/tools/reports/
 dist/
 build/
 

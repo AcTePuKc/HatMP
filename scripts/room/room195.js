@@ -182,7 +182,7 @@ room195.chat = function (chatID) {
         {
             chatID: 5,
             speaker: "missy",
-            text: "So in the case before you try to find the key that matches this lock. ",
+            text: "In this case, try to find the key that matches this lock. ",
             button: [
                 { chatID: -1, text: "ok", callback: "" },
             ]

@@ -47,17 +47,19 @@ room375.chat = function (chatID) {
         {
             chatID: 0,
             speaker: "cop2",
+            l10nKey: "room.375.copResponse",
             text: "Yeah?",
             button: [
-                { chatID: -1, text: "I've got nothing.", callback: "" }
+                { chatID: -1, l10nKey: "room.375.nothingToSay", text: "I've got nothing.", callback: "" }
             ]
         },
         {
             chatID: 1,
             speaker: "cop2",
+            l10nKey: "room.375.nakedInStation",
             text: "What kind of idiot walks into a police station naked? Time for jail weird-o. ",
             button: [
-                { chatID: -1, text: "Oh. I'm an idiot. ", callback: "jail" }
+                { chatID: -1, l10nKey: "room.375.ownIt", text: "Oh. I'm an idiot. ", callback: "jail" }
             ]
         }
     ];

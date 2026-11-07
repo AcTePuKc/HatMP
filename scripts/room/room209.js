@@ -127,7 +127,8 @@ room209.chat = function (chatID) {
             {
                 chatID: 0,
                 speaker: "me",
-                text: "Oh wow. So many people. " + sc.n("ralph") + " I didn't know you were in this class too! ",
+                text: "Oh wow. So many people. {ralph} I didn't know you were in this class too! ",
+                l10nValues: { ralph: sc.n("ralph") },
                 button: [
                     { chatID: 1, text: "...", callback: "" }
                 ]
@@ -135,8 +136,8 @@ room209.chat = function (chatID) {
             {
                 chatID: 1,
                 speaker: "ralph",
-                text: "Oh, I'm so glad I know someone here. I was so scared to come, but " + sc.n("martha") + " was so " +
-                    "convincing. Are we all here for what I think we are? ",
+                text: "Oh, I'm so glad I know someone here. I was so scared to come, but {martha} was so convincing. Are we all here for what I think we are? ",
+                l10nValues: { martha: sc.n("martha") },
                 button: [
                     { chatID: 2, text: "...", callback: "" }
                 ]
@@ -153,7 +154,8 @@ room209.chat = function (chatID) {
             {
                 chatID: 3,
                 speaker: "!kareem",
-                text: "Yo, this flyer. I'm sayin' we all got hit up by " + sc.n("martha") + " and got this flyer, right?",
+                text: "Yo, this flyer. I'm sayin' we all got hit up by {martha} and got this flyer, right?",
+                l10nValues: { martha: sc.n("martha") },
                 button: [
                     { chatID: 4, text: "...", callback: "" }
                 ]
@@ -218,8 +220,8 @@ room209.chat = function (chatID) {
                 speaker: "missy",
                 text: "I did not ask for questions! You ladies will have to learn that you are not in control. At this school " +
                     "you do what we say, when we say, or you will be on the street with nothing but that empty feeling that you " +
-                    "missed out on being the perfect you. Speaking of the perfect you, " + sc.n("martha") + " will introduce herself " +
-                    "and tell you about her program. ",
+                    "missed out on being the perfect you. Speaking of the perfect you, {martha} will introduce herself and tell you about her program. ",
+                l10nValues: { martha: sc.n("martha") },
                 button: [
                     { chatID: 11, text: "...", callback: "sitting2" }
                 ]
@@ -227,11 +229,12 @@ room209.chat = function (chatID) {
             {
                 chatID: 11,
                 speaker: "martha",
-                text: "Thank you my dear Missy. My name is Martha, but you will address me as " + sc.n("martha") + ". I will be here to " +
+                text: "Thank you my dear Missy. My name is Martha, but you will address me as {martha}. I will be here to " +
                     "begin your transition into sissyhood. So many new sissies believe that putting on a promiscuous dress makes them a sissy." +
                     "However, this is not the case. True sissyhood begins in the mind and is reflected in one's actions. " +
                     "I will teach you how to walk, sit, stand, and carry yourself in public. I'm very excited to help you young " +
                     "gentlemen on this journey of yours. However, please be aware that I expect the utmost politeness from my pupils.",
+                l10nValues: { martha: sc.n("martha") },
                 button: [
                     { chatID: 12, text: "...", callback: "" }
                 ]
@@ -240,7 +243,8 @@ room209.chat = function (chatID) {
                 chatID: 12,
                 speaker: "martha",
                 text: "I am confident that we shall have a most enjoyable time as we learn to comport ourselves as proper ladies. " +
-                    "I look forward to seeing you all again in our next class. I shall now be followed by " + sc.n("p") + ".",
+                    "I look forward to seeing you all again in our next class. I shall now be followed by {p}.",
+                l10nValues: { p: sc.n("p") },
                 button: [
                     { chatID: 13, text: "...", callback: "sitting3" }
                 ]
@@ -338,8 +342,8 @@ room209.chat = function (chatID) {
             {
                 chatID: 23,
                 speaker: "black",
-                text: "Hi maggots. I'm " + sc.n("black") + ". I'm in charge of bondage and discipline. I look forward to meeting " +
-                    "each and every one of you. Back to you Missy. ",
+                text: "Hi maggots. I'm {black}. I'm in charge of bondage and discipline. I look forward to meeting each and every one of you. Back to you Missy. ",
+                l10nValues: { black: sc.n("black") },
                 button: [
                     { chatID: 24, text: "...", callback: "sitting0" }
                 ]
@@ -347,8 +351,8 @@ room209.chat = function (chatID) {
             {
                 chatID: 24,
                 speaker: "missy",
-                text: "This is the end of your introduction. Tomorrow will be your first class. I'm so excited for this class. " +
-                    "I know " + sc.n("martha") + " is looking forward to helping you on your journey. Class dismissed. ",
+                text: "This is the end of your introduction. Tomorrow will be your first class. I'm so excited for this class. I know {martha} is looking forward to helping you on your journey. Class dismissed. ",
+                l10nValues: { martha: sc.n("martha") },
                 button: [
                     { chatID: 25, text: "...", callback: "emptyRoom" }
                 ]

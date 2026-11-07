@@ -39,7 +39,8 @@ room198.main = function () {
                 ]
             },
             {
-                i: 4, img: "i5.jpg", q: "Which side of " + sc.n("cecilia") + " was the space ship?", a: [
+                i: 4, img: "i5.jpg", q: "Which side of {cecilia} was the space ship?",
+                l10nValues: { cecilia: sc.n("cecilia") }, a: [
                     { t: "left", c: "x" },
                     { t: "right", c: "correct" },
                     { t: "there were 2 space ships", c: "x" },
@@ -186,11 +187,18 @@ room198.chat = function (chatID) {
     if (chatID === 999) {
         var buttons = new Array();
         $.each(g.internal.slide[g.internal.activeSlide].a, function (i, v) {
-            buttons.push({ chatID: -1, text: v.t, callback: v.c });
+            buttons.push({
+                chatID: -1,
+                l10nKey: "room.198.quiz." + g.internal.slide[g.internal.activeSlide].i + ".answer." + i,
+                text: v.t,
+                callback: v.c
+            });
         });
         return {
             chatID: 999,
             speaker: "missy",
+            l10nKey: "room.198.quiz." + g.internal.slide[g.internal.activeSlide].i + ".question",
+            l10nValues: g.internal.slide[g.internal.activeSlide].l10nValues,
             text: g.internal.slide[g.internal.activeSlide].q,
             button: buttons
         };
@@ -206,11 +214,12 @@ room198.chat = function (chatID) {
         return {
             chatID: 999,
             speaker: "missy",
+            l10nKey: "room.198.quiz." + g.internal.slide[g.internal.activeSlide].i + ".wrong",
             text: "That was wrong. The correct choice was '" + correctAnswer + "'. If you want to succeed in this " +
                 "profession you need to pay more attention. ",
             button: [
-                { chatID: -1, text: "Can I do another ma'am. ", callback: "another" },
-                { chatID: 9, text: "That's all I need today ma'am. ", callback: "complete" },
+                { chatID: -1, l10nKey: "room.198.quiz.retry", text: "Can I do another ma'am. ", callback: "another" },
+                { chatID: 9, l10nKey: "room.198.quiz.finish", text: "That's all I need today ma'am. ", callback: "complete" },
             ]
         };
     }
@@ -265,6 +274,7 @@ room198.chat = function (chatID) {
                 chatID: 5,
                 speaker: "missy",
                 text: sc.n("cecilia") + " come in here. ",
+                l10nValues: { cecilia: sc.n("cecilia") },
                 button: [
                     { chatID: 6, text: "...", callback: "c0" },
                 ]
@@ -282,6 +292,7 @@ room198.chat = function (chatID) {
                 speaker: "missy",
                 text: sc.n("cecilia") + " is going to be your distraction. While you're on these cases you'll " +
                     "have a lot of distractions that you have to ignore. Ready to begin?",
+                l10nValues: { cecilia: sc.n("cecilia") },
                 button: [
                     { chatID: -1, text: "Yes ma'am", callback: "s0" },
                 ]

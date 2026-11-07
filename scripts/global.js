@@ -805,6 +805,7 @@ g.load = function (rma) {
 };
 
 g.initGame = function () {
+    if (typeof dialogue !== "undefined") dialogue.resetSession();
     g.roomID = 7;
     g.dt = char.addMinutes(g.startDate, 425);
     gv.init();

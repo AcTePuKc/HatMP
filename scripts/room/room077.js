@@ -480,7 +480,8 @@ room77.chat = function (chatID) {
         {
             chatID: 4,
             speaker: "bimbo",
-            text: "It's so tiny. Your mom must be disappointed. Why is it so tiny?",
+            l10nKey: "room.77.chat.4.text",
+            text: "It's so tiny. That must be disappointing. Why is it so tiny?",
             button: [
                 { chatID: 5, text: "I don't know. I just have a small dick.", callback: "" }
             ]

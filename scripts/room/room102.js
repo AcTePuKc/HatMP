@@ -98,7 +98,8 @@ room102.chat = function (chatID) {
         {
             chatID: 0,
             speaker: "construction",
-            text: "Hey " + sc.n("tina") + "! Who the fuck is this in my office? I asked for someone with tits!",
+            text: "Hey {tina}! Who the fuck is this in my office? I asked for someone with tits!",
+            l10nValues: { tina: sc.n("tina") },
             button: [
                 { chatID: 1, text: "....", callback: "" }
             ]
@@ -106,7 +107,8 @@ room102.chat = function (chatID) {
         {
             chatID: 1,
             speaker: "tina",
-            text: "It's " + sc.n("me") + "! He's here for the laborer job!",
+            text: "It's {me}! [[player:He's|She's]] here for the laborer job!",
+            l10nValues: { me: sc.n("me") },
             button: [
                 { chatID: 2, text: "....", callback: "" }
             ]
@@ -114,7 +116,8 @@ room102.chat = function (chatID) {
         {
             chatID: 2,
             speaker: "construction",
-            text: "Oh, hey " + sc.n("me") + ", so you want to work construction? The job starts at $40 per day.",
+            text: "Oh, hey {me}, so you want to work construction? The job starts at $40 per day.",
+            l10nValues: { me: sc.n("me") },
             button: [
                 { chatID: 3, text: "Yes sir!", callback: "" },
                 { chatID: 4, text: "Is that porn on the TV?", callback: "" }
@@ -123,7 +126,8 @@ room102.chat = function (chatID) {
         {
             chatID: 3,
             speaker: "construction",
-            text: "Okay, kid — you're hired. You need to be here before nine each day. We don't work on Sundays. Collect your money from " + sc.n("tina") + " at the end of each day. If you forget to pick up your money at the end of your shift, it's your loss. You can start whenever.",
+            text: "Okay, kid — you're hired. You need to be here before nine each day. We don't work on Sundays. Collect your money from {tina} at the end of each day. If you forget to pick up your money at the end of your shift, it's your loss. You can start whenever.",
+            l10nValues: { tina: sc.n("tina") },
             button: [
                 { chatID: -1, text: "Thank you sir", callback: "setInit" }
             ]
@@ -140,7 +144,7 @@ room102.chat = function (chatID) {
         {
             chatID: 5,
             speaker: "construction",
-            text: "All right. Now get the fuck out and get to work, new guy.",
+            text: "All right. Now get the fuck out and get to work, new hire.",
             button: [
                 { chatID: -1, text: "Ok, got it.", callback: "setInit" }
             ]
@@ -148,7 +152,8 @@ room102.chat = function (chatID) {
         {
             chatID: 6,
             speaker: "construction",
-            text: "We're going to get along just fine then. You want to see some tits? Hey, " + sc.n("tina") + ", get in here and show the new guy your tits.",
+            text: "We're going to get along just fine then. You want to see some tits? Hey, {tina}, get in here and show the new hire your tits.",
+            l10nValues: { tina: sc.n("tina") },
             button: [
                 { chatID: 7, text: "...", callback: "" }
             ]
@@ -166,7 +171,7 @@ room102.chat = function (chatID) {
         {
             chatID: 8,
             speaker: "construction",
-            text: "I don't care. If you want to keep working here, you'll show the new guy your tits.",
+            text: "I don't care. If you want to keep working here, you'll show the new hire your tits.",
             button: [
                 { chatID: 10, text: "...", callback: "showtits" }
             ]
@@ -174,7 +179,7 @@ room102.chat = function (chatID) {
         {
             chatID: 9,
             speaker: "construction",
-            text: "Way to go, new guy. You heard him. Tits now!",
+            text: "Way to go, new hire. You heard him. Tits now!",
             button: [
                 { chatID: 10, text: "Yes sir", callback: "showtits" }
             ]

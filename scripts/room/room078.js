@@ -71,6 +71,7 @@ room78.chat = function (chatID) {
         {
             chatID: 0,
             speaker: "thinking",
+            l10nKey: "room.78.alreadyStolen",
             text: "I've already stolen her dirty, musky panties.",
             button: [
                 { chatID: -1, text: "...", callback: "" }
@@ -79,15 +80,17 @@ room78.chat = function (chatID) {
         {
             chatID: 1,
             speaker: "thinking",
+            l10nKey: "room.78.stealPrompt",
             text: "Should I steal her dirty panties? They have a strong smell of pussy and ass.",
             button: [
-                { chatID: -1, text: "Steal her dirty panties", callback: "steal" },
-                { chatID: -1, text: "Put them back", callback: "reset" },
+                { chatID: -1, l10nKey: "room.78.steal", text: "Steal her dirty panties", callback: "steal" },
+                { chatID: -1, l10nKey: "room.78.putBack", text: "Put them back", callback: "reset" },
             ]
         },
         {
             chatID: 2,
             speaker: "thinking",
+            l10nKey: "room.78.dirtyClothes",
             text: "Just a pile of dirty clothes.",
             button: [
                 { chatID: -1, text: "...", callback: "reset" },

@@ -367,11 +367,11 @@ inv.relationshipItemTerms = function (itemName) {
     var landlady = "Landlady";
     var coTenants = "Co-Tenant";
     if (typeof sc !== "undefined" && sc.get) {
-        landlady = sc.get("landlord").display || landlady;
+        landlady = sc.landlady ? sc.landlady("definite") : (sc.get("landlord").display || landlady);
         coTenants = sc.get("el").display || coTenants;
     }
     return {
-        landlady: l10n.characterTerm("landlady", "keyLower", landlady, "Landlady"),
+        landlady: l10n.characterTerm("landlady", "lower", landlady, "Landlady"),
         coTenants: l10n.characterTerm("coTenant", "keyPluralLower", coTenants, "Co-Tenant")
     };
 };

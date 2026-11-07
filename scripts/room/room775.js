@@ -30,9 +30,9 @@ room775.main = function () {
                 "top": 230,
                 "width": 236,
                 "height": 602,
-                "title": "Wardrobe",
-                "titleKey": "room.10.hover.wardrobe",
-                "image": "7_mainCharRoomAlt/clickHere.png"
+                "title": "Open wardrobe",
+                "titleKey": "room.775.hover.openWardrobe",
+                "image": "10_mainchar/10_wardrobe.png"
             }, 775);
         }
         else {
@@ -288,14 +288,24 @@ room775.chatcatch = function (callback) {
 
 room775.chat = function (chatID) {
     if (chatID === 1000) {
+        var missingClothing = String(g.internal).replace(/<[^>]*>/g, "").trim();
+        var missingClothingKey = {
+            "shirt": "room.775.missing.shirt",
+            "pants": "room.775.missing.pants",
+            "shirt and pants": "room.775.missing.shirtAndPants",
+            "respectable clothing": "room.775.missing.respectableClothing"
+        }[missingClothing];
+        if (missingClothingKey)
+            missingClothing = l10n.t(missingClothingKey, missingClothing);
         return {
             chatID: 1000,
             speaker: "thinking",
-            text: "Before I go to church I need to get dressed. <span class='hl'>I'm missing my " + g.internal + ".</span>",
+            text: l10n.t("room.775.beforeChurch", "Before I go to church I need to get dressed. <span class='hl'>I'm missing my {missing}.</span>", { missing: missingClothing }),
             button: []
         };
     }
     if (chatID === 999) {
+        var verseIndex;
         var sp = [
             "May the God of hope fill you with all joy and peace as you trust in him, so that you may overflow with hope by the power of the Holy Spirit.",
             "Now to him who is able to do immeasurably more than all we ask or imagine, according to his power that is at work within us.",
@@ -313,10 +323,11 @@ room775.chat = function (chatID) {
             "Slaves, submit yourselves to your masters with all respect, not only to the good and gentle but also to the cruel.",
             "Come, let us make our father drink wine, and we will lie with him, that we may preserve seed of our father.",
         ];
+        verseIndex = g.rand(0, sp.length);
         return {
             chatID: 999,
             speaker: "priest",
-            text: sp[g.rand(0, sp.length)],
+            text: l10n.t("room.775.sermon.verse." + verseIndex, sp[verseIndex]),
             button: [
                 { chatID: 0, text: "...", callback: "" }
             ]
@@ -334,7 +345,7 @@ room775.chat = function (chatID) {
             return {
                 chatID: 998,
                 speaker: "landlord",
-                text: "It's important to give what you can, put " + g.internal + " in the basket. ",
+                text: l10n.t("room.775.collection.amount", "It's important to give what you can, put {amount} in the basket.", { amount: g.internal }),
                 button: [
                     { chatID: 1, text: "*groan*", callback: "collection1" }
                 ]
@@ -343,8 +354,7 @@ room775.chat = function (chatID) {
             return {
                 chatID: 998,
                 speaker: "landlord",
-                text: "You really need to save your money to give to the church. I expect you to donate at least $100 " +
-                    "when we come here in the future. ",
+                text: l10n.t("room.775.collection.noMoney", "You really need to save your money to give to the church. I expect you to donate at least $100 when we come here in the future."),
                 button: [
                     { chatID: 2, text: "*groan*", callback: "zoomout" }
                 ]
@@ -389,6 +399,7 @@ room775.chat = function (chatID) {
             {
                 chatID: 4,
                 speaker: "priest",
+                l10nValues: { son: gender.pronoun("son") },
                 text: "Welcome my " + gender.pronoun("son") + ". Share with me your confession. ",
                 button: [
                     { chatID: 500, text: "...", callback: "" }
@@ -421,6 +432,7 @@ room775.chat = function (chatID) {
             {
                 chatID: 8,
                 speaker: "priest",
+                l10nValues: { boy: gender.pronoun("boy") },
                 text: "I am proud of you " + gender.pronoun("boy") + ". You may go in peace. ",
                 button: [
                     { chatID: -1, text: "Thank you. ", callback: "leave" }
@@ -437,30 +449,33 @@ room775.chat = function (chatID) {
             {
                 chatID: 10,
                 speaker: "landlord",
+                l10nKey: "room.775.train.landladyIntro",
                 text: "I hate traveling on this train. Sunday morning it's fine, but there so many things that happen here at night. " +
                     "You're a man, so you don't know how scary it is here. Speaking of girls,  " +
                     "there's lots of single girls at the church. Maybe you can find yourself a nice young lady. ",
                 button: [
-                    { chatID: 11, text: sc.n("landlord") + "... ", callback: "" }
+                    { chatID: 11, l10nKey: "room.775.train.but", text: "But...", callback: "" }
                 ]
             },
             {
                 chatID: 11,
                 speaker: "landlord",
+                l10nKey: "room.775.train.landladyReply",
                 text: "Don't whine to me. It's going to be harder for you to meet a nice girl now that you're no longer in school. " +
                     "These days the only places you'll find them are in school or church, so that's why you're going to church. " +
                     "Now I won't hear nothing more on this in public. You're going to settle down and make something of yourself. " +
                     "I won't let you be a delinquent all your life. ",
                 button: [
-                    { chatID: 12, text: "ok. ", callback: "" }
+                    { chatID: 12, l10nKey: "room.775.train.ok", text: "ok.", callback: "" }
                 ]
             },
             {
                 chatID: 12,
                 speaker: "landlord",
+                l10nKey: "room.775.train.almostThere",
                 text: "Now we're almost there. Don't fall asleep in church and all three of you be on your best behavior. ",
                 button: [
-                    { chatID: 13, text: "ok. ", callback: "zoomout" }
+                    { chatID: 13, l10nKey: "room.775.train.ok", text: "ok.", callback: "zoomout" }
                 ]
             },
             {
@@ -487,6 +502,7 @@ room775.chat = function (chatID) {
             {
                 chatID: 15,
                 speaker: "thinking",
+                l10nValues: { landlord: sc.n("landlord") },
                 text: "Bla bla bla bla bla... I'm so bored. I can't wait for this to end. I don't know why I allow " + sc.n("landlord") +
                     " to keep dragging me to this place. At least it's only once a week. ",
                 button: [
@@ -506,8 +522,9 @@ room775.chat = function (chatID) {
             {
                 chatID: 17,
                 speaker: "priest",
-                text: "If it isn't little " + sc.n("me") + ". It's nice to see you back in the church. It's been so long since I've " +
-                    "seen you in my booth. Still teasing your " + sc.n("el") + "? I remember you when you were just a small baby when " +
+                l10nValues: { me: sc.n("me"), el: sc.n("el") },
+                text: "If it isn't little " + sc.n("me") + ". It's nice to see you back at church. It's been years since I've " +
+                    "seen you here. You haven't been in my confessional before, have you? Still teasing your " + sc.n("el") + "? I remember you when you were just a small baby when " +
                     "I first started preaching here. Right after church I asked to hold you and you threw up all over my robes. You " +
                     "were such a cute kid that grew into a handsome man. I'll bet you can't keep the young ladies away. ",
                 button: [
@@ -780,6 +797,7 @@ room775.chat = function (chatID) {
             {
                 chatID: 45,
                 speaker: "priest",
+                l10nValues: { boy: gender.pronoun("boy") },
                 text: "While you have sinned, there is nothing that a normal " + gender.pronoun("boy") + " wouldn't do. " +
                     "Reflect on your actions and go in peace. ",
                 button: [
@@ -831,6 +849,7 @@ room775.chat = function (chatID) {
             {
                 chatID: 51,
                 speaker: "me",
+                l10nValues: { el: sc.n("el"), els: sc.els("lower") },
                 text: "I peeked on my " + sc.n("el") + " while they were taking a shower. ",
                 button: [
                     { chatID: 52, text: "...", callback: "" }
@@ -839,6 +858,7 @@ room775.chat = function (chatID) {
             {
                 chatID: 52,
                 speaker: "priest",
+                l10nValues: { el: sc.n("el") },
                 text: "That is quite troubling. Lusting after a nude girl is a sin, but lusting after your own " + sc.n("el") +
                     " is truly sickening. Why did you do this? ",
                 button: [
@@ -1010,6 +1030,7 @@ room775.chat = function (chatID) {
             {
                 chatID: 71,
                 speaker: "me",
+                l10nValues: { nun: sc.n("nun") },
                 text: "I must confess. I've been corrupted by " + sc.n("nun") + ". It started innocent enough, but you could " +
                     "say I've met her in the biblical way. ",
                 button: [
@@ -1029,10 +1050,10 @@ room775.chat = function (chatID) {
             {
                 chatID: 73,
                 speaker: "priest",
-                text: "If it isn't little " + sc.n("me") + ". It's nice to see you back in the church. " +
-                    "It's been so long since I've " +
-                    "seen you. Welcome back. I must say I'm a bit surprised. I don't " +
-                    "remember you coming to confess in the past. ",
+                l10nValues: { me: sc.n("me") },
+                text: "If it isn't little " + sc.n("me") + ". It's nice to see you back at church. " +
+                    "It's been years since I've seen you here. Welcome back. I must say I'm a bit surprised. I don't " +
+                    "remember you ever coming to confession before. ",
                 button: [
                     { chatID: 74, text: "...", callback: "" },
                 ]
@@ -1040,6 +1061,7 @@ room775.chat = function (chatID) {
             {
                 chatID: 74,
                 speaker: "me",
+                l10nValues: { landlord: sc.n("landlord") },
                 text: "Yeah, my " + sc.n("landlord") + " made me. Aren't you supposed to be on " +
                     "the other side of the screen?",
                 button: [
@@ -1049,7 +1071,7 @@ room775.chat = function (chatID) {
             {
                 chatID: 75,
                 speaker: "priest",
-                text: "Here at the Church of the Unification of Men we believe that there is an " +
+                text: "Here at the Church of the Unification of Men (<abbr class='l10n-term' tabindex='0' data-glossary-id='cum'>C.U.M.</abbr>) we believe that there is an " +
                     "intimate connection between the priest and the sinner and the walls only seek " +
                     "the hide the sin. Come sit on my lap and tell me what bothers you. ",
                 button: [
@@ -1067,6 +1089,7 @@ room775.chat = function (chatID) {
             {
                 chatID: 77,
                 speaker: "priest",
+                l10nValues: { el: sc.n("el") },
                 text: "Oh my. Still teasing your " + sc.n("el") + "? I remember you when you were just a small baby when " +
                     "I first started preaching here. Right after church I asked to hold you and you threw up all over my robes. You " +
                     "were such a cute kid that grew into a handsome man. I'll bet you can't keep the young ladies away. ",
@@ -1117,6 +1140,7 @@ room775.chat = function (chatID) {
             {
                 chatID: 82,
                 speaker: "thinking",
+                l10nValues: { priest: sc.n("priest") },
                 text: "Oh my. I think my story is starting to give " + sc.n("priest") + " a stiffy. I " + 
                     "can feel it growing against my bottom. I wonder if it will get harder if I " +
                     "wiggle my butt? ",

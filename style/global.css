@@ -257,6 +257,12 @@ input[type=text]:disabled{
     hyphens:auto;
 }
 
+abbr.l10n-term{
+    text-decoration: underline dotted;
+    text-underline-offset: .12em;
+    cursor: help;
+}
+
 .room-chatSpeaker img{
     width:100%;
 }
@@ -375,6 +381,44 @@ input[type=text]:disabled{
     color:#fff;
     font-family:Arial, sans-serif;
     pointer-events:none;
+}
+
+.phone-relationship-editor-scroll {
+    scrollbar-color: #8d8d9a #24242a;
+    scrollbar-width: thin;
+}
+.phone-relationship-editor-title {
+    margin: 0 0 20px;
+    padding: 8px 0;
+    font-size: calc(1.1vh + 1rem);
+    line-height: 1.2;
+    overflow-wrap: anywhere;
+}
+.phone-relationship-editor-field {
+    display: block;
+    margin: 0 0 16px;
+    color: #ffffff;
+    font-size: calc(.65vh + .8rem);
+    line-height: 1.2;
+}
+.phone-relationship-term-input {
+    display: block;
+    width: 100%;
+    height: calc(2.2vh + 1.5rem);
+    box-sizing: border-box;
+    margin-top: 7px;
+    padding: 7px 11px;
+    border: 2px solid #777777;
+    border-radius: 6px;
+    color: #ffffff;
+    background: #24242a;
+    font: inherit;
+}
+.phone-relationship-editor-help {
+    margin: 8px 0 16px;
+    color: #dddddd;
+    font-size: calc(.45vh + .65rem);
+    line-height: 1.3;
 }
 
 .phone-text-button {
@@ -890,6 +934,13 @@ input[type=text]:disabled{
     overflow-x: hidden;
     padding:0 1%;
 }
+.intro-wrapper-sub:nth-child(2) {
+    max-height: 88vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 0 1% 12px;
+    box-sizing: border-box;
+}
 .intro-wrapper-sub {
     position: static;
     display: inline-block;
@@ -903,6 +954,22 @@ input[type=text]:disabled{
 }
 .intro-wrapper input {
     font-size: calc(1vh + 1rem);
+}
+#room_002RelationshipAdvanced {
+    margin-top: 8px;
+    font-size: .82em;
+}
+#room_002RelationshipAdvanced summary {
+    cursor: pointer;
+    color: #d9d9ff;
+}
+.intro-relationship-extra {
+    display: block;
+    margin-top: 6px;
+}
+.intro-relationship-extra input {
+    width: 100%;
+    box-sizing: border-box;
 }
 .intro-wrapper-full {
     width: 100%;
@@ -957,6 +1024,52 @@ input[type=text]:disabled{
     width:calc(90% - 5vh - 2rem);
     color:#fff;
     font-size:calc(2vh + 1rem);
+}
+.intro-preferences {
+    margin-top: 12px;
+    padding: 10px;
+    border: 1px solid rgba(255,255,255,.35);
+    border-radius: 5px;
+    color: #fff;
+    font-size: calc(1vh + .9rem);
+}
+.intro-preferences h3 {
+    margin: 0 0 8px;
+    font-size: 1.05em;
+}
+.intro-preference-label {
+    display: block;
+    margin-top: 8px;
+}
+.intro-preference-options {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 6px;
+    margin-top: 5px;
+}
+.intro-pronoun-options {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+.intro-wrapper button.intro-preference-option {
+    width: auto;
+    min-width: 0;
+    margin: 0;
+    padding: 6px 4px;
+    border: 1px solid rgba(255,255,255,.5);
+    border-radius: 4px;
+    background: #263b67;
+    font-size: calc(.65vh + .7rem);
+    line-height: 1.15;
+    overflow-wrap: anywhere;
+}
+.intro-wrapper button.intro-preference-option.active {
+    border-color: #fff;
+    background: #5579bd;
+    box-shadow: 0 0 0 1px rgba(255,255,255,.35);
+}
+.intro-preferences p {
+    margin: 8px 0 0;
+    font-size: .78em;
 }
 .intro-hide {
     display: none;

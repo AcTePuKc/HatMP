@@ -138,7 +138,8 @@ room218.chat = function (chatID) {
         {
             chatID: 2,
             speaker: "thinking",
-            text: "I'll just do small strokes so " + sc.n("cecilia") + " doesn't notice...",
+            text: "I'll just do small strokes so {cecilia} doesn't notice...",
+            l10nValues: { cecilia: sc.n("cecilia") },
             button: [
                 { chatID: 3, text: "...", callback: "jack2" },
             ]
@@ -244,8 +245,9 @@ room218.chat = function (chatID) {
         {
             chatID: 15,
             speaker: "thinking",
-            text: sc.n("missy") + " looks like she's hurtin' for a squirtin'. I wonder if she'd take off my chastity and blow " +
+            text: "{missy} looks like she's hurtin' for a squirtin'. I wonder if she'd take off my chastity and blow " +
                 "me if I pulled down my pants? ",
+            l10nValues: { missy: sc.n("missy") },
             button: [
                 { chatID: -1, text: "...", callback: "backToWork" },
             ]
@@ -253,7 +255,8 @@ room218.chat = function (chatID) {
         {
             chatID: 16,
             speaker: "thinking",
-            text: "I wish I could get one of those blow jobs from " + sc.n("cecilia") + "! Stupid fucking chastity! ",
+            text: "I wish I could get one of those blow jobs from {cecilia}! Stupid fucking chastity! ",
+            l10nValues: { cecilia: sc.n("cecilia") },
             button: [
                 { chatID: -1, text: "...", callback: "backToWork" },
             ]

@@ -696,6 +696,7 @@ room197.chat = function (chatID) {
             chatID: 39,
             speaker: "missy",
             text: sc.n("cecilia") + " get in here! ",
+            l10nValues: { cecilia: sc.n("cecilia") },
             button: [
                 { chatID: 40, text: "...", callback: "two" },
             ]
@@ -712,7 +713,7 @@ room197.chat = function (chatID) {
             chatID: 41,
             speaker: "missy",
             text: "That's my good little girls. You are both such excellent oral sluts. Almost there, just keep " +
-                "licking mommy",
+                "licking me",
             button: [
                 { chatID: 42, text: "Yes ma'am!", callback: "lick1" },
             ]
@@ -737,6 +738,7 @@ room197.chat = function (chatID) {
             chatID: 44,
             speaker: "missy",
             text: sc.n("cecilia") + " get in here!",
+            l10nValues: { cecilia: sc.n("cecilia") },
             button: [
                 { chatID: 45, text: "...", callback: "two" },
             ]
@@ -747,6 +749,7 @@ room197.chat = function (chatID) {
             text: "I stepped in something sticky on my floor. This is unacceptable! " +
                 sc.n("cecilia") + " become a chair, " + sc.n("me") + " clean this nasty " +
                 "sticky gunk off my feet. Now!",
+            l10nValues: { cecilia: sc.n("cecilia"), me: sc.n("me") },
             button: [
                 { chatID: 46, text: "Yes ma'am!", callback: "cleanfoot" },
             ]
@@ -767,6 +770,7 @@ room197.chat = function (chatID) {
             text: "Thanks for not ratting me out! " + sc.n("chad") + " stopped by this morning and " +
                 "I can't help but say yes every time he pulls his dick out! I guess " +
                 "some of his cum leaked out again. ",
+            l10nValues: { chad: sc.n("chad") },
             button: [
                 { chatID: -1, text: "No worries. I totally get it", callback: "complete" },
             ]

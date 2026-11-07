@@ -170,23 +170,35 @@ room177.chat = function (chatID) {
         let chas = gv.get("castitycage");
         let howlong = gv.get("chastityOverride");
         let txt = "";
+        let l10nKey = "";
+        let l10nValues = {};
         nav.bg("177_chastity/bg.jpg");
         zcl.displayMain(-1000, 200, .4, "", false);
         if (howlong === "never") {
+            l10nKey = "room.177.chat.999.never";
             txt = "To never wear a chastity cage again? ";
         }
         else {
-            txt = "To wear a " + cl.getEntry("chastity", chas).display +
-                (howlong === null ? " only during the week? " : " forever?");
+            l10nValues.cage = cl.getEntry("chastity", chas).display;
+            if (howlong === null) {
+                l10nKey = "room.177.chat.999.week";
+                txt = "To wear a " + l10nValues.cage + " only during the week? ";
+            }
+            else {
+                l10nKey = "room.177.chat.999.forever";
+                txt = "To wear a " + l10nValues.cage + " forever? ";
+            }
         }
 
         return {
             chatID: 999,
             speaker: "missy",
+            l10nKey: l10nKey,
+            l10nValues: l10nValues,
             text: txt,
             button: [
-                { chatID: 34, text: "Yes it is", callback: "" },
-                { chatID: -1, text: "No. Let me redo that pick. ", callback: "chastity442redo" },
+                { chatID: 34, text: "Yes it is", callback: "", l10nKey: "room.177.chat.999.choice.0" },
+                { chatID: -1, text: "No. Let me redo that pick. ", callback: "chastity442redo", l10nKey: "room.177.chat.999.choice.1" },
             ]
         };
     }
@@ -232,6 +244,7 @@ room177.chat = function (chatID) {
         {
             chatID: 4,
             speaker: "missy",
+            l10nValues: { me: sc.n("me"), ralph: sc.n("ralph") },
             text: "Oh good, there's only two of you for this class. I know " + sc.n("me") + " knows chastity all too well, " +
                 "but " + sc.n("ralph") + " do you know why I lock up our sissies? ",
             button: [
@@ -250,6 +263,7 @@ room177.chat = function (chatID) {
         {
             chatID: 6,
             speaker: "missy",
+            l10nValues: { ralph: sc.n("ralph") },
             text: "Oh " + sc.n("ralph") + " my dear sweet bumbling idiot. It has nothing to do with pleasure. It's about control. " +
                 "If I lock your cock up and hold the key, then I alone control your cock. I decide when and how you use it. " +
                 "Sissies are my play things. ",
@@ -260,6 +274,7 @@ room177.chat = function (chatID) {
         {
             chatID: 7,
             speaker: "ralph",
+            l10nValues: { p: sc.n("p") },
             text: "I wanted to ask you about that. I am totally under your control, but I like having a penis. C-c-c-could I maybe " +
                 "not do chastity? I promise not to have sex with anyone unless I ask first. And you let me. It's just I really " +
                 "like having a penis. I like the other stuff too. Mostly I like dressing up, and " + sc.n("p") + "'s classes are " +
@@ -313,7 +328,8 @@ room177.chat = function (chatID) {
         {
             chatID: 13,
             speaker: "missy",
-            text: "Good. Now get out. I have actual chastity training to do with " + sc.n("me") + ". He's really going to love " +
+            l10nValues: { me: sc.n("me") },
+            text: "Good. Now get out. I have actual chastity training to do with " + sc.n("me") + ". You'll really love " +
                 "what I have in mind. ",
             button: [
                 { chatID: 27, text: "...", callback: "chastity3" }

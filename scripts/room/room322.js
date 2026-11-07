@@ -712,7 +712,7 @@ room322.btnclick = function (name) {
         case "park2_6":
             nav.killbutton("park2_6");
             nav.bg("322_dog/park2_6.webp");
-            nav.custom("park2_7", "swallow");
+            nav.custom("park2_7", "swallow", 322);
             break;
         case "park2_7":
             levels.oral(3, "m", "!dog", true, "dog");
@@ -1011,7 +1011,7 @@ room322.chatcatch = function (callback) {
         case "park2_5":
             nav.kill();
             nav.bg("322_dog/park2_5.webp");
-            nav.suck("park2_6");
+            nav.suck("park2_6", 322);
             break;
         default:
             break;
@@ -1023,97 +1023,109 @@ room322.chat = function (chatID) {
         {
             chatID: 0,
             speaker: "thinking",
+            l10nKey: "room.322.chat.0.text",
             text: "I'm pretty full. I already ate dog food today. blech!",
             button: [
-                { chatID: -1, text: "...", callback: "" }
+                { chatID: -1, l10nKey: "room.322.chat.0.choice.0", text: "...", callback: "" }
             ]
         },
         {
             chatID: 1,
             speaker: "janice",
+            l10nKey: "room.322.chat.1.text",
             text: "Awww, is my poor doggy trying to eat? Let me get that gag out of your mouth. " +
                 "But one word and it's going back in, and no meal!",
             button: [
-                { chatID: -1, text: "[Just eat the dog food]", callback: "kitchenEat" },
-                { chatID: 2, text: "Ooooo, that makes my jaw so sore, can I just...", callback: "kitchenbad" },
+                { chatID: -1, l10nKey: "room.322.chat.1.choice.0", text: "[Just eat the dog food]", callback: "kitchenEat" },
+                { chatID: 2, l10nKey: "room.322.chat.1.choice.1", text: "Ooooo, that makes my jaw so sore, can I just...", callback: "kitchenbad" },
             ]
         },
         {
             chatID: 2,
             speaker: "janice",
+            l10nKey: "room.322.chat.2.text",
             text: "Bad doggy! I guess no meal for you! Let me put this gag back in your mouth!!!",
             button: [
-                { chatID: -1, text: "*whine*", callback: "kitchen" },
+                { chatID: -1, l10nKey: "room.322.chat.2.choice.0", text: "*whine*", callback: "kitchen" },
             ]
         },
         {
             chatID: 3,
             speaker: "thinking",
+            l10nKey: "room.322.chat.3.text",
             text: "This gag sucks so hard! My jaw hurts and I can't drink or eat anything!",
             button: [
-                { chatID: -1, text: "*whine*", callback: "" },
+                { chatID: -1, l10nKey: "room.322.chat.3.choice.0", text: "*whine*", callback: "" },
             ]
         },
         {
             chatID: 4,
             speaker: "thinking",
+            l10nKey: "room.322.chat.4.text",
             text: "So crunchy and gross! She could at least feed me people food!",
             button: [
-                { chatID: 5, text: "...", callback: "kitchengood" },
+                { chatID: 5, l10nKey: "room.322.chat.4.choice.0", text: "...", callback: "kitchengood" },
             ]
         },
         {
             chatID: 5,
             speaker: "thinking",
+            l10nKey: "room.322.chat.5.text",
             text: "That's a good doggy. You must love this doggy food, you ate it all up!",
             button: [
-                { chatID: -1, text: "*whine*", callback: "kitchen" },
+                { chatID: -1, l10nKey: "room.322.chat.5.choice.0", text: "*whine*", callback: "kitchen" },
             ]
         },
         {
             chatID: 6,
             speaker: "janice",
+            l10nKey: "room.322.chat.6.text",
             text: "Bad doggy! Bad! You aren't allowed on the couch!",
             button: [
-                { chatID: -1, text: "*whimper*", callback: "reset" },
+                { chatID: -1, l10nKey: "room.322.chat.6.choice.0", text: "*whimper*", callback: "reset" },
             ]
         },
         {
             chatID: 7,
             speaker: "thinking",
+            l10nKey: "room.322.chat.7.text",
             text: "I don't have to pee right now.",
             button: [
-                { chatID: -1, text: "...", callback: "backyard" },
+                { chatID: -1, l10nKey: "room.322.chat.7.choice.0", text: "...", callback: "backyard" },
             ]
         },
         {
             chatID: 8,
             speaker: "janice",
+            l10nKey: "room.322.chat.8.text",
             text: "Hahahaha! Good doggy! So glad I don't have to house break you!",
             button: [
-                { chatID: -1, text: "...", callback: "backyard" },
+                { chatID: -1, l10nKey: "room.322.chat.8.choice.0", text: "...", callback: "backyard" },
             ]
         },
         {
             chatID: 9,
             speaker: "thinking",
+            l10nKey: "room.322.chat.9.text",
             text: "I'm too tired to play in the yard.",
             button: [
-                { chatID: -1, text: "...", callback: "backyard" },
+                { chatID: -1, l10nKey: "room.322.chat.9.choice.0", text: "...", callback: "backyard" },
             ]
         },
         {
             chatID: 10,
             speaker: "thinking",
+            l10nKey: "room.322.chat.10.text",
             text: "AAAAAKKKKK!! Don't pull my tail, it's attached to me! This isn't tug-of-war!",
             button: [
-                { chatID: -1, text: "*muffled screams*", callback: "yardPlay3" },
+                { chatID: -1, l10nKey: "room.322.chat.10.choice.0", text: "*muffled screams*", callback: "yardPlay3" },
             ]
         },
         {
             chatID: 11,
             speaker: "me",
             text: "noop",
+            l10nIgnore: true,
             button: [
                 { chatID: -1, text: "...", callback: "" },
             ]
@@ -1121,795 +1133,899 @@ room322.chat = function (chatID) {
         {
             chatID: 12,
             speaker: "janice",
+            l10nKey: "room.322.chat.12.text",
             text: "Hey girl. You want to go for a walk?",
             button: [
-                { chatID: -1, text: "Happy muffles", callback: "walk" },
-                { chatID: -1, text: "Sad muffles", callback: "livingroomannoy" },
+                { chatID: -1, l10nKey: "room.322.chat.12.choice.0", text: "Happy muffles", callback: "walk" },
+                { chatID: -1, l10nKey: "room.322.chat.12.choice.1", text: "Sad muffles", callback: "livingroomannoy" },
             ]
         },
         {
             chatID: 13,
             speaker: "janice",
+            l10nKey: "room.322.chat.13.text",
             text: "Those are my good girls.",
             button: [
-                { chatID: -1, text: "...", callback: "livingroom" },
+                { chatID: -1, l10nKey: "room.322.chat.13.choice.0", text: "...", callback: "livingroom" },
             ]
         },
         {
             chatID: 14,
             speaker: "eva",
+            l10nKey: "room.322.chat.14.text",
             text: "Huh? Is that my.....",
             button: [
-                { chatID: 15, text: "...", callback: "walk2" },
+                { chatID: 15, l10nKey: "room.322.chat.14.choice.0", text: "...", callback: "walk2" },
             ]
         },
         {
             chatID: 15,
             speaker: "eva",
+            l10nKey: "room.322.chat.15.text",
             text: "Oh my god it is you! What are you doing being walked around like a dog!",
             button: [
-                { chatID: 16, text: "*muffled grunts*", callback: "" },
+                { chatID: 16, l10nKey: "room.322.chat.15.choice.0", text: "*muffled grunts*", callback: "" },
             ]
         },
         {
             chatID: 16,
             speaker: "janice",
+            l10nKey: "room.322.chat.16.text",
+            l10nValues: { eva: sc.n("eva"), el: sc.el() },
             text: "Oh hi " + sc.n("eva") + ". Your " + sc.el() + "'s my doggy " +
                 "now. She's been a bad girl, but she does deserve her walks. ",
             button: [
-                { chatID: 17, text: "ugh", callback: "" },
+                { chatID: 17, l10nKey: "room.322.chat.16.choice.0", text: "ugh", callback: "" },
             ]
         },
         {
             chatID: 17,
             speaker: "eva",
+            l10nKey: "room.322.chat.17.text",
             text: "I knew you were a pervert, but this is so much. You know everyone can see your " +
                 "balls as you go down the sidewalk! Just jiggling back and forth! You really are " +
                 "the weirdest girl I know!",
             button: [
-                { chatID: -1, text: "Sigh", callback: "livingroom" },
+                { chatID: -1, l10nKey: "room.322.chat.17.choice.0", text: "Sigh", callback: "livingroom" },
             ]
         },
         {
             chatID: 18,
             speaker: "eva",
+            l10nKey: "room.322.chat.18.text",
             text: "Hahahaha! I saw your butthole a mile away! You're such a weird pervert! I am " +
                 "both amazed and disgusted.",
             button: [
-                { chatID: -1, text: "Sigh", callback: "livingroom" },
+                { chatID: -1, l10nKey: "room.322.chat.18.choice.0", text: "Sigh", callback: "livingroom" },
             ]
         },
         {
             chatID: 19,
             speaker: "girl",
+            l10nKey: "room.322.chat.19.text",
             text: "Oh cute! Is that a new doggy, wait isn't that your old boyfriend?",
             button: [
-                { chatID: 20, text: "...", callback: "park1_1" },
+                { chatID: 20, l10nKey: "room.322.chat.19.choice.0", text: "...", callback: "park1_1" },
             ]
         },
         {
             chatID: 20,
             speaker: "janice",
+            l10nKey: "room.322.chat.20.text",
+            l10nValues: { dog: sc.n("dog") },
             text: "Hehehe! Yeah. I can't believe I dated that loser. She's much better as my little " +
                 "doggy now hehehe. I caught her getting fucked by " + sc.n("dog") + ", so I did the only " +
                 "thing I could. Make her my bitch. ",
             button: [
-                { chatID: 21, text: "...", callback: "park1_2" },
+                { chatID: 21, l10nKey: "room.322.chat.20.choice.0", text: "...", callback: "park1_2" },
             ]
         },
         {
             chatID: 21,
             speaker: "girl",
+            l10nKey: "room.322.chat.21.text",
             text: "I'm so jealous! I want a bitch too! And look, the other doggies really love " +
                 "her too! Is she house broken?",
             button: [
-                { chatID: 22, text: "...", callback: "park1_3" },
+                { chatID: 22, l10nKey: "room.322.chat.21.choice.0", text: "...", callback: "park1_3" },
             ]
         },
         {
             chatID: 22,
             speaker: "janice",
+            l10nKey: "room.322.chat.22.text",
             text: "Yes! Thank god. I mean mostly. She did pee in her cage. I should make her sit " +
                 "in her pee next time she does that. She is such a bad dog. I'm going to have to " +
                 "punish her again. ",
             button: [
-                { chatID: 23, text: "...", callback: "park1_4" },
+                { chatID: 23, l10nKey: "room.322.chat.22.choice.0", text: "...", callback: "park1_4" },
             ]
         },
         {
             chatID: 23,
             speaker: "girl",
+            l10nKey: "room.322.chat.23.text",
             text: "What a bad dog! When my little doggy pees on the floor I usually rub her face " +
                 "in it. Only had to do it twice. I love my doggy, but I hate training her. Well, " +
                 "I gotta get going. See you later.",
             button: [
-                { chatID: -1, text: "...", callback: "livingroom" },
+                { chatID: -1, l10nKey: "room.322.chat.23.choice.0", text: "...", callback: "livingroom" },
             ]
         },
         {
             chatID: 24,
             speaker: "janice",
+            l10nKey: "room.322.chat.24.text",
             text: "Well, time to make some money!",
             button: [
-                { chatID: -1, text: "...", callback: "room321" },
+                { chatID: -1, l10nKey: "room.322.chat.24.choice.0", text: "...", callback: "room321" },
             ]
         },
         {
             chatID: 25,
             speaker: "janice",
+            l10nKey: "room.322.chat.25.text",
             text: "Ooooo. Who's at the door?",
             button: [
-                { chatID: 26, text: "...", callback: "waiter1" },
+                { chatID: 26, l10nKey: "room.322.chat.25.choice.0", text: "...", callback: "waiter1" },
             ]
         },
         {
             chatID: 26,
             speaker: "!waiter",
+            l10nKey: "room.322.chat.26.text",
             text: "Is that loser boyfriend of yours around or do you have time to indulge in " +
                 "this chocolate cake I brought?",
             button: [
-                { chatID: 27, text: "...", callback: "" },
+                { chatID: 27, l10nKey: "room.322.chat.26.choice.0", text: "...", callback: "" },
             ]
         },
         {
             chatID: 27,
             speaker: "janice",
+            l10nKey: "room.322.chat.27.text",
             text: "Chocolate cake! OOoo you can come in! And, no, I don't have a boyfriend anymore. ",
             button: [
-                { chatID: 28, text: "*whimper*", callback: "waiter2" },
+                { chatID: 28, l10nKey: "room.322.chat.27.choice.0", text: "*whimper*", callback: "waiter2" },
             ]
         },
         {
             chatID: 28,
             speaker: "!waiter",
+            l10nKey: "room.322.chat.28.text",
             text: "Oh ho ho ho. I always knew you were a cuck, but I didn't know you were a freak " +
                 "too. Come, let's eat this cake baby. ",
             button: [
-                { chatID: 29, text: "*sigh*", callback: "waiter3" },
+                { chatID: 29, l10nKey: "room.322.chat.28.choice.0", text: "*sigh*", callback: "waiter3" },
             ]
         },
         {
             chatID: 29,
             speaker: "janice",
+            l10nKey: "room.322.chat.29.text",
             text: "mMMmmMMmm I do love your yummy cake. Sooooo good. ",
             button: [
-                { chatID: 30, text: "...", callback: "" },
+                { chatID: 30, l10nKey: "room.322.chat.29.choice.0", text: "...", callback: "" },
             ]
         },
         {
             chatID: 30,
             speaker: "!waiter",
+            l10nKey: "room.322.chat.30.text",
             text: "You're yummy! We should really share our cake with your dogs. Here " +
                 "doggy, catch the cake.",
             button: [
-                { chatID: 31, text: "...", callback: "waiter4" },
+                { chatID: 31, l10nKey: "room.322.chat.30.choice.0", text: "...", callback: "waiter4" },
             ]
         },
         {
             chatID: 31,
             speaker: "!waiter",
+            l10nKey: "room.322.chat.31.text",
             text: "Hahaha!! Your doggy is so bad at catching! She's got chocolate cake all over " +
                 "her face!",
             button: [
-                { chatID: 32, text: "...", callback: "waiter5" },
+                { chatID: 32, l10nKey: "room.322.chat.31.choice.0", text: "...", callback: "waiter5" },
             ]
         },
         {
             chatID: 32,
             speaker: "janice",
+            l10nKey: "room.322.chat.32.text",
             text: "hehe. Dumb dog",
             button: [
-                { chatID: 33, text: "...", callback: "waiter6" },
+                { chatID: 33, l10nKey: "room.322.chat.32.choice.0", text: "...", callback: "waiter6" },
             ]
         },
         {
             chatID: 33,
             speaker: "!waiter",
+            l10nKey: "room.322.chat.33.text",
             text: "While those two lick each other out, let's take this into the bedroom so I may " +
                 "lick you.",
             button: [
-                { chatID: 34, text: "...", callback: "" },
+                { chatID: 34, l10nKey: "room.322.chat.33.choice.0", text: "...", callback: "" },
             ]
         },
         {
             chatID: 34,
             speaker: "janice",
+            l10nKey: "room.322.chat.34.text",
             text: "MMMmmmm. I like the way you lick.",
             button: [
-                { chatID: -1, text: "...", callback: "doggywait" },
+                { chatID: -1, l10nKey: "room.322.chat.34.choice.0", text: "...", callback: "doggywait" },
             ]
         },
         {
             chatID: 35,
             speaker: "thinking",
+            l10nKey: "room.322.chat.35.text",
             text: "I don't need to watch my girlfriend get fucked by that asshole waiter. I'll just " +
                 "try to nap while listening to her moans of pleasure. ",
             button: [
-                { chatID: -1, text: "...", callback: "livingroom" },
+                { chatID: -1, l10nKey: "room.322.chat.35.choice.0", text: "...", callback: "livingroom" },
             ]
         },
         {
             chatID: 36,
             speaker: "!waiter",
+            l10nKey: "room.322.chat.36.text",
             text: "Oh look, the little doggy wants to see his girlfriend get fucked! Hehe! " +
                 "Watch as I make my best dish, cream filled cunt! Hahaha",
             button: [
-                { chatID: 37, text: "...", callback: "waiter8" },
+                { chatID: 37, l10nKey: "room.322.chat.36.choice.0", text: "...", callback: "waiter8" },
             ]
         },
         {
             chatID: 37,
             speaker: "janice",
+            l10nKey: "room.322.chat.37.text",
             text: "His cock is so much better than yours. My god I love getting fucked!",
             button: [
-                { chatID: 38, text: "...", callback: "waiter9" },
+                { chatID: 38, l10nKey: "room.322.chat.37.choice.0", text: "...", callback: "waiter9" },
             ]
         },
         {
             chatID: 38,
             speaker: "!waiter",
+            l10nKey: "room.322.chat.38.text",
             text: "Let me take that gag out so you can clean her pussy while she cleans my cock! " +
                 "Cute little doggies. ",
             button: [
-                { chatID: -1, text: "...", callback: "" },
+                { chatID: -1, l10nKey: "room.322.chat.38.choice.0", text: "...", callback: "" },
             ]
         },
         {
             chatID: 39,
             speaker: "thinking",
+            l10nKey: "room.322.chat.39.text",
+            l10nValues: { dog: sc.n("dog") },
             text: "Uh oh. " + sc.n("dog") + " looks mad. I wonder what I did wrong?",
             button: [
-                { chatID: 40, text: "...", callback: "waiter11" },
+                { chatID: 40, l10nKey: "room.322.chat.39.choice.0", text: "...", callback: "waiter11" },
             ]
         },
         {
             chatID: 40,
             speaker: "!waiter",
+            l10nKey: "room.322.chat.40.text",
+            l10nValues: { dog: sc.n("dog") },
             text: "You're such a bitch. You both know " + sc.n("dog") + " is the real one. You're " +
                 "just his bitch! Hahahahah!",
             button: [
-                { chatID: -1, text: "*sigh*", callback: "evening" },
+                { chatID: -1, l10nKey: "room.322.chat.40.choice.0", text: "*sigh*", callback: "evening" },
             ]
         },
         {
             chatID: 41,
             speaker: "janice",
+            l10nKey: "room.322.chat.41.text",
             text: "Ooooo. Who's at the door?",
             button: [
-                { chatID: 42, text: "...", callback: "pl1" },
+                { chatID: 42, l10nKey: "room.322.chat.41.choice.0", text: "...", callback: "pl1" },
             ]
         },
         {
             chatID: 42,
             speaker: "!plumber",
+            l10nKey: "room.322.chat.42.text",
             text: "I came to check your pipes... but... is that your boyfriend?",
             button: [
-                { chatID: 43, text: "...", callback: "" },
+                { chatID: 43, l10nKey: "room.322.chat.42.choice.0", text: "...", callback: "" },
             ]
         },
         {
             chatID: 43,
             speaker: "janice",
+            l10nKey: "room.322.chat.43.text",
             text: "Hahaha, what boyfriend. Those are just my doggies. Come, join me on the couch?",
             button: [
-                { chatID: 44, text: "...", callback: "pl2" },
+                { chatID: 44, l10nKey: "room.322.chat.43.choice.0", text: "...", callback: "pl2" },
             ]
         },
         {
             chatID: 44,
             speaker: "!plumber",
+            l10nKey: "room.322.chat.44.text",
             text: "Oh wow! So what's with your dogs? That's so crazy! ",
             button: [
-                { chatID: 45, text: "...", callback: "" },
+                { chatID: 45, l10nKey: "room.322.chat.44.choice.0", text: "...", callback: "" },
             ]
         },
         {
             chatID: 45,
             speaker: "janice",
+            l10nKey: "room.322.chat.45.text",
             text: "They're just my doggies. What do you mean? ",
             button: [
-                { chatID: 46, text: "...", callback: "" },
+                { chatID: 46, l10nKey: "room.322.chat.45.choice.0", text: "...", callback: "" },
             ]
         },
         {
             chatID: 46,
             speaker: "!plumber",
+            l10nKey: "room.322.chat.46.text",
             text: "Is the boy dog neutered?  ",
             button: [
-                { chatID: 47, text: "...", callback: "" },
+                { chatID: 47, l10nKey: "room.322.chat.46.choice.0", text: "...", callback: "" },
             ]
         },
         {
             chatID: 47,
             speaker: "janice",
+            l10nKey: "room.322.chat.47.text",
+            l10nValues: { dog: sc.n("dog") },
             text: "Oh my, no! I would never do that to " + sc.n("dog") + ". ",
             button: [
-                { chatID: 48, text: "...", callback: "" },
+                { chatID: 48, l10nKey: "room.322.chat.47.choice.0", text: "...", callback: "" },
             ]
         },
         {
             chatID: 48,
             speaker: "!plumber",
+            l10nKey: "room.322.chat.48.text",
             text: "So... uh... do your dogs fuck? I mean if I was a dog with my balls I would fuck. " +
                 "You know how I love fucking. I mean fuck. I would be fuckin' everyday.",
             button: [
-                { chatID: 49, text: "*whimper*", callback: "" },
+                { chatID: 49, l10nKey: "room.322.chat.48.choice.0", text: "*whimper*", callback: "" },
             ]
         },
         {
             chatID: 49,
             speaker: "janice",
+            l10nKey: "room.322.chat.49.text",
             text: "Oh. I don't know. I would say ask them, but they can't talk! HAhahaha. You " +
                 "stay right here. I'm going to change into something a bit more comfortable and do " +
                 "a touch up. ",
             button: [
-                { chatID: 50, text: "...", callback: "pl3" },
+                { chatID: 50, l10nKey: "room.322.chat.49.choice.0", text: "...", callback: "pl3" },
             ]
         },
         {
             chatID: 50,
             speaker: "!plumber",
+            l10nKey: "room.322.chat.50.text",
             text: "While she's busy... I'm going to go check something...don't go anywhere you two.",
             button: [
-                { chatID: 51, text: "...", callback: "pl4" },
+                { chatID: 51, l10nKey: "room.322.chat.50.choice.0", text: "...", callback: "pl4" },
             ]
         },
         {
             chatID: 51,
             speaker: "thinking",
+            l10nKey: "room.322.chat.51.text",
             text: "What's he up to? And what did he mean by, don't go anywhere.... Is he stealing " +
                 "from her?",
             button: [
-                { chatID: 52, text: "...", callback: "pl5" },
+                { chatID: 52, l10nKey: "room.322.chat.51.choice.0", text: "...", callback: "pl5" },
             ]
         },
         {
             chatID: 52,
             speaker: "!plumber",
+            l10nKey: "room.322.chat.52.text",
             text: "I've always wanted to see a bitch get fucked by a dog! Come 'er bitch.",
             button: [
-                { chatID: 53, text: "Hhhhrmmmmm mmmRRHhhhh", callback: "pl6" },
+                { chatID: 53, l10nKey: "room.322.chat.52.choice.0", text: "Hhhhrmmmmm mmmRRHhhhh", callback: "pl6" },
             ]
         },
         {
             chatID: 53,
             speaker: "!plumber",
+            l10nKey: "room.322.chat.53.text",
             text: "That is a cute butthole",
             button: [
-                { chatID: 54, text: "NNhhmmmnnn", callback: "pl7" },
+                { chatID: 54, l10nKey: "room.322.chat.53.choice.0", text: "NNhhmmmnnn", callback: "pl7" },
             ]
         },
         {
             chatID: 54,
             speaker: "!plumber",
+            l10nKey: "room.322.chat.54.text",
             text: "Let me just get it ready for the dog...",
             button: [
-                { chatID: 55, text: "aaammnnhhhrrr", callback: "pl8" },
+                { chatID: 55, l10nKey: "room.322.chat.54.choice.0", text: "aaammnnhhhrrr", callback: "pl8" },
             ]
         },
         {
             chatID: 55,
             speaker: "!plumber",
+            l10nKey: "room.322.chat.55.text",
             text: "Oh yeah! He knows that ass is his! Go on boy! Get it wet and take the bitch!",
             button: [
-                { chatID: 56, text: "HHrrhhhrrrruuuummm", callback: "pl9" },
+                { chatID: 56, l10nKey: "room.322.chat.55.choice.0", text: "HHrrhhhrrrruuuummm", callback: "pl9" },
             ]
         },
         {
             chatID: 56,
             speaker: "janice",
+            l10nKey: "room.322.chat.56.text",
             text: "I'm gone for 2 seconds to change and I come back to you two like this! Are you " +
                 "trying to make my friend uncomfortable? ",
             button: [
-                { chatID: 57, text: "UUugghhhh", callback: "pl10" },
+                { chatID: 57, l10nKey: "room.322.chat.56.choice.0", text: "UUugghhhh", callback: "pl10" },
             ]
         },
         {
             chatID: 57,
             speaker: "!plumber",
+            l10nKey: "room.322.chat.57.text",
             text: "I need you now!  ",
             button: [
-                { chatID: 58, text: "*huff* *huff*", callback: "pl11" },
+                { chatID: 58, l10nKey: "room.322.chat.57.choice.0", text: "*huff* *huff*", callback: "pl11" },
             ]
         },
         {
             chatID: 58,
             speaker: "!plumber",
+            l10nKey: "room.322.chat.58.text",
             text: "Oh shit! I don't know how long I can last! Oh fuck you bitches are hot! ",
             button: [
-                { chatID: 59, text: "oof ooof ooof", callback: "pl12" },
+                { chatID: 59, l10nKey: "room.322.chat.58.choice.0", text: "oof ooof ooof", callback: "pl12" },
             ]
         },
         {
             chatID: 59,
             speaker: "janice",
+            l10nKey: "room.322.chat.59.text",
             text: "Oh yes! I can feel your cum filling my wet pussy! It's so hot inside me! ",
             button: [
-                { chatID: 60, text: "reee wwhhhooooo", callback: "pl13" },
+                { chatID: 60, l10nKey: "room.322.chat.59.choice.0", text: "reee wwhhhooooo", callback: "pl13" },
             ]
         },
         {
             chatID: 60,
             speaker: "!plumber",
+            l10nKey: "room.322.chat.60.text",
+            l10nValues: { dog: sc.n("dog") },
             text: "Now those are some properly fucked bitches! Good job " + sc.n("dog") + ". Love to " +
                 "leave a couple properly fucked holes dripping. ",
             button: [
-                { chatID: -1, text: "*hard breathing*", callback: "evening" },
+                { chatID: -1, l10nKey: "room.322.chat.60.choice.0", text: "*hard breathing*", callback: "evening" },
             ]
         },
         {
             chatID: 61,
             speaker: "janice",
+            l10nKey: "room.322.chat.61.text",
             text: "It's starting to get late, let's head to bed. ",
             button: [
-                { chatID: -1, text: "...", callback: "bed" },
+                { chatID: -1, l10nKey: "room.322.chat.61.choice.0", text: "...", callback: "bed" },
             ]
         },
         {
             chatID: 62,
             speaker: "janice",
+            l10nKey: "room.322.chat.62.text",
             text: "Whoops... Hehehe. Ooof that's bad. Let's go to bed.",
             button: [
-                { chatID: -1, text: "...", callback: "bed" },
+                { chatID: -1, l10nKey: "room.322.chat.62.choice.0", text: "...", callback: "bed" },
             ]
         },
         {
             chatID: 63,
             speaker: "janice",
+            l10nKey: "room.322.chat.63.text",
             text: "Oh yeah! One last orgasm before bed!",
             button: [
-                { chatID: -1, text: "...", callback: "bed" },
+                { chatID: -1, l10nKey: "room.322.chat.63.choice.0", text: "...", callback: "bed" },
             ]
         },
         {
             chatID: 64,
             speaker: "janice",
+            l10nKey: "room.322.chat.64.text",
             text: "Let me get you two ready for bed. In the doggy crate with you. You haven't " +
                 "earned your place in bed yet.",
             button: [
-                { chatID: 65, text: "...", callback: "e11" },
+                { chatID: 65, l10nKey: "room.322.chat.64.choice.0", text: "...", callback: "e11" },
             ]
         },
         {
             chatID: 65,
             speaker: "thinking",
+            l10nKey: "room.322.chat.65.text",
             text: "My arms and legs are so stiff! It hurts so much! And my butthole hasn't closed " +
                 "all day! I'm going to get the worst night's sleep ever!",
             button: [
-                { chatID: -1, text: "...", callback: "sleep" },
+                { chatID: -1, l10nKey: "room.322.chat.65.choice.0", text: "...", callback: "sleep" },
             ]
         },
         {
             chatID: 66,
             speaker: "janice",
+            l10nKey: "room.322.chat.66.text",
             text: "Good girl. Time to let you out of your crate.",
             button: [
-                { chatID: -1, text: "...", callback: "livingroom" },
+                { chatID: -1, l10nKey: "room.322.chat.66.choice.0", text: "...", callback: "livingroom" },
             ]
         },
         {
             chatID: 67,
             speaker: "janice",
+            l10nKey: "room.322.chat.67.text",
             text: "Shoo. Let me relax.",
             button: [
-                { chatID: -1, text: "...", callback: "livingroom" },
+                { chatID: -1, l10nKey: "room.322.chat.67.choice.0", text: "...", callback: "livingroom" },
             ]
         },
         {
             chatID: 68,
             speaker: "janice",
+            l10nKey: "room.322.chat.68.text",
+            l10nValues: { dog: sc.n("dog") },
             text: "ugh. This show is boring and dumb. Hey, you know what would be funny? If you " +
                 "sucked " + sc.n("dog") + "'s dick! Hehehe. Roll over, let me see you suck his dick. ",
             button: [
-                { chatID: 69, text: "[roll over]", callback: "ds0" },
-                { chatID: -1, text: "*yelp* [Run to the back yard]", callback: "backyardannoy" },
+                { chatID: 69, l10nKey: "room.322.chat.68.choice.0", text: "[roll over]", callback: "ds0" },
+                { chatID: -1, l10nKey: "room.322.chat.68.choice.1", text: "*yelp* [Run to the back yard]", callback: "backyardannoy" },
             ]
         },
         {
             chatID: 69,
             speaker: "janice",
+            l10nKey: "room.322.chat.69.text",
+            l10nValues: { dog: sc.n("dog") },
             text: "Hahaha! You are such a loser! You just rolled over! Hehehe, Let me get " +
                 sc.n("dog") + " hard so you can suck his dick! hehehe",
             button: [
-                { chatID: 70, text: "....", callback: "ds1" },
+                { chatID: 70, l10nKey: "room.322.chat.69.choice.0", text: "....", callback: "ds1" },
             ]
         },
         {
             chatID: 70,
             speaker: "janice",
+            l10nKey: "room.322.chat.70.text",
             text: "The funny thing is, all boys are the same...",
             button: [
-                { chatID: 71, text: "....", callback: "ds2" },
+                { chatID: 71, l10nKey: "room.322.chat.70.choice.0", text: "....", callback: "ds2" },
             ]
         },
         {
             chatID: 71,
             speaker: "janice",
+            l10nKey: "room.322.chat.71.text",
+            l10nValues: { dog: sc.n("dog") },
             text: "...you just play with their penis for a little bit and they instantly get " +
                 "hard. But the thing about a hard penis is now it's in control of the boy. It " +
                 "seeks a warm wet hole to ejaculate in and nothing else matters. Open your mouth " +
                 "so " + sc.n("dog") + " can put his penis in your warm wet hole.",
             button: [
-                { chatID: 72, text: "Awwww", callback: "ds3" },
+                { chatID: 72, l10nKey: "room.322.chat.71.choice.0", text: "Awwww", callback: "ds3" },
             ]
         },
         {
             chatID: 72,
             speaker: "janice",
+            l10nKey: "room.322.chat.72.text",
             text: "That's so so hot! His red rocket just hovering above your face and your eager " +
                 "mouth open ready to suck it.",
             button: [
-                { chatID: 73, text: "...", callback: "ds4" },
+                { chatID: 73, l10nKey: "room.322.chat.72.choice.0", text: "...", callback: "ds4" },
             ]
         },
         {
             chatID: 73,
             speaker: "janice",
+            l10nKey: "room.322.chat.73.text",
             text: "Hahaha. That's so gross. You just put your mouth on a dog's penis! Keep sucking " +
                 "it. I want to see you swallow his cum!",
             button: [
-                { chatID: 74, text: "Swallow", callback: "ds5" },
-                { chatID: 75, text: "Spit", callback: "ds5a" },
+                { chatID: 74, l10nKey: "room.322.chat.73.choice.0", text: "Swallow", callback: "ds5" },
+                { chatID: 75, l10nKey: "room.322.chat.73.choice.1", text: "Spit", callback: "ds5a" },
             ]
         },
         {
             chatID: 74,
             speaker: "janice",
+            l10nKey: "room.322.chat.74.text",
+            l10nValues: { dog: sc.n("dog") },
             text: "Oh gross! You did swallow his doggy cum didn't you? You really will do whatever " +
                 "I tell you to, won't you.",
             button: [
-                { chatID: -1, text: "Arf!", callback: "livingroom" },
+                { chatID: -1, l10nKey: "room.322.chat.74.choice.0", text: "Arf!", callback: "livingroom" },
             ]
         },
         {
             chatID: 75,
             speaker: "janice",
+            l10nKey: "room.322.chat.75.text",
             text: "Awww! I really wanted to see you swallow it!",
             button: [
-                { chatID: -1, text: "*sad arf* ", callback: "livingroom" },
+                { chatID: -1, l10nKey: "room.322.chat.75.choice.0", text: "*sad arf* ", callback: "livingroom" },
             ]
         },
         {
             chatID: 76,
             speaker: "janice",
+            l10nKey: "room.322.chat.76.text",
             text: "Awww, do you want to play huh doggy! Let's see you do some tricks!",
             button: [
-                { chatID: 77, text: "...", callback: "" },
+                { chatID: 77, l10nKey: "room.322.chat.76.choice.0", text: "...", callback: "" },
             ]
         },
         {
             chatID: 77,
             speaker: "janice",
+            l10nKey: "room.322.chat.77.text",
             text: "Sit doggy!",
             button: [
-                { chatID: 78, text: "[Sit]", callback: "t1" },
-                { chatID: 83, text: "[Don't move]", callback: "" },
+                { chatID: 78, l10nKey: "room.322.chat.77.choice.0", text: "[Sit]", callback: "t1" },
+                { chatID: 83, l10nKey: "room.322.chat.77.choice.1", text: "[Don't move]", callback: "" },
             ]
         },
         {
             chatID: 78,
             speaker: "janice",
+            l10nKey: "room.322.chat.78.text",
             text: "Hahah, good girl. Now roll over!",
             button: [
-                { chatID: 79, text: "[Roll over]", callback: "t2" },
-                { chatID: 83, text: "[Don't move]", callback: "" },
+                { chatID: 79, l10nKey: "room.322.chat.78.choice.0", text: "[Roll over]", callback: "t2" },
+                { chatID: 83, l10nKey: "room.322.chat.78.choice.1", text: "[Don't move]", callback: "" },
             ]
         },
         {
             chatID: 79,
             speaker: "janice",
+            l10nKey: "room.322.chat.79.text",
             text: "Haha. You're so awkward! Now play dead.",
             button: [
-                { chatID: 80, text: "[Play dead]", callback: "t3" },
-                { chatID: 83, text: "[Don't move]", callback: "" },
+                { chatID: 80, l10nKey: "room.322.chat.79.choice.0", text: "[Play dead]", callback: "t3" },
+                { chatID: 83, l10nKey: "room.322.chat.79.choice.1", text: "[Don't move]", callback: "" },
             ]
         },
         {
             chatID: 80,
             speaker: "janice",
+            l10nKey: "room.322.chat.80.text",
             text: "OOOooooh, is my poor little doggy dead? Now sit! ",
             button: [
-                { chatID: 81, text: "[Sit]", callback: "t4" },
-                { chatID: 83, text: "[Don't move]", callback: "" },
+                { chatID: 81, l10nKey: "room.322.chat.80.choice.0", text: "[Sit]", callback: "t4" },
+                { chatID: 83, l10nKey: "room.322.chat.80.choice.1", text: "[Don't move]", callback: "" },
             ]
         },
         {
             chatID: 81,
             speaker: "janice",
+            l10nKey: "room.322.chat.81.text",
             text: "You're such a good girl! You can have a doggy biscuit! ",
             button: [
-                { chatID: 82, text: "[Eat the biscuit]", callback: "" },
-                { chatID: 83, text: "[Don't move]", callback: "" },
+                { chatID: 82, l10nKey: "room.322.chat.81.choice.0", text: "[Eat the biscuit]", callback: "" },
+                { chatID: 83, l10nKey: "room.322.chat.81.choice.1", text: "[Don't move]", callback: "" },
             ]
         },
         {
             chatID: 82,
             speaker: "thinking",
+            l10nKey: "room.322.chat.82.text",
             text: "Ucky! I have no idea why this is a reward! How do dogs even eat this? It's so " +
                 "dry and gross!",
             button: [
-                { chatID: -1, text: "...", callback: "tEnd" },
+                { chatID: -1, l10nKey: "room.322.chat.82.choice.0", text: "...", callback: "tEnd" },
             ]
         },
         {
             chatID: 83,
             speaker: "janice",
+            l10nKey: "room.322.chat.83.text",
             text: "What? You can't hear me. You're a bad doggy! Bad! Go away doggy!",
             button: [
-                { chatID: -1, text: "...", callback: "tEndbad" },
+                { chatID: -1, l10nKey: "room.322.chat.83.choice.0", text: "...", callback: "tEndbad" },
             ]
         },
         {
             chatID: 84,
             speaker: "thinking",
+            l10nKey: "room.322.chat.84.text",
             text: "Oh no! I drank water and didn't pee yesterday! I must have peed my crate while " +
                 "I was sleeping. I'm so embarrassed right now.",
             button: [
-                { chatID: 85, text: "...", callback: "pp1" },
+                { chatID: 85, l10nKey: "room.322.chat.84.choice.0", text: "...", callback: "pp1" },
             ]
         },
         {
             chatID: 85,
             speaker: "janice",
+            l10nKey: "room.322.chat.85.text",
             text: "Well good morning my.... Did you go pee pee in your crate?",
             button: [
-                { chatID: 86, text: "...", callback: "pp2" },
+                { chatID: 86, l10nKey: "room.322.chat.85.choice.0", text: "...", callback: "pp2" },
             ]
         },
         {
             chatID: 86,
             speaker: "janice",
+            l10nKey: "room.322.chat.86.text",
             text: "Bad doggy! I'll just use your hair to clean up your pee pee. Now you'll have to " +
                 "smell your own pee all day. Maybe you'll remember to go outside next time!",
             button: [
-                { chatID: -1, text: "...", callback: "ppend" },
+                { chatID: -1, l10nKey: "room.322.chat.86.choice.0", text: "...", callback: "ppend" },
             ]
         },
         {
             chatID: 87,
             speaker: "janice",
+            l10nKey: "room.322.chat.87.text",
             text: "You were a bad doggy today! You have to sleep in the doggy crate until you learn " +
                 "to be a good doggy!",
             button: [
-                { chatID: 65, text: "*sigh*", callback: "e11" },
+                { chatID: 65, l10nKey: "room.322.chat.87.choice.0", text: "*sigh*", callback: "e11" },
             ]
         },
         {
             chatID: 88,
             speaker: "janice",
+            l10nKey: "room.322.chat.88.text",
             text: "Time for bed my little doggies",
             button: [
-                { chatID: -1, text: "...", callback: "sleep" },
+                { chatID: -1, l10nKey: "room.322.chat.88.choice.0", text: "...", callback: "sleep" },
             ]
         },
         {
             chatID: 89,
             speaker: "girl",
+            l10nKey: "room.322.chat.89.text",
             text: "Hey girlfriend! Taking your doggies to the park again?",
             button: [
-                { chatID: 90, text: "...", callback: "park1_1" },
+                { chatID: 90, l10nKey: "room.322.chat.89.choice.0", text: "...", callback: "park1_1" },
             ]
         },
         {
             chatID: 90,
             speaker: "janice",
+            l10nKey: "room.322.chat.90.text",
+            l10nValues: { dog: sc.n("dog"), me: sc.n("me") },
             text: "Oh yeah. " + sc.n("dog") + " just loves to run around and " + sc.n("me") + 
                 " loves to get fucked by doggies. What are you going to do?",
             button: [
-                { chatID: 91, text: "...", callback: "park1_2" },
+                { chatID: 91, l10nKey: "room.322.chat.90.choice.0", text: "...", callback: "park1_2" },
             ]
         },
         {
             chatID: 91,
             speaker: "girl",
+            l10nKey: "room.322.chat.91.text",
             text: "I knew you two weren't going to last when I heard you were dating. You need a " +
                 "real man that can provide for you, not some loser wimp.",
             button: [
-                { chatID: 92, text: "...", callback: "park1_3" },
+                { chatID: 92, l10nKey: "room.322.chat.91.choice.0", text: "...", callback: "park1_3" },
             ]
         },
         {
             chatID: 92,
             speaker: "janice",
+            l10nKey: "room.322.chat.92.text",
             text: "Yeah, provide in more ways than one, am I right!",
             button: [
-                { chatID: 93, text: "...", callback: "park1_4" },
+                { chatID: 93, l10nKey: "room.322.chat.92.choice.0", text: "...", callback: "park1_4" },
             ]
         },
         {
             chatID: 93,
             speaker: "girl",
+            l10nKey: "room.322.chat.93.text",
             text: "Oh yeah! Well I have to get little Muffy home. My vag needs to get licked.",
             button: [
-                { chatID: -1, text: "...", callback: "livingroom" },
+                { chatID: -1, l10nKey: "room.322.chat.93.choice.0", text: "...", callback: "livingroom" },
             ]
         },
         {
             chatID: 94,
             speaker: "janice",
+            l10nKey: "room.322.chat.94.text",
             text: "Wakey wakey. You want to be my doggy some more, or do you want to leave?",
             button: [
-                { chatID: -1, text: "*arf*", callback: "livingroom" },
-                { chatID: 95, text: "*pleading eyes*", callback: "" },
+                { chatID: -1, l10nKey: "room.322.chat.94.choice.0", text: "*arf*", callback: "livingroom" },
+                { chatID: 95, l10nKey: "room.322.chat.94.choice.1", text: "*pleading eyes*", callback: "" },
             ]
         },
         {
             chatID: 95,
             speaker: "janice",
+            l10nKey: "room.322.chat.95.text",
             text: "Ok. I'll take my bitch suit. You can get dressed in the bathroom.",
             button: [
-                { chatID: -1, text: "*arf*, I mean, thank you", callback: "leave" },
+                { chatID: -1, l10nKey: "room.322.chat.95.choice.0", text: "*arf*, I mean, thank you", callback: "leave" },
             ]
         },
         {
             chatID: 96,
             speaker: "janice",
+            l10nKey: "room.322.chat.96.text",
             text: "I wonder who that is?",
             button: [
-                { chatID: 97, text: "hehehe", callback: "f0" },
+                { chatID: 97, l10nKey: "room.322.chat.96.choice.0", text: "hehehe", callback: "f0" },
             ]
         },
         {
             chatID: 97,
             speaker: "bbc",
+            l10nKey: "room.322.chat.97.text",
             text: "Hey girl, what's up with the freak back there?",
             button: [
-                { chatID: 98, text: "?", callback: "" },
+                { chatID: 98, l10nKey: "room.322.chat.97.choice.0", text: "?", callback: "" },
             ]
         },
         {
             chatID: 98,
             speaker: "janice",
+            l10nKey: "room.322.chat.98.text",
             text: "Oh those are my doggies! So who are you guys? ",
             button: [
-                { chatID: 99, text: "...", callback: "" },
+                { chatID: 99, l10nKey: "room.322.chat.98.choice.0", text: "...", callback: "" },
             ]
         },
         {
             chatID: 99,
             speaker: "bbc",
+            l10nKey: "room.322.chat.99.text",
             text: "Hehehe.. doggies.. I see one doggy and one bitch. Maybe they want to watch " +
                 "what we're going to do to you. ",
             button: [
-                { chatID: 100, text: "...", callback: "" },
+                { chatID: 100, l10nKey: "room.322.chat.99.choice.0", text: "...", callback: "" },
             ]
         },
         {
             chatID: 100,
             speaker: "janice",
+            l10nKey: "room.322.chat.100.text",
             text: "Oh? What are you going to do to me?",
             button: [
-                { chatID: 109, text: "...", callback: "" },
+                { chatID: 109, l10nKey: "room.322.chat.100.choice.0", text: "...", callback: "" },
             ]
         },
         {
             chatID: 101,
             speaker: "janice",
+            l10nKey: "room.322.chat.101.text",
             text: "Oh my. I do love a gruff man. Let me see what you're all working with in my bedroom. ",
             button: [
-                { chatID: 102, text: "...", callback: "f2" },
+                { chatID: 102, l10nKey: "room.322.chat.101.choice.0", text: "...", callback: "f2" },
             ]
         },
         {
             chatID: 102,
             speaker: "bbc",
+            l10nKey: "room.322.chat.102.text",
             text: "I'm gonna fuck that pussy so good your bitch is gonna cum! Gerry, you can fuck that " +
                 "freak's face. I know how much you love freaks!",
             button: [
-                { chatID: -1, text: "...", callback: "f3" },
+                { chatID: -1, l10nKey: "room.322.chat.102.choice.0", text: "...", callback: "f3" },
             ]
         },
         {
             chatID: 103,
             speaker: "janice",
+            l10nKey: "room.322.chat.103.text",
             text: "Ugh, you want to play? Fine. Turn around.",
             button: [
-                { chatID: 104, text: "[Turn around]", callback: "k0" },
+                { chatID: 104, l10nKey: "room.322.chat.103.choice.0", text: "[Turn around]", callback: "k0" },
             ]
         },
         {
             chatID: 104,
             speaker: "janice",
+            l10nKey: "room.322.chat.104.text",
             text: "You know for a girl dog it is weird that your balls hang so low.",
             button: [
                 { chatID: 105, text: "?", callback: "k1" },
@@ -1918,6 +2034,7 @@ room322.chat = function (chatID) {
         {
             chatID: 105,
             speaker: "janice",
+            l10nKey: "room.322.chat.105.text",
             text: "Let me kick them inside of you! hehehe",
             button: [
                 { chatID: 106, text: "?", callback: "k2" },
@@ -1926,6 +2043,7 @@ room322.chat = function (chatID) {
         {
             chatID: 106,
             speaker: "thinking",
+            l10nKey: "room.322.chat.106.text",
             text: "Oh no, oh no, oh no! My poor poor balls! Aaaaa! Why? WHY! Damn I can't even " +
                 "cradle my balls in this bitch suit! Fuck my life...",
             button: [
@@ -1935,14 +2053,16 @@ room322.chat = function (chatID) {
         {
             chatID: 107,
             speaker: "janice",
+            l10nKey: "room.322.chat.107.text",
             text: "Fuck yeah that was amazing! Clean me up my little doggies!",
             button: [
-                { chatID: 108, text: "mmmmm", callback: "f10" },
+                { chatID: 108, l10nKey: "room.322.chat.107.choice.0", text: "mmmmm", callback: "f10" },
             ]
         },
         {
             chatID: 108,
             speaker: "janice",
+            l10nKey: "room.322.chat.108.text",
             text: "You're such good doggies!",
             button: [
                 { chatID: -1, text: "...", callback: "f11" },
@@ -1951,6 +2071,7 @@ room322.chat = function (chatID) {
         {
             chatID: 109,
             speaker: "!bbc",
+            l10nKey: "room.322.chat.109.text",
             text: "Oh we've heard about you. You know how this is going to go down slut. Jerry, " +
                 "strip off this bitch's clothes. I wanna see where I'm going to stick my dick.",
             button: [
@@ -1960,6 +2081,7 @@ room322.chat = function (chatID) {
         {
             chatID: 110,
             speaker: "janice",
+            l10nKey: "room.322.chat.110.text",
             text: "Oof. Gotta run and powder my nose. ",
             button: [
                 { chatID: -1, text: "...", callback: "p0" },
@@ -1968,6 +2090,7 @@ room322.chat = function (chatID) {
         {
             chatID: 111,
             speaker: "janice",
+            l10nKey: "room.322.chat.111.text",
             text: "Awww you want to watch me go pee pee?",
             button: [
                 { chatID: 112, text: "...", callback: "p1_1" },
@@ -1976,6 +2099,7 @@ room322.chat = function (chatID) {
         {
             chatID: 112,
             speaker: "janice",
+            l10nKey: "room.322.chat.112.text",
             text: "Hehehe. You're one weird doggy! ",
             button: [
                 { chatID: -1, text: "*muffled arf*", callback: "p1_1end" },
@@ -1984,16 +2108,18 @@ room322.chat = function (chatID) {
         {
             chatID: 113,
             speaker: "thinking",
+            l10nKey: "room.322.chat.113.text",
             text: "Oh. She's got a waiting message from someone she doesn't know. Should I " +
                 "invite them over and surprise her, and give me a little gift. Hehehe...",
             button: [
-                { chatID: 114, text: "[Use your nose to send a reply]", callback: "phoneReply" },
-                { chatID: -1, text: "[Don't reply]", callback: "" },
+                { chatID: 114, l10nKey: "room.322.chat.113.choice.0", text: "[Use your nose to send a reply]", callback: "phoneReply" },
+                { chatID: -1, l10nKey: "room.322.chat.113.choice.1", text: "[Don't reply]", callback: "" },
             ]
         },
         {
             chatID: 114,
             speaker: "thinking",
+            l10nKey: "room.322.chat.114.text",
             text: "There! She's going to get such a big surprise when they get here! Hehehehe! ",
             button: [
                 { chatID: -1, text: "...", callback: "" },
@@ -2002,14 +2128,16 @@ room322.chat = function (chatID) {
         {
             chatID: 115,
             speaker: "janice",
+            l10nKey: "room.322.chat.115.text",
             text: "*gag* oh my. Someone's stinky! Time to hose you off you smelly doggy!",
             button: [
-                { chatID: 116, text: "[follow her]", callback: "bath" },
+                { chatID: 116, l10nKey: "room.322.chat.115.choice.0", text: "[follow her]", callback: "bath" },
             ]
         },
         {
             chatID: 116,
             speaker: "thinking",
+            l10nKey: "room.322.chat.116.text",
             text: "oh ho ho ho!!!! That's so cold on my bare balls and back!!!! Brrrrr. So " +
                 "I'm going to freeze to death! So cold!!!",
             button: [
@@ -2019,6 +2147,7 @@ room322.chat = function (chatID) {
         {
             chatID: 117,
             speaker: "janice",
+            l10nKey: "room.322.chat.117.text",
             text: "Wake up sleepy head! Time to get up lazy bones!!!",
             button: [
                 { chatID: -1, text: "...", callback: "livingroom" },
@@ -2027,6 +2156,7 @@ room322.chat = function (chatID) {
         {
             chatID: 118,
             speaker: "!girl",
+            l10nKey: "room.322.chat.118.text",
             text: "You two bitches!!!",
             button: [
                 { chatID: 119, text: "...", callback: "" },
@@ -2035,6 +2165,7 @@ room322.chat = function (chatID) {
         {
             chatID: 119,
             speaker: "janice",
+            l10nKey: "room.322.chat.119.text",
             text: "What did you call me!",
             button: [
                 { chatID: 120, text: "...", callback: "" },
@@ -2043,8 +2174,9 @@ room322.chat = function (chatID) {
         {
             chatID: 120,
             speaker: "!girl",
+            l10nKey: "room.322.chat.120.text",
             text: "I called you both bitches! Your bitch let herself get mounted and bred by my little doggy last time you " +
-                "were here! His smashed his poor testicles against your doggy and now he can't get hard! " +
+                "were here! He smashed his poor testicles against your doggy and now he can't get hard! " +
                 "I can't use him at the breeding farm if he can't get a boner! " +
                 "The vet said I have to rub his balls to get him to relax, but there's no way I'm doing that! ",
             button: [
@@ -2054,6 +2186,7 @@ room322.chat = function (chatID) {
         {
             chatID: 121,
             speaker: "janice",
+            l10nKey: "room.322.chat.121.text",
             text: "Don't you ever call me a bitch again! But yes, my bitch is a bad " + gender.pronoun("girl") + "! Bad bad " +
                 gender.pronoun("girl") + "! What can we do to make this right? ",
             button: [
@@ -2063,6 +2196,7 @@ room322.chat = function (chatID) {
         {
             chatID: 122,
             speaker: "!girl",
+            l10nKey: "room.322.chat.122.text",
             text: "I make $50 a session, so you can start by paying me that! ",
             button: [
                 { chatID: 123, text: "...", callback: "" },
@@ -2071,6 +2205,7 @@ room322.chat = function (chatID) {
         {
             chatID: 123,
             speaker: "janice",
+            l10nKey: "room.322.chat.123.text",
             text: "*scoff* I'm not paying you that much money. I don't even have that much ",
             button: [
                 { chatID: 124, text: "...", callback: "" },
@@ -2079,6 +2214,7 @@ room322.chat = function (chatID) {
         {
             chatID: 124,
             speaker: "!girl",
+            l10nKey: "room.322.chat.124.text",
             text: "If you're not going to pay me then you can rub my doggies balls! At least that way I can get " +
                 "him to mate again! ",
             button: [
@@ -2088,6 +2224,7 @@ room322.chat = function (chatID) {
         {
             chatID: 125,
             speaker: "janice",
+            l10nKey: "room.322.chat.125.text",
             text: "I'm not rubbing your dog's balls. But... hmmmm... I can have my bitch do it. " + gender.pronoun("he") +
                 "'s the reason for this mess. ",
             button: [
@@ -2097,7 +2234,8 @@ room322.chat = function (chatID) {
         {
             chatID: 126,
             speaker: "!girl",
-            text: "How is " + gender.pronoun("she") + " going to do that? " + gender.pronoun("her") + " hands are bound. ",
+            l10nKey: "room.322.chat.126.text",
+            text: "How is " + gender.pronoun("she") + " going to do that? " + String.prototype.capitalize(gender.pronoun("she")) + " doesn't have fingers in that dog suit. ",
             button: [
                 { chatID: 127, text: "...", callback: "" },
             ]
@@ -2105,6 +2243,7 @@ room322.chat = function (chatID) {
         {
             chatID: 127,
             speaker: "janice",
+            l10nKey: "room.322.chat.127.text",
             text: gender.pronoun("she") + " won't be using her hands. I've got a little jar of peanut butter we can rub on his balls. We'll " +
                 "let the bitch lick it off. Even better than rubbing. ",
             button: [
@@ -2114,6 +2253,7 @@ room322.chat = function (chatID) {
         {
             chatID: 128,
             speaker: "!girl",
+            l10nKey: "room.322.chat.128.text",
             text: "hmmmmm.... ok. But tell your bitch to be gentle! ",
             button: [
                 { chatID: 129, text: "...", callback: "park2_1" },
@@ -2122,6 +2262,7 @@ room322.chat = function (chatID) {
         {
             chatID: 129,
             speaker: "janice",
+            l10nKey: "room.322.chat.129.text",
             text: "Let me put that peanut butter on nice and thick. I know how much you doggies can't resist licking " +
                 "up all the peanut butter.  ",
             button: [
@@ -2131,37 +2272,41 @@ room322.chat = function (chatID) {
         {
             chatID: 130,
             speaker: "janice",
+            l10nKey: "room.322.chat.130.text",
             text: "Almost forgot to remove your doggy ball gag. Look how drooly you are! You doggies sure do love " +
                 "your peanut butter! Hehe! Now be a good " + gender.pronoun("girl") + " and get in there and lick it up. ",
             button: [
-                { chatID: 131, text: "[Lick up all the peanut butter]", callback: "park2_3" },
+                { chatID: 131, l10nKey: "room.322.chat.130.choice.0", text: "[Lick up all the peanut butter]", callback: "park2_3" },
             ]
         },
         {
             chatID: 131,
             speaker: "!girl",
+            l10nKey: "room.322.chat.131.text",
             text: "Wow. " + String.prototype.capitalize(gender.pronoun("she")) + " really licks up that peanut " +
                 "butter better than my doggy. You're a lucky girl. ",
             button: [
-                { chatID: 132, text: "*lick* *slurp*", callback: "park2_4" },
+                { chatID: 132, l10nKey: "room.322.chat.131.choice.0", text: "*lick* *slurp*", callback: "park2_4" },
             ]
         },
         {
             chatID: 132,
             speaker: "janice",
-            text: "Oh! Look! You're doggy is getting boner! My bitch really knows how to lick some balls! ",
+            l10nKey: "room.322.chat.132.text",
+            text: "Oh! Look! Your doggy is getting a boner! My bitch really knows how to lick some balls! ",
             button: [
-                { chatID: 133, text: "[Finish up]", callback: "park2_7" },
-                { chatID: -1, text: "[Move around and take the doggy penis in your mouth]", callback: "park2_5" },
+                { chatID: 133, l10nKey: "room.322.chat.132.choice.0", text: "[Finish up]", callback: "park2_7" },
+                { chatID: -1, l10nKey: "room.322.chat.132.choice.1", text: "[Move around and take the doggy penis in your mouth]", callback: "park2_5" },
             ]
         },
         {
             chatID: 133,
             speaker: "janice",
+            l10nKey: "room.322.chat.133.text",
             text: "Who's a good " + gender.pronoun("girl") + "? You're a good " + gender.pronoun("girl") + "! Like I " +
                 "said, all doggies will lick anything covered in peanut butter! Let's go home. ",
             button: [
-                { chatID: -1, text: "[Go home]", callback: "livingroom" },
+                { chatID: -1, l10nKey: "room.322.chat.133.choice.0", text: "[Go home]", callback: "livingroom" },
             ]
         },
     ];

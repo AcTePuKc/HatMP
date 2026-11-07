@@ -478,80 +478,113 @@ invoker.registerRoom(252, room252);
 room252.chat = function (chatID) {
     let txt, btn, food;
     if (chatID === 999) {
+        let textKey, choicePrefix;
         switch (g.internal.custList[g.internal.pointer]) {
             case 1:
+                textKey = "room.252.chat.999.1.text";
+                choicePrefix = "room.252.chat.999.1.choice";
                 txt = "About time! If there were more restaurants in town I would go there. Just get me some bacon and eggs!"
                 btn = [{ chatID: 998, text: "I uh...", callback: "" }];
                 break;
             case 2:
+                textKey = "room.252.chat.999.2.text";
+                choicePrefix = "room.252.chat.999.2.choice";
                 txt = "I dropped my napkin. Pick it up now. "
                 btn = [{ chatID: -1, text: "Sure!", callback: "jones0" },
                 { chatID: 998, text: "Get it yourself..", callback: "toldJonesNo" }];
                 break;
             case 3:
+                textKey = "room.252.chat.999.3.text";
+                choicePrefix = "room.252.chat.999.3.choice";
                 txt = "I would like toast. Dry. Also a glass of orange juice, or as they say in places like this; o.j. please and thank you. "
                 btn = [{ chatID: 998, text: "Sure!", callback: "" }];
                 break;
             case 4:
                 if (sc.getMissionTask("envy", "gf", 0).complete) {
+                    textKey = "room.252.chat.999.4.envy.text";
+                    choicePrefix = "room.252.chat.999.4.envy.choice";
                     txt = "*Ugh* you. Wasted perfectly good hypno on you. I'm no longer hungry. Next time send one of the hot girls over.  "
-                    btn = [{ chatID: 9, text: "Sure " + sc.n("spanky") + ". ", callback: "250_beaver" }];
+                    btn = [{ chatID: 9, text: "Sure {spanky}.", l10nValues: { spanky: sc.n("spanky") }, callback: "250_beaver" }];
                 }
                 else if (sc.getMissionTask("spanky", "shop", 1).notStarted && sissy.st[21].ach) {
+                    textKey = "room.252.chat.999.4.sissy.text";
+                    choicePrefix = "room.252.chat.999.4.sissy.choice";
                     sc.completeMissionTask("spanky", "shop", 1);
                     txt = "Oh hey dude, I didn't know you liked to dress like a chick.";
                     btn = [{ chatID: 38, text: "Oh, I had to", callback: "" }];
                 }
                 else {
+                    textKey = "room.252.chat.999.4.default.text";
+                    choicePrefix = "room.252.chat.999.4.default.choice";
                     txt = "It's my favorite dude-ette. get me some of dat pizza bro ";
                     btn = [{ chatID: 998, text: "Sure", callback: "" }];
                 }
                 break;
             case 5:
+                textKey = "room.252.chat.999.5.text";
+                choicePrefix = "room.252.chat.999.5.choice";
                 txt = "You're cute! You should do something different with your hair. It " +
                     "doesn't really suit you. Also 1 salad please. ";
                 btn = [{ chatID: 998, text: "Sure!", callback: "" }];
                 break;
             case 6:
+                textKey = "room.252.chat.999.6.text";
+                choicePrefix = "room.252.chat.999.6.choice";
                 txt = "Oh wow! Look at you! You would look sexy impaled by my strap-on. " +
                     "I'm too hungry now, but if I see you walking around town I'm going to rip you " +
                     "open sweetie! Now get me a pizza slut. ";
                 btn = [{ chatID: 998, text: "Oh ok.", callback: "" }];
                 break;
             case 7:
+                textKey = "room.252.chat.999.7.text";
+                choicePrefix = "room.252.chat.999.7.choice";
                 txt = "Tea please. ";
                 btn = [{ chatID: 998, text: "Sure", callback: "" }];
                 break;
             case 8:
                 if (cl.appearance() > 2) {
-                    txt = "Oh wow. Dinner and a show. You're making daddy's cock so hard I don't think I can eat. Tell you what baby girl, why don't you crawl down there and help me out. ";
+                    textKey = "room.252.chat.999.8.sexy.text";
+                    choicePrefix = "room.252.chat.999.8.sexy.choice";
+                    txt = "Oh wow. Dinner and a show. You're making daddy's cock so hard I don't think I can eat. Tell you what, baby girl, why don't you crawl down there and help me out. ";
                     btn = [{ chatID: -1, text: "Oh yeah!", callback: "wait8" },
                     { chatID: 998, text: "No way!", callback: "" }];
                 }
                 else {
+                    textKey = "room.252.chat.999.8.tea.text";
+                    choicePrefix = "room.252.chat.999.8.tea.choice";
                     txt = "Tea.  ";
                     btn = [{ chatID: 998, text: "Sure", callback: "" }];
                 }
                 break;
             case 9:
+                textKey = "room.252.chat.999.9.text";
+                choicePrefix = "room.252.chat.999.9.choice";
                 txt = "Some cheesecake please";
                 btn = [{ chatID: 998, text: "You're naked! And we don't have cheesecake! ", callback: "" }];
                 break;
             case 10:
                 if (sissy.st[0].ach) {
+                    textKey = "room.252.chat.999.10.sissy.text";
+                    choicePrefix = "room.252.chat.999.10.sissy.choice";
                     txt = "Yo, check it. It's hella trippy seein' folks outside the classroom vibes. I wish I had the swag to rock your fit anywhere, ya know? I'm tryna shed a few pounds, so it's all greens for this dude.";
                     btn = [{ chatID: 998, text: "Thanks, but I'm kinda being forced to wear this. But you'll get there!", callback: "" }];
                 }
                 else {
+                    textKey = "room.252.chat.999.10.default.text";
+                    choicePrefix = "room.252.chat.999.10.default.choice";
                     txt = "Just a salad, dawg. Tryna stay lean";
                     btn = [{ chatID: 998, text: "Sure!", callback: "" }];
                 }
                 break;
             case 11:
+                textKey = "room.252.chat.999.11.text";
+                choicePrefix = "room.252.chat.999.11.choice";
                 txt = "Yo, wassup! Didn't expect to see you outside the classroom, lookin' all fly! You clean, for real. We gotta chill sometime, fam. Grab me a big ass pizza. This diet stuff is wack.";
                 btn = [{ chatID: 998, text: "Sure! You're looking hot too! Love the purple on you! ", callback: "" }];
                 break;
             case 12:
+                textKey = "room.252.chat.999.12.text";
+                choicePrefix = "room.252.chat.999.12.choice";
                 txt = "Oh hello. Sorry, couldn't stop staring into my lovely wife's eyes. We would both like the hamburger and fries meal. You know we had " +
                     "our first date here back when this was just a simple greasy spoon. Been together for 40 years and " +
                     "loved every minute of it. ";
@@ -559,29 +592,41 @@ room252.chat = function (chatID) {
                 break;
             case 13:
                 if (sissy.st[0].ach) {
+                    textKey = "room.252.chat.999.13.sissy.text";
+                    choicePrefix = "room.252.chat.999.13.sissy.choice";
                     txt = "You are one sexy slut! ";
                     btn = [{ chatID: 69, text: "Me? You're the sexy one! ", callback: "" }];
                 }
                 else {
+                    textKey = "room.252.chat.999.13.default.text";
+                    choicePrefix = "room.252.chat.999.13.default.choice";
                     txt = "Wooooo! Love seeing you out and about! ";
                     btn = [{ chatID: 998, text: "Good to see you too!", callback: "cecilia0" }];
                 }
                 break;
             case 14:
                 if (cl.appearance() > 2) {
+                    textKey = "room.252.chat.999.14.sexy.text";
+                    choicePrefix = "room.252.chat.999.14.sexy.choice";
                     txt = "Oh shit! You're hot! ";
                     btn = [{ chatID: 72, text: "Thanks what will it be?", callback: "boy0" }];
                 }
                 else {
+                    textKey = "room.252.chat.999.14.default.text";
+                    choicePrefix = "room.252.chat.999.14.default.choice";
                     txt = "Pizza";
                     btn = [{ chatID: 998, text: "Sure. ", callback: "" }];
                 }
                 break;
             case 15:
+                textKey = "room.252.chat.999.15.text";
+                choicePrefix = "room.252.chat.999.15.choice";
                 txt = "Pizza";
                 btn = [{ chatID: 998, text: "Sure. ", callback: "" }];
                 break;
             case 16:
+                textKey = "room.252.chat.999.16.text";
+                choicePrefix = "room.252.chat.999.16.choice";
                 txt = "My cock loves to see you sissies out and about. ";
                 btn = [{ chatID: -1, text: "huh? ", callback: "guard0" }];
                 break;
@@ -589,8 +634,9 @@ room252.chat = function (chatID) {
         return {
             chatID: 999,
             speaker: room252.getspeaker(),
+            l10nKey: textKey,
             text: txt,
-            button: btn
+            button: btn && btn.map((button, index) => ({ ...button, l10nKey: button.l10nKey || (choicePrefix + "." + index) }))
         };
     }
     else if (chatID === 998) {
@@ -602,39 +648,53 @@ room252.chat = function (chatID) {
         let toast = { i: "toast.png", x: 21, y: 743, w: 596, h: 233 };
 
 
-        let txt, btn;
+        let txt, btn, textKey, choicePrefix;
         switch (g.internal.custList[g.internal.pointer]) {
             case 1:
+                textKey = "room.252.chat.998.1.text";
+                choicePrefix = "room.252.chat.998.1.choice";
                 food = eggs;
                 txt = "Ugh! I didn't expect much and I'm still disappointed."
                 btn = [{ chatID: -1, text: "You're welcome!", callback: "badtip" }];
                 break;
             case 2:
+                textKey = "room.252.chat.998.2.text";
+                choicePrefix = "room.252.chat.998.2.choice";
                 food = tea;
                 txt = "Frigid bitch"
                 btn = [{ chatID: -1, text: "You're welcome!", callback: "badtip" }];
                 break;
             case 3:
+                textKey = "room.252.chat.998.3.text";
+                choicePrefix = "room.252.chat.998.3.choice";
                 food = toast;
                 txt = "Ohhh yummy! Thank you. "
                 btn = [{ chatID: -1, text: "You're welcome", callback: "goodtip" }];
                 break;
             case 4:
+                textKey = "room.252.chat.998.4.text";
+                choicePrefix = "room.252.chat.998.4.choice";
                 food = pizza;
                 txt = "Fuck yeah! I do love pizza! "
                 btn = [{ chatID: -1, text: "You're welcome", callback: "notip" }];
                 break;
             case 5:
+                textKey = "room.252.chat.998.5.text";
+                choicePrefix = "room.252.chat.998.5.choice";
                 food = salad;
                 txt = "MMMmmmm leafy greens!";
                 btn = [{ chatID: -1, text: "Enjoy", callback: "goodtip" }];
                 break;
             case 6:
+                textKey = "room.252.chat.998.6.text";
+                choicePrefix = "room.252.chat.998.6.choice";
                 food = pizza;
                 txt = "Great service. I'm going to make you service my strap! Now go. ";
                 btn = [{ chatID: -1, text: "*gasp*", callback: "goodtip" }];
                 break;
             case 7:
+                textKey = "room.252.chat.998.7.text";
+                choicePrefix = "room.252.chat.998.7.choice";
                 food = tea;
                 txt = "MMmmm thanks. ";
                 btn = [{ chatID: -1, text: "You're welcome", callback: "badtip" }];
@@ -642,45 +702,63 @@ room252.chat = function (chatID) {
             case 8:
                 food = tea;
                 if (cl.appearance() > 2) {
+                    textKey = "room.252.chat.998.8.sexy.text";
+                    choicePrefix = "room.252.chat.998.8.sexy.choice";
                     txt = "I'll drink this tea, but I won't enjoy it. You need to learn your place, baby girl. ";
                     btn = [{ chatID: -1, text: "...", callback: "notip" }];
                 }
                 else {
+                    textKey = "room.252.chat.998.8.default.text";
+                    choicePrefix = "room.252.chat.998.8.default.choice";
                     txt = "...";
                     btn = [{ chatID: -1, text: "...", callback: "badtip" }];
                 }
                 break;
             case 9:
+                textKey = "room.252.chat.998.9.text";
+                choicePrefix = "room.252.chat.998.9.choice";
                 food = null;
                 txt = "Well I'm not going to eat here! Also those seats are dirty. I can feel the crumbs on my butt!";
                 btn = [{ chatID: -1, text: "...ok", callback: "notip" }];
                 break;
             case 10:
+                textKey = "room.252.chat.998.10.text";
+                choicePrefix = "room.252.chat.998.10.choice";
                 food = salad;
                 txt = "Thanks bro ";
                 btn = [{ chatID: -1, text: "Sure!", callback: "goodtip" }];
                 break;
             case 11:
+                textKey = "room.252.chat.998.11.text";
+                choicePrefix = "room.252.chat.998.11.choice";
                 food = "pizza";
                 txt = "Thanks fam! Love eating! ";
                 btn = [{ chatID: -1, text: "You're welcome", callback: "goodtip" }];
                 break;
             case 12:
+                textKey = "room.252.chat.998.12.text";
+                choicePrefix = "room.252.chat.998.12.choice";
                 food = burgers;
-                txt = "Lovely burgers, but no where near as lovely as my wife. ";
+                txt = "Lovely burgers, but nowhere near as lovely as my wife. ";
                 btn = [{ chatID: -1, text: "She is lovely. ", callback: "goodtip" }];
                 break;
             case 13:
+                textKey = "room.252.chat.998.13.text";
+                choicePrefix = "room.252.chat.998.13.choice";
                 food = burgers;
                 txt = "So nice to eat something not in liquid form! Hahaha Thanks";
                 btn = [{ chatID: -1, text: "Sure", callback: "goodtip" }];
                 break;
             case 14:
+                textKey = "room.252.chat.998.14.text";
+                choicePrefix = "room.252.chat.998.14.choice";
                 food = pizza;
                 txt = "...";
                 btn = [{ chatID: -1, text: "....", callback: "badtip" }];
                 break;
             case 15:
+                textKey = "room.252.chat.998.15.text";
+                choicePrefix = "room.252.chat.998.15.choice";
                 food = pizza;
                 txt = "Thanks";
                 btn = [{ chatID: -1, text: "You're welcome. ", callback: "badtip" }];
@@ -704,25 +782,28 @@ room252.chat = function (chatID) {
         return {
             chatID: 998,
             speaker: room252.getspeaker(),
+            l10nKey: textKey,
             text: txt,
-            button: btn
+            button: btn && btn.map((button, index) => ({ ...button, l10nKey: button.l10nKey || (choicePrefix + "." + index) }))
         };
     }
     else if (chatID === 800) {
-        let gtxt = "";
+        let gtxt = "", giftKey, giftValues;
         switch (g.internal.gift) {
-            case "bouquet": gtxt = "Why are you giving me flowers? I don't want these. "; break;
-            case "roses": gtxt = "We're not dating. Why would you give me this? "; break;
-            case "seal": gtxt = "Thanks, I guess. I'll just give it to Holly. She likes these things. "; break;
-            case "mug": gtxt = "Who wants a coffee cup? "; break;
-            case "whoopee": gtxt = "What am I supposed to do with this? "; break;
+            case "bouquet": giftKey = "room.252.chat.800.bouquet"; gtxt = "Why are you giving me flowers? I don't want these. "; break;
+            case "roses": giftKey = "room.252.chat.800.roses"; gtxt = "We're not dating. Why would you give me this? "; break;
+            case "seal": giftKey = "room.252.chat.800.seal"; giftValues = { holly: sc.n("holly") }; gtxt = "Thanks, I guess. I'll just give it to {holly}. She likes these things. "; break;
+            case "mug": giftKey = "room.252.chat.800.mug"; gtxt = "Who wants a coffee cup? "; break;
+            case "whoopee": giftKey = "room.252.chat.800.whoopee"; gtxt = "What am I supposed to do with this? "; break;
         }
         return {
             chatID: 800,
             speaker: g.internal.girl,
+            l10nKey: giftKey,
+            l10nValues: giftValues,
             text: gtxt,
             button: [
-                { chatID: -1, text: "Oh hahaha. Yeah. Whoops", callback: "fail" }
+                { chatID: -1, l10nKey: "room.252.chat.800.choice", text: "Oh hahaha. Yeah. Whoops", callback: "fail" }
             ]
         };
     }
@@ -730,9 +811,10 @@ room252.chat = function (chatID) {
         return {
             chatID: 801,
             speaker: g.internal.girl,
+            l10nKey: "room.252.chat.801.text",
             text: "I already have one of these. You don't have to give me another one. ",
             button: [
-                { chatID: -1, text: "Oh hahaha. Yeah. forgot. ", callback: "fail" }
+                { chatID: -1, l10nKey: "room.252.chat.801.choice", text: "Oh hahaha. Yeah. forgot. ", callback: "fail" }
             ]
         };
     }
@@ -742,40 +824,45 @@ room252.chat = function (chatID) {
             return {
                 chatID: 0,
                 speaker: "holly",
+                l10nKey: "room.252.chat.500.bonus",
                 text: "I snagged an extra $15 for you. Girls gotta pay rent, am I right!",
                 button: [
-                    { chatID: 1, text: "Thanks! You're so right!", callback: "customer" }
+                    { chatID: 1, l10nKey: "room.252.chat.500.bonus.choice", text: "Thanks! You're so right!", callback: "customer" }
                 ]
             };
         }
         let htxt1 = [
-            "I just love working with you!",
-            "You're cute, you know that!  ",
-            "I just love your hair!",
+            { key: "room.252.chat.500.random.0", text: "I just love working with you!" },
+            { key: "room.252.chat.500.random.1", text: "You're cute, you know that!  " },
+            { key: "room.252.chat.500.random.2", text: "I just love your hair!" },
         ];
+        let randomLine = htxt1[g.rand(0, htxt1.length)];
         return {
             chatID: 0,
             speaker: "holly",
-            text: htxt1[g.rand(0, htxt1.length)],
+            l10nKey: randomLine.key,
+            text: randomLine.text,
             button: [
-                { chatID: 1, text: "*sigh*", callback: "customer" }
+                { chatID: 1, l10nKey: "room.252.chat.500.random.choice", text: "*sigh*", callback: "customer" }
             ]
         };
     }
     else if (chatID === 501) {
         //holly mad
         let htxt = [
-            "Fucking narc!",
-            "We had a talk and decided that everyone hates you. ",
-            "You aren't a friend, you're a bitch",
-            "Why are you even here?"
+            { key: "room.252.chat.501.random.0", text: "Fucking narc!" },
+            { key: "room.252.chat.501.random.1", text: "We had a talk and decided that everyone hates you. " },
+            { key: "room.252.chat.501.random.2", text: "You aren't a friend, you're a bitch" },
+            { key: "room.252.chat.501.random.3", text: "Why are you even here?" }
         ];
+        let randomLine = htxt[g.rand(0, htxt.length)];
         return {
             chatID: 0,
             speaker: "holly",
-            text: htxt[g.rand(0, htxt.length)],
+            l10nKey: randomLine.key,
+            text: randomLine.text,
             button: [
-                { chatID: 1, text: "*sigh*", callback: "customer" }
+                { chatID: 1, l10nKey: "room.252.chat.501.random.choice", text: "*sigh*", callback: "customer" }
             ]
         };
     }
@@ -785,39 +872,44 @@ room252.chat = function (chatID) {
             return {
                 chatID: 0,
                 speaker: "dolly",
+                l10nKey: "room.252.chat.510.bonus",
                 text: "I snagged an extra $10 for you. Girls gotta pay rent, am I right!",
                 button: [
-                    { chatID: 1, text: "Thanks! You're so right!", callback: "customer" }
+                    { chatID: 1, l10nKey: "room.252.chat.510.bonus.choice", text: "Thanks! You're so right!", callback: "customer" }
                 ]
             };
         }
         let htxt1 = [
-            "You know you're cuter than a pen full of kittens!",
-            "We have a word for you back on the farm. Cutie pie!",
-            "You're so cute you'ld get first prize at the county fair!",
+            { key: "room.252.chat.510.random.0", text: "You know you're cuter than a pen full of kittens!" },
+            { key: "room.252.chat.510.random.1", text: "We have a word for you back on the farm. Cutie pie!" },
+            { key: "room.252.chat.510.random.2", text: "You're so cute you'ld get first prize at the county fair!" },
         ];
+        let randomLine = htxt1[g.rand(0, htxt1.length)];
         return {
             chatID: 0,
             speaker: "dolly",
-            text: htxt1[g.rand(0, htxt1.length)],
+            l10nKey: randomLine.key,
+            text: randomLine.text,
             button: [
-                { chatID: 1, text: "Awwww", callback: "customer" }
+                { chatID: 1, l10nKey: "room.252.chat.510.random.choice", text: "Awwww", callback: "customer" }
             ]
         };
     }
     else if (chatID === 511) {
         let htxt = [
-            "You're as sour as an unripe crab apple",
-            "I wouldn't pee on you if you was on fire darlin' ",
-            "You smell like a cattle pen. ",
-            "My momma had a name for people like you, but I won't say it. "
+            { key: "room.252.chat.511.random.0", text: "You're as sour as an unripe crab apple" },
+            { key: "room.252.chat.511.random.1", text: "I wouldn't pee on you if you was on fire darlin' " },
+            { key: "room.252.chat.511.random.2", text: "You smell like a cattle pen. " },
+            { key: "room.252.chat.511.random.3", text: "My momma had a name for people like you, but I won't say it. " }
         ];
+        let randomLine = htxt[g.rand(0, htxt.length)];
         return {
             chatID: 0,
             speaker: "dolly",
-            text: htxt[g.rand(0, htxt.length)],
+            l10nKey: randomLine.key,
+            text: randomLine.text,
             button: [
-                { chatID: 1, text: "*sigh*", callback: "customer" }
+                { chatID: 1, l10nKey: "room.252.chat.511.random.choice", text: "*sigh*", callback: "customer" }
             ]
         };
     }
@@ -827,40 +919,46 @@ room252.chat = function (chatID) {
             return {
                 chatID: 0,
                 speaker: "dolly",
+                l10nKey: "room.252.chat.520.bonus",
                 text: "I snagged an extra $40 for you. Girls gotta pay rent, am I right!",
                 button: [
-                    { chatID: 1, text: "Thanks! You're so right!", callback: "customer" }
+                    { chatID: 1, l10nKey: "room.252.chat.520.bonus.choice", text: "Thanks! You're so right!", callback: "customer" }
                 ]
             };
         }
         let htxt2 = [
-            "Why is it whenever I tell a boy he can stick it where ever he wants he just shoves it up my ass?",
-            "Watch out for slippery spots on the floor. I got fucked back in the dumpster and I'm farting cum everywhere.",
-            "*ugh* my throat is so sore! I do love huge cocks, but it does hurt when you get violently face fucked! ",
-            "Take my advice girl, always gobble those balls! "
+            { key: "room.252.chat.520.random.0", text: "Why is it whenever I tell a boy he can stick it where ever he wants he just shoves it up my ass?" },
+            { key: "room.252.chat.520.random.1", text: "Watch out for slippery spots on the floor. I got fucked back in the dumpster and I'm farting cum everywhere." },
+            { key: "room.252.chat.520.random.2", text: "*ugh* my throat is so sore! I do love huge cocks, but it does hurt when you get violently face fucked! " },
+            { key: "room.252.chat.520.random.3", text: "Take my advice girl, always gobble those balls! " }
         ];
+        let randomLine = htxt2[g.rand(0, htxt2.length)];
         return {
             chatID: 0,
             speaker: "molly",
-            text: htxt2[g.rand(0, htxt2.length)],
+            l10nKey: randomLine.key,
+            text: randomLine.text,
             button: [
-                { chatID: 1, text: "Hahaha ok!", callback: "customer" }
+                { chatID: 1, l10nKey: "room.252.chat.520.random.choice", text: "Hahaha ok!", callback: "customer" }
             ]
         };
     }
     else if (chatID === 521) {
         let htxt = [
-            "You're a fucking bitch! ",
-            "I thought you were different than Jeffery, but you're a sick fucker like him too. ",
-            "I hope you die and get ass raped by red hot pokers in hell. ",
-            "You really fucked us, you know. Poor Dolly had to give him a blow job just to afford her part of the rent. "
+            { key: "room.252.chat.521.random.0", text: "You're a fucking bitch! " },
+            { key: "room.252.chat.521.random.1", text: "I thought you were different than {jeffery}, but you're a sick fucker like him too. ", values: { jeffery: sc.n("jeffery") } },
+            { key: "room.252.chat.521.random.2", text: "I hope you die and get ass raped by red hot pokers in hell. " },
+            { key: "room.252.chat.521.random.3", text: "You really fucked us, you know. Poor {dolly} had to give him a blow job just to afford her part of the rent. ", values: { dolly: sc.n("dolly") } }
         ];
+        let randomLine = htxt[g.rand(0, htxt.length)];
         return {
             chatID: 0,
             speaker: "molly",
-            text: htxt[g.rand(0, htxt.length)],
+            l10nKey: randomLine.key,
+            l10nValues: randomLine.values,
+            text: randomLine.text,
             button: [
-                { chatID: 1, text: "*sigh*", callback: "customer" }
+                { chatID: 1, l10nKey: "room.252.chat.521.random.choice", text: "*sigh*", callback: "customer" }
             ]
         };
     }
@@ -902,7 +1000,8 @@ room252.chat = function (chatID) {
             {
                 chatID: 4,
                 speaker: "jeffery",
-                text: sc.n("me") + " what are you doing! Report to my office.",
+                text: "{me}, what are you doing? Report to my office.",
+                l10nValues: { me: sc.n("me") },
                 button: [
                     { chatID: 5, text: "Coming", callback: "cock2" }
                 ]
@@ -948,8 +1047,8 @@ room252.chat = function (chatID) {
             {
                 chatID: 9,
                 speaker: "thinking",
-                text: "Such a baby. Excuse me if I didn't want " + sc.n("envy") + " to " +
-                    "be a mindless zombie! ",
+                text: "Such a baby. Excuse me if I didn't want {envy} to be a mindless zombie!",
+                l10nValues: { envy: sc.n("envy") },
                 button: [
                     { chatID: -1, text: "...", callback: "notip" },
                 ]
@@ -959,8 +1058,8 @@ room252.chat = function (chatID) {
                 speaker: "holly",
                 text: "Hey new girl, what's your name?",
                 button: [
-                    { chatID: 47, text: sc.n("me") + "-y ... shit that's not my name, I'm " + sc.n("me") + ", and I'm really a boy.", callback: "" },
-                    { chatID: 47, text: "I'm " + sc.n("me") + ".", callback: "" },
+                    { chatID: 47, text: "{me}-y ... shit, that's not my name. I'm {me}, and I'm really a boy.", l10nValues: { me: sc.n("me") }, callback: "" },
+                    { chatID: 47, text: "I'm {me}.", l10nValues: { me: sc.n("me") }, callback: "" },
                     { chatID: 11, text: "My name is waitress-fucker. Want me to show you how I got my name?", callback: "hollymad" },
                     { chatID: 11, text: "I'm not a chick, and my cock is huge, we should go somewhere private", callback: "hollymad" }
                 ]
@@ -976,7 +1075,8 @@ room252.chat = function (chatID) {
             {
                 chatID: 12,
                 speaker: "holly",
-                text: "You've been here long enough. What do you think of " + sc.n("jeffery") + "?",
+                text: "You've been here long enough. What do you think of {jeffery}?",
+                l10nValues: { jeffery: sc.n("jeffery") },
                 button: [
                     { chatID: 11, text: "He's such a great guy! You're lucky to have him as a boss. ", callback: "hollymad" },
                     { chatID: 11, text: "I think he only hires whores.", callback: "hollymad" },
@@ -986,8 +1086,9 @@ room252.chat = function (chatID) {
             {
                 chatID: 13,
                 speaker: "holly",
-                text: "I know, he keeps insisting we change in front of him! I thought " + sc.n("dolly") + " was going to punch him! " +
+                text: "I know, he keeps insisting we change in front of him! I thought {dolly} was going to punch him! " +
                     "Of course none of us ever change with him in the room, you would have to be a total spineless slut to do that!",
+                l10nValues: { dolly: sc.n("dolly") },
                 button: [
                     { chatID: 14, text: "He made me change in front of him.", callback: "" }
                 ]
@@ -1015,7 +1116,8 @@ room252.chat = function (chatID) {
             {
                 chatID: 16,
                 speaker: "holly",
-                text: "Hey honey! You still working here? " + sc.n("jeffery") + " still hasn't scared you away?",
+                text: "Hey honey! You still working here? {jeffery} still hasn't scared you away?",
+                l10nValues: { jeffery: sc.n("jeffery") },
                 button: [
                     { chatID: 17, text: "He's the worst, such a pervert", callback: "" },
                 ]
@@ -1045,8 +1147,9 @@ room252.chat = function (chatID) {
             {
                 chatID: 19,
                 speaker: "holly",
-                text: "I can tell girlfriend! Any guy willing to work here has some dirty fantasies! I was kinda worried at first about you, " +
-                    "but after talking to " + sc.n("molly") + " and " + sc.n("dolly") + " you feel like one of us! ",
+                text: "I can tell, girlfriend! Any guy willing to work here has some dirty fantasies! I was kinda worried at first about you, " +
+                    "but after talking to {molly} and {dolly}, you feel like one of us! ",
+                l10nValues: { molly: sc.n("molly"), dolly: sc.n("dolly") },
                 button: [
                     { chatID: -1, text: "Awww thank you! I like working with you too!", callback: "success" }
                 ]
@@ -1072,10 +1175,11 @@ room252.chat = function (chatID) {
             {
                 chatID: 22,
                 speaker: "dolly",
-                text: "I was just chattin' with " + sc.n("holly") + " and she was sayin' you was " +
-                    "the boy that changed in front of " + sc.n("jeffery") + " here the other day. " +
+                text: "I was just chattin' with {holly} and she was sayin' you was " +
+                    "the boy that changed in front of {jeffery} here the other day. " +
                     "Bless my heart I wouldn't have the gumption to show my face to the world if " +
                     "that happened to me!",
+                l10nValues: { holly: sc.n("holly"), jeffery: sc.n("jeffery") },
                 button: [
                     { chatID: 23, text: "Well I really need the money for rent ", callback: "" },
                     { chatID: 21, text: "You don't have to show your face when I fuck you from behind.", callback: "dollymad" },
@@ -1104,8 +1208,9 @@ room252.chat = function (chatID) {
                 chatID: 25,
                 speaker: "dolly",
                 text: "I'm glad to see you're still toughing it out sugar! They just don't pay enough here to cover rent! " +
-                    "That " + sc.n("jeffery") + " only cares about perving on pretty little things. He doesn't seem to care at all about " +
+                    "That {jeffery} only cares about perving on pretty little things. He doesn't seem to care at all about " +
                     "us getting enough to get by.",
+                l10nValues: { jeffery: sc.n("jeffery") },
                 button: [
                     { chatID: 21, text: "Did you want to make a few extra bucks, I'll buy your panties?", callback: "dollymad" },
                     { chatID: 26, text: "I know, if only there was some way to get some extra money", callback: "" }
@@ -1183,8 +1288,9 @@ room252.chat = function (chatID) {
                 chatID: 33,
                 speaker: "molly",
                 text: "Ohhh I bet he would love that. If you feel him stick his finger in your butt-hole just let him. He's safe and his tips " +
-                    "are awesome! Not like " + sc.n("jeffery") + " at all! He offered me $10 for my panties! I told him my panties cost like " +
+                    "are awesome! Not like {jeffery} at all! He offered me $10 for my panties! I told him my panties cost like " +
                     "$30 new, he was going to have to cough up like $50 for them. So I sold them to him, caught him sniffing them in his office. ",
+                l10nValues: { jeffery: sc.n("jeffery") },
                 button: [
                     { chatID: 34, text: "That's awesome! I bet your panties smell like sex!", callback: "" },
                     { chatID: 30, text: "Ewwww, gross. Why do you degrade yourself like that? ", callback: "mollymad" },
@@ -1223,8 +1329,9 @@ room252.chat = function (chatID) {
             {
                 chatID: 37,
                 speaker: "molly",
-                text: "Oh, hmmmmm.... Maybe after you've been working here a while me and " + sc.n("holly") + " and " + sc.n("dolly") +
+                text: "Oh, hmmmmm.... Maybe after you've been working here a while me and {holly} and {dolly}" +
                     " will show you some tricks. Until then I got to get back and 'accidently flash' one of my regulars",
+                l10nValues: { holly: sc.n("holly"), dolly: sc.n("dolly") },
                 button: [
                     { chatID: -1, text: "Ok, you keep it slutty!", callback: "success" }
                 ]
@@ -1321,9 +1428,10 @@ room252.chat = function (chatID) {
             {
                 chatID: 47,
                 speaker: "holly",
-                text: "Cute name. I'm Holly. The other girls here are Dolly and Molly. " +
-                    "Dolly is so sweet we call her sweet tea sometimes because of her " +
-                    "southern charm. Molly though. ",
+                text: "Cute name. I'm {holly}. The other girls here are {dolly} and {molly}. " +
+                    "{dolly} is so sweet we call her sweet tea sometimes because of her " +
+                    "southern charm. {molly} though. ",
+                l10nValues: { holly: sc.n("holly"), dolly: sc.n("dolly"), molly: sc.n("molly") },
                 button: [
                     { chatID: 48, text: "...", callback: "" }
                 ]
@@ -1331,13 +1439,14 @@ room252.chat = function (chatID) {
             {
                 chatID: 48,
                 speaker: "holly",
-                text: "Molly's really awesome, but she can be a bit vulgar. Just the other " +
+                text: "{molly}'s really awesome, but she can be a bit vulgar. Just the other " +
                     "day we were at Caravaggio as she put a whoopee cushion on my chair! " +
                     "This cute guy I was talking to ended up ditching me. I think he though " +
                     "I had too many burritos and was about to poop myself. She's great, but " +
                     "yeah...",
+                l10nValues: { molly: sc.n("molly") },
                 button: [
-                    { chatID: 11, text: "Molly sounds like a mega bitch. ", callback: "hollymad" },
+                    { chatID: 11, text: "She sounds like a mega bitch. ", callback: "hollymad" },
                     { chatID: 49, text: "haha. I'll look after myself", callback: "" }
                 ]
             },
@@ -1431,7 +1540,8 @@ room252.chat = function (chatID) {
             {
                 chatID: 59,
                 speaker: "molly",
-                text: "Hahaha thanks! I've been looking for one of these ever since Holly ruined my last one. I'm totally going to get her again!",
+                text: "Hahaha thanks! I've been looking for one of these ever since {holly} ruined my last one. I'm totally going to get her again!",
+                l10nValues: { holly: sc.n("holly") },
                 button: [
                     { chatID: -1, text: "Totally", callback: "success" },
                 ]
@@ -1487,7 +1597,8 @@ room252.chat = function (chatID) {
             {
                 chatID: 66,
                 speaker: "holly",
-                text: "It's our reward for putting up with " + sc.n("jeffery") + " the pervert. ",
+                text: "It's our reward for putting up with {jeffery} the pervert. ",
+                l10nValues: { jeffery: sc.n("jeffery") },
                 button: [
                     { chatID: 67, text: "...", callback: "" }
                 ]
@@ -1524,7 +1635,7 @@ room252.chat = function (chatID) {
                 text: "You don't need a dick to fuck me! I'll take anything up my bussy. " +
                     "Fists, strapons, feet, uhhhh, toys... what are we talking about?",
                 button: [
-                    { chatID: 71, text: "Oh " + sc.n("cecilia") + ".", callback: "" }
+                    { chatID: 71, text: "Oh {cecilia}.", l10nValues: { cecilia: sc.n("cecilia") }, callback: "" }
                 ]
             },
             {

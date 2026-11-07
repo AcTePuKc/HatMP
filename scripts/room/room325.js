@@ -333,244 +333,276 @@ room325.chat = function (chatID) {
     var cArray = [
         {
             chatID: 0,
+            l10nKey: "room.325.chat.0.text",
             speaker: "rachel",
             text: "Howdy stranger. What brings you to my farm? ",
             button: [
-                { chatID: 1, text: "Just wandering around I guess. ", callback: "" }
+                { chatID: 1, l10nKey: "room.325.chat.0.choice.0", text: "Just wandering around I guess. ", callback: "" }
             ]
         },
         {
             chatID: 1,
+            l10nKey: "room.325.chat.1.text",
             speaker: "rachel",
             text: "Wanderin' huh. Well you better wander somewhere else, 'lessen you want to shovel horse shit fer me.",
             button: [
-                { chatID: 2, text: "Would I get paid?", callback: "" },
-                { chatID: -1, text: "Gross, no. I 'lessen I'll leave now.", callback: "leave" }
+                { chatID: 2, l10nKey: "room.325.chat.1.choice.0", text: "Would I get paid?", callback: "" },
+                { chatID: -1, l10nKey: "room.325.chat.1.choice.1", text: "Gross, no. I 'lessen I'll leave now.", callback: "leave" }
             ]
         },
         {
             chatID: 2,
+            l10nKey: "room.325.chat.2.text",
             speaker: "rachel",
             text: "Oh we got a worker don't we. I'll tell you what kid, I got a farm hand that does that, but he " + 
                 "is shit at brushing the horses. You brush my horse and I'll pay you $20 a day. How's 'bout it?",
             button: [
-                { chatID: 3, text: "That sounds awesome!", callback: "" },
-                { chatID: -1, text: "I don't need any money.", callback: "leave" }
+                { chatID: 3, l10nKey: "room.325.chat.2.choice.0", text: "That sounds awesome!", callback: "" },
+                { chatID: -1, l10nKey: "room.325.chat.2.choice.1", text: "I don't need any money.", callback: "leave" }
             ]
         },
         {
             chatID: 3,
+            l10nKey: "room.325.chat.3.text",
             speaker: "rachel",
             text: "Alright. Follow me to the li'l barn and I'll show you how it's done.",
             button: [
-                { chatID: 5, text: "Follow her", callback: "barn0" }
+                { chatID: 5, l10nKey: "room.325.chat.3.choice.0", text: "Follow her", callback: "barn0" }
             ]
         },
         {
             chatID: 4,
+            l10nKey: "room.325.chat.4.text",
             speaker: "thinking",
             text: "It's really spooky here at night. I better leave.",
             button: [
-                { chatID: -1, text: "Leave", callback: "leave" }
+                { chatID: -1, l10nKey: "room.325.chat.4.choice.0", text: "Leave", callback: "leave" }
             ]
         },
         {
             chatID: 5,
+            l10nKey: "room.325.chat.5.text",
             speaker: "rachel",
+            l10nValues: { horse: sc.n("horse") },
             text: "This here's the horse stable. I just need you to brush ol' " + sc.n("horse") + " here. Jimmy say hi to the new farm hand.",
             button: [
-                { chatID: 6, text: "...", callback: "" }
+                { chatID: 6, l10nKey: "room.325.chat.5.choice.0", text: "...", callback: "" }
             ]
         },
         {
             chatID: 6,
+            l10nKey: "room.325.chat.6.text",
             speaker: "horse",
             text: "*Snorts*",
             button: [
-                { chatID: 7, text: "...", callback: "" }
+                { chatID: 7, l10nKey: "room.325.chat.6.choice.0", text: "...", callback: "" }
             ]
         },
         {
             chatID: 7,
+            l10nKey: "room.325.chat.7.text",
             speaker: "rachel",
             text: "Let's pull him out of the pen so you can brush him.",
             button: [
-                { chatID: 8, text: "Ok", callback: "horse1" }
+                { chatID: 8, l10nKey: "room.325.chat.7.choice.0", text: "Ok", callback: "horse1" }
             ]
         },
         {
             chatID: 8,
+            l10nKey: "room.325.chat.8.text",
             speaker: "rachel",
             text: "That's a good boy. I'm just going to give you a li'l brushin'. You need to be careful with his undercarriage, he can get a little randy " +
                 "if you're too vigorous down there.",
             button: [
-                { chatID: 9, text: "...", callback: "horse1a" }
+                { chatID: 9, l10nKey: "room.325.chat.8.choice.0", text: "...", callback: "horse1a" }
             ]
         },
         {
             chatID: 9,
+            l10nKey: "room.325.chat.9.text",
             speaker: "rachel",
             text: "'Course maybe you do want to rub a bit vigorous. *wink*",
             button: [
-                { chatID: 10, text: "Uhhh wha, no.", callback: "" }
+                { chatID: 10, l10nKey: "room.325.chat.9.choice.0", text: "Uhhh wha, no.", callback: "" }
             ]
         },
         {
             chatID: 10,
+            l10nKey: "room.325.chat.10.text",
             speaker: "rachel",
             text: "Like I said, job's yours if you want it. Just stop by during the day. Now I gotta get back to some real work. I'm sure " +
                 "you'll see yourself out.",
             button: [
-                { chatID: -1, text: "See ya.", callback: "rachel1end" }
+                { chatID: -1, l10nKey: "room.325.chat.10.choice.0", text: "See ya.", callback: "rachel1end" }
             ]
         },
         {
             chatID: 11,
+            l10nKey: "room.325.chat.11.text",
             speaker: "rachel",
             text: "Oh my. I don't think we've been acquainted.",
             button: [
-                { chatID: 13, text: "What do you mean? We've met.", callback: "" }
+                { chatID: 13, l10nKey: "room.325.chat.11.choice.0", text: "What do you mean? We've met.", callback: "" }
             ]
         },
         {
             chatID: 12,
+            l10nKey: "room.325.chat.12.text",
             speaker: "rachel",
             text: "Wait a minute. Let's step outside. I do want to say hello to those amazing milk jugs you have in the light.",
             button: [
-                { chatID: 13, text: "You like?", callback: "outside" }
+                { chatID: 13, l10nKey: "room.325.chat.12.choice.0", text: "You like?", callback: "outside" }
             ]
         },
         {
             chatID: 13,
+            l10nKey: "room.325.chat.13.text",
             speaker: "rachel",
             text: "I'm not talking to you. I'm talking to those beautiful pair of breasts you have. So much potential there!",
             button: [
-                { chatID: 14, text: "Oh, you like?", callback: "" }
+                { chatID: 14, l10nKey: "room.325.chat.13.choice.0", text: "Oh, you like?", callback: "" }
             ]
         },
         {
             chatID: 14,
+            l10nKey: "room.325.chat.14.text",
             speaker: "rachel",
             text: "I don't like them, I love them, I need them! Tell me, are you lactating?",
             button: [
-                { chatID: 15, text: "...lactating?", callback: "" }
+                { chatID: 15, l10nKey: "room.325.chat.14.choice.0", text: "...lactating?", callback: "" }
             ]
         },
         {
             chatID: 15,
+            l10nKey: "room.325.chat.15.text",
             speaker: "rachel",
             text: "I'll take that as a no. Here take this pill. It's completely safe.",
             button: [
-                { chatID: -1, text: "Hmmm", callback: "pill" },
-                { chatID: -1, text: "[Run away]", callback: "leave" },
+                { chatID: -1, l10nKey: "room.325.chat.15.choice.0", text: "Hmmm", callback: "pill" },
+                { chatID: -1, l10nKey: "room.325.chat.15.choice.1", text: "[Run away]", callback: "leave" },
             ]
         },
         {
             chatID: 16,
+            l10nKey: "room.325.chat.16.text",
             speaker: "rachel",
-            text: "That's a good girl. Swallow it down for mommy. That's my improved Lactaid pill. Unlike other pills that " +
+            text: "That's a good girl. Swallow it down for me. That's my improved Lactaid pill. Unlike other pills that " +
                 "don't work or take forever for little results this one will fill those beautiful breasts with so much milk " +
                 "you'll have to come here to get empty.",
             button: [
-                { chatID: 17, text: "What! Do you mean I'm going to be leaking milk from my tits all day?", callback: "" }
+                { chatID: 17, l10nKey: "room.325.chat.16.choice.0", text: "What! Do you mean I'm going to be leaking milk from my tits all day?", callback: "" }
             ]
         },
         {
             chatID: 17,
+            l10nKey: "room.325.chat.17.text",
             speaker: "rachel",
             text: "Well, it's too late for that now. That pill will trick your body into creating milk and it's quite long " +
                 "lasting. My first hucow took it 3 years ago and she's still producing some of the finest quality milk. Just " +
                 "don't go too long without a milking or you'll wake up squirting milk all over.",
             button: [
-                { chatID: 18, text: "But I don't want to squirt milk.", callback: "" }
+                { chatID: 18, l10nKey: "room.325.chat.17.choice.0", text: "But I don't want to squirt milk.", callback: "" }
             ]
         },
         {
             chatID: 18,
+            l10nKey: "room.325.chat.18.text",
             speaker: "rachel",
             text: "Don't worry, just come here when you're full and I'll give you a good milking and a decent paycheck. Breast " +
                 "milk from hucows are worth a pretty penny in these parts, and breasts your size will produce so much milk. ",
             button: [
-                { chatID: 19, text: "I can't believe you've done this to me.", callback: "" }
+                { chatID: 19, l10nKey: "room.325.chat.18.choice.0", text: "I can't believe you've done this to me.", callback: "" }
             ]
         },
         {
             chatID: 19,
+            l10nKey: "room.325.chat.19.text",
             speaker: "rachel",
             text: "I can't believe you just took a pill without knowing what it was. What's done is done. You'll make a fine " +
                 "addition to my farm. Now I've got some hucows to milk. Come back when you're at least half full. The more " +
                 "you pump the more milk you produce. ",
             button: [
-                { chatID: -1, text: "Grrrrr", callback: "leave" }
+                { chatID: -1, l10nKey: "room.325.chat.19.choice.0", text: "Grrrrr", callback: "leave" }
             ]
         },
         {
             chatID: 20,
+            l10nKey: "room.325.chat.20.text",
             speaker: "thinking",
             text: "I've already visited today. Maybe I'll come back tomorrow.",
             button: [
-                { chatID: -1, text: "....", callback: "" }
+                { chatID: -1, l10nKey: "room.325.chat.20.choice.0", text: "....", callback: "" }
             ]
         },
         {
             chatID: 21,
+            l10nKey: "room.325.chat.21.text",
             speaker: "rachel",
+            l10nValues: { horse: sc.n("horse") },
             text: "Here to brush the horse? I think " + sc.n("horse") + " is starting to like you.",
             button: [
-                { chatID: -1, text: "I sure am!", callback: "stable" },
-                { chatID: -1, text: "No.", callback: "" },
+                { chatID: -1, l10nKey: "room.325.chat.21.choice.0", text: "I sure am!", callback: "stable" },
+                { chatID: -1, l10nKey: "room.325.chat.21.choice.1", text: "No.", callback: "" },
             ]
         },
         {
             chatID: 22,
+            l10nKey: "room.325.chat.22.text",
             speaker: "rachel",
+            l10nValues: { horse: sc.n("horse") },
             text: "I can tell your milk's a little low. Take some hormones and get some sleep. In the meantime " +
                 "are you here to brush the horse? I think " + sc.n("horse") + " is starting to like you.",
             button: [
-                { chatID: -1, text: "I sure am!", callback: "stable" },
-                { chatID: -1, text: "No.", callback: "" },
+                { chatID: -1, l10nKey: "room.325.chat.22.choice.0", text: "I sure am!", callback: "stable" },
+                { chatID: -1, l10nKey: "room.325.chat.22.choice.1", text: "No.", callback: "" },
             ]
         },
         {
             chatID: 23,
+            l10nKey: "room.325.chat.23.text",
             speaker: "rachel",
+            l10nValues: { horse: sc.n("horse") },
             text: "You look ready to milk. I think " + sc.n("horse") + " is starting to like you.",
             button: [
-                { chatID: 24, text: "I'm looking for my first milking.", callback: "" },
-                { chatID: -1, text: "I want to brush the horse", callback: "stable" },
-                { chatID: -1, text: "I'm not sure why I'm here.", callback: "" },
+                { chatID: 24, l10nKey: "room.325.chat.23.choice.0", text: "I'm looking for my first milking.", callback: "" },
+                { chatID: -1, l10nKey: "room.325.chat.23.choice.1", text: "I want to brush the horse", callback: "stable" },
+                { chatID: -1, l10nKey: "room.325.chat.23.choice.2", text: "I'm not sure why I'm here.", callback: "" },
             ]
         },
         {
             chatID: 24,
+            l10nKey: "room.325.chat.24.text",
             speaker: "rachel",
             text: "This is a big day. For you. Follow me into the big barn.",
             button: [
-                { chatID: 25, text: "...", callback: "milk0" },
+                { chatID: 25, l10nKey: "room.325.chat.24.choice.0", text: "...", callback: "milk0" },
             ]
         },
         {
             chatID: 25,
+            l10nKey: "room.325.chat.25.text",
             speaker: "rachel",
             text: "This here is the processin' area. I got so much demand for milk you wouldn't believe it. To keep this place running " +
                 "I have to have around 100 hucows. Most earn a good living... if they follow the rules, you know what I mean. " +
                 "You seem like a good girl, I'm sure you'll be just fine. You'll get a " +
                 "healthy paycheck each time you come on by. Now follow me to the milking parlor viewing booth.",
             button: [
-                { chatID: 26, text: "[Follow her]", callback: "milk1" },
+                { chatID: 26, l10nKey: "room.325.chat.25.choice.0", text: "[Follow her]", callback: "milk1" },
             ]
         },
         {
             chatID: 26,
+            l10nKey: "room.325.chat.26.text",
             speaker: "rachel",
             text: "This here is my milking parlor. As you can see I have a large collection of hucows that I've employed. All busy " +
                 "little cows makin' milk for me. I really do love this view. It's the view of money. You know how I started this farm?",
             button: [
-                { chatID: 27, text: "How?", callback: "" },
+                { chatID: 27, l10nKey: "room.325.chat.26.choice.0", text: "How?", callback: "" },
             ]
         },
         {
             chatID: 27,
+            l10nKey: "room.325.chat.27.text",
             speaker: "rachel",
             text: "I used to only have cows, till them big city people started their mega farms and nearly put me under. " +
                 "Times were rough until I started talking to a client that only wanted breast milk. Well I figured a way to " +
@@ -578,190 +610,212 @@ room325.chat = function (chatID) {
                 "idea to invite some friends and give them a cut. Pretty soon I had girls lining up. I had to sell my cows and " +
                 "convert the cow pen to a hucow pen. Let's go down and we'll get to milk ya.",
             button: [
-                { chatID: 28, text: "Ok.", callback: "milk2" },
+                { chatID: 28, l10nKey: "room.325.chat.27.choice.0", text: "Ok.", callback: "milk2" },
             ]
         },
         {
             chatID: 28,
+            l10nKey: "room.325.chat.28.text",
             speaker: "rachel",
+            l10nValues: { me: sc.n("me") },
             text: "This here is Kinsey, our li'l Irish lassy. Kinsey here was caught trying to pour cow's milk into her milking tubes. " +
                 "Ruined an entire batch. Now she's pinned here until she replaces all that milk plus interest. It was a rather large " +
                 "batch so she's going to be here a while. Don't worry too much, we feed and water her like I did with our cows. " +
                 "Kinsey, moo for " + sc.n("me") + " so this girl here can see you know your place here.",
             button: [
-                { chatID: 29, text: "...", callback: "" },
+                { chatID: 29, l10nKey: "room.325.chat.28.choice.0", text: "...", callback: "" },
             ]
         },
         {
             chatID: 29,
+            l10nKey: "room.325.chat.29.text",
             speaker: "kinsey",
             text: "Mooooooo",
             button: [
-                { chatID: 30, text: "Oh my", callback: "" },
+                { chatID: 30, l10nKey: "room.325.chat.29.choice.0", text: "Oh my", callback: "" },
             ]
         },
         {
             chatID: 30,
+            l10nKey: "room.325.chat.30.text",
             speaker: "rachel",
             text: "I showed you Kinsey so you know there are consequences to your actions here. Get milked and get paid. " +
                 "Really gosh darn simple. Since this is your first visit I need to do a quality check. Makin' sure it's " +
                 "up to my standard. Follow me to the exam room. ",
             button: [
-                { chatID: 31, text: "Ok!", callback: "milk3" },
+                { chatID: 31, l10nKey: "room.325.chat.30.choice.0", text: "Ok!", callback: "milk3" },
             ]
         },
         {
             chatID: 31,
+            l10nKey: "room.325.chat.31.text",
             speaker: "rachel",
             text: "This is the exam and quality assurance room. Quality milk is of the utmost importance to my clients. " +
                 "Strip down, I need to inspect your milk to make sure it's up to my standards.",
             button: [
-                { chatID: 32, text: "[Strip]", callback: "milk4" },
+                { chatID: 32, l10nKey: "room.325.chat.31.choice.0", text: "[Strip]", callback: "milk4" },
             ]
         },
         {
             chatID: 32,
+            l10nKey: "room.325.chat.32.text",
             speaker: "rachel",
             text: "And the best way to know my standards is to taste my standards. Come take a taste of some quality lactation darlin'.",
             button: [
-                { chatID: 33, text: "[Take a taste]", callback: "milk5" },
+                { chatID: 33, l10nKey: "room.325.chat.32.choice.0", text: "[Take a taste]", callback: "milk5" },
             ]
         },
         {
             chatID: 33,
+            l10nKey: "room.325.chat.33.text",
             speaker: "rachel",
             text: "That's right. Drink up, it is yummy isn't it? Come to my examining table so we can taste each other.",
             button: [
-                { chatID: 34, text: "MMMmm yeah", callback: "milk6" },
+                { chatID: 34, l10nKey: "room.325.chat.33.choice.0", text: "MMMmm yeah", callback: "milk6" },
             ]
         },
         {
             chatID: 34,
+            l10nKey: "room.325.chat.34.text",
             speaker: "rachel",
             text: "Yuuummmmmmm mmMmmm ",
             button: [
-                { chatID: 35, text: "ooOooommmmmm", callback: "milk7" },
+                { chatID: 35, l10nKey: "room.325.chat.34.choice.0", text: "ooOooommmmmm", callback: "milk7" },
             ]
         },
         {
             chatID: 35,
+            l10nKey: "room.325.chat.35.text",
             speaker: "rachel",
             text: "You were delicious. There's a real quality to your milk. Here's $50. Come back when you refill. ",
             button: [
-                { chatID: -1, text: "Thanks!", callback: "milk8" },
+                { chatID: -1, l10nKey: "room.325.chat.35.choice.0", text: "Thanks!", callback: "milk8" },
             ]
         },
         {
             chatID: 36,
+            l10nKey: "room.325.chat.36.text",
             speaker: "rachel",
             text: "You look ready to milk. I think " + sc.n("horse") + " is starting to like you.",
             button: [
-                { chatID: -1, text: "Milk me", callback: "milkme" },
-                { chatID: -1, text: "I want to brush the horse", callback: "stable" },
-                { chatID: -1, text: "I'm not sure why I'm here.", callback: "" },
+                { chatID: -1, l10nKey: "room.325.chat.36.choice.0", text: "Milk me", callback: "milkme" },
+                { chatID: -1, l10nKey: "room.325.chat.36.choice.1", text: "I want to brush the horse", callback: "stable" },
+                { chatID: -1, l10nKey: "room.325.chat.36.choice.2", text: "I'm not sure why I'm here.", callback: "" },
             ]
         },
         {
             chatID: 37,
+            l10nKey: "room.325.chat.37.text",
             speaker: "rachel",
             text: "So. I'm always recruiting new Hucows for my farm, the bigger the udders the better.",
             button: [
-                { chatID: 38, text: "Huh?", callback: "" },
+                { chatID: 38, l10nKey: "room.325.chat.37.choice.0", text: "Huh?", callback: "" },
             ]
         },
         {
             chatID: 38,
+            l10nKey: "room.325.chat.38.text",
             speaker: "rachel",
             text: "You have no idea how big the demand is for my milk, so much so I need more girls. Tell ya what, " + 
                 "if you can bring in any new I'll give you a $500 finder's fee. You don't have to do anything, just bring her " +
                 "on by.",
             button: [
-                { chatID: 39, text: "Let me think on that.", callback: "" },
+                { chatID: 39, l10nKey: "room.325.chat.38.choice.0", text: "Let me think on that.", callback: "" },
             ]
         },
         {
             chatID: 39,
+            l10nKey: "room.325.chat.39.text",
             speaker: "thinking",
+            l10nValues: { envy: sc.n("envy") },
             text: "Hmmm...... Who do I know with giant fucking tits and willing to be milked everyday? Hmmm....." +
                 "Oh! I know! " + sc.n("envy") + "!!!! She's so deep under I bet I could just tell her to get milked. " +
                 "Plus I know she was thinking of it before she became a fuck doll for the entire town. I'll visit her to see " +
                 "if she'll do it. ",
             button: [
-                { chatID: -1, text: "I'll go talk to " + sc.n("envy") + "!!!", callback: "" }
+                { chatID: -1, l10nKey: "room.325.chat.39.choice.0", text: "I'll go talk to " + sc.n("envy") + "!!!", l10nValues: { envy: sc.n("envy") }, callback: "" }
             ]
         },
         {
             chatID: 40,
+            l10nKey: "room.325.chat.40.text",
             speaker: "thinking",
             text: "This is going to be difficult. I can see one roving guard outside, but I wonder if there's " +
                 "guards inside. I'm glad they have flashlights so at least I know where they're at. I should wait " +
                 "for him to go around back and try to sneak into the barn and start there.",
             button: [
-                { chatID: 41, text: "Wait", callback: "case0" }
+                { chatID: 41, l10nKey: "room.325.chat.40.choice.0", text: "Wait", callback: "case0" }
             ]
         },
         {
             chatID: 41,
+            l10nKey: "room.325.chat.41.text",
             speaker: "thinking",
             text: "He's going around back. Now's my chance to sneak into the barn.",
             button: [
-                { chatID: 42, text: "Sneaky sneaky", callback: "case1" }
+                { chatID: 42, l10nKey: "room.325.chat.41.choice.0", text: "Sneaky sneaky", callback: "case1" }
             ]
         },
         {
             chatID: 42,
+            l10nKey: "room.325.chat.42.text",
             speaker: "thinking",
             text: "So creepy and loud in here. Let me see what's behind this door.",
             button: [
-                { chatID: -1, text: "Sneaky sneaky", callback: "case2" }
+                { chatID: -1, l10nKey: "room.325.chat.42.choice.0", text: "Sneaky sneaky", callback: "case2" }
             ]
         },
         {
             chatID: 43,
+            l10nKey: "room.325.chat.43.text",
             speaker: "thinking",
             text: "Damn. It's locked. Let me look elsewhere.",
             button: [
-                { chatID: -1, text: "...", callback: "case2" }
+                { chatID: -1, l10nKey: "room.325.chat.43.choice.0", text: "...", callback: "case2" }
             ]
         },
         {
             chatID: 44,
+            l10nKey: "room.325.chat.44.text",
             speaker: "rachel",
             text: "What are you doing sneaking around my farm!",
             button: [
-                { chatID: 45, text: "Oh uh...", callback: "" }
+                { chatID: 45, l10nKey: "room.325.chat.44.choice.0", text: "Oh uh...", callback: "" }
             ]
         },
         {
             chatID: 45,
+            l10nKey: "room.325.chat.45.text",
             speaker: "security",
             text: "I told you " + gender.pronoun("he") + " was working for Missy and shouldn't be allowed here. " +
                 "I know you like a good " + (sc.getMission("rachel", "milk").notStarted ? "farm hand" : "hucow") +
                 ", but " + gender.pronoun("he") + "'s going to destroy our entire operation. We need to take " +
                 "care of " + gender.pronoun("her") + " so she doesn't destroy what we've built.",
             button: [
-                { chatID: 46, text: "Oh no. No. No. No. I just was curious...", callback: "" }
+                { chatID: 46, l10nKey: "room.325.chat.45.choice.0", text: "Oh no. No. No. No. I just was curious...", callback: "" }
             ]
         },
         {
             chatID: 46,
+            l10nKey: "room.325.chat.46.text",
             speaker: "rachel",
-            text: "Fine. Do what you need for tonight. After I get some rest I'll decide what to do with " + gender.pronoun("her") +
-                "you.",
+            text: "Fine. Do what you need for tonight. After I get some rest I'll decide what to do with you.",
             button: [
-                { chatID: 47, text: "Crap.", callback: "case4" }
+                { chatID: 47, l10nKey: "room.325.chat.46.choice.0", text: "Crap.", callback: "case4" }
             ]
         },
         {
             chatID: 47,
+            l10nKey: "room.325.chat.47.text",
             speaker: "security",
             text: "Enjoy your night in the stable. Try to get a good night's sleep, it may be your last.",
             button: [
-                { chatID: -1, text: "*sniffle*", callback: "sleep" }
+                { chatID: -1, l10nKey: "room.325.chat.47.choice.0", text: "*sniffle*", callback: "sleep" }
             ]
         },
         {
             chatID: 48,
+            l10nKey: "room.325.chat.48.text",
             speaker: "rachel",
             text: "You know there's some powerful people that want you dead. But I'm in the hucow business, " +
                 "and it would be a real shame to get rid of one of my milk producers. So I'm going to keep you " +
@@ -769,11 +823,12 @@ room325.chat = function (chatID) {
                 "be easy on you. But if you misbehave, well... You're going to find out what happens to bad little " +
                 "piggies. Hahhaha. My ranch hands will take you from here. ",
             button: [
-                { chatID: 50, text: "*sigh*", callback: "case4" }
+                { chatID: 50, l10nKey: "room.325.chat.48.choice.0", text: "*sigh*", callback: "case4" }
             ]
         },
         {
             chatID: 49,
+            l10nKey: "room.325.chat.49.text",
             speaker: "rachel",
             text: "You know there's some powerful people that want you dead. But I'm in need of some new livestock " +
                 "and you may be able to earn your place as one of my hucows someday. So I'm going to keep you " +
@@ -781,116 +836,129 @@ room325.chat = function (chatID) {
                 "be easy on you. But if you misbehave, well... You're going to find out what happens to bad little " +
                 "piggies. Hahhaha. My ranch hands will take you from here. ",
             button: [
-                { chatID: 50, text: "*sigh*", callback: "case4" }
+                { chatID: 50, l10nKey: "room.325.chat.49.choice.0", text: "*sigh*", callback: "case4" }
             ]
         },
         {
             chatID: 50,
+            l10nKey: "room.325.chat.50.text",
             speaker: "security",
             text: "I'm going to strip you of everything you have. If you're a bad little hucow Rachel says " +
                 "I get to keep you. I do hope you screw up hehehe. Then you'll really see the full power of " +
                 "the CUM Cult! ",
             button: [
-                { chatID: -1, text: "*whimper*", callback: "r328" }
+                { chatID: -1, l10nKey: "room.325.chat.50.choice.0", text: "*whimper*", callback: "r328" }
             ]
         },
         {
             chatID: 51,
+            l10nKey: "room.325.chat.51.text",
             speaker: "rachel",
             text: "You think you can break out, then just come moseying back in. I think you need to learn " +
-                "some manners. Boys take him away! ",
+                "some manners. Boys, take " + gender.pronoun("her") + " away! ",
             button: [
-                { chatID: -1, text: "huh", callback: "room949" }
+                { chatID: -1, l10nKey: "room.325.chat.51.choice.0", text: "huh", callback: "room949" }
             ]
         },
         {
             chatID: 52,
+            l10nKey: "room.325.chat.52.text",
             speaker: "thinking",
+            l10nValues: { rachel: sc.n("rachel") },
             text: "Damn shame what happened here. It's so quiet since the police arrested " + sc.n("rachel") +
                 " and all the farm hands then set those poor girls free. I guess there's nothing left here until " +
                 "someone buys up this place. ",
             button: [
-                { chatID: -1, text: "...", callback: "leave" }
+                { chatID: -1, l10nKey: "room.325.chat.52.choice.0", text: "...", callback: "leave" }
             ]
         },
         {
             chatID: 53,
+            l10nKey: "room.325.chat.53.text",
             speaker: "kinsey",
+            l10nValues: { me: sc.n("me") },
             text: "Well stuff my butt with an energy soda! " + sc.n("me") + "! Welcome to my farm.",
             button: [
-                { chatID: 54, text: "Your farm? How is it your farm?", callback: "" }
+                { chatID: 54, l10nKey: "room.325.chat.53.choice.0", text: "Your farm? How is it your farm?", callback: "" }
             ]
         },
         {
             chatID: 54,
+            l10nKey: "room.325.chat.54.text",
             speaker: "kinsey",
             text: "So I made a break for it when they pulled us all into the forest. Hid under a log for 2 days " +
                 "before I even tried to make my escape. Well you could imagine my surprise when I was spying on the " +
                 "farm and saw that NO ONE was there! Like empty. Well, I saw a cop come up when I ran to him to " +
                 "tell him everything going on here. ",
             button: [
-                { chatID: 55, text: "Yes", callback: "" }
+                { chatID: 55, l10nKey: "room.325.chat.54.choice.0", text: "Yes", callback: "" }
             ]
         },
         {
             chatID: 55,
+            l10nKey: "room.325.chat.55.text",
             speaker: "kinsey",
             text: "Only I found out that you, you beautiful mother fucker, took them all down. Every last one " +
                 "of them! Well I got to asking around and with everyone in prison and the farm confiscated there " +
                 "wasn't anyone to take care of the animals. The horses were looking pretty rough. ",
             button: [
-                { chatID: 56, text: "Oh no.", callback: "" }
+                { chatID: 56, l10nKey: "room.325.chat.55.choice.0", text: "Oh no.", callback: "" }
             ]
         },
         {
             chatID: 56,
+            l10nKey: "room.325.chat.56.text",
             speaker: "kinsey",
             text: "So I had some help from my family, but I'm working on buying the entire farm. Cheap. " +
                 "While it's going through they allowed me to run things and take care of the animals. Now I " +
                 "can make sure what happened to us never happens to anyone else. So the entire thing is mine! ",
             button: [
-                { chatID: 57, text: "Oh wow! So I see some hucows over there? ", callback: "" }
+                { chatID: 57, l10nKey: "room.325.chat.56.choice.0", text: "Oh wow! So I see some hucows over there? ", callback: "" }
             ]
         },
         {
             chatID: 57,
+            l10nKey: "room.325.chat.57.text",
             speaker: "kinsey",
             text: "That was the hard part. A lot of the girls are so used to being hucows that they didn't know " +
                 "what to do with their freedom. So I let them stay if they want. Everyone is free to come or go " +
                 "when ever they want. I also started some profit sharing with everyone. It's not a lot now, " +
                 "since I now have a big loan, but I'll keep working it so everyone gets their fair share. ",
             button: [
-                { chatID: 58, text: "That's amazing!", callback: "" }
+                { chatID: 58, l10nKey: "room.325.chat.57.choice.0", text: "That's amazing!", callback: "" }
             ]
         },
         {
             chatID: 58,
+            l10nKey: "room.325.chat.58.text",
             speaker: "kinsey",
             text: "I know. Added bonus is now that I'm the owner I rehired some ranch hands just so I could " +
                 "punch them in the balls whenever I feel like. I didn't want to, but I needed the help. Feel " +
                 "free to punch any ranch hands you see in the balls. If they step out of line, just punch them. " +
                 "It really is fun! ",
             button: [
-                { chatID: 59, text: "Haha, I will. ", callback: "" }
+                { chatID: 59, l10nKey: "room.325.chat.58.choice.0", text: "Haha, I will. ", callback: "" }
             ]
         },
         {
             chatID: 59,
+            l10nKey: "room.325.chat.59.text",
             speaker: "kinsey",
             text: "If you ever want to visit or wander around, you can do what ever you want, since we " +
                 "all owe our freedom to you. Think of this as mi casa is your farm too. Just ask! ",
             button: [
-                { chatID: -1, text: "Sweet. Thanks!", callback: "" }
+                { chatID: -1, l10nKey: "room.325.chat.59.choice.0", text: "Sweet. Thanks!", callback: "" }
             ]
         },
         {
             chatID: 60,
+            l10nKey: "room.325.chat.60.text",
             speaker: "kinsey",
             text: "What do you want to do? ",
             button: [
-                { chatID: -1, text: "Get milked!", callback: "" },
-                { chatID: -1, text: "Wander around the barn", callback: "" },
-                { chatID: -1, text: "Nothing. ", callback: "" },
+                { chatID: -1, l10nKey: "room.325.chat.60.choice.0", text: "Get milked!", callback: "" },
+                { chatID: -1, l10nKey: "room.325.chat.60.choice.1", text: "Wander around the barn", callback: "" },
+                { chatID: -1, l10nKey: "room.325.chat.60.choice.2", text: "Nothing. ", callback: "" },
             ]
         },
     ];

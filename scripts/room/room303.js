@@ -149,7 +149,7 @@ room303.chat = function (chatID) {
         {
             chatID: 1,
             speaker: "me",
-            text: "No answer. Whoever lives here are either out, or won't answer the door to some random person coming by. ",
+            text: "No answer. Whoever lives here is either out, or won't answer the door to some random person coming by. ",
             button: [
                 { chatID: -1, text: "...", callback: "" }
             ]

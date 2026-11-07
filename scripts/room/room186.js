@@ -110,9 +110,10 @@ room186.chat = function (chatID) {
         {
             chatID: 0,
             speaker: "black",
-            text: "Hey! It's so good to see you outside of class. You know " + sc.n("martha") +
-                " keeps me so busy disciplining " + sc.n("!sanaria") + ". She is a wild one, " +
+            text: "Hey! It's so good to see you outside of class. You know {martha}" +
+                " keeps me so busy disciplining {sanaria}. She is a wild one, " +
                 "but her screams are fulfilling. So what have you been up to? ",
+            l10nValues: { martha: sc.n("martha"), sanaria: sc.n("!sanaria") },
             button: [
                 { chatID: 1, text: "Oh, you know, mostly butt stuff. ", callback: "" }
             ]
@@ -120,9 +121,10 @@ room186.chat = function (chatID) {
         {
             chatID: 1,
             speaker: "black",
-            text: "That's my girl! You know, speaking of butt stuff, " + sc.n("cecilia") +
+            text: "That's my girl! You know, speaking of butt stuff, {cecilia}" +
                 " and I do the talent show on the weekends. We would love to have a third for " +
                 "our act and you would be perfect. ",
+            l10nValues: { cecilia: sc.n("cecilia") },
             button: [
                 { chatID: 2, text: "Oh? What talent? ", callback: "" }
             ]
@@ -130,7 +132,7 @@ room186.chat = function (chatID) {
         {
             chatID: 2,
             speaker: "me",
-            text: "noop",
+            text: "Oh? What talent? ",
             button: [
                 { chatID: -1, text: "Oh? What talent? ", callback: "" }
             ]
@@ -147,8 +149,8 @@ room186.chat = function (chatID) {
         {
             chatID: 4,
             speaker: "thinking",
-            text: "I'm pretty early, should I just hang out 'til " + char.friendlyTime(18) +
-                " for the talent show? ",
+            text: "I'm pretty early, should I just hang out 'til {time} for the talent show? ",
+            l10nValues: { time: char.friendlyTime(18) },
             button: [
                 { chatID: -1, text: "No", callback: "" },
                 { chatID: -1, text: "Hang out", callback: "passtime" },

@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>HatMP — Dialogue preview</title>
+    <link rel="stylesheet" href="../style/global.css">
+    <link rel="stylesheet" href="../style/dialogue.css">
+    <style>
+        body { color: #e9edf9; background: #252d3c; font-family: Arial, sans-serif; }
+        .preview-stage { position: fixed; top: 0; left: 0; width: min(100vw, 177.7778vh); height: min(100vh, 56.25vw); background: linear-gradient(145deg, #405468, #1c2539 65%); }
+        .preview-controls { position: relative; z-index: 101; max-width: 1100px; padding: 20px; background: #101521dd; border-radius: 0 0 12px 0; }
+        .preview-controls h1 { margin: 0 0 8px; font-size: 22px; }
+        .preview-controls p { margin: 5px 0 10px; font-size: 14px; }
+        .preview-controls label { display: inline-block; margin: 4px 16px 4px 0; }
+        .preview-controls select, .preview-controls button { font: inherit; padding: 5px; }
+        #preview_status { color: #ffce73; }
+    </style>
+</head>
+<body>
+    <div class="preview-stage"></div>
+    <div class="preview-controls">
+        <h1>Dialogue preview</h1>
+        <p>Shared game renderer with sample text. No game saves or story callbacks. F11 toggles fullscreen.</p>
+        <label>Language <select id="preview_language"><option value="en">English</option><option value="es">Español</option><option value="bg">Български</option></select></label>
+        <label>Passage <select id="preview_length"><option value="1">Short</option><option value="4" selected>Long</option><option value="10">Very long</option></select></label>
+        <label>Choices <select id="preview_choices"><option>1</option><option>2</option><option>4</option><option selected>6</option></select></label>
+        <label><input type="checkbox" id="preview_expand"> Expanded text (+50%)</label>
+        <label><input type="checkbox" id="preview_agreement"> Player agreement sample</label>
+        <label>Player wording <select id="preview_pronouns"><option value="m">Masculine</option><option value="f">Feminine</option><option value="a">Appearance</option></select></label>
+        <label>Sample appearance <select id="preview_appearance"><option value="1">Masculine</option><option value="2">Feminine</option></select></label>
+        <label>Translation key (optional) <input id="preview_key" placeholder="room.13.chat.170.choice.1"></label>
+        <button type="button" id="preview_next">New passage</button>
+        <button type="button" id="preview_settings">Reading settings</button>
+        <p id="preview_status" role="status"></p>
+    </div>
+    <div id="room_footer"></div><div id="room_export" style="display:none"></div>
+    <div class="room-chatOverlay" id="room_chatOverlay" style="display:none">
+        <div class="room-chatBox">
+            <div class="room-speachGroup"><div class="room-chatSpeaker" id="room_chatSpeaker"></div><div class="room-chatSpeach" id="room_footerSpeach"></div></div>
+            <button class="room-chatBtn room-chatBtnClick" id="room_chatBtn0" type="button"></button><button class="room-chatBtn room-chatBtnClick" id="room_chatBtn1" type="button"></button><button class="room-chatBtn room-chatBtnClick" id="room_chatBtn2" type="button"></button><button class="room-chatBtn room-chatBtnClick" id="room_chatBtn3" type="button"></button><button class="room-chatBtn room-chatBtnClick" id="room_chatBtn4" type="button"></button><button class="room-chatBtn room-chatBtnClick" id="room_chatBtn5" type="button"></button>
+            <button type="button" id="room_chatskip" class="dialogue-control" data-l10n="dialogue.skip">Skip dialogue</button>
+        </div>
+    </div>
+    <script src="../scripts/jquery-4.0.0.min.js"></script>
+    <script src="../l10n/languages.js"></script><script src="../l10n/en.js"></script><script src="../l10n/es.js"></script><script src="../l10n/bg.js"></script>
+    <script src="../scripts/l10n-format.js"></script>
+    <script src="../scripts/localization.js"></script>
+    <script src="dialogue-preview.js"></script>
+    <script src="../scripts/gender.js"></script>
+    <script src="../scripts/chat.js"></script><script src="../scripts/dialogue.js"></script>
+</body>
+</html>

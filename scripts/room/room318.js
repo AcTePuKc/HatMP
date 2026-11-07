@@ -588,31 +588,34 @@ room318.chat = function (chatID) {
                 return {
                     chatID: 0,
                     speaker: "chad",
+                    l10nKey: "room.318.chat.brad0.cock.text",
                     text: "Hahahahaha! You come to see what a real man's cock looks like? " +
                         "What's the matter, you couldn't please your girlfriend with your " +
                         "tiny shrimp dick? Hahahahaha",
                     button: [
-                        { chatID: 28, text: "...", callback: "datr_brad_1" }
+                        { chatID: 28, l10nKey: "room.318.chat.brad0.choice.0", text: "...", callback: "datr_brad_1" }
                     ]
                 };
             }
             return {
                 chatID: 0,
                 speaker: "chad",
+                l10nKey: "room.318.chat.brad0.naked.text",
                 text: "Hahahahaha! Just sitting here naked like a bitch. Come to take " +
                     "lessons on how a real man fucks your girl! Hahahahaha",
                     button: [
-                        { chatID: 28, text: "...", callback: "datr_brad_1" }
+                        { chatID: 28, l10nKey: "room.318.chat.brad0.choice.0", text: "...", callback: "datr_brad_1" }
                     ]
             };
         }
         return {
             chatID: 0,
             speaker: "chad",
+            l10nKey: "room.318.chat.brad0.dressed.text",
             text: "Hahahahaha! All dressed up to watch me fuck your girl friend? " +
                 "Take notes on how a real man fucks your girl! Hahahahaha",
             button: [
-                { chatID: 28, text: "...", callback: "datr_brad_1" }
+                { chatID: 28, l10nKey: "room.318.chat.brad0.choice.0", text: "...", callback: "datr_brad_1" }
             ]
         };
     }
@@ -620,6 +623,7 @@ room318.chat = function (chatID) {
         return {
             chatID: 9,
             speaker: "thinking",
+            l10nKey: "room.318.sleepy.text",
             text: "What to wear.",
             button: [
                 { chatID: -1, text: '<img src="./images/general/shirt.png" /> ' + cl.saveOutfit[0].name, callback: "o0" },
@@ -627,7 +631,7 @@ room318.chat = function (chatID) {
                 { chatID: -1, text: '<img src="./images/general/shirt.png" /> ' + cl.saveOutfit[2].name, callback: "o2" },
                 { chatID: -1, text: '<img src="./images/general/shirt.png" /> ' + cl.saveOutfit[3].name, callback: "o3" },
                 { chatID: -1, text: '<img src="./images/general/shirt.png" /> ' + cl.saveOutfit[4].name, callback: "o4" },
-                { chatID: -1, text: "Get Up", callback: "o5" }
+                { chatID: -1, l10nKey: "room.318.sleepy.getUp", text: "Get Up", callback: "o5" }
             ]
         };
     }
@@ -636,8 +640,9 @@ room318.chat = function (chatID) {
             {
                 chatID: 0,
                 speaker: "thinking",
-                text: "Uh oh. Looks like " + sc.n("dog") + " doesn't want me in here. I better back " +
-                    "out before he attacks me. ",
+                l10nKey: "room.318.chat.0.text",
+                l10nValues: { dog: sc.n("dog") },
+                text: "Uh oh. Looks like {dog} doesn't want me in here. I better back out before he attacks me.",
                 button: [
                     { chatID: -1, text: "...", callback: "" }
                 ]
@@ -654,7 +659,9 @@ room318.chat = function (chatID) {
             {
                 chatID: 2,
                 speaker: "thinking",
-                text: "Shit! I forgot to let " + sc.n("dog") + " back in! I better go get him! ",
+                l10nKey: "room.318.chat.2.text",
+                l10nValues: { dog: sc.n("dog") },
+                text: "Shit! I forgot to let {dog} back in! I better go get him!",
                 button: [
                     { chatID: -1, text: "Let him in.", callback: "letInDog" }
                 ]
@@ -662,52 +669,60 @@ room318.chat = function (chatID) {
             {
                 chatID: 3,
                 speaker: "thinking",
-                text: sc.n("janice") + "'s clean crisp panties and bras. So fresh, so pink. She has " +
-                    "so many I'm sure she won't miss one pair missing.",
+                l10nKey: "room.318.chat.3.text",
+                l10nValues: { janice: sc.n("janice") },
+                text: "{janice}'s clean crisp panties and bras. So fresh, so pink. She has so many I'm sure she won't miss one pair missing.",
                 button: [
-                    { chatID: -1, text: "[Steal her panties and bra]", callback: "steal" },
-                    { chatID: -1, text: "[Put them back]", callback: "reset" }
+                    { chatID: -1, l10nKey: "room.318.chat.3.choice.0", text: "[Steal her panties and bra]", callback: "steal" },
+                    { chatID: -1, l10nKey: "room.318.chat.3.choice.1", text: "[Put them back]", callback: "reset" }
                 ]
             },
             {
                 chatID: 4,
                 speaker: "thinking",
+                l10nKey: "room.318.chat.4.text",
                 text: "I'm so obsessed with her panties. I just want to rub my dirty little face " +
                     "in all of them! ",
                 button: [
-                    { chatID: -1, text: "MMmmm panties", callback: "reset" }
+                    { chatID: -1, l10nKey: "room.318.chat.4.choice.0", text: "MMmmm panties", callback: "reset" }
                 ]
             },
             {
                 chatID: 5,
                 speaker: "thinking",
-                text: sc.n("janice") + "'s clean crisp panties. She looks so hot in them!",
+                l10nKey: "room.318.chat.5.text",
+                l10nValues: { janice: sc.n("janice") },
+                text: "{janice}'s clean crisp panties. She looks so hot in them!",
                 button: [
-                    { chatID: -1, text: "[Put them back]", callback: "reset" }
+                    { chatID: -1, l10nKey: "room.318.chat.5.choice.0", text: "[Put them back]", callback: "reset" }
                 ]
             },
             {
                 chatID: 6,
                 speaker: "thinking",
-                text: sc.n("janice") + "'s red dress. She was so hot in it. ",
+                l10nKey: "room.318.chat.6.text",
+                l10nValues: { janice: sc.n("janice") },
+                text: "{janice}'s red dress. She was so hot in it.",
                 button: [
-                    { chatID: -1, text: "[Put them back] [Sissy level too low]", callback: "reset" }
+                    { chatID: -1, l10nKey: "room.318.chat.6.choice.0", text: "[Put them back] [Sissy level too low]", callback: "reset" }
                 ]
             },
             {
                 chatID: 7,
                 speaker: "thinking",
-                text: sc.n("janice") + "'s red dress. She was so hot in it. I bet I would look sexy " +
-                    "in that dress.... ",
+                l10nKey: "room.318.chat.7.text",
+                l10nValues: { janice: sc.n("janice") },
+                text: "{janice}'s red dress. She was so hot in it. I bet I would look sexy in that dress....",
                 button: [
-                    { chatID: -1, text: "[Steal her dress]", callback: "stealDress" },
-                    { chatID: -1, text: "[Put them back]", callback: "reset" }
+                    { chatID: -1, l10nKey: "room.318.chat.7.choice.0", text: "[Steal her dress]", callback: "stealDress" },
+                    { chatID: -1, l10nKey: "room.318.chat.7.choice.1", text: "[Put them back]", callback: "reset" }
 
                 ]
             },
             {
                 chatID: 8,
                 speaker: "thinking",
+                l10nKey: "room.318.chat.8.text",
                 text: "I already stole her dress. If I keep raiding her closet I may never leave " +
                     "the closet. ",
                 button: [
@@ -718,468 +733,508 @@ room318.chat = function (chatID) {
             {
                 chatID: 9,
                 speaker: "thinking",
+                l10nKey: "room.318.chat.9.text",
                 text: "My girlfriend's vibrator! She's totally rubbed her pussy all over it. I can " +
                     "smell her juices on it. I wonder what it feels like on my dick? ",
                 button: [
-                    { chatID: -1, text: "Use the vibrator on your dick", callback: "vib1" },
-                    { chatID: -1, text: "Put it back you pervert. ", callback: "reset" },
+                    { chatID: -1, l10nKey: "room.318.chat.9.choice.0", text: "Use the vibrator on your dick", callback: "vib1" },
+                    { chatID: -1, l10nKey: "room.318.chat.9.choice.1", text: "Put it back you pervert. ", callback: "reset" },
 
                 ]
             },
             {
                 chatID: 10,
                 speaker: "thinking",
+                l10nKey: "room.318.chat.10.text",
                 text: "It feels funny, but I'm not getting anything. Maybe I'm just not horny enough. ",
                 button: [
-                    { chatID: -1, text: "Put it back, pervert. ", callback: "reset" },
+                    { chatID: -1, l10nKey: "room.318.chat.10.choice.0", text: "Put it back, pervert. ", callback: "reset" },
 
                 ]
             },
             {
                 chatID: 11,
                 speaker: "thinking",
+                l10nKey: "room.318.chat.11.text",
                 text: "Oh fuck! It feels so funny on my dick. I don't think I can hold it in any longer...",
                 button: [
-                    { chatID: 12, text: "[Cum!!!]", callback: "vib2" },
+                    { chatID: 12, l10nKey: "room.318.chat.11.choice.0", text: "[Cum!!!]", callback: "vib2" },
 
                 ]
             },
             {
                 chatID: 12,
                 speaker: "me",
+                l10nKey: "room.318.chat.12.text",
                 text: "Oh no. I came all over her pillow. It's so gooey and gross. I'm sure she won't " +
                     "notice it once it dries up though. ",
                 button: [
-                    { chatID: -1, text: "[Put the vibrator away]", callback: "reset" },
+                    { chatID: -1, l10nKey: "room.318.chat.12.choice.0", text: "[Put the vibrator away]", callback: "reset" },
 
                 ]
             },
             {
                 chatID: 13,
                 speaker: "janice",
+                l10nKey: "room.318.chat.13.text",
                 text: "I'm so excited! After our talk I called a friend of mine that's so " +
                     "hot and has been trying to get in my panties all month. I knew I had " +
                     "to try it and see if this could work for me so I made this video for " +
                     "you yesterday and I'm just dying to show you. Just lay down on my bed! ",
                 button: [
-                    { chatID: 14, text: "Sure!", callback: "b2_1" },
+                    { chatID: 14, l10nKey: "room.318.chat.13.choice.0", text: "Sure!", callback: "b2_1" },
 
                 ]
             },
             {
                 chatID: 14,
                 speaker: "janice",
+                l10nKey: "room.318.chat.14.text",
                 text: "Do you like it when I rub my fingers over your balls? Tickles " +
                     "doesn't it? He let me set up my phone so I could record it for you. " +
                     "It made me feel like you're in the room watching me. I love being watched. ",
                 button: [
-                    { chatID: 15, text: "MMmmmmm", callback: "b2_2" },
+                    { chatID: 15, l10nKey: "room.318.chat.14.choice.0", text: "MMmmmmm", callback: "b2_2" },
 
                 ]
             },
             {
                 chatID: 15,
                 speaker: "janice",
+                l10nKey: "room.318.chat.15.text",
                 text: "This video is just for you. I really hope you like it. I " +
                     "do love a nice butt like yours. Do you like it when a girl plays with " +
                     "your butt? ",
                 button: [
-                    { chatID: 16, text: "Yeah", callback: "b2_3" },
-                    { chatID: 16, text: "Oh. no", callback: "b2_3" },
+                    { chatID: 16, l10nKey: "room.318.chat.15.choice.0", text: "Yeah", callback: "b2_3" },
+                    { chatID: 16, l10nKey: "room.318.chat.15.choice.1", text: "Oh. no", callback: "b2_3" },
 
                 ]
             },
             {
                 chatID: 16,
                 speaker: "janice",
+                l10nKey: "room.318.chat.16.text",
                 text: "I like playing with your butt. Now just relax. I'm going to try something. ",
                 button: [
-                    { chatID: 17, text: "yeaaaa", callback: "b2_4" },
+                    { chatID: 17, l10nKey: "room.318.chat.16.choice.0", text: "yeaaaa", callback: "b2_4" },
 
                 ]
             },
             {
                 chatID: 17,
                 speaker: "janice",
+                l10nKey: "room.318.chat.17.text",
                 text: "Most guys don't let me finger their ass. They say it's gay. I " +
                     "don't get it. I'm a girl, how could it be gay if it's my fingers " +
                     "in their ass. I guess it's gay if I put my fingers in a girl's ass, " +
                     "but I don't care. " +
                     "Worrying about what is or isn't gay is dumb. Sex is fun. ",
                 button: [
-                    { chatID: 18, text: "oooohhh ", callback: "b2_5" },
+                    { chatID: 18, l10nKey: "room.318.chat.17.choice.0", text: "oooohhh ", callback: "b2_5" },
                 ]
             },
             {
                 chatID: 18,
                 speaker: "me",
+                l10nKey: "room.318.chat.18.text",
                 text: "WAIT! Is that the guy? He's huge!",
                 button: [
-                    { chatID: 19, text: "...", callback: "" },
+                    { chatID: 19, l10nKey: "room.318.chat.18.choice.0", text: "...", callback: "" },
                 ]
             },
             {
                 chatID: 19,
                 speaker: "janice",
+                l10nKey: "room.318.chat.19.text",
                 text: "Hahaha. Yeah silly. He was more than happy to help me create my video for you. " +
                     "Can you see how powerful his arms are? He was so sexy and manly! As " +
                     "soon as I saw him I knew we would be back at his place. Now " +
                     "stop talking and just watch while I make you feel good. ",
                 button: [
-                    { chatID: -1, text: "...ok", callback: "b2_6" },
-                    { chatID: 20, text: "WHAT! No I'm not going to watch him fuck you. Are you crazy!", callback: "" },
+                    { chatID: -1, l10nKey: "room.318.chat.19.choice.0", text: "...ok", callback: "b2_6" },
+                    { chatID: 20, l10nKey: "room.318.chat.19.choice.1", text: "WHAT! No I'm not going to watch him fuck you. Are you crazy!", callback: "" },
                 ]
             },
             {
                 chatID: 20,
                 speaker: "janice",
+                l10nKey: "room.318.chat.20.text",
                 text: "Oh. I thought you would be into this after you ate the waiter's cum " +
                     "out of me. Now stop yelling at me and enjoy my movie that I made for you! ",
                 button: [
-                    { chatID: -1, text: "GROSS! No I'm not watching this! We're done! I never want to see you again! [Breakup]", callback: "breakup" },
-                    { chatID: -1, text: "...ok", callback: "b2_6" },
+                    { chatID: -1, l10nKey: "room.318.chat.20.choice.0", text: "GROSS! No I'm not watching this! We're done! I never want to see you again! [Breakup]", callback: "breakup" },
+                    { chatID: -1, l10nKey: "room.318.chat.20.choice.1", text: "...ok", callback: "b2_6" },
                 ]
             },
             {
                 chatID: 21,
                 speaker: "janice",
+                l10nKey: "room.318.chat.21.text",
                 text: "Oh look. You had a little orgasm. Was it from me playing with your " +
                     "butt, or the look on my face when as I was filled with some stranger's " +
                     "cum? I bet it was me getting filled with cum.",
                 button: [
-                    { chatID: 22, text: "OOooooo  yeah....", callback: "b2_10" },
+                    { chatID: 22, l10nKey: "room.318.chat.21.choice.0", text: "OOooooo  yeah....", callback: "b2_10" },
                 ]
             },
             {
                 chatID: 22,
                 speaker: "janice",
+                l10nKey: "room.318.chat.22.text",
                 text: "I'm going to invite the waiter over again. The entire time we " +
                     "were making love I imagined you were watching us. Now I don't have " +
                     "to imagine, 'cause you'll be there. I'm so excited. ",
                 button: [
-                    { chatID: 23, text: "...but", callback: "" },
+                    { chatID: 23, l10nKey: "room.318.chat.22.choice.0", text: "...but", callback: "" },
                 ]
             },
             {
                 chatID: 23,
                 speaker: "janice",
-                text: "Shhhh. Don't say anything. " + gender.pronoun("boy") + "'s don't " +
-                    "think straight after an orgasm. Now I have to take " + sc.n("dog") +
-                    " for his walk. Can't wait to see you again. I think I'm totally falling " +
-                    "for you.",
+                l10nKey: "room.318.chat.23.text",
+                l10nValues: { dog: sc.n("dog") },
+                text: "Shhhh. Don't say anything. Boys don't think straight after an orgasm. Now I have to take {dog} for his walk. Can't wait to see you again. I think I'm totally falling for you.",
                 button: [
-                    { chatID: -1, text: "ok. Bye?", callback: "b2_end" },
+                    { chatID: -1, l10nKey: "room.318.chat.23.choice.0", text: "ok. Bye?", callback: "b2_end" },
                 ]
             },
             {
                 chatID: 24,
                 speaker: "janice",
+                l10nKey: "room.318.chat.24.text",
                 text: "So... uh, how do I look? Is it too much? I'm so nervous. Why am I " +
                     "so nervous? I've slept with guys before. Usually I just let them take " +
                     "me to their place after we've met at a bar. I've never done this with " +
                     "someone I haven't met before. What if he just turns around and leaves. Ugh!",
                 button: [
-                    { chatID: 25, text: "You look amazing. He's lucky to have you.", callback: "good" },
-                    { chatID: 25, text: "Eh. I'm sure he'll do you.", callback: "" },
+                    { chatID: 25, l10nKey: "room.318.chat.24.choice.0", text: "You look amazing. He's lucky to have you.", callback: "good" },
+                    { chatID: 25, l10nKey: "room.318.chat.24.choice.1", text: "Eh. I'm sure he'll do you.", callback: "" },
                 ]
             },
             {
                 chatID: 25,
                 speaker: "janice",
+                l10nKey: "room.318.chat.25.text",
                 text: "Oh! There he is! Uhhh. Just sit in the chair. Crap we should have " +
                     "talked about rules! Damn. Too late now. Don't touch my butt and you " +
                     "can masturbate if you want. Oh. Don't ruin it by talking about dumb stuff " +
                     "or being weird.",
                 button: [
-                    { chatID: 26, text: "Weird?", callback: "datr_2" },
+                    { chatID: 26, l10nKey: "room.318.chat.25.choice.0", text: "Weird?", callback: "datr_2" },
                 ]
             },
             {
                 chatID: 26,
                 speaker: "janice",
+                l10nKey: "room.318.chat.26.text",
                 text: "Don't ask dumb questions right before I let him in! Go sit in the chair " +
                     "and don't say anything!",
                 button: [
-                    { chatID: 27, text: "ok", callback: "bg" },
+                    { chatID: 27, l10nKey: "room.318.chat.26.choice.0", text: "ok", callback: "bg" },
                 ]
             },
             {
                 chatID: 27,
                 speaker: "thinking",
+                l10nKey: "room.318.chat.27.text",
                 text: "Oh my. I don't know if I'm ready for this. Do I just sit here and " +
                     "play with myself? Do I join in? Should I eat her out, suck his " +
                     "dick? I guess I'm nervous too.",
                 button: [
-                    { chatID: -1, text: "[Wait for them to come in]", callback: "datr_start" },
+                    { chatID: -1, l10nKey: "room.318.chat.27.choice.0", text: "[Wait for them to come in]", callback: "datr_start" },
                 ]
             },
             {
                 chatID: 28,
                 speaker: "chad",
+                l10nKey: "room.318.chat.28.text",
                 text: "Sit back and watch a real man work. I'm going to have her screaming " +
                     "for my dick in ways you've never heard.",
                 button: [
-                    { chatID: -1, text: "[Watch " + sc.n("chad") + " fuck your girlfriend]", callback: "brad1" },
+                    { chatID: -1, l10nKey: "room.318.chat.28.choice.0", l10nValues: { chad: sc.n("chad") }, text: "[Watch {chad} fuck your girlfriend]", callback: "brad1" },
                 ]
             },
             {
                 chatID: 29,
                 speaker: "janice",
+                l10nKey: "room.318.chat.29.text",
                 text: "Oh wow! He fucks so much better than you! I'm so glad we decided " +
                     "to get a real man to fuck me! I don't know if I could live without " +
                     "orgasms like that! ",
                 button: [
-                    { chatID: 31, text: "He is way better than me. ", callback: "" },
+                    { chatID: 31, l10nKey: "room.318.chat.29.choice.0", text: "He is way better than me. ", callback: "" },
                 ]
             },
             {
                 chatID: 30,
                 speaker: "janice",
+                l10nKey: "room.318.chat.30.text",
                 text: "Now that's how a real man fucks! I'm so glad we decided " +
                     "to open our relationship! I don't know if I could live without " +
                     "orgasms like that! ",
                 button: [
-                    { chatID: 31, text: "He is way better than me. ", callback: "" },
+                    { chatID: 31, l10nKey: "room.318.chat.30.choice.0", text: "He is way better than me. ", callback: "" },
                 ]
             },
             {
                 chatID: 31,
                 speaker: "chad",
+                l10nKey: "room.318.chat.31.text",
                 text: "I've got to run to baseball practice. I'll let you two bitches " +
                     "finish up. Call me if you need a real dick!",
                 button: [
-                    { chatID: 32, text: "ok. Bye " + sc.n("chad"), callback: "datr_brad_7" },
+                    { chatID: 32, l10nKey: "room.318.chat.31.choice.0", l10nValues: { chad: sc.n("chad") }, text: "ok. Bye {chad}", callback: "datr_brad_7" },
                 ]
             },
             {
                 chatID: 32,
                 speaker: "janice",
+                l10nKey: "room.318.chat.32.text",
                 text: "He is so dreamy! It's too bad you're such a sissy, 'cause I " +
                     "could use more dick. Oh well. I guess you can clean my pussy. " +
                     "Maybe if you eat enough cum you'll turn into a real man. *sigh*",
                 button: [
-                    { chatID: 33, text: "Sweet!", callback: "datr_brad_8" },
+                    { chatID: 33, l10nKey: "room.318.chat.32.choice.0", text: "Sweet!", callback: "datr_brad_8" },
                 ]
             },
             {
                 chatID: 33,
                 speaker: "janice",
+                l10nKey: "room.318.chat.33.text",
                 text: "I do admit, it is nice having a pussy cleaner after sex. I hate " +
                     "doing the squat run to the bathroom while cum drips out of me. Cuddle " +
                     "with me while I sleep?",
                 button: [
-                    { chatID: -1, text: "Yeah.", callback: "sleep" },
+                    { chatID: -1, l10nKey: "room.318.chat.33.choice.0", text: "Yeah.", callback: "sleep" },
                 ]
             },
             {
                 chatID: 34,
                 speaker: "!jabari",
+                l10nKey: "room.318.chat.34.text",
                 text: "What's you doin' here? This some kinda setup?",
                 button: [
-                    { chatID: 35, text: "*nervous laughter* no. I'm just here to watch. ", callback: "" },
+                    { chatID: 35, l10nKey: "room.318.chat.34.choice.0", text: "*nervous laughter* no. I'm just here to watch. ", callback: "" },
                 ]
             },
             {
                 chatID: 35,
                 speaker: "!jabari",
+                l10nKey: "room.318.chat.35.text",
                 text: "Whaaa? No. That's weird man. You's gots to go, or I've gots to go. ",
                 button: [
-                    { chatID: 36, text: "?", callback: "" },
+                    { chatID: 36, l10nKey: "room.318.chat.35.choice.0", text: "?", callback: "" },
                 ]
             },
             {
                 chatID: 36,
                 speaker: "janice",
-                text: "Awwww! I was looking forward to this. " + sc.n("me") + ", can you " +
-                    "just wait in the living room? You can still hear us. ",
+                l10nKey: "room.318.chat.36.text",
+                l10nValues: { me: sc.n("me") },
+                text: "Awwww! I was looking forward to this. {me}, can you just wait in the living room? You can still hear us.",
                 button: [
-                    { chatID: 37, text: "...but", callback: "" },
+                    { chatID: 37, l10nKey: "room.318.chat.36.choice.0", text: "...but", callback: "" },
                 ]
             },
             {
                 chatID: 37,
                 speaker: "!jabari",
+                l10nKey: "room.318.chat.37.text",
                 text: "You heard her man. Get the fuck out so we can get our fuck on. ",
                 button: [
-                    { chatID: -1, text: "ok. ", callback: "jabari1" },
+                    { chatID: -1, l10nKey: "room.318.chat.37.choice.0", text: "ok. ", callback: "jabari1" },
                 ]
             },
             {
                 chatID: 38,
                 speaker: "janice",
+                l10nKey: "room.318.chat.38.text",
                 text: "Thank you so much for waiting for me! Wow! My mind and pussy are " +
                     "blown! He was amazing. He was totally worth kicking you out. But " +
                     "now time for your reward. You can eat a real man's cum. Lucky girl!",
                 button: [
-                    { chatID: 33, text: "Sweet!", callback: "datr_brad_8" },
+                    { chatID: 33, l10nKey: "room.318.chat.38.choice.0", text: "Sweet!", callback: "datr_brad_8" },
                 ]
             },
             {
                 chatID: 39,
                 speaker: "!jabari",
+                l10nKey: "room.318.chat.39.text",
                 text: "Hey freak. Get the fuck out so I can fuck yo' girl! ",
                 button: [
-                    { chatID: -1, text: "ok...", callback: "jabari1" },
+                    { chatID: -1, l10nKey: "room.318.chat.39.choice.0", text: "ok...", callback: "jabari1" },
                 ]
             },
             {
                 chatID: 40,
                 speaker: "!boxes",
+                l10nKey: "room.318.chat.40.text",
                 text: "Oh hi. I didn't know there were going to be 2 girls here. hehehe.  ",
                 button: [
-                    { chatID: 41, text: "*blush*", callback: "" },
+                    { chatID: 41, l10nKey: "room.318.chat.40.choice.0", text: "*blush*", callback: "" },
                 ]
             },
             {
                 chatID: 41,
                 speaker: "janice",
-                text: "Let me introduce my fem-boyfriend " + sc.n("me") + "; " + gender.pronoun("he") +
-                    " likes to watch me have sex since " + gender.pronoun("he") + "'s not " +
-                    "manly enough to do it " + gender.pronoun("him") + "self. ",
+                l10nKey: "room.318.chat.41.text",
+                l10nValues: { me: sc.n("me") },
+                text: "Let me introduce my fem-boyfriend {me}; he likes to watch me have sex since he's not manly enough to do it himself.",
                 button: [
-                    { chatID: 42, text: "*blush more*", callback: "" },
+                    { chatID: 42, l10nKey: "room.318.chat.41.choice.0", text: "*blush more*", callback: "" },
                 ]
             },
             {
                 chatID: 42,
                 speaker: "!boxes",
-                text: "That's so hot! Why don't we show your femboy what " + gender.pronoun("he") +
-                    "'s missing. ",
+                l10nKey: "room.318.chat.42.text",
+                text: "That's so hot! Why don't we show your femboy what he's missing.",
                 button: [
-                    { chatID: 43, text: "oh yeah! ", callback: "datr_mike_1" },
+                    { chatID: 43, l10nKey: "room.318.chat.42.choice.0", text: "oh yeah! ", callback: "datr_mike_1" },
                 ]
             },
             {
                 chatID: 43,
                 speaker: "!boxes",
+                l10nKey: "room.318.chat.43.text",
                 text: "I hate to see you sitting there just watching. I can see you staring at my dick. " +
                     "Why don't you play the fluffer. Get me nice and hard so I can slide my dick " +
                     "into your girlfriend. I know that's what you really want. ",
                 button: [
-                    { chatID: 44, text: "oh please! ", callback: "datr_mike_2" },
-                    { chatID: 44, text: "No thanks. I just like to watch. ", callback: "datr_mike_3" },
+                    { chatID: 44, l10nKey: "room.318.chat.43.choice.0", text: "oh please! ", callback: "datr_mike_2" },
+                    { chatID: 44, l10nKey: "room.318.chat.43.choice.1", text: "No thanks. I just like to watch. ", callback: "datr_mike_3" },
                 ]
             },
             {
                 chatID: 44,
                 speaker: "!boxes",
+                l10nKey: "room.318.chat.44.text",
                 text: "You're such a good fem-boyfriend slobbering all over my dick and " +
                     "getting it lubed up for your cute little girlfriend. Do you like " +
                     "how it tastes? ",
                 button: [
-                    { chatID: 45, text: "MMmhmmmm ", callback: "" },
-                    { chatID: 45, text: "gluck gluck", callback: "" },
+                    { chatID: 45, l10nKey: "room.318.chat.44.choice.0", text: "MMmhmmmm ", callback: "" },
+                    { chatID: 45, l10nKey: "room.318.chat.44.choice.1", text: "gluck gluck", callback: "" },
                 ]
             },
             {
                 chatID: 45,
                 speaker: "!boxes",
+                l10nKey: "room.318.chat.45.text",
                 text: "I know you do! Now have a seat femboy and watch me give your " +
                     "girlfriend orgasms like she's never had! ",
                 button: [
-                    { chatID: 46, text: "MMmmmmmmmMMmm", callback: "datr_mike_3" },
+                    { chatID: 46, l10nKey: "room.318.chat.45.choice.0", text: "MMmmmmmmmMMmm", callback: "datr_mike_3" },
                 ]
             },
             {
                 chatID: 46,
                 speaker: "thinking",
-                text: "He's been fucking her hard for like 20 minutes! How does he last " +
-                    "that long? He must work out to have that kind of stamina. " +
-                    "I haven't heard " + sc.n("janice") + " scream like that ever! I so wish " +
-                    "I could orgasm like that for a solid 20 minutes. It's like waves, one " +
-                    "orgasm after another. I wish he'd fuck me like that... ",
+                l10nKey: "room.318.chat.46.text",
+                l10nValues: { janice: sc.n("janice") },
+                text: "He's been fucking her hard for like 20 minutes! How does he last that long? He must work out to have that kind of stamina. I haven't heard {janice} scream like that ever! I so wish I could orgasm like that for a solid 20 minutes. It's like waves, one orgasm after another. I wish he'd fuck me like that...",
                 button: [
-                    { chatID: 47, text: "...", callback: "datr_mike_4" },
+                    { chatID: 47, l10nKey: "room.318.chat.46.choice.0", text: "...", callback: "datr_mike_4" },
                 ]
             },
             {
                 chatID: 47,
                 speaker: "!boxes",
+                l10nKey: "room.318.chat.47.text",
                 text: "So how's about it. Want to clean me off fem-boyfriend? You can taste us " +
                     "both at the same time. ",
                 button: [
-                    { chatID: 48, text: "I sure do!", callback: "datr_mike_2" },
-                    { chatID: 33, text: "I'll pass. Thanks!", callback: "datr_brad_8" },
+                    { chatID: 48, l10nKey: "room.318.chat.47.choice.0", text: "I sure do!", callback: "datr_mike_2" },
+                    { chatID: 33, l10nKey: "room.318.chat.47.choice.1", text: "I'll pass. Thanks!", callback: "datr_brad_8" },
                 ]
             },
             {
                 chatID: 48,
                 speaker: "!boxes",
+                l10nKey: "room.318.chat.48.text",
                 text: "I can't tell if you really love the taste of your girlfriend, " +
                     "or you just love sucking cock, but you are really good at it! ",
                 button: [
-                    { chatID: 33, text: "MMmmmMMmmm", callback: "datr_brad_8" },
+                    { chatID: 33, l10nKey: "room.318.chat.48.choice.0", text: "MMmmmMMmmm", callback: "datr_brad_8" },
                 ]
             },
             {
                 chatID: 49,
                 speaker: "!boxes",
+                l10nKey: "room.318.chat.49.text",
                 text: "You two must really love my dick to keep calling me back! ",
                 button: [
-                    { chatID: 43, text: "Oh yeah!", callback: "datr_mike_1" },
+                    { chatID: 43, l10nKey: "room.318.chat.49.choice.0", text: "Oh yeah!", callback: "datr_mike_1" },
                 ]
             },
             {
                 chatID: 50,
                 speaker: "!jarome",
+                l10nKey: "room.318.chat.50.text",
                 text: "Hey sweetheart. Just got done with practice, thought I'd swing by, " +
                     "see what's up",
                 button: [
-                    { chatID: 51, text: "...", callback: "" },
+                    { chatID: 51, l10nKey: "room.318.chat.50.choice.0", text: "...", callback: "" },
                 ]
             },
             {
                 chatID: 51,
                 speaker: "janice",
+                l10nKey: "room.318.chat.51.text",
                 text: "Oh my! My my my! You are so big! Unlike my fem-boyfriend you could " +
                     "scoop me up and carry me anywhere with those big strong arms of yours!",
                 button: [
-                    { chatID: 52, text: "...", callback: "" },
+                    { chatID: 52, l10nKey: "room.318.chat.51.choice.0", text: "...", callback: "" },
                 ]
             },
             {
                 chatID: 52,
                 speaker: "!jarome",
+                l10nKey: "room.318.chat.52.text",
                 text: "Yeah baby. I could even carry you to that bed over there. So why don't " +
                     "you tell your little friend to take off so I can take them clothes off ya",
                 button: [
-                    { chatID: 53, text: "...", callback: "" },
+                    { chatID: 53, l10nKey: "room.318.chat.52.choice.0", text: "...", callback: "" },
                 ]
             },
             {
                 chatID: 53,
                 speaker: "janice",
-                text: "Do you mind if " + gender.pronoun("he") + " stays. " + gender.pronoun("he") +
-                    " likes to watch. ",
+                l10nKey: "room.318.chat.53.text",
+                text: "Do you mind if he stays? He likes to watch.",
                 button: [
-                    { chatID: 54, text: "...", callback: "" },
+                    { chatID: 54, l10nKey: "room.318.chat.53.choice.0", text: "...", callback: "" },
                 ]
             },
             {
                 chatID: 54,
                 speaker: "!jarome",
+                l10nKey: "room.318.chat.54.text",
                 text: "Oh shit! It's like that. Ok. ya " + gender.pronoun("he") + " can watch a " +
                     "real man pound this little girl here out. Come here femboy, we're going to give " +
                     "you a front row seat! ",
                 button: [
-                    { chatID: -1, text: "...", callback: "datr_jarome_1" },
+                    { chatID: -1, l10nKey: "room.318.chat.54.choice.0", text: "...", callback: "datr_jarome_1" },
                 ]
             },
             {
                 chatID: 55,
                 speaker: "!jarome",
+                l10nKey: "room.318.chat.55.text",
                 text: "Have fun lickin' up that nut boy. ",
                 button: [
-                    { chatID: 33, text: "MMmmm", callback: "datr_brad_8" },
+                    { chatID: 33, l10nKey: "room.318.chat.55.choice.0", text: "MMmmm", callback: "datr_brad_8" },
                 ]
             },
             {
                 chatID: 56,
                 speaker: "!jarome",
+                l10nKey: "room.318.chat.56.text",
                 text: "Can't get enough of this dick huh? Go ahead and take your place " +
                     "under a real woman and real man fem boy. ",
                 button: [
-                    { chatID: -1, text: "[Take your place]", callback: "datr_jarome_1" },
+                    { chatID: -1, l10nKey: "room.318.chat.56.choice.0", text: "[Take your place]", callback: "datr_jarome_1" },
                 ]
             },
         ];

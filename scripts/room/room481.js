@@ -74,23 +74,25 @@ room481.chat = function (chatID) {
         {
             chatID: 0,
             speaker: "thinking",
+            l10nKey: "room.185.sleepUntilMorning",
             text: "Sleep until morning",
             button: [
-                { chatID: -1, text: "Sleep", callback: "sleep" },
-                { chatID: -1, text: "Cancel", callback: "" }
+                { chatID: -1, l10nKey: "room.185.sleep", text: "Sleep", callback: "sleep" },
+                { chatID: -1, l10nKey: "room.185.cancel", text: "Cancel", callback: "" }
             ]
         },
         {
             chatID: 1,
             speaker: "me",
+            l10nKey: "room.185.whatToWear",
             text: "What to wear.",
             button: [
-                { chatID: -1, text: '<img src="./images/general/shirt.png" /> ' + cl.saveOutfit[0].name, callback: "o0" },
-                { chatID: -1, text: '<img src="./images/general/shirt.png" /> ' + cl.saveOutfit[1].name, callback: "o1" },
-                { chatID: -1, text: '<img src="./images/general/shirt.png" /> ' + cl.saveOutfit[2].name, callback: "o2" },
-                { chatID: -1, text: '<img src="./images/general/shirt.png" /> ' + cl.saveOutfit[3].name, callback: "o3" },
-                { chatID: -1, text: '<img src="./images/general/shirt.png" /> ' + cl.saveOutfit[4].name, callback: "o4" },
-                { chatID: -1, text: "Get Up", callback: "o5" }
+                { chatID: -1, l10nIgnore: true, text: '<img src="./images/general/shirt.png" /> ' + cl.saveOutfit[0].name, callback: "o0" },
+                { chatID: -1, l10nIgnore: true, text: '<img src="./images/general/shirt.png" /> ' + cl.saveOutfit[1].name, callback: "o1" },
+                { chatID: -1, l10nIgnore: true, text: '<img src="./images/general/shirt.png" /> ' + cl.saveOutfit[2].name, callback: "o2" },
+                { chatID: -1, l10nIgnore: true, text: '<img src="./images/general/shirt.png" /> ' + cl.saveOutfit[3].name, callback: "o3" },
+                { chatID: -1, l10nIgnore: true, text: '<img src="./images/general/shirt.png" /> ' + cl.saveOutfit[4].name, callback: "o4" },
+                { chatID: -1, l10nKey: "room.185.getUp", text: "Get Up", callback: "o5" }
             ]
         },
     ];

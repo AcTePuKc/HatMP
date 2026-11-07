@@ -384,7 +384,7 @@ room31.btnclick = function (name) {
                 top: 250,
                 font: 60,
                 hex: "#000000",
-                text: "Note to self: Locker room combo is 1, 8, 6"
+                text: l10n.t("room.31.lockerComboNote", "Note to self: Locker room combo is 1, 8, 6")
             }, 31);
             nav.button({
                 "type": "btn",
@@ -415,12 +415,7 @@ room31.btnclick = function (name) {
                 top: 250,
                 font: 20,
                 hex: "#000000",
-                text: "To my secret love, <br/>" +
-                    "I can't stop thinking about you. I know it's wrong, <br/>" +
-                    "and you'll never return my feelings, but I have to get this out into the universe. </br> " +
-                    "You're always on my mind, what do I do. I can't tell " + sc.n("eva") + " she'll <br/>" +
-                    "just laugh at me and make fun of me. I should just give up and never tell you. <br/>" +
-                    "Maybe one day we'll be together. "
+                text: l10n.t("room.31.secretLoveLetter", "To my secret love,<br/>I can't stop thinking about you. I know it's wrong, and you'll never return my feelings, but I have to get this out into the universe.<br/>You're always on my mind. What do I do? I can't tell {eva}; she'll just laugh at me and make fun of me. I should just give up and never tell you.<br/>Maybe one day we'll be together.", { eva: sc.n("eva") })
             }, 31);
             nav.button({
                 "type": "btn",
@@ -451,7 +446,9 @@ room31.chat = function (chatID) {
         {
             chatID: 0,
             speaker: "thinking",
-            text: "Oh wow! I had no idea " + sc.n("lola") + " had such dirty pictures. " + sc.n("eva") + " must have taken them since I know " + sc.n("lola") + " has never dated a guy or even had sex with one. I should take a copy of this for my phone.",
+            l10nKey: "room.31.photosThought",
+            l10nValues: { lola: sc.n("lola"), eva: sc.n("eva") },
+            text: "Oh wow! I had no idea {lola} had such dirty pictures. {eva} must have taken them since I know {lola} has never dated a guy or even had sex with one. I should take a copy of this for my phone.",
             button: [
                 { chatID: -1, text: "...", callback: "" }
             ]

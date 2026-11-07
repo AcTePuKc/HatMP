@@ -281,10 +281,11 @@ room32.chat = function (chatID) {
         {
             chatID: 2,
             speaker: "jeffery",
-            text: "Oh yummy yummy! " + sc.n("lola") + " your panties are the best! So fragrent! So dirty! So " +
+            l10nValues: { lola: sc.n("lola"), jeffery: sc.n("jeffery") },
+            text: "Oh yummy yummy! {lola}, your panties are the best! So fragrent! So dirty! So " +
                 "crusty! MMmmmMm ",
             button: [
-                { chatID: 3, text: sc.n("jeffery") + "!!", callback: "" },
+                { chatID: 3, text: "{jeffery}!!", l10nValues: { jeffery: sc.n("jeffery") }, callback: "" },
             ]
         },
         {
@@ -325,7 +326,8 @@ room32.chat = function (chatID) {
         {
             chatID: 7,
             speaker: "eva",
-            text: "Don't think you get a freebie pervert! You can fuck " + sc.n("lola") + " if you need to dump your " +
+            l10nValues: { lola: sc.n("lola") },
+            text: "Don't think you get a freebie pervert! You can fuck {lola} if you need to dump your " +
                 "cum somewhere. ",
             button: [
                 { chatID: -1, text: "*sigh*", callback: "" },
@@ -334,7 +336,8 @@ room32.chat = function (chatID) {
         {
             chatID: 8,
             speaker: "eva",
-            text: "Hey butt brain. " + sc.n("lola") + " has taken almost as many cocks as you have! ",
+            l10nValues: { lola: sc.n("lola") },
+            text: "Hey butt brain. {lola} has taken almost as many cocks as you have! ",
             button: [
                 { chatID: 9, text: "...", callback: "" },
             ]
@@ -342,10 +345,11 @@ room32.chat = function (chatID) {
         {
             chatID: 9,
             speaker: "lola",
-            text: "Hey now. I might have had a lot of sex, but there's no way I'm even close to " + sc.n("me") +
+            l10nValues: { me: sc.n("me") },
+            text: "Hey now. I might have had a lot of sex, but there's no way I'm even close to {me}" +
                 ". I mean, no offense, but we've heard the rumors. Not that there's anything wrong with that. ",
             button: [
-                { chatID: 10, text: "Thanks " + sc.n("lola") + ". ", callback: "" },
+                { chatID: 10, text: "Thanks, {lola}. ", l10nValues: { lola: sc.n("lola") }, callback: "" },
             ]
         },
         {
@@ -372,7 +376,8 @@ room32.chat = function (chatID) {
         {
             chatID: 12,
             speaker: "eva",
-            text: "I had a guy who took it out of our " + sc.n("landlord") + "'s ass and just shoved it in my mouth! I mean, " +
+            l10nValues: { landlady: sc.landlady("definite") },
+            text: "I had a guy who took it out of {landlady}'s ass and just shoved it in my mouth! I mean, " +
                 "it was clean, but he didn't know. Really how rude can you be. I will say, all this talk about taking " +
                 "it up the ass is starting to make more horny. ",
             button: [
@@ -400,7 +405,8 @@ room32.chat = function (chatID) {
         {
             chatID: 15,
             speaker: "lola",
-            text: "We're so glad you're back. You have no idea how much we were worried about you. Even " + sc.n("eva") +
+            l10nValues: { eva: sc.n("eva") },
+            text: "We're so glad you're back. You have no idea how much we were worried about you. Even {eva}" +
                 " let a guy piss in her mouth if he promised to be nice to you in there. ",
             button: [
                 { chatID: 16, text: "Really? You let a guy pee in your mouth for me? ", callback: "" },
@@ -417,9 +423,10 @@ room32.chat = function (chatID) {
         {
             chatID: 17,
             speaker: "lola",
+            l10nValues: { chad: sc.n("chad") },
             text: "Well, it helped me. I didn't have to drink it. *shudder* gross. I know having all these boys " +
                 "in and out of the house is a lot. I just hide in the bathroom when I need a break. It's the only " +
-                "safe room in the entire house. The first couple days I hid under your bed, but " + sc.n("chad") +
+                "safe room in the entire house. The first couple days I hid under your bed, but {chad}" +
                 " found out and told everyone. Boy did they get me, I tell you. ",
             button: [
                 { chatID: 18, text: "...", callback: "" },
@@ -437,10 +444,11 @@ room32.chat = function (chatID) {
         {
             chatID: 19,
             speaker: "lola",
+            l10nValues: { chad: sc.n("chad"), bigguy: sc.n("bigguy"), treyvon: sc.n("treyvon"), kei: sc.n("kei") },
             text: "*ugh* My feet are killing me today! I can't wait to give birth and finally get to meet my little " +
-                "baby! I think it's " + sc.n("chad") + "'s or " + sc.n("bigguy") + "'s, but I don't know. Maybe " +
-                sc.n("treyvon") + ". He's a really good lover. I kinda hope it's him. He's so big. I really hope " +
-                "it's not " + sc.n("kei") + "'s baby. I even told him to pull out, but he said it felt better comming " +
+                "baby! I think it's {chad}'s or {bigguy}'s, but I don't know. Maybe {treyvon}. He's a really good lover. " +
+                "I kinda hope it's him. He's so big. I really hope it's not {kei}'s baby. I even told him to pull out, " +
+                "but he said it felt better comming " +
                 "inside me. ",
             button: [
                 { chatID: 20, text: "...", callback: "" }
@@ -449,8 +457,9 @@ room32.chat = function (chatID) {
         {
             chatID: 20,
             speaker: "eva",
-            text: "I'll tell you what " + sc.n("lola") + ". If you babysit my baby I'll handle the dicks. But you have to " +
-                "change them too. I don't change diapers. Maybe " + sc.n("landlord") + " will do it. ewww. ",
+            l10nValues: { lola: sc.n("lola"), landlady: sc.landlady("definite") },
+            text: "I'll tell you what, {lola}. If you babysit my baby I'll handle the dicks. But you have to " +
+                "change them too. I don't change diapers. Maybe {landlady} will do it. ewww. ",
             button: [
                 { chatID: 21, text: "...", callback: "" },
             ]
@@ -458,9 +467,10 @@ room32.chat = function (chatID) {
         {
             chatID: 21,
             speaker: "lola",
+            l10nValues: { me: sc.n("me") },
             text: "I know you're joking, but I would love to take care of your baby too. I would be such a better " +
                 "mother. I'll teach them all kinds of things, you'll just teach the babies how to say naughty words. " +
-                "We even have " + sc.n("me") + " here now to help. ",
+                "We even have {me} here now to help. ",
             button: [
                 { chatID: -1, text: "Yeah", callback: "reset" },
             ]

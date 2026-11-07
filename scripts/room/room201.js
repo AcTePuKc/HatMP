@@ -136,26 +136,29 @@ room201.chat = function (chatID) {
         {
             chatID: 0,
             speaker: "me",
+            l10nKey: "room.bathroom.showerSong",
             text: "Rubber ducky, you're the one... You make bath time lots of fun",
             button: [
-                { chatID: 2, text: "Shave your body", callback: "shaveBody" },
-                { chatID: -1, text: "Finish showering", callback: "finishShowering" }
+                { chatID: 2, l10nKey: "room.bathroom.shaveBody", text: "Shave your body", callback: "shaveBody" },
+                { chatID: -1, l10nKey: "room.bathroom.finishShower", text: "Finish showering", callback: "finishShowering" }
             ]
         },
         {
             chatID: 1,
             speaker: "me",
+            l10nKey: "room.bathroom.showerSong",
             text: "Rubber ducky, you're the one... You make bath time lots of fun",
             button: [
-                { chatID: -1, text: "Finish showering", callback: "finishShowering" }
+                { chatID: -1, l10nKey: "room.bathroom.finishShower", text: "Finish showering", callback: "finishShowering" }
             ]
         },
         {
             chatID: 2,
             speaker: "me",
+            l10nKey: "room.bathroom.shavedBody",
             text: "You shaved your body",
             button: [
-                { chatID: -1, text: "Finish showering", callback: "finishShowering" }
+                { chatID: -1, l10nKey: "room.bathroom.finishShower", text: "Finish showering", callback: "finishShowering" }
             ]
         }
     ];

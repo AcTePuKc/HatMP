@@ -190,7 +190,7 @@ room193.btnclick = function (name) {
                     font: 60,
                     hex: "#ffffff",
                     stroke: "black",
-                    text: "Chance of getting caught: " + g.internal.caught + "%"
+                    text: l10n.t("room.193.chance", "Chance of getting caught: {chance}%", { chance: g.internal.caught })
                 }, 193);
             }
         }
@@ -286,7 +286,7 @@ room193.btnclick = function (name) {
             break;
         case "pwait":
             char.addtime(61);
-            g.popUpNoticeBottom("An hour passes");
+            g.popUpNoticeBottom(l10n.t("room.193.hourPasses", "An hour passes"));
             g.internal.step++;
             invoker.invokeCurrent("btnclick", "pic");
             break;
@@ -323,7 +323,7 @@ room193.btnclick = function (name) {
                 font: 60,
                 hex: "#ffffff",
                 stroke: "black",
-                text: "Chance of getting caught: " + g.internal.caught + "%"
+                text: l10n.t("room.193.chance", "Chance of getting caught: {chance}%", { chance: g.internal.caught })
             }, 193);
             break;
         case "rapeEnd":
@@ -455,8 +455,9 @@ room193.chat = function (chatID) {
                 text: "You were out there for hours and you didn't take one picture? " +
                     "What did I tell you about paying attention and not playing with " +
                     "your booty hole!!! Get out you failure!",
+                l10nKey: "room.193.chat.900.noPictures.text",
                 button: [
-                    { chatID: -1, text: "Yes ma'am", callback: "endBad" }
+                    { chatID: -1, text: "Yes ma'am", callback: "endBad", l10nKey: "room.193.chat.900.noPictures.choice.0" }
                 ]
             };
         }
@@ -468,8 +469,10 @@ room193.chat = function (chatID) {
                     speaker: "missy",
                     text: "For your great work I'll give you $" + g.internal.totalPay +
                         ". Keep it up. ",
+                    l10nKey: "room.193.chat.900.goodWork.text",
+                    l10nValues: { pay: g.internal.totalPay },
                     button: [
-                        { chatID: -1, text: "Yes ma'am!", callback: "endGood" }
+                        { chatID: -1, text: "Yes ma'am!", callback: "endGood", l10nKey: "room.193.chat.900.goodWork.choice.0" }
                     ]
                 };
             }
@@ -479,8 +482,9 @@ room193.chat = function (chatID) {
                     speaker: "missy",
                     text: "You wasted your day and my patience. Focus on what you really " +
                         "need to photograph. ",
+                    l10nKey: "room.193.chat.900.noUsablePictures.text",
                     button: [
-                        { chatID: -1, text: "Yes ma'am", callback: "endok" }
+                        { chatID: -1, text: "Yes ma'am", callback: "endok", l10nKey: "room.193.chat.900.noUsablePictures.choice.0" }
                     ]
                 };
             }
@@ -491,8 +495,9 @@ room193.chat = function (chatID) {
                     text: "This is all garbage! I know that both your bimbo brain cells " +
                         "are overloaded with holding the camera and taking a picture, " +
                         "but you need to involve that third brain cell to observe. Do better!",
+                    l10nKey: "room.193.chat.900.badPictures.text",
                     button: [
-                        { chatID: -1, text: "Yes ma'am", callback: "endBad" }
+                        { chatID: -1, text: "Yes ma'am", callback: "endBad", l10nKey: "room.193.chat.900.badPictures.choice.0" }
                     ]
                 };
             }
@@ -514,8 +519,9 @@ room193.chat = function (chatID) {
                     chatID: 900,
                     speaker: "missy",
                     text: "Not what I was looking for. There's nothing here I can use. ",
+                    l10nKey: "room.193.chat.900.badPicture.text",
                     button: [
-                        { chatID: 900, text: "sigh", callback: "" }
+                        { chatID: 900, text: "sigh", callback: "", l10nKey: "room.193.chat.900.badPicture.choice.0" }
                     ]
                 };
             }
@@ -526,8 +532,9 @@ room193.chat = function (chatID) {
                     chatID: 900,
                     speaker: "missy",
                     text: "Great picture! I see you can think for yourself! ",
+                    l10nKey: "room.193.chat.900.goodPicture.text",
                     button: [
-                        { chatID: 900, text: "Yes ma'am", callback: "" }
+                        { chatID: 900, text: "Yes ma'am", callback: "", l10nKey: "room.193.chat.900.goodPicture.choice.0" }
                     ]
                 };
             }
@@ -724,13 +731,14 @@ room193.chat = function (chatID) {
             {
                 chatID: 20,
                 speaker: "missy",
-                text: "Shut up " + sc.n("jeffery") + ". If you didn't have money no one " +
-                    "would listen to you. " + sc.n("me") + " we need you to break into a " +
+                text: "Shut up {jeffery}. If you didn't have money no one " +
+                    "would listen to you. {me}, we need you to break into a " +
                     "young woman's house and steal her panties. You'll need to pick the " +
                     "lock on her front door, find a pair of dirty panties, and return " +
-                    "them back here for " + sc.n("jeffery") + ". I'll send you to the house, " +
+                    "them back here for {jeffery}. I'll send you to the house, " +
                     "but you'll have to break in and steal the panties. If you get caught you " +
                     "will probably go to jail, so if it gets dangerous, feel free to leave.",
+                l10nValues: { jeffery: sc.n("jeffery"), me: sc.n("me") },
                 button: [
                     { chatID: 21, text: "Yes ma'am I'll get those panties!", callback: "panty0" }
                 ]

@@ -424,7 +424,8 @@ room54.chat = function (chatID) {
         {
             chatID: 23,
             speaker: "candy",
-            text: "Don't be such a prude! Candy and I use it to make some extra money, " +
+            l10nValues: { tiffany: sc.n("tiffany") },
+            text: "Don't be such a prude! " + sc.n("tiffany") + " and I use it to make some extra money, " +
                 "and thousands of perverted men jack off to us. They absolutely love " +
                 "watching us fuck each other. ",
             button: [
@@ -444,6 +445,7 @@ room54.chat = function (chatID) {
         {
             chatID: 25,
             speaker: "tiffany",
+            l10nValues: { candy: sc.n("candy") },
             text: "Have fun in here, and clean up after you're done. I'm going to go fuck " + sc.n("candy") + " now.",
             button: [
                 { chatID: 26, text: "...", callback: "" },
@@ -460,6 +462,7 @@ room54.chat = function (chatID) {
         {
             chatID: 27,
             speaker: "tiffany",
+            l10nValues: { candy: sc.n("candy") },
             text: "You caught us! I love it when " + sc.n("candy") + " puts on her " +
                 "cheerleader outfit and cheers for me! ",
             button: [
@@ -548,7 +551,7 @@ room54.chat = function (chatID) {
         {
             chatID: 3,
             speaker: "tiffany",
-            text: "Have girl! I just finished masturbating. Sometimes a girl just needs to get off really quick. Have you ever masturbated " +
+            text: "Hey girl! I just finished masturbating. Sometimes a girl just needs to get off really quick. Have you ever masturbated " +
             "like a girl?",
             button: [
                 { chatID: 4, text: "I've masturbated", callback: "" }
@@ -557,7 +560,7 @@ room54.chat = function (chatID) {
         {
             chatID: 4,
             speaker: "tiffany",
-            text: "No silly, not like a boy, like a girl. The trick is to rub it with fitness, not jerk it like a jock! Here I'll show you. ",
+            text: "No silly, not like a boy, like a girl. The trick is to rub it with finesse, not jerk it like a jock! Here I'll show you. ",
             button: [
                 { chatID: 5, text: "Oh yeah!", callback: "a1" }
             ]
@@ -621,7 +624,7 @@ room54.chat = function (chatID) {
         {
             chatID: 12,
             speaker: "tiffany",
-            text: "Hehe. My wrist is sore, how about your come back later and I'll give you a hands on demonstration on how to " +
+            text: "Hehe. My wrist is sore, how about you come back later and I'll give you a hands on demonstration on how to " +
             "masturbate like a girl! Kisses",
             button: [
                 { chatID: -1, text: "You bet!", callback: "a8" }
@@ -751,6 +754,7 @@ room54.chat = function (chatID) {
         {
             chatID: 28,
             speaker: "tiffany",
+            l10nValues: { candy: sc.n("candy") },
             text: sc.n("candy") + " and I have our cam room and makeup room behind this door. We keep it locked because some " +
                 "pervert broke into our house and masturbated all over our bed. It would have been hot if he wasn't so homeless looking. " +
                 "The old gross pervert still grosses me out. Let's go in.",
@@ -764,7 +768,7 @@ room54.chat = function (chatID) {
             text: "This is the Pussy Palace. In the middle is where we put on our cam shows and on the right is where we keep all our " +
             "makeup. You're free to use any of it to make yourself pretty. Have you ever put on your own makeup?",
             button: [
-                { chatID: 30, text: "On, no, I haven't", callback: "p3" }
+                { chatID: 30, text: "Oh, no, I haven't", callback: "p3" }
             ]
         },
         {

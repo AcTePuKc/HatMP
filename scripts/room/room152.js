@@ -74,19 +74,18 @@ room152.chat = function (chatID) {
         {
             chatID: 0,
             speaker: "bitch",
-            text: "You fucking idiot! Can't you see that " + sc.n("jones") + " has his dick out while you're " +
-                "fucking around with those microscopic specks of dust! You get here right now and take care of " +
-                "that dick! ",
+            l10nKey: "room.152.dustScolding",
+            l10nValues: { jones: sc.n("jones") },
+            text: "You fucking idiot! Can't you see that {jones} has his dick out while you're fucking around with those microscopic specks of dust! You get here right now and take care of that dick! ",
             button: [
-                { chatID: 1, text: "Oh. Yes ma'am. ", callback: "e3" }
+                { chatID: 1, l10nKey: "room.152.yesMaam", text: "Oh. Yes ma'am. ", callback: "e3" }
             ]
         },
         {
             chatID: 1,
             speaker: "bitch",
-            text: "Look at this giant penis. It's the most amazing penis you will ever have the pleasure to suck. " +
-                "If this penis is laid out in front of you, you will run over and suck it like it's the antidote " +
-                "to the poison you just swallowed! Now suck that cock you stupid whore! ",
+            l10nKey: "room.152.suckPraise",
+            text: "Look at this giant penis. It's the most amazing penis you will ever have the pleasure to suck. If this penis is laid out in front of you, you will run over and suck it like it's the antidote to the poison you just swallowed! Now suck that cock you stupid whore! ",
             button: [
                 { chatID: 2, text: "aaahhhh ", callback: "e4" }
             ]
@@ -94,8 +93,9 @@ room152.chat = function (chatID) {
         {
             chatID: 2,
             speaker: "bitch",
-            text: "Get all the way down. He deserves to thrust into your tight throat so " +
-                sc.n("jones") + " can really feel it.",
+            l10nKey: "room.152.throatInstruction",
+            l10nValues: { jones: sc.n("jones") },
+            text: "Get all the way down. He deserves to thrust into your tight throat so {jones} can really feel it.",
             button: [
                 { chatID: 3, text: "Guk!", callback: "e5" }
             ]
@@ -103,6 +103,7 @@ room152.chat = function (chatID) {
         {
             chatID: 3,
             speaker: "bitch",
+            l10nKey: "room.152.faceFuck",
             text: "This is how you fuck your own face!",
             button: [
                 { chatID: 4, text: "hmmm gluk mmMmmm gluk", callback: "e6" }
@@ -111,8 +112,9 @@ room152.chat = function (chatID) {
         {
             chatID: 4,
             speaker: "bitch",
-            text: "There you go. Keep it deep in there. " + sc.n("jones") + " needs to continue to feel " +
-                "your tight throat as he gives you the gift of his cum. ",
+            l10nKey: "room.152.keepItDeep",
+            l10nValues: { jones: sc.n("jones") },
+            text: "There you go. Keep it deep in there. {jones} needs to continue to feel your tight throat as he gives you the gift of his cum. ",
             button: [
                 { chatID: 5, text: "*gulp* *gulp* *gulp*", callback: "e7" }
             ]
@@ -120,17 +122,19 @@ room152.chat = function (chatID) {
         {
             chatID: 5,
             speaker: "jones",
+            l10nKey: "room.152.nextTimeWait",
             text: "*spitting* Next time don't make me wait.",
             button: [
-                { chatID: 6, text: "sowwrrry *gulp*", callback: "e8" }
+                { chatID: 6, l10nKey: "room.152.sorryGulp", text: "sowwrrry *gulp*", callback: "e8" }
             ]
         },
         {
             chatID: 6,
             speaker: "bitch",
+            l10nKey: "room.152.disappointment",
             text: "You're such a disappointment. You should be glad he didn't kick you out for your insolence.",
             button: [
-                { chatID: -1, text: "Yes ma'am", callback: "reset" }
+                { chatID: -1, l10nKey: "room.152.yesMaam", text: "Yes ma'am", callback: "reset" }
             ]
         },
     ];

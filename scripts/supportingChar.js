@@ -1879,8 +1879,12 @@ sc.get = function (name) {
 };
 
 sc.n = function (name) {
-    if (name.startsWith("!"))
-        return sc.trivial(name).display;
+    if (name.startsWith("!")) {
+        var trivialDisplay = sc.trivial(name).display;
+        return typeof l10n !== "undefined" && l10n.t
+            ? l10n.t("speaker." + name.slice(1), trivialDisplay)
+            : trivialDisplay;
+    }
     else if (name.startsWith("*"))
         return rape.char.displayName;
     var display = sc.get(name).display;
@@ -1916,6 +1920,12 @@ sc.replace = function (txt) {
 sc.el = function (form) {
     var character = sc.get("el");
     var singular = character.singularDisplay || "Co-Tenant";
+    if (form && character.relationshipForms && typeof character.relationshipForms[form] === "string" && character.relationshipForms[form].trim())
+        return character.relationshipForms[form];
+    if (form && l10n.characterTermForms("coTenant").some(function (item) { return item.id === form; }))
+        return l10n.characterTerm("coTenant", form, singular, "Co-Tenant");
+    if (form && !["singularLower", "singularUpper", "singularCapitalized"].includes(form) && /^singular[A-Z]/.test(form))
+        return l10n.characterTerm("coTenant", "singular", singular, "Co-Tenant");
     var requestedForm = form === "lower" ? "singularLower" :
         form === "capitalize" ? "singularCapitalized" :
         form === "upper" ? "singularUpper" : "singular";
@@ -1926,12 +1936,29 @@ sc.el = function (form) {
 
 sc.els = function (form) {
     var character = sc.get("el");
+    if (form && character.relationshipForms && typeof character.relationshipForms[form] === "string" && character.relationshipForms[form].trim())
+        return character.relationshipForms[form];
+    if (form && l10n.characterTermForms("coTenant").some(function (item) { return item.id === form; }))
+        return l10n.characterTerm("coTenant", form, character.display, "Co-Tenant");
+    if (form && !["pluralLower", "pluralUpper", "pluralCapitalized"].includes(form) && /^plural[A-Z]/.test(form))
+        return l10n.characterTerm("coTenant", "plural", character.display, "Co-Tenant");
     var requestedForm = form === "lower" ? "pluralLower" :
         form === "capitalize" ? "pluralCapitalized" :
         form === "upper" ? "pluralUpper" : "plural";
     return typeof l10n !== "undefined" && l10n.characterTerm
         ? l10n.characterTerm("coTenant", requestedForm, character.display, "Co-Tenant")
         : character.display;
+};
+
+sc.landlady = function (form) {
+    var character = sc.get("landlord");
+    if (form && character.relationshipForms && typeof character.relationshipForms[form] === "string" && character.relationshipForms[form].trim())
+        return character.relationshipForms[form];
+    if (form && l10n.characterTermForms("landlady").some(function (item) { return item.id === form; }))
+        return l10n.characterTerm("landlady", form, character.display, "Landlady");
+    if (form && !["display", "lower", "upper", "capitalize"].includes(form))
+        return l10n.characterTerm("landlady", "display", character.display, "Landlady");
+    return l10n.characterTerm("landlady", form || "display", character.display, "Landlady");
 };
 
 sc.mStatus = function (mStatus) {
@@ -2496,6 +2523,8 @@ sc.save = function () {
             l: sc.char[i].l,
             display: sc.char[i].display,
             singularDisplay: sc.char[i].singularDisplay,
+            relationshipForms: (sc.char[i].name === "el" || sc.char[i].name === "landlord") && sc.char[i].relationshipForms
+                ? Object.assign({}, sc.char[i].relationshipForms) : undefined,
             secret: sc.char[i].secret,
             show: sc.char[i].show
         });
@@ -2523,6 +2552,16 @@ sc.load = function (ra) {
         for (j = 0; j < sc.char.length; j++) {
             if (ra.char[i].name === sc.char[j].name) {
                 sc.char[j].display = ra.char[i].display;
+                if (sc.char[j].name === "el" || sc.char[j].name === "landlord") {
+                    var savedForms = ra.char[i].relationshipForms;
+                    sc.char[j].relationshipForms = {};
+                    if (savedForms && typeof savedForms === "object" && !Array.isArray(savedForms)) {
+                        Object.keys(savedForms).forEach(function (form) {
+                            if (/^[a-zA-Z0-9_]+$/.test(form) && typeof savedForms[form] === "string")
+                                sc.char[j].relationshipForms[form] = savedForms[form];
+                        });
+                    }
+                }
                 if (typeof ra.char[i].singularDisplay === "string")
                     sc.char[j].singularDisplay = ra.char[i].singularDisplay;
                 else if (sc.char[j].name === "el")

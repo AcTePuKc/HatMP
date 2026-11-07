@@ -127,6 +127,7 @@ room55.chat = function (chatID) {
         {
             chatID: 0,
             speaker: "thinking",
+            l10nKey: "room.55.closedRoom",
             text: "It would be rude to barge into this room when they're letting me " +
                 "stay here. ",
             button: [

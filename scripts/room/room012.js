@@ -638,6 +638,8 @@ room12.chat = function(chatID){
         {
             chatID: 0,
             speaker: "me",
+            l10nKey: "room.12.chat.0.text",
+            l10nValues: { eva: sc.n("eva"), lola: sc.n("lola") },
             text: sc.n("eva") + " and " + sc.n("lola") + " are taking a shower. Do you want to continue peeking?",
             button: [
                 { chatID: -1, text: "Hell yes!", callback: "sister2" },
@@ -664,14 +666,15 @@ room12.chat = function(chatID){
             speaker: "me",
             text: "",
             button: [
-                { chatID: 4, text: "Continue peeking on " + sc.n("landlord") + "?", callback: "mom2" },
+                { chatID: 4, text: "Continue peeking on {landlady}?", l10nValues: { landlady: sc.n("landlord") }, callback: "mom2" },
                 { chatID: -1, text: "Be a decent guy and leave the bathroom.", callback: "stopPeek" }
             ]
         },
         {
             chatID: 4,
             speaker: "landlord",
-            text: sc.n("me") + "!!",
+            text: "{me}!!",
+            l10nValues: { me: sc.n("me") },
             button: [
                 { chatID: 5, text: "Say nothing...", callback: "mom3" },
                 { chatID: 6, text: "Hey, babe!", callback: "mom3" }
@@ -682,7 +685,7 @@ room12.chat = function(chatID){
             speaker: "landlord",
             text: "Well... since you have seen me naked, why don't you take off your clothes so I can see you naked? It's only fair.",
             button: [
-                { chatID: 7, text: "Yes " + sc.n("landlord") + " [Get naked]", callback: "mom4" },
+                { chatID: 7, text: "Yes {landlady} [Get naked]", l10nValues: { landlady: sc.n("landlord") }, callback: "mom4" },
                 { chatID: -1, text: "Yelp like a bitch and run out of the bathroom", callback: "stopPeek" }
             ]
         },
@@ -724,7 +727,7 @@ room12.chat = function(chatID){
             speaker: "me",
             text: "",
             button: [
-                { chatID: 17, text: "Continue watching your " + sc.n("el"), callback: "sister4" }
+                { chatID: 17, text: "Continue watching your {el}", l10nValues: { el: sc.el() }, callback: "sister4" }
             ]
         },
         {
@@ -781,13 +784,14 @@ room12.chat = function(chatID){
             speaker: "me",
             text: "",
             button: [
-                { chatID: 2, text: "Continue watching your " + sc.n("el"), callback: "sister5" }
+                { chatID: 2, text: "Continue watching your {el}", l10nValues: { el: sc.el() }, callback: "sister5" }
             ]
         },
         {
             chatID: 18,
             speaker: "me",
-            text: "I can't go out like this. I need my " + g.internal + ".",
+            text: "I can't go out like this. I need {internal}.",
+            l10nValues: { internal: g.internal },
             button: []
         },
         {
@@ -795,7 +799,7 @@ room12.chat = function(chatID){
             speaker: "me",
             text: "",
             button: [
-                { chatID: 20, text: "Continue watching your " + sc.n("el"), callback: "sister4" },
+                { chatID: 20, text: "Continue watching your {el}", l10nValues: { el: sc.el() }, callback: "sister4" },
                 { chatID: -1, text: "Join them", callback: "joinSisters" }
             ]
         },
@@ -804,14 +808,15 @@ room12.chat = function(chatID){
             speaker: "me",
             text: "",
             button: [
-                { chatID: 2, text: "Continue watching your " + sc.n("el"), callback: "sister5" },
+                { chatID: 2, text: "Continue watching your {el}", l10nValues: { el: sc.el() }, callback: "sister5" },
                 { chatID: -1, text: "Join them", callback: "joinSisters" }
             ]
         },
         {
             chatID: 21,
             speaker: "eva",
-            text: "What the hell, " + sc.n("me") + "!! What are you doing in here?",
+            text: "What the hell, {me}!! What are you doing in here?",
+            l10nValues: { me: sc.n("me") },
             button: [
                 { chatID: -1, text: "Oh, uh sorry, I thought the bathroom was empty.", callback: "stopPeek" },
                 { chatID: 22, text: "[Get naked]", callback: "sisterGetNaked" }
@@ -828,7 +833,8 @@ room12.chat = function(chatID){
         {
             chatID: 23,
             speaker: "eva",
-            text: "NO! No no no no! Get out, you disgusting pervert! Get out or I'll tell " + sc.n("landlord") + " and she'll kick you out of the house!",
+            text: "NO! No no no no! Get out, you disgusting pervert! Get out or I'll tell {landlady} and she'll kick you out of the house!",
+            l10nValues: { landlady: sc.n("landlord") },
             button: [
                 { chatID: 24, text: "Oh, I thought...", callback: "" }
             ]
@@ -860,7 +866,8 @@ room12.chat = function(chatID){
         {
             chatID: 27,
             speaker: "lola",
-            text: "Oh, hey " + sc.n("me") + ". Since we're all girls I guess you can join us in the shower. What do you say, " + sc.n("eva") + "?",
+            text: "Oh, hey {me}. Since we're all girls I guess you can join us in the shower. What do you say, {eva}?",
+            l10nValues: { me: sc.n("me"), eva: sc.n("eva") },
             button: [
                 { chatID: 28, text: "...?", callback: "" }
             ]
@@ -959,7 +966,7 @@ room12.chat = function(chatID){
             text: "Did somebody just finish their shower?",
             button: [
                 { chatID: 41, text: "Yes?", callback: "lotionEnd" },
-                { chatID: 40, text: "[Cover yourself up] Not now " + sc.n("landlord") + "!", callback: "" },
+                { chatID: 40, text: "[Cover yourself up] Not now {landlady}!", l10nValues: { landlady: sc.n("landlord") }, callback: "" },
             ]
         },
         {
@@ -975,7 +982,7 @@ room12.chat = function(chatID){
             speaker: "landlord",
             text: "Let's take care of your skin. Don't want you to get a rash.",
             button: [
-                { chatID: 42, text: "Yes " + sc.n("landlord") + ".", callback: "lotion2" },
+                { chatID: 42, text: "Yes {landlady}.", l10nValues: { landlady: sc.n("landlord") }, callback: "lotion2" },
             ]
         },
         {
@@ -998,7 +1005,8 @@ room12.chat = function(chatID){
         {
             chatID: 44,
             speaker: "lola",
-            text: "NO! " + sc.n("eva") + " was right. You are a pervert! Leave so I can pee!",
+            text: "NO! {eva} was right. You are a pervert! Leave so I can pee!",
+            l10nValues: { eva: sc.n("eva") },
             button: [
                 { chatID: -1, text: "Oh sorry.", callback: "badleave" },
             ]
@@ -1078,8 +1086,8 @@ room12.chat = function(chatID){
         {
             chatID: 54,
             speaker: "bigguy",
-            text: "I need to fuck an asshole and your bitch of a " + sc.n("landlord") +
-                " won't let me shove this up her her's. Guess where this is going. hehehe. ",
+            text: "I need to fuck an asshole and your bitch of a {landlady} won't let me shove this up her ass. Guess where this is going. Hehehe.",
+            l10nValues: { landlady: sc.n("landlord") },
             button: [
                 { chatID: 55, text: "W-w-where?", callback: "bigguy2" },
             ]

@@ -90,7 +90,7 @@ room178.chatcatch = function (callback) {
             break;
         case "cumend204Pass":
             inv.add("emptyjar");
-            g.popUpNotice("You can now fill cum jars when you go to the toilet!");
+            g.popUpNotice(l10n.t("room.178.notice.cumJars", "You can now fill cum jars when you go to the toilet!"));
             sissy.passclass(true);
             break;
         default:
@@ -114,6 +114,7 @@ room178.chat = function (chatID) {
         {
             chatID: 1,
             speaker: "missy",
+            l10nValues: { me: sc.n("me") },
             text: "Since this is your first class we're going to start out simple. Each of you will savor and swallow your own cum. It's " +
                 "in your body anyway, we're just putting it in a different hole. Your mouth hole. Next class we'll have some more fun, but " +
                 "I'm a busy woman so this class will be quick. Luckily only " + sc.n("me") + " is in chastity, so the other two of you " +
@@ -194,7 +195,7 @@ room178.chat = function (chatID) {
             chatID: 9,
             speaker: "missy",
             text: "Men masturbate with their hands. Stroking their cock up and down. Sissy girls like you cum with vibrators on " +
-                "their little clitties. The clitty is too small to stoke it, but the vibrations on it feel oh, so good. Does your " +
+                "their little clitties. The clitty is too small to stroke it, but the vibrations on it feel oh, so good. Does your " +
                 "clitty like the vibrations while in the cage? It does feel good doesn't it? Tell me when you're about to cum. ",
             button: [
                 { chatID: 10, text: "....I'm going to cum....", callback: "cum7" }
@@ -299,6 +300,7 @@ room178.chat = function (chatID) {
         {
             chatID: 21,
             speaker: "missy",
+            l10nValues: { me: sc.n("me") },
             text: sc.n("me") + " take that bowl of cum and drizzle it over my ass like warm gooey cinnamon buns. ",
             button: [
                 { chatID: 22, text: "Yes ma'am", callback: "cum105" },
@@ -335,6 +337,7 @@ room178.chat = function (chatID) {
         {
             chatID: 25,
             speaker: "missy",
+            l10nValues: { cecilia: sc.n("cecilia") },
             text: "I brought a treat today, or I should say " + sc.n("cecilia") +
                 " brought a treat. As a sissy the desire to swallow cum is strong, " +
                 "sometimes overwhelming. During those times you may find that " +
@@ -347,6 +350,7 @@ room178.chat = function (chatID) {
         {
             chatID: 26,
             speaker: "missy",
+            l10nValues: { cecilia: sc.n("cecilia") },
             text: sc.n("cecilia") + " squat down and fill up a jar of cum so these " +
                 "sissies can enjoy a nice warm cup of real man. ",
             button: [
@@ -367,7 +371,7 @@ room178.chat = function (chatID) {
             speaker: "missy",
             text: "Now each of you tip your jar back and enjoy your tall glass of " +
                 "cum. Feel the warmth travel over your tongue, down your throat and fill " +
-                "you body with the rejuvenating effects of a real man's sperm travel into " +
+                "your body with the rejuvenating effects of a real man's sperm traveling into " +
                 "your little feminine bodies. ",
             button: [
                 { chatID: -1, text: "MMmmmmmm", callback: "" },
@@ -376,6 +380,7 @@ room178.chat = function (chatID) {
         {
             chatID: 29,
             speaker: "!kareem",
+            l10nValues: { cecilia: sc.n("cecilia") },
             text: "That was very different. " + sc.n("cecilia") + ", who did that come from?",
             button: [
                 { chatID: 30, text: "...", callback: "" },

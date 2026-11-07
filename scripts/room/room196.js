@@ -16,21 +16,22 @@ room196.btnclick = function (name) {
 room196.chatcatch = function (callback) {
     switch (callback) {
         case "worked":
-            g.internal = "";
-            var counter = 0;
             var weeklyPay = missy.get("weeklyPay");
+            var jobsWorked = [];
 
             gv.set("missyWeekly", null);
             for (var i = 0; i < missy.jobs.length; i++) {
                 if (missy.st[missy.jobs[i].thisWeek].c > 0) {
-                    counter++;
-                    g.internal += missy.jobs[i].n + ", ";
+                    jobsWorked.push(l10n.t("room.196.job." + i, missy.jobs[i].n));
                     missy.st[missy.jobs[i].thisWeek].c = 0;
                 }
             }
-            if (g.internal.length > 3) {
-                g.internal = "You worked " + g.internal.substring(0, g.internal.length - 2) +
-                    " for a total weekly pay of $" + weeklyPay + ". ";
+            if (jobsWorked.length > 0) {
+                g.internal = {
+                    key: "room.196.pay.weeklySummary",
+                    text: "You worked {jobs} for a total weekly pay of ${pay}.",
+                    values: { jobs: jobsWorked.join(", "), pay: weeklyPay }
+                };
 
                 chat(999, 196);
             }
@@ -44,28 +45,51 @@ room196.chatcatch = function (callback) {
             var newWp = 0;
             if (wp < 1) {
                 newWp = 0;
+                g.internal = {
+                    key: "room.196.pay.none",
+                    text: "Your pay this week is $0."
+                };
             }
             else if (mood > 70) {
                 newWp = wp * 2;
 
-                g.internal = "You've been doing very well. I'm doubling your pay from $" + wp + " to $" + newWp + ". ";
+                g.internal = {
+                    key: "room.196.pay.double",
+                    text: "You've been doing very well. I'm doubling your pay from ${oldPay} to ${newPay}.",
+                    values: { oldPay: wp, newPay: newWp }
+                };
             }
             else if (mood > 30) {
                 newWp = wp * 1.5;
-                g.internal = "You've been doing fine. I'm increasing your pay from $" + wp + " to $" + newWp + ". ";
+                g.internal = {
+                    key: "room.196.pay.increase",
+                    text: "You've been doing fine. I'm increasing your pay from ${oldPay} to ${newPay}.",
+                    values: { oldPay: wp, newPay: newWp }
+                };
             }
             else if (mood > 0) {
                 newWp = wp;
-                g.internal = "Your pay this week is $" + newWp + ". ";
+                g.internal = {
+                    key: "room.196.pay.same",
+                    text: "Your pay this week is ${pay}.",
+                    values: { pay: newWp }
+                };
             }
             else if (mood > -30) {
                 newWp = Math.floor(wp * .7);
-                g.internal = "You need to adjust your attitude. I'm decreasing your pay from $" + wp + " to $" + newWp + ". ";
+                g.internal = {
+                    key: "room.196.pay.decrease",
+                    text: "You need to adjust your attitude. I'm decreasing your pay from ${oldPay} to ${newPay}.",
+                    values: { oldPay: wp, newPay: newWp }
+                };
             }
             else {
                 newWp = Math.floor(wp * .5);
-                g.internal = "You don't deserve to be paid. I'm only giving you half until you have " +
-                    "proven yourself. Your weekly pay has decreased from $" + wp + " to $" + newWp + ". ";
+                g.internal = {
+                    key: "room.196.pay.half",
+                    text: "You don't deserve to be paid. I'm only giving you half until you have proven yourself. Your weekly pay has decreased from ${oldPay} to ${newPay}.",
+                    values: { oldPay: wp, newPay: newWp }
+                };
             }
 
             gv.mod("money", newWp);
@@ -136,7 +160,9 @@ room196.chat = function (chatID) {
         return {
             chatID: 999,
             speaker: "missy",
-            text: g.internal,
+            l10nKey: g.internal.key,
+            text: g.internal.text,
+            l10nValues: g.internal.values,
             button: [
                 { chatID: -1, text: "...", callback: "truepay" }
             ]
@@ -146,7 +172,9 @@ room196.chat = function (chatID) {
         return {
             chatID: 998,
             speaker: "missy",
-            text: g.internal,
+            l10nKey: g.internal.key,
+            text: g.internal.text,
+            l10nValues: g.internal.values,
             button: [
                 { chatID: -1, text: "...", callback: "checkBeforeComplete" }
             ]
@@ -255,7 +283,7 @@ room196.chat = function (chatID) {
                 text: "But I forced you? I didn't force you. You stood there willingly. You came here in panties, willingly. " +
                     "You are the one that deep down wants to be a sissy by your own actions. I'm just here to help and guide you " +
                     "on your journey. Don't worry about it too much. You'll do fine. Class is on Tuesdays and Thursdays in the afternoons. " +
-                    "(Dev note - for now. Still working on the flow) Now on to other things.",
+                "Now on to other things.",
                 button: [
                     { chatID: -1, text: "...", callback: "checkBeforeComplete" },
                 ]
@@ -273,8 +301,8 @@ room196.chat = function (chatID) {
                 speaker: "missy",
                 text: "Don't forget your Sissy Final. Tonight you need to dance at the " +
                     "strip club. Take the train south of the forest to get there. It opens " +
-                    "at night. Then tomorrow come to the pink room before " + char.friendlyTime(18) +
-                    ". You should be early, but don't be late. ",
+                    "at night. Then tomorrow come to the pink room before {time}. You should be early, but don't be late. ",
+                l10nValues: { time: char.friendlyTime(18) },
                 button: [
                     { chatID: -1, text: "Yes ma'am!", callback: "complete" },
                 ]

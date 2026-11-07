@@ -733,7 +733,7 @@ room103.chat = function (chatID) {
             speaker: "river",
             text: "You know you can just walk around the wall. You didn't have to climb into the pipe to look on the other side. Now do you want to change your story?",
             button: [
-                { chatID: 34, text: "Just get me out " + sc.n("river") + "!", callback: "" },
+                { chatID: 34, text: "Just get me out {river}!", l10nValues: { river: sc.n("river") }, callback: "" },
             ]
         },
         {
@@ -772,6 +772,7 @@ room103.chat = function (chatID) {
             chatID: 38,
             speaker: "cult",
             text: "Stop fighting. We each should just take turns. That's why they sent four of us. Why do you have to make it so difficult? " + sc.n("ubel") + " warned us not to fuck up again. Let's just take him to the cult compound and don't get caught. Remember what happened last time you idiots messed this up?",
+            l10nValues: { ubel: sc.n("ubel") },
             button: [
                 { chatID: 39, text: "Wha...", callback: "hole7" },
             ]
@@ -804,6 +805,7 @@ room103.chat = function (chatID) {
             chatID: 42,
             speaker: "cult",
             text: "Aw crap it's " + sc.n("missy") + ". You know you don't stand a chance against four of us.",
+            l10nValues: { missy: sc.n("missy") },
             button: [
                 { chatID: 64, text: "...", callback: "hole11" },
             ]
@@ -828,8 +830,9 @@ room103.chat = function (chatID) {
             chatID: 45,
             speaker: "missy",
             text: "Hi, I'm " + sc.n("missy") + ". You can get dressed now. Do you know what the cult wanted from you?",
+            l10nValues: { missy: sc.n("missy") },
             button: [
-                { chatID: 46, text: "Oh. Thanks... I don't know. One minute " + sc.n("river") + " was messing with me, the next I'm naked in the woods.", callback: "" },
+                { chatID: 46, text: "Oh. Thanks... I don't know. One minute {river} was messing with me, the next I'm naked in the woods.", l10nValues: { river: sc.n("river") }, callback: "" },
             ]
         },
         {
@@ -868,6 +871,7 @@ room103.chat = function (chatID) {
             chatID: 50,
             speaker: "missy",
             text: "I'm going to pay this " + sc.n("river") + " a visit and let him know to leave this one alone if he wants to keep his dick attached to his body. I'm sure he's fine to go back working at the construction site if he wants. Just be careful. Not everyone works for C.U.M.",
+            l10nValues: { river: sc.n("river") },
             button: [
                 { chatID: 51, text: "C.U.M?", callback: "" },
             ]
@@ -907,7 +911,8 @@ room103.chat = function (chatID) {
         {
             chatID: 55,
             speaker: "missy",
-            text: "The only way he's safe is if we take down Ubel and destroy the Cult. I've been trying, but I need more help. It's just too big for me and my partners.",
+            l10nValues: { ubel: sc.n("ubel") },
+            text: "The only way he's safe is if we take down {ubel} and destroy the Cult. I've been trying, but I need more help. It's just too big for me and my partners.",
             button: [
                 { chatID: 56, text: "...", callback: "" },
             ]
@@ -916,6 +921,7 @@ room103.chat = function (chatID) {
             chatID: 56,
             speaker: "landlord",
             text: sc.n("me") + " could help. Like you said it's too big of a job without some help.",
+            l10nValues: { me: sc.n("me") },
             button: [
                 { chatID: 57, text: "That would be awesome! I can help take them down.", callback: "adddom" },
                 { chatID: 58, text: "That sounds dangerous. I don't think I can do it.", callback: "addsub" },
@@ -933,8 +939,9 @@ room103.chat = function (chatID) {
             chatID: 58,
             speaker: "landlord",
             text: "You can't just sit at home all day and wait for " + sc.n("missy") + " to save you. It's best that you're around someone strong that can take care of you when I'm not around. I'll hear no more whining, you're going to work for " + sc.n("missy") + " if she'll have you.",
+            l10nValues: { missy: sc.n("missy") },
             button: [
-                { chatID: 59, text: "Yes " + sc.n("landlord"), callback: "" },
+                { chatID: 59, text: "Yes {landlord}", l10nValues: { landlord: sc.n("landlord") }, callback: "" },
             ]
         },
         {
@@ -958,7 +965,7 @@ room103.chat = function (chatID) {
             speaker: "landlord",
             text: "Stop stammering and answer the nice lady that saved your life. Sometimes I feel I have to do everything for him. He can do that. He needs to get out of this house and stop being so lazy. I'll even give him the money for the license. Now thank the nice lady and get to bed. It's getting late.",
             button: [
-                { chatID: 62, text: "Yes " + sc.n("landlord") + ". I'll do it.", callback: "" },
+                { chatID: 62, text: "Yes {landlord}. I'll do it.", l10nValues: { landlord: sc.n("landlord") }, callback: "" },
             ]
         },
         {
@@ -973,6 +980,7 @@ room103.chat = function (chatID) {
             chatID: 63,
             speaker: "thinking",
             text: "I'll have to go to city hall and buy a license, then visit " + sc.n("missy") + " at her work. I'm so excited, but a little scared. What if she doesn't like how I work, or I'm too weak to do the job. I'll have to try extra hard to impress her!",
+            l10nValues: { missy: sc.n("missy") },
             button: [
                 { chatID: -1, text: "[Go to bed]", callback: "hole17" },
             ]
@@ -1029,6 +1037,7 @@ room103.chat = function (chatID) {
             chatID: 70,
             speaker: "tina",
             text: sc.n("river") + "! Take him down now! I don't know why you have to bully everyone around here, but leave " + sc.n("me") + " alone!",
+            l10nValues: { river: sc.n("river"), me: sc.n("me") },
             button: [
                 { chatID: 71, text: "...", callback: "fight3" },
             ]
@@ -1037,6 +1046,7 @@ room103.chat = function (chatID) {
             chatID: 71,
             speaker: "river",
             text: "Sure " + sc.n("tina") + ". I was just playing around with my new buddy. You know how we like to joke around here. I was just going to take him down so he can get back to work.",
+            l10nValues: { tina: sc.n("tina") },
             button: [
                 { chatID: 72, text: "I wasn't playing.", callback: "fight4" },
             ]
@@ -1204,6 +1214,7 @@ room103.chat = function (chatID) {
             chatID: 91,
             speaker: "construction",
             text: "Lame. It's ok, I'll just get " + sc.n("tina") + " to show me her tits. Maybe blow me too!",
+            l10nValues: { tina: sc.n("tina") },
             button: [
                 { chatID: -1, text: "*sigh*", callback: "work2" },
             ]
@@ -1212,6 +1223,7 @@ room103.chat = function (chatID) {
             chatID: 92,
             speaker: "construction",
             text: "Nice. I'm starting to get hard. I'm going to go fuck that slut " + sc.n("tina") + "! Later!",
+            l10nValues: { tina: sc.n("tina") },
             button: [
                 { chatID: -1, text: "*sigh*", callback: "work2shirt" },
             ]

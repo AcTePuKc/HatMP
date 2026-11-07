@@ -121,7 +121,7 @@ room2.chatcatch = function (callback) {
         var tempLine = '<div class="intro-wrapper"><div style="height:' + (800 * g.ratio) + 'px;" class="intro-wrapper-sub">' +
             '<div class="intro-wrapper-full"><div class="intro-wrapper-left"><img src="images/speaker/me.png"/></div><div class="intro-wrapper-right">' + l10n.t("setup.playerName", "Your Name") + '<br /><input type="text" id="char_-1" data-name="-1" /></div></div>' +
             '<div class="intro-wrapper-full"><div class="intro-wrapper-left"><img src="images/speaker/me_girl.png"/></div><div class="intro-wrapper-right">' + l10n.t("setup.girlyName", "Girly Name") + '<br /><input type="text" id="room_002gn"/></div></div>' +
-            '<div class="intro-wrapper-full"><div class="intro-wrapper-left"><img src="images/speaker/lolaEva.png"/></div><div class="intro-wrapper-right"><span id="room_002RelationshipLabel">' + l10n.t("setup.relationship", "Relationship with {lola} and {eva}", { lola: sc.n('lola'), eva: sc.n('eva') }) + '</span><br /><input type="text" id="room_002sa"/><br />' + l10n.t("setup.relationshipSingular", "What do you call one of them?") + '<br /><input type="text" id="room_002saSingular"/><div id="room_002saError" role="alert"></div></div></div>';
+            '<div class="intro-wrapper-full"><div class="intro-wrapper-left"><img src="images/speaker/lolaEva.png"/></div><div class="intro-wrapper-right"><span id="room_002RelationshipLabel">' + l10n.t("setup.relationship", "Relationship with {lola} and {eva}", { lola: sc.n('lola'), eva: sc.n('eva') }) + '</span><br /><input type="text" id="room_002sa"/><br />' + l10n.t("setup.relationshipSingular", "What do you call one of them?") + '<br /><input type="text" id="room_002saSingular"/><div id="room_002saError" role="alert"></div><details id="room_002RelationshipAdvanced"><summary>' + l10n.t("setup.relationshipAdvanced", "More grammatical forms (optional)") + '</summary><div id="room_002RelationshipForms"></div></details></div></div>';
             
 
         $.each(sc.char, function (i, v) {
@@ -131,7 +131,10 @@ room2.chatcatch = function (callback) {
                     ? '<div>' + l10n.t("setup.landladyRelationship", "What do you call her?") + '</div>'
                     : "";
                 var relationshipError = v.name === "landlord" ? '<div id="room_002landladyError" role="alert"></div>' : "";
-                tempLine = tempLine.concat('<div class="intro-wrapper-full' + addClass + '"><div class="intro-wrapper-left"><img src="images/speaker/' + sc.char[i].image + '"/></div><div class="intro-wrapper-right">' + relationshipPrompt + '<input class="room2-getName" type="text" id="char_' + i + '" data-name="' + i + '" />' + relationshipError + '</div></div>');
+                var landladyForms = v.name === "landlord"
+                    ? '<details id="room_002LandladyAdvanced"><summary>' + l10n.t("setup.relationshipAdvanced", "More grammatical forms (optional)") + '</summary><div id="room_002LandladyFormFields"></div></details>'
+                    : "";
+                tempLine = tempLine.concat('<div class="intro-wrapper-full' + addClass + '"><div class="intro-wrapper-left"><img src="images/speaker/' + sc.char[i].image + '"/></div><div class="intro-wrapper-right">' + relationshipPrompt + '<input class="room2-getName" type="text" id="char_' + i + '" data-name="' + i + '" />' + relationshipError + landladyForms + '</div></div>');
             }
         });
 
@@ -142,14 +145,83 @@ room2.chatcatch = function (callback) {
             '<button class="intro-changeDiff" type="button" data-toggle="-1"> &lt; </button>' + 
             '<div id="intro_diff" data-diff="1">' + l10n.t("setup.difficulty.normal", "Normal") + '</div>' +
             '<button class="intro-changeDiff float-right" type="button" data-toggle="1"> &gt; </button></div>' + 
-            '<br /><br /><br />' +
+            '<section class="intro-preferences" aria-labelledby="room_002PreferencesTitle">' +
+            '<h3 id="room_002PreferencesTitle">' + l10n.t("setup.preferences.title", "Optional preferences") + '</h3>' +
+            '<div class="intro-preference-group"><div class="intro-preference-label">' + l10n.t("dialogue.mode", "Dialogue layout") + '</div>' +
+            '<div class="intro-preference-options" data-setting="dialogueMode" role="group" aria-label="' + l10n.t("dialogue.mode", "Dialogue layout") + '">' +
+            '<button type="button" class="intro-preference-option" data-value="classic" aria-pressed="false">' + l10n.t("dialogue.classic", "Classic") + '</button>' +
+            '<button type="button" class="intro-preference-option" data-value="enhanced" aria-pressed="false">' + l10n.t("dialogue.enhanced", "Enhanced") + '</button></div></div>' +
+            '<div class="intro-preference-group"><div class="intro-preference-label">' + l10n.t("setup.preferences.clock", "Clock format") + '</div>' +
+            '<div class="intro-preference-options" data-setting="clock24" role="group" aria-label="' + l10n.t("setup.preferences.clock", "Clock format") + '">' +
+            '<button type="button" class="intro-preference-option" data-value="12" aria-pressed="false">' + l10n.t("phone.settings.option.clock12", "12 Hour Clock") + '</button>' +
+            '<button type="button" class="intro-preference-option" data-value="24" aria-pressed="false">' + l10n.t("phone.settings.option.clock24", "24 Hour Clock") + '</button></div></div>' +
+            '<div class="intro-preference-group"><div class="intro-preference-label">' + l10n.t("setup.preferences.pronouns", "Narration pronouns") + '</div>' +
+            '<div class="intro-preference-options intro-pronoun-options" data-setting="pronouns" role="group" aria-label="' + l10n.t("setup.preferences.pronouns", "Narration pronouns") + '">' +
+            '<button type="button" class="intro-preference-option" data-value="m" aria-pressed="false">' + l10n.t("phone.settings.option.masculine", "Masculine") + '</button>' +
+            '<button type="button" class="intro-preference-option" data-value="f" aria-pressed="false">' + l10n.t("phone.settings.option.feminine", "Feminine") + '</button>' +
+            '<button type="button" class="intro-preference-option" data-value="a" aria-pressed="false">' + l10n.t("phone.settings.option.appearance", "Appearance") + '</button></div></div>' +
+            '<p>' + l10n.t("setup.preferences.help", "Appearance follows your character’s current look. You can change these preferences later in Phone Settings.") + '</p>' +
+            '</section>' +
             '<button type="button" id="room_002SetName">' + l10n.t("setup.saveNamesStart", "Save Names and Start") + '</button>');
 
         $('#room-buttons').html(tempLine + "</div>");
+        var relationshipFormDefaults = {};
+        var relationshipHasLocalizedDefaults =
+            setupCharacterName(sc.get("el")) === defaultCoTenantPlural() &&
+            setupCoTenantSingular() === defaultCoTenantSingular();
+        l10n.characterTermForms("coTenant").forEach(function (form) {
+            relationshipFormDefaults[form.id] = form.suggested;
+            var label = l10n.t("relationship.form." + form.id, form.label);
+            var value = sc.get("el").relationshipForms && sc.get("el").relationshipForms[form.id];
+            if (typeof value !== "string") value = relationshipHasLocalizedDefaults ? form.suggested : "";
+            var field = $('<label class="intro-relationship-extra"></label>').text(label + " ");
+            $('<input type="text" maxlength="80" autocomplete="off" />')
+                .attr("id", "room_002RelationshipForm_" + form.id)
+                .val(value).appendTo(field);
+            $('#room_002RelationshipForms').append(field);
+        });
+        if (!l10n.characterTermForms("coTenant").length)
+            $('#room_002RelationshipAdvanced').hide();
+        var landladyFormDefaults = {};
+        var landladyUsesLocalizedDefault = setupCharacterName(sc.get("landlord")) === defaultCharacterName(sc.get("landlord"));
+        l10n.characterTermForms("landlady").forEach(function (form) {
+            landladyFormDefaults[form.id] = form.suggested;
+            var value = sc.get("landlord").relationshipForms && sc.get("landlord").relationshipForms[form.id];
+            if (typeof value !== "string") value = landladyUsesLocalizedDefault ? form.suggested : "";
+            var field = $('<label class="intro-relationship-extra"></label>')
+                .text(l10n.t("relationship.form." + form.id, form.label) + " ");
+            $('<input type="text" maxlength="80" autocomplete="off" />')
+                .attr("id", "room_002LandladyForm_" + form.id)
+                .val(value).appendTo(field);
+            $('#room_002LandladyFormFields').append(field);
+        });
+        if (!l10n.characterTermForms("landlady").length)
+            $('#room_002LandladyAdvanced').hide();
+        function selectIntroPreference(setting, value) {
+            $('.intro-preference-options[data-setting="' + setting + '"] .intro-preference-option').each(function () {
+                var active = String($(this).attr('data-value')) === String(value);
+                $(this).toggleClass('active', active).attr('aria-pressed', active ? 'true' : 'false');
+            });
+        }
+
+        $('.intro-preference-option').on('click', function () {
+            var group = $(this).closest('.intro-preference-options');
+            var setting = group.attr('data-setting');
+            var value = $(this).attr('data-value');
+            selectIntroPreference(setting, value);
+            if (setting === "dialogueMode" && typeof dialogue !== "undefined")
+                dialogue.setPreferences({ mode: value });
+        });
+
+        selectIntroPreference("clock24", gv.get("clock24") === "24" ? "24" : "12");
+        var currentPronouns = gv.get("pronouns");
+        selectIntroPreference("pronouns", currentPronouns === "m" || currentPronouns === "f" ? currentPronouns : "a");
+        var currentDialogueMode = typeof dialogue !== "undefined" ? dialogue.getPreferences().mode : "enhanced";
+        selectIntroPreference("dialogueMode", currentDialogueMode);
 
         $('#char_' + sc.i("landlord")).attr("title",
             l10n.t("setup.landladyRelationshipHelp",
-                "Enter the word or form of address you want used for her (for example, Landlady, Mother, or Mom). The game can adjust capitalization, but not grammatical forms, so choose a form that reads naturally in sentences."));
+                "Enter the word or form of address you want used for her (for example, Landlady, Ma’am, or her name). The game can adjust capitalization, but not grammatical forms, so choose a form that reads naturally in sentences."));
 
         $('#char_-1').val($("<textarea/>").html(sc.n("me")).val());
         $.each(sc.char, function (i, v) {
@@ -184,8 +256,30 @@ room2.chatcatch = function (callback) {
 
         $('.room2-getName').on('input change', refreshRelationshipLabel);
         refreshRelationshipLabel();
+        function refreshOptionalRelationshipForms() {
+            var coTenantUsesDefaults = $('#room_002sa').val() === defaultCoTenantPlural() &&
+                $('#room_002saSingular').val() === defaultCoTenantSingular();
+            l10n.characterTermForms("coTenant").forEach(function (form) {
+                var input = $('#room_002RelationshipForm_' + form.id);
+                if (!coTenantUsesDefaults && input.val() === relationshipFormDefaults[form.id])
+                    input.val("");
+                else if (coTenantUsesDefaults && !input.val())
+                    input.val(form.suggested);
+            });
+            var landlordInput = $('#char_' + sc.i("landlord"));
+            var landladyUsesDefault = landlordInput.val() === defaultCharacterName(sc.get("landlord"));
+            l10n.characterTermForms("landlady").forEach(function (form) {
+                var input = $('#room_002LandladyForm_' + form.id);
+                if (!landladyUsesDefault && input.val() === landladyFormDefaults[form.id])
+                    input.val("");
+                else if (landladyUsesDefault && !input.val())
+                    input.val(form.suggested);
+            });
+        }
+        refreshOptionalRelationshipForms();
         $('#char_' + sc.i("landlord")).on('input change', function () {
             $('#room_002landladyError').text("");
+            refreshOptionalRelationshipForms();
         });
 
         $('#room_002sa').on('input change', function () {
@@ -197,7 +291,9 @@ room2.chatcatch = function (callback) {
             else if (pluralValue === defaultCoTenantPlural() && singularValue.length === 0)
                 singularInput.val(defaultCoTenantSingular());
             $('#room_002saError').text("");
+            refreshOptionalRelationshipForms();
         });
+        $('#room_002saSingular').on('input change', refreshOptionalRelationshipForms);
         
         $('.intro-changeDiff').on('click', function () {
             var currentDiff = parseInt($('#intro_diff').data('diff'));
@@ -244,10 +340,17 @@ room2.chatcatch = function (callback) {
             $('#char_-1').val($("<textarea/>").html(sc.n("me")).val());
             $('#room_002sa').val($("<textarea/>").html(defaultCoTenantPlural()).val());
             $('#room_002saSingular').val($("<textarea/>").html(defaultCoTenantSingular()).val());
+            l10n.characterTermForms("coTenant").forEach(function (form) {
+                $('#room_002RelationshipForm_' + form.id).val(form.suggested);
+            });
+            l10n.characterTermForms("landlady").forEach(function (form) {
+                $('#room_002LandladyForm_' + form.id).val(form.suggested);
+            });
             $('#room_002gn').val($("<textarea/>").html(defaultGirlName()).val());
             $('#room_002landladyError').text("");
             $('#room_002saError').text("");
             refreshRelationshipLabel();
+            refreshOptionalRelationshipForms();
         });
 
         $("#room_002SetName").on('click', function () {
@@ -274,10 +377,29 @@ room2.chatcatch = function (callback) {
             sc.setcharname("me", g.cleanText($('#char_-1').val()));
             sc.setcharname("el", savedCharacterName(sc.get("el"), coTenantPlural));
             sc.get("el").singularDisplay = savedCoTenantSingular(coTenantSingular);
+            var relationshipForms = {};
+            l10n.characterTermForms("coTenant").forEach(function (form) {
+                var value = g.cleanText($('#room_002RelationshipForm_' + form.id).val() || "").trim();
+                var defaultValue = relationshipFormDefaults[form.id];
+                if (value && value !== defaultValue)
+                    relationshipForms[form.id] = value;
+            });
+            sc.get("el").relationshipForms = relationshipForms;
+            var landladyForms = {};
+            l10n.characterTermForms("landlady").forEach(function (form) {
+                var value = g.cleanText($('#room_002LandladyForm_' + form.id).val() || "").trim();
+                if (value && value !== landladyFormDefaults[form.id])
+                    landladyForms[form.id] = value;
+            });
+            sc.get("landlord").relationshipForms = landladyForms;
             gv.set("girlname", savedGirlName(g.cleanText($('#room_002gn').val())));
 
             var thisDiff = parseInt($("#intro_diff").data('diff'));
             gv.set("difficulty", isNaN(thisDiff) ? 1 : ((thisDiff < 0) ? 0 : ((thisDiff > 2) ? 2 : thisDiff)));
+            var selectedClockFormat = $('.intro-preference-options[data-setting="clock24"] .active').attr('data-value');
+            gv.set("clock24", selectedClockFormat === "24" ? "24" : "12");
+            var selectedPronouns = $('.intro-preference-options[data-setting="pronouns"] .active').attr('data-value');
+            gv.set("pronouns", selectedPronouns === "m" || selectedPronouns === "f" ? selectedPronouns : "a");
             nav.killall();
             nav.button({
                 "type": "img",

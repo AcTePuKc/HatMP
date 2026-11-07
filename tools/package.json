@@ -1,0 +1,13 @@
+{
+  "name": "hatmp-checks",
+  "private": true,
+  "scripts": {
+    "test": "node test-dialogue.js && node test-phone-guides.js && node test-l10n.js && node test-l10n-player.js",
+    "l10n": "node check-l10n.js"
+  },
+  "devDependencies": {
+    "acorn": "^8.19.0",
+    "jsdom": "^30.1.3",
+    "parse5": "^8.0.1"
+  }
+}

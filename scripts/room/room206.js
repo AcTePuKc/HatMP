@@ -577,7 +577,8 @@ room206.chat = function (chatID) {
         {
             chatID: 0,
             speaker: "missy",
-            text: "So " + sc.n("me") + ", you want to be a Private Investigator? So what kind of college degree do you have?",
+            text: "So {me}, you want to be a Private Investigator? So what kind of college degree do you have?",
+            l10nValues: { me: sc.n("me") },
             button: [
                 { chatID: 1, text: "I don't have a degree, you see what happened...", callback: "" }
             ]
@@ -924,10 +925,11 @@ room206.chat = function (chatID) {
             chatID: 37,
             speaker: "missy",
             text: "I was going to give you $300, but since you can't follow simple instructions you will only " +
-                "receive $" + g.pass.money + ". " +
+                "receive ${money}. " +
                 "So that you may purchase the clothing required for your job. Now don't disappoint me " +
                 "by spending it on something frivolous. Go buy the clothing straight away. Now get out before I " +
                 "change my mind about hiring you.",
+            l10nValues: { money: g.pass.money },
             button: [
                 { chatID: 41, text: "Yes ma'am", callback: "" }
             ]
