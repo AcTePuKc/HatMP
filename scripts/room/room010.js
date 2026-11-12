@@ -1964,7 +1964,8 @@ room10.chat = function (chatID) {
             {
                 chatID: 100,
                 speaker: "!man",
-                text: "Oh. No worries. I'm going to fuck your " + g.makeSingular(sc.n("el")) + " up the ass then. Take care. ",
+                text: "Oh. No worries. I'm going to fuck your {el} up the ass then. Take care. ",
+                l10nValues: { el: g.makeSingular(sc.n("el")) },
                 button: [
                     { chatID: -1, text: "Yeah. You too?", callback: "reset" },
                 ]

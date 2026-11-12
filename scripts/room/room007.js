@@ -1560,7 +1560,7 @@ room7.chat = function (chatID) {
                 speaker: "landlord",
                 text: "Did you just pee your bed!! What are you? A baby! Gross! Clean up your pissy bed and clothes! Now!",
                 button: [
-                    { chatID: 70, text: "Yes " + sc.n("landlord"), callback: "cleanBed" },
+                    { chatID: 70, text: "Yes, {landlord}.", l10nValues: { landlord: sc.n("landlord") }, callback: "cleanBed" },
                 ]
             },
             {
@@ -1568,11 +1568,11 @@ room7.chat = function (chatID) {
                 speaker: "thinking",
                 text: "Damn. I guess I should pee before bed since I can't seem to hold it. I'm such an idiot. ",
                 button: [
-                    { chatID: -1, text: '<img src="./images/general/shirt.png" /> ' + cl.saveOutfit[0].name, callback: "o0" },
-                    { chatID: -1, text: '<img src="./images/general/shirt.png" /> ' + cl.saveOutfit[1].name, callback: "o1" },
-                    { chatID: -1, text: '<img src="./images/general/shirt.png" /> ' + cl.saveOutfit[2].name, callback: "o2" },
-                    { chatID: -1, text: '<img src="./images/general/shirt.png" /> ' + cl.saveOutfit[3].name, callback: "o3" },
-                    { chatID: -1, text: '<img src="./images/general/shirt.png" /> ' + cl.saveOutfit[4].name, callback: "o4" },
+                    { chatID: -1, text: '<img src="./images/general/shirt.png" /> ' + cl.saveOutfit[0].name, l10nIgnore: true, callback: "o0" },
+                    { chatID: -1, text: '<img src="./images/general/shirt.png" /> ' + cl.saveOutfit[1].name, l10nIgnore: true, callback: "o1" },
+                    { chatID: -1, text: '<img src="./images/general/shirt.png" /> ' + cl.saveOutfit[2].name, l10nIgnore: true, callback: "o2" },
+                    { chatID: -1, text: '<img src="./images/general/shirt.png" /> ' + cl.saveOutfit[3].name, l10nIgnore: true, callback: "o3" },
+                    { chatID: -1, text: '<img src="./images/general/shirt.png" /> ' + cl.saveOutfit[4].name, l10nIgnore: true, callback: "o4" },
                     { chatID: -1, text: "Get Up", callback: "o5" }
                 ]
             },

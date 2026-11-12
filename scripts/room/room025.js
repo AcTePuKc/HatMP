@@ -685,7 +685,8 @@ room25.chat = function (chatID) {
         {
             chatID: 47,
             speaker: "me",
-            text: "Good morning " + sc.n("bigguy") + ". Where's my " + sc.n("landlord") + "?",
+            text: "Good morning {bigguy}. Where's my {landlord}?",
+            l10nValues: { bigguy: sc.n("bigguy"), landlord: sc.n("landlord") },
             button: [
                 { chatID: 48, text: "...", callback: "" }
             ]
