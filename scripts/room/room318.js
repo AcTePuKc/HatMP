@@ -443,7 +443,7 @@ room318.chatcatch = function (callback) {
             char.room(318);
             break;
         case "steal":
-            g.popUpNotice("You stole her panties. Pervert");
+            g.popUpNotice(l10n.t("room.318.notice.stolePanties", "You stole her panties. Pervert"));
             levels.mod("xdress", 25);
             cl.add("panties", "j");
             cl.add("bra", "j");

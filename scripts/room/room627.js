@@ -72,7 +72,7 @@ room627.chat = function (chatID) {
                     return {
                         chatID: 4,
                         speaker: "me",
-                        text: "I won another teddy bear! ",
+                        text: "I won another teddy bear! ", l10nKey: "room.627.chat.4.text",
                         button: [
                             { chatID: 5, text: "...", callback: "" },
                         ]
@@ -84,7 +84,7 @@ room627.chat = function (chatID) {
                     return {
                         chatID: 6,
                         speaker: "me",
-                        text: "I won you this teddy bear. It's cute, like you. ",
+                        text: "I won you this teddy bear. It's cute, like you. ", l10nKey: "room.627.chat.6.text",
                         button: [
                             { chatID: 7, text: "...", callback: "kiss" },
                         ]
@@ -96,9 +96,9 @@ room627.chat = function (chatID) {
                 return {
                     chatID: 999,
                     speaker: "clownqueen",
-                    text: "You've won a teddy! ",
+                    text: "You've won a teddy! ", l10nKey: "room.627.win.text",
                     button: [
-                        { chatID: -1, text: "Yes!", callback: "reset" },
+                        { chatID: -1, text: "Yes!", l10nKey: "room.627.win.choice", callback: "reset" },
                     ]
                 };
             }
@@ -118,9 +118,9 @@ room627.chat = function (chatID) {
             return {
                 chatID: 999,
                 speaker: "clownqueen",
-                text: "Awww only " + st + "0 points. Better luck next time! ",
+                text: "Awww only " + st + "0 points. Better luck next time! ", l10nKey: "room.627.loss.text", l10nValues: { score: String(st) + "0" },
                 button: [
-                    { chatID: -1, text: "[Strength: " + stDisplay + " Need level 10 to win]", callback: "reset" },
+                    { chatID: -1, text: "[Strength: " + stDisplay + " Need level 10 to win]", l10nKey: "room.627.loss.choice", l10nValues: { strength: stDisplay }, callback: "reset" },
                 ]
             };
         }
@@ -147,7 +147,7 @@ room627.chat = function (chatID) {
             {
                 chatID: 2,
                 speaker: "clownqueen",
-                text: "Very good " + gender.pronoun("man") + " now take your swing! ",
+                text: "Very good " + gender.pronoun("man") + " now take your swing! ", l10nValues: { man: gender.pronoun("man") },
                 button: [
                     { chatID: 3, text: "Swing away! ", callback: "bang" },
                 ]

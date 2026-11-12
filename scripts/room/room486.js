@@ -21,7 +21,7 @@ room486.main = function () {
             "height": 541,
             "image": "486_game/a_entrance_no.webp"
         }, 486);
-        sc.select("leave", "316_livingroom/icon_leave.png", -2);
+        sc.selectLocalizedLabel("leave", "316_livingroom/icon_leave.png", -2, "room.486.action.leave", "Leave", null, { width: 432, fontSize: 25 });
     }
     else if (g.pass === "endSleepyTime") {
         nav.bg("486_game/r0.webp");
@@ -134,9 +134,9 @@ room486.main = function () {
                     "image": "486_game/a6_" + g.pass.r6 + ".webp"
                 }, 486);
                 if (g.pass.r6 === "piss")
-                    g.popUpNotice("I totally smell like piss");
+                    g.popUpNotice(l10n.t("room.486.notice.smell.piss", "I totally smell like piss"));
                 else
-                    g.popUpNotice("I stink of old cum");
+                    g.popUpNotice(l10n.t("room.486.notice.smell.cum", "I stink of old cum"));
             }
             nav.button({
                 "type": "zimg",
@@ -192,7 +192,7 @@ room486.main = function () {
                         "image": "486_game/a4_" + gender.pronoun("f") + ".webp"
                     }, 486);
                     gv.mod("energy", -5);
-                    g.popUpNotice("These nipple clamps really hurt! [-5 energy]");
+                    g.popUpNotice(l10n.t("room.486.notice.pain.clamps", "These nipple clamps really hurt! [-5 energy]"));
                 }
             }
             if (g.pass.r5 === "pain") {
@@ -206,7 +206,7 @@ room486.main = function () {
                     "image": "486_game/a5_drip.webp"
                 }, 486);
                 gv.mod("energy", -3);
-                g.popUpNotice("Ouch! Candle wax dripped on my butt! [-3 energy]");
+                g.popUpNotice(l10n.t("room.486.notice.pain.wax", "Ouch! Candle wax dripped on my butt! [-3 energy]"));
             }
             if (g.pass.r10 === "sh") {
                 nav.button({
@@ -219,7 +219,7 @@ room486.main = function () {
                     "image": "486_game/a10_sh.webp"
                 }, 486);
                 gv.mod("energy", -20);
-                g.popUpNotice("OWOWOWOW! That plug just shocked by asshole! [-20 energy]");
+                g.popUpNotice(l10n.t("room.486.notice.pain.shock", "OWOWOWOW! That plug just shocked by asshole! [-20 energy]"));
             }
             else if (g.pass.r10 === "i") {
                 nav.button({
@@ -235,12 +235,12 @@ room486.main = function () {
                     cl.c.buttplug = "i_1";
                     cl.display();
                     levels.mod("anal", 30);
-                    g.popUpNotice("Oh no! That plug just inflated on it's own! I think my asshole is going to fall out!");
+                    g.popUpNotice(l10n.t("room.486.notice.pain.inflate", "Oh no! That plug just inflated on it's own! I think my asshole is going to fall out!"));
                 }
             }
                 
             if (g.pass.r === 4) {
-                g.popUpNotice("I'm feeling so exposed infront of everyone! [-3 energy]"); 
+                g.popUpNotice(l10n.t("room.486.notice.pain.exposed", "I'm feeling so exposed infront of everyone! [-3 energy]"));
             }
             nav.next("killroomDisplay");
         }
@@ -386,8 +386,8 @@ room486.btnclick = function (name) {
                     "image": "486_game/r_open.webp"
                 }, 486);
                 nav.killbutton("leave");
-                sc.select("leave", "316_livingroom/icon_leave.png", -2);
-                sc.select("enterstart", "486_game/icon_enter.webp", -1);
+                sc.selectLocalizedLabel("leave", "316_livingroom/icon_leave.png", -2, "room.486.action.leave", "Leave", null, { width: 432, fontSize: 25 });
+                sc.selectLocalizedLabel("enterstart", "486_game/icon_enter.webp", -1, "room.486.action.enter", "Enter", null, { width: 432, fontSize: 25 });
             }
             break;
         case "enterstart":
@@ -804,12 +804,12 @@ room486.btnclick = function (name) {
             nav.killbutton("room8_1");
             if (g.rand(0, 2) === 0) {
                 levels.modLevel("pi", -1, true);
-                g.popUpNotice("You have become dumber");
+                g.popUpNotice(l10n.t("room.486.notice.stat.dumber", "You have become dumber"));
                 chat(24, 486);
             }
             else {
                 levels.modLevel("strength", -1, true);
-                g.popUpNotice("You have become weaker");
+                g.popUpNotice(l10n.t("room.486.notice.stat.weaker", "You have become weaker"));
                 chat(25, 486);
             }
             invoker.invokeCurrent("chatcatch", "greenbuttonON");
@@ -918,34 +918,34 @@ room486.btnclick = function (name) {
         case "room9c4":
             var room9c = parseInt(name.replace("room9c", ""));
             if (g.internal.c[room9c] === null) {
-                g.popUpNotice("There's no cock there, dumb ass.");
+                g.popUpNotice(l10n.t("room.486.notice.missing.cock", "There's no cock there, dumb ass."));
                 return;
             }
             nav.kill();
             g.internal.s = room9c;
             nav.bg("486_game/room9d_" + g.internal.s.toString() + g.internal.c[g.internal.s].toString() + ".webp");
             zcl.bj(0, 900, 1, "", false);
-            sc.select("icon_room9suck", "451_parkMensRoom/icon_suck.png", -2);
-            sc.select("icon_room9anal", "451_parkMensRoom/icon_anal.png", -1);
+            sc.selectLocalizedLabel("icon_room9suck", "451_parkMensRoom/icon_suck.png", -2, "room.486.action.oral", "Suck it", null, { width: 432, fontSize: 25 });
+            sc.selectLocalizedLabel("icon_room9anal", "451_parkMensRoom/icon_anal.png", -1, "room.486.action.anal", "Shove it up your ass", null, { width: 432, fontSize: 25 });
             break;
         case "icon_room9suck":
             nav.kill();
             nav.bg("486_game/room9e_" + g.internal.s.toString() + g.internal.c[g.internal.s].toString() + ".webp");
             zcl.double(0, 320, 1.1, "open", false);
             fame.moanAnimate("center");
-            sc.select("icon_room9suck1", "486_game/icon_r9_oral.webp", -2);
+            sc.selectLocalizedLabel("icon_room9suck1", "486_game/icon_r9_oral.webp", -2, "room.486.action.fillmouth", "Fill your mouth with cum", null, { width: 432, fontSize: 25 });
             break;
         case "icon_room9anal":
             nav.kill();
             nav.bg("486_game/room9e_" + g.internal.s.toString() + g.internal.c[g.internal.s].toString() + ".webp");
             zcl.hanging(0, 300, 1.2, "", true);
             fame.moanAnimate("right");
-            sc.select("icon_room9anal1", "486_game/icon_r9_anal.webp", -2);
+            sc.selectLocalizedLabel("icon_room9anal1", "486_game/icon_r9_anal.webp", -2, "room.486.action.fillass", "Fill your ass with cum", null, { width: 432, fontSize: 25 });
             break;
         case "icon_room9suck1":
             nav.kill();
             fame.moanAnimateStop();
-            sc.select("icon_room9oral2", "486_game/icon_r9_fillbucket.webp", -2);
+            sc.selectLocalizedLabel("icon_room9oral2", "486_game/icon_r9_fillbucket.webp", -2, "room.486.action.bucket", "Fill the bucket", null, { width: 432, fontSize: 25 });
             nav.bg("486_game/room9f_" + g.internal.s.toString() + g.internal.c[g.internal.s].toString() + ".webp");
             levels.oral(3, "m", "!man", false, null, true);
             zcl.bj(0, 900, 1, "cummouth", false);
@@ -962,7 +962,7 @@ room486.btnclick = function (name) {
                 "image": "486_game/room9anal1.webp"
             }, 486);
             levels.anal(3, false, "m", true, "!man");
-            sc.select("icon_room9anal2", "486_game/icon_r9_fillbucket.webp", -2);
+            sc.selectLocalizedLabel("icon_room9anal2", "486_game/icon_r9_fillbucket.webp", -2, "room.486.action.bucket", "Fill the bucket", null, { width: 432, fontSize: 25 });
             break;
         case "icon_room9anal2":
             fame.moanAnimateStop();
@@ -980,11 +980,11 @@ room486.btnclick = function (name) {
                 "height": 1080,
                 "image": "486_game/room9_cumanal_" + gender.pronoun("f") + ".webp"
             }, 486);
-            sc.select("icon_r9_nextcock", "486_game/icon_r9_nextcock.webp", -2); 
+            sc.selectLocalizedLabel("icon_r9_nextcock", "486_game/icon_r9_nextcock.webp", -2, "room.486.action.next", "Next cock!", null, { width: 432, fontSize: 25 });
             break;
         case "icon_room9oral2":
             fame.moanAnimateStop();
-            nav.killbutton("icon_room9anal2");
+            nav.killbutton("icon_room9oral2");
             invoker.invokeCurrent("btnclick", "window_draw");
             g.internal.bucket++;
             invoker.invokeCurrent("btnclick", "room9bucket_draw");
@@ -997,7 +997,7 @@ room486.btnclick = function (name) {
                 "height": 1080,
                 "image": "486_game/room9_cumoral_" + gender.pronoun("f") + ".webp"
             }, 486);
-            sc.select("icon_r9_nextcock", "486_game/icon_r9_nextcock.webp", -2); 
+            sc.selectLocalizedLabel("icon_r9_nextcock", "486_game/icon_r9_nextcock.webp", -2, "room.486.action.next", "Next cock!", null, { width: 432, fontSize: 25 });
             break;
         case "icon_r9_nextcock":
             if (g.internal.bucket > 6) {
@@ -1302,14 +1302,14 @@ room486.chatcatch = function (callback) {
         case "room1":
             if (!g.pass.inst) {
                 zcl.displayMain(600, 950, .055, "clothes", true);
-                sc.select("room1", "486_game/icon_r1_" + g.pass.temp + ".webp", 0);
+                sc.selectLocalizedLabel("room1", "486_game/icon_r1_" + g.pass.temp + ".webp", 0, "room.486.action.shout." + g.pass.temp, ["Yell: I like penises in my butt!", "Yell: I will lick anyone’s butthole!", "Yell: I love golden showers!"][g.pass.temp], null, { width: 432, fontSize: 25 });
             }
             g.pass.inst = true;
             break;
         case "room3":
             if (!g.pass.inst) {
-                sc.select("room3_0", "486_game/icon_r3_0.webp", 0);
-                sc.select("room3_1", "486_game/icon_r3_1.webp", 1);
+                sc.selectLocalizedLabel("room3_0", "486_game/icon_r3_0.webp", 0, "room.486.action.bend", "Bend over, show your bussy hole", null, { width: 432, fontSize: 25 });
+                sc.selectLocalizedLabel("room3_1", "486_game/icon_r3_1.webp", 1, "room.486.action.dance", "Shake your booty", null, { width: 432, fontSize: 25 });
             }
             g.pass.inst = true;
             break;
@@ -1318,8 +1318,8 @@ room486.chatcatch = function (callback) {
             if (!g.pass.greenbutton) {
                 nav.killbutton("room4_0");
                 nav.killbutton("room4_1");
-                sc.select("room4_0", "486_game/icon_r4_0.webp", 0);
-                sc.select("room4_1", "486_game/icon_r4_1.webp", 1);
+                sc.selectLocalizedLabel("room4_0", "486_game/icon_r4_0.webp", 0, "room.486.action.spank", "Get spanked [40 energy]", null, { width: 432, fontSize: 25 });
+                sc.selectLocalizedLabel("room4_1", "486_game/icon_r4_1.webp", 1, "room.486.action.clamps", "Clothes pin [5 energy per room]", null, { width: 432, fontSize: 25 });
             }
             break;
         case "room4_1":
@@ -1344,22 +1344,22 @@ room486.chatcatch = function (callback) {
             break;
         case "room5":
             if (!g.pass.inst) {
-                sc.select("room5_0", "486_game/icon_r5_0.webp", 0);
-                sc.select("room5_1", "486_game/icon_r5_1.webp", 1);
+                sc.selectLocalizedLabel("room5_0", "486_game/icon_r5_0.webp", 0, "room.486.action.analwhore", "Anal Whore", null, { width: 432, fontSize: 25 });
+                sc.selectLocalizedLabel("room5_1", "486_game/icon_r5_1.webp", 1, "room.486.action.painslut", "Pain Slut", null, { width: 432, fontSize: 25 });
             }
             g.pass.inst = true;
             break;
         case "room6":
             if (!g.pass.inst) {
                 zcl.displayMain(600, 950, .055, "clothes", true);
-                sc.select("room6_0", "486_game/icon_r6_0.webp", 0);
-                sc.select("room6_1", "486_game/icon_r6_1.webp", 1);
+                sc.selectLocalizedLabel("room6_0", "486_game/icon_r6_0.webp", 0, "room.486.action.piss", "Piss", null, { width: 432, fontSize: 25 });
+                sc.selectLocalizedLabel("room6_1", "486_game/icon_r6_1.webp", 1, "room.486.action.cum", "Cum", null, { width: 432, fontSize: 25 });
             }
             g.pass.inst = true;
             break;
         case "room7":
             if (!g.pass.inst) {
-                sc.select("room7", "486_game/icon_r7.webp", 0);
+                sc.selectLocalizedLabel("room7", "486_game/icon_r7.webp", 0, "room.486.action.impale", "Impale yourself", null, { width: 432, fontSize: 25 });
             }
             g.pass.inst = true;
             break;
@@ -1393,15 +1393,15 @@ room486.chatcatch = function (callback) {
             break;
         case "room8":
             if (!g.pass.inst) {
-                sc.select("room8_0", "486_game/icon_r8_0.webp", 0);
-                sc.select("room8_1", "486_game/icon_r8_1.webp", 1);
+                sc.selectLocalizedLabel("room8_0", "486_game/icon_r8_0.webp", 0, "room.486.action.blue", "Drink the blue cup", null, { width: 432, fontSize: 25 });
+                sc.selectLocalizedLabel("room8_1", "486_game/icon_r8_1.webp", 1, "room.486.action.red", "Drink the red cup", null, { width: 432, fontSize: 25 });
             }
             g.pass.inst = true;
             break;
         case "room8redraw":
             if (g.pass.inst && !g.pass.greenbutton) {
-                sc.select("room8_0", "486_game/icon_r8_0.webp", 0);
-                sc.select("room8_1", "486_game/icon_r8_1.webp", 1);
+                sc.selectLocalizedLabel("room8_0", "486_game/icon_r8_0.webp", 0, "room.486.action.blue", "Drink the blue cup", null, { width: 432, fontSize: 25 });
+                sc.selectLocalizedLabel("room8_1", "486_game/icon_r8_1.webp", 1, "room.486.action.red", "Drink the red cup", null, { width: 432, fontSize: 25 });
             }
             break;
         case "room9":
@@ -1597,6 +1597,7 @@ room486.chat = function (chatID) {
         return {
             chatID: 0,
             speaker: "!ann",
+            l10nValues: { days: daysleft },
             text: "The game has been played, the echoes fade slow<br/>" +
                 "We've had our fun, now the quiet winds blow<br/>" +
                 "Next new game waits, " + daysleft + " days to the line<br/>" +
@@ -1615,6 +1616,7 @@ room486.chat = function (chatID) {
         return {
             chatID: 0,
             speaker: "!ann",
+            l10nValues: { line: l10n.t("room.486.challenge.line." + g.pass.temp, carray[g.pass.temp]) },
             text: "This first room starts off light<br/> Shout the line with all your might! <br/>" +
                 carray[g.pass.temp] +
                 "<br/>Let the crowd hear clear and true<br/>Loud as thunder, that’s on you!<br/>",
@@ -1632,6 +1634,7 @@ room486.chat = function (chatID) {
         return {
             chatID: 0,
             speaker: "me",
+            l10nKey: "room.486.challenge.shout." + g.pass.temp,
             text: carray[g.pass.temp],
             button: [
                 { chatID: -1, text: "...", callback: "greenbuttonON" }
@@ -1701,9 +1704,10 @@ room486.chat = function (chatID) {
         return {
             chatID: 0,
             speaker: "!ann",
+            l10nKey: "room.486.spank.count." + g.pass.temp,
             text: c10041[g.pass.temp],
             button: [
-                { chatID: 10042, text: c10041b[g.pass.temp % c10041b.length], callback: "room4_0_5" }
+                { chatID: 10042, text: c10041b[g.pass.temp % c10041b.length], l10nKey: "room.486.spank.reaction." + (g.pass.temp % c10041b.length), callback: "room4_0_5" }
             ]
         };
     }
@@ -1725,6 +1729,7 @@ room486.chat = function (chatID) {
         return {
             chatID: 0,
             speaker: "me",
+            l10nKey: "room.486.spank.thought." + g.pass.temp,
             text: c10042[g.pass.temp],
             button: [
                 { chatID: (g.pass.temp === 10 ? 18 : 10041), text: "....", callback: "room4_0_4" }
@@ -1756,6 +1761,7 @@ room486.chat = function (chatID) {
         return {
             chatID: 0,
             speaker: "thinking",
+            l10nKey: g.pass.r5 === "pain" ? "room.486.after.marker.pain" : "room.486.after.marker.anal",
             text: r5txt,
             button: [
                 { chatID: -1, text: "...", callback: "greenlightRedraw" }
@@ -1779,6 +1785,7 @@ room486.chat = function (chatID) {
         return {
             chatID: 0,
             speaker: "me",
+            l10nKey: g.pass.r6 === "piss" ? "room.486.after.spray.piss" : "room.486.after.spray.cum",
             text:
                 g.pass.r6 === "piss" ? "I feel so gross right now. I think some of that piss has somehow " +
                     "flowed into every hole of my body, or include my ear holes. I now know what piss sounds " +
@@ -1851,6 +1858,7 @@ room486.chat = function (chatID) {
         return {
             chatID: 0,
             speaker: "thinking",
+            l10nKey: "room.486.bucket." + (g.internal.bucket === 0 ? "empty" : g.internal.bucket < 2 ? "little" : g.internal.bucket < 4 ? "half" : g.internal.bucket < 5 ? "threequarters" : g.internal.bucket < 7 ? "almost" : "full"),
             text: c10091,
             button: [
                 { chatID: -1, text: "...", callback: "" }
@@ -2047,6 +2055,7 @@ room486.chat = function (chatID) {
                 text: "Onto the stage is " + sc.n("!seller") + "!!! The destroyer of asses, the breaker of souls, " +
                     "the crusher of dreams!! With him, his trusty paddle! I feel sorry for our poor contestant! " +
                     gender.pronoun("she") + " is about to get the paddling of " + gender.pronoun("her") + " life!!",
+                l10nValues: { seller: sc.n("!seller"), subject: gender.pronoun("she"), possessive: gender.pronoun("her") },
                 button: [
                     { chatID: 17, text: "*groan*", callback: "room4_0_3" },
                 ]
@@ -2056,6 +2065,7 @@ room486.chat = function (chatID) {
                 speaker: "!barker",
                 text: "Look at that ass ladies and gentlemen! It's a shame what's about to happen to it! " +
                     sc.n("!seller") + " give " + gender.pronoun("her") + " the 10 hard spankings that she wants!!!!",
+                l10nValues: { seller: sc.n("!seller"), object: gender.pronoun("her") },
                 button: [
                     { chatID: 10041, text: "*gulp*", callback: "room4_0_4" },
                 ]
@@ -2065,6 +2075,7 @@ room486.chat = function (chatID) {
                 speaker: "!barker",
                 text: sc.n("!seller") + " you may unlock " + gender.pronoun("her") + "! Let's see her crawl to " +
                     "our next game!!!",
+                l10nValues: { seller: sc.n("!seller"), object: gender.pronoun("her") },
                 button: [
                     { chatID: -1, text: "...", callback: "greenlightRedraw" },
                 ]
@@ -2381,8 +2392,9 @@ room486.chat = function (chatID) {
                 speaker: "thinking",
                 text: "That " + sc.n("!barker") + " is on my list. I should try to find him and see if " +
                     "he knows the code. ",
+                l10nValues: { barker: sc.n("!barker") },
                 button: [
-                    { chatID: 53, text: "[Look for the " + sc.n("!barker") + "]", callback: "missy0" },
+                    { chatID: 53, text: "[Look for the " + sc.n("!barker") + "]", l10nValues: { barker: sc.n("!barker") }, callback: "missy0" },
                     { chatID: -1, text: "Naw. I just want to leave.  ", callback: "leaveend" },
                 ]
             },
@@ -2416,6 +2428,7 @@ room486.chat = function (chatID) {
             {
                 chatID: 56,
                 speaker: "!barker",
+                l10nIgnore: true,
                 text: "noop",
                 button: [
                     { chatID: -1, text: "...", callback: "" },

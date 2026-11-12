@@ -201,10 +201,12 @@ room353.chat = function (chatID) {
             "I was going to jack off in a tissue, but I guess I can do it for you. ",
             "Fuck yeah! Dude that's brilliant! "
         ];
+        var responseIndex = g.rand(0, goodChat.length);
         return {
             chatID: 999,
+            l10nKey: "room.353.chat.999.text." + responseIndex,
             speaker: "!boy",
-            text: goodChat[g.rand(0, goodChat.length)],
+            text: goodChat[responseIndex],
             button: [
                 { chatID: -1, text: "Cool!", callback: "newperson" }
             ]
@@ -227,10 +229,12 @@ room353.chat = function (chatID) {
             "Gross",
             "That's disgusting. "
         ];
+        var responseIndex = g.rand(0, badChat.length);
         return {
             chatID: 998,
+            l10nKey: "room.353.chat.998.text." + responseIndex,
             speaker: "!girl",
-            text: badChat[g.rand(0, badChat.length)],
+            text: badChat[responseIndex],
             button: [
                 { chatID: 20, text: "Oh no. Sorry.", callback: "none" }
             ]
@@ -241,12 +245,13 @@ room353.chat = function (chatID) {
             sc.modLevel("landlord", -15, 999);
             return {
                 chatID: 997,
+                l10nKey: "room.353.chat.997.failed.text",
                 speaker: "landlord",
                 text: "I had too many complaints today. Do you even look at who you're talking to? We had someone " +
                     "come in and slap Nurse Madison. I had to give her a few days off as an apology for you bad " +
                     "behavior. Now take that suit off, you're not getting paid today. ",
                 button: [
-                    { chatID: -1, text: "Crap. I was hoping they didn't say anything. ", callback: "leave" }
+                    { chatID: -1, l10nKey: "room.353.chat.997.failed.choice.0", text: "Crap. I was hoping they didn't say anything. ", callback: "leave" }
                 ]
             };
         }
@@ -256,10 +261,12 @@ room353.chat = function (chatID) {
             gv.mod("money", succPay);
             return {
                 chatID: 997,
+                l10nKey: "room.353.chat.997.bonus.text",
+                l10nValues: { pay: succPay },
                 speaker: "landlord",
                 text: "Wow! No complaints and you talked so many people into coming in! Really great job. I'm " +
                     "going to give you a little bonus of $10 for each person that came in plus your $60 for a " +
-                    "total of $" + succPay + ". I'm impressed! Now go take that thing off. ",
+                    "total of ${pay}. I'm impressed! Now go take that thing off. ",
                 button: [
                     { chatID: -1, text: "Sweet! Thanks! ", callback: "leave" }
                 ]
@@ -270,6 +277,7 @@ room353.chat = function (chatID) {
             gv.mod("money", 60);
             return {
                 chatID: 997,
+                l10nKey: "room.353.chat.997.normal.text",
                 speaker: "landlord",
                 text: "Not a bad days work. Didn't get a lot of extra customers, but I guess they may come in later. " +
                     "Here's $60 for an honest day's pay for an honest day's work. You can take that off. ",
@@ -281,6 +289,7 @@ room353.chat = function (chatID) {
     }
     else if (chatID === 996) {
         var speaker = g.internal.ev[0].g === "f" ? "!girl" : "!boy";
+        var reactionGroup;
         g.internal.ev.splice(0, 1);
         var badtalk = [
             "Oh gross I can see your penis! ",
@@ -291,6 +300,7 @@ room353.chat = function (chatID) {
             "Are you some kind of sex pervert? ",
         ];
         if (cl.c.chastity !== null) {
+            reactionGroup = "cage";
             badtalk.push("What is that on your dick?");
             badtalk.push("What the fuck...");
             badtalk.push("Are you some kind of sissy?");
@@ -298,6 +308,7 @@ room353.chat = function (chatID) {
             badtalk.push("Why are you showing everyone your chastity cage? ");
         }
         else if (gender.isCockTooSmallForSex()) {
+            reactionGroup = "small";
             badtalk.push("Hahahaha! Tiny pecker! ");
             badtalk.push("I didn't know they made dicks that small.");
             badtalk.push("Oh look a cock, only smaller. ");
@@ -306,17 +317,21 @@ room353.chat = function (chatID) {
             badtalk.push("Your penis can be completely covered with a grain of rice. ");
         }
         else {
+            reactionGroup = "large";
             badtalk.push("Oh wow! That's a monster! ");
-            badtalk.push("You mother must be proud of the cock she raised. ");
+            badtalk.push("Whoever raised you must be proud of the cock they raised. ");
             badtalk.push("That looks like it would break me in half! ");
             badtalk.push("Nice cock! ");
             badtalk.push("You're the reason women walked bowlegged. ");
             badtalk.push("Yummy. I want to suck it, but I have things to do. ");
         }
+        var responseIndex = g.rand(0, badtalk.length);
+        var reactionKey = responseIndex < 6 ? "common." + responseIndex : reactionGroup + "." + (responseIndex - 6);
         return {
             chatID: 996,
+            l10nKey: "room.353.chat.996.text." + reactionKey,
             speaker: speaker,
-            text: badtalk[g.rand(0, badtalk.length)],
+            text: badtalk[responseIndex],
             button: [
                 { chatID: -1, text: "Awww...", callback: "newperson" }
             ]

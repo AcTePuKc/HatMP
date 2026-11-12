@@ -188,7 +188,7 @@ room180.chatcatch = function (callback) {
             break;
         case "laser2":
             cl.c.bodyhair = -9999999;
-            g.popUpNotice("You'll never need to shave again!");
+            g.popUpNotice(l10n.t("room.180.notice.noShaving", "You'll never need to shave again!"));
             nav.bg("180_ballroom/bg_empty.jpg");
             zcl.displayMain(0, 500, .2, "clothes", false);
             break;

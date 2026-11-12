@@ -4,15 +4,15 @@ room27.main = function () {
     g.internal = new Array();
     var nextChat = (g.pass === 57 || g.pass === 151) ? 19 : 20;
     if (inv.has("redl") || g.pass === 57 || g.pass === 151)
-        g.internal.push({ chatID: nextChat, text: "Red lipstick", callback: "red" });
+        g.internal.push({ chatID: nextChat, text: "Red lipstick", l10nKey: "inventory.item.redl.name", callback: "red" });
     if (inv.has("pinkl") || g.pass === 57 || g.pass === 151)
-        g.internal.push({ chatID: nextChat, text: "Pink lipstick", callback: "pink" });
+        g.internal.push({ chatID: nextChat, text: "Pink lipstick", l10nKey: "inventory.item.pinkl.name", callback: "pink" });
     if (inv.has("purplel") || g.pass === 57 || g.pass === 151)
-        g.internal.push({ chatID: nextChat, text: "Purple lipstick", callback: "purple" });
+        g.internal.push({ chatID: nextChat, text: "Purple lipstick", l10nKey: "inventory.item.purplel.name", callback: "purple" });
     if (inv.has("blackl") || g.pass === 57 || g.pass === 151)
-        g.internal.push({ chatID: nextChat, text: "Black lipstick", callback: "black" });
+        g.internal.push({ chatID: nextChat, text: "Black lipstick", l10nKey: "inventory.item.blackl.name", callback: "black" });
     if (g.internal.length === 0)
-        g.internal.push({ chatID: g.pass === 57 ? 12 : 0, text: "I don't have any lipstick", callback: "" });
+        g.internal.push({ chatID: g.pass === 57 ? 12 : 0, text: "I don't have any lipstick", l10nKey: "room.27.choice.noLipstick", callback: "" });
 
     switch (g.pass) {
         case 12:
@@ -253,7 +253,7 @@ room27.btnclick = function (name) {
             gv.set("lipstick", cl.c.lipstick);
             gv.set("eyeliner", cl.c.pissface);
             gv.set("makeupx", cl.c.makeup);
-            g.popUpNotice("Current makeup saved");
+            g.popUpNotice(l10n.t("room.27.notice.makeupSaved", "Current makeup saved"));
             break;
         case "load":
             var qqlipstick = gv.get("lipstick");
@@ -271,7 +271,7 @@ room27.btnclick = function (name) {
                     inv.use("makeup");
                 }
                 else {
-                    g.popUpNotice("You're out of makeup. ");
+                    g.popUpNotice(l10n.t("room.27.notice.noMakeup", "You're out of makeup. "));
                 }
             }
             else
@@ -289,7 +289,7 @@ room27.btnclick = function (name) {
                     inv.use("eyeshadow");
                 }
                 else {
-                    g.popUpNotice("You're out of eye shadow. ");
+                    g.popUpNotice(l10n.t("room.27.notice.noEyeshadow", "You're out of eye shadow. "));
                 }
             }
             else {
@@ -308,13 +308,13 @@ room27.btnclick = function (name) {
                     inv.use(qqlipstick + "l");
                 }
                 else {
-                    g.popUpNotice("You're out of " + qqlipstick + " lipstick. ");
+                    g.popUpNotice(l10n.t("room.27.notice.noLipstick", "You're out of {item}. ", { item: l10n.t("inventory.item." + qqlipstick + "l.name", qqlipstick + " lipstick") }));
                 }
             }
             else {
                 cl.c.lipstick = null;
             }
-            g.popUpNotice("You put on your makeup");
+            g.popUpNotice(l10n.t("room.27.notice.makeupApplied", "You put on your makeup"));
             nav.kill();
             cl.display();
             zcl.displayMirror();
@@ -584,7 +584,7 @@ room27.chatcatch = function (callback) {
                 top: 850,
                 font: 40,
                 hex: "#ffffff",
-                text: "Your Points: " + bcEarned 
+                text: l10n.t("room.27.appearance.points", "Your Points: {points}", { points: bcEarned })
             }, 27);
             if (cl.isLewd()) {
                 nav.t({
@@ -594,7 +594,7 @@ room27.chatcatch = function (callback) {
                     top: 900,
                     font: 40,
                     hex: "#faa7f7",
-                    text: "Lewd Bonus!!"
+                    text: l10n.t("room.27.appearance.lewdBonus", "Lewd Bonus!!")
                 }, 27);
             }
             for (i = 0; i < cl.set.length; i++) {

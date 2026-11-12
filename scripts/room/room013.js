@@ -1,5 +1,30 @@
 ﻿//Sister's Room
 var room13 = {};
+room13.selectTranslated = function (name, image, index) {
+    const labels = {
+        "icon_chatLola.png": ["chat", "Chat"],
+        "icon_chatEva.png": ["chat", "Chat"],
+        "icon_cancel.png": ["cancel", "Cancel"],
+        "icon_dick.png": ["dick", "Take your dick out"],
+        "icon_focuslolastrip.png": ["strip", "Strip"],
+        "icon_focusevastrip.png": ["strip", "Strip"],
+        "icon_massage.png": ["massage", "Offer her a massage"],
+        "icon_feet.png": ["feet", "Massage her feet"],
+        "icon_spinthebottle.png": ["spin", "Play Spin the bottle"],
+        "icon_truthordare.png": ["truth", "Truth or Dare"],
+        "icon_practice.png": ["practice", "Practice Date"],
+        "icon_teach.png": ["teach", "Teach me"],
+        "icon_pdPark.png": ["park", "Practice date at the park"],
+        "icon_pdCarnival.png": ["carnival", "Practice date at the carnival"],
+        "icon_pdRoom.png": ["room", "Practice date in her room"],
+        "icon_rollover.png": ["rollOver", "Roll them over"]
+    };
+    const entry = labels[image.substring(image.lastIndexOf("/") + 1)];
+    if (entry)
+        sc.selectLocalizedLabel(name, image, index, "room.13.action." + entry[0], entry[1], "", { width: 430, fontSize: 25 });
+    else
+        sc.select(name, image, index);
+};
 
 room13.main = function () {
     if (gv.get("cultEscape") !== null) {
@@ -326,18 +351,18 @@ room13.btnclick = function (name) {
                     "height": 1080,
                     "image": "1001_rand/black_25.png"
                 }, g.roomID);
-                sc.select("lolachat", "13_sisterRoom/icon_chatLola.png", 0);
+                room13.selectTranslated("lolachat", "13_sisterRoom/icon_chatLola.png", 0);
                 if (!sc.getMission("lola", "massage").notStarted)
-                    sc.select("lolamassage", "13_sisterRoom/icon_massage.png", 1);
+                    room13.selectTranslated("lolamassage", "13_sisterRoom/icon_massage.png", 1);
                 if (sc.getMissionTask("lola", "games", 0).complete)
-                    sc.select("spin", "13_sisterRoom/icon_spinthebottle.png", 2);
+                    room13.selectTranslated("spin", "13_sisterRoom/icon_spinthebottle.png", 2);
                 if (sc.getMissionTask("lola", "games", 1).complete)
-                    sc.select("tord", "13_sisterRoom/icon_truthordare.png", 3);
+                    room13.selectTranslated("tord", "13_sisterRoom/icon_truthordare.png", 3);
                 if (sc.getMission("lola", "date").inProgress && !g.isNight()) {
-                    sc.select("practiceDate", "13_sisterRoom/icon_practice.png", 4);
+                    room13.selectTranslated("practiceDate", "13_sisterRoom/icon_practice.png", 4);
                 }
-                sc.select("dick", "13_sisterRoom/icon_dick.png", 5);
-                sc.select("clearChat", "13_sisterRoom/icon_cancel.png", 6);
+                room13.selectTranslated("dick", "13_sisterRoom/icon_dick.png", 5);
+                room13.selectTranslated("clearChat", "13_sisterRoom/icon_cancel.png", 6);
             }
             else if (sc.getMission("lola", "sissy").inProgress) {
                 if (daily.get("lola")) {
@@ -426,15 +451,15 @@ room13.btnclick = function (name) {
                     "height": 1080,
                     "image": "1001_rand/black_25.png"
                 }, g.roomID);
-                sc.select("evachat", "13_sisterRoom/icon_chatEva.png", 0);
+                room13.selectTranslated("evachat", "13_sisterRoom/icon_chatEva.png", 0);
                 if (!sc.getMission("eva", "massage").notStarted)
-                    sc.select("evamassage", "13_sisterRoom/icon_feet.png", 1);
+                    room13.selectTranslated("evamassage", "13_sisterRoom/icon_feet.png", 1);
                 if (sc.getMissionTask("eva", "games", 0).complete)
-                    sc.select("spin", "13_sisterRoom/icon_spinthebottle.png", 2);
+                    room13.selectTranslated("spin", "13_sisterRoom/icon_spinthebottle.png", 2);
                 if (sc.getMissionTask("eva", "games", 1).complete)
-                    sc.select("tord", "13_sisterRoom/icon_truthordare.png", 3);
-                sc.select("dick", "13_sisterRoom/icon_dick.png", 4);
-                sc.select("clearChat", "13_sisterRoom/icon_cancel.png", 5);
+                    room13.selectTranslated("tord", "13_sisterRoom/icon_truthordare.png", 3);
+                room13.selectTranslated("dick", "13_sisterRoom/icon_dick.png", 4);
+                room13.selectTranslated("clearChat", "13_sisterRoom/icon_cancel.png", 5);
             }
             else {
                 let evaSissy = sc.taskGetStep("eva", "sissy");
@@ -474,9 +499,9 @@ room13.btnclick = function (name) {
                         "height": 1080,
                         "image": "1001_rand/black_25.png"
                     }, g.roomID);
-                    sc.select("chatSissy10", "13_sisterRoom/icon_chatEva.png", 0);
+                    room13.selectTranslated("chatSissy10", "13_sisterRoom/icon_chatEva.png", 0);
                     if (!daily.get("evaTeach") && !daily.get("lolahide"))
-                        sc.select("icon_teach", "13_sisterRoom/icon_teach.png", 1);
+                        room13.selectTranslated("icon_teach", "13_sisterRoom/icon_teach.png", 1);
                     sc.selectCancel("icon_evaCancel", 2);
                 }
             }
@@ -781,10 +806,10 @@ room13.btnclick = function (name) {
             invoker.invokeCurrent("chatcatch", "displaySnore");
             g.internal.step = 0;
             if (g.internal.lolaPanties)
-                sc.select("lolaStrip", "13_sisterRoom/icon_focuslolastrip.png", 0);
+                room13.selectTranslated("lolaStrip", "13_sisterRoom/icon_focuslolastrip.png", 0);
             if (g.internal.evaPanties)
-                sc.select("evaStrip", "13_sisterRoom/icon_focusevastrip.png", 1);
-            sc.select("bothRoll", "13_sisterRoom/icon_rollover.png", 2);
+                room13.selectTranslated("evaStrip", "13_sisterRoom/icon_focusevastrip.png", 1);
+            room13.selectTranslated("bothRoll", "13_sisterRoom/icon_rollover.png", 2);
             sc.selectCancel("leave", 3);
             break;
         case "lolaStrip":
@@ -1348,10 +1373,10 @@ room13.btnclick = function (name) {
                         chat(67, 13);
                     break;
                 default:
-                    sc.select("datePark", "13_sisterRoom/icon_pdPark.png", 0);
-                    sc.select("dateFair", "13_sisterRoom/icon_pdCarnival.png", 1);
+                    room13.selectTranslated("datePark", "13_sisterRoom/icon_pdPark.png", 0);
+                    room13.selectTranslated("dateFair", "13_sisterRoom/icon_pdCarnival.png", 1);
                     if (!sc.getMissionTask("lola", "date", 4).complete)
-                        sc.select("dateHere", "13_sisterRoom/icon_pdRoom.png", 2);
+                        room13.selectTranslated("dateHere", "13_sisterRoom/icon_pdRoom.png", 2);
                     sc.selectCancel("dateCancel", 3);
                     break;
             }
@@ -1434,6 +1459,7 @@ room13.btnclick = function (name) {
                     "width": 631,
                     "height": 637,
                     "title": "lick her feet",
+                    "titleKey": "room.13.action.lickFeet",
                     "image": "13_sisterRoom/sissyEva3_1foot0.png"
                 }, 13);
                 chat(172, 13);
@@ -1746,10 +1772,10 @@ room13.chatcatch = function (callback) {
                 char.room(450);
                 break;
             case "drawDateIcons":
-                sc.select("datePark", "13_sisterRoom/icon_pdPark.png", 0);
-                sc.select("dateFair", "13_sisterRoom/icon_pdCarnival.png", 1);
+                room13.selectTranslated("datePark", "13_sisterRoom/icon_pdPark.png", 0);
+                room13.selectTranslated("dateFair", "13_sisterRoom/icon_pdCarnival.png", 1);
                 if (!sc.getMissionTask("lola", "date", 4).complete)
-                    sc.select("dateHere", "13_sisterRoom/icon_pdRoom.png", 2);
+                    room13.selectTranslated("dateHere", "13_sisterRoom/icon_pdRoom.png", 2);
                 sc.selectCancel("dateCancel", 3);
                 break;
             case "date0":
@@ -1921,6 +1947,7 @@ room13.chatcatch = function (callback) {
                     "width": 631,
                     "height": 637,
                     "title": "lick her feet",
+                    "titleKey": "room.13.action.lickFeet",
                     "image": "13_sisterRoom/sissyEva3_1foot.png"
                 }, 13);
                 nav.button({
@@ -1931,6 +1958,7 @@ room13.chatcatch = function (callback) {
                     "width": 153,
                     "height": 126,
                     "title": "eat her pussy",
+                    "titleKey": "room.13.action.eatPussy",
                     "image": "13_sisterRoom/sissyEva3_1pussy.png"
                 }, 13);
                 

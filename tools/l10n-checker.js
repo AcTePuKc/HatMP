@@ -179,8 +179,10 @@ function sourceReferences(root) {
     return { refs, diagnostics };
 }
 
-function needsTranslation(value) {
+function needsTranslation(value, key) {
     // Empty dialogue slots and punctuation-only choices carry no translatable words.
+    // Literal NOOP dialogue bodies are service placeholders, not player text.
+    if (/^room\.\d+\.chat\.\d+\.text$/.test(key || '') && typeof value === 'string' && /^noop$/i.test(value.trim())) return false;
     return !(typeof value === 'string' && (!value.trim() || /^[\p{P}\p{S}\s]+$/u.test(value.trim())));
 }
 
@@ -216,7 +218,7 @@ function check(root, options = {}) {
             const translated = catalog.entries.get(key);
             const reference = english.get(key) || sources.refs.get(key);
             const source = reference?.value;
-            if (!needsTranslation(source)) continue;
+            if (!needsTranslation(source, key)) continue;
             if (!translated || !translated.value.trim()) {
                 missing++;
                 add({ severity: 'warning', type: 'missing', locale, file: translated?.file || path.join(root, 'l10n', locale + '.js'), line: translated?.line || 1, key, source, referenceFile: reference?.file, referenceLine: reference?.line, message: 'Missing or empty translation; the game falls back to English/source text.' });
@@ -262,7 +264,7 @@ function check(root, options = {}) {
                 if (extra.length || absent.length) addVariant({ severity: extra.length ? 'error' : 'warning', type: 'placeholders', message: [absent.length ? 'Source placeholders omitted: ' + absent.join(', ') : '', extra.length ? 'Unexpected placeholders: ' + extra.join(', ') : ''].filter(Boolean).join('. ') + (extra.length ? '. Check spelling and the values supplied by the game.' : '. Review whether the omission or grammatical rephrasing is intentional. Placeholder order and grammatical form suffixes may change.') });
             }
         }
-        const sourceKeys = options.includeSource === false ? [] : [...sources.refs.keys()].filter(key => matches(key) && needsTranslation(sources.refs.get(key)?.value));
+        const sourceKeys = options.includeSource === false ? [] : [...sources.refs.keys()].filter(key => matches(key) && needsTranslation(sources.refs.get(key)?.value, key));
         const sourceMissing = sourceKeys.filter(key => {
             const translated = catalog.entries.get(key);
             return !translated || !translated.value.trim();

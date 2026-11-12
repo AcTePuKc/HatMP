@@ -331,7 +331,7 @@ room9.btnclick = function (name) {
                 top: 250,
                 font: 40,
                 hex: "#ffffff",
-                text: "Straight Porn"
+                text: l10n.t("room.9.porn.straight", "Straight Porn")
             }, 9);
             nav.t({
                 type: "btn",
@@ -340,7 +340,7 @@ room9.btnclick = function (name) {
                 top: 350,
                 font: 40,
                 hex: "#ffffff",
-                text: "Anal Porn"
+                text: l10n.t("room.9.porn.anal", "Anal Porn")
             }, 9);
             if (qdress.st[0].ach) {
                 nav.t({
@@ -350,7 +350,7 @@ room9.btnclick = function (name) {
                     top: 450,
                     font: 40,
                     hex: "#ffffff",
-                    text: "Strapon Porn"
+                    text: l10n.t("room.9.porn.strapon", "Strapon Porn")
                 }, 9);
             }
             if (qdress.st[1].ach) {
@@ -361,7 +361,7 @@ room9.btnclick = function (name) {
                     top: 550,
                     font: 40,
                     hex: "#ffffff",
-                    text: "Futa Porn"
+                    text: l10n.t("room.9.porn.futa", "Futa Porn")
                 }, 9);
             }
             if (qdress.st[3].ach) {
@@ -372,7 +372,7 @@ room9.btnclick = function (name) {
                     top: 650,
                     font: 40,
                     hex: "#ffffff",
-                    text: "Sissy Porn"
+                    text: l10n.t("room.9.porn.sissy", "Sissy Porn")
                 }, 9);
             }
             nav.button({

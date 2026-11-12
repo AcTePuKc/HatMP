@@ -80,12 +80,12 @@ room6.btnclick = function (name) {
             top: 150,
             font: 40,
             hex: "#ffffff",
-            text: "I'm sure someone in my list of known contacts knows the combo to get into <br/> " +
+            text: l10n.t("room.6.notes.forestQueen", "I'm sure someone in my list of known contacts knows the combo to get into <br/> " +
                 "the compound. They stopped telling me after they said I had become 'disgruntaled'. <br/>" +
                 "Most people are just buzzed in, so you have to get someone from the inside to let <br/>" +
                 "you in. But there's a few that know the secret combo to the door, I just don't know who. <br/>" +
                 "Best of luck in taking them down. I know you can do it! <br/><br/>" +
-                "❤️ Forest Queen"
+                "❤️ Forest Queen")
         }, 6);
         nav.button({
             "type": "btn",
@@ -131,7 +131,7 @@ room6.btnclick = function (name) {
             top: 270,
             font: 80,
             hex: "#ffffff",
-            text: "Name: " + g.internal.current.display
+            text: l10n.t("room.6.file.name", "Name: ") + g.internal.current.display
         }, 6);
         switch (name) {
             case "landlord":
@@ -144,6 +144,7 @@ room6.btnclick = function (name) {
                 txt.h = "I need to gain her trust by showing that I'm a girl and ask what happened. "
                 break;
             case "eva":
+                txt.values = { eva: sc.n("eva") };
                 txt.o = "Student";
                 txt.p = "Milk Maid";
                 txt.s = sc.n("eva") + " was an active Milk Maid after she turned 18, but has stopped coming in lately. " +
@@ -153,6 +154,7 @@ room6.btnclick = function (name) {
                 txt.h = "I need to prove to her that I belong there. I should show her I can be a submissive girl. ";
                 break;
             case "stormy":
+                txt.values = { stormy: sc.n("stormy") };
                 txt.o = "Tattoo Artist";
                 txt.p = "Milk Maid";
                 txt.s = sc.n("stormy") + " has been a loyal Milk Maid for many years. She first came into service when her brother " + 
@@ -162,12 +164,14 @@ room6.btnclick = function (name) {
                 txt.h = "";
                 break;
             case "chloe":
+                txt.values = { chloe: sc.n("chloe"), charlie: sc.n("charlie") };
                 txt.o = "Prostitute";
                 txt.p = "Milk Maid";
                 txt.s = sc.n("chloe") + " was recruited off the streets by " + sc.n("charlie") + " soon after her 18th birthday. " +
                     "When she does show up she is a master Milk Maid, able to extract cum from 10 men in a single hour. ";
                 break;
             case "chad":
+                txt.values = { chad: sc.n("chad"), govlady: sc.n("govlady") };
                 txt.o = "Gym Owner";
                 txt.p = "Brother of C.U.M.";
                 txt.s = "Brother " + sc.n("chad") + " came to us after failing to get a baseball scholarship and ending " +
@@ -175,6 +179,7 @@ room6.btnclick = function (name) {
                     sc.n("govlady") + " we were able to get him a gym and free membership of all our Brothers and Sisters. ";
                 break;
             case "charlie":
+                txt.values = { charlie: sc.n("charlie"), tiffany: sc.n("tiffany"), candy: sc.n("candy") };
                 txt.o = "Toys 'n Us Employee";
                 txt.p = "Recruiter";
                 txt.s = sc.n("charlie") + " was Brother " + sc.n("charlie") + " at one time. He was given the store Toy 'n " +
@@ -186,6 +191,7 @@ room6.btnclick = function (name) {
                     "about working as a Milk Maid. ";
                 break;
             case "cop":
+                txt.values = { charlie: sc.n("charlie"), molly: sc.n("molly"), chloe: sc.n("chloe"), keaton: sc.n("keaton"), stormy: sc.n("stormy") };
                 txt.o = "Cop";
                 txt.p = "On the payroll";
                 txt.s = "He is paid a small bribe each week as well as given use of some of our members. Additionally we have blackmail " +
@@ -203,6 +209,7 @@ room6.btnclick = function (name) {
                 txt.h = "Maybe I could find some blackmail on him. ";
                 break;
             case "govlady":
+                txt.values = { govlady: sc.n("govlady") };
                 txt.o = "City Government";
                 txt.p = "No Affiliation";
                 txt.s = "Through her all things in Carnalville happen. " + sc.n("govlady") + " pays the police bribes, " +
@@ -212,6 +219,7 @@ room6.btnclick = function (name) {
                 txt.h = "I wonder if I could just bribe her for information. ";
                 break;
             case "g":
+                txt.values = { trainer: sc.n("g") };
                 txt.o = "Personal Trainer";
                 txt.p = "Sister of C.U.M.";
                 txt.s = sc.n("g") + " was demoted from Bishop to Sister after she tried to assault Ubel for control of " +
@@ -221,6 +229,7 @@ room6.btnclick = function (name) {
                 txt.h = "Maybe if I beat her in a fight. ";
                 break;
             case "jones":
+                txt.values = { jones: sc.n("jones") };
                 txt.o = "CEO";
                 txt.p = "Bishop";
                 txt.s = "It is through " + sc.n("jones") + "'s financial contributions that C.U.M. is able to have a compound. " +
@@ -229,6 +238,7 @@ room6.btnclick = function (name) {
                 txt.h = "I could try to see if he'll let me be his slave and work from the inside. ";
                 break;
             case "juniper":
+                txt.values = { juniper: sc.n("juniper") };
                 txt.o = "Clerk";
                 txt.p = "Sister of C.U.M.";
                 txt.s = sc.n("juniper") + " likes to switch between the duties of a Milk Maid and donating her seed for the " +
@@ -236,6 +246,7 @@ room6.btnclick = function (name) {
                 txt.h = "I could befriend her. See if she'll just tell me. ";
                 break;
             case "keaton":
+                txt.values = { keaton: sc.n("keaton") };
                 txt.o = "Student";
                 txt.p = "Slave";
                 txt.s = "No one is sure of how " + sc.n("keaton") + " came into the service of C.U.M. He was just found one " +
@@ -266,6 +277,7 @@ room6.btnclick = function (name) {
                 txt.h = "He does love talking and sex. I guess I could start with the sex to get him to talk. ";
                 break;
             case "treyvon":
+                txt.values = { treyvon: sc.n("treyvon") };
                 txt.o = "Security";
                 txt.p = "Brother of C.U.M.";
                 txt.s = "C.U.M. uses " + sc.n("treyvon") + " to enforce their policies. I don't really know exactly what " +
@@ -325,6 +337,7 @@ room6.btnclick = function (name) {
                     "Jeremy was sent to live out her new life as a Milk Maiden. ";
                 break;
             case "missy":
+                txt.values = { missy: sc.n("missy"), cop2: sc.n("cop2") };
                 g.internal.level = 3;
                 txt.o = "Detective";
                 txt.p = "N/A";
@@ -338,6 +351,7 @@ room6.btnclick = function (name) {
                     "to be brutal. ";
                 break;
             case "p":
+                txt.values = { missy: sc.n("missy") };
                 g.internal.level = 3;
                 txt.o = "Pink Room Mistress";
                 txt.p = "N/A";
@@ -346,6 +360,7 @@ room6.btnclick = function (name) {
                     "for them. ";
                 break;
             case "cecilia":
+                txt.values = { missy: sc.n("missy") };
                 g.internal.level = 3;
                 txt.o = "Secretary";
                 txt.p = "N/A";
@@ -353,6 +368,7 @@ room6.btnclick = function (name) {
                     "sock, because everyone ejaculates in her. ";
                 break;
             case "black":
+                txt.values = { black: sc.n("black"), missy: sc.n("missy") };
                 g.internal.level = 3;
                 txt.o = "Excommunicated";
                 txt.p = "Sadist";
@@ -380,7 +396,7 @@ room6.btnclick = function (name) {
             top: 370,
             font: 50,
             hex: "#ffffff",
-            text: "Occupation: " + txt.o
+            text: l10n.t("room.6.file.occupation", "Occupation: ") + l10n.t("room.6.occupation." + name, txt.o)
         }, 6);
         nav.t({
             type: "img",
@@ -389,7 +405,7 @@ room6.btnclick = function (name) {
             top: 430,
             font: 50,
             hex: "#ffffff",
-            text: "Affiliation: " + txt.p
+            text: l10n.t("room.6.file.affiliation", "Affiliation: ") + l10n.t("room.6.affiliation." + name, txt.p)
         }, 6);
         nav.t({
             type: "img",
@@ -398,7 +414,7 @@ room6.btnclick = function (name) {
             top: 500,
             font: 30,
             hex: "#ffffff",
-            text: g.linebreak(txt.s, 100)
+            text: g.linebreak(l10n.t("room.6.summary." + name, txt.s, txt.values), 100)
         }, 6);
         nav.button({
             "type": "img",

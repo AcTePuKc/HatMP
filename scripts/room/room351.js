@@ -108,7 +108,8 @@ room351.chat = function (chatID) {
         {
             chatID: 5,
             speaker: "!madison",
-            text: "I'm going to run this to the cooler. Get dressed, your " + sc.n("landlord") + " will take care of you at the front. ",
+            l10nValues: { landlord: sc.n("landlord") },
+            text: "I'm going to run this to the cooler. Get dressed, your {landlord} will take care of you at the front. ",
             button: [
                 { chatID: 6, text: "Ok. Thanks?", callback: "payme" }
             ]

@@ -264,7 +264,8 @@ room350.chat = function (chatID) {
         {
             chatID: 0,
             speaker: "landlord",
-            text: sc.n("me") + " what are you doing here?",
+            l10nValues: { me: sc.n("me") },
+            text: "{me} what are you doing here?",
             button: [
                 { chatID: 1, text: "I came to make a deposit", callback: "" },
                 { chatID: 2, text: "Just wanted to say hi.", callback: "" }
@@ -283,7 +284,7 @@ room350.chat = function (chatID) {
             speaker: "landlord",
             text: "That's nice, now run along.",
             button: [
-                { chatID: -1, text: "Yes " + sc.n("landlord"), callback: "" }
+                { chatID: -1, l10nValues: { landlord: sc.n("landlord") }, text: "Yes {landlord}", callback: "" }
             ]
         },
         {
@@ -336,7 +337,8 @@ room350.chat = function (chatID) {
         {
             chatID: 8,
             speaker: "landlord",
-            text: "Nurse Madison, this is " + sc.n("me") + ". ",
+            l10nValues: { me: sc.n("me") },
+            text: "Nurse Madison, this is {me}. ",
             button: [
                 { chatID: 9, text: "...", callback: "" },
             ]
@@ -344,7 +346,8 @@ room350.chat = function (chatID) {
         {
             chatID: 9,
             speaker: "!madison",
-            text: "Oh " + sc.n("me") + "! Your " + sc.n("landlord") + " has said so much about you. Don't worry, it's all good. " +
+            l10nValues: { me: sc.n("me"), landlord: sc.n("landlord") },
+            text: "Oh {me}! Your {landlord} has said so much about you. Don't worry, it's all good. " +
                 "I'm so happy to assist you with your donation. Don't worry. He's in great hands with me. ",
             button: [
                 { chatID: 10, text: "...", callback: "" },
@@ -363,7 +366,8 @@ room350.chat = function (chatID) {
         {
             chatID: 11,
             speaker: "!madison",
-            text: "Of course. " + sc.n("me") + " follow me to the donation room. ",
+            l10nValues: { me: sc.n("me") },
+            text: "Of course. {me} follow me to the donation room. ",
             button: [
                 { chatID: -1, text: "oh yeah! ", callback: "sperm2" },
             ]
@@ -418,7 +422,8 @@ room350.chat = function (chatID) {
         {
             chatID: 17,
             speaker: "thinking",
-            text: sc.n("landlord") + " must not be in yet. ",
+            l10nValues: { landlord: sc.n("landlord") },
+            text: "{landlord} must not be in yet. ",
             button: [
                 { chatID: -1, text: "Wait for her to come in.", callback: "wait" },
                 { chatID: -1, text: "Leave", callback: "leave" }
@@ -458,7 +463,7 @@ room350.chat = function (chatID) {
                 "to start investigating your operation more deeply. You wouldn't want to lose your " +
                 "sperm bank license would you? ",
             button: [
-                { chatID: 22, text: "...who's that talking to my " + sc.n("landlord") + "?", callback: "" },
+                { chatID: 22, l10nValues: { landlord: sc.n("landlord") }, text: "...who's that talking to my {landlord}?", callback: "" },
             ]
         },
         {
@@ -528,7 +533,8 @@ room350.chat = function (chatID) {
         {
             chatID: 29,
             speaker: "thinking",
-            text: "Who is that guy? He's such as ass trying to blackmail my " + sc.n("landlord") + "! I'll " +
+            l10nValues: { landlord: sc.n("landlord") },
+            text: "Who is that guy? He's such as ass trying to blackmail my {landlord}! I'll " +
                 "have to help her somehow. I better get back to the lobby before they figure out I'm eavesdropping.",
             button: [
                 { chatID: -1, text: "....", callback: "raven_1_end" },
@@ -537,7 +543,8 @@ room350.chat = function (chatID) {
         {
             chatID: 30,
             speaker: "thinking",
-            text: "That sounds like my " + sc.n("landlord") + ". I wonder what's going on. Let me just listen a " +
+            l10nValues: { landlord: sc.n("landlord") },
+            text: "That sounds like my {landlord}. I wonder what's going on. Let me just listen a " +
                 "little bit. ",
             button: [
                 { chatID: 21, text: "....", callback: "raven_0_2" },
@@ -612,10 +619,11 @@ room350.chat = function (chatID) {
         {
             chatID: 38,
             speaker: "landlord",
+            l10nValues: { landlord: sc.n("landlord") },
             text: "I suppose this is my fault. You've been around girls the entire time. " +
                 "You've never been properly shown how to be a boy. From the looks of it, " +
                 "it seems too late to go down that path, this is the path you're on. " +
-                "As your " + sc.n("landlord") + " I suppose it's my responsibility to " +
+                "As your {landlord} I suppose it's my responsibility to " +
                 "continue to help you on your path.",
             button: [
                 { chatID: 39, text: "Help me?", callback: "" },
@@ -635,10 +643,11 @@ room350.chat = function (chatID) {
         {
             chatID: 40,
             speaker: "landlord",
+            l10nValues: { lola: sc.n("lola"), eva: sc.n("eva") },
             text: "Oh hahaha. I don't believe you. I know you too well. Deep down I " +
                 "know you're the kind of girl that gives it up on the first date. " +
-                sc.n("lola") + " is the sweet innocent type. You're more like " +
-                sc.n("eva") + ", but dialed up to 11. ",
+                "{lola} is the sweet innocent type. You're more like " +
+                "{eva}, but dialed up to 11. ",
             button: [
                 { chatID: 42, text: "oh.", callback: "" }
             ]
@@ -684,8 +693,9 @@ room350.chat = function (chatID) {
         {
             chatID: 45,
             speaker: "landlord",
+            l10nValues: { landlord: sc.n("landlord") },
             text: "I didn't ask you to tell me what a selfish little girl you are. This is your chance to actually do some work and " +
-                "help your " + sc.n("landlord") + ". ",
+                "help your {landlord}. ",
             button: [
                 { chatID: 47, text: ".... ok", callback: "" }
             ]
@@ -712,7 +722,8 @@ room350.chat = function (chatID) {
         {
             chatID: 48,
             speaker: "landlord",
-            text: "You can change into your nurse outfit here. If " + sc.n("raven") +
+            l10nValues: { raven: sc.n("raven") },
+            text: "You can change into your nurse outfit here. If {raven}" +
                 " is in here, just ask him to leave. I've already spoken to him " +
                 "multiple times about trying to peek at my nurses. Now get changed. ",
             button: [
@@ -790,7 +801,7 @@ room350.chat = function (chatID) {
             text: "You have some nerve coming into my place of work after what you've done! " +
                 "I would put you over my knee if I didn't need to stay up here!",
             button: [
-                { chatID: 57, text: "I'm so sorry! I promise I won't cum in my " + sc.el() + " while she sleeps anymore! ", callback: "" },
+                { chatID: 57, l10nValues: { el: sc.el() }, text: "I'm so sorry! I promise I won't cum in my {el} while she sleeps anymore! ", callback: "" },
             ]
         },
         {
@@ -851,6 +862,7 @@ room350.chat = function (chatID) {
         {
             chatID: 63,
             speaker: "landlord",
+            l10nIgnore: true,
             text: "noop",
             button: [
                 { chatID: -1, text: "...", callback: "" },
@@ -929,10 +941,11 @@ room350.chat = function (chatID) {
         {
             chatID: 72,
             speaker: "thinking",
+            l10nValues: { boxes: sc.n("!boxes") },
             text: "This hurts so much! I can feel the edges of this desk dig into my ribcage " +
                 "and the ropes are digging into my wrists. I wonder " +
                 "what she's up to? I can hear her talking, but I can't make it out. What is she planning. " +
-                "I hope she isn't going to bare bottom spank me in front of " + sc.n("!boxes") + ". I would " +
+                "I hope she isn't going to bare bottom spank me in front of {boxes}. I would " +
                 "die of embarrassment! ",
             button: [
                 { chatID: 73, text: "...", callback: "inspect7" },
@@ -949,9 +962,10 @@ room350.chat = function (chatID) {
         {
             chatID: 74,
             speaker: "landlord",
+            l10nValues: { boxes: sc.n("!boxes") },
             text: "The rapist! Now I can go on and on about how wrong it was, what you did, but " +
                 "I won't. I think the best way to let you know how terrible your actions are is to show " +
-                "you. That's why " + sc.n("!boxes") + " here is going to rape you up your ass. Dry. So you " +
+                "you. That's why {boxes} here is going to rape you up your ass. Dry. So you " +
                 "know how it feels to have consent taken away. ",
             button: [
                 { chatID: 75, text: "What??", callback: "inspect8" },
@@ -960,8 +974,8 @@ room350.chat = function (chatID) {
         {
             chatID: 75,
             speaker: "!boxes",
-            text: "Oh boy! I do love doing surprise anal! You really are the best " + sc.n("me") +
-                "'s " + sc.n("landlord") + "!",
+            l10nValues: { me: sc.n("me"), landlord: sc.n("landlord") },
+            text: "Oh boy! I do love doing surprise anal! You really are the best {me}'s {landlord}!",
             button: [
                 { chatID: 76, text: "!", callback: "inspect9" },
             ]

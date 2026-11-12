@@ -6,7 +6,7 @@ room752.main = function () {
         nav.bg("752_whore/sit_" + gender.pronoun("f") + ".webp");
         g.map.list.shift();
         char.addtime(60);
-        sc.select("whoreEvent", "193_afternoon/icon_wait.webp", -2);
+        sc.selectLocalizedLabel("whoreEvent", "193_afternoon/icon_wait.webp", -2, "room.752.select.wait", "Wait", "", { width: 430, fontSize: 25 });
         g.map.spcounter = 0;
         g.map.counter++;
         return;
@@ -37,9 +37,9 @@ room752.btnclick = function (name) {
         case "whore":
             var activeCase = missy.activecase();
             if (!activeCase.isComplete && activeCase.caseId === 8) {
-                sc.select("whore_dick", "752_whore/whore_dick.png", 0);
-                sc.select("whore_chat", "752_whore/whore_chat.png", 1);
-                sc.select("whore_locket", "752_whore/whore_locket.png", 2);
+                sc.selectLocalizedLabel("whore_dick", "752_whore/whore_dick.png", 0, "room.752.select.dick", "Take your dick out", "", { width: 430, fontSize: 25 });
+                sc.selectLocalizedLabel("whore_chat", "752_whore/whore_chat.png", 1, "room.752.select.chat", "Chat", "", { width: 430, fontSize: 25 });
+                sc.selectLocalizedLabel("whore_locket", "752_whore/whore_locket.png", 2, "room.752.select.locket", "Ask for Missy's Locket", "", { width: 430, fontSize: 25 });
                 sc.selectCancel("whore_cancel", 3);
             }
             else if (missy.getenvelope("whore").active) {
@@ -47,12 +47,12 @@ room752.btnclick = function (name) {
             }
             else {
                 if (cl.c.cock === 5)
-                    sc.select("whore_pussyout", "752_whore/icon_pussy.webp", 0);
+                    sc.selectLocalizedLabel("whore_pussyout", "752_whore/icon_pussy.webp", 0, "room.752.select.pussy", "Take your pussy out", "", { width: 430, fontSize: 25 });
                 else
-                    sc.select("whore_dick", "752_whore/whore_dick.png", 0);
-                sc.select("whore_chat", "752_whore/whore_chat.png", 1);
+                    sc.selectLocalizedLabel("whore_dick", "752_whore/whore_dick.png", 0, "room.752.select.dick", "Take your dick out", "", { width: 430, fontSize: 25 });
+                sc.selectLocalizedLabel("whore_chat", "752_whore/whore_chat.png", 1, "room.752.select.chat", "Chat", "", { width: 430, fontSize: 25 });
                 if (sc.getMission("whore", "*assistant").startedOrComplete) {
-                    sc.select("whore_assistant", "752_whore/whore_assistant.webp", 2);
+                    sc.selectLocalizedLabel("whore_assistant", "752_whore/whore_assistant.webp", 2, "room.752.select.assistant", "Work as a whore assistant", "", { width: 430, fontSize: 25 });
                     sc.selectCancel("whore_cancel", 3);
                 }
                 else {
@@ -469,8 +469,8 @@ room752.chatcatch = function (callback) {
             g.map.spcounter = 0;
             zcl.handjob(0, 400, .72, "stroke", false, g.map.list[0].c);
             levels.gavehandjob("m", g.map.list[0].n);
-            sc.select("fluf_stroke", "752_whore/icon_stroke.webp", 0);
-            sc.select("fluf_stop", "752_whore/icon_guide.webp", 1);
+            sc.selectLocalizedLabel("fluf_stroke", "752_whore/icon_stroke.webp", 0, "room.752.select.stroke", "Keep stroking", "", { width: 430, fontSize: 25 });
+            sc.selectLocalizedLabel("fluf_stop", "752_whore/icon_guide.webp", 1, "room.752.select.guide", "Guide his cock to the dirty whore", "", { width: 430, fontSize: 25 });
             break;
         case "whore_sex":
             nav.kill();
@@ -650,7 +650,9 @@ room752.chat = function (chatID) {
     if (chatID === 999) {
         let chatList999 = null;
         let chatId999 = null;
+        let chatGroup999 = "oral";
         if (g.map.list[0].event.includes("anal")) {
+            chatGroup999 = "anal";
             chatList999 = [
                 "Hey girl, I came down to nut in dat butt! ",
                 "So, uhhh. Could you let me do anal sex with you? ",
@@ -663,6 +665,7 @@ room752.chat = function (chatID) {
             ];
         }
         else if (g.map.list[0].event.includes("vag")) {
+            chatGroup999 = "vag";
             chatList999 = [
                 "I came for the sex! ",
                 "Can I have sex with you? ",
@@ -674,6 +677,7 @@ room752.chat = function (chatID) {
             ];
         }
         else if (g.map.list[0].event === "pissass") {
+            chatGroup999 = "pissass";
             chatList999 = [
                 "Hahaha! I always knew you would end up as a whore! "
             ];
@@ -695,10 +699,11 @@ room752.chat = function (chatID) {
         else if (chatID === null)
             chatId999 = 777;
 
+        let chatIndex999 = g.rand(0, chatList999.length);
         return {
             chatID: 999,
             speaker: g.map.list[0].n,
-            text: chatList999[g.rand(0, chatList999.length)],
+            text: chatList999[chatIndex999], l10nKey: "room.752.random.999." + chatGroup999 + "." + chatIndex999,
             button: [
                 { chatID: chatId999, text: "...", callback: "" }
             ]
@@ -714,10 +719,11 @@ room752.chat = function (chatID) {
             "Oh baby, my ass is hurtin' from that squirtin'! ",
             "I love feeling you fill my ass with your cum. "
         ];
+        let chatIndex800 = g.rand(0, chatList800.length);
         return {
             chatID: 800,
             speaker: "whore",
-            text: chatList800[g.rand(0, chatList800.length)],
+            text: chatList800[chatIndex800], l10nKey: "room.752.random.800." + chatIndex800,
             button: [
                 { chatID: 801, text: "...", callback: "whore_analdrip" }
             ]
@@ -732,10 +738,11 @@ room752.chat = function (chatID) {
             "Hehe! Such a big load of cum up my butt. ",
             "Lick that asshole good. ",
         ];
+        let chatIndex801 = g.rand(0, chatList801.length);
         return {
             chatID: 801,
             speaker: "whore",
-            text: chatList801[g.rand(0, chatList801.length)],
+            text: chatList801[chatIndex801], l10nKey: "room.752.random.801." + chatIndex801,
             button: [
                 { chatID: 41, text: "...", callback: "whore_analdrip1" }
             ]
@@ -751,10 +758,11 @@ room752.chat = function (chatID) {
             "That was the best sex I've ever had. ",
             "I love feeling your fill my pussy with your cum. "
         ];
+        let chatIndex700 = g.rand(0, chatList700.length);
         return {
             chatID: 700,
             speaker: "whore",
-            text: chatList700[g.rand(0, chatList700.length)],
+            text: chatList700[chatIndex700], l10nKey: "room.752.random.700." + chatIndex700,
             button: [
                 { chatID: 701, text: "...", callback: "whore_pussydrip" }
             ]
@@ -769,10 +777,11 @@ room752.chat = function (chatID) {
             "Clean up time! ",
             "Lick it good. ",
         ];
+        let chatIndex701 = g.rand(0, chatList701.length);
         return {
             chatID: 700,
             speaker: "whore",
-            text: chatList701[g.rand(0, chatList701.length)],
+            text: chatList701[chatIndex701], l10nKey: "room.752.random.701." + chatIndex701,
             button: [
                 { chatID: 39, text: "...", callback: "whore_pussydrip1" }
             ]
@@ -804,10 +813,12 @@ room752.chat = function (chatID) {
             "I had a guy last night who wanted me to roleplay being his ex. He cried the whole time. Still paid full price though.",
             "My favorite part of the job? When they leave. Closely followed by counting the cash."
         ];
+        let chatIndex600 = g.rand(0, chatList600.length);
         return {
             chatID: 600,
             speaker: "whore",
-            text: chatList600[g.rand(0, chatList600.length)],
+            text: chatList600[chatIndex600], l10nKey: "room.752.random.600." + chatIndex600,
+            l10nValues: { ubel: sc.n("ubel"), bigguy: sc.n("bigguy"), landlord: ["bg", "es"].includes(l10n.getLanguage()) ? sc.landlady("definiteLower") : sc.n("landlord"), priest: sc.n("priest"), river: sc.n("river"), me: sc.n("me"), jeffery: sc.n("jeffery"), rancher: sc.n("!rancher1"), rex: sc.n("!rex"), doofus: sc.n("!doofus"), kei: sc.n("kei") },
             button: [
                 { chatID: -1, text: "...", callback: "resetwhore" }
             ]
@@ -889,7 +900,7 @@ room752.chat = function (chatID) {
             text: "I fucking hate that thing. It's so stupid. You can have it for $300. It's what my client owes me. ",
             button: [
                 { chatID: -1, text: "Pay her $300", callback: "pay" },
-                { chatID: 11, text: "Talk her into getting it cheaper. " + charisma.getStats(8).txt, callback: "" },
+                { chatID: 11, text: "Talk her into getting it cheaper. " + charisma.getStats(8).txt, l10nValues: { chance: charisma.getStats(8).n }, callback: "" },
                 { chatID: 17, text: "I don't have that much money. Is there something else I could do?", callback: "" },
             ]
         },
@@ -936,9 +947,9 @@ room752.chat = function (chatID) {
             text: "So he says, how about for $500. I said no, but offered this locket too. I figure I could give it to a friend of " +
                 "mine that was looking for something like that, so I said ok, just be gentle. So he just shoves it in! I told him " +
                 "to pull it out, 'cause it hurt too much, but he laughs and says I need to stretch, so he jams his whole ass hand " +
-                "up my ass. Really rips me in half, ya know. I scream and Dale comes running over. Dale's a really cool guy. He " +
+                "up my ass. Really rips me in half, ya know. I scream and " + sc.n("dale") + " comes running over. " + sc.n("dale") + "'s a really cool guy. He " +
                 "reaches in his pocket and throws sand in his eyes and kicks him out. Told him if he catches him here again he'll " +
-                "kill him. ",
+                "kill him. ", l10nValues: { dale: sc.n("dale") },
             button: [
                 { chatID: 14, text: "wow", callback: "" },
             ]
@@ -946,9 +957,9 @@ room752.chat = function (chatID) {
         {
             chatID: 14,
             speaker: "whore",
-            text: "Yeah. I told Dale I'll give him freebies anytime he wants, but he said he doesn't put his sperm anywhere " +
+            text: "Yeah. I told " + sc.n("dale") + " I'll give him freebies anytime he wants, but he said he doesn't put his sperm anywhere " +
                 "so the government can't track him or something. But yeah. You can have the locket. Just don't give it back to " +
-                "him. Fuck that guy! ",
+                "him. Fuck that guy! ", l10nValues: { dale: sc.n("dale") },
             button: [
                 { chatID: -1, text: "I will and thanks so much!", callback: "getlocket" },
             ]
@@ -1017,8 +1028,8 @@ room752.chat = function (chatID) {
         {
             chatID: 22,
             speaker: "thinking",
-            text: "Oh fuck. I really fucked that up! Now I have to go back and tell Missy I failed. That's going to be the " +
-                "worst part. She's going to be totally pissed. I guess I get to keep my panties, but was it worth it?",
+            text: "Oh fuck. I really fucked that up! Now I have to go back and tell " + sc.n("missy") + " I failed. That's going to be the " +
+                "worst part. She's going to be totally pissed. I guess I get to keep my panties, but was it worth it?", l10nValues: { missy: sc.n("missy") },
             button: [
                 { chatID: -1, text: "...", callback: "leave" },
             ]
@@ -1036,7 +1047,7 @@ room752.chat = function (chatID) {
             speaker: "thinking",
             text: "Fuck! I lost " + sc.n("lola") + "'s panties! Even worse some guy is going to be sniffing them and jacking off " +
                 "into her panties. I better get home and put on some new underwear. I know it's wrong, but maybe I could steal " +
-                "another pair of her panties. But this time I won't give them away. ",
+                "another pair of her panties. But this time I won't give them away. ", l10nValues: { lola: sc.n("lola") },
             button: [
                 { chatID: -1, text: "...", callback: "home" },
             ]
@@ -1044,9 +1055,9 @@ room752.chat = function (chatID) {
         {
             chatID: 25,
             speaker: "thinking",
-            text: "Fuck! I lost Missy's panties! Even worse some guy is going to be sniffing them and jacking off " +
+            text: "Fuck! I lost " + sc.n("missy") + "'s panties! Even worse some guy is going to be sniffing them and jacking off " +
                 "into her panties. I better get home and put on some new underwear. I know it's wrong, but maybe I could steal " +
-                "another pair of her panties. But this time I won't give them away. ",
+                "another pair of her panties. But this time I won't give them away. ", l10nValues: { missy: sc.n("missy") },
             button: [
                 { chatID: -1, text: "...", callback: "home" },
             ]
@@ -1054,9 +1065,9 @@ room752.chat = function (chatID) {
         {
             chatID: 26,
             speaker: "thinking",
-            text: "Fuck! I lost Missy's panties! Even worse some guy is going to be sniffing them and jacking off " +
+            text: "Fuck! I lost " + sc.n("missy") + "'s panties! Even worse some guy is going to be sniffing them and jacking off " +
                 "into her panties. Maybe I can replace them by stealing a pair of panties from " + sc.n("lola") + ". " +
-                "I think I'll check her dirty laundry. I better get home and put on some new underwear. ",
+                "I think I'll check her dirty laundry. I better get home and put on some new underwear. ", l10nValues: { missy: sc.n("missy"), lola: sc.n("lola") },
             button: [
                 { chatID: -1, text: "...", callback: "home" },
             ]
@@ -1101,7 +1112,7 @@ room752.chat = function (chatID) {
             speaker: "whore",
             text: "So you wanna fuck or what? ",
             button: [
-                { chatID: -1, text: "Sweet talk her " + charisma.getStats(18).txt, callback: "whore_char" },
+                { chatID: -1, text: "Sweet talk her " + charisma.getStats(18).txt, l10nValues: { chance: charisma.getStats(18).n }, callback: "whore_char" },
                 { chatID: 32, text: "Just be blunt", callback: "" },
             ]
         },
@@ -1308,7 +1319,7 @@ room752.chat = function (chatID) {
         {
             chatID: 55,
             speaker: "me",
-            text: sc.n("philbert") + "! ",
+            text: sc.n("philbert") + "! ", l10nValues: { philbert: sc.n("philbert") },
             button: [
                 { chatID: 56, text: "...", callback: "" },
             ]
@@ -1334,7 +1345,7 @@ room752.chat = function (chatID) {
             chatID: 58,
             speaker: "whore",
             text: "This is my tent and you'll bend over for " + sc.n("philbert") + " and spread your hole " +
-                "or you can just leave. ",
+                "or you can just leave. ", l10nValues: { philbert: sc.n("philbert") },
             button: [
                 { chatID: 60, text: "*ugh* Fine!", callback: "philbert0" },
                 { chatID: 59, text: "No way! This guy's an asshole! ", callback: "" },
@@ -1368,7 +1379,7 @@ room752.chat = function (chatID) {
             chatID: 62,
             speaker: "philbert",
             text: "I need to fuck that pissy asshole! Please " + sc.n("whore") + ", let me fuck that " +
-                "pissy asshole! ",
+                "pissy asshole! ", l10nValues: { whore: sc.n("whore") },
             button: [
                 { chatID: 63, text: "wha?", callback: "" },
             ]
@@ -1385,7 +1396,7 @@ room752.chat = function (chatID) {
             chatID: 64,
             speaker: "philbert",
             text: "Oh god, so good! Hey " + sc.n("whore") + ". Put a finger in my butt. Maybe two. I love " +
-                "a finger in my butt when I'm fucking a slut! ",
+                "a finger in my butt when I'm fucking a slut! ", l10nValues: { whore: sc.n("whore") },
             button: [
                 { chatID: 66, text: "*moan* *pant* *moan*", callback: "philbert3" },
             ]
@@ -1395,7 +1406,7 @@ room752.chat = function (chatID) {
             speaker: "philbert",
             text: "I heard you got a new pussy! I need to fuck it! I want to feel my piss slosh " +
                 "in your ass while I fuck your cunt! Please " + sc.n("whore") + ", let me fuck that " +
-                "slut's pussy! ",
+                "slut's pussy! ", l10nValues: { whore: sc.n("whore") },
             button: [
                 { chatID: 63, text: "wha?", callback: "" },
             ]
@@ -1478,7 +1489,7 @@ room752.chat = function (chatID) {
         {
             chatID: 75,
             speaker: "whore",
-            text: sc.n("me") + ", you suck that dick or the both of you are out of here! ",
+            text: sc.n("me") + ", you suck that dick or the both of you are out of here! ", l10nValues: { me: sc.n("me") },
             button: [
                 { chatID: 76, text: "Fine! Give me that dick. ", callback: "whore_oral0" },
                 { chatID: -1, text: "No way! I have more respect for my body than to suck that dirty dick! ", callback: "leave" },
@@ -1521,7 +1532,7 @@ room752.chat = function (chatID) {
             chatID: 80,
             speaker: "whore",
             text: "Well, I suppose I've tortured you enough. Lucky for you I've overheard " + sc.n("ubel") +
-                " talking to one of his Castellans the code. It's 1-2-3-4-5. Be careful. It's crazy in there. ",
+                " talking to one of his Castellans the code. It's 1-2-3-4-5. Be careful. It's crazy in there. ", l10nValues: { ubel: sc.n("ubel") },
             button: [
                 { chatID: 82, text: "Sweet! ", callback: "" },
             ]

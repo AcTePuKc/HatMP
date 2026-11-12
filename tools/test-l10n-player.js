@@ -44,6 +44,8 @@ const source = file => fs.readFileSync(path.join(__dirname, '..', file), 'utf8')
     w.HatMPLocales.en.strings['test.object'] = 'Safe English';
     w.HatMPLocales.en.strings['test.allBad'] = '[[player:bad]]';
     await w.l10n.setLanguage('es');
+    const punctuation = w.l10n.chatEntry({ speaker: 'npc', text: 'Hello', button: [{ text: '...', chatID: -1, callback: '' }] }, 999999, 999999);
+    assert.equal(punctuation.button[0].text, '...', 'Missing punctuation translation must retain the source button text');
     assert.equal(w.l10n.t('test.word', '', { me: '<Alex>' }), 'Estoy listo, &lt;Alex&gt;.');
     appearance = 2;
     assert.equal(w.l10n.t('test.word', '', { me: 'Alex' }), 'Estoy listo, Alex.');
@@ -98,6 +100,19 @@ const source = file => fs.readFileSync(path.join(__dirname, '..', file), 'utf8')
         pronouns = 'm';
         assert.equal(w.l10n.t('room.23.myDare.noMore'), npcLine, 'NPC self-description must not follow player preference');
     }
+    // Definite lowercase must use the chosen definite form, not the uninflected label.
+    await w.l10n.setLanguage('bg');
+    const landladyFunction = source('scripts/supportingChar.js').match(/sc\.landlady = function \(form\) \{[\s\S]*?\n\};/);
+    assert.ok(landladyFunction, 'Landlady form resolver exists');
+    w.eval(landladyFunction[0]);
+    let landlady = { display: 'Landlady' };
+    w.sc.get = () => landlady;
+    assert.equal(w.sc.landlady('definiteLower'), 'хазайката');
+    landlady = { display: 'Леля', relationshipForms: { definite: 'Лелята' } };
+    assert.equal(w.sc.landlady('definiteLower'), 'лелята');
+    assert.ok(w.l10n.t('room.350.chat.21.choice.0').includes('лелята'));
+    landlady = { display: 'Леля', relationshipForms: {} };
+    assert.equal(w.sc.landlady('definiteLower'), 'леля');
     dom.window.close();
     // Exercise the standalone translator page using its actual script order and controls.
     const previewHTML = source('tools/dialogue-preview.html');

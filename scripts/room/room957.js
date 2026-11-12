@@ -718,10 +718,12 @@ room957.chat = function (chatID) {
             "*ugh* So much cum. I'm going to be queefing this out all day.",
             "My asshole REALLY hurts! I hate how the tiny cock guys don't even try to ease it in. "
         ];
+        let pick900 = g.rand(0, txt900.length);
         return {
             chatID: 900,
             speaker: "!girl",
-            text: txt900[g.rand(0, txt900.length)],
+            l10nKey: "room.957.random.900." + pick900,
+            text: txt900[pick900],
             button: [
                 { chatID: 1, text: "...", callback: "shower1" }
             ]
@@ -737,10 +739,12 @@ room957.chat = function (chatID) {
             "What kind of person lets people piss in their asshole? ",
             "Slut!"
         ];
+        let pick800 = g.rand(0, txt800.length);
         return {
             chatID: 800,
             speaker: "cult",
-            text: txt800[g.rand(0, txt800.length)],
+            l10nKey: "room.957.random.800." + pick800,
+            text: txt800[pick800],
             button: [
                 { chatID: -1, text: "...", callback: "toilet" },
             ]
@@ -755,12 +759,14 @@ room957.chat = function (chatID) {
             "Huh? There's a sissy in the toilet. ",
             "Nasty bitch. "
         ];
+        let pick801 = g.rand(0, txt801.length);
         return {
             chatID: 801,
             speaker: "cult",
-            text: txt801[g.rand(0, txt801.length)],
+            l10nKey: "room.957.random.801." + pick801,
+            text: txt801[pick801],
             button: [
-                { chatID: -1, text: "*gargle*", callback: "toilet" },
+                { chatID: -1, text: "*gargle*", l10nKey: "room.957.random.801.choice", callback: "toilet" },
             ]
         };
     }
@@ -886,13 +892,13 @@ room957.chat = function (chatID) {
             speaker: "chloe",
             text: "Oh! Are you looking for a kiss? How about a kiss between my lips. For ol' times sake? ",
             button: [
-                { chatID: -1, text: "[Lick " + sc.n("chloe") + "'s wet, dripping pussy]", callback: "kissing_ev2" },
+                { chatID: -1, text: "[Lick " + sc.n("chloe") + "'s wet, dripping pussy]", l10nValues: { chloe: sc.n("chloe") }, callback: "kissing_ev2" },
                 { chatID: -1, text: "No way!", callback: "kissingReset" },
             ]
         },
         {
             chatID: 15,
-            speaker: "chloe",
+            speaker: "chloe", l10nValues: { zoey: sc.n("zoey") },
             text: "Hehe! You're cute when your tongues buried in my pussy. I'll have to tell " + sc.n("zoey") +
                 " you're here. Maybe I can get her to join too! Later! ",
             button: [
@@ -1251,7 +1257,7 @@ room957.chat = function (chatID) {
         },
         {
             chatID: 58,
-            speaker: "thinking",
+            speaker: "thinking", l10nValues: { daria: sc.n("daria") },
             text: "Oh wow. They are so cold! Now to sneak these keys back to my cell and get it to " + sc.n("daria") + ". ",
             button: [
                 { chatID: 59, text: "...", callback: "sweepHallway7" }

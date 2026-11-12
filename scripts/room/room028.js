@@ -169,7 +169,9 @@ room28.main = function () {
             if (gv.st[hix].t > 100)
                 gv.st[hix].t = 100;
             daily.set("tookHormonePill");
-            g.popUpNotice("Took your hormone pill" + (inv.master[hx].entry ? "" : " - Out of pills"));
+            g.popUpNotice(inv.master[hx].entry
+                ? l10n.t("room.28.notice.pillTaken", "Took your hormone pill")
+                : l10n.t("room.28.notice.pillTakenLast", "Took your hormone pill - Out of pills"));
         }
     }
 
@@ -185,7 +187,8 @@ room28.main = function () {
             "top": 0,
             "width": 1920,
             "height": 1080,
-            "title": "xdress",
+            "title": "Transformation",
+            "titleKey": "room.28.transformationTitle",
             "image": "28_transformation/q_forground.png"
         }, 28);
         for (i = 0; i < qdress.st.length; i++) {
@@ -197,7 +200,8 @@ room28.main = function () {
                 "top": qdress.st[i].y,
                 "width": i === 3 ? 200 : 100,
                 "height": i === 3 ? 200 : 100,
-                "title": "xdress",
+                "title": "Transformation",
+                "titleKey": "room.28.transformationTitle",
                 "image": "28_transformation/" + qdressIconx + ".png"
             }, 28);
         }
@@ -261,7 +265,7 @@ room28.main = function () {
                         continue;
                     if (entry.h && !validTransformationHormone) {
                         if (!hormoneNotice) {
-                            g.popUpNotice("Need to increase your Sissy Hormones.");
+                            g.popUpNotice(l10n.t("room.28.notice.moreHormones", "Need to increase your Sissy Hormones."));
                             hormoneNotice = true;
                         }
                         continue;
@@ -285,7 +289,8 @@ room28.main = function () {
                         "top": 0,
                         "width": 1920,
                         "height": 1080,
-                        "title": "xdress",
+                        "title": "Transformation",
+                        "titleKey": "room.28.transformationTitle",
                         "image": "28_transformation/q_background.jpg"
                     }, 28);
                     for (i = 0; i < qdress.st.length; i++) {
@@ -297,7 +302,8 @@ room28.main = function () {
                             "top": qdress.st[i].y,
                             "width": i === 3 ? 200 : 100,
                             "height": i === 3 ? 200 : 100,
-                            "title": "xdress",
+                            "title": "Transformation",
+                            "titleKey": "room.28.transformationTitle",
                             "image": "28_transformation/" + qdressIcon + ".png"
                         }, 28);
                     }
@@ -318,7 +324,8 @@ room28.main = function () {
                         "top": 0,
                         "width": 1920,
                         "height": 1080,
-                        "title": "xdress",
+                        "title": "Transformation",
+                        "titleKey": "room.28.transformationTitle",
                         "image": "28_transformation/q_forground.png"
                     }, 28);
 

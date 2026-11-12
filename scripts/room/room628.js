@@ -77,9 +77,9 @@ room628.chat = function (chatID) {
                     return {
                         chatID: 0,
                         speaker: "futa1",
-                        text: "You won a copy of my dick! ",
+                        text: "You won a copy of my dick! ", l10nKey: "room.628.win.text",
                         button: [
-                            { chatID: 3, text: "huh?", callback: "" },
+                            { chatID: 3, text: "huh?", l10nKey: "room.628.win.lola.choice", callback: "" },
                         ]
                     };
                 }
@@ -88,9 +88,9 @@ room628.chat = function (chatID) {
                     return {
                         chatID: 0,
                         speaker: "futa1",
-                        text: "You won a copy of my dick! ",
+                        text: "You won a copy of my dick! ", l10nKey: "room.628.win.text",
                         button: [
-                            { chatID: -1, text: "Oh. Sweet!! It's so big!", callback: "reset" },
+                            { chatID: -1, text: "Oh. Sweet!! It's so big!", l10nKey: "room.628.win.solo.choice", callback: "reset" },
                         ]
                     };
                 }
@@ -100,9 +100,9 @@ room628.chat = function (chatID) {
                 return {
                     chatID: 0,
                     speaker: "futa1",
-                    text: "Not a winner! Try again. ",
+                    text: "Not a winner! Try again. ", l10nKey: "room.628.loss.text",
                     button: [
-                        { chatID: -1, text: "Crap", callback: "reset" },
+                        { chatID: -1, text: "Crap", l10nKey: "room.628.loss.choice", callback: "reset" },
                     ]
                 };
             }
@@ -112,18 +112,18 @@ room628.chat = function (chatID) {
             return {
                 chatID: 0,
                 speaker: "futa1",
-                text: "Nice throw! ",
+                text: "Nice throw! ", l10nKey: "room.628.throw.good",
                 button: [
-                    { chatID: 999, text: btntxt, callback: "" }
+                    { chatID: 999, text: btntxt, l10nKey: btntxt === "..." ? "room.628.throw.done" : "room.628.throw.next", callback: "" }
                 ]
             };
         else
             return {
                 chatID: 0,
                 speaker: "futa1",
-                text: "Miss! ",
+                text: "Miss! ", l10nKey: "room.628.throw.miss",
                 button: [
-                    { chatID: 999, text: btntxt, callback: "" }
+                    { chatID: 999, text: btntxt, l10nKey: btntxt === "..." ? "room.628.throw.done" : "room.628.throw.next", callback: "" }
                 ]
             };
     }

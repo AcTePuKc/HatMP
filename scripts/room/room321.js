@@ -160,7 +160,7 @@ room321.gameloop = function () {
         top: 1000,
         font: 40,
         hex: "#ffffff",
-        text: "Viewers: " + g.internal.viewers + ". Tips $" + g.internal.money
+        text: l10n.t("room.321.viewers", "Viewers: ") + g.internal.viewers + l10n.t("room.321.tips", ". Tips $") + g.internal.money
     }, 321);
 
     g.roomTimeout = setTimeout(function () { room321.gameloop(); }, 800);

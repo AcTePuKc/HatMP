@@ -335,12 +335,30 @@ room727.chatcatch = function (callback) {
     }
 };
 
+room727.clothingWarning = function (value) {
+    var raw = String(value || "");
+    var original = "Before I leave I need to get dressed. <span class='hl'>I'm missing my " + raw + ".</span>";
+    if (l10n.getLanguage() === "en") return original;
+    var clean = raw.replace(/<[^>]*>/g, "").trim();
+    var uncomfortable = clean.match(/^self aweness! I don' feel comfortable wearing these (.+)\.$/i);
+    var names = (uncomfortable ? uncomfortable[1] : clean).split(/,\s*(?:and\s+)?|\s+and\s+/);
+    var keys = { shirt: "shirt", pants: "pants", underwear: "underwear", "boy's underwear": "boysUnderwear", panties: "panties", bra: "bra", bikini: "bikini", lingerie: "lingerie", dress: "dress" };
+    var cannotBra = names.indexOf("Can't wear a bra") !== -1;
+    names = names.filter(function (name) { return name !== "Can't wear a bra"; });
+    if (!names.every(function (name) { return keys[name]; }) || (!names.length && !cannotBra)) return original;
+    var translated = names.map(function (name) { return l10n.t("room.602.item." + keys[name], name); });
+    var items = translated.length < 2 ? translated[0] : translated.slice(0, -1).join(", ") + l10n.t("room.602.requirements.and", " and ") + translated[translated.length - 1];
+    var details = translated.length ? l10n.t(uncomfortable ? "room.602.requirements.uncomfortable" : "room.602.requirements.missing", uncomfortable ? "I don't feel comfortable wearing: {items}." : "I'm missing: {items}.", { items: items }) : "";
+    if (cannotBra) details += (details ? " " : "") + l10n.t("room.602.requirements.cannotBra", "I can't wear a bra.");
+    return l10n.t("room.727.clothingWarning.intro", "Before I leave I need to get dressed.") + " <span class='hl'>" + details + "</span>";
+};
+
 room727.chat = function (chatID) {
     if (chatID === 999) {
         return {
             chatID: 999,
             speaker: "thinking",
-            text: "Before I leave I need to get dressed. <span class='hl'>I'm missing my " + g.internal + ".</span>",
+            text: room727.clothingWarning(g.internal), l10nIgnore: true,
             button: []
         }; 
     }
@@ -416,7 +434,7 @@ room727.chat = function (chatID) {
                 speaker: "tim",
                 text: "I'm going to take off. You do look beautiful wearing my cum. You should totally wear that home! ",
                 button: [
-                    { chatID: -1, text: "You're right, I'm beautiful in my cum.", callback: "tim2end" }
+                    { chatID: -1, text: "You're right, I'm beautiful in your cum.", callback: "tim2end" }
                 ]
             },
             {
@@ -547,7 +565,7 @@ room727.chat = function (chatID) {
                 speaker: "tina",
                 text: "No. " + sc.n("construction") + " let's me sleep in the office, but those outhouses " +
                     "are so gross I can't stand to go in them. So I come here. Anyway. It's pretty late. I " +
-                    "should get home. ",
+                    "should get home. ", l10nValues: { construction: sc.n("construction") },
                 button: [
                     { chatID: -1, text: "Ok. See you at work! [Need level 7 to progress]", callback: "reset" }
                 ]
@@ -617,7 +635,7 @@ room727.chat = function (chatID) {
                 speaker: "tina",
                 text: "Before we start, there's a little thing I like to do first. I know there's not " +
                     "much room in here, but I need you to wait in " + sc.n("construction") + "'s " +
-                    " office 'k?",
+                    " office 'k?", l10nValues: { construction: sc.n("construction") },
                 button: [{ chatID: 34, text: "sure.  ", callback: "tina3" }]
             },
             {
@@ -663,7 +681,7 @@ room727.chat = function (chatID) {
                 chatID: 40,
                 speaker: "tina",
                 text: "OMG! Is that your penis!!! It's so tiny!! No wonder " + sc.n("river") +
-                    " is always picking on you! Tiny dick, tiny dick! Hahahahahha",
+                    " is always picking on you! Tiny dick, tiny dick! Hahahahahha", l10nValues: { river: sc.n("river") },
                 button: [
                     { chatID: 41, text: "I uhhhh", callback: "" },
                 ]

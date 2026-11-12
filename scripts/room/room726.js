@@ -524,7 +524,7 @@ room726.chat = function (chatID) {
         {
             chatID: 14,
             speaker: "thinking",
-            text: sc.n("cindy") + " totally wants my cock now! I should sneak into the coed bathroom and surprise her in the stall.",
+            text: sc.n("cindy") + " totally wants my cock now! I should sneak into the coed bathroom and surprise her in the stall.", l10nValues: { cindy: sc.n("cindy") },
             button: [
                 { chatID: -1, text: "Yeah, that's what I'll do. She wants surprise sex!", callback: "supriseSex" }
             ]
@@ -850,7 +850,7 @@ room726.chat = function (chatID) {
             text: "Hey, what's up? ",
             button: [
                 { chatID: 57, text: "Love your dance moves!", callback: "" },
-                { chatID: 54, text: "Are you Sanaria", callback: "" }
+                { chatID: 54, text: "Are you " + sc.n("!sanaria"), l10nValues: { sanaria: sc.n("!sanaria") }, callback: "" }
             ]
         },
         {
@@ -867,7 +867,7 @@ room726.chat = function (chatID) {
             speaker: "!sanaria",
             text: "You're stalking me for my mom? I'm out of here you creep! Go fuck yourself! ",
             button: [
-                { chatID: 56, text: "Awww crap. [Call Missy] ", callback: "lostgirl_bad" },
+                { chatID: 56, text: "Awww crap. [Call " + sc.n("missy") + "] ", l10nValues: { missy: sc.n("missy") }, callback: "lostgirl_bad" },
             ]
         },
         {
@@ -885,7 +885,7 @@ room726.chat = function (chatID) {
             text: "Thanks. I was about to take off. Did you want to buy me a drink before I go. ",
             button: [
                 { chatID: 63, text: "Sure! Let's go to the bar. ", callback: "lostgirl3_0" },
-                { chatID: 58, text: "Sure! Let me send a text right away. [Text Missy]", callback: "lostgirl2_good" },
+                { chatID: 58, text: "Sure! Let me send a text right away. [Text " + sc.n("missy") + "]", l10nValues: { missy: sc.n("missy") }, callback: "lostgirl2_good" },
             ]
         },
         {
@@ -943,7 +943,7 @@ room726.chat = function (chatID) {
             speaker: "!sanaria",
             text: "Thanks for the drink, but I don't date sissy boys. I'm going to go loser. Haha  ",
             button: [
-                { chatID: 54, text: "Wait Sanaria. Hang out for a bit ", callback: "" },
+                { chatID: 54, text: "Wait " + sc.n("!sanaria") + ". Hang out for a bit ", l10nValues: { sanaria: sc.n("!sanaria") }, callback: "" },
             ]
         },
         {
@@ -960,7 +960,7 @@ room726.chat = function (chatID) {
             text: "You don't even have $20 for a drink? What a loser. I'm going to take off with some friends that can " +
                 "afford to buy me a drink. Later. ",
             button: [
-                { chatID: 54, text: "Wait Sanaria. Hang out for a bit ", callback: "" },
+                { chatID: 54, text: "Wait " + sc.n("!sanaria") + ". Hang out for a bit ", l10nValues: { sanaria: sc.n("!sanaria") }, callback: "" },
             ]
         },
         {
@@ -980,7 +980,7 @@ room726.chat = function (chatID) {
                 "my week a bit better. ",
             button: [
                 { chatID: 69, text: "Sure. Let's go. ", callback: "lostgirl3_2" },
-                { chatID: 58, text: "Let's hang out here and chat a bit longer. [Text Missy]", callback: "lostgirl2_good" },
+                { chatID: 58, text: "Let's hang out here and chat a bit longer. [Text " + sc.n("missy") + "]", l10nValues: { missy: sc.n("missy") }, callback: "lostgirl2_good" },
             ]
         },
         {
@@ -1031,7 +1031,7 @@ room726.chat = function (chatID) {
         {
             chatID: 74,
             speaker: "missy",
-            text: "Don't you worry " + sc.n("martha") + ", I'll take care of this young man in the morning. ",
+            text: "Don't you worry " + sc.n("martha") + ", I'll take care of this young [[player:man|woman]] in the morning. ", l10nValues: { martha: sc.n("martha") },
             button: [
                 { chatID: 75, text: "...", callback: "" },
             ]
@@ -1039,7 +1039,7 @@ room726.chat = function (chatID) {
         {
             chatID: 75,
             speaker: "martha",
-            text: "I trust that you will. He's corrupted my poor Sanaria. A proper punishment should be in order. ",
+            text: "I trust that you will. [[player:He's|She's]] corrupted my poor " + sc.n("!sanaria") + ". A proper punishment should be in order. ", l10nValues: { sanaria: sc.n("!sanaria") },
             button: [
                 { chatID: -1, text: "*groan*", callback: "lostgirl3_end" },
             ]

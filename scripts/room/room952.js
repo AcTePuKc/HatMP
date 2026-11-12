@@ -12,6 +12,7 @@ room952.main = function() {
             "width": 298,
             "height": 942,
             "title": "Return to your cell",
+            "titleKey": "room.952.hover.cell",
             "image": "952_hallway/hallway1.png"
         },
         {
@@ -22,6 +23,7 @@ room952.main = function() {
             "width": 173,
             "height": 243,
             "title": "Attempt and escape",
+            "titleKey": "room.952.hover.escape",
             "image": "952_hallway/escape.png"
         }];
     }
@@ -34,6 +36,7 @@ room952.main = function() {
             "width": 298,
             "height": 942,
             "title": "Return to your cell",
+            "titleKey": "room.952.hover.cell",
             "image": "952_hallway/hallway1.png"
         }];
         if (!sc.getMission("bodhi", "escape").complete) {
@@ -45,6 +48,8 @@ room952.main = function() {
                 "width": 138,
                 "height": 638,
                 "title": "Bodhi's Cell",
+                "titleKey": "room.952.hover.bodhi",
+                "titleParams": { name: sc.n("bodhi") },
                 "image": "952_hallway/hallway2.png"
             });
         }
@@ -56,6 +61,7 @@ room952.main = function() {
             "width": 60,
             "height": 467,
             "title": "Last Cell",
+            "titleKey": "room.952.hover.lastCell",
             "image": "952_hallway/hallway3.png"
         });
         btnList.push({
@@ -66,6 +72,7 @@ room952.main = function() {
             "width": 173,
             "height": 243,
             "title": "Attempt and escape",
+            "titleKey": "room.952.hover.escape",
             "image": "952_hallway/escape.png"
         });
         nav.drawButton("1001_rand/turnaround.png", "turnaround", 952);
@@ -91,6 +98,7 @@ room952.btnclick = function (name) {
                 "width": 298,
                 "height": 942,
                 "title": "Return to your cell",
+                "titleKey": "room.952.hover.cell",
                 "image": "952_hallway/hallway1r.png"
             }, 952);
             nav.button({
@@ -101,6 +109,8 @@ room952.btnclick = function (name) {
                 "width": 138,
                 "height": 638,
                 "title": "Bodhi's Cell",
+                "titleKey": "room.952.hover.bodhi",
+                "titleParams": { name: sc.n("bodhi") },
                 "image": "952_hallway/hallway2r.png"
             }, 952);
             nav.button({
@@ -111,6 +121,7 @@ room952.btnclick = function (name) {
                 "width": 60,
                 "height": 467,
                 "title": "Last Cell",
+                "titleKey": "room.952.hover.lastCell",
                 "image": "952_hallway/hallway3r.png"
             }, 952);
             nav.drawButton("1001_rand/turnaround.png", "reset", 952);
@@ -147,6 +158,7 @@ room952.btnclick = function (name) {
                 "width": 423,
                 "height": 166,
                 "title": "Exit",
+                "titleKey": "room.952.hover.exit",
                 "image": "952_hallway/bexit.png"
             }, 952);
             nav.button({
@@ -157,6 +169,7 @@ room952.btnclick = function (name) {
                 "width": 476,
                 "height": 652,
                 "title": "Talk to the big guy",
+                "titleKey": "room.952.hover.bigGuy",
                 "image": "952_hallway/b0.png"
             }, 952);
             break;
@@ -239,8 +252,8 @@ room952.btnclick = function (name) {
                 chat(1, 952);
             }
             else {
-                sc.select("icon_chat_ralph", "952_hallway/icon_chat.webp", 0);
-                sc.select("icon_boys_ralph", "952_hallway/icon_boys.webp", 1);
+                sc.selectLocalizedLabel("icon_chat_ralph", "952_hallway/icon_chat.webp", 0, "room.952.select.chat", "Chat", "", { width: 430, fontSize: 25 });
+                sc.selectLocalizedLabel("icon_boys_ralph", "952_hallway/icon_boys.webp", 1, "room.952.select.boys", "Look for boys", "", { width: 430, fontSize: 25 });
             }
             daily.set("ralph");
             break;
@@ -429,6 +442,7 @@ room952.chatcatch = function (callback) {
                 "width": 807,
                 "height": 120,
                 "title": "Return to your hallway",
+                "titleKey": "room.952.hover.hallway",
                 "image": "952_hallway/escape2cancel.png"
             }, 952);
             nav.button({
@@ -439,6 +453,7 @@ room952.chatcatch = function (callback) {
                 "width": 169,
                 "height": 705,
                 "title": "Try the side hallway",
+                "titleKey": "room.952.hover.sideHallway",
                 "image": "952_hallway/escape2.png"
             }, 952);
             break;
@@ -607,7 +622,7 @@ room952.chat = function (chatID) {
         },
         {
             chatID: 1,
-            speaker: "ralph",
+            speaker: "ralph", l10nValues: { chris: sc.n("!chris"), timothy: sc.n("!timothy") },
             text: "Oh wow, am I glad you're here! " + sc.n("!chris") + " and " + sc.n("!timothy") + 
                 " are great and all, but they really just want to hang out together. I always feel like " +
                 "the odd one out. Finally my buddy is here! So did they tell you? Are you a girl too? ",
@@ -661,7 +676,7 @@ room952.chat = function (chatID) {
         },
         {
             chatID: 6,
-            speaker: "security",
+            speaker: "security", l10nValues: { rachel: sc.n("rachel") },
             text: "Oh crap! Hello! I'm so happy to see you! I thought you'd be trapped at " + sc.n("rachel") +
                 "'s forever when I left! I was so happy when I heard you made it here! You are, after all, " +
                 "the reason my life has meaning now. ",
@@ -671,7 +686,7 @@ room952.chat = function (chatID) {
         },
         {
             chatID: 7,
-            speaker: "security",
+            speaker: "security", l10nValues: { security: sc.n("security"), rachel: sc.n("rachel") },
             text: sc.n("security") + "! I was your guard at " + sc.n("rachel") + "'s. At least I was the guard " +
                 "before you showed me who I really am. You gave me my first sissygasm! So good. Now I'm here. I tell you " +
                 "those hormones the doctor hands are are really potent! I can't wait for my giant soft titties! ",
@@ -704,8 +719,8 @@ room952.chat = function (chatID) {
         },
         {
             chatID: 10,
-            speaker: "security",
-            text: "Yes. There's been a lot lately. I think Ubel's tired of waiting. I'm trying to play " +
+            speaker: "security", l10nValues: { ubel: sc.n("ubel") },
+            text: "Yes. There's been a lot lately. I think " + sc.n("ubel") + "'s tired of waiting. I'm trying to play " +
                 "it safe. Be good enough to get fucked, but not so good they try to impregnate me. Just " +
                 "need to buy some time to get out of here. Maybe steal a bunch of those suppositories before " +
                 "I get out of here. It's just really hard to escape. ",
@@ -732,7 +747,7 @@ room952.chat = function (chatID) {
         },
         {
             chatID: 13,
-            speaker: "!chris",
+            speaker: "!chris", l10nValues: { timothy: sc.n("!timothy") },
             text: "I was just tellin' " + sc.n("!timothy") + " it would be so fun when you finally get out! " +
                 "You are one of the fun ones. ",
             button: [
@@ -761,7 +776,7 @@ room952.chat = function (chatID) {
         },
         {
             chatID: 16,
-            speaker: "!timothy",
+            speaker: "!timothy", l10nValues: { chris: sc.n("!chris") },
             text: "Those pills really do make us hot. And that penis shrinking cream is the best! So glad " +
                 sc.n("!chris") + " was able to talk the doctor into letting us use it. ",
             button: [
@@ -908,7 +923,7 @@ room952.chat = function (chatID) {
         },
         {
             chatID: 32,
-            speaker: "daria",
+            speaker: "daria", l10nValues: { ubel: sc.n("ubel") },
             text: "Oh that. It's funny how word gets around and it's always wrong. The cum bath ritual that brings about the coming " +
                 "of Azrael is done with girl that was born a boy. They have a lot of dumb rituals, but this one is for real. " +
                 sc.n("ubel") + " has figured out how to turn a guy into a full on chick, pussy and everything. ",
@@ -951,7 +966,7 @@ room952.chat = function (chatID) {
         },
         {
             chatID: 36,
-            speaker: "daria",
+            speaker: "daria", l10nValues: { bodhi: sc.n("bodhi") },
             text: "After the way is cleared you'll need to follow me. I know a side trail in the swamp that will take us to the city, but once we reach " +
                 "the city " + sc.n("bodhi") + " and I are going to disappear so you'll be on your own. Now the door to the side entrance is locked and I'll " +
                 "need your help unlocking it. ",
@@ -1112,7 +1127,7 @@ room952.chat = function (chatID) {
         },
         {
             chatID: 54,
-            speaker: "daria",
+            speaker: "daria", l10nValues: { bodhi: sc.n("bodhi") },
             text: "That's a long story. I've kind of always been here, but " + sc.n("bodhi") + " was a " +
                 "searcher. He found his way here looking to live and fuck and eat. Really a simple boy. ",
             button: [
@@ -1121,7 +1136,7 @@ room952.chat = function (chatID) {
         },
         {
             chatID: 55,
-            speaker: "daria",
+            speaker: "daria", l10nValues: { bodhi: sc.n("bodhi") },
             text: "Yes, " + sc.n("bodhi") + " had just lost his job selling surf boards. He " +
                 "hated working these doldrum jobs so much that when we heard about this place we gave up everything and came here. ",
             button: [
@@ -1140,7 +1155,7 @@ room952.chat = function (chatID) {
         },
         {
             chatID: 57,
-            speaker: "bodhi",
+            speaker: "bodhi", l10nValues: { daria: sc.n("daria") },
             text: "I haven't had a normal manly orgasm in almost 2 years! Once you get in touch with your sissy pussy it's the only way! " +
                 "My orgasms are so intense they usually last for 5 minutes. " + sc.n("daria") + " really is the best! ",
             button: [
@@ -1270,7 +1285,7 @@ room952.chat = function (chatID) {
         },
         {
             chatID: 72,
-            speaker: "daria",
+            speaker: "daria", l10nValues: { bodhi: sc.n("bodhi"), player: sc.n("me") },
             text: "I love your lips " + sc.n("bodhi") + ". And you " + sc.n("me") + " you're not bad. You really know how to serve a " +
                 "woman. Come back anytime to eat my pussy. ",
             button: [
@@ -1330,7 +1345,7 @@ room952.chat = function (chatID) {
         },
         {
             chatID: 79,
-            speaker: "!chris",
+            speaker: "!chris", l10nValues: { timothy: sc.n("!timothy") },
             text: "They took her. She's gone",
             button: [
                 { chatID: 80, text: sc.n("!timothy") + "? Where did she go? ", callback: "" },

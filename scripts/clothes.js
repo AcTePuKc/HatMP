@@ -2704,10 +2704,11 @@ cl.energydisplay = function () {
     else
         secondHalf = "75";
 
-    $("#char_charDisplay").html('<img src="./images/stat/' + firstHalf + '_' + secondHalf + '.png" style="' + g.makeCss(150, 150, 0, 0) + ' title="' + cl.set[firstHalf + 1].name + '">');
+    $("#char_charDisplay").html('<img src="./images/stat/' + firstHalf + '_' + secondHalf + '.png" style="' + g.makeCss(150, 150, 0, 0) + '">');
+    $("#char_charDisplay img").attr("title", cl.localizedStyle(cl.set[firstHalf + 1]));
     for (i = 0; i < cl.set.length; i++) {
         if (cl.set[i].entry === firstHalf) {
-            $("#rl_appearance").text(cl.set[i].name);
+            $("#rl_appearance").text(cl.localizedStyle(cl.set[i]));
             i = 9999;
         }
     }

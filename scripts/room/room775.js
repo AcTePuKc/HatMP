@@ -32,7 +32,7 @@ room775.main = function () {
                 "height": 602,
                 "title": "Open wardrobe",
                 "titleKey": "room.775.hover.openWardrobe",
-                "image": "10_mainchar/10_wardrobe.png"
+                "image": "7_mainCharRoomAlt/clickHere.png"
             }, 775);
         }
         else {
@@ -482,7 +482,7 @@ room775.chat = function (chatID) {
                 chatID: 13,
                 speaker: "priest",
                 text: "Welcome all, I see many familiar faces, and some new faces. For those that are new here I'm " + sc.n("priest") +
-                    " and I'm really excited to tell you about our lord and savior! Lend me your ears. ",
+                    " and I'm really excited to tell you about our lord and savior! Lend me your ears. ", l10nValues: { priest: sc.n("priest") },
                 button: [
                     { chatID: 14, text: "...", callback: "closeup" }
                 ]

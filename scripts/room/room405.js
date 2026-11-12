@@ -27,7 +27,7 @@ room405.btnclick = function (name) {
         case "red":
             if (cl.c.hairLength === null)
                 chat(0, 405);
-            if (cl.c.hairLength < 2)
+            else if (cl.c.hairLength < 2)
                 chat(1, 405);
             else
                 chat(2, 405);
@@ -64,8 +64,10 @@ room405.chatcatch = function (callback) {
     var i;
     switch (callback) {
         case "trim":
-            if (gv.get("money") < 24)
+            if (gv.get("money") < 24) {
                 chat(3, 405);
+                return;
+            }
             else {
                 inv.createElements(false);
                 for (i = -1; i < cl.c.hairLength; i++)
@@ -81,8 +83,10 @@ room405.chatcatch = function (callback) {
             });
             break;
         case "dye":
-            if (gv.get("money") < 120)
+            if (gv.get("money") < 120) {
                 chat(3, 405);
+                return;
+            }
             else {
                 inv.createElements(false);
                 var colorTemp = 'black';
@@ -121,8 +125,10 @@ room405.chatcatch = function (callback) {
             });
             break;
         case "style":
-            if (gv.get("money") < 80)
+            if (gv.get("money") < 80) {
                 chat(3, 405);
+                return;
+            }
             else {
                 inv.createElements(false);
                 var styleTemp = 'straight';

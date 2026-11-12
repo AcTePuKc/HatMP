@@ -55,7 +55,7 @@ rape.drawPanelBackground = function (image = "1004_rape/icon_bg.png") {
     }, 1004);
 };
 
-rape.getActionTitle = function (actionName) {
+rape.getActionTitleEnglish = function (actionName) {
     switch (actionName) {
         case "struggle": return "Struggle";
         case "kick": return "Kick";
@@ -90,6 +90,19 @@ rape.getActionTitle = function (actionName) {
         case "sub6anal": return "Submit";
         default: return actionName;
     }
+};
+
+rape.getActionTitle = function (actionName) {
+    const title = rape.getActionTitleEnglish(actionName);
+    const keys = {
+        "Struggle": "struggle", "Kick": "kick", "Submit": "submit",
+        "Go limp": "limp", "Choose cock": "cock", "Choose oral": "oral",
+        "Choose anal": "anal", "Flee": "flee", "Try again": "retry",
+        "Get up": "getUp", "Get dressed": "getDressed", "Cover yourself": "cover",
+        "Continue": "continue", "Throw pocket sand": "sand", "Blow the horn": "horn",
+        "Resist": "resist"
+    };
+    return keys[title] ? l10n.t("room.1004.action." + keys[title], title) : title;
 };
 
 rape.renderActionButtons = function (btnList, top = rape.actionButtonTop) {
@@ -326,7 +339,7 @@ rape.phase0 = function () {
         }, 1004);
     }
     rape.displayMenu("init");
-    rape.message(rape.char.openingLine);
+    rape.message(rape.localizeOpening(rape.char.openingLine));
     rape.phases[0].c++;
 };
 
@@ -387,7 +400,7 @@ rape.phase1 = function () {
                 }, 1004);
             }
             rape.displayMenu("init");
-            rape.message("Do you want to fuck me? I would fuck me so hard.", "me");
+            rape.message(l10n.t("room.1004.message.offer", "Do you want to fuck me? I would fuck me so hard."), "me");
             rape.phases[1].c++;
             return;
         }
@@ -406,15 +419,15 @@ rape.phase1 = function () {
             rape.displayMenu("scream");
             rape.phases[1].c++;
             if (rape.char.name === "!wolf")
-                rape.message("Grrrrr ", rape.char.name);
+                rape.message(l10n.t("room.1004.source.157d104f6e", "Grrrrr "), rape.char.name);
             else if (rape.char.name === "!plant") 
                 rape.message("...", rape.char.name);
             else if (rape.char.gender === "m")
-                rape.message("I'm going to beat you till you cry. Tears make my cock so hard! ", rape.char.name);
+                rape.message(l10n.t("room.1004.message.tears", "I'm going to beat you till you cry. Tears make my cock so hard! "), rape.char.name);
             else if (rape.char.gender === "f")
-                rape.message("Your struggling only makes my pussy wetter!", rape.char.name);
+                rape.message(l10n.t("room.1004.message.struggling", "Your struggling only makes my pussy wetter!"), rape.char.name);
             else
-                rape.message("I'm going to beat you till you cry. Tears make my cock so hard! ", rape.char.name);
+                rape.message(l10n.t("room.1004.message.tears", "I'm going to beat you till you cry. Tears make my cock so hard! "), rape.char.name);
             return;
         }
         else {
@@ -449,51 +462,51 @@ rape.phase1 = function () {
     rape.displayMenu("init");
     let stripMsg;
     if (rape.char.name === "!wolf") {
-        stripMsg = ["GGGGrrrrr"];
+        stripMsg = [l10n.t("room.1004.source.e8f9d24956", "GGGGrrrrr")];
     }
     else if (rape.char.name === "!plant") {
         stripMsg = ["..."];
     }
     if (rape.char.gender === "m") {
         stripMsg = [
-            "Slut don't deserve clothing",
-            "I am going to fuck you till you bleed!",
-            "Give me your clothes, bitch!",
-            "Knock knock, here comes the cock!"
+            l10n.t("room.1004.strip.noClothes", "Slut don't deserve clothing"),
+            l10n.t("room.1004.source.c3d8fca9e4", "I am going to fuck you till you bleed!"),
+            l10n.t("room.1004.strip.giveClothes", "Give me your clothes, bitch!"),
+            l10n.t("room.1004.source.0452d67476", "Knock knock, here comes the cock!")
         ];
         if (gender.isGirl()) {
-            stripMsg.push("If you want to be a girl, I'm going to fuck you like one!");
-            stripMsg.push("You dress like you need dick!");
-            stripMsg.push("You're asking for this.");
-            stripMsg.push("You dress like you need a cock in you");
+            stripMsg.push(l10n.t("room.1004.source.e345ea4045", "If you want to be a girl, I'm going to fuck you like one!"));
+            stripMsg.push(l10n.t("room.1004.strip.dressWant", "You dress like you need dick!"));
+            stripMsg.push(l10n.t("room.1004.strip.asking", "You're asking for this."));
+            stripMsg.push(l10n.t("room.1004.source.f1da8f17cc", "You dress like you need a cock in you"));
         }
         else {
-            stripMsg.push("Faggots don't need clothes to get fucked");
-            stripMsg.push("You might look like a boy, but I'm going to fuck you like a girl.");
-            stripMsg.push("Get ready for my dick beta boy!");
+            stripMsg.push(l10n.t("room.1004.source.f1c3c7aae5", "Faggots don't need clothes to get fucked"));
+            stripMsg.push(l10n.t("room.1004.source.90ec449914", "You might look like a boy, but I'm going to fuck you like a girl."));
+            stripMsg.push(l10n.t("room.1004.source.dcdb27a0db", "Get ready for my dick beta boy!"));
         }
     }
     else if (rape.char.gender === "f") {
         stripMsg = [
-            "Slut don't deserve clothing",
-            "Give me your clothes, bitch!",
+            l10n.t("room.1004.strip.noClothes", "Slut don't deserve clothing"),
+            l10n.t("room.1004.strip.giveClothes", "Give me your clothes, bitch!"),
         ];
         if (gender.isGirl()) {
-            stripMsg.push("I'm going to dyke out so hard on that hot body!");
-            stripMsg.push("You dress like you eat pussy!");
-            stripMsg.push("You're asking for this.");
-            stripMsg.push("No one dresses prettier than me!");
+            stripMsg.push(l10n.t("room.1004.source.935118d292", "I'm going to dyke out so hard on that hot body!"));
+            stripMsg.push(l10n.t("room.1004.strip.dressWomen", "You dress like you eat pussy!"));
+            stripMsg.push(l10n.t("room.1004.strip.asking", "You're asking for this."));
+            stripMsg.push(l10n.t("room.1004.strip.prettier", "No one dresses prettier than me!"));
         }
         else {
-            stripMsg.push("I need dick! Now!");
-            stripMsg.push("You're so sexy, I need your cock!");
-            stripMsg.push("Fuck I need a man like you! ");
+            stripMsg.push(l10n.t("room.1004.source.85fbc17f0f", "I need dick! Now!"));
+            stripMsg.push(l10n.t("room.1004.source.1caca4c6da", "You're so sexy, I need your cock!"));
+            stripMsg.push(l10n.t("room.1004.strip.needMan", "Fuck I need a man like you! "));
         }
     }
     else {
         stripMsg = [
-            "Slut don't deserve clothing",
-            "Give me your clothes, bitch!",
+            l10n.t("room.1004.strip.noClothes", "Slut don't deserve clothing"),
+            l10n.t("room.1004.strip.giveClothes", "Give me your clothes, bitch!"),
         ];
     }
     rape.message(stripMsg[g.rand(0, stripMsg.length)], rape.char.name);
@@ -545,9 +558,9 @@ rape.phase2 = function () {
             rape.updateEnergy(null, null, 15, 3);
             rape.displayMenu("moan");
             if (rape.name === "!wolf")
-                rape.message(["Grrrrrr "]);
+                rape.message([l10n.t("room.1004.source.a9afe862d9", "Grrrrrr ")]);
             else
-                rape.message(["That's right, bitch. ", "Show me what you got!"]);
+                rape.message([l10n.t("room.1004.message.thatsRight", "That's right, bitch. "), l10n.t("room.1004.message.showMe", "Show me what you got!")]);
             return;
         }
         else if (rape.phaseChange === "struggle" && rape.char.slap && g.rand(0, 3) === 0 && (cl.c.panties !== null)) { //panty rip
@@ -574,7 +587,7 @@ rape.phase2 = function () {
             cl.display();
             rape.updateEnergy(null, -10, 5, 3);
             rape.displayMenu("scream_next");
-            rape.message(["You don't need these!"]);
+            rape.message([l10n.t("room.1004.message.dontNeed", "You don't need these!")]);
             return;
         }
         else {
@@ -616,46 +629,46 @@ rape.phase2 = function () {
     }
     let stripMsg;
     if (rape.char.name === "!wolf") {
-        stripMsg = ["GGGGrrrrr"];
+        stripMsg = [l10n.t("room.1004.source.e8f9d24956", "GGGGrrrrr")];
     }
     else if (rape.char.name === "!plant") {
         stripMsg = ["..."];
     }
     if (rape.char.gender === "m") {
         stripMsg = [
-            "Give me those panties! ",
-            "Your panties are mine now!"
+            l10n.t("room.1004.strip.givePanties", "Give me those panties! "),
+            l10n.t("room.1004.strip.minePanties", "Your panties are mine now!")
         ];
         if (gender.isGirl()) {
-            stripMsg.push("Let me see them titties girl.");
-            stripMsg.push("Nice panty bulge. I want to see what's underneath");
-            stripMsg.push("You know you want my dick.");
+            stripMsg.push(l10n.t("room.1004.strip.seeBreasts", "Let me see them titties girl."));
+            stripMsg.push(l10n.t("room.1004.strip.bulge", "Nice panty bulge. I want to see what's underneath"));
+            stripMsg.push(l10n.t("room.1004.source.f0c87d482a", "You know you want my dick."));
         }
         else {
-            stripMsg.push("I'm going to enjoy raping that ass boy!");
-            stripMsg.push("Hahaha! Your mouth says no, but your body says it need my dick! ");
+            stripMsg.push(l10n.t("room.1004.source.d68194896f", "I'm going to enjoy raping that ass boy!"));
+            stripMsg.push(l10n.t("room.1004.source.bbf59d624a", "Hahaha! Your mouth says no, but your body says it need my dick! "));
         }
     }
     else if (rape.char.gender === "f") {
         stripMsg = [
-            "Give me those panties! ",
-            "Your panties are mine now!"
+            l10n.t("room.1004.strip.givePanties", "Give me those panties! "),
+            l10n.t("room.1004.strip.minePanties", "Your panties are mine now!")
         ];
         if (gender.isGirl()) {
-            stripMsg.push("Love a girl in cute panties. Love it better when their panties are on the ground");
-            stripMsg.push("I'm going to love rubbing my clit all over your face.");
-            stripMsg.push("Those are fuck me underwear!");
+            stripMsg.push(l10n.t("room.1004.strip.cutePanties", "Love a girl in cute panties. Love it better when their panties are on the ground"));
+            stripMsg.push(l10n.t("room.1004.source.e4506f0440", "I'm going to love rubbing my clit all over your face."));
+            stripMsg.push(l10n.t("room.1004.strip.seductiveUnderwear", "Those are fuck me underwear!"));
         }
         else {
-            stripMsg.push("One last barrier between your dick and my pussy");
-            stripMsg.push("Stop fighting me and give me your dick!");
-            stripMsg.push("I need to see that penis!");
+            stripMsg.push(l10n.t("room.1004.source.a24a13bfcf", "One last barrier between your dick and my pussy"));
+            stripMsg.push(l10n.t("room.1004.source.2798ca39cd", "Stop fighting me and give me your dick!"));
+            stripMsg.push(l10n.t("room.1004.strip.seePenis", "I need to see that penis!"));
         }
     }
     else {
         stripMsg = [
-            "Give me those panties! ",
-            "Your panties are mine now!"
+            l10n.t("room.1004.strip.givePanties", "Give me those panties! "),
+            l10n.t("room.1004.strip.minePanties", "Your panties are mine now!")
         ];
     }
     rape.message(stripMsg[g.rand(0, stripMsg.length)], rape.char.name);
@@ -718,7 +731,7 @@ rape.phase4 = function () {
                     "height": 1080,
                     "image": "1004_rape/" + img
                 }, 1004);
-                rape.message("Please don't put that dirty dick in me", "me");
+                rape.message(l10n.t("room.1004.message.pleaseDont", "Please don't put that dirty dick in me"), "me");
                 rape.displayMenu(rape.rapeType);
                 rape.phases[4].c++;
                 return;
@@ -737,7 +750,7 @@ rape.phase4 = function () {
                     "image": "1004_rape/" + img
                 }, 1004);
                 rape.displayMenu("phase2");
-                rape.message("Aaakk no! I don't want it", "me");
+                rape.message(l10n.t("room.1004.message.dontWant", "Aaakk no! I don't want it"), "me");
                 return;
             }
             else if (rape.phaseChange === "phase3sub") {
@@ -755,7 +768,7 @@ rape.phase4 = function () {
                     "height": 1080,
                     "image": "1004_rape/" + img
                 }, 1004);
-                rape.message("I am such a dirty anal whore", "me");
+                rape.message(l10n.t("room.1004.message.dirty", "I am such a dirty anal whore"), "me");
             }
             else if (rape.phaseChange === "limp" || rape.phaseChange === "struggle") {
                 img = "hover_cock_owie_" + rape.char.color + ".png";
@@ -772,7 +785,7 @@ rape.phase4 = function () {
                     "height": 1080,
                     "image": "1004_rape/" + img
                 }, 1004);
-                rape.message("Fuck that cock hurts", "me");
+                rape.message(l10n.t("room.1004.message.hurts", "Fuck that cock hurts"), "me");
             }
             else if (rape.phaseChange === "next") {
                 rape.callphase(true);
@@ -791,7 +804,7 @@ rape.phase4 = function () {
                     "height": 518,
                     "image": "1004_rape/dick_" + rape.char.color + ".png"
                 }, 1004);
-                rape.message("I can smell the sweat from his balls", "me");
+                rape.message(l10n.t("room.1004.message.smellBalls", "I can smell the sweat from his balls"), "me");
                 rape.displayMenu(rape.rapeType);
                 rape.phases[4].c++;
                 return;
@@ -808,12 +821,12 @@ rape.phase4 = function () {
                     "image": "1004_rape/oral_slap_" + rape.char.color + ".png"
                 }, 1004);
                 rape.displayMenu("phase2");
-                rape.message("MMmmmMM NO!", "me");
+                rape.message(l10n.t("room.1004.message.no", "MMmmmMM NO!"), "me");
                 return;
             }
             else if (rape.phaseChange === "limp" ||rape.phaseChange === "phase3sub" || rape.phaseChange === "struggle") {
                 zcl.face(0, 300, 1, "insert", rape.char.color, false);
-                rape.message("GAK!", "me");
+                rape.message(l10n.t("room.1004.message.gag", "GAK!"), "me");
             }
             else if (rape.phaseChange === "next") {
                 rape.callphase(true);
@@ -832,7 +845,7 @@ rape.phase4 = function () {
                     "image": "1004_rape/pussy_0_" + rape.char.color + ".png"
                 }, 1004);
                 zcl.bj(50, -100, 1.4, "", true);
-                rape.message("I can smell her sweet sweet pussy", "me");
+                rape.message(l10n.t("room.1004.message.smellPussy", "I can smell her sweet sweet pussy"), "me");
                 rape.displayMenu(rape.rapeType);
                 rape.phases[4].c++;
                 return;
@@ -849,7 +862,7 @@ rape.phase4 = function () {
                     "image": "1004_rape/oral_slap_" + rape.char.color + ".png"
                 }, 1004);
                 rape.displayMenu("phase2");
-                rape.message("MMmmmMM NO!", "me");
+                rape.message(l10n.t("room.1004.message.no", "MMmmmMM NO!"), "me");
                 return;
             }
             else if (rape.phaseChange === "limp" || rape.phaseChange === "phase3sub" || rape.phaseChange === "struggle") {
@@ -873,7 +886,7 @@ rape.phase4 = function () {
                     "image": "1004_rape/pussy_1.png"
                 }, 1004);
 
-                rape.message("GAK!", "me");
+                rape.message(l10n.t("room.1004.message.gag", "GAK!"), "me");
             }
             else if (rape.phaseChange === "next") {
                 rape.callphase(true);
@@ -892,7 +905,7 @@ rape.phase4 = function () {
                     "height": 1080,
                     "image": "1004_rape/pussy_phase4_0_" + cocksize + ".png"
                 }, 1004);
-                rape.message("She's so wet she's dripping down my cock!", "me");
+                rape.message(l10n.t("room.1004.message.wet", "She's so wet she's dripping down my cock!"), "me");
                 rape.displayMenu("phase2");
                 rape.phases[4].c++;
                 return;
@@ -909,7 +922,7 @@ rape.phase4 = function () {
                     "image": "1004_rape/oral_slap_" + rape.char.color + ".png"
                 }, 1004);
                 rape.displayMenu("phase2");
-                rape.message("MMmmmMM NO!", "me");
+                rape.message(l10n.t("room.1004.message.no", "MMmmmMM NO!"), "me");
                 return;
             }
             else if (rape.phaseChange === "limp" || rape.phaseChange === "phase3sub" || rape.phaseChange === "struggle") {
@@ -922,7 +935,7 @@ rape.phase4 = function () {
                     "height": 1080,
                     "image": "1004_rape/pussy_phase4_1_" + cocksize + ".png"
                 }, 1004);
-                rape.message("GAK!", "me");
+                rape.message(l10n.t("room.1004.message.gag", "GAK!"), "me");
             }
             else if (rape.phaseChange === "next") {
                 rape.callphase(true);
@@ -975,169 +988,169 @@ rape.phase5 = function () {
         if (rape.phaseChange === "phase4Sub") {
             if (rape.char.t === "duo") {
                 rapeMsg = [
-                    { n: "me", m: "GAK GAK Mmmmm slurp GAK GAK" },
-                    { n: rape.char.name, m: "You a cock taking champ!" },
-                    { n: rape.char.name, m: "Fuck, so tight and warm. " },
-                    { n: rape.char.name, m: "This bitch is really into it!" },
-                    { n: rape.char.name, m: "I knew you wanted our dicks" },
-                    { n: rape.char.name, m: "Take our cocks in your tight little holes!" },
+                    { n: "me", m: l10n.t("room.1004.sound.gagSlurp", "GAK GAK Mmmmm slurp GAK GAK") },
+                    { n: rape.char.name, m: l10n.t("room.1004.phase5.cockChamp", "You a cock taking champ!") },
+                    { n: rape.char.name, m: l10n.t("room.1004.phase5.tightWarm", "Fuck, so tight and warm. ") },
+                    { n: rape.char.name, m: l10n.t("room.1004.phase5.wantsThis", "This bitch is really into it!") },
+                    { n: rape.char.name, m: l10n.t("room.1004.phase5.wantedOurDicks", "I knew you wanted our dicks") },
+                    { n: rape.char.name, m: l10n.t("room.1004.phase5.takeOurCocks", "Take our cocks in your tight little holes!") },
                 ];
             }
             else if (rape.char.t === "duowolf") {
                 rapeMsg = [
-                    { n: "me", m: "GAK GAK Mmmmm slurp GAK GAK" },
-                    { n: rape.char.name, m: "arf" },
+                    { n: "me", m: l10n.t("room.1004.sound.gagSlurp", "GAK GAK Mmmmm slurp GAK GAK") },
+                    { n: rape.char.name, m: l10n.t("room.1004.reaction.bark", "arf") },
                 ];
             }
             else if (rape.char.t === "wolf") {
                 rapeMsg = [
-                    { n: "me", m: "uh uh uh *moan*" },
-                    { n: "me", m: "That dire wolf knot is so thick in my bussy!" },
-                    { n: "me", m: "So full!" },
-                    { n: "me", m: "I'm locked into that cock!" },
-                    { n: rape.char.name, m: "arf" },
-                    { n: rape.char.name, m: "grrrr" },
-                    { n: rape.char.name, m: "*panting*" },
+                    { n: "me", m: l10n.t("room.1004.sound.uhMoan", "uh uh uh *moan*") },
+                    { n: "me", m: l10n.t("room.1004.wolf.phase5.locked", "That dire wolf knot is so thick in my bussy!") },
+                    { n: "me", m: l10n.t("room.1004.reaction.full", "So full!") },
+                    { n: "me", m: l10n.t("room.1004.wolf.phase5.trapped", "I'm locked into that cock!") },
+                    { n: rape.char.name, m: l10n.t("room.1004.reaction.bark", "arf") },
+                    { n: rape.char.name, m: l10n.t("room.1004.reaction.growl", "grrrr") },
+                    { n: rape.char.name, m: l10n.t("room.1004.sound.panting", "*panting*") },
                 ];
             }
             else if (rape.char.t === "plant") {
                 rapeMsg = [
-                    { n: "thinking", m: "Fuck me harder! I need it so bad!" },
-                    { n: "thinking", m: "I'm so full in all my holes! I love it" },
-                    { n: "thinking", m: "It's so slimy, but thick! " },
-                    { n: "thinking", m: "Fuck it feels so good!" }
+                    { n: "thinking", m: l10n.t("room.1004.phase5.harderNeedIt", "Fuck me harder! I need it so bad!") },
+                    { n: "thinking", m: l10n.t("room.1004.phase5.fullHoles", "I'm so full in all my holes! I love it") },
+                    { n: "thinking", m: l10n.t("room.1004.reaction.thickSlimy", "It's so slimy, but thick! ") },
+                    { n: "thinking", m: l10n.t("room.1004.reaction.feelsSoGood", "Fuck it feels so good!") }
                 ];
             }
             else {
                 rapeMsg = [
-                    { n: "me", m: "Fuck me harder! I need it so bad!" },
-                    { n: "me", m: "That feels so good. I love your cock in my ass! " },
-                    { n: "me", m: "I'm such an anal whore! I'm such an anal whore! I'm such an anal whore!" },
-                    { n: rape.char.name, m: "GRUNT!" },
-                    { n: rape.char.name, m: "MMMmmm yeah!" },
+                    { n: "me", m: l10n.t("room.1004.phase5.harderNeedIt", "Fuck me harder! I need it so bad!") },
+                    { n: "me", m: l10n.t("room.1004.phase5.cockInAss", "That feels so good. I love your cock in my ass! ") },
+                    { n: "me", m: l10n.t("room.1004.phase5.analWhore", "I'm such an anal whore! I'm such an anal whore! I'm such an anal whore!") },
+                    { n: rape.char.name, m: l10n.t("room.1004.reaction.grunt", "GRUNT!") },
+                    { n: rape.char.name, m: l10n.t("room.1004.reaction.yes", "MMMmmm yeah!") },
                 ];
                 if (rape.char.t === "male") {
-                    rapeMsg.push({ n: "me", m: "Fuck me harder daddy! I need it so bad!" });
-                    rapeMsg.push({ n: "me", m: "I love your cock up my ass! I love your cock up my ass! I love your cock up my ass!" });
-                    rapeMsg.push({ n: rape.char.name, m: "Love a bitch that pushed back into my dick" });
-                    rapeMsg.push({ n: rape.char.name, m: "I knew you wanted to get fucked!" });
-                    rapeMsg.push({ n: rape.char.name, m: "Keep pushing into my cock baby!" });
+                    rapeMsg.push({ n: "me", m: l10n.t("room.1004.phase5.daddyHarder", "Fuck me harder daddy! I need it so bad!") });
+                    rapeMsg.push({ n: "me", m: l10n.t("room.1004.phase5.cockUpAss", "I love your cock up my ass! I love your cock up my ass! I love your cock up my ass!") });
+                    rapeMsg.push({ n: rape.char.name, m: l10n.t("room.1004.phase5.pushBack", "Love a bitch that pushed back into my dick") });
+                    rapeMsg.push({ n: rape.char.name, m: l10n.t("room.1004.phase5.wantedFucked", "I knew you wanted to get fucked!") });
+                    rapeMsg.push({ n: rape.char.name, m: l10n.t("room.1004.phase5.pushingCock", "Keep pushing into my cock baby!") });
                     if (gender.pronoun("f") === "f") {
-                        rapeMsg.push({ n: rape.char.name, m: "Love your bussy hole!" });
-                        rapeMsg.push({ n: rape.char.name, m: "You fuck like you look! Smooth and hot!" });
-                        rapeMsg.push({ n: rape.char.name, m: "Damn girl. I want to make you into my house wife!" });
+                        rapeMsg.push({ n: rape.char.name, m: l10n.t("room.1004.phase5.bussyHole", "Love your bussy hole!") });
+                        rapeMsg.push({ n: rape.char.name, m: l10n.t("room.1004.source.4758927303", "You fuck like you look! Smooth and hot!") });
+                        rapeMsg.push({ n: rape.char.name, m: l10n.t("room.1004.phase5.housewife", "Damn girl. I want to make you into my house wife!") });
                     }
                     else {
-                        rapeMsg.push({ n: rape.char.name, m: "Love turning straight boys into faggots" });
-                        rapeMsg.push({ n: rape.char.name, m: "I knew your fag ass needed cock!" });
+                        rapeMsg.push({ n: rape.char.name, m: l10n.t("room.1004.shared.turnBoys", "Love turning straight boys into faggots") });
+                        rapeMsg.push({ n: rape.char.name, m: l10n.t("room.1004.source.81c705ba3f", "I knew your fag ass needed cock!") });
                     }
                 }
                 else if (rape.char.t === "femdom") {
-                    rapeMsg.push({ n: rape.char.name, m: "You love my giant strap-on don't you bitch? " });
-                    rapeMsg.push({ n: rape.char.name, m: "You're a bigger pussy than me! " });
-                    rapeMsg.push({ n: rape.char.name, m: "Love that bounce on my strap" });
-                    rapeMsg.push({ n: rape.char.name, m: "Bounce harder. I can feel it on my clit!" });
+                    rapeMsg.push({ n: rape.char.name, m: l10n.t("room.1004.source.ede82b30c8", "You love my giant strap-on don't you bitch? ") });
+                    rapeMsg.push({ n: rape.char.name, m: l10n.t("room.1004.phase5.weakling", "You're a bigger pussy than me! ") });
+                    rapeMsg.push({ n: rape.char.name, m: l10n.t("room.1004.source.cc33ee9199", "Love that bounce on my strap") });
+                    rapeMsg.push({ n: rape.char.name, m: l10n.t("room.1004.source.f0d336dee6", "Bounce harder. I can feel it on my clit!") });
                 }
 
             }
         }
         else if (rape.phaseChange === "phase4Limp") {
             rapeMsg = [
-                { n: "thinking", m: "When will it end." },
+                { n: "thinking", m: l10n.t("room.1004.phase5.whenEnd", "When will it end.") },
                 { n: "thinking", m: "..." },
             ];
             if (rape.char.t === "duo") {
-                rapeMsg.push({ n: rape.char.name, m: "You suck as a flesh light. Do something. " });
+                rapeMsg.push({ n: rape.char.name, m: l10n.t("room.1004.phase5.doSomething", "You suck as a flesh light. Do something. ") });
             }
             else if (rape.char.t === "duowolf" || rape.char.t === "wolf") {
-                rapeMsg.push({ n: rape.char.name, m: "grrrrr" });
-                rapeMsg.push({ n: rape.char.name, m: "arf" });
-                rapeMsg.push({ n: rape.char.name, m: "*panting*" });
+                rapeMsg.push({ n: rape.char.name, m: l10n.t("room.1004.reaction.growlLong", "grrrrr") });
+                rapeMsg.push({ n: rape.char.name, m: l10n.t("room.1004.reaction.bark", "arf") });
+                rapeMsg.push({ n: rape.char.name, m: l10n.t("room.1004.sound.panting", "*panting*") });
             }
             else if (rape.char.t === "plant") {
-                rapeMsg.push({ n: "me", m: "So gross and slimy" });
+                rapeMsg.push({ n: "me", m: l10n.t("room.1004.reaction.slimy", "So gross and slimy") });
 
             }
             else {
-                rapeMsg.push({ n: rape.char.name, m: "You make a shity flesh light" });
-                rapeMsg.push({ n: rape.char.name, m: "Be a good victim and move a bit. " });
-                rapeMsg.push({ n: rape.char.name, m: "If you don't move, you're just going to make this rape take longer. " });
+                rapeMsg.push({ n: rape.char.name, m: l10n.t("room.1004.shared.badToy", "You make a shity flesh light") });
+                rapeMsg.push({ n: rape.char.name, m: l10n.t("room.1004.phase5.move", "Be a good victim and move a bit. ") });
+                rapeMsg.push({ n: rape.char.name, m: l10n.t("room.1004.phase5.noMovement", "If you don't move, you're just going to make this rape take longer. ") });
             }
         }
         else if (rape.phaseChange === "phase4Struggle") {
             if (rape.char.t === "duo") {
                 rapeMsg = [
-                    { n: "me", m: "GAK GAK stahp GLUG GAK GAK" },
-                    { n: "me", m: "MMmdmmd mmhhhrrrr fffff" },
-                    { n: rape.char.name, m: "If I feel teeth I'm going to punch your face!" },
-                    { n: rape.char.name, m: "Love it when a bitch struggles. " },
-                    { n: rape.char.name, m: "Stop playing. We know you want this" },
-                    { n: rape.char.name, m: "If you didn't want our dicks, you wouldn't be acting like a whore!" },
-                    { n: rape.char.name, m: "Take our cocks in your tight little holes!" },
+                    { n: "me", m: l10n.t("room.1004.sound.gagStop", "GAK GAK stahp GLUG GAK GAK") },
+                    { n: "me", m: l10n.t("room.1004.sound.muffledWords", "MMmdmmd mmhhhrrrr fffff") },
+                    { n: rape.char.name, m: l10n.t("room.1004.phase5.teethDuo", "If I feel teeth I'm going to punch your face!") },
+                    { n: rape.char.name, m: l10n.t("room.1004.phase5.struggles", "Love it when a bitch struggles. ") },
+                    { n: rape.char.name, m: l10n.t("room.1004.phase5.stopPlaying", "Stop playing. We know you want this") },
+                    { n: rape.char.name, m: l10n.t("room.1004.source.477725479f", "If you didn't want our dicks, you wouldn't be acting like a whore!") },
+                    { n: rape.char.name, m: l10n.t("room.1004.phase5.takeOurCocks", "Take our cocks in your tight little holes!") },
                 ];
             }
             else if (rape.char.t === "duowolf") {
                 rapeMsg = [
-                    { n: "me", m: "GAK GAK Mmmmm stahp GAK GAK" },
-                    { n: "me", m: "MMmdmmd mmhhhrrrr fffff" },
-                    { n: rape.char.name, m: "grrrrrr" },
+                    { n: "me", m: l10n.t("room.1004.sound.gagMuffledStop", "GAK GAK Mmmmm stahp GAK GAK") },
+                    { n: "me", m: l10n.t("room.1004.sound.muffledWords", "MMmdmmd mmhhhrrrr fffff") },
+                    { n: rape.char.name, m: l10n.t("room.1004.reaction.growlLonger", "grrrrrr") },
                 ];
             }
             else if (rape.char.t === "wolf") {
                 rapeMsg = [
-                    { n: "me", m: "Good doggy... Please stop raping my ass" },
-                    { n: "me", m: "That dire wolf knot hurts so much! Please stop. Shoo!" },
-                    { n: "me", m: "Owie owie owie!" },
-                    { n: "me", m: "HELP ME! I'm getting raped by a dire wolf!" },
-                    { n: rape.char.name, m: "arf" },
-                    { n: rape.char.name, m: "grrrr" },
-                    { n: rape.char.name, m: "*panting*" },
+                    { n: "me", m: l10n.t("room.1004.wolf.phase5.plead", "Good doggy... Please stop raping my ass") },
+                    { n: "me", m: l10n.t("room.1004.wolf.phase5.pain", "That dire wolf knot hurts so much! Please stop. Shoo!") },
+                    { n: "me", m: l10n.t("room.1004.reaction.ouch", "Owie owie owie!") },
+                    { n: "me", m: l10n.t("room.1004.wolf.phase5.help", "HELP ME! I'm getting raped by a dire wolf!") },
+                    { n: rape.char.name, m: l10n.t("room.1004.reaction.bark", "arf") },
+                    { n: rape.char.name, m: l10n.t("room.1004.reaction.growl", "grrrr") },
+                    { n: rape.char.name, m: l10n.t("room.1004.sound.panting", "*panting*") },
                 ];
             }
             else if (rape.char.t === "plant") {
                 rapeMsg = [
-                    { n: "thinking", m: "So gross! How do I get free?" },
-                    { n: "thinking", m: "Owie owie owie!" },
-                    { n: "thinking", m: "I hope it's over quick!" },
-                    { n: "thinking", m: "My mouth is so full of plant cock I can't call for help!" }
+                    { n: "thinking", m: l10n.t("room.1004.reaction.getFree", "So gross! How do I get free?") },
+                    { n: "thinking", m: l10n.t("room.1004.reaction.ouch", "Owie owie owie!") },
+                    { n: "thinking", m: l10n.t("room.1004.reaction.overSoon", "I hope it's over quick!") },
+                    { n: "thinking", m: l10n.t("room.1004.source.a132d1ce0f", "My mouth is so full of plant cock I can't call for help!") }
                 ];
             }
             else {
                 rapeMsg = [
-                    { n: "me", m: "STOP!! Please stop raping me!" },
-                    { n: "me", m: "HELP! HELP ME!" },
-                    { n: "me", m: "I'm being raped! Please someone help me!" },
-                    { n: "me", m: "GRUNT!" },
-                    { n: "me", m: "owie owie owie! Please stop raping my ass!" },
-                    { n: "me", m: "You're ripping my ass open! " },
-                    { n: "me", m: "*Crying*" },
-                    { n: "me", m: "*sob* *sob* *sob*" },
-                    { n: rape.char.name, m: "You're pretty when you cry" },
-                    { n: rape.char.name, m: "The more you squirm then hard I fuck!" },
+                    { n: "me", m: l10n.t("room.1004.phase5.stop", "STOP!! Please stop raping me!") },
+                    { n: "me", m: l10n.t("room.1004.reaction.help", "HELP! HELP ME!") },
+                    { n: "me", m: l10n.t("room.1004.phase5.help", "I'm being raped! Please someone help me!") },
+                    { n: "me", m: l10n.t("room.1004.reaction.grunt", "GRUNT!") },
+                    { n: "me", m: l10n.t("room.1004.source.e84a77bc13", "owie owie owie! Please stop raping my ass!") },
+                    { n: "me", m: l10n.t("room.1004.source.5b389950c0", "You're ripping my ass open! ") },
+                    { n: "me", m: l10n.t("room.1004.phase5.crying", "*Crying*") },
+                    { n: "me", m: l10n.t("room.1004.phase5.sobbing", "*sob* *sob* *sob*") },
+                    { n: rape.char.name, m: l10n.t("room.1004.phase5.prettyCrying", "You're pretty when you cry") },
+                    { n: rape.char.name, m: l10n.t("room.1004.source.ff6402cd40", "The more you squirm then hard I fuck!") },
 
                 ];
                 if (rape.char.t === "male" || rape.char.t === "futa") {
-                    rapeMsg.push({ n: "me", m: "Your dick hurts so bad! Please stop!" });
-                    rapeMsg.push({ n: "me", m: "Please take your dick out of my ass mister!" });
-                    rapeMsg.push({ n: rape.char.name, m: "Your tears only make my dick harder!" });
-                    rapeMsg.push({ n: rape.char.name, m: "I don't know why you're crying. You know you want this dick" });
-                    rapeMsg.push({ n: rape.char.name, m: "Your mouth says no, but my dick says YES!" });
+                    rapeMsg.push({ n: "me", m: l10n.t("room.1004.source.497b546c57", "Your dick hurts so bad! Please stop!") });
+                    rapeMsg.push({ n: "me", m: l10n.t("room.1004.source.2560dc7fec", "Please take your dick out of my ass mister!") });
+                    rapeMsg.push({ n: rape.char.name, m: l10n.t("room.1004.shared.tearsMasculine", "Your tears only make my dick harder!") });
+                    rapeMsg.push({ n: rape.char.name, m: l10n.t("room.1004.shared.cryingMasculine", "I don't know why you're crying. You know you want this dick") });
+                    rapeMsg.push({ n: rape.char.name, m: l10n.t("room.1004.shared.saysNoMasculine", "Your mouth says no, but my dick says YES!") });
 
                     if (gender.pronoun("f") === "f") {
-                        rapeMsg.push({ n: rape.char.name, m: "If you didn't want my dick, you should look like a bitch" });
-                        rapeMsg.push({ n: rape.char.name, m: "Girls don't get to say no to me!" });
+                        rapeMsg.push({ n: rape.char.name, m: l10n.t("room.1004.source.545704e415", "If you didn't want my dick, you should look like a bitch") });
+                        rapeMsg.push({ n: rape.char.name, m: l10n.t("room.1004.phase5.girlsNo", "Girls don't get to say no to me!") });
 
                     }
                     else {
-                        rapeMsg.push({ n: rape.char.name, m: "Relax faggot. You need this." });
+                        rapeMsg.push({ n: rape.char.name, m: l10n.t("room.1004.phase5.relax", "Relax faggot. You need this.") });
                     }
                 }
                 else if (rape.char.t === "femdom") {
-                    rapeMsg.push({ n: "me", m: "Your giant strap-on hurts so bad! Please stop!" });
-                    rapeMsg.push({ n: "me", m: "Please take your strap-on out of my ass mister!" });
-                    rapeMsg.push({ n: rape.char.name, m: "Your tears only my pussy wetter!" });
-                    rapeMsg.push({ n: rape.char.name, m: "I don't know why you're crying. You know you want this strap-on" });
-                    rapeMsg.push({ n: rape.char.name, m: "Your mouth says no, but my strap-on says YES!" });
+                    rapeMsg.push({ n: "me", m: l10n.t("room.1004.source.615686af6d", "Your giant strap-on hurts so bad! Please stop!") });
+                    rapeMsg.push({ n: "me", m: l10n.t("room.1004.source.918d909868", "Please take your strap-on out of my ass mister!") });
+                    rapeMsg.push({ n: rape.char.name, m: l10n.t("room.1004.source.4309aa17d3", "Your tears only my pussy wetter!") });
+                    rapeMsg.push({ n: rape.char.name, m: l10n.t("room.1004.source.9cd58f16d8", "I don't know why you're crying. You know you want this strap-on") });
+                    rapeMsg.push({ n: rape.char.name, m: l10n.t("room.1004.source.b0446ccc5d", "Your mouth says no, but my strap-on says YES!") });
                 }
             }
         }
@@ -1148,91 +1161,91 @@ rape.phase5 = function () {
         if (rape.phaseChange === "phase4Sub") {
             if (rape.char.t === "wolf") {
                 rapeMsg = [
-                    { n: "me", m: "GLUCK GLUCK GLUCK mmmMmm GLUCK GLUCK" },
-                    { n: "thinking", m: "That dire wolf knot is so thick in my mouth!" },
-                    { n: "thinking", m: "I love doggy dick!" },
-                    { n: "thinking", m: "So yummy" },
-                    { n: rape.char.name, m: "arf" },
-                    { n: rape.char.name, m: "grrrr" },
-                    { n: rape.char.name, m: "*panting*" },
+                    { n: "me", m: l10n.t("room.1004.reaction.gluck", "GLUCK GLUCK GLUCK mmmMmm GLUCK GLUCK") },
+                    { n: "thinking", m: l10n.t("room.1004.wolf.phase5.mouth", "That dire wolf knot is so thick in my mouth!") },
+                    { n: "thinking", m: l10n.t("room.1004.wolf.phase5.enjoy", "I love doggy dick!") },
+                    { n: "thinking", m: l10n.t("room.1004.reaction.delicious", "So yummy") },
+                    { n: rape.char.name, m: l10n.t("room.1004.reaction.bark", "arf") },
+                    { n: rape.char.name, m: l10n.t("room.1004.reaction.growl", "grrrr") },
+                    { n: rape.char.name, m: l10n.t("room.1004.sound.panting", "*panting*") },
                 ];
             }
             else {
                 rapeMsg = [
-                    { n: "me", m: "GLUCK GLUCK GLUCK mmmMmm GLUCK GLUCK" },
-                    { n: "me", m: "Mmmm *lick* *slurp* *suck* mmmMMmmmm " },
-                    { n: rape.char.name, m: "GRUNT!" },
-                    { n: rape.char.name, m: "MMMmmm yeah!" },
+                    { n: "me", m: l10n.t("room.1004.reaction.gluck", "GLUCK GLUCK GLUCK mmmMmm GLUCK GLUCK") },
+                    { n: "me", m: l10n.t("room.1004.sound.lickSlurp", "Mmmm *lick* *slurp* *suck* mmmMMmmmm ") },
+                    { n: rape.char.name, m: l10n.t("room.1004.reaction.grunt", "GRUNT!") },
+                    { n: rape.char.name, m: l10n.t("room.1004.reaction.yes", "MMMmmm yeah!") },
                 ];
-                rapeMsg.push({ n: "thinking", m: "Cock is so yummy!" });
-                rapeMsg.push({ n: "thinking", m: "MMmmmm I love cock so much!" });
-                rapeMsg.push({ n: "thinking", m: "So deep down my throat!" });
-                rapeMsg.push({ n: rape.char.name, m: "Love the cocks lust in your eyes" });
-                rapeMsg.push({ n: rape.char.name, m: "Fuck yeah. Keep sucking baby." });
-                rapeMsg.push({ n: rape.char.name, m: "You were born for this" });
-                rapeMsg.push({ n: rape.char.name, m: "That's right girl. Worship this dick" });
+                rapeMsg.push({ n: "thinking", m: l10n.t("room.1004.source.96231eef9a", "Cock is so yummy!") });
+                rapeMsg.push({ n: "thinking", m: l10n.t("room.1004.source.13b965f593", "MMmmmm I love cock so much!") });
+                rapeMsg.push({ n: "thinking", m: l10n.t("room.1004.phase5.throat", "So deep down my throat!") });
+                rapeMsg.push({ n: rape.char.name, m: l10n.t("room.1004.source.6341305598", "Love the cocks lust in your eyes") });
+                rapeMsg.push({ n: rape.char.name, m: l10n.t("room.1004.source.03e2e9b731", "Fuck yeah. Keep sucking baby.") });
+                rapeMsg.push({ n: rape.char.name, m: l10n.t("room.1004.reaction.born", "You were born for this") });
+                rapeMsg.push({ n: rape.char.name, m: l10n.t("room.1004.source.d8146954c1", "That's right girl. Worship this dick") });
                 if (gender.pronoun("f") === "f") {
-                    rapeMsg.push({ n: rape.char.name, m: "Your thick lips feel so soft" });
+                    rapeMsg.push({ n: rape.char.name, m: l10n.t("room.1004.reaction.lips", "Your thick lips feel so soft") });
                     rapeMsg.push({ n: rape.char.name, m: " " });
-                    rapeMsg.push({ n: rape.char.name, m: "Damn girl. I want to make you into my house wife!" });
+                    rapeMsg.push({ n: rape.char.name, m: l10n.t("room.1004.phase5.housewife", "Damn girl. I want to make you into my house wife!") });
                 }
                 else {
-                    rapeMsg.push({ n: rape.char.name, m: "Love turning straight boys into faggots" });
-                    rapeMsg.push({ n: rape.char.name, m: "I knew your fag face needed cock!" });
+                    rapeMsg.push({ n: rape.char.name, m: l10n.t("room.1004.shared.turnBoys", "Love turning straight boys into faggots") });
+                    rapeMsg.push({ n: rape.char.name, m: l10n.t("room.1004.source.e8292cbaa3", "I knew your fag face needed cock!") });
                 }
             }
         }
         else if (rape.phaseChange === "phase4Limp") {
             rapeMsg = [
-                { n: "thinking", m: "When will it end." },
+                { n: "thinking", m: l10n.t("room.1004.phase5.whenEnd", "When will it end.") },
                 { n: "thinking", m: "..." },
             ];
             if (rape.char.t === "wolf") {
-                rapeMsg.push({ n: rape.char.name, m: "GGRRrrrrrr" });
+                rapeMsg.push({ n: rape.char.name, m: l10n.t("room.1004.phase5.growl", "GGRRrrrrrr") });
             }
             else {
-                rapeMsg.push({ n: rape.char.name, m: "You make a shity flesh light" });
-                rapeMsg.push({ n: rape.char.name, m: "Be a good victim and suck on it." });
-                rapeMsg.push({ n: rape.char.name, m: "If you don't suck harder, you're just going to make this rape take longer. " });
+                rapeMsg.push({ n: rape.char.name, m: l10n.t("room.1004.shared.badToy", "You make a shity flesh light") });
+                rapeMsg.push({ n: rape.char.name, m: l10n.t("room.1004.phase5.playVictim", "Be a good victim and suck on it.") });
+                rapeMsg.push({ n: rape.char.name, m: l10n.t("room.1004.source.508d262998", "If you don't suck harder, you're just going to make this rape take longer. ") });
             }
         }
         else if (rape.phaseChange === "phase4Struggle") {
             
             if (rape.char.t === "wolf") {
                 rapeMsg = [
-                    { n: "me", m: "GLUCK GLUCK hhhrrruuummm GLUCK" },
-                    { n: "thinking", m: "That dire wolf knot is so full in my mouth!" },
-                    { n: "me", m: "HRRUUMMMppp GLUCK GLUCK" },
-                    { n: "me", m: "HRUCK *gag* GLUCK" },
-                    { n: rape.char.name, m: "arf" },
-                    { n: rape.char.name, m: "grrrr" },
-                    { n: rape.char.name, m: "*panting*" },
+                    { n: "me", m: l10n.t("room.1004.reaction.gluckMuffled", "GLUCK GLUCK hhhrrruuummm GLUCK") },
+                    { n: "thinking", m: l10n.t("room.1004.wolf.phase5.mouthFull", "That dire wolf knot is so full in my mouth!") },
+                    { n: "me", m: l10n.t("room.1004.reaction.muffledGluck", "HRRUUMMMppp GLUCK GLUCK") },
+                    { n: "me", m: l10n.t("room.1004.reaction.gagGluck", "HRUCK *gag* GLUCK") },
+                    { n: rape.char.name, m: l10n.t("room.1004.reaction.bark", "arf") },
+                    { n: rape.char.name, m: l10n.t("room.1004.reaction.growl", "grrrr") },
+                    { n: rape.char.name, m: l10n.t("room.1004.sound.panting", "*panting*") },
                 ];
             }
             else {
                 rapeMsg = [
-                    { n: "me", m: "GLUCK GLUCK hhhrrruuummm GLUCK" },
-                    { n: "thinking", m: "That cock is so full in my mouth!" },
-                    { n: "me", m: "HRRUUMMMppp GLUCK GLUCK" },
-                    { n: "me", m: "HRUCK *gag* GLUCK" },
-                    { n: "me", m: "*Crying*" },
-                    { n: "me", m: "*sob* *sob* *sob*" },
-                    { n: rape.char.name, m: "You're pretty when you cry" },
-                    { n: rape.char.name, m: "The more you squirm then hard I fuck!" },
-                    { n: rape.char.name, m: "If I feel teeth I'm going to punch you in the face!" },
+                    { n: "me", m: l10n.t("room.1004.reaction.gluckMuffled", "GLUCK GLUCK hhhrrruuummm GLUCK") },
+                    { n: "thinking", m: l10n.t("room.1004.source.ac9442b1d2", "That cock is so full in my mouth!") },
+                    { n: "me", m: l10n.t("room.1004.reaction.muffledGluck", "HRRUUMMMppp GLUCK GLUCK") },
+                    { n: "me", m: l10n.t("room.1004.reaction.gagGluck", "HRUCK *gag* GLUCK") },
+                    { n: "me", m: l10n.t("room.1004.phase5.crying", "*Crying*") },
+                    { n: "me", m: l10n.t("room.1004.phase5.sobbing", "*sob* *sob* *sob*") },
+                    { n: rape.char.name, m: l10n.t("room.1004.phase5.prettyCrying", "You're pretty when you cry") },
+                    { n: rape.char.name, m: l10n.t("room.1004.source.ff6402cd40", "The more you squirm then hard I fuck!") },
+                    { n: rape.char.name, m: l10n.t("room.1004.phase5.teeth", "If I feel teeth I'm going to punch you in the face!") },
 
                 ];
-                rapeMsg.push({ n: rape.char.name, m: "Your tears only make my dick harder!" });
-                rapeMsg.push({ n: rape.char.name, m: "I don't know why you're crying. You know you want this dick" });
-                rapeMsg.push({ n: rape.char.name, m: "Your mouth says no, but my dick says YES!" });
+                rapeMsg.push({ n: rape.char.name, m: l10n.t("room.1004.shared.tearsMasculine", "Your tears only make my dick harder!") });
+                rapeMsg.push({ n: rape.char.name, m: l10n.t("room.1004.shared.cryingMasculine", "I don't know why you're crying. You know you want this dick") });
+                rapeMsg.push({ n: rape.char.name, m: l10n.t("room.1004.shared.saysNoMasculine", "Your mouth says no, but my dick says YES!") });
 
                 if (gender.pronoun("f") === "f") {
-                    rapeMsg.push({ n: rape.char.name, m: "If you didn't want my dick, you should look like a bitch" });
-                    rapeMsg.push({ n: rape.char.name, m: "Girls don't get to say no to me!" });
+                    rapeMsg.push({ n: rape.char.name, m: l10n.t("room.1004.source.545704e415", "If you didn't want my dick, you should look like a bitch") });
+                    rapeMsg.push({ n: rape.char.name, m: l10n.t("room.1004.phase5.girlsNo", "Girls don't get to say no to me!") });
 
                 }
                 else {
-                    rapeMsg.push({ n: rape.char.name, m: "Relax faggot. You need this." });
+                    rapeMsg.push({ n: rape.char.name, m: l10n.t("room.1004.phase5.relax", "Relax faggot. You need this.") });
                 }
             }
         }
@@ -1241,86 +1254,86 @@ rape.phase5 = function () {
     else if (rape.rapeType === "cunnilugus") {
         if (rape.phaseChange === "phase4Sub") {
             rapeMsg = [
-                { n: "me", m: "*lick* *sssllluurrppp* YUM" },
-                { n: "me", m: "nom nom nom" },
-                { n: "me", m: "Tastes so yummy!" },
-                { n: "me", m: "munch munch" },
-                { n: "me", m: "MMmmmm lick" },
-                { n: "thinking", m: "Love the taste of wet pussy!" },
-                { n: "thinking", m: "MMMMmmmm yummy pussy in my mouth" },
-                { n: rape.char.name, m: "Oh yeah baby. Lick that clit!" },
-                { n: rape.char.name, m: "Fuck that feels good!" },
-                { n: rape.char.name, m: "Lick my honey pot. My pussy loves it a lot!" },
-                { n: rape.char.name, m: "Fuuuccckkk lick faster... I'm getting there!" },
+                { n: "me", m: l10n.t("room.1004.sound.lickYum", "*lick* *sssllluurrppp* YUM") },
+                { n: "me", m: l10n.t("room.1004.sound.nom", "nom nom nom") },
+                { n: "me", m: l10n.t("room.1004.reaction.taste", "Tastes so yummy!") },
+                { n: "me", m: l10n.t("room.1004.sound.munch", "munch munch") },
+                { n: "me", m: l10n.t("room.1004.sound.mmmLick", "MMmmmm lick") },
+                { n: "thinking", m: l10n.t("room.1004.source.c21f9cce7f", "Love the taste of wet pussy!") },
+                { n: "thinking", m: l10n.t("room.1004.source.59e0c91937", "MMMMmmmm yummy pussy in my mouth") },
+                { n: rape.char.name, m: l10n.t("room.1004.source.9656326c71", "Oh yeah baby. Lick that clit!") },
+                { n: rape.char.name, m: l10n.t("room.1004.source.30dc8f4abe", "Fuck that feels good!") },
+                { n: rape.char.name, m: l10n.t("room.1004.source.b8ebadbca9", "Lick my honey pot. My pussy loves it a lot!") },
+                { n: rape.char.name, m: l10n.t("room.1004.source.ebc1c9fb9f", "Fuuuccckkk lick faster... I'm getting there!") },
             ];
         }
         else if (rape.phaseChange === "phase4Limp") {
             rapeMsg = [
                 { n: "thinking", m: "...." },
-                { n: "thinking", m: "Is she done yet?" },
-                { n: rape.char.name, m: "If you don't start licking I'm just going to grind my clit in your face!" },
-                { n: rape.char.name, m: "Put some effort into it! " },
-                { n: rape.char.name, m: "You suck at eating twat" },
-                { n: rape.char.name, m: "Do it better!" },
+                { n: "thinking", m: l10n.t("room.1004.phase5.doneYet", "Is she done yet?") },
+                { n: rape.char.name, m: l10n.t("room.1004.source.1a9cbc679f", "If you don't start licking I'm just going to grind my clit in your face!") },
+                { n: rape.char.name, m: l10n.t("room.1004.phase5.effort", "Put some effort into it! ") },
+                { n: rape.char.name, m: l10n.t("room.1004.source.e93cc80b10", "You suck at eating twat") },
+                { n: rape.char.name, m: l10n.t("room.1004.phase5.doBetter", "Do it better!") },
             ];
         }
         else if (rape.phaseChange === "phase4Struggle") {
             rapeMsg = [
-                { n: "me", m: "MMmrrrffff hhhelll" },
-                { n: "thinking", m: "She's really grinding her clit in my face!" },
-                { n: "me", m: "HRRUUMMMppp hhhh!!!!" },
-                { n: "me", m: "lick *gag* Akkk" },
-                { n: "me", m: "*Crying*" },
-                { n: "me", m: "*sob* *sob* *sob*" },
-                { n: rape.char.name, m: "You're pretty when you cry" },
-                { n: rape.char.name, m: "The more you squirm then hard I grind in your face!" },
-                { n: rape.char.name, m: "If I feel teeth I'm going to punch you in the face!" },
+                { n: "me", m: l10n.t("room.1004.reaction.muffledHelp", "MMmrrrffff hhhelll") },
+                { n: "thinking", m: l10n.t("room.1004.source.75bd216821", "She's really grinding her clit in my face!") },
+                { n: "me", m: l10n.t("room.1004.reaction.muffled", "HRRUUMMMppp hhhh!!!!") },
+                { n: "me", m: l10n.t("room.1004.sound.lickGag", "lick *gag* Akkk") },
+                { n: "me", m: l10n.t("room.1004.phase5.crying", "*Crying*") },
+                { n: "me", m: l10n.t("room.1004.phase5.sobbing", "*sob* *sob* *sob*") },
+                { n: rape.char.name, m: l10n.t("room.1004.phase5.prettyCrying", "You're pretty when you cry") },
+                { n: rape.char.name, m: l10n.t("room.1004.source.1db94b838f", "The more you squirm then hard I grind in your face!") },
+                { n: rape.char.name, m: l10n.t("room.1004.phase5.teeth", "If I feel teeth I'm going to punch you in the face!") },
 
             ];
-            rapeMsg.push({ n: rape.char.name, m: "Your tears only make my pussy wetter!" });
-            rapeMsg.push({ n: rape.char.name, m: "I don't know why you're crying. You know you want this cunt" });
-            rapeMsg.push({ n: rape.char.name, m: "Your mouth says no, but my pussy says YES!" });
+            rapeMsg.push({ n: rape.char.name, m: l10n.t("room.1004.shared.tearsFeminine", "Your tears only make my pussy wetter!") });
+            rapeMsg.push({ n: rape.char.name, m: l10n.t("room.1004.shared.cryingFeminine", "I don't know why you're crying. You know you want this cunt") });
+            rapeMsg.push({ n: rape.char.name, m: l10n.t("room.1004.shared.saysNoFeminine", "Your mouth says no, but my pussy says YES!") });
         }
         pleasure = levels.oralTake(rape.char.cocksize);
     }
     else if (rape.rapeType === "penis") {
         if (rape.phaseChange === "phase4Sub") {
             rapeMsg = [
-                { n: "me", m: "Oh fuck! Fuck me fuck me! " },
-                { n: "me", m: "Your pussy is so wet!" },
-                { n: "me", m: "I love fucking you!" },
-                { n: "me", m: "Yes yes yes!" },
-                { n: "me", m: "Ffffuck yes!" },
-                { n: rape.char.name, m: "Oh yeah baby. Fuck this pussy!" },
-                { n: rape.char.name, m: "Love your cock baby!!" },
-                { n: rape.char.name, m: "*moan*" },
-                { n: rape.char.name, m: "yes yes yes! I love your cock!" },
+                { n: "me", m: l10n.t("room.1004.source.3b60c27cbc", "Oh fuck! Fuck me fuck me! ") },
+                { n: "me", m: l10n.t("room.1004.source.51e119902d", "Your pussy is so wet!") },
+                { n: "me", m: l10n.t("room.1004.source.8c6b30f04e", "I love fucking you!") },
+                { n: "me", m: l10n.t("room.1004.reaction.yesThree", "Yes yes yes!") },
+                { n: "me", m: l10n.t("room.1004.source.978c38421f", "Ffffuck yes!") },
+                { n: rape.char.name, m: l10n.t("room.1004.source.2ebdcded61", "Oh yeah baby. Fuck this pussy!") },
+                { n: rape.char.name, m: l10n.t("room.1004.source.f5a7ff4ad5", "Love your cock baby!!") },
+                { n: rape.char.name, m: l10n.t("room.1004.sound.moan", "*moan*") },
+                { n: rape.char.name, m: l10n.t("room.1004.source.0a3c52c078", "yes yes yes! I love your cock!") },
             ];
         }
         else if (rape.phaseChange === "phase4Limp") {
             rapeMsg = [
                 { n: "thinking", m: "...." },
-                { n: "thinking", m: "Is she done yet?" },
-                { n: rape.char.name, m: "You suck at fucking!" },
-                { n: rape.char.name, m: "You fuck like a virgin " },
-                { n: rape.char.name, m: "You suck at fucking twat" },
-                { n: rape.char.name, m: "Do it better!" },
+                { n: "thinking", m: l10n.t("room.1004.phase5.doneYet", "Is she done yet?") },
+                { n: rape.char.name, m: l10n.t("room.1004.source.bc88ad3d1b", "You suck at fucking!") },
+                { n: rape.char.name, m: l10n.t("room.1004.source.4cd52c1773", "You fuck like a virgin ") },
+                { n: rape.char.name, m: l10n.t("room.1004.source.e2679b49b8", "You suck at fucking twat") },
+                { n: rape.char.name, m: l10n.t("room.1004.phase5.doBetter", "Do it better!") },
             ];
         }
         else if (rape.phaseChange === "phase4Struggle") {
             rapeMsg = [
-                { n: "me", m: "HHHEEELLPPPP!!! I'm being raped! " },
-                { n: "me", m: "Someone get this crazy bitch off me!" },
-                { n: "me", m: "Get off my dick!" },
-                { n: "me", m: "*Crying*" },
-                { n: "me", m: "*sob* *sob* *sob*" },
-                { n: rape.char.name, m: "You're pretty when you cry" },
-                { n: rape.char.name, m: "The more you squirm then hard I'm going to ride your dick." },
+                { n: "me", m: l10n.t("room.1004.phase5.screamHelp", "HHHEEELLPPPP!!! I'm being raped! ") },
+                { n: "me", m: l10n.t("room.1004.reaction.getHerOff", "Someone get this crazy bitch off me!") },
+                { n: "me", m: l10n.t("room.1004.source.c547b9dca4", "Get off my dick!") },
+                { n: "me", m: l10n.t("room.1004.phase5.crying", "*Crying*") },
+                { n: "me", m: l10n.t("room.1004.phase5.sobbing", "*sob* *sob* *sob*") },
+                { n: rape.char.name, m: l10n.t("room.1004.phase5.prettyCrying", "You're pretty when you cry") },
+                { n: rape.char.name, m: l10n.t("room.1004.source.8458e4b8f0", "The more you squirm then hard I'm going to ride your dick.") },
 
             ];
-            rapeMsg.push({ n: rape.char.name, m: "Your tears only make my pussy wetter!" });
-            rapeMsg.push({ n: rape.char.name, m: "I don't know why you're crying. You know you want this cunt" });
-            rapeMsg.push({ n: rape.char.name, m: "Your mouth says no, but my pussy says YES!" });
+            rapeMsg.push({ n: rape.char.name, m: l10n.t("room.1004.shared.tearsFeminine", "Your tears only make my pussy wetter!") });
+            rapeMsg.push({ n: rape.char.name, m: l10n.t("room.1004.shared.cryingFeminine", "I don't know why you're crying. You know you want this cunt") });
+            rapeMsg.push({ n: rape.char.name, m: l10n.t("room.1004.shared.saysNoFeminine", "Your mouth says no, but my pussy says YES!") });
         }
         pleasure = { canTake: false, pleasure: 10 };
     }
@@ -1821,6 +1834,20 @@ rape.displayMenu = function (menu) {
     rape.renderActionButtons(btnList);
 };
 
+rape.localizeOpening = function (lines) {
+    if (!Array.isArray(lines) || l10n.getLanguage() === "en")
+        return lines;
+    const original = lines.map(line => line.trim()).join(" ");
+    const keys = {
+        "You look like you need a cock in you.": "room.1004.opening.needCock",
+        "I do love breaking in sissies.": "room.1004.opening.breakingIn",
+        "I'm glad I found you. I need a place to put my cock!": "room.1004.opening.glad",
+        "I shall free your ass": "room.1004.opening.free",
+        "You will pay for destroying my home!!": "room.1004.opening.home"
+    };
+    return keys[original] ? [l10n.t(keys[original], original)] : lines;
+};
+
 rape.message = function (message, speaker = null) {
     nav.killbutton("m1004-d");
     if (rape.phase === 0 || speaker === "rapeMessage") {
@@ -1925,7 +1952,7 @@ rape.rolldice = function (updateEnergy = false) {
         top: 180,
         font: 20,
         hex: "#ffffff",
-        text: "Me:" + myTotalWithFight
+        text: l10n.t("room.1004.fight.myTotal", "Me: {value}", { value: myTotalWithFight })
     });
 
     nav.t({
@@ -1935,7 +1962,7 @@ rape.rolldice = function (updateEnergy = false) {
         top: 210,
         font: 20,
         hex: "#ffffff",
-        text:"(R: " + myTotal + " + STR: " + fightStats.total + ")"
+        text: l10n.t("room.1004.fight.breakdown", "(R: {roll} + STR: {strength})", { roll: myTotal, strength: fightStats.total })
     });
 
     nav.t({
@@ -1955,7 +1982,7 @@ rape.rolldice = function (updateEnergy = false) {
         top: 350,
         font: 20,
         hex: "#ffffff",
-        text: "(R: " + enemyTotal + " + STR: " + fightStats.enemyFightLevel + ")"
+        text: l10n.t("room.1004.fight.breakdown", "(R: {roll} + STR: {strength})", { roll: enemyTotal, strength: fightStats.enemyFightLevel })
     });
 
     if (myTotalWithFight >= enemyTotalWithFight) {
@@ -2012,7 +2039,7 @@ rape.kick = function () {
         top: 170,
         font: 20,
         hex: "#ffffff",
-        text: "Kick! (Roll all 6's)"
+        text: l10n.t("room.1004.kick.roll", "Kick! (Roll all 6's)")
     });
 
     for (i = 0; i < diceArray.length; i++) {
@@ -2046,7 +2073,7 @@ rape.kick = function () {
             top: 435,
             font: 20,
             hex: "#ffffff",
-            text: "Success!"
+            text: l10n.t("room.1004.kick.success", "Success!")
         });
         rape.renderActionButtons([{ n: "flee", i: "icon_flee.png" }], 660);
     }
@@ -2058,7 +2085,7 @@ rape.kick = function () {
             top: 435,
             font: 20,
             hex: "#ffffff",
-            text: "Kick failed!"
+            text: l10n.t("room.1004.kick.failure", "Kick failed!")
         });
         rape.renderActionButtons([{ n: "struggleLost", i: "lost" + rape.phase + ".png" }]);
     }
@@ -2070,11 +2097,11 @@ room1004.btnclick = function (name) {
     switch (name) {
         case "flee":
             gv.mod("energy", -20);
-            g.popUpNotice("You escaped!");
+            g.popUpNotice(l10n.t("room.1004.notice.escaped", "You escaped!"));
             rape.kill();
             break;
         case "goodflee":
-            g.popUpNotice("You escaped!");
+            g.popUpNotice(l10n.t("room.1004.notice.escaped", "You escaped!"));
             rape.kill();
             break;
         case "struggle":
@@ -2096,7 +2123,7 @@ room1004.btnclick = function (name) {
                 "height": 1080,
                 "image": "1004_rape/pocketsand.webp"
             }, 1004);
-            rape.message("You used your pocket sand and escaped!", "thinking");
+            rape.message(l10n.t("room.1004.message.sand", "You used your pocket sand and escaped!"), "thinking");
             rape.displayMenu("goodflee");
             break;
         case "icon_horn":
@@ -2110,7 +2137,7 @@ room1004.btnclick = function (name) {
                 "height": 1080,
                 "image": "1004_rape/horn.webp"
             }, 1004);
-            rape.message("You called the wolves and escaped!", "thinking");
+            rape.message(l10n.t("room.1004.message.wolves", "You called the wolves and escaped!"), "thinking");
             rape.displayMenu("goodflee");
             break;
         case "submit":
@@ -2301,6 +2328,8 @@ room1004.chat = function (chatID) {
         return {
             chatID: 0,
             speaker: "thinking",
+            l10nKey: "room.1004.lostClothing.text",
+            l10nValues: { item: l10n.t("room.1004.lostClothing.item." + String(rape.clothingLost).replace(/ /g, "_"), rape.clothingLost) },
             text: "Crap! I lost my " + rape.clothingLost + "! That jerk must have " +
                 "stole them! ",
             button: [
@@ -2321,10 +2350,13 @@ room1004.chat = function (chatID) {
             "Fuck that's hot! ",
             "Welcome to pound town, slut. "
         ];
+        let spreadKeys = ["oral0", "oral1", "oral2", "oral3", "shared0", "shared1", "oral6", "shared2", "shared3", "shared4"];
+        let spreadIndex = g.rand(0, spreadTxt.length);
         return {
             chatID: 499,
             speaker: rape.char.name,
-            text: spreadTxt[g.rand(0, spreadTxt.length)],
+            l10nKey: "room.1004.random." + spreadKeys[spreadIndex],
+            text: spreadTxt[spreadIndex],
             button: [
                 { chatID: -1, text: "...", callback: "" }
             ]
@@ -2345,10 +2377,13 @@ room1004.chat = function (chatID) {
             "Welcome to pound town, slut. ",
             "MMmmmm. Yummy hole. "
         ];
+        let spreadKeys = ["anal0", "anal1", "anal2", "anal3", "shared0", "anal5", "shared1", "anal7", "shared2", "shared3", "shared4", "anal11"];
+        let spreadIndex = g.rand(0, spreadTxt.length);
         return {
             chatID: 500,
             speaker: rape.char.name,
-            text: spreadTxt[g.rand(0, spreadTxt.length)],
+            l10nKey: "room.1004.random." + spreadKeys[spreadIndex],
+            text: spreadTxt[spreadIndex],
             button: [
                 { chatID: -1, text: "...", callback: "" }
             ]
@@ -2362,10 +2397,12 @@ room1004.chat = function (chatID) {
             "I'm going to cum soon!",
             "Fuck that feels good",
         ];
+        let sissygasmIndex = g.rand(0, sissygasmTxt.length);
         return {
             chatID: 500,
             speaker: "me",
-            text: sissygasmTxt[g.rand(0, sissygasmTxt.length)],
+            l10nKey: "room.1004.random.player" + sissygasmIndex,
+            text: sissygasmTxt[sissygasmIndex],
             button: [
                 { chatID: 3, text: "...", callback: "sissygasm1" }
             ]

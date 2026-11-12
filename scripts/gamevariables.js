@@ -735,7 +735,7 @@ daily.set = function (n, override = true) {
                 gv.mod("energy", maxEnergy - energy);
             }
             else
-                g.popUpNotice("Already at Max energy");
+                g.popUpNotice(l10n.t("notice.energy.alreadyMax", "Already at Max energy"));
         }
 
         cl.clean("face");
@@ -886,11 +886,11 @@ gv.mod = function (name, amount) {
 
                 cl.display();
                 if (gv.st[index].t > .9) {
-                    g.popUpNotice("Your bladder is so full it hurts. ");
+                    g.popUpNotice(l10n.t("notice.bladder.hurts", "Your bladder is so full it hurts. "));
                     gv.mod("energy", -30);
                 }
                 else if (gv.st[index].t > .5)
-                    g.popUpNotice("You feel the need to pee. ");
+                    g.popUpNotice(l10n.t("notice.bladder.need", "You feel the need to pee. "));
                 break;
             case "masturbate":
                 gv.st[index].t += amount;
@@ -1063,8 +1063,9 @@ levels.applyLevelLimits = function(level) {
 levels.modLevelNotice = (level, oldLevel, amount) => levels.modNotice(level, oldLevel, amount, true)
 
 levels.modNotice = function(level, oldLevel, amount, modLevel = false) {
+    let statName = l10n.t("stats.name." + level.n, level.d);
     if (level.l >= level.cap && (modLevel || level.c >= levels.getPointsCapForLevel(level))) {
-        g.popUpNoticeBottom("You're maxed out for " + level.d);
+        g.popUpNoticeBottom(l10n.t("notice.stat.max", "You're maxed out for {stat}", { stat: statName }));
         return;
     }
     // if level changed, notice level change, else notice point change
@@ -1072,7 +1073,9 @@ levels.modNotice = function(level, oldLevel, amount, modLevel = false) {
     let change = type === "LEVEL" ? (level.l - oldLevel.l) : (level.c - oldLevel.c);
     let absChange = Math.abs(change);
     if (absChange > 0) {
-        g.popUpNoticeBottom(`You ${change > 0 ? "gained" : "lost"} ${absChange} ${type}${absChange !== 1 ? "S" : ""} for ${level.d}!`);
+        let fallback = `You ${change > 0 ? "gained" : "lost"} {amount} ${type}${absChange !== 1 ? "S" : ""} for {stat}!`;
+        let key = "notice.stat." + type.toLowerCase() + (change > 0 ? ".gained" : ".lost") + (absChange === 1 ? ".one" : ".many");
+        g.popUpNoticeBottom(l10n.t(key, fallback, { amount: absChange, stat: statName }));
     }
 }
 

@@ -1954,6 +1954,8 @@ sc.landlady = function (form) {
     var character = sc.get("landlord");
     if (form && character.relationshipForms && typeof character.relationshipForms[form] === "string" && character.relationshipForms[form].trim())
         return character.relationshipForms[form];
+    if (form === "definiteLower")
+        return sc.landlady("definite").toLocaleLowerCase(l10n.getLanguage());
     if (form && l10n.characterTermForms("landlady").some(function (item) { return item.id === form; }))
         return l10n.characterTerm("landlady", form, character.display, "Landlady");
     if (form && !["display", "lower", "upper", "capitalize"].includes(form))
@@ -2139,14 +2141,14 @@ sc.modLevel = function (name, amount, targetLevel = 10) {
         }
 
         if (addedLevels > 0) {
-            g.popUpNotice("Level Up! " + char.display + " is now Level " + char.l + ".");
+            g.popUpNotice(l10n.t("notice.character.levelUp", "Level Up! {name} is now Level {level}.", { name: sc.n(name), level: char.l }));
         } else {
-            g.popUpNotice(char.display + " gained " + amount + " points.");
+            g.popUpNotice(l10n.t("notice.character.pointsGained", "{name} gained {amount} points.", { name: sc.n(name), amount: amount }));
         }
 
     } else if (amount < 0) {
         char.c = Math.max(0, char.c + amount);
-        g.popUpNotice(char.display + " points decreased.");
+        g.popUpNotice(l10n.t("notice.character.pointsLost", "{name} points decreased.", { name: sc.n(name) }));
     }
 };
 
@@ -2429,19 +2431,18 @@ sc.modSecret = function (name, amount) {
                         sc.completeMissionTask("landlord", "spermbank", 0, false);
                     if (sc.getMissionTask("landlord", "spermbank", 1).notStarted)
                         sc.completeMissionTask("landlord", "spermbank", 1, false);
-                    g.popUpNotice(sc.char[x].display + ", " + sc.char[y].display + ", and " + sc.char[z].display +
-                        " all are now aware of your secret lifestyle. Sissy!");
+                    g.popUpNotice(l10n.t("notice.secret.groupKnown", "{first}, {second}, and {third} all are now aware of your secret lifestyle. Sissy!", { first: sc.n(sc.char[x].name), second: sc.n(sc.char[y].name), third: sc.n(sc.char[z].name) }));
                 }
                 
                 break;
             default:
-                g.popUpNotice(sc.char[i].display + " is aware of your secret lifestyle. Sissy!");
+                g.popUpNotice(l10n.t("notice.secret.known", "{name} is aware of your secret lifestyle. Sissy!", { name: sc.n(sc.char[i].name) }));
                 break;
         }
     }
 
     else {
-        g.popUpNotice(sc.char[i].display + " is more aware of your secret lifestyle. ");
+        g.popUpNotice(l10n.t("notice.secret.suspicious", "{name} is more aware of your secret lifestyle. ", { name: sc.n(sc.char[i].name) }));
     }
 
 };
@@ -2995,6 +2996,7 @@ sc.getTimeline = function (char) {
             retVar.subList.push({
                 hstart: timeline[i].hstart,
                 hend: timeline[i].hend,
+                roomId: timeline[i].roomId,
                 room: timeline[i].roomId === null ? timeline[i].alt : g.fr(timeline[i].roomId).name,
                 current: (timeline[i].hstart <= thisTime && timeline[i].hend > thisTime)
             });
@@ -3005,6 +3007,25 @@ sc.getTimeline = function (char) {
         }
     }
     return retVar;
+};
+
+sc.timelineLocation = function (entry) {
+    if (entry.roomId !== null && entry.roomId !== undefined) {
+        var names = { 54: "tiffany", 76: "bimbo", 77: "bimbo" };
+        if (names[entry.roomId]) {
+            var livingRoom = entry.roomId === 77;
+            return l10n.t(livingRoom ? "timeline.location.namedLiving" : "timeline.location.namedRoom",
+                livingRoom ? "{name}'s Living Room" : "{name}'s Room", { name: sc.n(names[entry.roomId]) });
+        }
+        return l10n.t("location.room." + entry.roomId, entry.room);
+    }
+    var alternatives = {
+        "In town": "town", "His home": "hisHome", "Work": "work", "Train": "train",
+        "Home": "home", "home": "home", "Taking cock": "takingCock",
+        "Penisland": "penisland", "Traveling for work": "workTravel"
+    };
+    var key = alternatives[entry.room];
+    return key ? l10n.t("timeline.location." + key, entry.room) : entry.room;
 };
 
 sc.selectButtonPosition = function (index) {
@@ -3054,6 +3075,34 @@ sc.select = function (name, img, i, sRoomId = null) {
     }, sRoomId);
 };
 
+// Cover text embedded in the selection artwork while retaining its original click target.
+sc.selectLocalizedLabel = function (name, img, index, key, fallback, suffix, options) {
+    sc.select(name, img, index);
+    var label = l10n.t(key, fallback);
+    var buttons = document.querySelectorAll('#room-buttons img[data-name="' + name + '"]');
+    var button = buttons[buttons.length - 1];
+    if (button) {
+        button.title = label;
+        button.setAttribute("aria-label", label + (suffix || ""));
+    }
+    if (l10n.getLanguage() === "en") return;
+    var position = sc.selectButtonPosition(index);
+    options = options || {};
+    var overlay = document.createElement("div");
+    overlay.className = "room-img room-zindex";
+    overlay.setAttribute("aria-hidden", "true");
+    overlay.setAttribute("data-name", name);
+    overlay.textContent = label;
+    overlay.style.cssText = "position:absolute;pointer-events:none;display:flex;align-items:center;" +
+        "background:#f7d8e5;color:#000;font-family:Arial,sans-serif;font-weight:bold;white-space:nowrap;";
+    overlay.style.left = ((position.left + 158) * g.ratio) + "px";
+    overlay.style.top = ((position.top + 6) * g.ratio) + "px";
+    overlay.style.width = ((options.width || 330) * g.ratio) + "px";
+    overlay.style.height = (88 * g.ratio) + "px";
+    overlay.style.fontSize = ((options.fontSize || 32) * g.ratio) + "px";
+    document.getElementById("room-buttons").appendChild(overlay);
+};
+
 sc.selectCancel = function (name, i) {
     sc.select(name, "1001_rand/icon_cancel.png", i);
 };
@@ -3075,7 +3124,7 @@ sc.phone = function (char) {
     var clist;
     var nophone = [950, 951];
     if (nophone.includes(g.roomID)) {
-        g.popUpNotice("No reception here. Damn!");
+        g.popUpNotice(l10n.t("notice.phone.noReception", "No reception here. Damn!"));
     }
     else {
         switch (char) {

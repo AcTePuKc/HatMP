@@ -43,8 +43,8 @@ room802.main = function () {
         chat(10, 802);
     }
     else {
-        sc.select("game", "802_ralphbedroom/icon_game.webp", 0);
-        sc.select("chat", "752_whore/whore_chat.png", 2);
+        sc.selectLocalizedLabel("game", "802_ralphbedroom/icon_game.webp", 0, "room.802.select.game", "Play a board game", "", { width: 430, fontSize: 25 });
+        sc.selectLocalizedLabel("chat", "752_whore/whore_chat.png", 2, "room.802.select.chat", "Chat", "", { width: 430, fontSize: 25 });
     }
 };
 
@@ -211,13 +211,13 @@ room802.chatcatch = function (callback) {
             break;
         case "scselect":
             nav.buildnav([801, 0]);
-            sc.select("game", "802_ralphbedroom/icon_game.webp", 0);
-            sc.select("chat", "752_whore/whore_chat.png", 2);
+            sc.selectLocalizedLabel("game", "802_ralphbedroom/icon_game.webp", 0, "room.802.select.game", "Play a board game", "", { width: 430, fontSize: 25 });
+            sc.selectLocalizedLabel("chat", "752_whore/whore_chat.png", 2, "room.802.select.chat", "Chat", "", { width: 430, fontSize: 25 });
             break;
         case "scselect50":
             gv.mod("money", 50);
-            sc.select("game", "802_ralphbedroom/icon_game.webp", 0);
-            sc.select("chat", "752_whore/whore_chat.png", 2);
+            sc.selectLocalizedLabel("game", "802_ralphbedroom/icon_game.webp", 0, "room.802.select.game", "Play a board game", "", { width: 430, fontSize: 25 });
+            sc.selectLocalizedLabel("chat", "752_whore/whore_chat.png", 2, "room.802.select.chat", "Chat", "", { width: 430, fontSize: 25 });
             break;
         case "leave":
             char.room(0);
@@ -245,14 +245,15 @@ room802.chat = function (chatID) {
             { t: "Do you think if Nana were here she would have sex with us? I think she might. ", r1: "She's so dreamy", r2: "She would never have sex with guys like us" },
             { t: "Meiko Shiraki is so much my waifu!!!", r1: "I would so be her prisoner", r2: "She's a little mean don't you think" }
         ];
-        let tc = rchat[g.rand(0, rchat.length)];
+        let randomIndex = g.rand(0, rchat.length);
+        let tc = rchat[randomIndex];
         return {
             chatID: 900,
             speaker: "ralph",
-            text: tc.t,
+            text: tc.t, l10nKey: "room.802.random." + randomIndex + ".text",
             button: [
-                { chatID: -1, text: tc.r1, callback: "good" },
-                { chatID: -1, text: tc.r2, callback: "reset" },
+                { chatID: -1, text: tc.r1, l10nKey: "room.802.random." + randomIndex + ".choice.0", callback: "good" },
+                { chatID: -1, text: tc.r2, l10nKey: "room.802.random." + randomIndex + ".choice.1", callback: "reset" },
             ]
         };
     }
@@ -326,7 +327,7 @@ room802.chat = function (chatID) {
             },
             {
                 chatID: 8,
-                speaker: "me",
+                speaker: "me", l10nValues: { ralph: sc.n("ralph") },
                 text: sc.n("ralph") + "!",
                 button: [
                     { chatID: 9, text: "...", callback: "rand1_0" },
@@ -500,12 +501,12 @@ room802.chat = function (chatID) {
             },
             {
                 chatID: 26,
-                speaker: "ralph",
+                speaker: "ralph", l10nValues: { black: sc.n("black") },
                 text: "That mid-term was BRUTAL!!! Do you know " + sc.n("black") + " tried to put a thingy in my pee hole! " +
                     "I mean I get the dildo in the butt, but my pee hole! I tapped out right then and there! " +
                     "No way that was going in. ",
                 button: [
-                    { chatID: 27, text: "She's totally crazy! So why didn't you pick " + sc.n("cecilia") + "'s side?", callback: "" },
+                    { chatID: 27, text: "She's totally crazy! So why didn't you pick " + sc.n("cecilia") + "'s side?", l10nValues: { cecilia: sc.n("cecilia") }, callback: "" },
                 ]
             },
             {
@@ -519,9 +520,9 @@ room802.chat = function (chatID) {
             },
             {
                 chatID: 28,
-                speaker: "me",
+                speaker: "me", l10nValues: { missy: sc.n("missy") },
                 text: "Listen. You are a girl. Other people may not know it, but I know it, and you know it. Also everyone " +
-                    "in class knows it. Even Missy. Girls come in all shapes and sizes. Just because you're not a tiny " +
+                    "in class knows it. Even " + sc.n("missy") + ". Girls come in all shapes and sizes. Just because you're not a tiny " +
                     "girl makes you no less a girl. Besides. Some people like bigger girls. Don't ever try to " +
                     "pretend to be a boy around me. I know you. And I know that you're a girl. You just have to " +
                     "learn to accept who you really are. ",
@@ -552,7 +553,7 @@ room802.chat = function (chatID) {
                 text: "My dad's still pissed at me. He says I need to get a job. Do you know anywhere I can " +
                     "get one? ",
                 button: [
-                    { chatID: -1, text: "Can't think of any. [Need to complete " + sc.n("zoey") + "'s quest: fuck me please - Mon cœur souffre pour toi", callback: "reset" },
+                    { chatID: -1, text: "Can't think of any. [Need to complete " + sc.n("zoey") + "'s quest: fuck me please - Mon cœur souffre pour toi", l10nValues: { zoey: sc.n("zoey") }, callback: "reset" },
                 ]
             },
             {
@@ -561,7 +562,7 @@ room802.chat = function (chatID) {
                 text: "My dad's still pissed at me. He says I need to get a job. Do you know anywhere I can " +
                     "get one? ",
                 button: [
-                    { chatID: 33, text: "Hmmm. I know my girlfriend, " + sc.n("zoey") + " could use some help. ", callback: "" },
+                    { chatID: 33, text: "Hmmm. I know my girlfriend, " + sc.n("zoey") + " could use some help. ", l10nValues: { zoey: sc.n("zoey") }, callback: "" },
                 ]
             },
             {
@@ -586,14 +587,14 @@ room802.chat = function (chatID) {
                 speaker: "ralph",
                 text: "Sweet dude. You're the best!",
                 button: [
-                    { chatID: -1, text: "[I just need to go to " + sc.n("zoey") + " at her bar and ask now. ]", callback: "reset" },
+                    { chatID: -1, text: "[I just need to go to " + sc.n("zoey") + " at her bar and ask now. ]", l10nValues: { zoey: sc.n("zoey") }, callback: "reset" },
                 ]
             },
             {
                 chatID: 36,
                 speaker: "me",
                 text: "Oh hey! I talked to " + sc.n("zoey") + " and she said you can have the job. It's a barback, " +
-                    "so you'll only be cleaning. ",
+                    "so you'll only be cleaning. ", l10nValues: { zoey: sc.n("zoey") },
                 button: [
                     { chatID: 37, text: "...", callback: "" },
                 ]

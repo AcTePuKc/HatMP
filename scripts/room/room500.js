@@ -201,7 +201,7 @@ room500.chat = function (chatID) {
         {
             chatID: 8,
             speaker: "me",
-            l10nValues: { eva: sc.n("eva"), lola: sc.n("lola"), landlord: sc.n("landlord") },
+            l10nValues: { eva: sc.n("eva"), lola: sc.n("lola"), landlord: sc.n("landlord"), landlordDefinite: sc.landlady("definiteLower") },
             text: "So.. I was playing truth or dare with {eva} and {lola}" +
                 " and my {landlord} walked in on us right when we were all naked... she " +
                 "got mad at me and kicked me out!",
@@ -212,7 +212,7 @@ room500.chat = function (chatID) {
         {
             chatID: 9,
             speaker: "zoey",
-            l10nValues: { el: sc.n("el") },
+            l10nValues: { el: sc.n("el"), elDefinite: sc.el("singularDefinite").toLocaleLowerCase(l10n.getLanguage()) },
             text: "You are such a pervert messing around with your {el}! I like it, you " +
                 "little weirdo.",
             button: [
@@ -222,7 +222,7 @@ room500.chat = function (chatID) {
         {
             chatID: 10,
             speaker: "me",
-            l10nValues: { landlord: sc.n("landlord") },
+            l10nValues: { landlord: sc.n("landlord"), landlordDefinite: sc.landlady("definiteLower") },
             text: "My {landlord} had me paying rent and I just couldn't cover it so she kicked me out. ",
             button: [
                 { chatID: 11, text: "...", callback: "" }

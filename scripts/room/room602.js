@@ -100,12 +100,53 @@ room602.chatcatch = function (callback) {
     }
 };
 
+// Translate known clothing requirements without changing the game state or guessing unknown messages.
+room602.localizeRequirements = function (value) {
+    var original = String(value || "");
+    if (l10n.getLanguage() === "en") return original;
+    var withoutBra = "I have to wear only my bra and a pair of panties if I'm going to dance. ";
+    var removeOuter = "I need to take my clothes off if I want to dance and wear only my bra and panties. ";
+    var rest = original;
+    var parts = [];
+    if (rest.indexOf(withoutBra) === 0) {
+        parts.push(l10n.t("room.602.requirements.braPanties", withoutBra));
+        rest = rest.slice(withoutBra.length);
+    }
+    else if (rest.indexOf(removeOuter) === 0) {
+        parts.push(l10n.t("room.602.requirements.removeOuter", removeOuter));
+        rest = rest.slice(removeOuter.length);
+    }
+    if (rest) {
+        var match = rest.match(/^I'm missing my ([\s\S]*?) if I want to leave\. ?$/);
+        if (!match) return original;
+        var raw = match[1].replace(/<[^>]*>/g, "").trim();
+        var uncomfortable = raw.match(/^self aweness! I don' feel comfortable wearing these (.+)\.$/i);
+        var names = (uncomfortable ? uncomfortable[1] : raw).split(/,\s*(?:and\s+)?|\s+and\s+/);
+        var keys = {
+            "shirt": "shirt", "t-shirt": "shirt", "pants": "pants", "underwear": "underwear",
+            "boy's underwear": "boysUnderwear", "panties": "panties", "bra": "bra",
+            "bikini": "bikini", "lingerie": "lingerie", "dress": "dress"
+        };
+        var cannotBra = names.indexOf("Can't wear a bra") !== -1;
+        names = names.filter(function (name) { return name !== "Can't wear a bra"; });
+        if (!names.every(function (name) { return keys[name]; })) return original;
+        var translated = names.map(function (name) { return l10n.t("room.602.item." + keys[name], name); });
+        if (translated.length) {
+            var items = translated.length < 2 ? translated[0] : translated.slice(0, -1).join(", ") + l10n.t("room.602.requirements.and", " and ") + translated[translated.length - 1];
+            parts.push(l10n.t(uncomfortable ? "room.602.requirements.uncomfortable" : "room.602.requirements.missing", uncomfortable ? "I don't feel comfortable wearing: {items}." : "I'm missing: {items}.", { items: items }));
+        }
+        if (cannotBra) parts.push(l10n.t("room.602.requirements.cannotBra", "I can't wear a bra."));
+        if (!translated.length && !cannotBra) return original;
+    }
+    return parts.join(" ");
+};
+
 room602.chat = function (chatID) {
     if (chatID === 900) {
         return {
             chatID: 0,
             speaker: "thinking",
-            text: g.internal,
+            text: room602.localizeRequirements(g.internal), l10nIgnore: true,
             button: [
                 { chatID: -1, text: "...", callback: "" }
             ]
@@ -117,7 +158,7 @@ room602.chat = function (chatID) {
             speaker: "!timothy",
             text: "Hey you! Funny seeing you outside of class! I'm so happy you're here! ",
             button: [
-                { chatID: 1, text: "Oh wow! Hi " + sc.n("!timothy") + "! How long have you been working here? ", callback: "" }
+                { chatID: 1, text: "Oh wow! Hi " + sc.n("!timothy") + "! How long have you been working here? ", l10nValues: { timothy: l10n.t(sissy.st[10].ach ? "room.601.name.trixy" : "room.601.name.timothy", sc.n("!timothy")) }, callback: "" }
             ]
         },
         {

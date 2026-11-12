@@ -22,7 +22,7 @@ lockpick.showTimer = function () {
         top: 420,
         font: 30,
         hex: "#000000",
-        text: "Time left: " + g.fight.timer
+        text: l10n.t("lockpick.timeLeft", "Time left: {time}", { time: g.fight.timer })
     }, 1003);
 };
 

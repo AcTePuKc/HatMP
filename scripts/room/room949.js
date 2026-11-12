@@ -103,11 +103,11 @@ room949.chat = function (chatID) {
         },
         {
             chatID: 4,
-            speaker: "ubel",
-            text: "So Missy's lap dog has finally decided to join us? hehe. I told her that if she " +
+            speaker: "ubel", l10nValues: { missy: sc.n("missy") },
+            text: "So " + sc.n("missy") + "'s lap dog has finally decided to join us? hehe. I told her that if she " +
                 "left us be, we would leave you be. That rat she wanted to bait was getting too close. " +
                 "Now all deals are over. You are now ours. I suggest you fall in line and " +
-                "show Missy what a true believer is or you will be delivered to her door step in " +
+                "show " + sc.n("missy") + " what a true believer is or you will be delivered to her door step in " +
                 "small pieces. ",
             button: [
                 { chatID: 5, text: "LET ME OUT! ", callback: "c4" },

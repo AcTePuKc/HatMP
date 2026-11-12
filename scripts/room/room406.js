@@ -1,5 +1,13 @@
 ﻿//Room name
 var room406 = {};
+room406.selectLens = function (color, index) {
+    var labels = {
+        blue: "Blue", brown: "Brown", gray: "Gray", green: "Green",
+        hazel: "Hazel", lightblue: "Light Blue", purple: "Purple"
+    };
+    sc.selectLocalizedLabel(color, "406_eyes/icon_" + color + ".png", index,
+        "room.406.color." + color, labels[color], " — $40");
+};
 room406.main = function () {
     var btnList;
     if (cl.isLewd()) {
@@ -40,17 +48,17 @@ room406.main = function () {
 room406.btnclick = function (name) {
     switch (name) {
         case "doc":
-            if (gv.get("money") < 180)
+            if (gv.get("money") < 40)
                 chat(0, 406);
             else {
                 sc.selectBg("406bg");
-                sc.select("blue", "406_eyes/icon_blue.png", 0);
-                sc.select("brown", "406_eyes/icon_brown.png", 1);
-                sc.select("gray", "406_eyes/icon_gray.png", 2);
-                sc.select("green", "406_eyes/icon_green.png", 3);
-                sc.select("hazel", "406_eyes/icon_hazel.png", 4);
-                sc.select("lightblue", "406_eyes/icon_lightblue.png", 5);
-                sc.select("purple", "406_eyes/icon_purple.png", 6);
+                room406.selectLens("blue", 0);
+                room406.selectLens("brown", 1);
+                room406.selectLens("gray", 2);
+                room406.selectLens("green", 3);
+                room406.selectLens("hazel", 4);
+                room406.selectLens("lightblue", 5);
+                room406.selectLens("purple", 6);
                 sc.selectCancel("cancel", 7);
             }
             break;
@@ -94,7 +102,7 @@ room406.chatcatch = function (callback) {
         case "lightblue":
         case "hazel":
             cl.c.eyes = callback;
-            gv.mod("money", -180);
+            gv.mod("money", -40);
             cl.display();
             break;
         case "look":
@@ -126,7 +134,7 @@ room406.chat = function (chatID) {
         {
             chatID: 1,
             speaker: "random",
-            text: "Sorry honey, you need $180 for a pair of new contacts.",
+            text: "Sorry honey, you need $40 for a pair of new contacts.",
             button: [
                 { chatID: -1, text: "...", callback: "" }
             ]

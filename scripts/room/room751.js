@@ -23,9 +23,9 @@ room751.main = function () {
 room751.btnclick = function (name) {
     nav.kill();
     if (name === "mainMenu") {
-        sc.select("icon_main", "751_crystal/icon_main.webp", 0);
-        sc.select("icon_rel", "751_crystal/icon_rel.webp", 1);
-        sc.select("icon_other", "751_crystal/icon_other.webp", 2);
+        sc.selectLocalizedLabel("icon_main", "751_crystal/icon_main.webp", 0, "room.751.select.main", "Main Story Line", "", { width: 430, fontSize: 26 });
+        sc.selectLocalizedLabel("icon_rel", "751_crystal/icon_rel.webp", 1, "room.751.select.relationships", "Relationships", "", { width: 430, fontSize: 26 });
+        sc.selectLocalizedLabel("icon_other", "751_crystal/icon_other.webp", 2, "room.751.select.side", "Side events", "", { width: 430, fontSize: 26 });
     }
     else if (name === "icon_main") {
         chat(900, 751);
@@ -70,7 +70,7 @@ room751.chatcatch = function (callback) {
                 "top": 246,
                 "width": 588,
                 "height": 538,
-                "title": "Cave Key",
+                "title": l10n.t("inventory.item.cavekey.name", "Cave Key"),
                 "image": "751_crystal/key.webp"
             }, 751);
             g.roomTimeout = setTimeout(function () {
@@ -97,45 +97,55 @@ room751.chatcatch = function (callback) {
 room751.chat = function (chatID) {
     if (chatID === 900) {
         let storyLine = "";
+        let storyKey = "";
         if (gv.get("jobapplyconst") < 2) {
+            storyKey = "room.751.fortune.start";
             storyLine = "I see you have great potential. You will do great things, but you need to get " +
                 "off your flat lazy butt. Each journey has a beginning and yours is to get out there " +
                 "and start working. To see your true path you much travel the wrong path. Start working at " +
                 "the construction site. I see a surprise awaits you there. ";
         }
         else if (gv.get("jobapplyconst") < 100) {
+            storyKey = "room.751.fortune.construction";
             storyLine = "You must continue working. The catalyst for change will come from your own " +
                 "curiosity. I see a surprise awaits you there. ";
         }
         else if (missy.get("totalDaysWorked") === 0) {
+            storyKey = "room.751.fortune.missy";
             storyLine = "Awww. I see your curiosity has placed you within a surprising opportunity. " +
                 "You see your proper path only comes after you try the wrong path. It's an exciting path " +
-                "and suited for you. Continue working for Missy, she'll lead you right.";
+                "and suited for you. Continue working for " + sc.n("missy") + ", she'll lead you right.";
         }
         else if (missy.get("totalDaysWorked") === 0) {
+            storyKey = "room.751.fortune.missy";
             storyLine = "Awww. I see your curiosity has placed you within a surprising opportunity. " +
                 "You see your proper path only comes after you try the wrong path. It's an exciting path " +
-                "and suited for you. Continue working for Missy, she'll lead you right.";
+                "and suited for you. Continue working for " + sc.n("missy") + ", she'll lead you right.";
         }
         else if (missy.get("totalDaysWorked") === 0) {
+            storyKey = "room.751.fortune.missy";
             storyLine = "Awww. I see your curiosity has placed you within a surprising opportunity. " +
                 "You see your proper path only comes after you try the wrong path. It's an exciting path " +
-                "and suited for you. Continue working for Missy, she'll lead you right.";
+                "and suited for you. Continue working for " + sc.n("missy") + ", she'll lead you right.";
         }
         else if (missy.get("uniform") < 2) {
+            storyKey = "room.751.fortune.panties";
             storyLine = "Stop denying your true self. We both know you want to wear panties. Be true " +
                 "to yourself and start going out in panties you silly boy. ";
         }
         else if (!sissy.st[0].ach) {
+            storyKey = "room.751.fortune.notReady";
             storyLine = "I see you are the catalyst for great change, but you are not ready yet. Much is " +
                 "needed to go down this path. You must continue what you're doing so that greatness may find you. ";
         }
         else if (!sissy.st[21].ach) {
+            storyKey = "room.751.fortune.sissy";
             storyLine = "Hahaha! Quite the sissy you're becoming. You may even find yourself coming to a full " +
                 "woman soon enough if that path is taken when it comes. Much will change from you that you " +
                 "are not yet aware of. There are many ways to greatness, you must find your own way. ";
         }
         else if (sc.getMission("cult", "kidnap").notStarted) {
+            storyKey = "room.751.fortune.cult";
             storyLine = "I see you have done well. You have found your path and are on the way to greatness. " +
                 "There is one more thing I see in your future, but I can't quite make it out yet. It is a " +
                 "surprise that will be revealed when the time is right. ";
@@ -144,7 +154,7 @@ room751.chat = function (chatID) {
         return {
             chatID: 0,
             speaker: "crystal",
-            text: storyLine,
+            text: storyLine, l10nKey: storyKey || undefined, l10nValues: { missy: sc.n("missy") },
             button: [
                 { chatID: -1, text: "ok. Thanks", callback: "goatweed" }
             ]

@@ -212,8 +212,8 @@ room750.btnclick = function (name) {
             invoker.invokeCurrent("btnclick", "killelibutton");
             char.addtime(20);
             nav.bg("750_homeless/eli2.webp"); 
-            sc.select("elitv", "316_livingroom/icon_tv.png", -2);
-            sc.select("elisit", "750_homeless/icon_sit.webp", 0);
+            sc.selectLocalizedLabel("elitv", "316_livingroom/icon_tv.png", -2, "room.750.select.tv", "Watch T.V. together", "", { width: 430, fontSize: 26 });
+            sc.selectLocalizedLabel("elisit", "750_homeless/icon_sit.webp", 0, "room.750.select.sit", "Sit back up", "", { width: 430, fontSize: 26 });
             g.internal.pos = "lay";
             g.internal.step++;
             nav.modbutton("elitvfg", "750_homeless/elitv" + (g.internal.step % 4) + ".webp", null, null); 
@@ -222,8 +222,8 @@ room750.btnclick = function (name) {
             invoker.invokeCurrent("btnclick", "killelibutton");
             char.addtime(20);
             nav.bg("750_homeless/eli1.webp");
-            sc.select("elitv", "316_livingroom/icon_tv.png", -2);
-            sc.select("elilay", "750_homeless/icon_lay.webp", 0);
+            sc.selectLocalizedLabel("elitv", "316_livingroom/icon_tv.png", -2, "room.750.select.tv", "Watch T.V. together", "", { width: 430, fontSize: 26 });
+            sc.selectLocalizedLabel("elilay", "750_homeless/icon_lay.webp", 0, "room.750.select.lay", "Lay on his lap", "", { width: 430, fontSize: 26 });
             g.internal.pos = "sit";
             g.internal.step++;
             nav.modbutton("elitvfg", "750_homeless/elitv" + (g.internal.step % 4) + ".webp", null, null); 
@@ -240,7 +240,7 @@ room750.btnclick = function (name) {
             if (g.internal.horny > 99 && !g.internal.hardonNoticed) {
                 g.internal.hardonNoticed = true;
                 invoker.invokeCurrent("btnclick", "elihardon"); 
-                sc.select("eliRub", "750_homeless/icon_rub.webp", 2);
+                sc.selectLocalizedLabel("eliRub", "750_homeless/icon_rub.webp", 2, "room.750.select.rub", "Rub his penis", "", { width: 430, fontSize: 26 });
                 sc.modLevel("elijah", 30, 4);
             }
             else if (g.internal.step > 8) {
@@ -450,8 +450,8 @@ room750.chatcatch = function (callback) {
                 "height": 782,
                 "image": "750_homeless/elitv0.webp"
             }, 750);
-            sc.select("elitv", "316_livingroom/icon_tv.png", -2);
-            sc.select("elilay", "750_homeless/icon_lay.webp", 0);
+            sc.selectLocalizedLabel("elitv", "316_livingroom/icon_tv.png", -2, "room.750.select.tv", "Watch T.V. together", "", { width: 430, fontSize: 26 });
+            sc.selectLocalizedLabel("elilay", "750_homeless/icon_lay.webp", 0, "room.750.select.lay", "Lay on his lap", "", { width: 430, fontSize: 26 });
             break;
         case "eli10":
             nav.killall();
@@ -555,12 +555,13 @@ room750.chat = function (chatID) {
             "The coffee served at the diner contains transgender cum that raises your female hormone levels and makes you more susceptible to transforming into a real girl. ",
             "The 'mystery' is a psychological smokescreen designed to keep the most inquisitive minds occupied with 'clues' while the real architectural overhaul of reality happens right under our noses. There is no solution because the investigation itself is the prison, intended to loop your logic centers until the transition to the new world order is finalized."
         ];
+        let daleChatIndex = g.rand(0, daleChat.length);
         return {
             chatID: 900,
             speaker: "dale",
-            text: daleChat[g.rand(0, daleChat.length)],
+            text: daleChat[daleChatIndex], l10nKey: "room.750.dale." + daleChatIndex, l10nValues: { ubel: sc.n("ubel") },
             button: [
-                { chatID: -1, text: "Sure, " + sc.n("dale") + ", sure.", callback: "" }
+                { chatID: -1, text: "Sure, " + sc.n("dale") + ", sure.", l10nValues: { dale: sc.n("dale") }, callback: "" }
             ]
         }
     }
@@ -665,7 +666,7 @@ room750.chat = function (chatID) {
                 speaker: "doc",
                 text: "*HIC* yeah, why? ",
                 button: [
-                    { chatID: 12, text: "I need you to go to the sperm store and give my " + sc.n("landlord") + " your sperm!", callback: "" }
+                    { chatID: 12, text: "I need you to go to the sperm store and give my " + sc.n("landlord") + " your sperm!", l10nValues: { landlord: sc.n("landlord"), landlordDefinite: sc.landlady("definiteLower") }, callback: "" }
                 ]
             },
             {
@@ -673,7 +674,7 @@ room750.chat = function (chatID) {
                 speaker: "doc",
                 text: "Gimme some wine and I'll do it. ",
                 button: [
-                    { chatID: 13, text: "My " + sc.n("landlord") + " is going to give you money, and you can buy your own wine!", callback: "doc2" }
+                    { chatID: 13, text: "My " + sc.n("landlord") + " is going to give you money, and you can buy your own wine!", l10nValues: { landlord: sc.n("landlord"), landlordDefinite: sc.landlady("definiteLower") }, callback: "doc2" }
                 ]
             },
             {
@@ -704,7 +705,7 @@ room750.chat = function (chatID) {
                 chatID: 16,
                 speaker: "thinking",
                 text: "Oh wow, that was brutal! Don't ever drink Doc's wine again! I bet he donated his sperm, I can talk to " + sc.n("landlord") +
-                    " at the sperm bank and get back into the house!",
+                    " at the sperm bank and get back into the house!", l10nValues: { landlord: sc.n("landlord"), landlordDefinite: sc.landlady("definiteLower") },
                 button: [
                     { chatID: -1, text: "...", callback: "" }
                 ]
@@ -840,8 +841,8 @@ room750.chat = function (chatID) {
             {
                 chatID: 31,
                 speaker: "dale",
-                text: "Missy said you would be coming by. You know she's one cool chick. We used to have sex all " +
-                    "the time. Until I got tired of her. ",
+                text: sc.n("missy") + " said you would be coming by. You know she's one cool chick. We used to have sex all " +
+                    "the time. Until I got tired of her. ", l10nValues: { missy: sc.n("missy") },
                 button: [
                     { chatID: 32, text: "really?", callback: "" },
                 ]
@@ -859,9 +860,9 @@ room750.chat = function (chatID) {
             {
                 chatID: 33,
                 speaker: "dale",
-                text: "Nothin'! That's why I spy for Missy, to take them all down. So I'll help you. You'll need " +
+                text: "Nothin'! That's why I spy for " + sc.n("missy") + ", to take them all down. So I'll help you. You'll need " +
                     "this crowbar to get in. Once you're in the sewer is a maze of tunnels. When you hit a grate " +
-                    "you need to double back down and try a different path. ",
+                    "you need to double back down and try a different path. ", l10nValues: { missy: sc.n("missy") },
                 button: [
                     { chatID: 34, text: "...", callback: "" },
                 ]
@@ -882,7 +883,7 @@ room750.chat = function (chatID) {
                 text: "I'm so glad you found me! " + sc.n("stormy") + " was really getting on my case about " +
                     "staying at her place. Luckily one of her clients was moving out of this tent, since he " +
                     "got a job, and just gave it to me. Dude's so awesome. Now I have a place to sleep till " +
-                    "I get back on my feet! ",
+                    "I get back on my feet! ", l10nValues: { stormy: sc.n("stormy") },
                 button: [
                     { chatID: 36, text: "Looks really nice in here! ", callback: "" },
                 ]
@@ -1171,7 +1172,7 @@ room750.chat = function (chatID) {
             {
                 chatID: 66,
                 speaker: "thinking",
-                text: "I broke up with " + sc.n("elijah") + ". There's no reason to bug him again. ",
+                text: "I broke up with " + sc.n("elijah") + ". There's no reason to bug him again. ", l10nValues: { elijah: sc.n("elijah") },
                 button: [
                     { chatID: -1, text: "...", callback: "" }
                 ]
@@ -1244,7 +1245,7 @@ room750.chat = function (chatID) {
                 text: "Code? What? No. I heard you want a whore. Give me a bottle of wine and I'll tell you there's " +
                     "a whore in that tent over there. ",
                 button: [
-                    { chatID: -1, text: "Sure " + sc.n("doc") + ". Sure. ", callback: "reset" },
+                    { chatID: -1, text: "Sure " + sc.n("doc") + ". Sure. ", l10nValues: { doc: sc.n("doc") }, callback: "reset" },
                 ]
             },
             {

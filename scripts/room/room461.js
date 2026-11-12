@@ -1,5 +1,13 @@
 ﻿//Room name
 var room461 = {};
+room461.selectOption = function (name, image, index) {
+    var labels = {
+        pprun: "Keep Running", ppchat: "Have a chat", ppdick: "Show her your dick",
+        ppdick2: "Show her your dick", pppee: "Ask to get pissed on",
+        ppcup: "Ask for a jar of her piss", ppcupx: "Ask for a jar of her piss"
+    };
+    sc.selectLocalizedLabel(name, image, index, "room.461.option." + name, labels[name]);
+};
 room461.main = function () {
 
     if (!g.isNight()) {
@@ -17,9 +25,9 @@ room461.main = function () {
                     chat(32, 461);
                 }
                 else {
-                    sc.select("pprun", "461_run/ppgirl_run.png", 0);
-                    sc.select("ppchat", "461_run/ppgirl_chat.png", 1);
-                    sc.select("ppdick", "461_run/ppgirl_dick.png", 2);
+                    room461.selectOption("pprun", "461_run/ppgirl_run.png", 0);
+                    room461.selectOption("ppchat", "461_run/ppgirl_chat.png", 1);
+                    room461.selectOption("ppdick", "461_run/ppgirl_dick.png", 2);
                     daily.set("ppgirl");
                     nav.button({
                         "type": "img",
@@ -397,14 +405,14 @@ room461.chatcatch = function (callback) {
             sc.completeMissionTask("ppgirl", "pp", 1);
             break;
         case "displayppgirl":
-            sc.select("pprun", "461_run/ppgirl_run.png", 0);
-            sc.select("ppchat", "461_run/ppgirl_chat.png", 1);
-            sc.select("pppee", "461_run/ppgirl_pee.png", 2);
-            sc.select("ppdick2", "461_run/ppgirl_dick.png", 3);
+            room461.selectOption("pprun", "461_run/ppgirl_run.png", 0);
+            room461.selectOption("ppchat", "461_run/ppgirl_chat.png", 1);
+            room461.selectOption("pppee", "461_run/ppgirl_pee.png", 2);
+            room461.selectOption("ppdick2", "461_run/ppgirl_dick.png", 3);
             if (inv.has("emptyjar")) 
-                sc.select("ppcup", "461_run/icon_pissjar.png", 4);
+                room461.selectOption("ppcup", "461_run/icon_pissjar.png", 4);
             else
-                sc.select("ppcupx", "461_run/icon_pissjarx.png", 4);
+                room461.selectOption("ppcupx", "461_run/icon_pissjarx.png", 4);
             break;
        
         case "ppsub":
@@ -476,6 +484,7 @@ room461.chat = function (chatID) {
             speaker: "me",
             text: "I can't run in this! I'm missing my " + g.internal + ". I can change in the men's bathroom if I saved " +
                 "a set of running clothes in my wardrobe saves. ",
+            l10nValues: { missing: chatID === 3 ? room460.localizeWorkoutMissing(g.internal) : "" },
             button: [
                 { chatID: -1, text: "......", callback: "redo" }
             ]

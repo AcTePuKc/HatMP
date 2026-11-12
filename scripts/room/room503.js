@@ -114,7 +114,7 @@ room503.chatcatch = function (callback) {
         case "steal":
             inv.addMulti("blackl", 100);
             nav.killbutton("lipstick");
-            g.popUpNotice("You stole her lipstick");
+            g.popUpNotice(l10n.t("room.503.notice.lipstick", "You stole her lipstick"));
             break;
         default:
             break;
@@ -187,6 +187,7 @@ room503.chat = function (chatID) {
             chatID: 7,
             speaker: "thinking",
             text: "It's " + sc.n("zoey") + "'s black lipstick. Should I steal it from her?",
+            l10nValues: { zoey: sc.n("zoey") },
             button: [
                 { chatID: -1, text: "Steal her lipstick", callback: "steal" },
                 { chatID: -1, text: "Leave it there. ", callback: "" },

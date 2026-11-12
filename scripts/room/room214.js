@@ -53,7 +53,8 @@ room214.btnclick = function (name) {
                 "width": 813,
                 "height": 1027,
                 "image": "214_pinkgame/missy.png",
-                "title": "Girl"
+                "title": "Girl",
+                "titleKey": "speaker.girl"
             }, 214);
             nav.button({
                 "type": "btn",
@@ -63,7 +64,8 @@ room214.btnclick = function (name) {
                 "width": 981,
                 "height": 996,
                 "image": "214_pinkgame/gamer.png",
-                "title": "Boy"
+                "title": "Boy",
+                "titleKey": "speaker.boy"
             }, 214);
             sc.selectCancel("reset", .25);
             break;
@@ -135,7 +137,8 @@ room214.chatcatch = function (callback) {
                 "width": 340,
                 "height": 817,
                 "image": "214_pinkgame/gw2.png",
-                "title": "Massage Feet"
+                "title": "Massage Feet",
+                "titleKey": "room.214.hover.massageFeet"
             }, 214);
             break;
         case "groupEnd":

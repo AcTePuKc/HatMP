@@ -40,18 +40,18 @@ quickFight.getStats = function (enemyFightLevel, enemyEnergy = 100) {
 quickFight.getProb = function (enemy, me) {
     var total = Math.abs(enemy - me)
     if (total < 2)
-        return { txt: "Even match", num: 0 };
+        return { txt: l10n.t("quickFight.difficulty.even", "Even match"), num: 0 };
     if (total < 6 && enemy > me)
-        return { txt: "Little hard", num: -1 };
+        return { txt: l10n.t("quickFight.difficulty.slightlyHard", "Little hard"), num: -1 };
     if (total < 6 && me > enemy)
-        return { txt: "Little easy", num: 1 };
+        return { txt: l10n.t("quickFight.difficulty.slightlyEasy", "Little easy"), num: 1 };
     if (total < 12 && enemy > me)
-        return { txt: "Hard", num: -2 };
+        return { txt: l10n.t("quickFight.difficulty.hard", "Hard"), num: -2 };
     if (total < 12 && me > enemy)
-        return { txt: "Easy", num: 2 };
+        return { txt: l10n.t("quickFight.difficulty.easy", "Easy"), num: 2 };
     if (enemy > me)
-        return { txt: "Extremely Hard", num: -3 };
-    return { txt: "Extremely Easy", num: 3 };
+        return { txt: l10n.t("quickFight.difficulty.veryHard", "Extremely Hard"), num: -3 };
+    return { txt: l10n.t("quickFight.difficulty.veryEasy", "Extremely Easy"), num: 3 };
 };
 
 quickFight.showMainMenu = function () {
@@ -174,7 +174,7 @@ quickFight.init = function (enemyFightLevel, enemyName, btnPressWin, btnPressLos
         top: 170,
         font: 30,
         hex: "#ffffff",
-        text: "Me"
+        text: l10n.t("quickFight.me", "Me")
     }, 1002);
     nav.t({
         type: "zimg",
@@ -195,7 +195,7 @@ quickFight.init = function (enemyFightLevel, enemyName, btnPressWin, btnPressLos
         top: 240 + (0 * 45) + 12,
         font: 20,
         hex: "#ffffff",
-        text: "Strength: " + stats.punchPower
+        text: l10n.t("quickFight.strength", "Strength: {value}", { value: stats.punchPower })
     }, 1002);
     nav.t({
         type: "img",
@@ -204,7 +204,7 @@ quickFight.init = function (enemyFightLevel, enemyName, btnPressWin, btnPressLos
         top: 240 + (1 * 45) + 12,
         font: 20,
         hex: "#ffffff",
-        text: "Energy Multiplier: " + stats.energyMult
+        text: l10n.t("quickFight.energyMultiplier", "Energy Multiplier: {value}", { value: stats.energyMult })
     }, 1002);
     nav.t({
         type: "img",
@@ -222,7 +222,7 @@ quickFight.init = function (enemyFightLevel, enemyName, btnPressWin, btnPressLos
         top: 240 + (3 * 45) + 12,
         font: 20,
         hex: "#ffffff",
-        text: "Total: " + stats.total
+        text: l10n.t("quickFight.total", "Total: {value}", { value: stats.total })
     }, 1002);
    
     nav.t({
@@ -232,7 +232,7 @@ quickFight.init = function (enemyFightLevel, enemyName, btnPressWin, btnPressLos
         top: 520 + (0 * 45),
         font: 20,
         hex: "#ffffff",
-        text: "Strength: " + enemyFightLevel
+        text: l10n.t("quickFight.strength", "Strength: {value}", { value: enemyFightLevel })
     }, 1002);
     nav.t({
         type: "img",
@@ -250,7 +250,7 @@ quickFight.init = function (enemyFightLevel, enemyName, btnPressWin, btnPressLos
         top: 520 + (2 * 45),
         font: 20,
         hex: "#ffffff",
-        text: "Total: " + enemyFightLevel
+        text: l10n.t("quickFight.total", "Total: {value}", { value: enemyFightLevel })
     }, 1002);
     //nav.t({
     //    type: "img",
@@ -299,19 +299,19 @@ quickFight.setStats = function () {
     else
         energyMult = parseFloat(energy / 100) ;
     
-    nav.tmod("quickfight_strength", "Strength: " + strength);
+    nav.tmod("quickfight_strength", l10n.t("quickFight.strength", "Strength: {value}", { value: strength }));
     if (g.fight.smellingSalts)
-        nav.tmod("quickfight_mymod", "+10 Strength");
-    nav.tmod("quickfight_energymult", "Energy Multiplier: " + energyMult);
+        nav.tmod("quickfight_mymod", l10n.t("quickFight.strengthBonus", "+10 Strength"));
+    nav.tmod("quickfight_energymult", l10n.t("quickFight.energyMultiplier", "Energy Multiplier: {value}", { value: energyMult }));
     var total = Math.round(strength * energyMult) + (g.fight.smellingSalts ? 10 : 0);
 
-    nav.tmod("quickfight_total", "Fight Level: " + total);
+    nav.tmod("quickfight_total", l10n.t("quickFight.level", "Fight Level: {value}", { value: total }));
     g.fight.myFight = total;
 
     if (g.fight.pocketSand)
-        nav.tmod("quickfight_enemymod", "-30 Strength");
+        nav.tmod("quickfight_enemymod", l10n.t("quickFight.strengthPenalty", "-30 Strength"));
     g.fight.fightLevel = g.fight.enemyInitFightLevel + (g.fight.pocketSand ? -30 : 0);
-    nav.tmod("quickfight_enemytotal", "Enemy Total: " + g.fight.fightLevel);
+    nav.tmod("quickfight_enemytotal", l10n.t("quickFight.enemyTotal", "Enemy Total: {value}", { value: g.fight.fightLevel }));
     nav.tmod("quickfight_chance", quickFight.getProb(g.fight.fightLevel, g.fight.myFight).txt);
 };
 
@@ -331,7 +331,7 @@ quickFight.drawFight = function () {
         top: 150,
         font: 40,
         hex: "#ffffff",
-        text: "My Roll"
+        text: l10n.t("quickFight.myRoll", "My Roll")
     }, 1002);
     nav.t({
         type: "img",
@@ -340,7 +340,7 @@ quickFight.drawFight = function () {
         top: 150,
         font: 40,
         hex: "#ffffff",
-        text: "Enemy Roll"
+        text: l10n.t("quickFight.enemyRoll", "Enemy Roll")
     }, 1002);
     nav.button({
         "type": "img",
@@ -385,7 +385,7 @@ quickFight.drawFight = function () {
         top: 380,
         font: 30,
         hex: "#ffffff",
-        text: "Me<br/>Roll: " + myTotal + "<br/>+ Level: " + g.fight.myFight + "<br/>= Total: " + meAbsTotal
+        text: l10n.t("quickFight.myResult", "Me<br/>Roll: {roll}<br/>+ Level: {level}<br/>= Total: {total}", { roll: myTotal, level: g.fight.myFight, total: meAbsTotal })
     }, 1002);
     nav.t({
         type: "img",
@@ -394,7 +394,7 @@ quickFight.drawFight = function () {
         top: 380,
         font: 30,
         hex: "#ffffff",
-        text: "Enemy</br>Roll: " + enemyTotal + "<br/>+ Level: " + g.fight.fightLevel + "<br/>= Total: " + enemyAbsTotal
+        text: l10n.t("quickFight.enemyResult", "Enemy</br>Roll: {roll}<br/>+ Level: {level}<br/>= Total: {total}", { roll: enemyTotal, level: g.fight.fightLevel, total: enemyAbsTotal })
     }, 1002);
 
     if (meAbsTotal === enemyAbsTotal)
@@ -412,7 +412,7 @@ quickFight.drawFight = function () {
                 top: 600,
                 font: 30,
                 hex: "#ffffff",
-                text: winText[Math.floor(Math.random() * winText.length)]
+                text: quickFight.resultText("win", winText)
             }, 1);
             nav.button({
                 "type": "btn",
@@ -435,7 +435,7 @@ quickFight.drawFight = function () {
                 top: 600,
                 font: 30,
                 hex: "#ffffff",
-                text: loseText[Math.floor(Math.random() * loseText.length)]
+                text: quickFight.resultText("lose", loseText)
             }, 1002);
             nav.button({
                 "type": "btn",
@@ -448,6 +448,11 @@ quickFight.drawFight = function () {
             }, 1002);
         }
     }
+};
+
+quickFight.resultText = function (outcome, choices) {
+    const index = Math.floor(Math.random() * choices.length);
+    return l10n.t("quickFight.result." + outcome + "." + index, choices[index]);
 };
 
 room1002.btnclick = function (name) {
@@ -487,7 +492,7 @@ room1002.btnclick = function (name) {
                     quickFight.setStats();
                 }
                 else {
-                    g.popUpNotice("You can only use smelling salts once. ");
+                    g.popUpNotice(l10n.t("quickFight.saltsOnce", "You can only use smelling salts once. "));
                 }
                 break;
             case "pocketsand":
@@ -498,7 +503,7 @@ room1002.btnclick = function (name) {
                     quickFight.setStats();
                 }
                 else {
-                    g.popUpNotice("You can only use pocket sand once. ");
+                    g.popUpNotice(l10n.t("quickFight.sandOnce", "You can only use pocket sand once. "));
                 }
                 break;
         }

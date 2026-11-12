@@ -446,7 +446,7 @@ room376.chat = function (chatID) {
             chatID: 23,
             speaker: "me",
             text: "I don't suppose either of you two fine gentlemen know the code to the back " +
-                "gate of the C.U.M. compound? ",
+                "gate of the <abbr class='l10n-term' tabindex='0' data-glossary-id='cum'>C.U.M.</abbr> compound? ",
             button: [
                 { chatID: 24, text: "...", callback: "" }
             ]

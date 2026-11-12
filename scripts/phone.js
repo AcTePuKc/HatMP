@@ -365,7 +365,9 @@ phone.handlePrefixAction = function (name) {
         let taskcounter = 0;
         for (let i = 0; i < sc.charMission[ch.i].mission[ch.j].task.length; i++) {
             if (sc.charMission[ch.i].mission[ch.j].task[i].show) {
-                roomList = " @: " + (g.getRooms(sc.charMission[ch.i].mission[ch.j].task[i].roomId).name ?? "");
+                var taskRoomId = sc.charMission[ch.i].mission[ch.j].task[i].roomId;
+                var taskRoom = g.getRooms(taskRoomId);
+                roomList = " @: " + l10n.t("location.room." + taskRoomId, taskRoom ? taskRoom.name : "");
                 var tcolor = "#ffffff";
                 var mstatus;
                 switch (sc.mStatus(sc.charMission[ch.i].mission[ch.j].task[i].mStatus)) {
@@ -417,7 +419,7 @@ phone.handlePrefixAction = function (name) {
         var enteredName = $(".room-img[data-name='phone_charRenameDisplay']").val();
         sc.setcharname(charrename, phone.normalizeCharacterName(charrename, enteredName));
         phone.characterSelect(charrename);
-        g.popUpNoticeBottom(sc.n(charrename) + " has been renamed.");
+        g.popUpNoticeBottom(l10n.t("phone.character.renamed", "{name} has been renamed.", { name: sc.n(charrename) }));
         return true;
     }
 
@@ -916,7 +918,7 @@ phone.addCharacterCard = function (character, row, column) {
         "top": top + 185,
         font: 20,
         hex: "#ffc2ff",
-        text: character.secret > 99 ? "They know" : (character.secret === 0 ? "" : "Suspicious"),
+        text: character.secret > 99 ? l10n.t("phone.character.secretKnown", "They know") : (character.secret === 0 ? "" : l10n.t("phone.character.secretSuspicious", "Suspicious")),
     }, 1);
 };
 
@@ -1255,11 +1257,22 @@ phone.characters = function () {
     }
 };
 
+// Conservative suggestions for single lowercase Bulgarian nouns; users can override them.
+phone.suggestBulgarianDefinite = function (value, plural) {
+    var word = String(value || "").trim();
+    if (word.length > 78 || !/^[а-яѝ]+$/.test(word)) return "";
+    var last = word.charAt(word.length - 1);
+    if (plural && (last === "и" || last === "е")) return word + "те";
+    if (last === "а" || last === "я") return word + "та";
+    return "";
+};
+
 phone.relationshipTermsEditor = function (section) {
     phone.clear(false);
     phone.showPanel("999_phone/rel_bg.jpg");
 
     var editingLandlady = section === "landlady";
+    var useBulgarianSuggestions = l10n.getLanguage() === "bg";
     phone.addLocalizedPanelText("relationships_title", "phone.section.relationships",
         "Relationships", 610, 870, 1000, 55, { font: 30, background: "#111111" });
     phone.addLocalizedButton("phone_relationship_terms_cotenants", "phone.relationshipTerms.cotenantsTab",
@@ -1311,21 +1324,36 @@ phone.relationshipTermsEditor = function (section) {
         return input;
     }
 
+    // Saved custom forms and anything edited in this session are always manual.
+    function bindBulgarianSuggestion(baseInput, formInput, formId, hasSavedForm) {
+        if (!useBulgarianSuggestions || !baseInput || !formInput) return;
+        var manual = !!hasSavedForm;
+        formInput.addEventListener("input", function () { manual = true; });
+        baseInput.addEventListener("input", function () {
+            if (!manual && l10n.getLanguage() === "bg")
+                formInput.value = phone.suggestBulgarianDefinite(baseInput.value, formId === "pluralDefinite");
+        });
+    }
+
     var extraForms = l10n.characterTermForms(editingLandlady ? "landlady" : "coTenant");
     if (editingLandlady) {
         var initialLandladyName = sc.n("landlord");
         var initialLandladyForms = {};
         addSectionTitle("phone.relationshipTerms.landladyTitle", "How do you refer to {landlady}?",
             { landlady: sc.n("landlord") });
-        addTermInput("phone_landlady_relationship", "setup.landladyRelationship",
+        var landladyInput = addTermInput("phone_landlady_relationship", "setup.landladyRelationship",
             "What do you call her?", initialLandladyName);
         extraForms.forEach(function (form) {
             var value = sc.get("landlord").relationshipForms && sc.get("landlord").relationshipForms[form.id];
             initialLandladyForms[form.id] = sc.landlady(form.id);
-            addTermInput("phone_landlady_form_" + form.id, "relationship.form." + form.id,
+            var formInput = addTermInput("phone_landlady_form_" + form.id, "relationship.form." + form.id,
                 form.label, typeof value === "string" ? value : initialLandladyForms[form.id]);
+            formInput.title = l10n.t("phone.relationshipTerms.landladyHelp", "Enter the form used in dialogue.");
+            if (form.id === "definite")
+                bindBulgarianSuggestion(landladyInput, formInput, form.id, typeof value === "string");
         });
         $("#phone_landlady_relationship").on("input", function () {
+            if (useBulgarianSuggestions && l10n.getLanguage() === "bg") return;
             if ($(this).val() !== initialLandladyName) {
                 extraForms.forEach(function (form) {
                     if (!sc.get("landlord").relationshipForms || typeof sc.get("landlord").relationshipForms[form.id] !== "string") {
@@ -1353,17 +1381,25 @@ phone.relationshipTermsEditor = function (section) {
         var initialCoTenantForms = {};
         addSectionTitle("phone.relationshipTerms.title", "Relationship with {lola} and {eva}",
             { lola: sc.n("lola"), eva: sc.n("eva") });
-        addTermInput("phone_relationship_plural", "phone.relationshipTerms.plural",
+        var pluralInput = addTermInput("phone_relationship_plural", "phone.relationshipTerms.plural",
             "For both of them (plural)", initialCoTenantPlural);
-        addTermInput("phone_relationship_singular", "phone.relationshipTerms.singular",
+        var singularInput = addTermInput("phone_relationship_singular", "phone.relationshipTerms.singular",
             "For one of them (singular)", initialCoTenantSingular);
         extraForms.forEach(function (form) {
             var value = sc.get("el").relationshipForms && sc.get("el").relationshipForms[form.id];
-            initialCoTenantForms[form.id] = sc.el(form.id);
-            addTermInput("phone_relationship_form_" + form.id, "relationship.form." + form.id,
+            initialCoTenantForms[form.id] = form.id.indexOf("plural") === 0 ? sc.els(form.id) : sc.el(form.id);
+            var coTenantFormInput = addTermInput("phone_relationship_form_" + form.id, "relationship.form." + form.id,
                 form.label, typeof value === "string" ? value : initialCoTenantForms[form.id]);
+            if (form.id === "singularDefinite")
+                coTenantFormInput.title = l10n.t("phone.relationshipTerms.singularDefiniteHelp", "Example: co-tenant → the co-tenant.");
+            else if (form.id === "pluralDefinite")
+                coTenantFormInput.title = l10n.t("phone.relationshipTerms.pluralDefiniteHelp", "Example: co-tenants → the co-tenants.");
+            if (form.id === "singularDefinite" || form.id === "pluralDefinite")
+                bindBulgarianSuggestion(form.id === "pluralDefinite" ? pluralInput : singularInput,
+                    coTenantFormInput, form.id, typeof value === "string");
         });
         $("#phone_relationship_plural, #phone_relationship_singular").on("input", function () {
+            if (useBulgarianSuggestions && l10n.getLanguage() === "bg") return;
             var usesInitialTerms = $("#phone_relationship_plural").val() === initialCoTenantPlural &&
                 $("#phone_relationship_singular").val() === initialCoTenantSingular;
             extraForms.forEach(function (form) {
@@ -1424,7 +1460,7 @@ phone.saveRelationshipTerms = function (section) {
     var existingRelationshipForms = sc.get("el").relationshipForms || {};
     l10n.characterTermForms("coTenant").forEach(function (form) {
         var value = g.cleanText($("#phone_relationship_form_" + form.id).val() || "").trim();
-        var currentValue = sc.el(form.id);
+        var currentValue = form.id.indexOf("plural") === 0 ? sc.els(form.id) : sc.el(form.id);
         if (value && (value !== currentValue || typeof existingRelationshipForms[form.id] === "string"))
             relationshipForms[form.id] = value;
     });
@@ -1624,7 +1660,7 @@ phone.characterSelect = function (name) {
             "top": 680 + (i*22),
             font: 20,
             hex: thisTimeline.subList[i].current ? "#FF76FF" : "#ffffff",
-            text: thisTimeline.subList[i].hstart + ":00 " + thisTimeline.subList[i].hend + ":00 " + thisTimeline.subList[i].room
+            text: thisTimeline.subList[i].hstart + ":00 " + thisTimeline.subList[i].hend + ":00 " + sc.timelineLocation(thisTimeline.subList[i])
         }, 1);
     }
     if (name === "me") {

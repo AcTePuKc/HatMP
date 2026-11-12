@@ -745,6 +745,7 @@ room450.chat = function(chatID){
             speaker: "lola",
             text: "I'm so glad " + sc.n("landlord") + " had us go on a practice date! " +
                 "I really needed to get out.  ",
+            l10nValues: { landlord: sc.n("landlord") },
             button: [
                 { chatID: 16, text: "...", callback: "" }
             ]
@@ -754,6 +755,7 @@ room450.chat = function(chatID){
             speaker: "thinking",
             text: "This is so crazy! Should I even be doing this? This is wrong, but it feels so right. I don't care what anyone " +
                 "says, I'm going to go on a date with " + sc.n("lola") + " and I'm going to enjoy it.",
+            l10nValues: { lola: sc.n("lola") },
             button: [
                 { chatID: 17, text: "...", callback: "" }
             ]
@@ -862,6 +864,7 @@ room450.chat = function(chatID){
                 "there's no way I can be true to just her. On the other hand if I didn't " +
                 "return her feelings it would just break her. How do I keep her happy, " +
                 "but not mislead her?",
+            l10nValues: { lola: sc.n("lola") },
             button: [
                 { chatID: 29, text: "...", callback: "" }
             ]
@@ -1076,7 +1079,7 @@ room450.chat = function(chatID){
             text: "This isn't working. I'm going to have to do something to get his attention. I know he likes fucking. Maybe " +
                 "I need to show him I need to be used like a filthy slut....",
             button: [
-                { chatID: -1, text: "[Bend over and show him your " + gender.pronoun("pussy") + "]", callback: "c0" },
+                { chatID: -1, text: "[Bend over and show him your " + gender.pronoun("pussy") + "]", l10nValues: { bodyPart: gender.pronoun("pussy") }, callback: "c0" },
             ]
         },
         {
@@ -1112,6 +1115,7 @@ room450.chat = function(chatID){
             text: "Loose ass " + gender.pronoun("pussy") + ". All you white " + gender.pronoun("bitches") +
                 " try to fetishise this big black cock. But I don't mind. " +
                 "You know why I don't mind? ",
+            l10nValues: { bodyPart: gender.pronoun("pussy"), address: gender.pronoun("bitches") },
             button: [
                 { chatID: 58, text: "why?", callback: "c3" },
             ]
@@ -1121,6 +1125,7 @@ room450.chat = function(chatID){
             speaker: "cop",
             text: "'Cause I do love fuckin'. Don't care if it's a pussy, face, or asshole. As long as I get my nut. And I'm " +
                 "going to get my nut out of you " + gender.pronoun("boy") + ". ",
+            l10nValues: { address: gender.pronoun("boy") },
             button: [
                 { chatID: 86, text: "*gulp*", callback: "c4" },
             ]
@@ -1158,7 +1163,7 @@ room450.chat = function(chatID){
         {
             chatID: 62,
             speaker: "cop",
-            text: "That's right boy, open that mouth so I can fill it.",
+            text: "That's right " + gender.pronoun("boy") + ", open that mouth so I can fill it.",
             button: [
                 { chatID: 63, text: "[Take the head of his cock into your mouth]", callback: "cop4" }
             ]
@@ -1252,6 +1257,7 @@ room450.chat = function(chatID){
                 "did I get so hard when he was raping my face? Do I enjoy getting raped? Fuck. " +
                 "I've got to clean this cum off my face before " + sc.n("landlord") + " sees it and " +
                 "asks what happened. ",
+            l10nValues: { landlord: sc.n("landlord") },
             button: [
                 { chatID: -1, text: "[Leave]", callback: "leavePark" }
             ]
@@ -1268,6 +1274,7 @@ room450.chat = function(chatID){
             chatID: 75,
             speaker: "smokey",
             text: "Hey " + gender.pronoun("man") + " the parks such a free place isn't it. ",
+            l10nValues: { address: gender.pronoun("man") },
             button: [
                 { chatID: 76, text: "Totally. I'm looking for someone, her name's Sanaria. You haven't seen her have you?", callback: "" }
             ]
@@ -1364,6 +1371,7 @@ room450.chat = function(chatID){
             chatID: 86,
             speaker: "cop",
             text: "Suck it. Make me hard so I can shove it up your " + gender.pronoun("cunt") + ". ",
+            l10nValues: { bodyPart: gender.pronoun("cunt") },
             button: [
                 { chatID: 87, text: "*sssllluuurrrppp", callback: "c5" }
             ]
@@ -1408,6 +1416,7 @@ room450.chat = function(chatID){
                 " said to leave you alone until " +
                 "the heat dies down, but fuck it. Imma smash your head in and take you in myself. I'll " +
                 "just tell that " + sc.n("wyatt") + " twerp you skipped town. ",
+            l10nValues: { bodyPart: gender.pronoun("pussy"), ubel: sc.n("ubel"), wyatt: sc.n("wyatt") },
             button: [
                 { chatID: 92, text: "oh please no!", callback: "c10" }
             ]
@@ -1418,6 +1427,7 @@ room450.chat = function(chatID){
             text: "A twerp? I assumed you had better disparaging insults to describe me. In case you're " +
                 "ill-informed, you won't be taking that " + gender.pronoun("boy") + " to your compound, but " +
                 "you'll be going into a compound of a different sort. ",
+            l10nValues: { address: gender.pronoun("boy") },
             button: [
                 { chatID: 93, text: "*gasp*", callback: "" }
             ]
@@ -1445,6 +1455,7 @@ room450.chat = function(chatID){
                 "had checked this area sooner I'm so sorry " + gender.pronoun("sir") + ". I'll call you and " +
                 "ambulance and we'll get you a licensed professional counselor. I can't imagine the the trauma " +
                 "you must be experiancing right now. ",
+            l10nValues: { address: gender.pronoun("sir") },
             button: [
                 { chatID: 96, text: "oh no. no. That's ok. I'll be ok. ", callback: "" }
             ]

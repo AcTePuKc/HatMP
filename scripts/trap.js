@@ -131,7 +131,7 @@ trap.roll = function () {
         top: 170,
         font: 20,
         hex: "#ffffff",
-        text: "Roll " + rollToBeat + " to escape!"
+        text: l10n.t("room.1005.roll.target", "Roll {target} to escape!", { target: rollToBeat })
     });
     var c = 0;
     for (i = 0; i < 2; i++) {
@@ -157,7 +157,7 @@ trap.roll = function () {
         top: 370,
         font: 20,
         hex: "#ffffff",
-        text: "Total: " + (totalRoll + intL) 
+        text: l10n.t("room.1005.roll.total", "Total: {total}", { total: totalRoll + intL })
     });
     nav.t({
         type: "zimg",
@@ -166,7 +166,7 @@ trap.roll = function () {
         top: 400,
         font: 20,
         hex: "#ffffff",
-        text: "(R: " + totalRoll + " + INT: " + intL + ")"
+        text: l10n.t("room.1005.roll.breakdown", "(R: {roll} + INT: {intelligence})", { roll: totalRoll, intelligence: intL })
     });
 
     if (totalRoll + intL < rollToBeat) {
@@ -177,7 +177,7 @@ trap.roll = function () {
             top: 430,
             font: 20,
             hex: "#ffffff",
-            text: "You fell in the trap!"
+            text: l10n.t("room.1005.roll.failed", "You fell in the trap!")
         });
         trap.displayMenu("fail");
     }
@@ -189,7 +189,7 @@ trap.roll = function () {
             top: 430,
             font: 20,
             hex: "#ffffff",
-            text: "You avoided the trap"
+            text: l10n.t("room.1005.roll.success", "You avoided the trap")
         });
         trap.displayMenu("success");
     }
@@ -697,7 +697,7 @@ trap.tree = function () {
         return;
     }
 
-    trap.internal = { t: ci.type, d: ci.display, c: ci.sex === "f" ? "pink" : "blue" };
+    trap.internal = { t: ci.type, d: ci.display, itemName: ci.name, c: ci.sex === "f" ? "pink" : "blue" };
     nav.button({
         "type": "img",
         "name": "r1004bg",
@@ -1208,11 +1208,11 @@ room1005.btnclick = function (name) {
             var lwearing = cl.wearing();
             if (lwearing.outerwear) {
                 cl.c.shirt = null; cl.c.pants = null; cl.c.dress = null; cl.c.pj = null; cl.c.swimsuit = null; cl.c.socks = null; cl.c.shoes = null;
-                g.popUpNoticeBottom("Your adolen!");
+                g.popUpNoticeBottom(l10n.t("room.1005.notice.clothesStolen", "Your adolen!"));
             }
             else {
                 cl.c.panties = null; cl.c.bra = null;
-                g.popUpNoticeBottom("Your panties were stolen!");
+                g.popUpNoticeBottom(l10n.t("room.1005.notice.pantiesStolen", "Your panties were stolen!"));
             }
             cl.display();
             nav.killbutton("r1004bg");
@@ -1239,7 +1239,7 @@ room1005.btnclick = function (name) {
             break;
         case "encounterRun":
             gv.mod("energy", -50);
-            g.popUpNotice("You ran away");
+            g.popUpNotice(l10n.t("room.1005.notice.ranAway", "You ran away"));
             trap.kill(null);
             break;
         case "r1004bg-q":
@@ -1295,9 +1295,9 @@ room1005.btnclick = function (name) {
             break;
         case "r1004bg_lick":
             switch (trap.internal) {
-                case 0: g.popUpNotice("It's so bitter!"); break;
-                case 1: g.popUpNotice("I love licking her dirty asshole"); break;
-                case 2: g.popUpNotice("I really am a dirty ass licking slut"); break;
+                case 0: g.popUpNotice(l10n.t("room.1005.notice.bitter", "It's so bitter!")); break;
+                case 1: g.popUpNotice(l10n.t("room.1005.notice.licking", "I love licking her dirty asshole")); break;
+                case 2: g.popUpNotice(l10n.t("room.1005.notice.slut", "I really am a dirty ass licking slut")); break;
                 case 3:
                     levels.oralass("f", "!m");
                     nav.killbutton("r1004bg_lick");
@@ -1473,7 +1473,7 @@ room1005.chatcatch = function (callback) {
                 case "nose ring": cl.c.nosering = null; break;// cl.remove("nose", cl.c.nosering); break;
                 default: console.log("missing: " + trap.internal); break;
             }
-            g.popUpNotice("You gave away your " + trap.internal + ".");
+            g.popUpNotice(l10n.t("room.1005.notice.gaveItem", "You gave away your {item}.", { item: l10n.t("room.1005.item." + String(trap.internal).replace(/ /g, "_"), trap.internal) }));
             nav.killbutton("r1004bg");
             nav.button({
                 "type": "img",
@@ -1732,11 +1732,11 @@ room1005.chatcatch = function (callback) {
                 default:
                     if (g.rand(0, 2) === 0) {
                         levels.modLevel("pi", -1);
-                        g.popUpNotice("You have become dumber");
+                        g.popUpNotice(l10n.t("room.1005.notice.dumber", "You have become dumber"));
                     }
                     else {
                         levels.modLevel("strength", -1);
-                        g.popUpNotice("You have become weaker");
+                        g.popUpNotice(l10n.t("room.1005.notice.weaker", "You have become weaker"));
                     }
                     chat(40, 1005);
                     break;
@@ -2259,6 +2259,14 @@ room1005.chatcatch = function (callback) {
     }
 };
 
+trap.treeItemName = function () {
+    if (trap.internal && trap.internal.itemName !== undefined) {
+        const item = cl.getEntry(trap.internal.t, trap.internal.itemName);
+        if (item) return cl.displayName(item);
+    }
+    return trap.internal.d;
+};
+
 room1005.chat = function (chatID) {
     let txt, wearing;
     if (chatID === 900) {
@@ -2314,23 +2322,27 @@ room1005.chat = function (chatID) {
                 return {
                     chatID: 900,
                     speaker: trap.name,
+                    l10nKey: "room.1005.hole.offer.free",
                     text: "You look like you're stuck in a toilet. Just a sec let me " +
                         "throw a rope down to get you up. ",
                     button: [
-                        { chatID: -1, text: "You're my hero!", callback: "hole_rape0" }
+                        { chatID: -1, text: "You're my hero!", l10nKey: "room.1005.hole.offer.free.choice", callback: "hole_rape0" }
                     ]
                 }
             }
             else {
+                const itemKey = "room.1005.item." + trap.internal.replace(/ /g, "_");
                 return {
                     chatID: 900,
                     speaker: trap.name,
+                    l10nKey: "room.1005.hole.offer.item",
+                    l10nValues: { item: l10n.t(itemKey, trap.internal) },
                     text: "You look like you're stuck in a toilet. You know your " +
                         trap.internal + " are really pretty. If you give it to me to " +
                         "keep forever I'll let you out. No backsies!",
                     button: [
-                        { chatID: -1, text: "*sigh* Fine here's my " + trap.internal + ".", callback: "hole_giveItem" },
-                        { chatID: 5, text: "No way! It's mine!", callback: "" },
+                        { chatID: -1, text: "*sigh* Fine here's my " + trap.internal + ".", l10nKey: "room.1005.hole.offer.item.choice", l10nValues: { item: l10n.t(itemKey, trap.internal) }, callback: "hole_giveItem" },
+                        { chatID: 5, text: "No way! It's mine!", l10nKey: "room.1005.hole.offer.refuse", callback: "" },
                     ]
                 }
             }
@@ -2347,19 +2359,26 @@ room1005.chat = function (chatID) {
             "Pee pee freak! ",
             "I'm going to pee, but you better look away! Don't stare at my pussy you pervert!"
         ];
+        let randomGroup900 = "common";
         if (trap.char[0].id === 1 && sc.getMissionTask("ppgirl", "pp", 1).complete) {
             trap.name = "ppgirl";
-            if (sc.getMissionTask("ppgirl", "pp", 2).complete)
+            if (sc.getMissionTask("ppgirl", "pp", 2).complete) {
+                randomGroup900 = "repeat";
                 randchat900 = ["You again! You really must love getting peed on, hiding in the toilet. It would be sweet if it wasn't so weird. "];
-            else
+            }
+            else {
+                randomGroup900 = "first";
                 randchat900 = ["If you wanted to watch me pee so bad, there's easier ways than hiding in the toilet. "];
+            }
         }
+        let randomIndex900 = g.rand(0, randchat900.length);
         return {
             chatID: 900,
             speaker: trap.name,
-            text: randchat900[g.rand(0, randchat900.length)],
+            l10nKey: "room.1005.hole.900." + randomGroup900 + "." + randomIndex900,
+            text: randchat900[randomIndex900],
             button: [
-                { chatID: 901, text: "I'm not! I fell in this hole. Please help me out", callback: "" }
+                { chatID: 901, text: "I'm not! I fell in this hole. Please help me out", l10nKey: "room.1005.hole.900.choice", callback: "" }
             ]
         }
     }
@@ -2374,7 +2393,9 @@ room1005.chat = function (chatID) {
             "You smell like old piss. I'm not helping you. I'll get it on me! ",
             "Gross. I'm not helping you out of the toilet. "
         ];
+        let randomGroup901 = "common";
         if (trap.char[0].id === 2) {
+            randomGroup901 = "cult";
             randchat901 = [
                 "You're safer down there. I've been raped 10 times and now my vagina won't close!",
                 "You don't want out. The C.U.M. cult is out here and they're raping everyone!",
@@ -2382,12 +2403,14 @@ room1005.chat = function (chatID) {
                 "You don't want to leave this place. They're raping everyone out here. I've been fucked so much my cervix is going to fall out!"
             ];
         }
+        let randomIndex901 = g.rand(0, randchat901.length);
         return {
             chatID: 0,
             speaker: trap.name,
-            text: randchat901[g.rand(0, randchat901.length)],
+            l10nKey: "room.1005.hole.901." + randomGroup901 + "." + randomIndex901,
+            text: randchat901[randomIndex901],
             button: [
-                { chatID: -1, text: "*sigh*", callback: "hole1" }
+                { chatID: -1, text: "*sigh*", l10nKey: "room.1005.hole.901.choice", callback: "hole1" }
             ]
         };
     }
@@ -2396,123 +2419,130 @@ room1005.chat = function (chatID) {
             return {
                 chatID: 802,
                 speaker: trap.name,
+                l10nKey: "room.1005.stolen.none",
                 text: "Dirty slut!",
                 button: [
-                    { chatID: -1, text: "huh?", callback: "kill" }
+                    { chatID: -1, text: "huh?", l10nKey: "room.1005.stolen.none.choice", callback: "kill" }
                 ]
             };
         else
             return {
                 chatID: 802,
                 speaker: trap.name,
+                l10nKey: "room.1005.stolen.item",
+                l10nValues: { item: l10n.t("room.1005.item." + (trap.internal === "panites" ? "panties" : trap.internal.replace(/ /g, "_")), trap.internal) },
                 text: "I'm taking your " + trap.internal + "! It's mine now hahaha!",
                 button: [
-                    { chatID: -1, text: "NNOoooo!!!!", callback: "kill" }
+                    { chatID: -1, text: "NNOoooo!!!!", l10nKey: "room.1005.stolen.item.choice", callback: "kill" }
                 ]
             };
     }
     else if (chatID === 802) { //nice
         wearing = cl.wearing();
         txt = [
-            "Looking good cutie pie! ",
+            { text: "Looking good cutie pie! ", key: "room.1005.encounter.802.0" },
         ];
         if (wearing.outerwear) {
             if (wearing.crossdressing) {
-                txt.push("So cute! Love that look babe! ");
-                txt.push("Love how you're so bold that you're wearing sexy outfit!");
+                txt.push({ text: "So cute! Love that look babe! ", key: "room.1005.encounter.802.1" });
+                txt.push({ text: "Love how you're so bold that you're wearing sexy outfit!", key: "room.1005.encounter.802.2" });
             }
             else {
-                txt.push("You have such a sexy body. You should try wearing a dress. ");
+                txt.push({ text: "You have such a sexy body. You should try wearing a dress. ", key: "room.1005.encounter.802.3" });
             }
         }
         else if (wearing.underwear) {
-            txt.push("Cute panties! I wish I was as confident as you to just wear that in public. ");
+            txt.push({ text: "Cute panties! I wish I was as confident as you to just wear that in public. ", key: "room.1005.encounter.802.4" });
         }
         else {
-            txt.push("Oh wow. You're body is so sexy!");
+            txt.push({ text: "Oh wow. You're body is so sexy!", key: "room.1005.encounter.802.5" });
 
             if (!gender.canUseCock()) {
                 if (cl.c.chastity !== null) {
-                    txt.push("A locked clitty is so sexy babe! ");
+                    txt.push({ text: "A locked clitty is so sexy babe! ", key: "room.1005.encounter.802.6" });
                 }
                 else {
-                    txt.push("Such a cute little clitty! ");
+                    txt.push({ text: "Such a cute little clitty! ", key: "room.1005.encounter.802.7" });
                 }
             }
             else {
-                txt.push("Oh wow! You have a great dick! ");
-                txt.push("I bet all the bitches love that giant cock of yours!");
+                txt.push({ text: "Oh wow! You have a great dick! ", key: "room.1005.encounter.802.8" });
+                txt.push({ text: "I bet all the bitches love that giant cock of yours!", key: "room.1005.encounter.802.9" });
             }
             if (cl.c.chest < 3) {
-                txt.push("You're hot, but would look so much hotter with bigger breasts! ");
+                txt.push({ text: "You're hot, but would look so much hotter with bigger breasts! ", key: "room.1005.encounter.802.10" });
             }
             else {
-                txt.push("Love your tits! I want to bury my face in them!");
+                txt.push({ text: "Love your tits! I want to bury my face in them!", key: "room.1005.encounter.802.11" });
             }
         }
+        const selected = txt[g.rand(0, txt.length)];
         return {
             chatID: 802,
             speaker: trap.name,
-            text: txt[g.rand(0, txt.length)],
+            text: selected.text,
+            l10nKey: selected.key,
             button: [
-                { chatID: -1, text: "That was nice", callback: "kill" }
+                { chatID: -1, text: "That was nice", l10nKey: "room.1005.encounter.802.choice", callback: "kill" }
             ]
         };
     }
     else if (chatID === 801) { //mean
         wearing = cl.wearing();
         txt = [
-            "I've heard about you. You're that nasty easy slut. ",
+            { text: "I've heard about you. You're that nasty easy slut. ", key: "room.1005.encounter.801.0" },
         ];
         if (wearing.outerwear) {
             if (wearing.crossdressing) {
-                txt.push("You look like a fucking whore. I bet you blow any man you see. ");
-                txt.push("Pretty face, ugly clothes. You should just strip it off and show everyone what a slut you are. ");
-                txt.push("Hey slut! I bet you want to fuck. I just don't fuck sissies. Too easy. ");
-                txt.push("You dress like you want to get raped in the asshole. ");
-                txt.push("You dress like some kind of gutter slut. Trash like you should be left in the dumpster. ");
+                txt.push({ text: "You look like a fucking whore. I bet you blow any man you see. ", key: "room.1005.encounter.801.1" });
+                txt.push({ text: "Pretty face, ugly clothes. You should just strip it off and show everyone what a slut you are. ", key: "room.1005.encounter.801.2" });
+                txt.push({ text: "Hey slut! I bet you want to fuck. I just don't fuck sissies. Too easy. ", key: "room.1005.encounter.801.3" });
+                txt.push({ text: "You dress like you want to get raped in the asshole. ", key: "room.1005.encounter.801.4" });
+                txt.push({ text: "You dress like some kind of gutter slut. Trash like you should be left in the dumpster. ", key: "room.1005.encounter.801.5" });
             }
             else {
-                txt.push("You might look like a dude, but I heard you act like a bitch! ");
-                txt.push("You look like a bitch. You should dress like one too. ");
+                txt.push({ text: "You might look like a dude, but I heard you act like a bitch! ", key: "room.1005.encounter.801.6" });
+                txt.push({ text: "You look like a bitch. You should dress like one too. ", key: "room.1005.encounter.801.7" });
             }
         }
         else if (wearing.underwear) {
-            txt.push("Why are you only wearing panties? You looking to get raped? ");
-            txt.push("You trying to show off that tiny cock in those panties, slut? ");
-            txt.push("Fucking tease. Just take off those panties. ");
+            txt.push({ text: "Why are you only wearing panties? You looking to get raped? ", key: "room.1005.encounter.801.8" });
+            txt.push({ text: "You trying to show off that tiny cock in those panties, slut? ", key: "room.1005.encounter.801.9" });
+            txt.push({ text: "Fucking tease. Just take off those panties. ", key: "room.1005.encounter.801.10" });
         }
         else {
-            txt.push("Nasty slut!");
-            txt.push("You look like rape bait. ");
+            txt.push({ text: "Nasty slut!", key: "room.1005.encounter.801.11" });
+            txt.push({ text: "You look like rape bait. ", key: "room.1005.encounter.801.12" });
 
             if (!gender.canUseCock()) {
                 if (cl.c.chastity !== null) {
-                    txt.push("Good thing you have that locked up. No one wants to see your sissy clitty.");
-                    txt.push("HAHAHAHA you're wandering around showing everyone your locked cock? You must really be desperate to take it up that ass!");
+                    txt.push({ text: "Good thing you have that locked up. No one wants to see your sissy clitty.", key: "room.1005.encounter.801.13" });
+                    txt.push({ text: "HAHAHAHA you're wandering around showing everyone your locked cock? You must really be desperate to take it up that ass!", key: "room.1005.encounter.801.14" });
                 }
                 else {
-                    txt.push("HAHAHAHA!!! Look at that tiny little pecker! No girl will ever love you!");
-                    txt.push("Shrip dick! Shrip dick! Shrip dick!");
-                    txt.push("TINY DICK, TINY DICK! You have a tiny dick. 🤏🤏🤏 ");
-                    txt.push("Hahaha! You're the one with the tiny dick? You do look like a bitch! ");
+                    txt.push({ text: "HAHAHAHA!!! Look at that tiny little pecker! No girl will ever love you!", key: "room.1005.encounter.801.15" });
+                    txt.push({ text: "Shrip dick! Shrip dick! Shrip dick!", key: "room.1005.encounter.801.16" });
+                    txt.push({ text: "TINY DICK, TINY DICK! You have a tiny dick. 🤏🤏🤏 ", key: "room.1005.encounter.801.17" });
+                    txt.push({ text: "Hahaha! You're the one with the tiny dick? You do look like a bitch! ", key: "room.1005.encounter.801.18" });
                 }
             }
             if (cl.c.chest < 3) {
-                txt.push("You look like a chick without the tits! ");
-                txt.push("You're a carpenters dream. Flat as a board and easy to nail! ");
+                txt.push({ text: "You look like a chick without the tits! ", key: "room.1005.encounter.801.19" });
+                txt.push({ text: "You're a carpenters dream. Flat as a board and easy to nail! ", key: "room.1005.encounter.801.20" });
             }
             else {
-                txt.push("Nice tits slut! ");
-                txt.push("Those tits make up for your lack of personality?");
+                txt.push({ text: "Nice tits slut! ", key: "room.1005.encounter.801.21" });
+                txt.push({ text: "Those tits make up for your lack of personality?", key: "room.1005.encounter.801.22" });
             }
         }
+        const selected = txt[g.rand(0, txt.length)];
         return {
             chatID: 0,
             speaker: trap.name,
-            text: txt[g.rand(0, txt.length)],
+            text: selected.text,
+            l10nKey: selected.key,
             button: [
-                { chatID: -1, text: "That was mean", callback: "kill" }
+                { chatID: -1, text: "That was mean", l10nKey: "room.1005.encounter.801.choice", callback: "kill" }
             ]
         };
     }
@@ -2524,28 +2554,28 @@ room1005.chat = function (chatID) {
             if (trap.char.p === "boy") {
                 if (wearing.crossdressing) {
                     txt = [
-                        "Sluts like you don't deserve clothes! ",
-                        "You're clothes would look better on the ground. "
+                        { text: "Sluts like you don't deserve clothes! ", key: "room.1005.encounter.800.0" },
+                        { text: "You're clothes would look better on the ground. ", key: "room.1005.encounter.800.1" }
                     ];
                 }
                 else {
                     txt = [
-                        "I like your clothes so much I'm going to take them!",
-                        "Gimmie your clothes!"
+                        { text: "I like your clothes so much I'm going to take them!", key: "room.1005.encounter.800.2" },
+                        { text: "Gimmie your clothes!", key: "room.1005.encounter.800.3" }
                     ];
                 }
             }
             else {
                 if (wearing.crossdressing) {
                     txt = [
-                        "Pretty clothes. I need them!",
-                        "Give me your pretty dress! "
+                        { text: "Pretty clothes. I need them!", key: "room.1005.encounter.800.4" },
+                        { text: "Give me your pretty dress! ", key: "room.1005.encounter.800.5" }
                     ];
                 }
                 else {
                     txt = [
-                        "Ewww. You shouldn't wear that! Give it to me.",
-                        "Darling, you look better without those gross boy clothes. Give them to me!"
+                        { text: "Ewww. You shouldn't wear that! Give it to me.", key: "room.1005.encounter.800.6" },
+                        { text: "Darling, you look better without those gross boy clothes. Give them to me!", key: "room.1005.encounter.800.7" }
                     ];
                 }
             }
@@ -2554,35 +2584,37 @@ room1005.chat = function (chatID) {
             if (trap.char.p === "boy") {
                 if (cl.pantiesTxt() === "panties" || cl.c.bra !== null) {
                     txt = [
-                        "Why are you running around in your panties? You should be naked, slut! ",
-                        "Sluts like you should be naked to show how hungry for cock you are! "
+                        { text: "Why are you running around in your panties? You should be naked, slut! ", key: "room.1005.encounter.800.8" },
+                        { text: "Sluts like you should be naked to show how hungry for cock you are! ", key: "room.1005.encounter.800.9" }
                     ];
                 }
                 else {
                     txt = [
-                        "Nice underwear. I'm going to take them!"
+                        { text: "Nice underwear. I'm going to take them!", key: "room.1005.encounter.800.10" }
                     ];
                 }
             }
             else {
                 if (cl.pantiesTxt() === "panties" || cl.c.bra !== null) {
                     txt = [
-                        "OOooo I want your panties! So sexy. Give them to me!",
-                        "Your panties are mine! "
+                        { text: "OOooo I want your panties! So sexy. Give them to me!", key: "room.1005.encounter.800.11" },
+                        { text: "Your panties are mine! ", key: "room.1005.encounter.800.12" }
                     ];
                 }
                 else {
                     txt = [
-                        "That underwear is so gross on you! ",
-                        "Your panties are mine! "
+                        { text: "That underwear is so gross on you! ", key: "room.1005.encounter.800.13" },
+                        { text: "Your panties are mine! ", key: "room.1005.encounter.800.14" }
                     ];
                 }
             }
         }
+        const selected = txt[g.rand(0, txt.length)];
         return {
             chatID: 800,
             speaker: trap.name,
-            text: txt[g.rand(0, txt.length)],
+            text: selected && selected.text,
+            l10nKey: selected && selected.key,
             button: [
                 { chatID: -1, text: "!", callback: "lewd_strip" }
             ]
@@ -2604,10 +2636,12 @@ room1005.chat = function (chatID) {
         return {
             chatID: 1,
             speaker: "thinking",
+            l10nKey: "room.1005.treasure.large",
+            l10nValues: { coins: coins, jars: jars, meat: meat, lube: lube },
             text: "Jackpot! I got $" + coins + ", " + jars + " empty jars, " + meat + " raw meat, and " + lube + 
                 " applications of lube! Love this place! ",
             button: [
-                { chatID: -1, text: "[Take everything!]", callback: "kill_r1004bg" }
+                { chatID: -1, text: "[Take everything!]", l10nKey: "room.1005.treasure.take", callback: "kill_r1004bg" }
             ]
         };
     }
@@ -2621,10 +2655,12 @@ room1005.chat = function (chatID) {
         return {
             chatID: 1,
             speaker: "thinking",
+            l10nKey: jars701 ? "room.1005.treasure.small.jar" : "room.1005.treasure.small.coins",
+            l10nValues: { coins: coins701 },
             text: "Sweet! I got $" + coins701 + (jars701 ? "and an empty jar" : "") +
                 "! ",
             button: [
-                { chatID: -1, text: "[Take everything!]", callback: "kill_r1004bg" }
+                { chatID: -1, text: "[Take everything!]", l10nKey: "room.1005.treasure.take", callback: "kill_r1004bg" }
             ]
         };
     }
@@ -2633,10 +2669,12 @@ room1005.chat = function (chatID) {
             return {
                 chatID: 600,
                 speaker: "me",
+                l10nKey: "room.1005.tree.caught",
+                l10nValues: { item: trap.treeItemName() },
                 text: "Oh crap my " + trap.internal.d + " is caught in this tree!",
                 button: [
-                    { chatID: -1, text: "Pull it free [40 energy]", callback: "tree_free" },
-                    { chatID: 601, text: "Remove your " + trap.internal.d + ".", callback: "tree_remove" },
+                    { chatID: -1, text: "Pull it free [40 energy]", l10nKey: "room.1005.tree.pull", callback: "tree_free" },
+                    { chatID: 601, text: "Remove your " + trap.internal.d + ".", l10nKey: "room.1005.tree.remove", l10nValues: { item: trap.treeItemName() }, callback: "tree_remove" },
                 ]
             };
         }
@@ -2644,10 +2682,12 @@ room1005.chat = function (chatID) {
             return {
                 chatID: 600,
                 speaker: "me",
+                l10nKey: "room.1005.tree.tired",
+                l10nValues: { item: trap.treeItemName() },
                 text: "Oh crap my " + trap.internal.d + " is caught in this tree! I don't have enough energy " +
                     "to pull it free [Requires 40 energy]",
                 button: [
-                    { chatID: 601, text: "Remove your " + trap.internal.d + ".", callback: "tree_remove" },
+                    { chatID: 601, text: "Remove your " + trap.internal.d + ".", l10nKey: "room.1005.tree.remove", l10nValues: { item: trap.treeItemName() }, callback: "tree_remove" },
                 ]
             };
         }
@@ -2656,6 +2696,8 @@ room1005.chat = function (chatID) {
         return {
             chatID: 600,
             speaker: "me",
+            l10nKey: "room.1005.tree.lost",
+            l10nValues: { item: trap.treeItemName() },
             text: "There goes my " + trap.internal.d + ". ",
             button: [
                 { chatID: -1, text: "...", callback: "kill" }
@@ -3249,7 +3291,7 @@ room1005.chat = function (chatID) {
             },
             {
                 chatID: 65,
-                speaker: "me",
+                speaker: "me", l10nValues: { landlord: sc.n("landlord") },
                 text: "If only my " + sc.n("landlord") + " could see me now, fucking myself on a tree branch. ",
                 button: [
                     { chatID: -1, text: "Pull the branch out of your filthy hole. ", callback: "kill" },

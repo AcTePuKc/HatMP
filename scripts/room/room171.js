@@ -27,7 +27,8 @@ room171.main = function () {
                 "width": 335,
                 "height": 324,
                 "image": "216_pinkglory/z_s.png",
-                "title": "Free Use Slut"
+                "title": "Free Use Slut",
+                "titleKey": "shared.hover.freeUseSlut"
             }, 171);
             nav.button({
                 "type": "btn",
@@ -37,7 +38,8 @@ room171.main = function () {
                 "width": 335,
                 "height": 570,
                 "image": "216_pinkglory/z_d.png",
-                "title": "Free Use Slut"
+                "title": "Free Use Slut",
+                "titleKey": "shared.hover.freeUseSlut"
             }, 171);
         }
         else {
@@ -49,7 +51,8 @@ room171.main = function () {
                 "width": 335,
                 "height": 324,
                 "image": "216_pinkglory/" + g.internal.holes[i] + "_s.png",
-                "title": "Free Use Slut"
+                "title": "Free Use Slut",
+                "titleKey": "shared.hover.freeUseSlut"
             }, 171);
             nav.button({
                 "type": "img",
@@ -59,7 +62,8 @@ room171.main = function () {
                 "width": 335,
                 "height": 570,
                 "image": "216_pinkglory/" + g.internal.holes[i] + "_d.png",
-                "title": "Free Use Slut"
+                "title": "Free Use Slut",
+                "titleKey": "shared.hover.freeUseSlut"
             }, 171);
         }
     }
@@ -112,7 +116,8 @@ room171.btnclick = function (name) {
                         "width": 335,
                         "height": 324,
                         "image": "171_gh/display.png",
-                        "title": "Free Use Slut"
+                        "title": "Free Use Slut",
+                        "titleKey": "shared.hover.freeUseSlut"
                     }, 171);
                     nav.button({
                         "type": "img",
@@ -122,7 +127,8 @@ room171.btnclick = function (name) {
                         "width": 335,
                         "height": 570,
                         "image": "171_gh/h" + g.internal.i + ".png",
-                        "title": "Free Use Slut"
+                        "title": "Free Use Slut",
+                        "titleKey": "shared.hover.freeUseSlut"
                     }, 171);
                     nav.t({
                         type: "img",
@@ -157,7 +163,8 @@ room171.btnclick = function (name) {
                         "width": 335,
                         "height": 324,
                         "image": "216_pinkglory/" + g.internal.holes[i] + "_s.png",
-                        "title": "Free Use Slut"
+                        "title": "Free Use Slut",
+                        "titleKey": "shared.hover.freeUseSlut"
                     }, 171);
                     nav.button({
                         "type": "img",
@@ -167,7 +174,8 @@ room171.btnclick = function (name) {
                         "width": 335,
                         "height": 570,
                         "image": "216_pinkglory/" + g.internal.holes[i] + "_d.png",
-                        "title": "Free Use Slut"
+                        "title": "Free Use Slut",
+                        "titleKey": "shared.hover.freeUseSlut"
                     }, 171);
                 }
             }
@@ -224,7 +232,8 @@ room171.btnclick = function (name) {
                         "width": 335,
                         "height": 1080,
                         "image": "171_gh/f" + g.internal.fuckers[i] + ".png",
-                        "title": "Free Use Slut"
+                        "title": "Free Use Slut",
+                        "titleKey": "shared.hover.freeUseSlut"
                     }, 171);
                 }
             }

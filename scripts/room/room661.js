@@ -227,7 +227,7 @@ room661.chat = function (chatID) {
         {
             chatID: 4,
             speaker: "me",
-            text: "I wonder what " + sc.n("tiffany") + " is up to...",
+            text: "I wonder what " + sc.n("tiffany") + " is up to...", l10nValues: { tiffany: sc.n("tiffany") },
             button: [
                 { chatID: 10, text: "[Take a quick peek]", callback: "peek1" },
                 { chatID: 5, text: "[Continue Working]", callback: "" }
@@ -287,7 +287,7 @@ room661.chat = function (chatID) {
             speaker: "me",
             text: "Nice....",
             button: [
-                { chatID: 12, text: "[Continue to perv on Tiffany]", callback: "peek3" }
+                { chatID: 12, text: "[Continue to perv on " + sc.n("tiffany") + "]", l10nValues: { tiffany: sc.n("tiffany") }, callback: "peek3" }
             ]
         },
         {
@@ -303,7 +303,7 @@ room661.chat = function (chatID) {
             speaker: "tiffany",
             text: "What the fuck!!!",
             button: [
-                { chatID: 14, text: "I'm so sorry " + sc.n("tiffany") + ".. I thought I heard a noise...", callback: "" }
+                { chatID: 14, text: "I'm so sorry " + sc.n("tiffany") + ".. I thought I heard a noise...", l10nValues: { tiffany: sc.n("tiffany") }, callback: "" }
             ]
         },
         {
@@ -375,7 +375,7 @@ room661.chat = function (chatID) {
             speaker: "tiffany",
             text: "Are you sleeping! ",
             button: [
-                { chatID: 23, text: "wha....  no... I caught her. [Tell " + sc.n("tiffany") + " what happened]", callback: "caught4" }
+                { chatID: 23, text: "wha....  no... I caught her. [Tell " + sc.n("tiffany") + " what happened]", l10nValues: { tiffany: sc.n("tiffany") }, callback: "caught4" }
             ]
         },
         {
@@ -405,7 +405,7 @@ room661.chat = function (chatID) {
         {
             chatID: 26,
             speaker: "tiffany",
-            text: "I'll let " + sc.n("missy") + " know what a big help you were! Those cultists are always trouble! You're the best! ",
+            text: "I'll let " + sc.n("missy") + " know what a big help you were! Those cultists are always trouble! You're the best! ", l10nValues: { missy: sc.n("missy") },
             button: [
                 { chatID: -1, text: "Thanks! [Leave]", callback: "caught8" }
             ]

@@ -54,10 +54,10 @@
                         "height": 1080,
                         "image": "1004_rape/o_4_" + gender.pronoun("f") + ".png"
                     }, 1004);
-                    return { complete: false, s: "!rape0", message: "I'm going to love raping your tight little holes " + gender.pronoun("girl") + "!" };
+                    return { complete: false, s: "!rape0", message: l10n.t("room.1004.character.0.phase3.start", "I'm going to love raping your tight little holes " + gender.pronoun("girl") + "!") };
                 }
                 rapeCharFullscreen("1004_rape/rapeman0/rape1.png");
-                return { complete: true, s: "!rape0", message: "Show me how much you want this fat cock inside your tiny little body." };
+                return { complete: true, s: "!rape0", message: l10n.t("room.1004.character.0.phase3.end", "Show me how much you want this fat cock inside your tiny little body.") };
             },
             phase4: function(){
                 return { default: true, complete: null };
@@ -108,7 +108,7 @@
                             "image": "1004_rape/rapeman0/rape4.png"
                         }, 1004);
                         levels.anal(4, false, "m", true, "!rape0");
-                        return { c: false, s: "me", m: "You fucking raped me! Came in me! And didn't even bother to pull out! Fuck I feel so used. "}
+                        return { c: false, s: "me", m: l10n.t("room.1004.character.0.phase6.anal", "You fucking raped me! Came in me! And didn't even bother to pull out! Fuck I feel so used. ") }
                     }
                     else {
                         zcl.bj(100, 400, 1, "w", true);
@@ -122,7 +122,7 @@
                             "image": "1004_rape/rapeman0/oralcum.png"
                         }, 1004);
                         levels.oral(4, "m", "!rape0", true);
-                        return { c: false, s: rape.char.name, m: "Fuck your throat is tight! Enjoy my cum " + gender.pronoun("faggot") + "!" };
+                        return { c: false, s: rape.char.name, m: l10n.t("room.1004.character.0.phase6.oral", "Fuck your throat is tight! Enjoy my cum " + gender.pronoun("faggot") + "!") };
                     }
                 }
                 return { c: true, s: null, m: null };
@@ -171,9 +171,9 @@
                     "image": "1004_rape/missx/phase2.png"
                 }, 1004);
                 if (levels.get("anal").l < 7)
-                    return { complete: true, s: "me", message: "Oh no! That's way to thick for my bussy!" };
+                    return { complete: true, s: "me", message: l10n.t("room.1004.character.1.phase3.small", "Oh no! That's way to thick for my bussy!") };
                 else
-                    return { complete: true, s: "me", message: "I'm so glad I'm a dirty anal whore, or that would never fit in me!" };
+                    return { complete: true, s: "me", message: l10n.t("room.1004.character.1.phase3.ready", "I'm so glad I'm a dirty anal whore, or that would never fit in me!") };
             },
             phase4: function () {
                 if (rape.rapeType === "cunnilugus") {
@@ -220,6 +220,7 @@
                             "width": 1483,
                             "height": 988,
                             "title": "Dominatrix",
+                            "titleKey": "room.1004.hover.dominatrix",
                             "image": "1004_rape/missx/rap_dom1.png"
                         }, 1);
                         nav.button({
@@ -262,13 +263,13 @@
                             "height": 1080,
                             "image": "1004_rape/missx/phase5.png"
                         }, 1004);
-                        return { c: false, s: rape.char.name, m: "Such a pretty gape for such a slutty hole." }
+                        return { c: false, s: rape.char.name, m: l10n.t("room.1004.character.1.phase6.anal", "Such a pretty gape for such a slutty hole.") }
 
                     }
                     else {
                         zcl.bj(100, -50, 1, "", true);
                         rapeCharFullscreen("1004_rape/missx/phase5_oral.png");
-                        return { c: false, s: rape.char.name, m: "FFFFffuuucckkkk! You are a great pussy muncher! " }
+                        return { c: false, s: rape.char.name, m: l10n.t("room.1004.character.1.phase6.oral", "FFFFffuuucckkkk! You are a great pussy muncher! ") }
                     }
                 }
                 return { c: true, s: null, m: null };
@@ -329,10 +330,10 @@
                         "height": 1080,
                         "image": "1004_rape/o_4_" + gender.pronoun("f") + ".png"
                     }, 1004);
-                    return { complete: false, s: "!futa0", message: "So what do you like better in a futa? The big fat titties..." };
+                    return { complete: false, s: "!futa0", message: l10n.t("room.1004.character.2.phase3.start", "So what do you like better in a futa? The big fat titties...") };
                 }
                 rapeCharImage(476, 56, 969, 969, "1004_rape/futa0/phase2_1.png");
-                return { complete: true, s: "!futa0", message: "..or the cute little dicky?" };
+                return { complete: true, s: "!futa0", message: l10n.t("room.1004.character.2.phase3.end", "..or the cute little dicky?") };
             },
             phase4: function () {
                 if (rape.rapeType === "cunnilugus") {
@@ -383,12 +384,12 @@
                         zcl.assup(600, 500, .75, "");
                         rapeCharImage(605, 425, 1063, 595, "1004_rape/futa0/phase5_anal_top.png");
                         levels.anal(3, false, "n", true, "!futa0");
-                        return { c: false, s: rape.char.name, m: "The best pussy to cum in is a smooth sissy bussy!" }
+                        return { c: false, s: rape.char.name, m: l10n.t("room.1004.character.2.phase6.anal", "The best pussy to cum in is a smooth sissy bussy!") }
                     }
                     else {
                         zcl.bj(200, 300, .5, "open", true);
                         rapeCharImage(652, 103, 820, 977, "1004_rape/futa0/phase5_oral.png");
-                        return { c: false, s: rape.char.name, m: "Oh fuck! I'm cumming! Fuck yeah you're a great pussy eater!" }
+                        return { c: false, s: rape.char.name, m: l10n.t("room.1004.character.2.phase6.oral", "Oh fuck! I'm cumming! Fuck yeah you're a great pussy eater!") }
                     }
                 }
                 return { c: true, s: null, m: null };
@@ -481,11 +482,11 @@
                         "image": "1004_rape/plant/" + img
                     }, 1004);
                     rapeCharFullscreen("1004_rape/plant/phase3_0.png");
-                    return { complete: false, s: "me", message: "Oh gross. It's so slimey." };
+                    return { complete: false, s: "me", message: l10n.t("room.1004.character.3.phase3.slimy", "Oh gross. It's so slimey.") };
                 }
                 else if (rape.phases[3].c === 1) {
                     rapeCharFullscreen("1004_rape/plant/phase3_1_" + gender.pronoun("f") + ".png");
-                    return { complete: false, s: "thinking", message: "Hruck! So deep down my throat!" };
+                    return { complete: false, s: "thinking", message: l10n.t("room.1004.character.3.phase3.throat", "Hruck! So deep down my throat!") };
                 }
                 else if (rape.phases[3].c > 1 && rape.phases[3].c < 7) {
                     nav.button({
@@ -508,7 +509,7 @@
                             "image": "1004_rape/plant/phase3_2_chastity.png"
                         }, 1004);
                     if (rape.phases[3].c === 6)
-                        return { complete: true, s: "me", message: "Ouchie ouchie ouchie ouchie ouchie ouchie! It's so fat it's pushing on my prostate so hard! I don't know how long I can last! " };
+                        return { complete: true, s: "me", message: l10n.t("room.1004.character.source.184ec57fb1", "Ouchie ouchie ouchie ouchie ouchie ouchie! It's so fat it's pushing on my prostate so hard! I don't know how long I can last! ") };
                     return { complete: false, s: "me", message: "..." };
                 }
                 else {
@@ -553,7 +554,7 @@
             phase6: function () {
                 if (rape.phases[6].c === 0) {
                     rapeCharFullscreen("1004_rape/plant/phase5.png");
-                    return { c: false, s: "thinking", m: "GAK! I can feel it pollinating me! My holes are totally coated in this thick green slime!" }
+                    return { c: false, s: "thinking", m: l10n.t("room.1004.character.source.15b37c0b55", "GAK! I can feel it pollinating me! My holes are totally coated in this thick green slime!") }
                 }
                 return { c: true, s: null, m: null };
             },
@@ -664,7 +665,7 @@
                         "height": 674,
                         "image": "1004_rape/wolf2/phase3_" + img + ".png"
                     }, 1004);
-                    return { complete: true, s: "thinking", message: "Oh crap. I'm literally shaking in fear. I hope they don't rip my tiny little body apart!" };
+                    return { complete: true, s: "thinking", message: l10n.t("room.1004.character.wolves.fear", "Oh crap. I'm literally shaking in fear. I hope they don't rip my tiny little body apart!") };
                 }
             },
             phase4: function () {
@@ -698,12 +699,12 @@
                     zcl.double(250, 700, 1, "", false);
 
                     rapeCharFullscreen("1004_rape/wolf2/phase6_0.png");
-                    return { c: false, s: "thinking", m: "GAK! dire wolf cum is so bitter...." }
+                    return { c: false, s: "thinking", m: l10n.t("room.1004.character.4.phase6.0", "GAK! dire wolf cum is so bitter....") }
                 }
                 else if (rape.phases[6].c === 1) {
                     zcl.double(-100, -200, 1, "", false);
                     rapeCharFullscreen("1004_rape/wolf2/phase6_1.png");
-                    return { c: false, s: "thinking", m: "But their knots are so thick! Damn it's so good! " }
+                    return { c: false, s: "thinking", m: l10n.t("room.1004.character.4.phase6.1", "But their knots are so thick! Damn it's so good! ") }
                 }
                 return { c: true, s: null, m: null };
             },
@@ -817,7 +818,7 @@
                     "height": 717,
                     "image": "1004_rape/wolf2/single_phase3_" + rape.modifier + ".png"
                 }, 1004);
-                return { complete: true, s: "thinking", message: "Oh crap. I'm literally shaking in fear. I hope they don't rip my tiny little body apart!" };
+                return { complete: true, s: "thinking", message: l10n.t("room.1004.character.wolves.fear", "Oh crap. I'm literally shaking in fear. I hope they don't rip my tiny little body apart!") };
             },
             phase4: function () {
                 return { default: true, complete: null };
@@ -843,14 +844,14 @@
                         levels.oral(4, "m", "!wolf", true, "dog");
                         zcl.double(250, 700, 1, "", false);
                         rapeCharFullscreen("1004_rape/wolf2/single_phase6_oral_" + rape.modifier + ".png");
-                        return { c: false, s: "thinking", m: "OOooo that cum is so thick and bitter. I'm such a lowly fuck hole... " }
+                        return { c: false, s: "thinking", m: l10n.t("room.1004.character.5.phase6.oral", "OOooo that cum is so thick and bitter. I'm such a lowly fuck hole... ") }
 
                     }
                     else {
                         levels.anal(5, false, "m", true, "!wolf", "dog");
                         zcl.double(-100, -200, 1, "", false);
                         rapeCharFullscreen("1004_rape/wolf2/phase6_1.png");
-                        return { c: false, s: "me", m: "I just got fucked and used like a cum sock by a dire wolf. " }
+                        return { c: false, s: "me", m: l10n.t("room.1004.character.5.phase6.anal", "I just got fucked and used like a cum sock by a dire wolf. ") }
                     }
                 }
                 return { c: true, s: null, m: null };
@@ -886,7 +887,7 @@
             phase3: function () {
                 rapeCharImage(496, 0, 875, 1080, "1004_rape/cult/phase_3_" + rape.modifier + ".png");
                 zcl.displayMain(400, 500, .3, "clothes", true);
-                return { complete: true, s: "cult", message: "In the name of Azrael, you will empty my balls!" };
+                return { complete: true, s: "cult", message: l10n.t("room.1004.character.source.37831c7d26", "In the name of Azrael, you will empty my balls!") };
             },
             phase4: function () {
                 return { default: true, complete: null };
@@ -924,7 +925,7 @@
                             levels.anal(4, false, "m", true, "cult");
                         else
                             levels.anal(3, false, "m", true, "cult");
-                        return { c: false, s: rape.char.name, m: "The seed of Azrael has been implanted! " }
+                        return { c: false, s: rape.char.name, m: l10n.t("room.1004.character.6.phase6.seed", "The seed of Azrael has been implanted! ") }
                     }
                     else {
                         zcl.bj(100, 400, 1, "w", true);
@@ -938,7 +939,7 @@
                             "image": "1004_rape/rapeman0/oralcum.png"
                         }, 1004);
                         levels.oral(3, "m", "cult", true);
-                        return { c: false, s: rape.char.name, m: "You're a better cock sucker than the milk maids!" }
+                        return { c: false, s: rape.char.name, m: l10n.t("room.1004.character.source.f6fc351f5f", "You're a better cock sucker than the milk maids!") }
                     }
                 }
                 return { c: true, s: null, m: null };
@@ -974,7 +975,7 @@
             phase3: function () {
                 rapeCharImage(496, 0, 875, 1080, "1004_rape/cult/phase_3_" + rape.modifier + ".png");
                 zcl.displayMain(400, 500, .3, "clothes", true);
-                return { complete: true, s: "cult", message: "I'm going to enjoy raping a tasty treat like you!" };
+                return { complete: true, s: "cult", message: l10n.t("room.1004.character.7.phase3", "I'm going to enjoy raping a tasty treat like you!") };
             },
             phase4: function () {
                 return { default: true, complete: null };
@@ -1012,7 +1013,7 @@
                             levels.anal(4, false, "m", true, "cult");
                         else
                             levels.anal(3, false, "m", true, "cult");
-                        return { c: false, s: rape.char.name, m: "Fucking cum dump!" }
+                        return { c: false, s: rape.char.name, m: l10n.t("room.1004.character.source.fbec1460ab", "Fucking cum dump!") }
                     }
                     else {
                         zcl.bj(100, 400, 1, "w", true);
@@ -1026,7 +1027,7 @@
                             "image": "1004_rape/rapeman0/oralcum.png"
                         }, 1004);
                         levels.oral(4, "m", "cult", true);
-                        return { c: false, s: rape.char.name, m: "Your only worth is draining my balls" }
+                        return { c: false, s: rape.char.name, m: l10n.t("room.1004.character.source.33b386c96e", "Your only worth is draining my balls") }
                     }
                 }
                 return { c: true, s: null, m: null };
@@ -1062,7 +1063,7 @@
             phase3: function () {
                 rapeCharImage(496, 0, 875, 1080, "1004_rape/cult/phase_3_" + rape.modifier + ".png");
                 zcl.displayMain(400, 500, .3, "clothes", true);
-                return { complete: true, s: "cult", message: "I love tearing " + gender.pronoun("faggot") + " holes open!" };
+                return { complete: true, s: "cult", message: l10n.t("room.1004.character.dynamic.tearing", "I love tearing {target} holes open!", { target: gender.pronoun("faggot") }) };
             },
             phase4: function () {
                 return { default: true, complete: null };
@@ -1100,7 +1101,7 @@
                             levels.anal(4, false, "m", true, "cult");
                         else
                             levels.anal(3, false, "m", true, "cult");
-                        return { c: false, s: rape.char.name, m: "I just broke that ass! You're going to be farting my cum for a week " + gender.pronoun("faggot") + "!" };
+                        return { c: false, s: rape.char.name, m: l10n.t("room.1004.character.dynamic.brokenAss", "I just broke that ass! You're going to be farting my cum for a week {target}!", { target: gender.pronoun("faggot") }) };
 
                     }
                     else {
@@ -1115,7 +1116,7 @@
                             "image": "1004_rape/rapeman0/oralcum.png"
                         }, 1004);
                         levels.oral(4, "m", "cult", true);
-                        return { c: false, s: rape.char.name, m: "Hows that BBC seed taste? I love face fucking pretty white " + gender.pronoun("boy") + "s like you." };
+                        return { c: false, s: rape.char.name, m: l10n.t("room.1004.character.dynamic.bbcSeed", "Hows that BBC seed taste? I love face fucking pretty white {target} like you.", { target: gender.pronoun("boy") + "s" }) };
                     }
                 }
                 return { c: true, s: null, m: null };
@@ -1148,14 +1149,14 @@
             phase3: function () {
                 if (rape.phases[3].c === 0) {
                     rapeCharImage(681, 21, 583, 1059, "1004_rape/futa1/phase3_0.png");
-                    return { complete: false, s: "!futa1", message: "My my my. What do we have here? " };
+                    return { complete: false, s: "!futa1", message: l10n.t("room.1004.character.9.phase3.start", "My my my. What do we have here? ") };
                 }
                 else if (rape.phases[3].c === 1) {
                     rapeCharImage(681, 21, 583, 1059, "1004_rape/futa1/phase3_1.png");
-                    return { complete: false, s: "!futa1", message: "Oh no! You made my cock fall out!" };
+                    return { complete: false, s: "!futa1", message: l10n.t("room.1004.character.source.ce339dd9b7", "Oh no! You made my cock fall out!") };
                 }
                 rapeCharImage(681, 21, 583, 1059, "1004_rape/futa1/phase3_2.png");
-                return { complete: true, s: "!futa1", message: "I guess you'll have to milk my cock till I cum. " };
+                return { complete: true, s: "!futa1", message: l10n.t("room.1004.character.source.6974fb33a9", "I guess you'll have to milk my cock till I cum. ") };
             },
             phase4: function () {
                 return { default: true, complete: null };
@@ -1191,13 +1192,13 @@
                         zcl.assup(650, 500, .7, "");
                         rapeCharImage(619, 440, 985, 594, "1004_rape/futa1/phase6_anal_f.png");
                         levels.anal(5, false, "n", true, "!futa1");
-                        return { c: false, s: rape.char.name, m: "Oh fuck! I'm cummin'!!!!!" };
+                        return { c: false, s: rape.char.name, m: l10n.t("room.1004.character.source.0010056d56", "Oh fuck! I'm cummin'!!!!!") };
                     }
                     else {
                         zcl.bj(0, 200, 1, "w", true);
                         rapeCharImage(522, 0, 1171, 1080, "1004_rape/futa1/phase7_oral.png");
                         levels.oral(4, "n", "!futa1", true);
-                        return { c: false, s: rape.char.name, m: "Oh yeah! Feels so good baby!" };
+                        return { c: false, s: rape.char.name, m: l10n.t("room.1004.character.feelsGood", "Oh yeah! Feels so good baby!") };
                     }
                 }
                 return { c: true, s: null, m: null };
@@ -1230,10 +1231,10 @@
             phase3: function () {
                 if (!gender.canUseCock()) {
                     rapeCharFullscreen("1004_rape/girl2/phase3_small.png");
-                    return { complete: true, s: "!girl2", message: "I was going to try to ride that cock, but you don't have one!" };
+                    return { complete: true, s: "!girl2", message: l10n.t("room.1004.character.source.d44c51b453", "I was going to try to ride that cock, but you don't have one!") };
                 }
                 rapeCharImage(744, 86, 465, 994, "1004_rape/girl2/phase3.png");
-                return { complete: true, s: "!girl2", message: "Wow! I would hate to have a cock like that go to waste! I need your cum inside me now!" };
+                return { complete: true, s: "!girl2", message: l10n.t("room.1004.character.source.f0f019f647", "Wow! I would hate to have a cock like that go to waste! I need your cum inside me now!") };
             },
             phase4: function () {
                 return { default: true, complete: false };
@@ -1261,12 +1262,12 @@
                         zcl.amazon(350, 500, .6, "", false);
                         rapeCharImage(486, 86, 954, 963, "1004_rape/girl2/phase6_f.png");
                         levels.fuckpussy("!girl2");
-                        return { c: false, s: rape.char.name, m: "YES YES yes yes yes! Oh fuck! I'm cummin'! I love your dick! Fuck that's good!" };
+                        return { c: false, s: rape.char.name, m: l10n.t("room.1004.character.source.47e3eec27f", "YES YES yes yes yes! Oh fuck! I'm cummin'! I love your dick! Fuck that's good!") };
                     }
                     else {
                         zcl.bj(200, 200, .8, "open", true);
                         rapeCharImage(549, 0, 1064, 1080, "1004_rape/girl2/phase6_oral.png");
-                        return { c: false, s: rape.char.name, m: "Oh my god! I'm squirting all over your face it was so good!" };
+                        return { c: false, s: rape.char.name, m: l10n.t("room.1004.character.source.b2d56c6893", "Oh my god! I'm squirting all over your face it was so good!") };
                     }
                 }
                 return { c: true, s: null, m: null };
@@ -1299,10 +1300,10 @@
             phase3: function () {
                 if (!gender.canUseCock()) {
                     rapeCharFullscreen("1004_rape/girl3/introhaha.png");
-                    return { complete: true, s: "!girl3", message: "Look at the tiny dick " + gender.pronoun("faggot") + "! " };
+                    return { complete: true, s: "!girl3", message: l10n.t("room.1004.character.dynamic.tinyDick", "Look at the tiny dick {target}!", { target: gender.pronoun("faggot") }) };
                 }
                 rapeCharImage(430, 0, 1148, 1080, "1004_rape/girl3/intro.png");
-                return { complete: true, s: "!girl3", message: "Our pussies are itching for cock!" };
+                return { complete: true, s: "!girl3", message: l10n.t("room.1004.character.source.5f469eeba0", "Our pussies are itching for cock!") };
 
             },
             phase4: function () {
@@ -1370,13 +1371,13 @@
                         levels.fuckpussy("!girl3");
                         levels.fuckass("!girl3", "f");
                         levels.fuckass("!girl3", "f");
-                        return { c: false, s: rape.char.name, m: "Thanks mister! Never lose that cock, it's the best dick we've ever had!" };
+                        return { c: false, s: rape.char.name, m: l10n.t("room.1004.character.source.2d286fcdc8", "Thanks mister! Never lose that cock, it's the best dick we've ever had!") };
                     }
                     else {
                         rapeCharFullscreen("1004_rape/girl3/phase6_anal.png");
                         zcl.asshole(261, 200, 1.4, "", false);
                         levels.gotfisted("f", "!girl3");
-                        return { c: false, s: rape.char.name, m: "We love fisting loser sissy boys like you!" };
+                        return { c: false, s: rape.char.name, m: l10n.t("room.1004.character.source.d80200fb78", "We love fisting loser sissy boys like you!") };
                     }
                 }
                 return { c: true, s: null, m: null };
@@ -1418,7 +1419,7 @@
                         "height": 1080,
                         "image": "1004_rape/o_4_" + gender.pronoun("f") + ".png"
                     }, 1004);
-                    return { complete: false, message: "My favorite snack, a weak little white boy aching for a big black dick!" };
+                    return { complete: false, message: l10n.t("room.1004.character.source.138f973d55", "My favorite snack, a weak little white boy aching for a big black dick!") };
                 }
                 rapeCharFullscreen("1004_rape/rapeman12/phase3a.webp");
                 nav.button({
@@ -1430,7 +1431,7 @@
                     "height": 1080,
                     "image": "1004_rape/o_4_" + gender.pronoun("f") + ".png"
                 }, 1004);
-                return { complete: true, message: "We're going to find out if this big cock is going to break you or pleasure you.  " };
+                return { complete: true, message: l10n.t("room.1004.character.source.7d1f3062ce", "We're going to find out if this big cock is going to break you or pleasure you.  ") };
             },
             phase4: function () {
                 return { default: true, complete: null };
@@ -1471,7 +1472,7 @@
                     zcl.facedown(350, 300, .7, "", false);
                     rapeCharFullscreen("1004_rape/rapeman12/phase6.webp");
                     levels.anal(4, false, "m", true, "!rape12");
-                    return { c: false, s: rape.char.name, m: "I love breeding sissy " + gender.pronoun("girl") + "s like you. It's what you are here for. " };
+                    return { c: false, s: rape.char.name, m: l10n.t("room.1004.character.dynamic.breeding", "I love breeding sissy {target} like you. It's what you are here for.", { target: gender.pronoun("girl") + "s" }) };
                 }
                 return { c: true, s: null, m: null };
             },
@@ -1502,7 +1503,7 @@
             phase2: function () { return { default: true, complete: null }; },
             phase3: function () {
                 rapeCharFullscreen("1004_rape/duo13/phase3_" + gender.pronoun("f") + ".webp");
-                return { complete: true, s: "!duo13a", message: "Looks like we got a bitch that wants to get stuffed with cock. Air tight!" };
+                return { complete: true, s: "!duo13a", message: l10n.t("room.1004.character.source.d45ca8b91c", "Looks like we got a bitch that wants to get stuffed with cock. Air tight!") };
             },
             phase4: function () {
                 return { default: true, complete: null };
@@ -1535,17 +1536,17 @@
                 if (rape.phases[6].c === 0) {
                     zcl.double(400, 550, .5, "open", false);
                     rapeCharFullscreen("1004_rape/duo13/phase6_0.webp");
-                    return { c: false, s: "thinking", m: "WHAT!! No! That dick's been up my ass!" };
+                    return { c: false, s: "thinking", m: l10n.t("room.1004.character.source.3e25891e34", "WHAT!! No! That dick's been up my ass!") };
                 }
                 else if (rape.phases[6].c === 1) {
                     zcl.kill();
                     rapeCharFullscreen("1004_rape/duo13/phase6_1.webp");
-                    return { c: false, s: "thinking", m: "Blech! Tastes like sweaty dick, cum, and ass! Why whould they treat me like this?" };
+                    return { c: false, s: "thinking", m: l10n.t("room.1004.character.source.94dd10499e", "Blech! Tastes like sweaty dick, cum, and ass! Why whould they treat me like this?") };
                 }
                 else if (rape.phases[6].c === 2) {
                     zcl.kill();
                     rapeCharFullscreen("1004_rape/duo13/phase6_2.webp");
-                    return { c: false, s: "thinking", m: "And his loser friend just came down my bussy! I'm just a cum dumpster for strange men. " };
+                    return { c: false, s: "thinking", m: l10n.t("room.1004.character.source.b468a7bce5", "And his loser friend just came down my bussy! I'm just a cum dumpster for strange men. ") };
                 }
                
                 return { c: true, s: null, m: null };
@@ -1578,10 +1579,10 @@
             phase3: function () {
                 if (rape.phases[3].c === 0) {
                     rapeCharFullscreen("1004_rape/14_futa/phase3_0.webp");
-                    return { complete: false, s: "futa1", message: "My panties are like a clown car " };
+                    return { complete: false, s: "futa1", message: l10n.t("room.1004.character.14.phase3.start", "My panties are like a clown car ") };
                 }
                 rapeCharFullscreen("1004_rape/14_futa/phase3_1.webp");
-                return { complete: true, s: "futa1", message: "There's so much more than you expect!" };
+                return { complete: true, s: "futa1", message: l10n.t("room.1004.character.14.phase3.end", "There's so much more than you expect!") };
             },
             phase4: function () {
                 return { default: true, complete: null };
@@ -1604,13 +1605,13 @@
                         rapeCharFullscreen("1004_rape/14_futa/phase6.webp");
                         zcl.bellydown(300, 500, .6, "", true);
                         levels.anal(4, false, "n", true, "futa1");
-                        return { c: false, s: rape.char.name, m: "Love seeing my cum leak out of a slut!" };
+                        return { c: false, s: rape.char.name, m: l10n.t("room.1004.character.source.495d55397e", "Love seeing my cum leak out of a slut!") };
                     }
                     else {
                         rapeCharFullscreen("1004_rape/14_futa/phase5_bj_" + gender.pronoun("f") + ".webp");
                         rapeCharFullscreen("1004_rape/14_futa/phase6gulp.webp");
                         levels.oral(4, "n", "futa1", true);
-                        return { c: false, s: rape.char.name, m: "Oh yeah! Feels so good baby!" };
+                        return { c: false, s: rape.char.name, m: l10n.t("room.1004.character.feelsGood", "Oh yeah! Feels so good baby!") };
                     }
                 }
                 return { c: true, s: null, m: null };
@@ -1643,10 +1644,10 @@
             phase3: function () {
                 if (rape.phases[3].c === 0) {
                     rapeCharFullscreen("1004_rape/15_futa/phase3_0.webp");
-                    return { complete: false, s: "futa2", message: "I hope your holes are deep" };
+                    return { complete: false, s: "futa2", message: l10n.t("room.1004.character.source.648804dcd8", "I hope your holes are deep") };
                 }
                 rapeCharFullscreen("1004_rape/15_futa/phase3_1.webp");
-                return { complete: true, s: "futa2", message: "Because this cock is going all the way down!" };
+                return { complete: true, s: "futa2", message: l10n.t("room.1004.character.source.53b5e25520", "Because this cock is going all the way down!") };
             },
             phase4: function () {
                 return { default: true, complete: null };
@@ -1668,13 +1669,13 @@
                     if (rape.rapeType === "anal") {
                         rapeCharFullscreen("1004_rape/15_futa/phase6_anal.webp");
                         levels.anal(4, false, "n", true, "futa1");
-                        return { c: false, s: rape.char.name, m: "CLOWN CUM IS BEST CUM!!!" };
+                        return { c: false, s: rape.char.name, m: l10n.t("room.1004.character.source.8aba2ce9bc", "CLOWN CUM IS BEST CUM!!!") };
                     }
                     else {
                         rapeCharFullscreen("1004_rape/15_futa/phase5_bj_" + gender.pronoun("f") + ".webp");
                         rapeCharFullscreen("1004_rape/15_futa/phase6gulp.webp");
                         levels.oral(4, "n", "futa1", true);
-                        return { c: false, s: rape.char.name, m: "Oh yeah! Feels so good baby!" };
+                        return { c: false, s: rape.char.name, m: l10n.t("room.1004.character.feelsGood", "Oh yeah! Feels so good baby!") };
                     }
                 }
                 return { c: true, s: null, m: null };
@@ -1706,7 +1707,7 @@
             phase3: function () {
                 rapeCharFullscreen("1004_rape/16_clown/phase3.webp");
                 zcl.embarrass(0, 900, .9, "back", false);
-                return { complete: true, s: "clownqueen", message: "I hope you're hungry 'cause you're going to eat a big plate of clown pussy!" };
+                return { complete: true, s: "clownqueen", message: l10n.t("room.1004.character.source.ecb6c1f58b", "I hope you're hungry 'cause you're going to eat a big plate of clown pussy!") };
             },
             phase4: function () {
                 if (rape.rapeType === "cunnilugus") {
@@ -1750,13 +1751,13 @@
                     if (rape.rapeType === "anal") {
                         zcl.kill();
                         rapeCharFullscreen("1004_rape/16_clown/phase6_anal.webp");
-                        return { c: false, s: rape.char.name, m: "Don't we just make the sluttiest pair of holes ever! *HONK*" }
+                        return { c: false, s: rape.char.name, m: l10n.t("room.1004.character.source.249884c59a", "Don't we just make the sluttiest pair of holes ever! *HONK*") }
 
                     }
                     else {
                         zcl.bj(100, 190, 1, "open", true);
                         rapeCharFullscreen("1004_rape/16_clown/phase6_oral.webp");
-                        return { c: false, s: rape.char.name, m: "*Honk* You made my clussy squirt! " }
+                        return { c: false, s: rape.char.name, m: l10n.t("room.1004.character.source.9f66a7f9db", "*Honk* You made my clussy squirt! ") }
                     }
                 }
                 return { c: true, s: null, m: null };

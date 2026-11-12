@@ -1086,7 +1086,8 @@ inv.createElements = function (showFilter = true) {
                             top: i * 38 + (150),
                             font: 26,
                             hex: missy.envelope[i].ach ? "#999999" : "#000000",
-                            text: (missy.envelope[i].ach ? "☑" : "☐") + ": " + charInfo.name + " @" + g.getRooms(missy.envelope[i].roomID).name
+                            text: (missy.envelope[i].ach ? "☑" : "☐") + ": " + charInfo.name + " @" +
+                                l10n.t("location.room." + missy.envelope[i].roomID, g.getRooms(missy.envelope[i].roomID).name)
                         }, 9999);
                         nav.button({
                             "type": "zimg",

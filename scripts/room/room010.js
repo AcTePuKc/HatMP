@@ -1056,20 +1056,20 @@ room10.chat = function (chatID) {
     else if (chatID === 800) {
         char.addtime(15);
         let lolatalk = [
-            "I can't wait until we get married. It will be so amazing!",
-            "You and I will be together forever. ",
-            "I wonder if it's a little boy or girl. I told them we want to be surprised. ",
-            "If it's a girl I'm going to name her Delilah after our great grandma. If it's a boy you can name him. Hehe",
-            "ooof! My feet hurt, like all the time now. You have no idea. ",
-            "So excited for our first. I think I want to have three kids. Maybe more. I don't know. Hmmm. Maybe four.",
-            "You're going to make such a great daddy. I can't wait to see you play with our new little one at the playground!",
-            "So tired all the time. ugh. "
+            l10n.t("room.10.futureTalk.0", "I can't wait until we get married. It will be so amazing!"),
+            l10n.t("room.10.futureTalk.1", "You and I will be together forever. "),
+            l10n.t("room.10.futureTalk.2", "I wonder if it's a little boy or girl. I told them we want to be surprised. "),
+            l10n.t("room.10.futureTalk.3", "If it's a girl I'm going to name her Delilah after our great grandma. If it's a boy you can name him. Hehe"),
+            l10n.t("room.10.futureTalk.4", "ooof! My feet hurt, like all the time now. You have no idea. "),
+            l10n.t("room.10.futureTalk.5", "So excited for our first. I think I want to have three kids. Maybe more. I don't know. Hmmm. Maybe four."),
+            l10n.t("room.10.futureTalk.6", "You're going to make such a great daddy. I can't wait to see you play with our new little one at the playground!"),
+            l10n.t("room.10.futureTalk.7", "So tired all the time. ugh. ")
         ];
         return {
             chatID: 998,
             speaker: "lola",
             text: lolatalk[g.rand(0, lolatalk.length)],
-            button: [{ chatID: -1, text: "[Chat for a bit about your futures]", callback: "reset" }]
+            button: [{ chatID: -1, text: l10n.t("room.10.futureTalk.choice", "[Chat for a bit about your futures]"), callback: "reset" }]
         };
     }
     else {

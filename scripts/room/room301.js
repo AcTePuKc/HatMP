@@ -156,6 +156,7 @@ room301.btnclick = function (name) {
                     "width": 805,
                     "height": 677,
                     "title": "Touch her butt",
+                    "titleKey": "room.301.hover.touchButt",
                     "image": "301_living/touch8a.png"
                 }, 301);
             }
@@ -169,6 +170,7 @@ room301.btnclick = function (name) {
                     "width": 805,
                     "height": 677,
                     "title": "Touch her butt",
+                    "titleKey": "room.301.hover.touchButt",
                     "image": "301_living/touch9a.png"
                 }, 301);
             }
@@ -183,6 +185,7 @@ room301.btnclick = function (name) {
                     "width": 805,
                     "height": 677,
                     "title": "Touch her butt",
+                    "titleKey": "room.301.hover.touchButt",
                     "image": "301_living/touch9a.png"
                 }, 301);
             }
@@ -477,6 +480,7 @@ room301.chatcatch = function (callback) {
                 "width": 805,
                 "height": 677,
                 "title": "Touch her butt",
+                "titleKey": "room.301.hover.touchButt",
                 "image": "301_living/" + buttImg
             }, 301);
             break;
@@ -728,6 +732,7 @@ room301.chatcatch = function (callback) {
                 "width": 805,
                 "height": 677,
                 "title": "Touch her butt",
+                "titleKey": "room.301.hover.touchButt",
                 "image": "301_living/touch11.png"
             }, 301);
             break;

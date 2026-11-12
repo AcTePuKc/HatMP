@@ -1390,6 +1390,48 @@ abbr.l10n-term{
     padding: 10px 0;*/
 }
 
+/* The statistics panel must grow when translated labels wrap. */
+#room_left_graph .menu-box {
+    height: auto !important;
+    min-height: var(--stats-min-height, 88px);
+    max-width: 100%;
+    box-sizing: border-box;
+    padding: calc(8px * var(--stats-scale, 1)) 0 calc(18px * var(--stats-scale, 1));
+}
+
+#room_left_graph .menu-box-img {
+    max-width: 100%;
+}
+
+#room_left_graph .menu-box > div:not(.left-graph-char-bar) {
+    position: relative !important;
+    margin: 0 0 0 26% !important;
+    width: 72%;
+    box-sizing: border-box;
+    overflow-wrap: anywhere;
+}
+
+#room_left_graph .rl-level,
+#room_left_graph .rl-levelheader {
+    white-space: normal;
+    overflow-wrap: anywhere;
+    line-height: 1.15;
+}
+
+#room_left_graph .rl-level {
+    font-size: calc(18px * var(--stats-scale, 1)) !important;
+    text-align: left;
+}
+
+#room_left_graph h2[data-l10n^="stats.section."] {
+    font-size: clamp(12px, calc(32px * var(--stats-scale, 1)), 20px);
+    overflow-wrap: anywhere;
+}
+
+#room_left_graph .left-graph-char-bar {
+    bottom: 0 !important;
+}
+
 #room_left_walk_sub {
     overflow-y: scroll;
     width: 100%;
@@ -1610,3 +1652,17 @@ hr {
 .sv-page-disabled { opacity: 0.3; cursor: default; }
 .sv-page-disabled:hover { background: #2a1d33; }
 .sv-page-gap { color: #7d6a88; }
+
+/* Small inline translations stay visible inside the scrollable dialogue box. */
+.french-phrase {
+    display: inline; padding: 0; border: 0; background: none; color: inherit;
+    font: inherit; text-decoration: underline dotted; text-underline-offset: 0.18em;
+    cursor: pointer;
+}
+.french-phrase::after { content: ' ⓘ'; font-size: 0.7em; vertical-align: super; }
+.french-phrase:focus-visible { outline: 2px solid currentColor; outline-offset: 2px; }
+.french-translation {
+    display: inline-block; margin: 0 0.3em; padding: 0.12em 0.45em;
+    border-radius: 0.35em; background: #34233d; color: #fff;
+    font-size: 0.85em; font-style: normal; line-height: 1.35;
+}

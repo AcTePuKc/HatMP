@@ -95,7 +95,7 @@ room901.main = function () {
             top: 100,
             font: 20,
             hex: "#ffffff",
-            text: "I've got to wear a swimsuit to go swimming."
+            text: l10n.t("room.901.swimsuitRequired", "I've got to wear a swimsuit to go swimming.")
         });
     }
     nav.buildnav([0, 902, 903]);
@@ -501,7 +501,7 @@ room901.chat = function(chatID){
         },
         {
             chatID: 1,
-            speaker: "cindy",
+            speaker: "cindy", l10nValues: { lola: sc.n("lola"), eva: sc.n("eva") },
             text: "Ugh, like I haven't heard that a million times. Wait don't you know " + sc.n("lola") + " and " + sc.n("eva") + "?",
             button: [
                 { chatID: 3, text: "Oh yea they're my " + sc.n("el"), callback: "" },
@@ -517,7 +517,7 @@ room901.chat = function(chatID){
         },
         {
             chatID: 3,
-            speaker: "cindy",
+            speaker: "cindy", l10nValues: { lola: sc.n("lola") },
             text: sc.n("lola") + " really is the best. She helped me improve my breast stroke. Took 5 seconds off my time. ",
             button: [
                 { chatID: 4, text: "I know, she swims all the time!", callback: "" },
@@ -567,7 +567,7 @@ room901.chat = function(chatID){
         },
         {
             chatID: 9,
-            speaker: "lola",
+            speaker: "lola", l10nValues: { me: sc.n("me") },
             text: "Hey " + sc.n("me") + "! Getting some laps in?",
             button: [
                 { chatID: 10, text: "Oh yeah!", callback: "" },
@@ -584,7 +584,7 @@ room901.chat = function(chatID){
         },
         {
             chatID: 11,
-            speaker: "lola",
+            speaker: "lola", l10nValues: { me: sc.n("me") },
             text: "Oh " + sc.n("me") + "! You're too much. I'll see you at home *wink",
             button: [
                 { chatID: -1, text: "Ok see you", callback: "" },
@@ -592,7 +592,7 @@ room901.chat = function(chatID){
         },
         {
             chatID: 12,
-            speaker: "lola",
+            speaker: "lola", l10nValues: { me: sc.n("me"), eva: sc.n("eva") },
             text: "Oh my god " + sc.n("me") + "! I'm sooooo sorry you got kicked out! " + sc.n("eva") + " and I have just been " +
                 "the saddest ever. It's so terrible you're not here. I just want to smuggle you and take you in!",
             button: [
@@ -604,12 +604,12 @@ room901.chat = function(chatID){
             speaker: "lola",
             text: "I just want to tackle you and squeeze you, but that lifeguard is a real butthead. Where did you go after? ",
             button: [
-                { chatID: 14, text: sc.n("zoey") + " was nice enough to take me in. [Tell " + sc.n("lola") + " your story]", callback: "" },
+                { chatID: 14, text: sc.n("zoey") + " was nice enough to take me in. [Tell " + sc.n("lola") + " your story]", l10nValues: { zoey: sc.n("zoey"), lola: sc.n("lola") }, callback: "" },
             ]
         },
         {
             chatID: 14,
-            speaker: "lola",
+            speaker: "lola", l10nValues: { zoey: sc.n("zoey"), eva: sc.n("eva"), bigguy: sc.n("bigguy") },
             text: "Oh I'm so happy " + sc.n("zoey") + " was able to take you in. She's such a great friend. " +
                 sc.n("eva") + " and I will keep working on " + sc.n("landlord") + " to get you back in. We really miss " +
                 "you. Also ever since you left " + sc.n("bigguy") + " has been acting really creepy. He's been staring at us, and I " +
@@ -629,11 +629,11 @@ room901.chat = function(chatID){
         },
         {
             chatID: 16,
-            speaker: "lola",
+            speaker: "lola", l10nValues: { me: sc.n("me") },
             text: "Hey " + sc.n("me") + "! I'm so happy every time I see you. We're still working on " + sc.n("landlord") + ". " +
                 "She said maybe, you'll have to earn her trust. Just keep working on her. I know you'll get back in. ",
             button: [
-                { chatID: -1, text: "I will. Thanks " + sc.n("lola") + ".", callback: "" }
+                { chatID: -1, text: "I will. Thanks " + sc.n("lola") + ".", l10nValues: { lola: sc.n("lola") }, callback: "" }
             ]
         },
         {
@@ -997,7 +997,7 @@ room901.chat = function(chatID){
             ]
         },
         {
-            chatID: 59,
+            chatID: 60,
             speaker: "cindy",
             text: "There's a back door, but I totally don't know the code. Sorry. ",
             button: [

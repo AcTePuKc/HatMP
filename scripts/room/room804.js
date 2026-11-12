@@ -52,9 +52,9 @@ room804.btnclick = function (name) {
             break;
         case "ass":
             nav.killbutton("ass");
-            sc.select("assspank", "804_kitchen/icon_spank.webp", 0);
-            sc.select("asspull", "804_kitchen/icon_pull.webp", 1);
-            sc.selectCancel("asscancel");
+            sc.selectLocalizedLabel("assspank", "804_kitchen/icon_spank.webp", 0, "room.804.select.spank", "Smack that ass", "", { width: 430, fontSize: 25 });
+            sc.selectLocalizedLabel("asspull", "804_kitchen/icon_pull.webp", 1, "room.804.select.pull", "Pants her", "", { width: 430, fontSize: 25 });
+            sc.selectLocalizedLabel("asscancel", "1001_rand/icon_cancel.png", 2, "room.804.select.cancel", "Cancel", "", { width: 430, fontSize: 25 });
             break;
         case "asscancel":
             char.addtime(-2);
@@ -234,7 +234,7 @@ room804.chat = function (chatID) {
         },
         {
             chatID: 3,
-            speaker: "ralphpsmom",
+            speaker: "ralphsmom",
             text: "GET OUT!!",
             button: [
                 { chatID: -1, text: "oh. yeah ok.", callback: "leave" }

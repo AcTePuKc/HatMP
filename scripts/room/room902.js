@@ -129,7 +129,7 @@ room902.chatcatch = function (callback) {
         case "leave":
             char.room(901);
             break;
-        case "resest":
+        case "reset":
             char.room(902);
             break;
         case "s1":
@@ -210,15 +210,15 @@ room902.chat = function (chatID) {
         },
         {
             chatID: 1,
-            speaker: "me",
+            speaker: "me", l10nValues: { lola: sc.n("lola") },
             text: "Oh nice, it's " + sc.n("lola") + "'s locker. Hmmm I wonder what the combination is...",
             button: [{ chatID: -1, text: "...", callback: "" }]
         },
         {
             chatID: 2,
-            speaker: "me",
-            text: "Oh, Cindy left her student ID here. Maybe I'll just hold onto this for now. ",
-            button: [{ chatID: -1, text: "...", callback: "resest" }]
+            speaker: "me", l10nValues: { cindy: sc.n("cindy") },
+            text: "Oh, " + sc.n("cindy") + " left her student ID here. Maybe I'll just hold onto this for now. ",
+            button: [{ chatID: -1, text: "...", callback: "reset" }]
         },
         {
             chatID: 3,
@@ -228,11 +228,11 @@ room902.chat = function (chatID) {
         },
         {
             chatID: 4,
-            speaker: "thinking",
+            speaker: "thinking", l10nValues: { lola: sc.n("lola") },
             text: sc.n("lola") + " must be out swimming. Should I play a prank on her and hide her clothes when she gets back? ",
             button: [
                 { chatID: 5, text: "Hide in a locker and wait for her. ", callback: "s1" },
-                { chatID: -1, text: "Leave it", callback: "resest" },
+                { chatID: -1, text: "Leave it", callback: "reset" },
             ]
         },
         {
@@ -293,7 +293,7 @@ room902.chat = function (chatID) {
         },
         {
             chatID: 12,
-            speaker: "thinking",
+            speaker: "thinking", l10nValues: { lola: sc.n("lola") },
             text: "Awww. I should rescue her from this prank. I think she's going to have a complete breakdown. " + sc.n("lola") +
                 " was never good at public embarrassment. ",
             button: [
@@ -318,7 +318,7 @@ room902.chat = function (chatID) {
         },
         {
             chatID: 15,
-            speaker: "me",
+            speaker: "me", l10nValues: { lola: sc.n("lola") },
             text: "Wait " + sc.n("lola") + ". Wait up!",
             button: [
                 { chatID: 16, text: "...", callback: "s10" },
@@ -334,7 +334,7 @@ room902.chat = function (chatID) {
         },
         {
             chatID: 17,
-            speaker: "me",
+            speaker: "me", l10nValues: { lola: sc.n("lola"), me: sc.n("me") },
             text: sc.n("lola") + "! Are you over this way? It's " + sc.n("me") + ".",
             button: [
                 { chatID: 18, text: "...", callback: "s11" },
@@ -342,7 +342,7 @@ room902.chat = function (chatID) {
         },
         {
             chatID: 18,
-            speaker: "lola",
+            speaker: "lola", l10nValues: { eva: sc.n("eva") },
             text: "Oh thank god! " + sc.n("eva") + " hid my clothes after I went swimming again. Can you save me and look " +
                 "around the locker room at the pool for my clothes. Pretty please. Please. Please. You're dressed like " +
                 "a girl so it shouldn't be a big deal. ",
@@ -353,7 +353,7 @@ room902.chat = function (chatID) {
         },
         {
             chatID: 19,
-            speaker: "thinking",
+            speaker: "thinking", l10nValues: { eva: sc.n("eva") },
             text: "I'm so glad she thinks " + sc.n("eva") + " did this. Hopefully it doesn't come up that I did it. I'll " +
                 "just grab her clothes from the locker I was hiding in and blame it all on " + sc.n("eva") + ". Simple. ",
             button: [
@@ -362,7 +362,7 @@ room902.chat = function (chatID) {
         },
         {
             chatID: 20,
-            speaker: "lola",
+            speaker: "lola", l10nValues: { eva: sc.n("eva") },
             text: "My hero! I'm going to get dressed, but promise not to tell " + sc.n("eva") + ". She'll never " +
                 "let me live it down that her prank had me run across the campus naked. Now hand over my clothes so " +
                 "I can get dressed. No peeking. ",

@@ -281,7 +281,7 @@ room328.btnclick = function (name) {
                 "color": (g.map.trust < 51 ? "red" : "green"),
                 "maxVal": 100,
                 "val": g.map.trust,
-                "title": "Rachel's Trust"
+                "title": l10n.t("room.328.trust", "Rachel's Trust")
             }, 322);
 
             nav.progressBar({
@@ -294,7 +294,7 @@ room328.btnclick = function (name) {
                 "color": (g.map.anger < 75 ? "green" : "red"),
                 "maxVal": 100,
                 "val": g.map.anger,
-                "title": "Rachel's Anger: Day " + g.map.day
+                "title": l10n.t("room.328.anger", "Rachel's Anger: Day {day}", { day: g.map.day })
             }, 322);
             break;
         case "pigrun_progress":
@@ -309,7 +309,7 @@ room328.btnclick = function (name) {
                 "color": "pink",
                 "maxVal": 13,
                 "val": g.map.temp,
-                "title": "Progress"
+                "title": l10n.t("room.328.progress", "Progress")
             }, 322);
             break;
         case "hole_progress":
@@ -326,7 +326,7 @@ room328.btnclick = function (name) {
                 "color": "brown",
                 "maxVal": 200,
                 "val": g.map.hole,
-                "title": "Hole Progress"
+                "title": l10n.t("room.328.holeProgress", "Hole Progress")
             }, 322);
             break;
         case "icon_frolic":
@@ -626,7 +626,7 @@ room328.btnclick = function (name) {
             break;
         case "icon_eatno":
             nav.killbuttonStartsWith("icon_");
-            g.popUpNotice("Trust has gone down");
+            g.popUpNotice(l10n.t("room.328.trustDown", "Trust has gone down"));
             g.map.trust -= 5;
             g.map.anger += 40;
             nav.bg("328_farm/feed0.webp");
@@ -688,7 +688,7 @@ room328.btnclick = function (name) {
                     holeDig = holeDig * 1.5;
 
                 g.map.hole += holeDig;
-                g.popUpNotice("You dug up " + (holeDig / 3.0).toFixed(2) + " cubic meters. ");
+                g.popUpNotice(l10n.t("room.328.dug", "You dug up {volume} cubic meters.", { volume: (holeDig / 3.0).toFixed(2) }));
                 nav.killbutton("mat");
                 nav.button({
                     "type": "img",
@@ -1359,7 +1359,7 @@ room328.btnclick = function (name) {
                 nav.drawButton("1001_rand/cry.png", "pig_fuck0");
             }
             else {
-                g.popUpNotice("You freed yourself and used " + pig_struggle328 + " points of energy!");
+                g.popUpNotice(l10n.t("room.328.freed", "You freed yourself and used {energy} points of energy!", { energy: pig_struggle328 }));
                 g.roomTimeout = setTimeout(function () {
                     room328.btnclick("pigPen");
                 }, 2000);
@@ -1708,7 +1708,7 @@ room328.chatcatch = function (callback) {
         case "shock":
             zcl.kill();
             gv.mod("energy", -50);
-            g.popUpNotice("Trust has gone down");
+            g.popUpNotice(l10n.t("room.328.trustDown", "Trust has gone down"));
             g.map.trust -= 2;
             g.map.anger += 80;
             room328.btnclick("progressbar");
@@ -2106,7 +2106,7 @@ room328.chatcatch = function (callback) {
                 g.map.trust += 4
             else
                 g.map.trust += 2;
-            g.popUpNotice(sc.n("rachel") + " trusts you more.");
+            g.popUpNotice(l10n.t("room.328.trustUp", "{rachel} trusts you more.", { rachel: sc.n("rachel") }));
             break;
         case "drink1":
             room328.chatcatch("addtrust");
@@ -2288,6 +2288,7 @@ room328.chat = function (chatID) {
         if (cl.c.chest < 3) {
             return {
                 chatID: 1000,
+                l10nKey: "room.328.chat.1000.small.text",
                 speaker: "me",
                 text: "Take a look at these breasts. These here are milking breasts. Grade A milk! The best in " +
                     "the country. Now look at your tiny pathetic udders. There's no way those things will " +
@@ -2295,25 +2296,28 @@ room328.chat = function (chatID) {
                     "hormones to turn a bull into a heifer. You just keep eating your feed and I'll turn " +
                     "you into a first class hucow. Now bend over the table, show me your ass. ",
                 button: [
-                    { chatID: 8, text: "*whimper*", callback: "milk5" }
+                    { chatID: 8, l10nKey: "room.328.chat.1000.choice.0", text: "*whimper*", callback: "milk5" }
                 ]
             }
         }
         return {
             chatID: 1000,
+            l10nKey: "room.328.chat.1000.large.text",
             speaker: "me",
             text: "Take a look at these breasts. These here are milking breasts. Grade A milk! The best in " +
                 "the country. Now you have some great udders. Really hucow material. That's why I kept you. " +
                 "But you need to start producing milk for me. Now bend over the table, show me your ass. ",
                 button: [
-                    { chatID: 8, text: "*whimper*", callback: "milk5" }
+                    { chatID: 8, l10nKey: "room.328.chat.1000.choice.0", text: "*whimper*", callback: "milk5" }
                 ]
         }
     }
     else if (chatID === 975) {
         let leadtxt = "";
+        let leadStep = sc.taskGetStep("lead", "ranch");
+        let leadKey = leadStep < 1 ? 0 : Math.min(leadStep, 8);
         char.addtime(30);
-        switch (sc.taskGetStep("lead", "ranch")) {
+        switch (leadStep) {
             case -1:
             case 0:
                 sc.completeMissionTask("lead", "ranch", 0);
@@ -2336,7 +2340,7 @@ room328.chat = function (chatID) {
                 break;
             case 4:
                 sc.completeMissionTask("lead", "ranch", 4);
-                leadtxt = "What do you think of " + sc.n("!rancher") + "? He's just the most handsome man ever. " +
+                leadtxt = "What do you think of {rancher}? He's just the most handsome man ever. " +
                     "Don't let me catch you making eyes at him! ";
                 break;
             case 5:
@@ -2352,18 +2356,20 @@ room328.chat = function (chatID) {
                 break;
             case 7:
                 sc.completeMissionTask("lead", "ranch", 7);
-                leadtxt = "I told " + sc.n("!rancher") + " that you pee your bed at night. He said that's " +
+                leadtxt = "I told {rancher} that you pee your bed at night. He said that's " +
                     "gross. He'll never marry a hucow that pees the bed like you. ";
                 break;
             default:
                 sc.completeMissionTask("lead", "ranch", 8);
-                leadtxt = "Everyone hates you. You'll never be a real hucow like me. Even " + sc.n("!rancher") +
+                leadtxt = "Everyone hates you. You'll never be a real hucow like me. Even {rancher}" +
                     " thinks so. You should just wander into the forest and die! ";
                 break;
         }
 
         return {
             chatID: 975,
+            l10nKey: "room.328.chat.975.text." + leadKey,
+            l10nValues: { rancher: leadKey === 4 || leadKey >= 7 ? sc.n("!rancher") : "" },
             speaker: "lead",
             text: leadtxt,
             button: [
@@ -2380,12 +2386,14 @@ room328.chat = function (chatID) {
             "It's so long! It's going to go deep down my throat! ",
             "Oh no! Don't put that in my mouth! "
         ];
+        let thoughtIndex = g.rand(0, pigdickc.length);
         return {
             chatID: 950,
+            l10nKey: "room.328.chat.950.text." + thoughtIndex,
             speaker: "me",
-            text: pigdickc[g.rand(0, pigdickc.length)],
+            text: pigdickc[thoughtIndex],
             button: [
-                { chatID: 949, text: "*whimper*", callback: "pigbj" }
+                { chatID: 949, l10nKey: "room.328.chat.950.choice.0", text: "*whimper*", callback: "pigbj" }
             ]
         }
     }
@@ -2400,12 +2408,14 @@ room328.chat = function (chatID) {
             "So twisty and soft! ",
             "Fuck! This pig is raping my face in front of everyone! How humiliating! "
         ];
+        let thoughtIndex = g.rand(0, pigdickc1.length);
         return {
             chatID: 949,
+            l10nKey: "room.328.chat.949.text." + thoughtIndex,
             speaker: "me",
-            text: pigdickc1[g.rand(0, pigdickc1.length)],
+            text: pigdickc1[thoughtIndex],
             button: [
-                { chatID: 948, text: "*gluck* *gluck* ", callback: "pigbj2" }
+                { chatID: 948, l10nKey: "room.328.chat.949.choice.0", text: "*gluck* *gluck* ", callback: "pigbj2" }
             ]
         }
     }
@@ -2419,10 +2429,12 @@ room328.chat = function (chatID) {
             "So disrespectful! Just cumming in me without asking!  ",
             "I'm a pig cum dump now",
         ];
+        let thoughtIndex = g.rand(0, pigdickc2.length);
         return {
             chatID: 949,
+            l10nKey: "room.328.chat.948.text." + thoughtIndex,
             speaker: "me",
-            text: pigdickc2[g.rand(0, pigdickc2.length)],
+            text: pigdickc2[thoughtIndex],
             button: [
                 { chatID: -1, text: "...", callback: "pigPen" }
             ]
@@ -2438,10 +2450,12 @@ room328.chat = function (chatID) {
             "Fuck that's weird feeling his piggy dick squirming inside me.",
             "I'm such a piggy bitch.",
         ];
+        let thoughtIndex = g.rand(0, pigdickc3.length);
         return {
             chatID: 949,
+            l10nKey: "room.328.chat.947.text." + thoughtIndex,
             speaker: "me",
-            text: pigdickc3[g.rand(0, pigdickc3.length)],
+            text: pigdickc3[thoughtIndex],
             button: [
                 { chatID: -1, text: "...", callback: "pig_anal_0" }
             ]
@@ -2457,10 +2471,12 @@ room328.chat = function (chatID) {
             "Why do they always cheer when I get pig dick up the ass?",
             "My uterus hurts so much from those pigs dick trying to ram it inside my hole. ",
         ];
+        let thoughtIndex = g.rand(0, pigdickc46.length);
         return {
             chatID: 949,
+            l10nKey: "room.328.chat.946.text." + thoughtIndex,
             speaker: "kinsey",
-            text: pigdickc46[g.rand(0, pigdickc46.length)],
+            text: pigdickc46[thoughtIndex],
             button: [
                 { chatID: 121, text: "...", callback: "pig_finish0" }
             ]
@@ -2481,10 +2497,12 @@ room328.chat = function (chatID) {
             "I heard pigs are very human like. If a pig cums in me do I get pregnant with just one piglet, or will it be a lot like a girl pig? ",
             "My breasts are always so full of milk. I get a little orgasm when I get milked. So good."
         ];
+        let thoughtIndex = g.rand(0, envychat.length);
         return {
             chatID: 800,
+            l10nKey: "room.328.chat.800.text." + thoughtIndex,
             speaker: "envy",
-            text: envychat[g.rand(0, envychat.length)],
+            text: envychat[thoughtIndex],
             button: [
                 { chatID: 22, text: "So, uhhh. Do you want to have sex with me? ", callback: "envybreed" },
                 { chatID: -1, text: "You're always so insightful", callback: "reset" },
@@ -2506,25 +2524,28 @@ room328.chat = function (chatID) {
             "Don't make them angry. You don't want to visit the pig pen. ",
             "Just be good and lay low. We'll get out of this. "
         ];
+        let thoughtIndex = g.rand(0, kinseychat.length);
         if (sc.getMissionTask("kinsey", "ranch", 2).complete) {
             return {
                 chatID: 700,
+                l10nKey: "room.328.chat.700.text." + thoughtIndex,
                 speaker: "kinsey",
-                text: kinseychat[g.rand(0, kinseychat.length)],
+                text: kinseychat[thoughtIndex],
                 button: [
                     { chatID: -1, text: "... ", callback: "reset" },
-                    { chatID: 168, text: "Can I see the map again?", callback: "" },
+                    { chatID: 168, l10nKey: "room.328.chat.700.map", text: "Can I see the map again?", callback: "" },
                 ]
             }
         }
         return {
             chatID: 700,
+            l10nKey: "room.328.chat.700.text." + thoughtIndex,
             speaker: "kinsey",
-            text: kinseychat[g.rand(0, kinseychat.length)],
+            text: kinseychat[thoughtIndex],
             button: [
                 { chatID: -1, text: "... ", callback: "reset" },
-                { chatID: -1, text: "Shall we get back at them? ", callback: "kinseyRot" },
-                { chatID: 173, text: "Do you have any plans for breaking out of here?", callback: "" },
+                { chatID: -1, l10nKey: "room.328.chat.700.revenge", text: "Shall we get back at them? ", callback: "kinseyRot" },
+                { chatID: 173, l10nKey: "room.328.chat.700.escape", text: "Do you have any plans for breaking out of here?", callback: "" },
             ]
         }
     }
@@ -2543,10 +2564,12 @@ room328.chat = function (chatID) {
             "Bertha thinks she's so great just because she gives great head. But I'm better at making milk. ",
             "Bertha can eat my cow hole! I hate her so much! "
         ];
+        let thoughtIndex = g.rand(0, hc328750.length);
         return {
             chatID: 750,
+            l10nKey: "room.328.chat.750.text." + thoughtIndex,
             speaker: "!hucow",
-            text: hc328750[g.rand(0, hc328750.length)],
+            text: hc328750[thoughtIndex],
             button: [
                 { chatID: -1, text: "...oh", callback: "reset" },
             ]
@@ -2566,11 +2589,13 @@ room328.chat = function (chatID) {
             "Any hucow would be lucky to have a bull like you. ",
             "That suit would look better on my floor. ",
         ];
+        let thoughtIndex = g.rand(0, c600.length);
         if (seclevel600 < 4) {
             return {
                 chatID: 600,
+                l10nKey: "room.328.chat.600.text." + thoughtIndex,
                 speaker: "me",
-                text: c600[g.rand(0, c600.length)],
+                text: c600[thoughtIndex],
                 button: [
                     { chatID: 78, text: "... ", callback: "securityLevelUp" },
                 ]
@@ -2579,8 +2604,9 @@ room328.chat = function (chatID) {
         else if (seclevel600 < 6) {
             return {
                 chatID: 600,
+                l10nKey: "room.328.chat.600.text." + thoughtIndex,
                 speaker: "me",
-                text: c600[g.rand(0, c600.length)],
+                text: c600[thoughtIndex],
                 button: [
                     { chatID: 79, text: "... ", callback: "securityLevelUp" },
                 ]
@@ -2589,8 +2615,9 @@ room328.chat = function (chatID) {
         else if (sc.getMissionTask("security", "ranch", 1).notStarted) {
             return {
                 chatID: 600,
+                l10nKey: "room.328.chat.600.text." + thoughtIndex,
                 speaker: "me",
-                text: c600[g.rand(0, c600.length)],
+                text: c600[thoughtIndex],
                 button: [
                     { chatID: 80, text: "... ", callback: "securityLevelUp" },
                 ]
@@ -2598,8 +2625,9 @@ room328.chat = function (chatID) {
         }
         return {
             chatID: 600,
+            l10nKey: "room.328.chat.600.text." + thoughtIndex,
             speaker: "me",
-            text: c600[g.rand(0, c600.length)],
+            text: c600[thoughtIndex],
             button: [
                 { chatID: 84, text: "... ", callback: "sleep_visit1" },
             ]
@@ -2889,7 +2917,8 @@ room328.chat = function (chatID) {
             {
                 chatID: 32,
                 speaker: "!rancher1",
-                text: "Shut up " + sc.n("kinsey") + " or you'll be cleaning cock. ",
+                l10nValues: { kinsey: sc.n("kinsey") },
+                text: "Shut up {kinsey} or you'll be cleaning cock. ",
                 button: [
                     { chatID: 33, text: "*sissy moan* ", callback: "moo5" }
                 ]
@@ -3056,8 +3085,9 @@ room328.chat = function (chatID) {
             {
                 chatID: 52,
                 speaker: "rachel",
+                l10nValues: { kinsey: sc.n("kinsey") },
                 text: "If there's one thing I can't stand for, it's a hucow that want's to act up! Now I " +
-                    "think " + sc.n("kinsey") + " here can help you control yourself, which is why every " +
+                    "think {kinsey} here can help you control yourself, which is why every " +
                     "time you act up, she'll get her a punishment to help remind her to help you. Boys, " +
                     "make sure these two learn how to control themselves. ",
                 button: [
@@ -3067,7 +3097,8 @@ room328.chat = function (chatID) {
             {
                 chatID: 53,
                 speaker: "!rancher",
-                text: "I'm going to enjoy this. " + sc.n("kinsey") + " you ready for your learnin'?",
+                l10nValues: { kinsey: sc.n("kinsey") },
+                text: "I'm going to enjoy this. {kinsey} you ready for your learnin'?",
                 button: [
                     { chatID: 54, text: "...", callback: "" }
                 ]
@@ -3119,7 +3150,8 @@ room328.chat = function (chatID) {
             {
                 chatID: 59,
                 speaker: "!rancher",
-                text: "Hey " + sc.n("!rancher1") + "! You wanna take a few of these? I'd hate to leave you out. ",
+                l10nValues: { rancher: sc.n("!rancher1") },
+                text: "Hey {rancher}! You wanna take a few of these? I'd hate to leave you out. ",
                 button: [
                     { chatID: 60, text: "...", callback: "" },
                 ]
@@ -3312,15 +3344,16 @@ room328.chat = function (chatID) {
             {
                 chatID: 82,
                 speaker: "security",
+                l10nValues: { rachel: sc.n("rachel") },
                 text: "You are so amazing. I want so much to go in there, but I got in trouble with that " +
-                    "bitch, " + sc.n("rachel") + ". She doesn't understand that hucows aren't real people " +
-                    "and are made to be bred and used. The C.U.M. Cult teaches us that a man's role is to " +
+                    "bitch, {rachel}. She doesn't understand that hucows aren't real people " +
+                    "and are made to be bred and used. The <abbr class='l10n-term' tabindex='0' data-glossary-id='cum'>C.U.M.</abbr> Cult teaches us that a man's role is to " +
                     "cum into inferior bodies like yours. " +
                     "Each day I look forward to seeing your hot naked body. You are " +
                     "the sexiest hucow here. There's nothing more I want than to mount you like a bull and " +
                     "breed you. ",
                 button: [
-                    { chatID: 83, text: "What's stopping you? " + sc.n("rachel") + " doesn't need to know. ", callback: "" },
+                    { chatID: 83, l10nValues: { rachel: sc.n("rachel") }, text: "What's stopping you? {rachel} doesn't need to know. ", callback: "" },
                 ]
             },
             {
@@ -3377,7 +3410,8 @@ room328.chat = function (chatID) {
             {
                 chatID: 89,
                 speaker: "security",
-                text: "I'm telling " + sc.n("rachel") + "! Keep it down",
+                l10nValues: { rachel: sc.n("rachel") },
+                text: "I'm telling {rachel}! Keep it down",
                 button: [
                     { chatID: -1, text: "ok", callback: "icon_bedturn" },
                 ]
@@ -3853,7 +3887,8 @@ room328.chat = function (chatID) {
             {
                 chatID: 141,
                 speaker: "thinking",
-                text: "How am I going to smuggle this food for " + sc.n("ppgirl") + "? I could keep it in my " +
+                l10nValues: { ppgirl: sc.n("ppgirl") },
+                text: "How am I going to smuggle this food for {ppgirl}? I could keep it in my " +
                     "hand, but they might catch me and I wouldn't be able to get her more food. Maybe my mouth? " +
                     "No that won't work. It dissolves too quickly with all my saliva. I really wish I had pockets! " +
                     "Oh wait. My bussy is kind of like a pocket! I'll just store some food pellets in there! I guess " +
@@ -3865,9 +3900,10 @@ room328.chat = function (chatID) {
             {
                 chatID: 142,
                 speaker: "thinking",
-                text: "One food pellet for " + sc.n("ppgirl") + " and 1 food pellet for me. " +
-                    "One food pellet for " + sc.n("ppgirl") + " and 1 food pellet for me. " + 
-                    "One food pellet for " + sc.n("ppgirl") + " and 1 food pellet for me. ",
+                l10nValues: { ppgirl: sc.n("ppgirl") },
+                text: "One food pellet for {ppgirl} and 1 food pellet for me. " +
+                    "One food pellet for {ppgirl} and 1 food pellet for me. " +
+                    "One food pellet for {ppgirl} and 1 food pellet for me. ",
                 button: [
                     { chatID: -1, text: "...", callback: "finisheating" },
                 ]
@@ -4211,9 +4247,10 @@ room328.chat = function (chatID) {
             {
                 chatID: 180,
                 speaker: "rachel",
-                text: sc.n("lead") + " get on up here! Not only do produce the most milk, but your " +
+                l10nValues: { lead: sc.n("lead") },
+                text: "{lead} get on up here! Not only do produce the most milk, but your " +
                     "milk is so damn good! Almost as delicious as mine. You also help keep all these " +
-                    "boys in line. Really heifers, you all can learn from " + sc.n("lead") + "! Now " +
+                    "boys in line. Really heifers, you all can learn from {lead}! Now " +
                     "get up here for your reward! ",
                 button: [
                     { chatID: 181, text: "...", callback: "rachel2" },
@@ -4231,7 +4268,8 @@ room328.chat = function (chatID) {
             {
                 chatID: 182,
                 speaker: "rachel",
-                text: sc.n("me") + " get on up here! I see you've been taking notes from " + sc.n("lead") +
+                l10nValues: { me: sc.n("me"), lead: sc.n("lead") },
+                text: "{me} get on up here! I see you've been taking notes from {lead}" +
                     ". You're such a big help lately and always doin' what you're told. You deserve " +
                     "this reward! ",
                 button: [
@@ -4311,7 +4349,8 @@ room328.chat = function (chatID) {
             {
                 chatID: 191,
                 speaker: "kinsey",
-                text: "I hate that bitch, " + sc.n("lead") + ". Tonight when we eat distract her so I " +
+                l10nValues: { lead: sc.n("lead") },
+                text: "I hate that bitch, {lead}. Tonight when we eat distract her so I " +
                     "can spit on her pellets! Hehe! Well get together at feeding time, 'k?",
                 button: [
                     { chatID: -1, text: "totally", callback: "reset" },
@@ -4345,7 +4384,8 @@ room328.chat = function (chatID) {
             {
                 chatID: 195,
                 speaker: "lead",
-                text: "*crunch* Just the other day I was tellin' *chew* " + sc.n("!rancher") +
+                l10nValues: { rancher: sc.n("!rancher") },
+                text: "*crunch* Just the other day I was tellin' *chew* {rancher}" +
                     " that he 'oughta just lock you two up in the barn. *crunch* so we never " +
                     "have to deal with you *gulp* idiots again.",
                 button: [
@@ -4365,7 +4405,8 @@ room328.chat = function (chatID) {
             {
                 chatID: 197,
                 speaker: "kinsey",
-                text: "Haha. Eat my spit bitch! " + sc.n("me") + ", let's get out of here before the ranchers come over!",
+                l10nValues: { me: sc.n("me") },
+                text: "Haha. Eat my spit bitch! {me}, let's get out of here before the ranchers come over!",
                 button: [
                     { chatID: -1, text: "Scurry out of there!", callback: "finisheating" },
                 ]

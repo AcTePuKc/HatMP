@@ -3,6 +3,14 @@
 //sissies get walked around like dogs on leashes
 //electricity - service - shocks - molest - Dr delivery boy 
 var room950 = {};
+room950.localizedRank = function (rank) {
+    var keys = { "Slave": "slave", "Sissy?": "sissyCandidate", "Sissy": "sissy", "Cum Supplier": "supplier", "Mother Candidate": "motherCandidate" };
+    return Object.prototype.hasOwnProperty.call(keys, rank) ? l10n.t("room.950.rank." + keys[rank], rank) : rank;
+};
+room950.localizedEyeColor = function (color) {
+    var known = ["brown", "lightblue", "green", "hazel", "blue", "gray", "purple", "hypno"];
+    return known.indexOf(color) === -1 ? color : l10n.t("room.950.eyes." + color, color);
+};
 room950.main = function () {
     $('#room-menu').show();
     $('#room_footer').hide();
@@ -252,6 +260,7 @@ room950.main = function () {
             "type": "btn",
             "name": "food",
             "title": "Eat some food",
+            "titleKey": "room.950.hover.food",
             "left": 1300,
             "top": 920,
             "width": 307,
@@ -264,6 +273,7 @@ room950.main = function () {
         "type": "btn",
         "name": "window",
         "title": "Stare out the window",
+        "titleKey": "room.950.hover.window",
         "left": 119,
         "top": 0,
         "width": 234,
@@ -278,6 +288,7 @@ room950.main = function () {
             "type": "btn",
             "name": "brick",
             "title": "Loose Stone",
+            "titleKey": "room.950.hover.looseStone",
             "left": 832,
             "top": 511,
             "width": 132,
@@ -289,8 +300,8 @@ room950.main = function () {
         $("#room-inv").hide();
     }
 
-    sc.select("icon_activity", "950_cell/icon_activity.webp", 0);
-    sc.select("icon_call", "950_cell/icon_call.webp", 1);
+    sc.selectLocalizedLabel("icon_activity", "950_cell/icon_activity.webp", 0, "room.950.select.activity", "Cell Activities", "", { width: 430, fontSize: 25 });
+    sc.selectLocalizedLabel("icon_call", "950_cell/icon_call.webp", 1, "room.950.select.call", "Call the guard over", "", { width: 430, fontSize: 25 });
 };
 
 room950.btnclick = function (name) {
@@ -309,7 +320,7 @@ room950.btnclick = function (name) {
                 "color": "red",
                 "maxVal": 1000,
                 "val": cult950x,
-                "title": "Rank: " + gv.get("cultRank") + " [Level: " + cult950.l + "] Days till Chaple: " + ((5 - g.dt.getDay() + 7) % 7)
+                "title": l10n.t("room.950.progress.trust", "Rank: {rank} [Level: {level}] Days till Chapel: {days}", { rank: room950.localizedRank(gv.get("cultRank")), level: cult950.l, days: ((5 - g.dt.getDay() + 7) % 7) })
             }, 322);
 
             if (cultbrick > 0 && cultbrick < 100) {
@@ -323,7 +334,7 @@ room950.btnclick = function (name) {
                     "color": "brown",
                     "maxVal": 100,
                     "val": cultbrick,
-                    "title": "Brick"
+                    "title": l10n.t("room.950.progress.brick", "Brick")
                 }, 322);
             }
             break;
@@ -370,6 +381,7 @@ room950.btnclick = function (name) {
                         "type": "btn",
                         "name": "clean",
                         "title": "Clean your cell",
+                        "titleKey": "room.950.hover.clean",
                         "left": 374,
                         "top": 392,
                         "width": 398,
@@ -394,16 +406,16 @@ room950.btnclick = function (name) {
             break;
         case "icon_activity":
             nav.killbuttonStartsWith("icon_"); 
-            sc.select("icon_pushup", "950_cell/icon_pushup.webp", 0);
-            sc.select("icon_squats", "950_cell/icon_squats.webp", 1);
-            sc.select("icon_jackoff", "950_cell/icon_jackoff.webp", 2);
-            sc.select("icon_door", "950_cell/icon_door.webp", 3);
-            sc.select("icon_cancel", "950_cell/icon_cancel.webp", 4);
+            sc.selectLocalizedLabel("icon_pushup", "950_cell/icon_pushup.webp", 0, "room.950.select.pushups", "Pushups", "", { width: 430, fontSize: 25 });
+            sc.selectLocalizedLabel("icon_squats", "950_cell/icon_squats.webp", 1, "room.950.select.squats", "Squats", "", { width: 430, fontSize: 25 });
+            sc.selectLocalizedLabel("icon_jackoff", "950_cell/icon_jackoff.webp", 2, "room.950.select.jackoff", "Jackoff", "", { width: 430, fontSize: 25 });
+            sc.selectLocalizedLabel("icon_door", "950_cell/icon_door.webp", 3, "room.950.select.door", "Look out the door", "", { width: 430, fontSize: 25 });
+            sc.selectLocalizedLabel("icon_cancel", "950_cell/icon_cancel.webp", 4, "room.950.select.cancel", "Cancel", "", { width: 430, fontSize: 25 });
             break;
         case "icon_cancel":
             nav.killbuttonStartsWith("icon_"); 
-            sc.select("icon_activity", "950_cell/icon_activity.webp", 0);
-            sc.select("icon_call", "950_cell/icon_call.webp", 1);
+            sc.selectLocalizedLabel("icon_activity", "950_cell/icon_activity.webp", 0, "room.950.select.activity", "Cell Activities", "", { width: 430, fontSize: 25 });
+            sc.selectLocalizedLabel("icon_call", "950_cell/icon_call.webp", 1, "room.950.select.call", "Call the guard over", "", { width: 430, fontSize: 25 });
             break;
         case "icon_jackoff":
             nav.kill();
@@ -623,7 +635,8 @@ room950.btnclick = function (name) {
                 "width": 186,
                 "height": 186,
                 "image": "950_cell/bb2.png",
-                "title": "Eat it sissy"
+                "title": "Eat it sissy",
+                "titleKey": "room.950.hover.eatIt"
             }, 950);
             chat(116, 950);
             break;
@@ -638,13 +651,13 @@ room950.btnclick = function (name) {
             invoker.invokeCurrent("btnclick", "bars");
             if (gv.get("cultCumJob") > 1) {
                 nav.bg("950_cell/ubel2.webp"); 
-                sc.select("icon_cultclean", "950_cell/icon_cultclean.webp", 0);
-                sc.select("icon_cultsweep", "950_cell/icon_cultsweep.webp", 1);
-                sc.select("icon_kissingbooth", "950_cell/icon_kissingbooth.webp", 2);
-                sc.select("icon_toilet", "950_cell/icon_culttoilet.webp", 3);
-                sc.select("icon_delivery", "950_cell/icon_deliveries.webp", 4);
-                sc.select("icon_dooropen", "950_cell/icon_dooropen.webp", 5);
-                sc.selectCancel("reset", 6);
+                sc.selectLocalizedLabel("icon_cultclean", "950_cell/icon_cultclean.webp", 0, "room.950.select.cultclean", "Clean the cultist", "", { width: 430, fontSize: 25 });
+                sc.selectLocalizedLabel("icon_cultsweep", "950_cell/icon_cultsweep.webp", 1, "room.950.select.cultsweep", "Sweep", "", { width: 430, fontSize: 25 });
+                sc.selectLocalizedLabel("icon_kissingbooth", "950_cell/icon_kissingbooth.webp", 2, "room.950.select.kissingbooth", "Kissing Booth", "", { width: 430, fontSize: 25 });
+                sc.selectLocalizedLabel("icon_toilet", "950_cell/icon_culttoilet.webp", 3, "room.950.select.toilet", "Be the toilet", "", { width: 430, fontSize: 25 });
+                sc.selectLocalizedLabel("icon_delivery", "950_cell/icon_deliveries.webp", 4, "room.950.select.delivery", "Deliveries", "", { width: 430, fontSize: 25 });
+                sc.selectLocalizedLabel("icon_dooropen", "950_cell/icon_dooropen.webp", 5, "room.950.select.dooropen", "Leave your cell", "", { width: 430, fontSize: 25 });
+                sc.selectLocalizedLabel("reset", "1001_rand/icon_cancel.png", 6, "room.950.select.cancel", "Cancel", "", { width: 430, fontSize: 25 });
             }
             else if (gv.get("cultCumJob") === 1) {
                 nav.bg("950_cell/ubel2.webp");
@@ -1003,7 +1016,8 @@ room950.chatcatch = function (callback) {
                 "width": 687,
                 "height": 173,
                 "image": "950_cell/foodCarrot.png",
-                "title": "Put a carrot in your butt"
+                "title": "Put a carrot in your butt",
+                "titleKey": "room.950.hover.carrot"
             }, 950);
             nav.button({
                 "type": "btn",
@@ -1013,7 +1027,8 @@ room950.chatcatch = function (callback) {
                 "width": 471,
                 "height": 295,
                 "image": "950_cell/foodBanana.png",
-                "title": "Feed your hungy hole a banana"
+                "title": "Feed your hungy hole a banana",
+                "titleKey": "room.950.hover.banana"
             }, 950);
             nav.button({
                 "type": "btn",
@@ -1023,7 +1038,8 @@ room950.chatcatch = function (callback) {
                 "width": 770,
                 "height": 207,
                 "image": "950_cell/foodCucumber.png",
-                "title": "Shove a cucumber in sissy pussy"
+                "title": "Shove a cucumber in sissy pussy",
+                "titleKey": "room.950.hover.cucumber"
             }, 950);
             nav.button({
                 "type": "btn",
@@ -1033,7 +1049,8 @@ room950.chatcatch = function (callback) {
                 "width": 371,
                 "height": 403,
                 "image": "950_cell/foodApple.png",
-                "title": "What are you doing? Slut!"
+                "title": "What are you doing? Slut!",
+                "titleKey": "room.950.hover.apple"
             }, 950);
             break;
         case "food1":
@@ -1049,7 +1066,8 @@ room950.chatcatch = function (callback) {
                 "width": 652,
                 "height": 561,
                 "image": "950_cell/bb0.png",
-                "title": "poke his butt"
+                "title": "poke his butt",
+                "titleKey": "room.950.hover.pokeButt"
             }, 950);
             break;
         case "bb2":
@@ -1063,7 +1081,8 @@ room950.chatcatch = function (callback) {
                 "width": 186,
                 "height": 186,
                 "image": "950_cell/bb2.png",
-                "title": "Eat it sissy"
+                "title": "Eat it sissy",
+                "titleKey": "room.950.hover.eatIt"
             }, 950);
             break;
         case "resetWindow":
@@ -1112,7 +1131,8 @@ room950.chatcatch = function (callback) {
                 "width": 204,
                 "height": 203,
                 "image": "950_cell/eatit1.png",
-                "title": "Eat the pussy"
+                "title": "Eat the pussy",
+                "titleKey": "room.950.hover.eatPussy"
             }, 950);
             nav.bg("950_cell/eatit1.jpg");
             g.internal = 1;
@@ -1245,6 +1265,7 @@ room950.chat = function (chatID) {
     if (chatID === 900) {
     }
     else {
+        var eyeColor = cl.c.eyes;
         var cArray = [
             {
                 chatID: 0,
@@ -1724,7 +1745,7 @@ room950.chat = function (chatID) {
             },
             {
                 chatID: 55,
-                speaker: "ubel",
+                speaker: "ubel", l10nValues: { me: sc.n("me") },
                 text: "You will be used to prove " + sc.n("me") + "'s commitment to our church. You see I command " +
                     "him to whip him to your death. That is the only way we will know his true allegiance. I was " +
                     "going to just throw you away, but now. Now you can continue to have purpose! ",
@@ -1743,7 +1764,7 @@ room950.chat = function (chatID) {
             },
             {
                 chatID: 57,
-                speaker: "ubel",
+                speaker: "ubel", l10nValues: { me: sc.n("me") },
                 text: "Oh, I know you'll do what ever I want. And now I want " + sc.n("me") + " to prove " +
                     "their worth and kill you. Here, " + sc.n("me") + ", take my whip. Whip this trash until " +
                     "he bleeds out and prove you are the man you claim to be! ",
@@ -1754,7 +1775,7 @@ room950.chat = function (chatID) {
             },
             {
                 chatID: 58,
-                speaker: "!martin",
+                speaker: "!martin", l10nValues: { me: sc.n("me") },
                 text: sc.n("me") + ". Please. I know you. I know you're just as scared as I am. You and I " +
                     "aren't like them. We want to make people happy, not kill them. Please put down the whip. " +
                     "You don't have to do this. You're better than this. Please, just let me go home. ",
@@ -1775,7 +1796,7 @@ room950.chat = function (chatID) {
             },
             {
                 chatID: 60,
-                speaker: "!martin",
+                speaker: "!martin", l10nValues: { me: sc.n("me") },
                 text: sc.n("me") + ". Please. I don't know you, but I know you're just as scared as I am. I can tell you're " +
                     "not like them. Please put down the whip. " +
                     "You don't have to do this. You're better than this. Please, just let me go home. ",
@@ -1821,7 +1842,7 @@ room950.chat = function (chatID) {
             },
             {
                 chatID: 65,
-                speaker: "missy",
+                speaker: "missy", l10nValues: { martin: sc.n("!martin") },
                 text: "We don't have a lot of time, I had to rush my plan so your dumb ass didn't kill " +
                     "poor " + sc.n("!martin") + " here. Just follow me and don't stop running!",
                 button: [
@@ -1919,7 +1940,7 @@ room950.chat = function (chatID) {
             },
             {
                 chatID: 77,
-                speaker: "daria",
+                speaker: "daria", l10nValues: { me: sc.n("me") },
                 text: "Oh hahaha. You almost got me. I almost totally let you out. Almost. So I was asking around about you. Are you " +
                     sc.n("me") + "?",
                 button: [
@@ -1928,7 +1949,7 @@ room950.chat = function (chatID) {
             },
             {
                 chatID: 78,
-                speaker: "daria",
+                speaker: "daria", l10nValues: { eva: sc.n("eva") },
                 text: "I know your " + sc.n("el") + ", " + sc.n("eva") + "! ",
                 button: [
                     { chatID: 79, text: "Really?", callback: "" }
@@ -1936,7 +1957,7 @@ room950.chat = function (chatID) {
             },
             {
                 chatID: 79,
-                speaker: "daria",
+                speaker: "daria", l10nValues: { daria: sc.n("daria") },
                 text: "Yes, I'm " + sc.n("daria") + ". I knew her in school, back when I still went to school. " +
                     "You've really put yourself into a mess you know. ",
                 button: [
@@ -2162,7 +2183,7 @@ room950.chat = function (chatID) {
             },
             {
                 chatID: 105,
-                speaker: "me",
+                speaker: "me", l10nValues: { bodhi: sc.n("bodhi") },
                 text: "*whisper* Hey " + sc.n("bodhi") + ". Over here.",
                 button: [
                     { chatID: 106, text: "...", callback: "b4" }
@@ -2293,7 +2314,7 @@ room950.chat = function (chatID) {
             },
             {
                 chatID: 121,
-                speaker: "bodhi",
+                speaker: "bodhi", l10nValues: { me: sc.n("me") },
                 text: "Oh totally. I love to share our experience with others. Can " + sc.n("me") + " come over and play? " +
                     "I told him to be a good. ",
                 button: [
@@ -2387,12 +2408,12 @@ room950.chat = function (chatID) {
             },
             {
                 chatID: 132,
-                speaker: "priest",
+                speaker: "priest", l10nValues: { get eyes() { return room950.localizedEyeColor(eyeColor); } },
                 text: "Oh my. You do have " + gender.pronoun("her") + ". I have been lusting after this " +
                     "one for far too long. Those supple lips, soft skin, and " + cl.c.eyes + " eyes. " +
                     gender.pronoun("she") + " really is an instrument of the devil's intoxication. ", 
                 button: [
-                    { chatID: 133, text: sc.n("priest") + "?", callback: "" }
+                    { chatID: 133, text: sc.n("priest") + "?", l10nValues: { priest: sc.n("priest") }, callback: "" }
                 ]
             },
             {
@@ -2469,7 +2490,7 @@ room950.chat = function (chatID) {
             },
             {
                 chatID: 141,
-                speaker: "priest",
+                speaker: "priest", l10nValues: { ubel: sc.n("ubel") },
                 text: "Oh yeah. Can you feel my penis growing hard in your mouth? I spent so many years " +
                     "denying my own humanity. The need for sexual gratification until I figured out the " +
                     "answer. Admittedly " + sc.n("ubel") + " assisted in my epiphany. Turn around " +

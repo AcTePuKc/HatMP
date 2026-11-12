@@ -34,8 +34,8 @@ room588.btnclick = function (name) {
                 case 2: nav.bg("588_doofus/sporty2.jpg"); break;
                 case 3: nav.bg("588_doofus/sporty3.jpg");
                     nav.killbutton("sporty");
-                    sc.select("sporty_balls", "588_doofus/icon_balls.png", 0);
-                    sc.select("sporty_dick", "588_doofus/icon_dick.png", 1);
+                    sc.selectLocalizedLabel("sporty_balls", "588_doofus/icon_balls.png", 0, "room.588.select.balls", "Bury his balls in your face", "", { width: 430, fontSize: 27 });
+                    sc.selectLocalizedLabel("sporty_dick", "588_doofus/icon_dick.png", 1, "room.588.select.dick", "Swallow his dick", "", { width: 430, fontSize: 27 });
                     break;
                 case 4: nav.bg("588_doofus/sporty4_" + g.internal.p + ".jpg"); break;
                 case 5: nav.bg("588_doofus/sporty5_" + g.internal.p + ".jpg"); break;
@@ -149,9 +149,9 @@ room588.chat = function (chatID) {
         {
             chatID: 2,
             speaker: "thinking",
-            text: "I can tell he's getting close to cumming, and so is Sporty. I can feel her " +
+            text: "I can tell he's getting close to cumming, and so is " + sc.n("sporty") + ". I can feel her " +
                 "little clit twitching in my mouth. Should I get up so I don't have to eat their " +
-                "cum, or just keep laying back and let it drip into my mouth?",
+                "cum, or just keep laying back and let it drip into my mouth?", l10nValues: { sporty: sc.n("sporty") },
             button: [
                 { chatID: 3, text: "[Lay back and eat their cum]", callback: "sporty12" },
                 { chatID: 4, text: "[Get out of the way]", callback: "sporty13" },
@@ -181,7 +181,7 @@ room588.chat = function (chatID) {
             speaker: "thinking",
             text: "Holy shit, who's that fucking my " + sc.el() + "? He's so " +
                 "dreamy. That's a real man! I mean, my " + sc.el() + " needs " +
-                "to make better choices with men. ",
+                "to make better choices with men. ", l10nValues: { el: sc.el(), elDefinite: sc.el("singularDefinite").toLocaleLowerCase(l10n.getLanguage()) },
             button: [
                 { chatID: -1, text: "...", callback: "leave" },
             ]

@@ -192,7 +192,7 @@ room215.btnclick = function (name) {
                 }
             }
             else {
-                g.popUpNoticeBottom("No customers. Try raising your fame to reduce your wait. ");
+                g.popUpNoticeBottom(l10n.t("room.215.notice.noCustomers", "No customers. Try raising your fame to reduce your wait. "));
             }
             break;
         case "skank":

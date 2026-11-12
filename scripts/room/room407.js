@@ -8,6 +8,16 @@
 
 //Tattoo name
 var room407 = {};
+room407.selectOption = function (name, image, index) {
+    var labels = {
+        makeup_natural: "Natural", makeup_blush: "Blush", makeup_blushheavy: "Heavy Blush",
+        makeup_clown: "Clown face", makeup_brown: "Dark tan", makeup_orange: "Orange", makeup_white: "Geisha",
+        eyeliner_light: "Light", eyeliner_black: "Black", eyeliner_purple: "Purple", eyeliner_pink: "Pink",
+        eyeliner_green: "Emerald", eyeliner_blue: "Sapphire", eyeliner_rainbow: "Rainbow",
+        lipstick_red: "Red", lipstick_pink: "Pink", lipstick_purple: "Purple", lipstick_blue: "Blue", lipstick_black: "Black"
+    };
+    sc.selectLocalizedLabel(name, image, index, "room.407.option." + name, labels[name]);
+};
 room407.main = function () {
     nav.button({
         "type": "btn",
@@ -37,13 +47,13 @@ room407.btnclick = function (name) {
             break;
         case "makeup":
             nav.killall();
-            sc.select("makeup_natural", "27_mirror/icon_natural.png", 0);
-            sc.select("makeup_blush", "27_mirror/icon_blush.png", 1);
-            sc.select("makeup_blushheavy", "27_mirror/icon_blushheavy.png", 2);
-            sc.select("makeup_clown", "27_mirror/icon_clown.png", 3);
-            sc.select("makeup_brown", "27_mirror/icon_brown.png", 4);
-            sc.select("makeup_orange", "27_mirror/icon_orange.png", 5);
-            sc.select("makeup_white", "27_mirror/icon_white.png", 6);
+            room407.selectOption("makeup_natural", "27_mirror/icon_natural.png", 0);
+            room407.selectOption("makeup_blush", "27_mirror/icon_blush.png", 1);
+            room407.selectOption("makeup_blushheavy", "27_mirror/icon_blushheavy.png", 2);
+            room407.selectOption("makeup_clown", "27_mirror/icon_clown.png", 3);
+            room407.selectOption("makeup_brown", "27_mirror/icon_brown.png", 4);
+            room407.selectOption("makeup_orange", "27_mirror/icon_orange.png", 5);
+            room407.selectOption("makeup_white", "27_mirror/icon_white.png", 6);
             sc.selectCancel("reset", 7);
             break;
         case "makeup_natural":
@@ -58,14 +68,14 @@ room407.btnclick = function (name) {
             break;
         case "eyeshadow":
             nav.killall();
-            sc.select("eyeliner_light", "27_mirror/icon_eye_light.png", 0);
-            sc.select("eyeliner_black", "27_mirror/icon_eye_black.png", 1);
-            sc.select("eyeliner_purple", "27_mirror/icon_eye_purple.png", 2);
-            sc.select("eyeliner_pink", "27_mirror/icon_eye_pink.png", 3);
-            sc.select("eyeliner_green", "27_mirror/icon_eye_green.png", 4);
-            sc.select("eyeliner_blue", "27_mirror/icon_eye_blue.png", 5);
-            sc.select("eyeliner_rainbow", "27_mirror/icon_eye_rainbow.png", 6);
-            sc.selectCancel("makeup", 6);
+            room407.selectOption("eyeliner_light", "27_mirror/icon_eye_light.png", 0);
+            room407.selectOption("eyeliner_black", "27_mirror/icon_eye_black.png", 1);
+            room407.selectOption("eyeliner_purple", "27_mirror/icon_eye_purple.png", 2);
+            room407.selectOption("eyeliner_pink", "27_mirror/icon_eye_pink.png", 3);
+            room407.selectOption("eyeliner_green", "27_mirror/icon_eye_green.png", 4);
+            room407.selectOption("eyeliner_blue", "27_mirror/icon_eye_blue.png", 5);
+            room407.selectOption("eyeliner_rainbow", "27_mirror/icon_eye_rainbow.png", 6);
+            sc.selectCancel("makeup", 7);
             break;
         case "eyeliner_light":
         case "eyeliner_black":
@@ -79,11 +89,11 @@ room407.btnclick = function (name) {
             break;
         case "lipstick":
             nav.killall();
-            sc.select("lipstick_red", "27_mirror/icon_lipstick_red.png", 0);
-            sc.select("lipstick_pink", "27_mirror/icon_lipstick_pink.png", 1);
-            sc.select("lipstick_purple", "27_mirror/icon_lipstick_purple.png", 2);
-            sc.select("lipstick_blue", "27_mirror/icon_lipstick_blue.png", 3);
-            sc.select("lipstick_black", "27_mirror/icon_lipstick_black.png", 4);
+            room407.selectOption("lipstick_red", "27_mirror/icon_lipstick_red.png", 0);
+            room407.selectOption("lipstick_pink", "27_mirror/icon_lipstick_pink.png", 1);
+            room407.selectOption("lipstick_purple", "27_mirror/icon_lipstick_purple.png", 2);
+            room407.selectOption("lipstick_blue", "27_mirror/icon_lipstick_blue.png", 3);
+            room407.selectOption("lipstick_black", "27_mirror/icon_lipstick_black.png", 4);
             sc.selectCancel("eyeshadow", 5);
             break;
         case "lipstick_red":

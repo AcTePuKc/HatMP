@@ -393,6 +393,7 @@ room958.btnclick = function (name) {
                 "type": "tongue",
                 "name": "event_d3",
                 "title": "Lick that clit",
+                "titleKey": "room.958.hover.lick",
                 "left": 1065,
                 "top": 505,
                 "width": 78,
@@ -602,6 +603,7 @@ room958.chatcatch = function (callback) {
                 "type": "tongue",
                 "name": "event_c2",
                 "title": "Slurp that piss up",
+                "titleKey": "room.958.hover.puddle",
                 "left": 644,
                 "top": 731,
                 "width": 775,
@@ -621,6 +623,7 @@ room958.chatcatch = function (callback) {
                 "type": "tongue",
                 "name": "event_d2",
                 "title": "Eat her cream pie",
+                "titleKey": "room.958.hover.cream",
                 "left": 1081,
                 "top": 396,
                 "width": 75,
@@ -1353,7 +1356,7 @@ room958.chat = function (chatID) {
         },
         {
             chatID: 69,
-            speaker: "daria",
+            speaker: "daria", l10nValues: { bodhi: sc.n("bodhi") },
             text: "The only thing you'll find here is pain and misery. It's your dumb ass crotch. I'm " +
                 "through with this place. " + sc.n("bodhi") + " and I are going to get out of here. It " +
                 "was nice while we were here, but I fear " + sc.n("bodhi") + " is next after the cut your " +

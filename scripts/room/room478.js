@@ -231,8 +231,8 @@ room478.btnclick = function (name) {
             else {
                 nav.killbutton("tiedupcockInc");
                 zcl.bjpov(0, 600, .6, "eyes", false, "w");
-                sc.select("tiedupcockInc_spit", "451_parkMensRoom/icon_facial.png", 0);
-                sc.select("tiedupcockInc_swallow", "451_parkMensRoom/icon_swallow.png", 1);
+                sc.selectLocalizedLabel("tiedupcockInc_spit", "451_parkMensRoom/icon_facial.png", 0, "room.478.action.facial", "Facial");
+                sc.selectLocalizedLabel("tiedupcockInc_swallow", "451_parkMensRoom/icon_swallow.png", 1, "room.478.action.swallow", "Swallow");
             }
             g.internal++;
             break;
@@ -315,8 +315,8 @@ room478.chatcatch = function (callback) {
             char.room(478);
             break;
         case "tiedup1":
-            sc.select("tiedupright", "478_kitchen/icon_firesuck.webp", 6);
-            sc.select("tiedupleft", "478_kitchen/icon_firefuck.webp", 7);
+            sc.selectLocalizedLabel("tiedupright", "478_kitchen/icon_firesuck.webp", 6, "room.478.action.suck", "Suck her dick");
+            sc.selectLocalizedLabel("tiedupleft", "478_kitchen/icon_firefuck.webp", 7, "room.478.action.fuck", "Fuck her ass");
             break;
         case "trio0":
         case "trio1":
@@ -470,10 +470,11 @@ room478.chat = function (chatID) {
             chatID: 9,
             speaker: "!sissy_trio",
             text: "All five kidnappers took turns raping us over the 10 hour drive to their compound. Poor Nala was a virgin " +
-                "before we were kidnapped. Some creep named River was really brutal with her. If I ever see him " +
+                "before we were kidnapped. Some creep named " + sc.n("river") + " was really brutal with her. If I ever see him " +
                 "I'm going to cut his wiener right the fuck off! ",
+            l10nValues: { river: sc.n("river") },
             button: [
-                { chatID: 10, text: "I know River! He's such an asshole! I hate him too! ", callback: "trio4" },
+                { chatID: 10, text: "I know " + sc.n("river") + "! He's such an asshole! I hate him too! ", l10nValues: { river: sc.n("river") }, callback: "trio4" },
             ]
         },
         {
@@ -504,6 +505,7 @@ room478.chat = function (chatID) {
                 "out. She didn't even want to do it, they made her! And that evil fucking spirit ripped out her eyes " +
                 "anyway. Fucking horrible. Then they threw her in the swamps to die. Luckily the " +
                 sc.n("queen") + " was able to find her and save us from fucking dying. ",
+            l10nValues: { queen: sc.n("queen") },
             button: [
                 { chatID: 13, text: "Holy crap! What's the evil spirit? ", callback: "" },
             ]
@@ -572,6 +574,7 @@ room478.chat = function (chatID) {
                 "the cult, but they are better than the stories of those that did not survive their time " +
                 "there. Only a few girls have chosen to leave and those girls are gone. Disappeared.  " +
                 "Vanished. Poof. ",
+            l10nValues: { guide: sc.n("a") },
             button: [
                 { chatID: 20, text: "What happened to them?", callback: "" },
             ]

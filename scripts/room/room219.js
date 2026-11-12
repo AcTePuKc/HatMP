@@ -121,7 +121,7 @@ room219.btnclick = function (name) {
                     hchatid = 12;
                     if (levels.get("strength").l > 0) {
                         levels.modLevel("strength", -1);
-                        g.popUpNotice("You are now weaker. ");
+                        g.popUpNotice(l10n.t("room.1005.notice.weaker", "You are now weaker. "));
                     }
                     break;
                 case "hypno6":
@@ -151,7 +151,7 @@ room219.btnclick = function (name) {
                 }, 219);
                 if (levels.get("strength").l > 0) {
                     levels.modLevel("strength", -1);
-                    g.popUpNotice("You are now weaker. ");
+                    g.popUpNotice(l10n.t("room.1005.notice.weaker", "You are now weaker. "));
                 }
                 g.roomTimeout = setTimeout(function () {
                     chat(12, 219);
@@ -169,7 +169,7 @@ room219.btnclick = function (name) {
                     "height": 411,
                     "image": "28_transformation/cock_" + cl.c.cock + ".gif"
                 }, 219);
-                g.popUpNotice("You cock got smaller. ");
+                g.popUpNotice(l10n.t("room.219.notice.smaller", "You cock got smaller. "));
                 g.roomTimeout = setTimeout(function () {
                     chat(13, 219);
                     invoker.invokeCurrent("btnclick", "hypnoComplete");

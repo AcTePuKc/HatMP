@@ -192,6 +192,7 @@ room2.chatcatch = function (callback) {
                 .text(l10n.t("relationship.form." + form.id, form.label) + " ");
             $('<input type="text" maxlength="80" autocomplete="off" />')
                 .attr("id", "room_002LandladyForm_" + form.id)
+                .attr("title", l10n.t("setup.landladyRelationshipHelp", "Enter the form used in dialogue."))
                 .val(value).appendTo(field);
             $('#room_002LandladyFormFields').append(field);
         });

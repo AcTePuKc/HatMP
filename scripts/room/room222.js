@@ -112,6 +112,7 @@ room222.btnclick = function (name) {
                 "width": 499,
                 "height": 980,
                 "title": "Stoner",
+                "titleKey": "room.222.hover.stoner",
                 "image": "222_errands/buy.png"
             }, 222);
             

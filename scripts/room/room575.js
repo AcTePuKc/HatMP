@@ -97,7 +97,7 @@ room575.chatcatch = function (callback) {
         case "e_footsie":
         case "e_footsie2":
             nav.bg("575_fastfood/" + callback + ".jpg");
-            g.popUpNotice("Elijah liked that");
+            g.popUpNotice(l10n.t("room.575.notice.liked", "{elijah} liked that", { elijah: sc.n("elijah") }));
             levels.mod("pi", 15);
             break;
         
@@ -111,7 +111,7 @@ room575.chatcatch = function (callback) {
             char.room(575);
             break;
         case "like":
-            g.popUpNotice("Elijah liked that");
+            g.popUpNotice(l10n.t("room.575.notice.liked", "{elijah} liked that", { elijah: sc.n("elijah") }));
             levels.mod("pi", 20);
             break;
         case "hit1":
@@ -217,7 +217,7 @@ room575.chat = function (chatID) {
         return {
             chatID: 999,
             speaker: "brayden",
-            text: sc.n("brayden") + ". So what's a pretty girl like you doing today?",
+            text: sc.n("brayden") + ". So what's a pretty girl like you doing today?", l10nValues: { brayden: sc.n("brayden") },
             button: buttonList
         };
     }
@@ -255,7 +255,7 @@ room575.chat = function (chatID) {
                 text: "Well that's something your mom and I can agree on. I would love to get to " +
                     "know you better.",
                 button: [
-                    { chatID: 32, text: "Put your hand on his lap", callback: "hit4" },
+                    { chatID: 32, text: "Put your hand on his lap", l10nKey: "room.575.close.choice", callback: "hit4" },
                     { chatID: 26, text: "...", callback: "" },
                 ]
             };
@@ -453,8 +453,8 @@ room575.chat = function (chatID) {
             chatID: 21,
             speaker: "thinking",
             text: "Crap. I was so close. Instead of getting a confession I have cum all over my foot " +
-                "It's going to be squishing in my shoe all day. At least I have something for Missy. " +
-                "Oh well. At least I get some free fries. ",
+                "It's going to be squishing in my shoe all day. At least I have something for " + sc.n("missy") + ". " +
+                "Oh well. At least I get some free fries. ", l10nValues: { missy: sc.n("missy") },
             button: [
                 { chatID: -1, text: "[Complete Case]", callback: "e_complete" }
             ]
@@ -487,7 +487,7 @@ room575.chat = function (chatID) {
         {
             chatID: 25,
             speaker: "me",
-            text: "I'm " + sc.n("me") + ". What's your name? ",
+            text: "I'm " + sc.n("me") + ". What's your name? ", l10nValues: { me: sc.n("me") },
             button: [
                 { chatID: 999, text: "...", callback: "" },
             ]

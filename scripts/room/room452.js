@@ -158,11 +158,21 @@ room452.chatcatch = function(callback){
 }
 
 room452.chat = function (chatID) {
+    var missingClothing = chatID === 0 ? String(g.internal).replace(/<[^>]*>/g, "").trim() : "";
+    var missingClothingKey = {
+        "shirt": "room.316.missing.shirt", "pants": "room.316.missing.pants",
+        "shirt and pants": "room.316.missing.shirtAndPants", "underwear": "room.316.missing.underwear",
+        "boy's underwear": "room.316.missing.boysUnderwear", "Can't wear a bra": "room.316.missing.bra",
+        "bra": "room.316.missing.bra"
+    }[missingClothing];
+    if (missingClothingKey)
+        missingClothing = l10n.t(missingClothingKey, missingClothing);
     var cArray = [
         {
             chatID: 0,
             speaker: "me",
             text: "I can't go out like this. I need my " + g.internal + ". ",
+            l10nValues: { missing: missingClothing },
             button: []
         },
         {

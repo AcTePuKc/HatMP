@@ -61,7 +61,7 @@ room203.main = function () {
     }
     else {
         navList = [201];
-        g.popUpNotice("I'm missing my " + outfit + ". Better change in the bathroom.");
+        g.popUpNotice(l10n.t("room.203.missingOutfit", "I'm missing my {item}. Better change in the bathroom.", { item: outfit }));
     }
     $.each(btnList, function (i, v) {
         nav.button(v, 203);

@@ -42,7 +42,7 @@ room875.main = function () {
                     "top": 109,
                     "width": 449,
                     "height": 971,
-                    "title": "Guard",
+                    "title": l10n.t("room.875.guard", "Guard"),
                     "image": "875_entrance/guard.png"
                 }, 875);
 
@@ -59,7 +59,7 @@ room875.main = function () {
                 "top": 109,
                 "width": 449,
                 "height": 971,
-                "title": "Guard",
+                "title": l10n.t("room.875.guard", "Guard"),
                 "image": "875_entrance/guard.png"
             }, 875);
         }
@@ -117,7 +117,7 @@ room875.chatcatch = function (callback) {
                 "top": 183,
                 "width": 212,
                 "height": 419,
-                "title": "Strip naked",
+                "title": l10n.t("room.875.action.strip", "Strip naked"),
                 "image": "875_entrance/odd0.png"
             }, 875);
             break;
@@ -129,7 +129,7 @@ room875.chatcatch = function (callback) {
                 "top": 267,
                 "width": 361,
                 "height": 334,
-                "title": "Stick your ass up.",
+                "title": l10n.t("room.875.action.assup", "Stick your ass up."),
                 "image": "875_entrance/odd1.png"
             }, 875);
             nav.button({
@@ -139,7 +139,7 @@ room875.chatcatch = function (callback) {
                 "top": 229,
                 "width": 396,
                 "height": 372,
-                "title": "Get dressed and leave",
+                "title": l10n.t("room.875.action.leave", "Get dressed and leave"),
                 "image": "875_entrance/oddexit.png"
             }, 875);
             break;
@@ -152,7 +152,7 @@ room875.chatcatch = function (callback) {
                     "top": 206,
                     "width": 280,
                     "height": 395,
-                    "title": "Jack your pp",
+                    "title": l10n.t("room.875.action.jack", "Jack your pp"),
                     "image": "875_entrance/odd2.png"
                 }, 875);
             }
@@ -163,7 +163,7 @@ room875.chatcatch = function (callback) {
                 "top": 229,
                 "width": 396,
                 "height": 372,
-                "title": "Get dressed and leave",
+                "title": l10n.t("room.875.action.leave", "Get dressed and leave"),
                 "image": "875_entrance/oddexit.png"
             }, 875);
             break;
@@ -306,11 +306,25 @@ room875.chatcatch = function (callback) {
     }
 };
 
+room875.localizeMissingClothes = function (value) {
+    var text = String(value).replace(/<[^>]*>/g, "").trim();
+    var keys = {
+        "running shoes": "room.460.missing.shoes", "t-shirt": "room.460.missing.shirt", "shorts": "room.460.missing.shorts",
+        "Cheerleader top": "room.875.missing.top", "Cheerleader skirt": "room.875.missing.skirt",
+        "Cheer socks": "room.875.missing.socks", "Cheer shoes": "room.875.missing.shoes", "Cheer spanks": "room.875.missing.spanks"
+    };
+    var items = text.split(/,\s*(?:and\s+)?|\s+and\s+/);
+    if (!items.length || !items.every(function (item) { return keys[item]; })) return text;
+    items = items.map(function (item) { return l10n.t(keys[item], item); });
+    return items.length < 2 ? items[0] : items.slice(0, -1).join(", ") + l10n.t("room.460.missing.and", " and ") + items[items.length - 1];
+};
+
 room875.chat = function (chatID) {
+    var missingOutfit = g.internal;
     if (chatID === 999) {
         return {
             chatID: 999,
-            speaker: "candy",
+            speaker: "candy", l10nValues: { get missing() { return room875.localizeMissingClothes(missingOutfit); } },
             text: "Oh. You need to wear some workout clothes. You're missing your " + g.internal + ". ",
             button: [
                 { chatID: -1, text: "I'll go change", callback: "" }
@@ -320,7 +334,7 @@ room875.chat = function (chatID) {
     else if (chatID === 1000) {
         return {
             chatID: 1000,
-            speaker: "candy",
+            speaker: "candy", l10nValues: { get missing() { return room875.localizeMissingClothes(missingOutfit); } },
             text: "Oh. You need to wear your cheer leader outfit. You're missing your " + g.internal + ". ",
             button: [
                 { chatID: -1, text: "I'll go change", callback: "" }
@@ -416,7 +430,7 @@ room875.chat = function (chatID) {
             },
             {
                 chatID: 10,
-                speaker: "candy",
+                speaker: "candy", l10nValues: { stacy: sc.n("stacy") },
                 text: "You should go practice some more or " + sc.n("stacy") + " will be pissed. I'll just tell her you're " +
                     "sick. ",
                 button: [
@@ -764,7 +778,7 @@ room875.chat = function (chatID) {
             },
             {
                 chatID: 51,
-                speaker: "candy",
+                speaker: "candy", l10nValues: { stacy: sc.n("stacy"), tiffany: sc.n("tiffany") },
                 text: sc.n("stacy") + " can be such a bitch sometimes. She needs to " +
                     "be put in her place! I would embarrass her at the game, but I " +
                     "hate ruining the game for everyone. If I wasn't  dating " + 
@@ -776,7 +790,7 @@ room875.chat = function (chatID) {
             },
             {
                 chatID: 52,
-                speaker: "candy",
+                speaker: "candy", l10nValues: { chuck: sc.n("chuck") },
                 text: "Wait! You're not dating anyone. Maybe you should try to fuck " +
                     sc.n("chuck") + "! That would really piss her off. She's been using " +
                     "him for years now! I don't know why he follows her around everywhere. ",

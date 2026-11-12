@@ -414,11 +414,51 @@ room876.chatcatch = function (callback) {
 
 invoker.registerRoom(876, room876);
 
+room876.localizeTryoutReasons = function (value) {
+    var text = String(value).trim();
+    var keys = {
+        "tits are too small": "room.876.reason.chest",
+        "butt is too manly": "room.876.reason.hips",
+        "hair is too short": "room.876.reason.hair",
+        "body hair is gross": "room.876.reason.bodyHair",
+        "cock is too big": "room.876.reason.cock"
+    };
+    var items = text.split(/,\s*|\s+and\s+/).map(function (item) { return item.trim(); });
+    if (!items.length || !items.every(function (item) { return keys[item]; })) return text;
+    items = items.map(function (item) { return l10n.t(keys[item], item); });
+    return items.length < 2 ? items[0] : items.slice(0, -1).join(", ") + l10n.t("room.460.missing.and", " and ") + items[items.length - 1];
+};
+
+// Keep the original routine text and movement identifiers intact for gameplay.
+room876.routineKey = function (text) {
+    var keys = {
+        "We're the Stars, we like to fight": "starsFight",
+        "Let's go team and win tonight": "winTonight",
+        "Clap twice": "clapTwice",
+        "Our boys are big and strong": "boysStrong",
+        "Think you'll win, then you are wrong": "wrong",
+        "Your boys are small and sick": "boysSmall",
+        "We'll slap you with our giant dick": "giantDick",
+        "Raise your hand in the air": "raiseHand",
+        "Fetville Stars, Fetville Stars": "fetvilleStars",
+        "Don't be shy, stand up and give your battle cry": "battleCry",
+        "V-I-C-T-O-R-Y": "victory",
+        "We'll smash you like a fucking flea": "flea",
+        "We're the best around I guarantee": "best",
+        "D-E-F-E-N-S-E": "defense",
+        "Your quarterback is running dry": "quarterback",
+        "We'll fuck you in your P-U-S-S-Y": "pussy"
+    };
+    return keys[text] ? "room.876.routine." + keys[text] : undefined;
+};
+
 room876.chat = function (chatID) {
     if (chatID === 999) {
+        var tryoutReasons = g.internal;
         return {
             chatID: 999,
             speaker: "stacy",
+            l10nValues: { get reasons() { return room876.localizeTryoutReasons(tryoutReasons); } },
             text: "She not cheerleader material at all. Her " + g.internal + ". We're cheerleaders, not some gross roller " +
                 "derby skanks. When you stop being a disgusting neckbeard you can try out again. ",
             button: [
@@ -431,8 +471,9 @@ room876.chat = function (chatID) {
             chatID: 1000,
             speaker: "stacy",
             text: g.internal.t[g.internal.step].t,
+            l10nKey: room876.routineKey(g.internal.t[g.internal.step].t),
             button: [
-                { chatID: -1, text: g.internal.t[g.internal.step].t, callback: "doRoutine1" }
+                { chatID: -1, text: g.internal.t[g.internal.step].t, l10nKey: room876.routineKey(g.internal.t[g.internal.step].t), callback: "doRoutine1" }
             ]
         }
         g.internal.step++;
@@ -443,6 +484,7 @@ room876.chat = function (chatID) {
             chatID: 999,
             speaker: "me",
             text: g.internal.t[g.internal.step].t,
+            l10nKey: room876.routineKey(g.internal.t[g.internal.step].t),
             button: [
                 { chatID: -1, text: "...", callback: "doRoutine1" }
             ]
@@ -454,7 +496,7 @@ room876.chat = function (chatID) {
         var cArray = [
             {
                 chatID: 0,
-                speaker: "stacy",
+                speaker: "stacy", l10nValues: { candy: sc.n("candy") },
                 text: "So this is the new girl you were talking about " + sc.n("candy") + "? ",
                 button: [
                     { chatID: 1, text: "...", callback: "" }
@@ -535,7 +577,7 @@ room876.chat = function (chatID) {
             },
             {
                 chatID: 10,
-                speaker: "courtney",
+                speaker: "courtney", l10nValues: { candy: sc.n("candy") },
                 text: "Oh My God! Is that a dick! " + sc.n("candy") + " does she have a dick? ",
                 button: [
                     { chatID: 11, text: "Oh, well ", callback: "" }
@@ -687,7 +729,7 @@ room876.chat = function (chatID) {
             },
             {
                 chatID: 28,
-                speaker: "courtney",
+                speaker: "courtney", l10nValues: { candy: sc.n("candy") },
                 text: "Yeah. A nasty gross hot dog. " + sc.n("candy") + " get the ketchup and mustard. We're going to have " +
                     "hotdogs for lunch. You just lay there hotdog. ",
                 button: [
@@ -744,7 +786,7 @@ room876.chat = function (chatID) {
             },
             {
                 chatID: 35,
-                speaker: "thinking",
+                speaker: "thinking", l10nValues: { courtney: sc.n("courtney") },
                 text: "Ugh! " + sc.n("courtney") + " needs to brush her teeth. Her spit tastes like cigarettes. ",
                 button: [
                     { chatID: 36, text: "...", callback: "" }
@@ -988,7 +1030,7 @@ room876.chat = function (chatID) {
             },
             {
                 chatID: 64,
-                speaker: "thinking",
+                speaker: "thinking", l10nValues: { stacy: sc.n("stacy"), courtney: sc.n("courtney") },
                 text: "I really thought they accepted me, instead I'm just a washing machine for them to clean their " +
                     "dirty spankies. Those girls are such bitches. I'm going to show them. I'm going to practice and be " +
                     "the best cheerleader. Everyone will know how awesome I am and how terrible " + sc.n("stacy") + 
@@ -1064,16 +1106,16 @@ room876.chat = function (chatID) {
             },
             {
                 chatID: 73,
-                speaker: "chuck",
-                text: "Oh hi. I'm looking for Stacy. Do you know where she's gone? ",
+                speaker: "chuck", l10nValues: { stacy: sc.n("stacy") },
+                text: "Oh hi. I'm looking for " + sc.n("stacy") + ". Do you know where she's gone? ",
                 button: [
                     { chatID: 74, text: "Oh. She should be changing. Who are you?", callback: "" }
                 ]
             },
             {
                 chatID: 74,
-                speaker: "chuck",
-                text: "Sorry, I'm Chuck. I'm just her ride home. I'll see if I can catch her when she's done. See ya. ",
+                speaker: "chuck", l10nValues: { chuck: sc.n("chuck") },
+                text: "Sorry, I'm " + sc.n("chuck") + ". I'm just her ride home. I'll see if I can catch her when she's done. See ya. ",
                 button: [
                     { chatID: 75, text: "Bye", callback: "routine1_6" }
                 ]
@@ -1122,7 +1164,7 @@ room876.chat = function (chatID) {
             },
             {
                 chatID: 80,
-                speaker: "courtney",
+                speaker: "courtney", l10nValues: { candy: sc.n("candy") },
                 text: "New girl has to serve the head cheerleader. Now that " + sc.n("candy") + "'s not the new girl, it's " +
                     "your turn! hahaha",
                 button: [
@@ -1139,7 +1181,7 @@ room876.chat = function (chatID) {
             },
             {
                 chatID: 82,
-                speaker: "stacy",
+                speaker: "stacy", l10nValues: { candy: sc.n("candy") },
                 text: "Oh fuck you dyke. You're are way better than " + sc.n("candy") + ". I'm going to cum all over your lezbo " +
                     "face. ",
                 button: [
@@ -1148,7 +1190,7 @@ room876.chat = function (chatID) {
             },
             {
                 chatID: 83,
-                speaker: "chuck",
+                speaker: "chuck", l10nValues: { stacy: sc.n("stacy") },
                 text: "I know I'm a bit early, but are you ready to go " + sc.n("stacy") + "? ",
                 button: [
                     { chatID: 84, text: "*slurp* *slurp* *lick*", callback: "" }
@@ -1156,7 +1198,7 @@ room876.chat = function (chatID) {
             },
             {
                 chatID: 84,
-                speaker: "stacy",
+                speaker: "stacy", l10nValues: { chuck: sc.n("chuck") },
                 text: "Almost ready " + sc.n("chuck") + ". Just got to finish coaching the new cheerleader. Come back in 5 minutes.  ",
                 button: [
                     { chatID: 85, text: "*lick*", callback: "routine2_1_7" }
@@ -1172,7 +1214,7 @@ room876.chat = function (chatID) {
             },
             {
                 chatID: 86,
-                speaker: "me",
+                speaker: "me", l10nValues: { chuck: sc.n("chuck") },
                 text: "Soooo, is " + sc.n("chuck") + " your boyfriend? ",
                 button: [
                     { chatID: 87, text: "...", callback: "" }
@@ -1225,11 +1267,11 @@ room876.chat = function (chatID) {
             },
             {
                 chatID: 92,
-                speaker: "candy",
-                text: "OMG! So much. It's like Stacy needs to prove she's in charge. We had a different new girl trying out a " +
-                    "few months ago. She lasted until Stacy wanted to play puppets. She stuck her hand up the new girl's ass " +   
+                speaker: "candy", l10nValues: { stacy: sc.n("stacy") },
+                text: "OMG! So much. It's like " + sc.n("stacy") + " needs to prove she's in charge. We had a different new girl trying out a " +
+                    "few months ago. She lasted until " + sc.n("stacy") + " wanted to play puppets. She stuck her hand up the new girl's ass " +
                     "and pretended she was a ventriloquist. It was pretty funny till the girl's mom walked in. Boy was her mom " +
-                    "mad! Stacy had to pay her off to keep her quiet. ",
+                    "mad! " + sc.n("stacy") + " had to pay her off to keep her quiet. ",
                 button: [
                     { chatID: 93, text: "I would have died of embarrassment! ", callback: "" }
                 ]
@@ -1263,10 +1305,10 @@ room876.chat = function (chatID) {
             },
             {
                 chatID: 96,
-                speaker: "stacy",
+                speaker: "stacy", l10nValues: { courtney: sc.n("courtney") },
                 text: "You've been doing so well we feel like it's time you earned your pom-poms. Half of our trainees " +
                     "quit or get cut before they have a chance to earn this cheertastic milestone. To earn them you must first " +
-                    "clear I like to call the konga line. You're lucky Courtney was " +
+                    "clear I like to call the konga line. You're lucky " + sc.n("courtney") + " was " +
                     "nice enough to put them in order, smallest to largest. It'll give you a good stretch. ",
                 button: [
                     { chatID: 97, text: "I'm not going to do that.", callback: "" }
@@ -1279,7 +1321,7 @@ room876.chat = function (chatID) {
                     "street corner skank. You're not good enough to be one of us. Pom-poms are for winners, not losers " +
                     "like you. ",
                 button: [
-                    { chatID: -1, text: "You know what " + sc.n("courtney") + ", I am going to ride each one of those dildos and you're going to get me those pom-poms.", callback: "cheer5_4" }
+                    { chatID: -1, text: "You know what " + sc.n("courtney") + ", I am going to ride each one of those dildos and you're going to get me those pom-poms.", l10nValues: { courtney: sc.n("courtney") }, callback: "cheer5_4" }
                 ]
             },
             {
@@ -1332,7 +1374,7 @@ room876.chat = function (chatID) {
             },
             {
                 chatID: 104,
-                speaker: "candy",
+                speaker: "candy", l10nValues: { chad: sc.n("chad") },
                 text: "I'm so glad you earned your pom-poms! I wanted to watch, but I had a date with " + sc.n("chad") +
                     " that I didn't want to miss. You go girl! ",
                 button: [
@@ -1384,7 +1426,7 @@ room876.chat = function (chatID) {
             },
             {
                 chatID: 110,
-                speaker: "stacy",
+                speaker: "stacy", l10nValues: { utah: sc.n("utah") },
                 text: "Oh fuck " + sc.n("utah") + "! You have the best dick in the world! ",
                 button: [
                     { chatID: 111, text: "...", callback: "cheer6_5_2" }
@@ -1462,7 +1504,7 @@ room876.chat = function (chatID) {
             },
             {
                 chatID: 119,
-                speaker: "thinking",
+                speaker: "thinking", l10nValues: { candy: sc.n("candy") },
                 text: "That was unexpected. I wonder if they person that fucks me will be mad that I have balls? Maybe I'll take " +
                     sc.n("candy") + "'s place so Jarome just fucks me in the ass. He didn't see to check, just shoved it right in, " +
                     "maybe he won't notice my balls...",
@@ -1472,10 +1514,10 @@ room876.chat = function (chatID) {
             },
             {
                 chatID: 120,
-                speaker: "chuck",
+                speaker: "chuck", l10nValues: { stacy: sc.n("stacy"), chuck: sc.n("chuck") },
                 text: "Hi you. Looking for " + sc.n("stacy") + " again. I never did ask your name. I'm " + sc.n("chuck") + ".",
                 button: [
-                    { chatID: 121, text: "Hi, I'm " + sc.n("me") + ". " + sc.n("stacy") + "'s still changing. ", callback: "" }
+                    { chatID: 121, text: "Hi, I'm " + sc.n("me") + ". " + sc.n("stacy") + "'s still changing. ", l10nValues: { me: sc.n("me"), stacy: sc.n("stacy") }, callback: "" }
                 ]
             },
             {
@@ -1506,8 +1548,8 @@ room876.chat = function (chatID) {
             },
             {
                 chatID: 124,
-                speaker: "chuck",
-                text: "Someone else? No. I couldn't. Stacy is all I think about. She really is a wonderful, sweet, and caring " +
+                speaker: "chuck", l10nValues: { stacy: sc.n("stacy") },
+                text: "Someone else? No. I couldn't. " + sc.n("stacy") + " is all I think about. She really is a wonderful, sweet, and caring " +
                     "girl. She's perfect. ",
                 button: [
                     { chatID: 125, text: "Ok. We'll I've got to do some laundry. I'll catch you later. ", callback: "laundry" }
@@ -1550,7 +1592,7 @@ room876.chat = function (chatID) {
             },
             {
                 chatID: 129,
-                speaker: "courtney",
+                speaker: "courtney", l10nValues: { candy: sc.n("candy") },
                 text: "Totally. I just, you know, thought you would laugh it off. When " + sc.n("candy") + " said you " +
                     "were crying in the locker room I felt real bad. I didn't mean to make you feel bad. I'm so sorry. ",
                 button: [
@@ -1594,8 +1636,8 @@ room876.chat = function (chatID) {
             },
             {
                 chatID: 134,
-                speaker: "utah",
-                text: "Hi Stacy. We're here to get ready for the big game tomorrow and need to blow off some steam. We even " +
+                speaker: "utah", l10nValues: { stacy: sc.n("stacy") },
+                text: "Hi " + sc.n("stacy") + ". We're here to get ready for the big game tomorrow and need to blow off some steam. We even " +
                     "brought Alonzo for your new trainee. ",
                 button: [
                     { chatID: 135, text: "...", callback: "" }
@@ -1603,7 +1645,7 @@ room876.chat = function (chatID) {
             },
             {
                 chatID: 135,
-                speaker: "stacy",
+                speaker: "stacy", l10nValues: { me: sc.n("me") },
                 text: "That's so sweet, but she's no longer a trainee, she's a full blown cheerleader! " + sc.n("me") +
                     " you're going to love Alonzo, he really knows how to treat a girl, if you know what I mean. *wink* ",
                 button: [
@@ -1662,12 +1704,12 @@ room876.chat = function (chatID) {
             },
             {
                 chatID: 142,
-                speaker: "stacy",
+                speaker: "stacy", l10nValues: { utah: sc.n("utah") },
                 text: "God, I just love how " + sc.n("utah") + " fucks. I tried to take Alonzo's cock when I first got on the team. " +
                     "He kept hitting me right in the cervix. When I told him to slow down he just gripped me tight and destroyed me. " +
                     "I just sat on the toilet for an hour crying, it hurt so much. ",
                 button: [
-                    { chatID: 144, text: "I'll bet. Alonzo really straightened my colon out. So are you and " + sc.n("utah") + " dating?", callback: "" },
+                    { chatID: 144, text: "I'll bet. Alonzo really straightened my colon out. So are you and " + sc.n("utah") + " dating?", l10nValues: { utah: sc.n("utah") }, callback: "" },
                 ]
             },
             {
@@ -1675,17 +1717,17 @@ room876.chat = function (chatID) {
                 speaker: "me",
                 text: "noop",
                 button: [
-                    { chatID: 144, text: "I'll bet. Alonzo really straightened my colon out. So are you and " + sc.n("utah") + " dating?", callback: "" },
+                    { chatID: 144, text: "I'll bet. Alonzo really straightened my colon out. So are you and " + sc.n("utah") + " dating?", l10nValues: { utah: sc.n("utah") }, callback: "" },
                 ]
             },
             {
                 chatID: 144,
-                speaker: "stacy",
+                speaker: "stacy", l10nValues: { utah: sc.n("utah") },
                 text: "Oh " + sc.n("utah") + " doesn't date, he's just a fuck boy. As much as I love his dick, I can't stand him. " +
                     "He's always talking about himself and how great he is. His stories are cool at first, but they get old after " +
                     "a while. I would love to date someone with his dick and body, but with a personality, ya know. ",
                 button: [
-                    { chatID: 145, text: "Totally. Chuck has a nice body, what's his dick like? ", callback: "" },
+                    { chatID: 145, text: "Totally. " + sc.n("chuck") + " has a nice body, what's his dick like? ", l10nValues: { chuck: sc.n("chuck") }, callback: "" },
                 ]
             },
             {
@@ -1700,9 +1742,9 @@ room876.chat = function (chatID) {
             },
             {
                 chatID: 146,
-                speaker: "stacy",
+                speaker: "stacy", l10nValues: { chuck: sc.n("chuck") },
                 text: "I'll bet. I can smell a slut from a mile away, 'cause we sluts can always sniff our own. I'm going to " +
-                    "get dressed, don't want to keep Chuck waiting forever. ",
+                    "get dressed, don't want to keep " + sc.n("chuck") + " waiting forever. ",
                 button: [
                     { chatID: -1, text: "Ok, later", callback: "cheer8_9" },
                 ]

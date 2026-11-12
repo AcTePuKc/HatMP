@@ -78,7 +78,8 @@ room216.btnclick = function (name) {
                     "width": 151,
                     "height": 717,
                     "image": "216_pinkglory/cum0.png",
-                    "title": "Lick up slut"
+                    "title": "Lick up slut",
+                    "titleKey": "room.216.hover.lickUp"
                 }, 216);
             }
             break;
@@ -92,7 +93,8 @@ room216.btnclick = function (name) {
                 "width": 151,
                 "height": 496,
                 "image": "216_pinkglory/cum1.png",
-                "title": "Lick up slut"
+                "title": "Lick up slut",
+                "titleKey": "room.216.hover.lickUp"
             }, 216);
             break;
         case "cum2":
@@ -105,7 +107,8 @@ room216.btnclick = function (name) {
                 "width": 98,
                 "height": 232,
                 "image": "216_pinkglory/cum2.png",
-                "title": "Lick up slut"
+                "title": "Lick up slut",
+                "titleKey": "room.216.hover.lickUp"
             }, 216);
             break;
         case "cum3":
@@ -144,7 +147,8 @@ room216.chatcatch = function (callback) {
                     "width": 335,
                     "height": 324,
                     "image": "216_pinkglory/" + holes[i] + "_s.png",
-                    "title": "Free Use Slut"
+                    "title": "Free Use Slut",
+                    "titleKey": "shared.hover.freeUseSlut"
                 }, 216);
                 nav.button({
                     "type": "img",
@@ -154,7 +158,8 @@ room216.chatcatch = function (callback) {
                     "width": 335,
                     "height": 570,
                     "image": "216_pinkglory/" + holes[i] + "_d.png",
-                    "title": "Free Use Slut"
+                    "title": "Free Use Slut",
+                    "titleKey": "shared.hover.freeUseSlut"
                 }, 216);
             }
             nav.button({
@@ -165,7 +170,8 @@ room216.chatcatch = function (callback) {
                 "width": 231,
                 "height": 206,
                 "image": "216_pinkglory/clean.png",
-                "title": "Clean Up"
+                "title": "Clean Up",
+                "titleKey": "room.216.hover.cleanUp"
             }, 216);
             break;
         case "complete":

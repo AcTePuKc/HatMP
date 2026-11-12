@@ -588,6 +588,7 @@ room479.chat = function (chatID) {
                 "or dehydration while the mosquitoes fed on her. Luckily the " + sc.n("queen") + " found her and saved her " +
                 "from death. Unable to talk and tired from the years of abuse she was on the edge of ending her own life. " +
                 "That's when I found her brought her some soup. ",
+            l10nValues: { queen: sc.n("queen") },
             button: [
                 { chatID: 9, text: "...", callback: "" },
             ]
@@ -953,6 +954,7 @@ room479.chat = function (chatID) {
             text: "Well well well. " + sc.n("!ledja") + ", you brought someone to replace you. This " +
                 "replacement will do nicely. Per our agreement you're free to go. Remember, one word to " +
                 "anyone and you'll be back in the dungeons of the cult. Now scat! ",
+            l10nValues: { ledja: sc.n("!ledja") },
             button: [
                 { chatID: 51, text: "?", callback: "" }
             ]
@@ -974,6 +976,7 @@ room479.chat = function (chatID) {
                 "all are still here is because they haven't told " + sc.n("ubel") + " about this place. If " +
                 "he knew the entire cult would come down on you and all your sissy friends. And it would be bad. " +
                 "Really bad. ",
+            l10nValues: { ff: sc.n("ff"), ubel: sc.n("ubel") },
             button: [
                 { chatID: 53, text: "What do you want?", callback: "" }
             ]
@@ -1094,6 +1097,7 @@ room479.chat = function (chatID) {
                 "tomorrow night with more friends. Be sure to be here. You know the last girl, " +
                 sc.n("!ledja") + ", served our cocks for over a year before she gave you up. How many " +
                 "years are you going to be our little cock slave? ",
+            l10nValues: { ledja: sc.n("!ledja") },
             button: [
                 { chatID: 67, text: "ugh....", callback: "ledge12" }
             ]
@@ -1154,8 +1158,9 @@ room479.chat = function (chatID) {
                 " you'll have to take " + gender.pronoun("her") + " place. Stay strong, you'll only be " +
                 "stuck here until we can take care of this problem. Just remember to lube up before they come, " +
                 "an unlubed hole can be quite painful. ",
+            l10nValues: { jenna: sc.n("!jenna"), me: sc.n("me"), playerPronoun: gender.pronoun("her") },
             button: [
-                { chatID: -1, text: "[Follow the " + sc.n("queen") + " upstairs]", callback: "ledge_end" },
+                { chatID: -1, text: "[Follow the " + sc.n("queen") + " upstairs]", l10nValues: { queen: sc.n("queen") }, callback: "ledge_end" },
             ]
         },
     ];

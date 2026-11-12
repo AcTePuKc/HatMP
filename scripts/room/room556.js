@@ -10,8 +10,8 @@ room556.main = function () {
     }
     else {
         nav.bg("556_spar/bg2.jpg");
-        sc.select("fightm", "556_spar/spar1.png", 0);
-        sc.select("fightg", "556_spar/spar2.png", 1);
+        sc.selectLocalizedLabel("fightm", "556_spar/spar1.png", 0, "room.556.select.beginner", "Beginner spar");
+        sc.selectLocalizedLabel("fightg", "556_spar/spar2.png", 1, "room.556.select.advanced", "Advanced spar");
         sc.selectCancel("exit", 2);
     }
 };
@@ -32,7 +32,7 @@ room556.btnclick = function (name) {
             }
             else {
                 nav.bg("556_spar/bg3.jpg");
-                quickFight.init(5, "Maggie", "maggieWin", "maggieLose", "exit", 556);
+                quickFight.init(5, l10n.t("room.556.name.maggie", "Maggie"), "maggieWin", "maggieLose", "exit", 556);
                 if (thisEnergy < 50) {
                     chat(8, 556)
                 }
@@ -138,8 +138,8 @@ room556.chatcatch = function (callback) {
             break;
         case "drawEvent":
             nav.bg("556_spar/bg2.jpg");
-            sc.select("fightm", "556_spar/spar1.png", 0);
-            sc.select("fightg", "556_spar/spar2.png", 1);
+            sc.selectLocalizedLabel("fightm", "556_spar/spar1.png", 0, "room.556.select.beginner", "Beginner spar");
+            sc.selectLocalizedLabel("fightg", "556_spar/spar2.png", 1, "room.556.select.advanced", "Advanced spar");
             sc.selectCancel("exit", 2);
             break;
         case "leave":
@@ -220,8 +220,8 @@ room556.chat = function (chatID) {
         {
             chatID: 7,
             speaker: "g",
-            text: "And that's all I have to train you on. You can spar with Maggie here. If you can prove " +
-                "you're not a little bitch and beat her I'll let you do some... special strength training. ",
+            text: "And that's all I have to train you on. You can spar with " + l10n.t("room.556.name.maggie", "Maggie") + " here. If you can prove " +
+                "you're not a little bitch and beat her I'll let you do some... special strength training. ", l10nValues: { maggie: l10n.t("room.556.name.maggie", "Maggie") },
             button: [
                 { chatID: -1, text: "Sweet!", callback: "drawEvent" },
             ]
@@ -245,7 +245,7 @@ room556.chat = function (chatID) {
         {
             chatID: 10,
             speaker: "g",
-            text: "Maggie is still stronger than you, but you may just get lucky. ",
+            text: l10n.t("room.556.name.maggie", "Maggie") + " is still stronger than you, but you may just get lucky. ", l10nValues: { maggie: l10n.t("room.556.name.maggie", "Maggie") },
             button: [
                 { chatID: -1, text: "...", callback: "" },
             ]
@@ -262,8 +262,8 @@ room556.chat = function (chatID) {
         {
             chatID: 12,
             speaker: "g",
-            text: "Now that you've turned Maggie into your punching bag, you should try something " +
-                "more challenging, like me. ",
+            text: "Now that you've turned " + l10n.t("room.556.name.maggie", "Maggie") + " into your punching bag, you should try something " +
+                "more challenging, like me. ", l10nValues: { maggie: l10n.t("room.556.name.maggie", "Maggie") },
             button: [
                 { chatID: -1, text: "...", callback: "drawEvent" },
             ]
@@ -313,7 +313,7 @@ room556.chat = function (chatID) {
         {
             chatID: 18,
             speaker: "g",
-            text: "Maggie! Fetch my strapon! I'm going to show everyone here who the bitch is! ",
+            text: l10n.t("room.556.name.maggie", "Maggie") + "! Fetch my strapon! I'm going to show everyone here who the bitch is! ", l10nValues: { maggie: l10n.t("room.556.name.maggie", "Maggie") },
             button: [
                 { chatID: 19, text: "What? I thought I won", callback: "loss3" },
             ]
@@ -330,7 +330,7 @@ room556.chat = function (chatID) {
             chatID: 20,
             speaker: "g",
             text: "You will always be my little bitch. Now go hit the showers. " +
-                "Maggie, clean that cum stain off the mat. ",
+                l10n.t("room.556.name.maggie", "Maggie") + ", clean that cum stain off the mat. ", l10nValues: { maggie: l10n.t("room.556.name.maggie", "Maggie") },
             button: [
                 { chatID: -1, text: "Mmmmmm", callback: "leave" },
             ]

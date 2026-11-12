@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-    <title>Mystery</title>
+    <title data-l10n="ui.pageTitle">Mystery</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" type="text/css" href="./style/global.css" />
     <link rel="stylesheet" type="text/css" href="./style/char.css" />
@@ -287,24 +287,24 @@
 <body>
     <div class="room-full">
         <div id="room_export" style="display:none;">
-            <div style="color:#fff; font-size:1.2rem;">
+            <div style="color:#fff; font-size:1.2rem;" data-l10n="save.transfer.title">
                 Game export / import
             </div>
-            <div id="room-export-text">
+            <div id="room-export-text" data-l10n="save.transfer.exportHelp">
                 Below is the save game text. To export your game to use on another computer or browser or share your
                 save game copy the text below. Make sure you copy all of it, or the data will be lost. Also make sure
                 you don't add anything to it, or it will become corrupted and unusable. Once you have the text you can click
                 the phone, click the save icon, then the import button. Finally copy the text into the text box.
             </div>
-            <div id="room-import-text">
+            <div id="room-import-text" data-l10n="save.transfer.importHelp">
                 To import a saved game paste the save game text into the box below then click the load button.
             </div>
             <textarea id="room_export_data" rows="10"></textarea>
             <div class="room-export-buttons">
-                <button type="button" id="room_export_load">Load</button>
-                <button type="button" id="room_export_load_file">Load From File</button>
-                <button type="button" id="room_export_file">Export To File</button>
-                <button type="button" id="room_export_hide">Cancel / Close</button>
+                <button type="button" id="room_export_load" data-l10n="save.transfer.load">Load</button>
+                <button type="button" id="room_export_load_file" data-l10n="save.transfer.loadFile">Load From File</button>
+                <button type="button" id="room_export_file" data-l10n="save.transfer.exportFile">Export To File</button>
+                <button type="button" id="room_export_hide" data-l10n="save.transfer.close">Cancel / Close</button>
             </div>
         </div>
         <div class="room-topper"></div>
@@ -317,16 +317,16 @@
                 </div>
             </div>
             <div id="room-time" class="room-menu hide-start">
-                <img src="./images/inv/time.png" title="Pass Time" />
+                <img src="./images/inv/time.png" title="Pass Time" data-l10n-title="ui.passTime" />
             </div>
             <div id="room-change" class="room-menu hide-start">
-                <img src="./images/inv/change.png" title="Change Clothes" />
+                <img src="./images/inv/change.png" title="Change Clothes" data-l10n-title="ui.changeClothes" />
             </div>
             <div id="room-inv" class="room-menu hide-start">
-                <img src="./images/inv/backpack.png" title="Inventory" />
+                <img src="./images/inv/backpack.png" title="Inventory" data-l10n-title="ui.inventory" />
             </div>
             <div id="room-menu" class="room-menu hide-start">
-                <img src="./images/inv/phone_basic.png" title="menu" />
+                <img src="./images/inv/phone_basic.png" title="menu" data-l10n-title="ui.menu" />
             </div>
             <div id="room-background"></div>
             <div id="room-buttons"></div>
@@ -368,13 +368,13 @@
                 </div>
                 <div class="char-divider"></div>
                 <button class="char-modBtn" data-t="f">
-                    <img src="./images/general/b1.png" title="Front" />
+                    <img src="./images/general/b1.png" title="Front" data-l10n-title="ui.front" />
                 </button><button class="char-modBtn" data-t="b">
-                    <img src="./images/general/b2.png" title="Back" />
+                    <img src="./images/general/b2.png" title="Back" data-l10n-title="ui.body.back" />
                 </button><button class="char-modBtn" data-t="p">
-                    <img src="./images/general/b3.png" title="Bladder" />
+                    <img src="./images/general/b3.png" title="Bladder" data-l10n-title="ui.bladder" />
                 </button><button class="char-modBtn" data-t="a">
-                    <img src="./images/general/b4.png" title="Sissy Pussy" />
+                    <img src="./images/general/b4.png" title="Sissy Pussy" data-l10n-title="ui.sissyPussy" />
                 </button>
                 <div class="char-divider"></div>
                 <div class="char-statDisplay" id="char_cockDisplay"></div>
@@ -407,14 +407,14 @@
                     <div class="menu-box" style="position:relative;">
                         <img src="./images/general/stat_energy.png" class="menu-box-img" style="position:absolute; left:0; top: 0;" />
                         <div style="margin-left:26%; position:absolute; margin-top:7%">
-                            <div class="char-20 bold" style="text-align:left;">Energy</div>
+                            <div class="char-20 bold" style="text-align:left;" data-l10n="stats.label.energy">Energy</div>
                             <div style="font-size: 12px; text-align: left;" class="char-20 rl-level light-grey" data-name="energy"></div>
                         </div>
                         <div class="left-graph-char-bar resize-height" style="position:absolute; bottom:1%; left:0;">
                             <div data-name="energy" style="background: #20C000; border-radius: 20px" class="resize-height rl-bar"></div>
                         </div>
                     </div>
-                    <h2>Trans</h2>
+                    <h2 data-l10n="stats.section.transformation">Trans</h2>
                     <div class="menu-box" style="position:relative;">
                         <img src="./images/general/stat_xdress.png" class="menu-box-img" style="position:absolute; left:0; top: 0;" />
                         <div style="margin-left:26%; position:absolute; margin-top:7%">
@@ -429,7 +429,7 @@
                     <div class="menu-box" style="position:relative;">
                         <img src="./images/general/stat_hormone.png" class="menu-box-img" style="position:absolute; left:0; top: 0;" />
                         <div style="margin-left:26%; position:absolute; margin-top:7%">
-                            <div class="char-20 bold" style="text-align:left;">Hormones</div>
+                            <div class="char-20 bold" style="text-align:left;" data-l10n="stats.label.hormones">Hormones</div>
                             <div style="font-size: 12px; text-align: left;" class="char-20 rl-level light-grey" data-name="hormone"></div>
                         </div>
                         <div class="left-graph-char-bar resize-height" style="position: absolute; bottom: 1%; left: 0; background: #4E99E0;">
@@ -437,7 +437,7 @@
                         </div>
                     </div>
 
-                    <h2>Abilities</h2>
+                    <h2 data-l10n="stats.section.abilities">Abilities</h2>
 
                     <div class="menu-box" style="position:relative;">
                         <img src="./images/general/stat_fitness.png" class="menu-box-img" style="position:absolute; left:0; top: 0;" />
@@ -483,7 +483,7 @@
                         </div>
                     </div>
 
-                    <h2>Skills</h2>
+                    <h2 data-l10n="stats.section.skills">Skills</h2>
 
                     <div class="menu-box" style="position:relative;">
                         <img src="./images/general/stat_makeup.png" class="menu-box-img" style="position:absolute; left:0; top: 0;" />
@@ -595,7 +595,7 @@
                         </div>
                     </div>
 
-                    <h2>Talents</h2>
+                    <h2 data-l10n="stats.section.talents">Talents</h2>
                     <div class="menu-box" style="position:relative;">
                         <img src="./images/general/stat_cheer.png" class="menu-box-img" style="position:absolute; left:0; top: 0;" />
                         <div style="margin-left:26%; position:absolute; margin-top:7%">
@@ -647,18 +647,18 @@
     </div>
     <div class="menu-parent" id="menu_parent">
         <div class="menu-menu">
-            <div class="menu-tab" data-menu="save" data-child="menu-tab-save">Saves</div>
-            <div class="menu-tab" data-menu="pref">Help and Support</div>
-            <div class="menu-tab" data-menu="admin">Admin Menu</div>
+            <div class="menu-tab" data-menu="save" data-child="menu-tab-save" data-l10n="menu.saves">Saves</div>
+            <div class="menu-tab" data-menu="pref" data-l10n="menu.help">Help and Support</div>
+            <div class="menu-tab" data-menu="admin" data-l10n="menu.admin">Admin Menu</div>
             <div class="menu-close"><img src="./images/general/close.png" /></div>
             <div id="menu-tab-todo" class="menu-blockDisplay">
                 <div class="menu-list" id="menu_list"></div>
             </div>
             <div id="menu-tab-admin" class="menu-blockDisplay">
                 <div class="menu-list">
-                    <button type="button" class="admin-mod" data-type="money">+$1000</button> Add Money<br />
-                    <button type="button" class="admin-mod" data-type="horneyp">+</button> Horney <button type="button" class="admin-mod" data-type="horneyd">-</button><br />
-                    <button type="button" class="admin-mod" data-type="energyp">+</button> Energy <button type="button" class="admin-mod" data-type="energyd">-</button><br />
+                    <button type="button" class="admin-mod" data-type="money">+$1000</button> <span data-l10n="menu.addMoney">Add Money</span><br />
+                    <button type="button" class="admin-mod" data-type="horneyp">+</button> <span data-l10n="menu.arousal">Horney</span> <button type="button" class="admin-mod" data-type="horneyd">-</button><br />
+                    <button type="button" class="admin-mod" data-type="energyp">+</button> <span data-l10n="stats.label.energy">Energy</span> <button type="button" class="admin-mod" data-type="energyd">-</button><br />
                 </div>
             </div>
         </div>
@@ -666,17 +666,17 @@
     <div class="char-alert" id="char_alert"> </div>
     <div class="char-alert-bottom" id="char_alert_bottom"> </div>
     <button class="rl-change" data-type="body" style="display:none;">
-        <img src="./images/general/btnTits.jpg" title="Body" style="width:100%;" />
+        <img src="./images/general/btnTits.jpg" title="Body" data-l10n-title="ui.body" style="width:100%;" />
     </button>
     <button class="resize rl-change" data-type="map" style="display:none;">
-        <img src="./images/general/btnMap.jpg" title="Map" style="width:100%;" />
+        <img src="./images/general/btnMap.jpg" title="Map" data-l10n-title="ui.map" style="width:100%;" />
     </button>
     <button class="resize rl-change" data-type="graph" style="display:none;">
-        <img src="./images/general/btnGraph.jpg" title="Graph" style="width:100%;" />
+        <img src="./images/general/btnGraph.jpg" title="Graph" data-l10n-title="ui.graph" style="width:100%;" />
     </button>
     <button class="resize rl-change" data-type="walk" style="display:none;">
-        <img src="./images/general/btnHide.jpg" title="History" style="width:100%;" />
+        <img src="./images/general/btnHide.jpg" title="History" data-l10n-title="ui.history" style="width:100%;" />
     </button>
-    <img src="./images/room/1001_rand/back_1.png" class="help-history hover-noevent" title="Back" style="width: 200px; height: 66.6px; z-index: 100; top:75px; left: 30px; position: absolute; display:none;" id="help_backButton" />
+    <img src="./images/room/1001_rand/back_1.png" class="help-history hover-noevent" title="Back" data-l10n-title="ui.back" style="width: 200px; height: 66.6px; z-index: 100; top:75px; left: 30px; position: absolute; display:none;" id="help_backButton" />
 </body>
 </html>

@@ -17,7 +17,7 @@ room477.main = function () {
             "top": 529,
             "width": 116,
             "height": 268,
-            "title": "Sneak into the cottage",
+            "title": l10n.t("room.477.door.title", "Sneak into the cottage"),
             "image": "477_cottage/door.png"
         }, 477);
     }
@@ -82,10 +82,10 @@ room477.btnclick = function (name) {
                 invoker.invokeCurrent("btnclick", "drawSelect");
             break;
         case "drawSelect":
-            sc.select("wardrobe", "316_livingroom/icon_wardrobe.png", 0);
-            sc.select("return", "477_cottage/icon_return.png", 1);
-            sc.select("snack", "477_cottage/icon_snack.png", 2);
-            sc.select("forest", "477_cottage/icon_forest.png", 3);
+            sc.selectLocalizedLabel("wardrobe", "316_livingroom/icon_wardrobe.png", 0, "room.477.action.wardrobe", "Wardrobe");
+            sc.selectLocalizedLabel("return", "477_cottage/icon_return.png", 1, "room.477.action.return", "Return to the park");
+            sc.selectLocalizedLabel("snack", "477_cottage/icon_snack.png", 2, "room.477.action.snack", "Have a snack");
+            sc.selectLocalizedLabel("forest", "477_cottage/icon_forest.png", 3, "room.477.action.forest", "Return to the forest");
             break;
         case "forest":
             char.room(475);
@@ -164,6 +164,7 @@ room477.chatcatch = function (callback) {
                 "width": 128,
                 "height": 238,
                 "title": "Sneak into the cottage",
+                "titleKey": "room.477.door.title",
                 "image": "477_cottage/window.png"
             }, 477);
             break;
@@ -408,6 +409,7 @@ room477.chat = function (chatID) {
             speaker: "queen",
             text: "I told you to lay down before you fell down. Why does no one ever listen to me. " + sc.n("me") +
             ", I had a feeling I may be seeing you. You're more famous than you know. ",
+            l10nValues: { me: sc.n("me") },
             button: [
                 { chatID: 10, text: "Really. What do you know?", callback: "" },
             ]
@@ -418,6 +420,7 @@ room477.chat = function (chatID) {
             text: "I won't bore you with a retelling of your life's story. But I do know that you work for " + sc.n("missy") + ". " +
                 "The girl that was taken by Ubel. That ordeal was really quite something. They may not have taken you back " +
                 "yet, but they will, in time. In a way I'm glad you've found your way here. ",
+            l10nValues: { missy: sc.n("missy") },
             button: [
                 { chatID: 11, text: "Why, so you could kidnap and torture me! ", callback: "" },
             ]
@@ -437,6 +440,7 @@ room477.chat = function (chatID) {
             speaker: "queen",
             text: "You don't know what you want. Go speak with " + sc.n("a") + ". She'll set you right for your own " +
                 "protection. Go now. Go deep into the cave and meet with her. She'll provide you all you need. ",
+            l10nValues: { guide: sc.n("a") },
             button: [
                 { chatID: 13, text: "Let me out! Let me out now!  ", callback: "" },
             ]
@@ -517,6 +521,7 @@ room477.chat = function (chatID) {
             speaker: "!jenna",
             text: "You shouldn't be here after dark. The " + sc.n("queen") + " will be " +
                 "angry. You need to go. ",
+            l10nValues: { queen: sc.n("queen") },
             button: [
                 { chatID: -1, text: "Oh. ok", callback: "leave" },
             ]
@@ -534,6 +539,7 @@ room477.chat = function (chatID) {
             speaker: "thinking",
             text: sc.n("p") + " said I need to break in and try to find information. The front door " +
                 "is too obvious, let me see if there's another way in. ",
+            l10nValues: { contact: sc.n("p") },
             button: [
                 { chatID: -1, text: "[Look around for an open window]", callback: "window" },
             ]

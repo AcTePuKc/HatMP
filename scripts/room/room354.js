@@ -129,6 +129,7 @@ room354.chat = function (chatID) {
             if (cl.c.chastity === null)
                 return {
                     chatID: 1000,
+                    l10nKey: "room.354.chat.1000.nude.text",
                     speaker: "raven",
                     text: "I see you went full nude. You do have a nice ass, but I'm not sure what your end " +
                         "game is here. ",
@@ -138,6 +139,7 @@ room354.chat = function (chatID) {
                 };
             return {
                 chatID: 1000,
+                l10nKey: "room.354.chat.1000.cage.text",
                 speaker: "raven",
                 text: "Nice chastity cage. I see you know your purpose.  ",
                 button: [
@@ -149,6 +151,7 @@ room354.chat = function (chatID) {
             if (cl.getEntry("panties", cl.c.panties).sex === "f")
                 return {
                     chatID: 1000,
+                    l10nKey: "room.354.chat.1000.panties.text",
                     speaker: "raven",
                     text: "Nice panties. I like a cock wrapped up in panties. ",
                     button: [
@@ -157,6 +160,7 @@ room354.chat = function (chatID) {
                 };
             return {
                 chatID: 1000,
+                l10nKey: "room.354.chat.1000.underwear.text",
                 speaker: "raven",
                 text: "Ugh. Boy underwear. I want to see you in panties. ",
                 button: [
@@ -166,10 +170,19 @@ room354.chat = function (chatID) {
         }
     }
     else if (chatID === 999) {
+        var missingClothing = String(cl.hasoutfit("public")).replace(/<[^>]*>/g, "").trim();
+        var missingClothingKey = {
+            "shirt": "room.316.missing.shirt", "pants": "room.316.missing.pants",
+            "shirt and pants": "room.316.missing.shirtAndPants", "underwear": "room.316.missing.underwear",
+            "boy's underwear": "room.316.missing.boysUnderwear", "Can't wear a bra": "room.316.missing.bra",
+            "bra": "room.316.missing.bra"
+        }[missingClothing];
+        if (missingClothingKey) missingClothing = l10n.t(missingClothingKey, missingClothing);
         return {
             chatID: 999,
             speaker: "thinking",
-            text: "Before I leave I need to get dressed. <span class='hl'>I'm missing my " + cl.hasoutfit("public") + ".</span>",
+            l10nValues: { missing: missingClothing },
+            text: "Before I leave I need to get dressed. <span class='hl'>I'm missing my {missing}.</span>",
             button: []
         };
     }
@@ -186,7 +199,8 @@ room354.chat = function (chatID) {
             {
                 chatID: 1,
                 speaker: "me",
-                text: "Get your hands off my " + sc.n("landlord") + "! How dare you! ",
+                l10nValues: { landlord: sc.n("landlord") },
+                text: "Get your hands off my {landlord}! How dare you! ",
                 button: [
                     { chatID: 2, text: "...", callback: "" }
                 ]
@@ -202,7 +216,8 @@ room354.chat = function (chatID) {
             {
                 chatID: 3,
                 speaker: "landlord",
-                text: "I'm sorry you had to see that. " + sc.n("raven") + " was completely out of line. ",
+                l10nValues: { raven: sc.n("raven") },
+                text: "I'm sorry you had to see that. {raven} was completely out of line. ",
                 button: [
                     { chatID: 4, text: "That's assault! I'm going to call the police on him.", callback: "" }
                 ]
@@ -219,8 +234,9 @@ room354.chat = function (chatID) {
             {
                 chatID: 5,
                 speaker: "landlord",
-                text: "I appreciate your concern, but let me handle " + sc.n("raven") + ". There's stuff " +
-                    "going on that you don't need to worry about. I've got to get home to " + sc.n("bigguy") +
+                l10nValues: { raven: sc.n("raven"), bigguy: sc.n("bigguy") },
+                text: "I appreciate your concern, but let me handle {raven}. There's stuff " +
+                    "going on that you don't need to worry about. I've got to get home to {bigguy}" +
                     ". See you there. ",
                 button: [
                     { chatID: -1, text: "ok. ", callback: "event_1_end" }
@@ -238,6 +254,7 @@ room354.chat = function (chatID) {
             {
                 chatID: 7,
                 speaker: "landlord",
+                l10nIgnore: true,
                 text: "notused ",
                 button: [
                     { chatID: 7, text: "Ok. Thanks. ", callback: "e1" }
@@ -256,15 +273,17 @@ room354.chat = function (chatID) {
             {
                 chatID: 9,
                 speaker: "raven",
-                text: "Oh. You're in here. You see your " + sc.n("landlord") + " anywhere? ",
+                l10nValues: { landlord: sc.n("landlord") },
+                text: "Oh. You're in here. You see your {landlord} anywhere? ",
                 button: [
-                    { chatID: 10, text: "Fuck off. Stop molesting my " + sc.n("landlord") + ". ", callback: "" }
+                    { chatID: 10, l10nValues: { landlord: sc.n("landlord") }, text: "Fuck off. Stop molesting my {landlord}. ", callback: "" }
                 ]
             },
             {
                 chatID: 10,
                 speaker: "raven",
-                text: "Listen kid. I can tell you love your " + sc.n("landlord") + ", but I should tell you that " +
+                l10nValues: { landlord: sc.n("landlord") },
+                text: "Listen kid. I can tell you love your {landlord}, but I should tell you that " +
                     "there's something going on here and I'm just trying to get to the bottom of it and keep her " +
                     "out of trouble. If you want to stay out of trouble you'll stay out of my way. ",
                 button: [
@@ -283,7 +302,8 @@ room354.chat = function (chatID) {
             {
                 chatID: 12,
                 speaker: "thinking",
-                text: "I hate that guy. " + sc.n("landlord") + " wanted me to leave it alone, but I have " +
+                l10nValues: { landlord: sc.n("landlord") },
+                text: "I hate that guy. {landlord} wanted me to leave it alone, but I have " +
                     "to keep checking on her each Saturday to keep him away from her. I wouldn't want her to " +
                     "get hurt. ",
                 button: [
@@ -293,7 +313,8 @@ room354.chat = function (chatID) {
             {
                 chatID: 13,
                 speaker: "me",
-                text: "Hey. I said keep your hands off my " + sc.n("landlord") + "! ",
+                l10nValues: { landlord: sc.n("landlord") },
+                text: "Hey. I said keep your hands off my {landlord}! ",
                 button: [
                     { chatID: 14, text: "...", callback: "" }
                 ]
@@ -325,7 +346,8 @@ room354.chat = function (chatID) {
             {
                 chatID: 17,
                 speaker: "!madison",
-                text: "Oh no. I'm sorry. I thought it was that dreadful " + sc.n("raven") +
+                l10nValues: { raven: sc.n("raven") },
+                text: "Oh no. I'm sorry. I thought it was that dreadful {raven}" +
                     " trying to get a peek again. You're good, we're both girls! I don't " +
                     "have anything you don't have! ",
                 button: [
@@ -335,10 +357,11 @@ room354.chat = function (chatID) {
             {
                 chatID: 18,
                 speaker: "!madison",
+                l10nValues: { raven: sc.n("raven") },
                 text: "So nice having you around. I think some of those pervy men " +
                     "just come in to check out my breasts, but still more respectable " +
                     "than being a stripper I guess. Hehehe. I've got to go. " +
-                    "If " + sc.n("raven") + " tries to peek on you just yell at him. " +
+                    "If {raven} tries to peek on you just yell at him. " +
                     "He's dirty, but he scares easily. ",
                 button: [
                     { chatID: -1, text: "ok. See you later. ", callback: "reload" }
@@ -347,7 +370,7 @@ room354.chat = function (chatID) {
             {
                 chatID: 19,
                 speaker: "raven",
-                text: "Like mother like daughter. I knew you were a slut! ",
+                text: "You two are alike. I knew you were a slut! ",
                 button: [
                     { chatID: -1, text: "[More to come later]", callback: "reload" }
                 ]

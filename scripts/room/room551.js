@@ -186,11 +186,11 @@ room551.btnclick = function (name) {
             }
             else {
                 if (secretRoom.inProgress || spar.inProgress) {
-                    sc.select("icon_workout", "551_gymInside/icon_workout.png", 0);
+                    sc.selectLocalizedLabel("icon_workout", "551_gymInside/icon_workout.png", 0, "room.551.select.workout", "Workout");
                     if (spar.startedOrComplete)
-                        sc.select("icon_spar", "551_gymInside/icon_spar.png", 1);
+                        sc.selectLocalizedLabel("icon_spar", "551_gymInside/icon_spar.png", 1, "room.551.select.spar", "Spar");
                     if (secretRoom.inProgress)
-                        sc.select("icon_secret", "551_gymInside/icon_secret.png", 2);
+                        sc.selectLocalizedLabel("icon_secret", "551_gymInside/icon_secret.png", 2, "room.551.select.secret", "Secret Room");
                     sc.selectCancel("icon_cancel", 3);
                 }
                 else {
@@ -509,6 +509,15 @@ room551.chatcatch = function (callback) {
     }
 };
 
+room551.localizeWorkoutMissing = function (value) {
+    var text = String(value).replace(/<[^>]*>/g, "").trim();
+    var keys = { "running shoes": "room.460.missing.shoes", "t-shirt": "room.460.missing.shirt", "shorts": "room.460.missing.shorts" };
+    var items = text.split(/,\s*(?:and\s+)?|\s+and\s+/);
+    if (!items.length || !items.every(function (item) { return keys[item]; })) return text;
+    items = items.map(function (item) { return l10n.t(keys[item], item); });
+    return items.length < 2 ? items[0] : items.slice(0, -1).join(", ") + l10n.t("room.460.missing.and", " and ") + items[items.length - 1];
+};
+
 room551.chat = function (chatID) {
     var cArray = [
         {
@@ -538,7 +547,7 @@ room551.chat = function (chatID) {
             speaker: "g",
             text: "This is a real gym. Bitches like you don't belong here. Who let you in? ",
             button: [
-                { chatID: -1, text: "Oh uh " + sc.n("chad") + ".", callback: "squat4" }
+                { chatID: -1, text: "Oh uh " + sc.n("chad") + ".", l10nValues: { chad: sc.n("chad") }, callback: "squat4" }
             ]
         },
         {
@@ -552,7 +561,7 @@ room551.chat = function (chatID) {
         {
             chatID: 5,
             speaker: "chad",
-            text: "I did. This small dick dweeb gave me a topless picture of " + sc.n("lola") + " to get in. What a loser.",
+            text: "I did. This small dick dweeb gave me a topless picture of " + sc.n("lola") + " to get in. What a loser.", l10nValues: { lola: sc.n("lola") },
             button: [
                 { chatID: 6, text: "...", callback: "" }
             ]
@@ -600,7 +609,7 @@ room551.chat = function (chatID) {
         {
             chatID: 11,
             speaker: "chad",
-            text: "yeah he'll hurt himself if he even tries. " + sc.n("me") + " you should probably just go. You don't belong here.",
+            text: "yeah he'll hurt himself if he even tries. " + sc.n("me") + " you should probably just go. You don't belong here.", l10nValues: { me: sc.n("me") },
             button: [
                 { chatID: 12, text: "But I want to work out....", callback: "" }
             ]
@@ -608,7 +617,7 @@ room551.chat = function (chatID) {
         {
             chatID: 12,
             speaker: "g",
-            text: "You know, I like a project. " + sc.n("chad") + " I'll take this little bitch on. " + sc.n("me") + " come back later and I'll help you. ",
+            text: "You know, I like a project. " + sc.n("chad") + " I'll take this little bitch on. " + sc.n("me") + " come back later and I'll help you. ", l10nValues: { chad: sc.n("chad"), me: sc.n("me") },
             button: [
                 { chatID: 13, text: "Really", callback: "" }
             ]
@@ -760,7 +769,7 @@ room551.chat = function (chatID) {
         {
             chatID: 31,
             speaker: "g",
-            text: "Hey idiot. I told you to wear workout clothes. You're missing " + g.internal + ". You can change in the bathroom. ",
+            text: "Hey idiot. I told you to wear workout clothes. You're missing " + g.internal + ". You can change in the bathroom. ", l10nValues: { missing: room551.localizeWorkoutMissing(g.internal) },
             button: [
                 { chatID: -1, text: "......", callback: "" }
             ]
@@ -830,7 +839,7 @@ room551.chat = function (chatID) {
             speaker: "g",
             text: "I'm going to let " + sc.n("chad") + " know you can go in the Employee only door and get some special training. " +
                 "The back room is about pure training of the total body, only the trainer and trainee with nothing in between them, no equipment, " +
-                "weights, bars, bands..... or clothes. It's pretty advanced for such a little bitch like you, but with my help I think you can handle it.",
+                "weights, bars, bands..... or clothes. It's pretty advanced for such a little bitch like you, but with my help I think you can handle it.", l10nValues: { chad: sc.n("chad") },
             button: [
                 { chatID: 40, text: "That sounds great", callback: "setBackGym" }
             ]
@@ -885,7 +894,7 @@ room551.chat = function (chatID) {
         {
             chatID: 45,
             speaker: "g",
-            text: "Hey runt. I'm " + sc.n("g") + " I'm guessing you're here 'cause " + sc.n("missy") + " sent you to get trained. ",
+            text: "Hey runt. I'm " + sc.n("g") + " I'm guessing you're here 'cause " + sc.n("missy") + " sent you to get trained. ", l10nValues: { g: sc.n("g"), missy: sc.n("missy") },
             button: [
                 { chatID: 48, text: "Yes", callback: "crowbar" }
             ]
@@ -946,7 +955,7 @@ room551.chat = function (chatID) {
             chatID: 52,
             speaker: "g",
             text: "Well if it isn't my baby's " + gender.pronoun("daddy") + "! You know you're the first person I've ever let cum " +
-                "inside me and now look at me. I've got a little baby bump. ",
+                "inside me and now look at me. I've got a little baby bump. ", l10nValues: { daddy: gender.pronoun("daddy") },
             button: [
                 { chatID: 53, text: "I uhhh", callback: "" },
             ]
@@ -957,7 +966,7 @@ room551.chat = function (chatID) {
             text: "Oh don't worry, I don't expect you to raise our child. My wife " + sc.n("!madison") +
                 " and I have wanted a little baby for a while. She works down at the Sperm Bank. " +
                 "I asked her to grab some sperm to give to me, but she said it's better to get it " +
-                "from a person, not a bottle. ",
+                "from a person, not a bottle. ", l10nValues: { madison: sc.n("!madison") },
             button: [
                 { chatID: 54, text: "oh. ", callback: "" },
             ]
@@ -968,7 +977,7 @@ room551.chat = function (chatID) {
             text: "She really is special. Most wives wouldn't allow it, but we trust each other. " +
                 "She handles so many dicks in a day I have to trust her. She is a great little wife. " +
                 "But now I'm pregnant I just do light workouts. Don't want to risk anything. If you " +
-                "want to visit the back guy it'll just be " + sc.n("chad") + ". ",
+                "want to visit the back guy it'll just be " + sc.n("chad") + ". ", l10nValues: { chad: sc.n("chad") },
             button: [
                 { chatID: -1, text: "Alright. Well good luck with the baby. ", callback: "" },
             ]
@@ -976,7 +985,7 @@ room551.chat = function (chatID) {
         {
             chatID: 55,
             speaker: "g",
-            text: "So happy about our baby bump! Have fun with " + sc.n("chad") + " in the back gym. ",
+            text: "So happy about our baby bump! Have fun with " + sc.n("chad") + " in the back gym. ", l10nValues: { chad: sc.n("chad") },
             button: [
                 { chatID: -1, text: "...", callback: "" },
             ]

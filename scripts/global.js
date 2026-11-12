@@ -45,18 +45,18 @@ g.checkPop = function (name, amount) {
         case "money":
             if (amount !== 0) {
                 if (amount < 0)
-                    g.popUpNotice("You spent<br />$" + Math.abs(amount));
+                    g.popUpNotice(l10n.t("notice.money.spent", "You spent<br />${amount}", { amount: Math.abs(amount) }));
                 else
-                    g.popUpNotice("You received<br />$" + amount);
+                    g.popUpNotice(l10n.t("notice.money.received", "You received<br />${amount}", { amount: amount }));
             }
             break;
         case "jobConstructionPay":
             if (amount < 40)
-                g.popUpNotice("You got a<br />$" + amount + " raise");
+                g.popUpNotice(l10n.t("notice.money.raise", "You got a<br />${amount} raise", { amount: amount }));
             break;
         case "hormone":
             if (amount > 0)
-                g.popUpNotice("You feel more feminine");
+                g.popUpNotice(l10n.t("notice.hormone.feminine", "You feel more feminine"));
             sstat.makeGraph();
             break;
         case "cheerleader":
@@ -64,35 +64,35 @@ g.checkPop = function (name, amount) {
             break;
         case "energy":
             if (amount > 0)
-                g.popUpNotice("You Gained " + amount.toString() + " Energy");
+                g.popUpNotice(l10n.t("notice.energy.gained", "You Gained {amount} Energy", { amount: amount }));
             else if (amount < 0)
-                g.popUpNoticeBottom("You lost " + Math.abs(amount).toString() + " Energy");
+                g.popUpNoticeBottom(l10n.t("notice.energy.lost", "You lost {amount} Energy", { amount: Math.abs(amount) }));
             cl.energydisplay();
             break;
         case "arousal": //0-100
             cl.cockDisplay();
             break;
         case "fitness":
-            g.popUpNotice("Your fitness " + (amount < 0 ? "Decreased" : "Increased" + "  by ") + Math.abs(amount));
+            g.popUpNotice(l10n.t(amount < 0 ? "notice.fitness.decreased" : "notice.fitness.increased", amount < 0 ? "Your fitness Decreased{amount}" : "Your fitness Increased  by {amount}", { amount: Math.abs(amount) }));
             sstat.makeGraph();
             break;
         case "fitnessLevel":
-            g.popUpNotice("Your fitness Level has INCREASED!!");
+            g.popUpNotice(l10n.t("notice.fitness.levelUp", "Your fitness Level has INCREASED!!"));
             sstat.makeGraph();
             break;
         case "leg":
-            g.popUpNotice("Your legs are " + (amount < 0 ? "weaker" : "stronger"));
+            g.popUpNotice(l10n.t(amount < 0 ? "notice.legs.weaker" : "notice.legs.stronger", amount < 0 ? "Your legs are weaker" : "Your legs are stronger"));
             sstat.makeGraph();
             break;
         case "body":
-            g.popUpNotice("Your arms are " + (amount < 0 ? "weaker" : "stronger"));
+            g.popUpNotice(l10n.t(amount < 0 ? "notice.arms.weaker" : "notice.arms.stronger", amount < 0 ? "Your arms are weaker" : "Your arms are stronger"));
             sstat.makeGraph();
             break;
         case "fame":
             if (amount > 20)
-                g.popUpNotice("You became a lot more famous in this town. ");
+                g.popUpNotice(l10n.t("notice.fame.major", "You became a lot more famous in this town. "));
             else
-                g.popUpNotice("You gained a little notoriety");
+                g.popUpNotice(l10n.t("notice.fame.minor", "You gained a little notoriety"));
             break;
     }
 };

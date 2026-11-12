@@ -8,7 +8,7 @@ charisma.getStats = function (charismaLevel) {
     
     
     var stat = g.getSingleRoll(rollNeeded);
-    return { n: stat, txt: "[Charisma Roll: " + stat + "%] ", baseRoll: baseRoll, rollNeeded: rollNeeded, myCharisma: myCharisma, appearance: appearance };
+    return { n: stat, txt: l10n.t("charisma.chanceLabel", "[Charisma Roll: {chance}%] ", { chance: stat }), baseRoll: baseRoll, rollNeeded: rollNeeded, myCharisma: myCharisma, appearance: appearance };
 };
 
 charisma.getIntel = function (charismaLevel) {
@@ -18,7 +18,7 @@ charisma.getIntel = function (charismaLevel) {
 
 
     var stat = g.getSingleRoll(rollNeeded);
-    return { n: stat, txt: "[Intelligence Roll: " + stat + "%] ", baseRoll: baseRoll, rollNeeded: rollNeeded, myCharisma: myCharisma, appearance: 0 };
+    return { n: stat, txt: l10n.t("charisma.intelligenceChanceLabel", "[Intelligence Roll: {chance}%] ", { chance: stat }), baseRoll: baseRoll, rollNeeded: rollNeeded, myCharisma: myCharisma, appearance: 0 };
 };
 
 charisma.drawOverlayShell = function () {
@@ -78,16 +78,16 @@ charisma.drawRollSummary = function (title, stat, primaryLabel, secondaryLabel, 
         charisma.drawStatLine(1, secondaryLabel + stat.appearance);
     if (totalLabel !== null)
         charisma.drawStatLine(2, totalLabel + (stat.myCharisma + stat.appearance));
-    charisma.drawStatLine(4, "Base Roll Needed : " + stat.baseRoll);
-    charisma.drawStatLine(5, "Adjusted Roll Needed : " + stat.rollNeeded);
-    charisma.drawStatLine(6, "Chance: " + stat.n + "%");
+    charisma.drawStatLine(4, l10n.t("charisma.baseRoll", "Base Roll Needed : {value}", { value: stat.baseRoll }));
+    charisma.drawStatLine(5, l10n.t("charisma.adjustedRoll", "Adjusted Roll Needed : {value}", { value: stat.rollNeeded }));
+    charisma.drawStatLine(6, l10n.t("charisma.chance", "Chance: {value}%", { value: stat.n }));
 };
 
 charisma.init = function (charismaLevel, btnPressWin, btnPressLost, roomID) {
     trophy.add(49);
     var stat = charisma.getStats(charismaLevel);
     charisma.drawOverlayShell();
-    charisma.drawRollSummary("Charisma", stat, "Your Charisma: ", "Sexy Bonus: ", "Total Charisma: ");
+    charisma.drawRollSummary(l10n.t("charisma.title", "Charisma"), stat, l10n.t("charisma.yours", "Your Charisma: "), l10n.t("charisma.bonus", "Sexy Bonus: "), l10n.t("charisma.total", "Total Charisma: "));
     
 
     g.fight = {
@@ -118,7 +118,7 @@ charisma.drawRoll = function () {
         top: 150,
         font: 40,
         hex: "#ffffff",
-        text: "My Roll"
+        text: l10n.t("charisma.myRoll", "My Roll")
     }, 1);
     nav.button({
         "type": "img",
@@ -155,7 +155,7 @@ charisma.drawRoll = function () {
         top: 380,
         font: 30,
         hex: "#ffffff",
-        text: "Me<br/>Roll: " + myTotal + "<br/>"
+        text: l10n.t("charisma.resultRoll", "Me<br/>Roll: {value}<br/>", { value: myTotal })
     }, 1);
     nav.t({
         type: "img",
@@ -164,7 +164,7 @@ charisma.drawRoll = function () {
         top: 380,
         font: 30,
         hex: "#ffffff",
-        text: "Needed</br>Roll: " + g.fight.rollNeeded
+        text: l10n.t("charisma.neededRoll", "Needed</br>Roll: {value}", { value: g.fight.rollNeeded })
     }, 1);
 
     if (myTotal > g.fight.rollNeeded) {
@@ -178,7 +178,7 @@ charisma.drawRoll = function () {
             top: 600,
             font: 30,
             hex: "#ffffff",
-            text: winText[Math.floor(Math.random() * winText.length)]
+            text: charisma.resultText("win", winText)
         }, 1);
         nav.button({
             "type": "btn",
@@ -200,7 +200,7 @@ charisma.drawRoll = function () {
             top: 600,
             font: 30,
             hex: "#ffffff",
-            text: loseText[Math.floor(Math.random() * loseText.length)]
+            text: charisma.resultText("lose", loseText)
         }, 1);
         nav.button({
             "type": "btn",
@@ -212,6 +212,11 @@ charisma.drawRoll = function () {
             "image": "1002_quickfight/lost.png"
         }, 1);
     }
+};
+
+charisma.resultText = function (outcome, choices) {
+    const index = Math.floor(Math.random() * choices.length);
+    return l10n.t("charisma.result." + outcome + "." + index, choices[index]);
 };
 
 charisma.complete = function () {
@@ -234,7 +239,7 @@ charisma.complete = function () {
 charisma.itelInit = function (intelLevel, btnPressWin, btnPressLost, roomID) {
     let stat = charisma.getIntel(intelLevel);
     charisma.drawOverlayShell();
-    charisma.drawRollSummary("Intelligence", stat, "Your Intelligence: ", null, null);
+    charisma.drawRollSummary(l10n.t("charisma.intelligence", "Intelligence"), stat, l10n.t("charisma.yourIntelligence", "Your Intelligence: "), null, null);
 
 
     g.fight = {

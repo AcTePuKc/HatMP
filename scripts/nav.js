@@ -535,22 +535,22 @@ nav.bars = function () {
     $('#char-energy').css('width', Math.floor((tempEnergy / gv.get("maxenergy")) * 100) + '%');
 
     if (tempArousal < 25)
-        $('#char-arousal-label').html("Not Horny");
+        $('#char-arousal-label').text(l10n.t("status.arousal.none", "Not Horny"));
     else if (tempArousal < 50)
-        $('#char-arousal-label').html("A lil' Horny");
+        $('#char-arousal-label').text(l10n.t("status.arousal.low", "A lil' Horny"));
     else if (tempArousal < 75)
-        $('#char-arousal-label').html("Horny");
+        $('#char-arousal-label').text(l10n.t("status.arousal.medium", "Horny"));
     else
-        $('#char-arousal-label').html("Hump Anything!");
+        $('#char-arousal-label').text(l10n.t("status.arousal.high", "Hump Anything!"));
 
     if (tempEnergy < 25)
-        $('#char-energy-label').html("Dead Tired");
+        $('#char-energy-label').text(l10n.t("status.energy.empty", "Dead Tired"));
     else if (tempEnergy < 50)
-        $('#char-energy-label').html("Getting Tired");
+        $('#char-energy-label').text(l10n.t("status.energy.low", "Getting Tired"));
     else if (tempEnergy < 75)
-        $('#char-energy-label').html("Fine");
+        $('#char-energy-label').text(l10n.t("status.energy.medium", "Fine"));
     else
-        $('#char-energy-label').html("Energized!");
+        $('#char-energy-label').text(l10n.t("status.energy.high", "Energized!"));
 
 };
 

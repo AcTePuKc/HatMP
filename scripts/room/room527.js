@@ -72,7 +72,7 @@ room527.btnclick = function (name) {
                     chat(9, 527);
                 }
                 else {
-                    g.popUpNotice("An hour passed");
+                    g.popUpNotice(l10n.t("room.527.wait.notice", "An hour passed"));
                 }
             }
             break;
@@ -263,7 +263,7 @@ room527.chat = function (chatID) {
             chatID: 7,
             speaker: "zoey",
             text: "Just like the video games, you will be drinking my pipi! Lay down pipi " +
-                gender.pronoun("boy") + "! ",
+                gender.pronoun("boy") + "! ", l10nValues: { boy: gender.pronoun("boy") },
             button: [
                 { chatID: -1, text: "[Lay down and open your mouth]", callback: "zoey11" },
             ]
@@ -289,7 +289,7 @@ room527.chat = function (chatID) {
             chatID: 10,
             speaker: "!cindy",
             text: "I'm about to give you the best seat in the house for the piss show " + 
-                gender.pronoun("girl") + ". Strip off them clothes and kneel at my feet. ",
+                gender.pronoun("girl") + ". Strip off them clothes and kneel at my feet. ", l10nValues: { girl: gender.pronoun("girl") },
             button: [
                 { chatID: -1, text: "ok", callback: "w2" },
                 { chatID: -1, text: "*YELP* [Run away!]", callback: "leave" },
@@ -329,7 +329,7 @@ room527.chat = function (chatID) {
         {
             chatID: 0,
             speaker: "me",
-            text: "This place is creepy...",
+            l10nKey: "room.527.chat.14.text", text: "This place is creepy...",
             button: [
                 { chatID: -1, text: "Wait here", callback: "wait" },
                 { chatID: -1, text: "Get out!", callback: "" }
@@ -338,7 +338,7 @@ room527.chat = function (chatID) {
         {
             chatID: 1,
             speaker: "me",
-            text: "It's too late to wait for someone here.",
+            l10nKey: "room.527.chat.15.text", text: "It's too late to wait for someone here.",
             button: [
                 { chatID: -1, text: "Leave", callback: "leave" }
             ]
@@ -346,7 +346,7 @@ room527.chat = function (chatID) {
         {
             chatID: 2,
             speaker: "me",
-            text: "Hmmm. An hour's passed and nothing. Maybe I'm not attractive enough. ",
+            l10nKey: "room.527.chat.16.text", text: "Hmmm. An hour's passed and nothing. Maybe I'm not attractive enough. ",
             button: [
                 { chatID: -1, text: "Leave", callback: "leave" }
             ]
@@ -354,7 +354,7 @@ room527.chat = function (chatID) {
         {
             chatID: 3,
             speaker: "me",
-            text: "Time has passed...",
+            l10nKey: "room.527.chat.17.text", text: "Time has passed...",
             button: [
                 { chatID: -1, text: "...", callback: "reset" }
             ]
@@ -362,7 +362,7 @@ room527.chat = function (chatID) {
         {
             chatID: 4,
             speaker: "random",
-            text: "Oh look, a present for me. Strip and get on your knees toilet.",
+            l10nKey: "room.527.chat.18.text", text: "Oh look, a present for me. Strip and get on your knees toilet.",
             button: [
                 { chatID: -1, text: "Do as he says", callback: "s1" },
                 { chatID: -1, text: "Squeal and run away", callback: "leave60" }
@@ -371,7 +371,7 @@ room527.chat = function (chatID) {
         {
             chatID: 5,
             speaker: "random",
-            text: "Good toilet. Now thank me and clean up. ",
+            l10nKey: "room.527.chat.19.text", text: "Good toilet. Now thank me and clean up. ",
             button: [
                 { chatID: -1, text: "Thank you sir. ", callback: "reset" }
             ]
@@ -379,7 +379,7 @@ room527.chat = function (chatID) {
         {
             chatID: 6,
             speaker: "zoey",
-            text: sc.n("me") + " are you waiting in here so you can be someone's toilet? ",
+            l10nKey: "room.527.chat.20.text", text: sc.n("me") + " are you waiting in here so you can be someone's toilet? ", l10nValues: { me: sc.n("me") },
             button: [
                 { chatID: 8, text: "Uhhh yea", callback: "" },
                 { chatID: 7, text: "Wha. No. Gross", callback: "" }
@@ -388,7 +388,7 @@ room527.chat = function (chatID) {
         {
             chatID: 7,
             speaker: "zoey",
-            text: "Well I need to pee, and there's only one bathroom, so if you don't mind.",
+            l10nKey: "room.527.chat.21.text", text: "Well I need to pee, and there's only one bathroom, so if you don't mind.",
             button: [
                 { chatID: -1, text: "I was just finishing up. Later.", callback: "leave60" }
             ]
@@ -396,7 +396,7 @@ room527.chat = function (chatID) {
         {
             chatID: 8,
             speaker: "zoey",
-            text: "Sigh, fine lay down. You can be my toilet. Strip off your clothes so you don't drip pee all over my bar. ",
+            l10nKey: "room.527.chat.22.text", text: "Sigh, fine lay down. You can be my toilet. Strip off your clothes so you don't drip pee all over my bar. ",
             button: [
                 { chatID: 9, text: "Sweet!", callback: "z1" }
             ]
@@ -404,7 +404,7 @@ room527.chat = function (chatID) {
         {
             chatID: 9,
             speaker: "zoey",
-            text: "You better be ready cause once I start I can not stop. ",
+            l10nKey: "room.527.chat.23.text", text: "You better be ready cause once I start I can not stop. ",
             button: [
                 { chatID: 10, text: "I'm ready.", callback: "z2" }
             ]
@@ -412,7 +412,7 @@ room527.chat = function (chatID) {
         {
             chatID: 10,
             speaker: "zoey",
-            text: "Bois mon pipi",
+            l10nKey: "room.527.chat.24.text", text: "Bois mon pipi",
             button: [
                 { chatID: 11, text: "Slurp, gurgle", callback: "z3" }
             ]
@@ -420,15 +420,15 @@ room527.chat = function (chatID) {
         {
             chatID: 11,
             speaker: "zoey",
-            text: "Hahaha. Fille dégoûtante. Don't drip any of that on my floor, there's enough gross things I have to clean up. ",
+            l10nKey: "room.527.chat.25.text", text: "Hahaha. Fille dégoûtante. Don't drip any of that on my floor, there's enough gross things I have to clean up. ",
             button: [
-                { chatID: 12, text: "Lol ok " + sc.n("zoey") + ". ", callback: "" }
+                { chatID: 12, text: "Lol ok " + sc.n("zoey") + ". ", l10nValues: { zoey: sc.n("zoey") }, callback: "" }
             ]
         },
         {
             chatID: 12,
             speaker: "zoey",
-            text: "Ok, I've got to get back to work. Later ma petite amie.",
+            l10nKey: "room.527.chat.26.text", text: "Ok, I've got to get back to work. Later ma petite amie.",
             button: [
                 { chatID: -1, text: "See ya. ", callback: "leave60" }
             ]
@@ -436,7 +436,7 @@ room527.chat = function (chatID) {
         {
             chatID: 13,
             speaker: "zoey",
-            text: "je vais pisser. Get out.",
+            l10nKey: "room.527.chat.27.text", text: "je vais pisser. Get out.",
             button: [
                 { chatID: -1, text: "Ok", callback: "leave60" }
             ]

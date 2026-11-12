@@ -18,7 +18,7 @@ room204.countdown = function (timer) {
                 "top": 5,
                 font: 30,
                 hex: "#ffffff",
-                text: 'Seconds Left :' + timer
+                text: l10n.t("room.204.secondsLeft", "Seconds Left :") + timer
             }, 1);
             if (g.internal.horny !== null) {
                 g.internal.horny--;
@@ -137,7 +137,7 @@ room204.startGame = function () {
         "top": 5,
         font: 30,
         hex: "#ffffff",
-        text: 'Seconds Left :' + clock
+        text: l10n.t("room.204.secondsLeft", "Seconds Left :") + clock
     }, 1);
     for (i = 0; i < 3; i++) {
         for (j = 0; j < 4; j++) {
@@ -209,7 +209,7 @@ room204.chatcatch = function (callback) {
                 nav.button(v, 204);
             });
             $('#room-buttons').append('<div class="room-img" data-name="countdown" data-room="204" ' +
-                'style="text-align:center; background:#000; color:#fff; font-size:1.5rem; width:' + btnWidth + 'px; height:' + btnHeight + 'px; top:' + top + 'px; left:' + left + 'px;" >Seconds Left :30</div>');
+                'style="text-align:center; background:#000; color:#fff; font-size:1.5rem; width:' + btnWidth + 'px; height:' + btnHeight + 'px; top:' + top + 'px; left:' + left + 'px;" >' + l10n.t("room.204.secondsLeft", "Seconds Left :") + '30</div>');
             break;
         case "step1":
             g.internal = "step1";

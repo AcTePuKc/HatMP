@@ -204,61 +204,61 @@ room700.chat = function (chatID) {
 
         {
             chatID: 3,
-            speaker: "bimbo",
+            speaker: "bimbo", l10nKey: "room.700.chat.10.text",
             text: "Yippie!!!! What do you want to change, only $100.",
             button: [
-                { chatID: -1, text: "I want a breast reduction.", callback: "boob" },
-                { chatID: -1, text: "I want a butt reduction.", callback: "butt" },
-                { chatID: 5, text: "I want a bigger cock!", callback: "" },
-                { chatID: -1, text: "Wait.... I'm a stupid slut, I don't need your poison!", callback: "" }
+                { chatID: -1, l10nKey: "room.700.chat.10.choice.0", text: "I want a breast reduction.", callback: "boob" },
+                { chatID: -1, l10nKey: "room.700.chat.10.choice.1", text: "I want a butt reduction.", callback: "butt" },
+                { chatID: 5, l10nKey: "room.700.chat.10.choice.2", text: "I want a bigger cock!", callback: "" },
+                { chatID: -1, l10nKey: "room.700.chat.10.choice.3", text: "Wait.... I'm a stupid slut, I don't need your poison!", callback: "" }
             ]
         },
         {
             chatID: 4,
-            speaker: "bimbo",
+            speaker: "bimbo", l10nKey: "room.700.chat.11.text",
             text: "Sorry honey. Nothing is free. Come back when you can pay. ",
             button: [
-                { chatID: -1, text: "I'm a stupid slut. Bye.", callback: "" }
+                { chatID: -1, l10nKey: "room.700.chat.11.choice.0", text: "I'm a stupid slut. Bye.", callback: "" }
             ]
         },
         {
             chatID: 5,
-            speaker: "bimbo",
+            speaker: "bimbo", l10nKey: "room.700.chat.12.text",
             text: "Nope! A slut like you needs to go smaller!",
             button: [
-                { chatID: -1, text: "I am a stupid slut. ", callback: "" }
+                { chatID: -1, l10nKey: "room.700.chat.12.choice.0", text: "I am a stupid slut. ", callback: "" }
             ]
         },
         {
             chatID: 6,
-            speaker: "bimbo",
+            speaker: "bimbo", l10nKey: "room.700.chat.13.text",
             text: "Follow me to your new body. ",
             button: [
-                { chatID: 7, text: "Yes!", callback: "follow" }
+                { chatID: 7, l10nKey: "room.700.chat.13.choice.0", text: "Yes!", callback: "follow" }
             ]
         },
         {
             chatID: 7,
-            speaker: "bimbo",
+            speaker: "bimbo", l10nKey: "room.700.chat.14.text",
             text: "This is a placeholder event, but here's smaller tits. ",
             button: [
-                { chatID: 9, text: "Yea!", callback: "smalltits" }
+                { chatID: 9, l10nKey: "room.700.chat.14.choice.0", text: "Yea!", callback: "smalltits" }
             ]
         },
         {
             chatID: 8,
-            speaker: "bimbo",
+            speaker: "bimbo", l10nKey: "room.700.chat.15.text",
             text: "This is a placeholder event, but here's smaller ass. ",
             button: [
-                { chatID: 9, text: "Yea!", callback: "smallass" }
+                { chatID: 9, l10nKey: "room.700.chat.15.choice.0", text: "Yea!", callback: "smallass" }
             ]
         },
         {
             chatID: 9,
-            speaker: "bimbo",
+            speaker: "bimbo", l10nKey: "room.700.chat.16.text",
             text: "Tits, pussy, boi pussy, fuck shit piss.... I'll make this sexy in a future release. Pussy. Now get the fuck out. ",
             button: [
-                { chatID: -1, text: "I'm a cock sucker!", callback: "leave" }
+                { chatID: -1, l10nKey: "room.700.chat.16.choice.0", text: "I'm a cock sucker!", callback: "leave" }
             ]
         },
     ];

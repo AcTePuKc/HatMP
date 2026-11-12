@@ -182,7 +182,7 @@ room151.chatcatch = function (callback) {
         case "changeRoomxd7":
             gv.set("oncase", null);
             gv.mod("money", 300);
-            g.popUpNotice("You feel more comfortable wearing sexy clothes. ");
+            g.popUpNotice(l10n.t("room.151.notice.sexyClothes", "You feel more comfortable wearing sexy clothes. "));
             g.sissy[31].ach = true;
             cl.add("dress", "rose");
             char.room(0);
@@ -220,7 +220,7 @@ room151.chatcatch = function (callback) {
         case "c1_7":
             gv.set("oncase", null);
             gv.mod("money", 500);
-            g.popUpNotice("You feel more comfortable with your body. You don't have to wear panties anymore. ");
+            g.popUpNotice(l10n.t("room.151.notice.noPanties", "You feel more comfortable with your body. You don't have to wear panties anymore. "));
             g.sissy[32].ach = true;
             cl.add("dress", "maid");
             char.room(0);
@@ -261,7 +261,7 @@ room151.chatcatch = function (callback) {
         case "c2_8":
             gv.set("oncase", null);
             gv.mod("money", 500);
-            g.popUpNotice("You feel more comfortable with your body. You can buy slutty clothing now. ");
+            g.popUpNotice(l10n.t("room.151.notice.buyClothes", "You feel more comfortable with your body. You can buy slutty clothing now. "));
             g.sissy[33].ach = true;
             cl.add("shirt", "cor");
             cl.add("pants", "co");
@@ -299,7 +299,7 @@ room151.chatcatch = function (callback) {
         case "c3_8":
             gv.set("oncase", null);
             gv.mod("money", 1000);
-            g.popUpNotice("You feel more comfortable with your body. You can walk around nude - be careful of the police. ");
+            g.popUpNotice(l10n.t("room.151.notice.nude", "You feel more comfortable with your body. You can walk around nude - be careful of the police. "));
             g.sissy[34].ach = true;
             char.room(0);
             break;

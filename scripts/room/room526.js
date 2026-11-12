@@ -485,15 +485,15 @@ room526.chat = function (chatID) {
             speaker: "!juniper",
             text: "Yes, what's your name? ",
             button: [
-                { chatID: 3, text: "I'm " + sc.n("me") + ". ", callback: "" }
+                { chatID: 3, text: "I'm " + sc.n("me") + ". ", l10nValues: { me: sc.n("me") }, callback: "" }
             ]
         },
         {
             chatID: 3,
             speaker: "!poppy",
             text: "OOooo that's such a pretty name. Do you have a pretty cock? We were about to " +
-                "bend Orchid over the table and fill her with our cocks. She lost the smallest " +
-                "cock game again. ",
+                "bend " + sc.n("orchid") + " over the table and fill her with our cocks. She lost the smallest " +
+                "cock game again. ", l10nValues: { orchid: sc.n("orchid") },
             button: [
                 { chatID: 4, text: "Smallest cock game?", callback: "" }
             ]
@@ -502,8 +502,8 @@ room526.chat = function (chatID) {
             chatID: 4,
             speaker: "!juniper",
             text: "Oh sweet summer child. We each pull out our cocks and whoever has the smallest " +
-                "cock gets fucked by the bigger, superior cocks. Orchid always loses, I think she " +
-                "does it on purpose.  ",
+                "cock gets fucked by the bigger, superior cocks. " + sc.n("orchid") + " always loses, I think she " +
+                "does it on purpose.  ", l10nValues: { orchid: sc.n("orchid") },
             button: [
                 { chatID: 5, text: "...", callback: "" }
             ]
@@ -587,8 +587,8 @@ room526.chat = function (chatID) {
             chatID: 13,
             speaker: "black",
             text: "Hi, " + sc.n("me") + ". I would love to tear your ass up, but I'm taking " +
-                "little Keaton home and this sissy demands all my time to properly break her. " +
-                "Let's go Keaton, I'm going to fuck you till you bleed. ",
+                "little " + sc.n("keaton") + " home and this sissy demands all my time to properly break her. " +
+                "Let's go " + sc.n("keaton") + ", I'm going to fuck you till you bleed. ", l10nValues: { me: sc.n("me"), keaton: sc.n("keaton") },
             button: [
                 { chatID: -1, text: "oh my.", callback: "reset" },
             ]
@@ -652,7 +652,7 @@ room526.chat = function (chatID) {
         {
             chatID: 20,
             speaker: "keaton",
-            text: "Well looky here. If it isn't a new cock. I'm Keaton and I have a couple holes you can use. ",
+            text: "Well looky here. If it isn't a new cock. I'm " + sc.n("keaton") + " and I have a couple holes you can use. ", l10nValues: { keaton: sc.n("keaton") },
             button: [
                 { chatID: 21, text: "Oh wow. Hello", callback: "m0_1" },
             ]
@@ -660,8 +660,8 @@ room526.chat = function (chatID) {
         {
             chatID: 21,
             speaker: "zoey",
-            text: "Keaton, you know you don't have to strip and show your bussy to every " +
-                "person that you meet. There are subtler ways to get laid. ",
+            text: "" + sc.n("keaton") + ", you know you don't have to strip and show your bussy to every " +
+                "person that you meet. There are subtler ways to get laid. ", l10nValues: { keaton: sc.n("keaton") },
             button: [
                 { chatID: 22, text: "hehe", callback: "m0_2" },
             ]
@@ -670,7 +670,7 @@ room526.chat = function (chatID) {
             chatID: 22,
             speaker: "keaton",
             text: "I know " + sc.n("zoey") + ". I just really need cock right now! My bussy is " +
-                "bone dry! I need the semen in me!",
+                "bone dry! I need the semen in me!", l10nValues: { zoey: sc.n("zoey") },
             button: [
                 { chatID: 23, text: "....", callback: "m0_3" },
             ]
@@ -783,7 +783,7 @@ room526.chat = function (chatID) {
             chatID: 35,
             speaker: "zoey",
             text: "That is my meilleur ami. I have known " + gender.pronoun("him") + " forever! This " +
-                "is " + sc.n("stormy") + " my new petite amie. ",
+                "is " + sc.n("stormy") + " my new petite amie. ", l10nValues: { stormy: sc.n("stormy"), him: gender.pronoun("him") },
             button: [
                 { chatID: 36, text: "...", callback: "" },
             ]
@@ -792,7 +792,7 @@ room526.chat = function (chatID) {
             chatID: 36,
             speaker: "stormy",
             text: "*UGH* You know I don't speak French. Let's get going, " + sc.n("zoey") + " I " +
-                "need to taste you before I head home. ",
+                "need to taste you before I head home. ", l10nValues: { zoey: sc.n("zoey") },
             button: [
                 { chatID: 37, text: "...", callback: "" },
             ]
@@ -802,7 +802,7 @@ room526.chat = function (chatID) {
             speaker: "zoey",
             text: "ahahah. Yes, we will do a quick eat *wink*",
             button: [
-                { chatID: -1, text: "*sigh* ok I'll catch you later " + sc.n("zoey") + ". Bye new friend " + sc.n("stormy") + ". ", callback: "leave" },
+                { chatID: -1, text: "*sigh* ok I'll catch you later " + sc.n("zoey") + ". Bye new friend " + sc.n("stormy") + ". ", l10nValues: { zoey: sc.n("zoey"), stormy: sc.n("stormy") }, callback: "leave" },
             ]
         },
         {
@@ -853,7 +853,7 @@ room526.chat = function (chatID) {
             speaker: "stormy",
             text: "So... dish washer... You want to watch me fuck your friend? ",
             button: [
-                { chatID: 44, text: "I really do, also my name is " + sc.n("me") + ". ", callback: "" },
+                { chatID: 44, text: "I really do, also my name is " + sc.n("me") + ". ", l10nValues: { me: sc.n("me") }, callback: "" },
             ]
         },
         {
@@ -894,7 +894,7 @@ room526.chat = function (chatID) {
             chatID: 48,
             speaker: "zoey",
             text: "Mon Dieu. My pussy is uhhhh... sparkly... " + sc.n("me") + " are you good " +
-                "to watch. I think you see my pussy more than others now. ahahahah.",
+                "to watch. I think you see my pussy more than others now. ahahahah.", l10nValues: { me: sc.n("me") },
             button: [
                 { chatID: 49, text: "Oh yes! Love the view! ", callback: "sex1_6" },
             ]
@@ -934,7 +934,7 @@ room526.chat = function (chatID) {
             text: "Oh no. " + sc.n("stormy") + " did the pee on you. I am sorry. Very much sorry. " +
                 "She does that. She made the promise she would not do that to you. I will help you " +
                 "and help you clean up. I need to make this better for you tomorrow, but tonight " +
-                "we will clean up and get some sleep. ",
+                "we will clean up and get some sleep. ", l10nValues: { stormy: sc.n("stormy") },
             button: [
                 { chatID: -1, text: "You always pick the crazy ones, but thanks. ", callback: "sex1_15" },
             ]
@@ -1027,7 +1027,7 @@ room526.chat = function (chatID) {
             chatID: 62,
             speaker: "orchid",
             text: "YES! I don't lose this time! Thanks new " + gender.pronoun("girl") + 
-                ". I get to put my dick in you!",
+                ". I get to put my dick in you!", l10nValues: { girl: gender.pronoun("girl") },
             button: [
                 { chatID: -1, text: "Drat!", callback: "g4" }
             ]
@@ -1035,8 +1035,8 @@ room526.chat = function (chatID) {
         {
             chatID: 63,
             speaker: "!poppy",
-            text: "I feel like I just did a cum transfer! From Juniper's cock to Orchid's " +
-                "ass! ",
+            text: "I feel like I just did a cum transfer! From " + sc.n("juniper") + "'s cock to " + sc.n("orchid") + "'s " +
+                "ass! ", l10nValues: { juniper: sc.n("juniper"), orchid: sc.n("orchid") },
             button: [
                 { chatID: 64, text: "uuhhhgg...", callback: "" }
             ]
@@ -1045,7 +1045,7 @@ room526.chat = function (chatID) {
             chatID: 64,
             speaker: "orchid",
             text: "And I transferred it right to " + sc.n("me") + "'s ass! The cum " +
-                "transfer is complete! ",
+                "transfer is complete! ", l10nValues: { me: sc.n("me") },
             button: [
                 { chatID: -1, text: "...my butt is so full of cum...", callback: "g7" }
             ]
@@ -1070,7 +1070,7 @@ room526.chat = function (chatID) {
             chatID: 67,
             speaker: "!poppy",
             text: "Totally needed that too! There's no better feeling that cumming " +
-                "deep inside Orchid. Show us that hole. I want to see my work. ",
+                "deep inside " + sc.n("orchid") + ". Show us that hole. I want to see my work. ", l10nValues: { orchid: sc.n("orchid") },
             button: [
                 { chatID: 68, text: "...", callback: "g13" }
             ]
@@ -1143,7 +1143,7 @@ room526.chat = function (chatID) {
             speaker: "zoey",
             text: "I'm not promising they're not going to blow up a penis, but my friend, " + sc.n("ralph") +
                 ", will totally clean stuff. She's a good girl and really good at doing what you tell her " +
-                "to. ",
+                "to. ", l10nValues: { ralph: sc.n("ralph") },
             button: [
                 { chatID: 76, text: "...", callback: "" }
             ]
@@ -1153,7 +1153,7 @@ room526.chat = function (chatID) {
             speaker: "zoey",
             text: "Hmmm... If it was for anyone but you I would answer no. But you. You have my heart, so I " +
                 "will answer yes. Let this " + sc.n("ralph") + " know. Let her know she'll be a barback and only clean. " +
-                "No make drinks. That is for me. ",
+                "No make drinks. That is for me. ", l10nValues: { ralph: sc.n("ralph") },
             button: [
                 { chatID: -1, text: "Sweet. I'll let him know. ", callback: "ralphEnd1" }
             ]
@@ -1172,7 +1172,7 @@ room526.chat = function (chatID) {
             text: "Thanks. hehe. I first came by with a kilt and " + sc.n("zoey") + " told me I had to try " +
                 "harder. She totally took me to the store to get it! I've never bought girl's clothes before. " +
                 "I was so scared, but having " + sc.n("zoey") + " there totally made it easier. Do you think " +
-                "she's into me? She did talk to me. I'm so in love with her. ",
+                "she's into me? She did talk to me. I'm so in love with her. ", l10nValues: { zoey: sc.n("zoey") },
             button: [
                 { chatID: 79, text: "Oh. Are you going to steal my girlfriend away from me? ", callback: "" }
             ]
@@ -1202,9 +1202,9 @@ room526.chat = function (chatID) {
                 "get out more. Maybe work with people. I would have hired her, but I totally don't make enough " +
                 "money to hire new help, ya know. People think because I own my own business I'm rich, but that's " +
                 "just not true. I'm barely making it. So I'm so happy you got my girl here a job. You know I dated " +
-                "a bartender once a long time ago. She was totally hot too. ",
+                "a bartender once a long time ago. She was totally hot too. ", l10nValues: { ralph: sc.n("ralph") },
             button: [
-                { chatID: 82, text: "Hi " + sc.n("spanky") + ". How'd you get in? ", callback: "" }
+                { chatID: 82, text: "Hi " + sc.n("spanky") + ". How'd you get in? ", l10nValues: { spanky: sc.n("spanky") }, callback: "" }
             ]
         },
         {
@@ -1214,16 +1214,16 @@ room526.chat = function (chatID) {
                 "dude that I'm good friends with and they sell me a bunch of good stuff, ya know. So sometimes I get too " +
                 "much, so I sells them to your friend " + sc.n("zoey") + " for a good price. She makes out and I make out " +
                 "so win, win, ya know. Plus I get to check out all these hot chicks that are totally into my dick! Heheheh. " +
-                "I mean. I totally get to see my girlfriend at work. ",
+                "I mean. I totally get to see my girlfriend at work. ", l10nValues: { zoey: sc.n("zoey") },
             button: [
-                { chatID: 83, text: "Speaking of your girlfriend. " + sc.n("ralph") + ". You know you have cum on your face? ", callback: "" }
+                { chatID: 83, text: "Speaking of your girlfriend. " + sc.n("ralph") + ". You know you have cum on your face? ", l10nValues: { ralph: sc.n("ralph") }, callback: "" }
             ]
         },
         {
             chatID: 83,
             speaker: "ralph",
             text: "*sigh* I know. " + sc.n("spanky") + " said I had to wear it to prove to everyone that I'm " +
-                "his girlfriend and no one else can fuck me. ",
+                "his girlfriend and no one else can fuck me. ", l10nValues: { spanky: sc.n("spanky") },
             button: [
                 { chatID: 84, text: "Really?", callback: "" }
             ]
@@ -1234,10 +1234,10 @@ room526.chat = function (chatID) {
             text: "Gotta mark my bitches! But she's not my girlfriend. I don't believe in labeling stuff, ya know.  " +
                 "Gotta keep on keeping on. But she's special to me. You're special to me too. You know if you ever " +
                 "want to suck my dick you can. There's a bathroom right over there, if you're into it. " + sc.n("ralph") +
-                "can be there too. I would love for both of you to suck me. Gargle my balls. You ever had your balls " +
+                " can be there too. I would love for both of you to suck me. Gargle my balls. You ever had your balls " +
                 "gargled? It's the best. Lets me know that a bitch it totally into my cock. Also ass licking. You know why " +
                 "I love it when a bitch licks my ass? 'Cause it means I can do anything to her. Nothing better than some " +
-                "bitch without limits, ya know. So you wanna suck my dick, or lick my ass? ",
+                "bitch without limits, ya know. So you wanna suck my dick, or lick my ass? ", l10nValues: { ralph: sc.n("ralph") },
             button: [
                 { chatID: 85, text: "I uhh..", callback: "" }
             ]
@@ -1246,7 +1246,7 @@ room526.chat = function (chatID) {
             chatID: 85,
             speaker: "ralph",
             text: "Don't you have to go now that you've delivered your liquor? I'm pretty sure " + sc.n("zoey") +
-                " said you can't just hang around. Besides I have to get back to work. ",
+                " said you can't just hang around. Besides I have to get back to work. ", l10nValues: { zoey: sc.n("zoey") },
             button: [
                 { chatID: 86, text: "...", callback: "" }
             ]
@@ -1262,7 +1262,7 @@ room526.chat = function (chatID) {
         {
             chatID: 87,
             speaker: "me",
-            text: "So I see you've given " + sc.n("spanky") + " another bj. heheh",
+            text: "So I see you've given " + sc.n("spanky") + " another bj. heheh", l10nValues: { spanky: sc.n("spanky") },
             button: [
                 { chatID: 88, text: "...", callback: "" }
             ]
@@ -1271,7 +1271,7 @@ room526.chat = function (chatID) {
             chatID: 88,
             speaker: "ralph",
             text: "Yeah. He does have an amazing penis. I've got to get back to it. " + sc.n("spanky") + 
-                " go home. She doesn't want to suck your dick in the bathroom. ",
+                " go home. She doesn't want to suck your dick in the bathroom. ", l10nValues: { spanky: sc.n("spanky") },
             button: [
                 { chatID: 89, text: "...", callback: "" }
             ]

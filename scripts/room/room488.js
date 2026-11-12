@@ -137,6 +137,7 @@ room488.chat = function (chatID) {
         {
             chatID: 8,
             speaker: "thinking",
+            l10nIgnore: true,
             text: "noop ",
             button: [
                 { chatID: -1, text: "Leave", callback: "leave" },
@@ -163,7 +164,8 @@ room488.chat = function (chatID) {
         {
             chatID: 11,
             speaker: "thinking",
-            text: "Not much here, just a picture of her and Mr. Tudor. Weird. I wonder if he's her dad? " +
+            l10nValues: { tudor: sc.n("tudor") },
+            text: "Not much here, just a picture of her and " + sc.n("tudor") + ". Weird. I wonder if he's her dad? " +
                 "Not much else here. No money, " +
                 "no sexy clothes, just a bunch of green jackets. ",
             button: [

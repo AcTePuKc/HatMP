@@ -201,7 +201,7 @@ room600.chat = function(chatID){
             speaker: "tony",
             text: "That's right. That look in your eyes... it tells me you understand the way things work around here. You're sharp. You're hungry. And that's good. A bit of a tramp and a little bit of... eagerness... those are qualities I value. Now, let's not waste any more time on pleasantries. Get to sucking.",
             button: [
-                { chatID: 12, text: "[Suck Fat Tony's cock you dirty dirty tramp] ", callback: "office3" },
+                { chatID: 12, text: "[Suck " + sc.n("tony") + "'s cock you dirty dirty tramp] ", l10nValues: { tony: sc.n("tony") }, callback: "office3" },
             ]
         },
         {
@@ -209,7 +209,7 @@ room600.chat = function(chatID){
             speaker: "tony",
             text: "I like girls like you. Know your place and what you're good for. ",
             button: [
-                { chatID: 13, text: "[Suck the cum out of Fat Tony's fat cock] ", callback: "office4" },
+                { chatID: 13, text: "[Suck the cum out of " + sc.n("tony") + "'s fat cock] ", l10nValues: { tony: sc.n("tony") }, callback: "office4" },
             ]
         },
         {
@@ -271,10 +271,10 @@ room600.chat = function(chatID){
         {
             chatID: 19,
             speaker: "p",
-            text: "Welcome everyone to the first ever FEMBOY FRIDAY at Fat Tony's!!!!" + 
+            text: "Welcome everyone to the first ever FEMBOY FRIDAY at " + sc.n("tony") + "'s!!!!" +
                 "Now the rules are that whoever makes the most money tonight gets an A+ " +
                 "for the sexy part of their final! Wooooo! " + sc.n("!freddy") + " here will " +
-                "explain the rules, but you girls have fun!",
+                "explain the rules, but you girls have fun!", l10nValues: { freddy: sc.n("!freddy"), tony: sc.n("tony") },
             button: [
                 { chatID: 20, text: "...", callback: "" },
             ]

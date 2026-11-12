@@ -17,7 +17,8 @@ room954.main = function () {
                 "width": 94,
                 "height": 228,
                 "image": "225_sewer/up.png",
-                "title": "Notify the police."
+                "title": "Notify the police.",
+                "titleKey": "room.954.hover.police"
             }, 228);
             chat(74, 954);
             break;
@@ -127,7 +128,8 @@ room954.chatcatch = function (callback) {
                 "width": 94,
                 "height": 228,
                 "image": "225_sewer/up.png",
-                "title": "Notify the police."
+                "title": "Notify the police.",
+                "titleKey": "room.954.hover.police"
             }, 228);
             break;
         case "t29":
@@ -398,7 +400,7 @@ room954.chat = function (chatID) {
         },
         {
             chatID: 6,
-            speaker: "daria",
+            speaker: "daria", l10nValues: { bodhi: sc.n("bodhi") },
             text: "I know I can come off as some big bad dominatrix, but this is really just too much. I only wanted to be with " +
                 sc.n("bodhi") + " in a place where we could just focus on each other. ",
             button: [
@@ -507,7 +509,7 @@ room954.chat = function (chatID) {
         },
         {
             chatID: 19,
-            speaker: "ubel",
+            speaker: "ubel", l10nValues: { player: sc.n("me"), daria: sc.n("daria"), bodhi: sc.n("bodhi") },
             text: "I must commend you two. No one has lasted as long as either of you have. I expected that from " + sc.n("me") + 
                 ", for I know she has a higher purpose. But I was surprised by your performance, " + sc.n("daria") + ". It " +
                 "seems like " + sc.n("bodhi") + " is holding you back from your true potential. ", 
@@ -557,7 +559,7 @@ room954.chat = function (chatID) {
         },
         {
             chatID: 24,
-            speaker: "missy",
+            speaker: "missy", l10nValues: { missy: sc.n("missy") },
             text: "Now to release you three and get out of here.  ",
             button: [
                 { chatID: 25, text: sc.n("missy") + "!!!", callback: "t18" }
@@ -680,7 +682,7 @@ room954.chat = function (chatID) {
         },
         {
             chatID: 38,
-            speaker: "daria",
+            speaker: "daria", l10nValues: { missy: sc.n("missy") },
             text: "Look! That log holding the roof the cave is rotting. If we can kick it down the entire roof my fall in!",
             button: [
                 { chatID: 39, text: "What about " + sc.n("missy") + "!", callback: "" }
@@ -696,7 +698,7 @@ room954.chat = function (chatID) {
         },
         {
             chatID: 40,
-            speaker: "daria",
+            speaker: "daria", l10nValues: { bodhi: sc.n("bodhi") },
             text: "They already have her and if we don't act fast they'll have us too! " + sc.n("bodhi") + " help me knock " +
                 "this over!",
             button: [
@@ -705,7 +707,7 @@ room954.chat = function (chatID) {
         },
         {
             chatID: 41,
-            speaker: "daria",
+            speaker: "daria", l10nValues: { missy: sc.n("missy") },
             text: "Oh wow! That did it! There's no way they're getting through that. ",
             button: [
                 { chatID: 42, text: "I'm so sorry " + sc.n("missy") + ". ", callback: "" }
@@ -737,7 +739,7 @@ room954.chat = function (chatID) {
         },
         {
             chatID: 45,
-            speaker: "me",
+            speaker: "me", l10nValues: { missy: sc.n("missy"), daria: sc.n("daria") },
             text: "We've got to get " + sc.n("missy") + " out of there. We'll get dressed, get some weapons and get her out of there. " +
                 "We have to! She came back to save us and we're not going to leave her there! " + sc.n("daria") +
                 " do you know the way to get into the compound? ",
@@ -767,7 +769,7 @@ room954.chat = function (chatID) {
         },
         {
             chatID: 48,
-            speaker: "daria",
+            speaker: "daria", l10nValues: { missy: sc.n("missy") },
             text: "There isn't! If we go back there we'll end up dead. It's suicide. You need to just tell the cops and let them handle " +
                 "it. This is too big for you, or us. ",
             button: [
@@ -776,7 +778,7 @@ room954.chat = function (chatID) {
         },
         {
             chatID: 49,
-            speaker: "bodhi",
+            speaker: "bodhi", l10nValues: { daria: sc.n("daria") },
             text: "I'm with " + sc.n("daria") + ". That place is totally nuts and I really don't want to die. We need to get out of " +
                 "this town; pronto. You're welcome to come with us. I feel terrible, but there's nothing we can do. ",
             button: [
@@ -785,7 +787,7 @@ room954.chat = function (chatID) {
         },
         {
             chatID: 50,
-            speaker: "daria",
+            speaker: "daria", l10nValues: { missy: sc.n("missy") },
             text: "Yes. We're leaving, and you should too. I'm really sorry about that " + sc.n("missy") + " girl, but she's probably " +
                 "already dead and we're not going to walk to our certain deaths too. ",
             button: [
@@ -794,7 +796,7 @@ room954.chat = function (chatID) {
         },
         {
             chatID: 51,
-            speaker: "daria",
+            speaker: "daria", l10nValues: { bodhi: sc.n("bodhi") },
             text: "No. We're leaving and you should too. C'mon " + sc.n("bodhi") + ". ",
             button: [
                 { chatID: 52, text: "...", callback: "t28" }
@@ -802,7 +804,7 @@ room954.chat = function (chatID) {
         },
         {
             chatID: 52,
-            speaker: "thinking",
+            speaker: "thinking", l10nValues: { missy: sc.n("missy"), landlord: sc.n("landlord"), el: sc.n("el"), p: sc.n("p") },
             text: "Fuck those two assholes! I'm not going to just leave " + sc.n("missy") + " there. What should I do. I don't " +
                 "think " + sc.n("landlord") + " or my " + sc.n("el") + " could help. I can't think of anyone that can. Maybe " +
                 sc.n("p") + " can, but I don't know how to reach her so late and I can't wait till morning. I have to go to the cops. " +
@@ -845,7 +847,7 @@ room954.chat = function (chatID) {
         },
         {
             chatID: 57,
-            speaker: "cop2",
+            speaker: "cop2", l10nValues: { wyatt: sc.n("wyatt") },
             text: "Agent " + sc.n("wyatt") + " why don't we step aside really quick. Just a second kid. Wait here. ",
             button: [
                 { chatID: 58, text: "What! ", callback: "t30" }
@@ -887,7 +889,7 @@ room954.chat = function (chatID) {
         },
         {
             chatID: 62,
-            speaker: "cop2",
+            speaker: "cop2", l10nValues: { missy: sc.n("missy") },
             text: "I don't think you really understand how the real world works. Maybe you've played too many video games. You come " +
                 "into my station, naked, and demand we storm the compound saying " + sc.n("missy") + " is trapped in there. Now I've " +
                 "dealt with her a few times with her crazy conspiracies with the cult. Just because they worship some strange shit " +
@@ -918,7 +920,7 @@ room954.chat = function (chatID) {
         },
         {
             chatID: 65,
-            speaker: "thinking",
+            speaker: "thinking", l10nValues: { p: sc.n("p"), cecilia: sc.n("cecilia") },
             text: "I don't trust that stupid cop. He won't do anything. I need help. Maybe " + sc.n("p") + " or " + sc.n("cecilia") +
                 " know something that can help. I'll have to catch them at the detective agency in the morning and get them to help. ",
             button: [
@@ -952,7 +954,7 @@ room954.chat = function (chatID) {
         },
         {
             chatID: 69,
-            speaker: "ubel",
+            speaker: "ubel", l10nValues: { daria: sc.n("daria") },
             text: "*tsk* *tsk* " + sc.n("daria") + ". Your father will be very unhappy with this turn of " +
                 "events. Did you really think you could just walk out of here and no one would know? I " +
                 "know everything that happens here, I just wasn't sure if you all were stupid enough to " +
@@ -983,8 +985,8 @@ room954.chat = function (chatID) {
         },
         {
             chatID: 72,
-            speaker: "daria",
-            text: "I'm so sorry! Please don't kill us, I'll do anything to be able to see Bodhi again. " +
+            speaker: "daria", l10nValues: { bodhi: sc.n("bodhi") },
+            text: "I'm so sorry! Please don't kill us, I'll do anything to be able to see " + sc.n("bodhi") + " again. " +
                 "We won't try to break out ever again. I promise! ",
             button: [
                 { chatID: 73, text: "Please. We want to live.", callback: "" }
@@ -1000,8 +1002,8 @@ room954.chat = function (chatID) {
         },
         {
             chatID: 74,
-            speaker: "thinking",
-            text: "There's no way I can get Missy out on my own. I really do need the help of the cops. ",
+            speaker: "thinking", l10nValues: { missy: sc.n("missy") },
+            text: "There's no way I can get " + sc.n("missy") + " out on my own. I really do need the help of the cops. ",
             button: [
                 { chatID: 53, text: "Go to the police. ", callback: "t29" }
             ]
@@ -1058,9 +1060,9 @@ room954.chat = function (chatID) {
         },
         {
             chatID: 81,
-            speaker: "thinking",
+            speaker: "thinking", l10nValues: { martin: sc.n("!martin"), missy: sc.n("missy") },
             text: "At least we got away. I guess " + sc.n("!martin") + " will always probably hate me. " +
-                "Too late for that. I've got to get Missy free. I can't do this alone. I should go " +
+                "Too late for that. I've got to get " + sc.n("missy") + " free. I can't do this alone. I should go " +
                 "straight to the police and see if they'll help me out. ",
             button: [
                 { chatID: 53, text: "Go to the police. ", callback: "t29" }

@@ -321,18 +321,18 @@ room585.chat = function (chatID) {
             return {
                 chatID: 900,
                 speaker: "liam",
-                text: "So did you bring the " + animal + "?",
+                text: "So did you bring the " + animal + "?", l10nValues: { animal: l10n.t("room.585.gift.animal." + animal, animal) },
                 button: [
-                    { chatID: 901, text: "Sure did. Here. Go get her!", callback: "" },
-                    { chatID: -1, text: "[Lie] Nope. Haven't got it yet. ", callback: "" },
+                    { chatID: 901, text: "Sure did. Here. Go get her!", l10nKey: "room.585.gift.have", callback: "" },
+                    { chatID: -1, text: "[Lie] Nope. Haven't got it yet. ", l10nKey: "room.585.gift.lie", callback: "" },
                 ]
             };
         return {
             chatID: 900,
             speaker: "liam",
-            text: "So did you bring the " + animal + "?",
+            text: "So did you bring the " + animal + "?", l10nValues: { animal: l10n.t("room.585.gift.animal." + animal, animal) },
             button: [
-                { chatID: -1, text: "Nope. Haven't been to the mall to get it yet. ", callback: "" },
+                { chatID: -1, text: "Nope. Haven't been to the mall to get it yet. ", l10nKey: "room.585.gift.missing", callback: "" },
             ]
         };
     }
@@ -402,9 +402,9 @@ room585.chat = function (chatID) {
             return {
                 chatID: 903,
                 speaker: "liam",
-                text: txt903,
+                text: txt903, l10nKey: jsuc && asuc ? "room.585.gift.both" : jsuc ? "room.585.gift.biology" : "room.585.gift.turtle",
                 button: [
-                    { chatID: -1, text: "Sweet thanks! ", callback: "reset" }
+                    { chatID: -1, text: "Sweet thanks! ", l10nKey: "room.585.gift.success.choice", callback: "reset" }
                 ]
             };
         }
@@ -413,9 +413,9 @@ room585.chat = function (chatID) {
             chatID: 903,
             speaker: "liam",
             text: "I totally looked like an ass! She's a marine biology student and her favorite " +
-                "animal is the seal! I was so embarrassed. I don't think I'll ever talk to her again. ",
+                "animal is the seal! I was so embarrassed. I don't think I'll ever talk to her again. ", l10nKey: "room.585.gift.fail",
             button: [
-                { chatID: -1, text: "Awww, dude, I'm so sorry. ", callback: "reset" }
+                { chatID: -1, text: "Awww, dude, I'm so sorry. ", l10nKey: "room.585.gift.fail.choice", callback: "reset" }
             ]
         };
     }
@@ -440,10 +440,10 @@ room585.chat = function (chatID) {
             chatID: 2,
             speaker: "eva",
             text: "Hahaha yeah! Later though, I just got here! " + sc.n("me") + " this " +
-                "is Liam and Doofus's house. They let us party here. Don't worry if " +
+                "is " + sc.n("liam") + " and " + sc.n("!doofus") + "'s house. They let us party here. Don't worry if " +
                 "you spill a drink, I don't think these floors have been cleaned since " +
                 "they got here. There's only one house rule, and that's if you hurl, " +
-                "hurl outside or in the toilet. ",
+                "hurl outside or in the toilet. ", l10nValues: { me: sc.n("me"), liam: sc.n("liam"), doofus: sc.n("!doofus") },
             button: [
                 { chatID: 3, text: "I can do that", callback: "" }
             ]
@@ -475,7 +475,7 @@ room585.chat = function (chatID) {
         {
             chatID: 6,
             speaker: "me",
-            text: "Hi Utah! Looking good in that shirt. ",
+            text: "Hi " + sc.n("utah") + "! Looking good in that shirt. ", l10nValues: { utah: sc.n("utah") },
             button: [
                 { chatID: 7, text: "...", callback: "" }
             ]
@@ -544,7 +544,7 @@ room585.chat = function (chatID) {
         {
             chatID: 14,
             speaker: "thinking",
-            text: "I really don't feel confident enough to hit on Utah",
+            text: "I really don't feel confident enough to hit on " + sc.n("utah"), l10nValues: { utah: sc.n("utah") },
             button: [
                 { chatID: -1, text: "[Unlock Confidence in the sissy menu]", callback: "" },
             ]
@@ -552,8 +552,8 @@ room585.chat = function (chatID) {
         {
             chatID: 15,
             speaker: "sporty",
-            text: "Hey! Just chatting with my old friend Doofus here. He knew me " +
-                "back before.. you know. ",
+            text: "Hey! Just chatting with my old friend " + sc.n("!doofus") + " here. He knew me " +
+                "back before.. you know. ", l10nValues: { doofus: sc.n("!doofus") },
             button: [
                 { chatID: 16, text: "Oh nice", callback: "" },
             ]
@@ -633,7 +633,7 @@ room585.chat = function (chatID) {
             chatID: 24,
             speaker: "me",
             text: "No! I'm not your bitch! I'm a strong independent " + gender.pronoun("girl") + "! " +
-                "You are the bitches! I'm never coming back! ",
+                "You are the bitches! I'm never coming back! ", l10nValues: { girl: gender.pronoun("girl") },
             button: [
                 { chatID: -1, text: "[Leave on your own accord]", callback: "evaFail8" },
             ]
@@ -643,7 +643,7 @@ room585.chat = function (chatID) {
             speaker: "thinking",
             text: "Why now. I was happily moving between the groups and enjoying myself, and " +
                 sc.n("eva") + " has to ruin that. If she does what I think she's going to do then " +
-                "no one here will ever see me more than her party favor. *sigh*",
+                "no one here will ever see me more than her party favor. *sigh*", l10nValues: { eva: sc.n("eva") },
             button: [
                 { chatID: 26, text: "[Lost your dignity and bark for her]", callback: "eva1" },
                 { chatID: 24, text: "[Stand up for yourself]", callback: "" },
@@ -751,7 +751,7 @@ room585.chat = function (chatID) {
             chatID: 37,
             speaker: "thinking",
             text: "What? Do they hate me? They're all laughing at me. I just did what " +
-                sc.n("eva") + " said to do. Why do they seem disgusted?",
+                sc.n("eva") + " said to do. Why do they seem disgusted?", l10nValues: { eva: sc.n("eva") },
             button: [
                 { chatID: 38, text: "...", callback: "eva10" },
             ]
@@ -786,7 +786,7 @@ room585.chat = function (chatID) {
         {
             chatID: 41,
             speaker: "liam",
-            text: "Belle. She always comes to my party, but ends up chatting with every guy but me. ",
+            text: sc.n("!belle") + ". She always comes to my party, but ends up chatting with every guy but me. ", l10nValues: { belle: sc.n("!belle") },
             button: [
                 { chatID: 42, text: "Have you tried talking to her. ", callback: "" },
             ]
@@ -918,7 +918,7 @@ room585.chat = function (chatID) {
         {
             chatID: 56,
             speaker: "liam",
-            text: "Looks like Belle left. I'll try talking to her next time. ",
+            text: "Looks like " + sc.n("!belle") + " left. I'll try talking to her next time. ", l10nValues: { belle: sc.n("!belle") },
             button: [
                 { chatID: -1, text: "Yeah.", callback: "" }
             ]

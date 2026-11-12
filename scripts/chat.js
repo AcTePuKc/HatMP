@@ -3,6 +3,102 @@
 privateChat.skipTimer = null;
 privateChat.currentEntry = null;
 
+// Zoe's French is part of her voice. These translations are independent of the glossary.
+privateChat.frenchPhrases = [
+    [/Elle s['’]excuse auprès de ma chatte/gi, 'excuse', 'She is apologizing to my pussy'],
+    [/quand une personne est ivre, elle a la langue bien pendue/gi, 'drunk', 'When someone is drunk, their tongue loosens'],
+    [/merci de nous faire plaisir/gi, 'pleasure', 'Thank you for giving us pleasure'],
+    [/Ma maison est ta maison/gi, 'house', 'My home is your home'],
+    [/ma foufoune/gi, 'myPussy', 'my pussy'],
+    [/une zouz/gi, 'girl', 'a girl'],
+    [/Oh là là/gi, 'ohLaLa', 'Oh my'],
+    [/Mon dieu/gi, 'myGod', 'My God'],
+    [/Au revoir/gi, 'goodbye', 'Goodbye'],
+    [/Bonjour/gi, 'hello', 'Hello'],
+    [/Arrête/gi, 'stop', 'Stop'],
+    [/Merci/gi, 'thanks', 'Thank you'],
+    [/\bfoufoune\b/gi, 'pussy', 'pussy'],
+    [/\bfini\b/gi, 'finished', 'finished'],
+    [/\boui\b/gi, 'yes', 'yes']
+];
+
+privateChat.addFrenchTranslations = function (entry, roomID) {
+    if (String(entry.speaker).toLowerCase() !== 'zoey' || [500, 501, 502, 526].indexOf(Number(roomID)) === -1) return;
+    var root = document.getElementById('room_footerSpeach');
+    var walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT);
+    var nodes = [], node;
+    while ((node = walker.nextNode())) nodes.push(node);
+    nodes.forEach(function (textNode) {
+        var text = textNode.nodeValue, matches = [];
+        privateChat.frenchPhrases.forEach(function (phrase) {
+            phrase[0].lastIndex = 0;
+            var match;
+            while ((match = phrase[0].exec(text))) matches.push({ start: match.index, end: match.index + match[0].length, phrase: phrase });
+        });
+        matches.sort(function (a, b) { return a.start - b.start || b.end - a.end; });
+        if (!matches.length) return;
+        var fragment = document.createDocumentFragment(), offset = 0;
+        matches.forEach(function (match) {
+            if (match.start < offset) return;
+            fragment.appendChild(document.createTextNode(text.slice(offset, match.start)));
+            var button = document.createElement('button');
+            button.type = 'button';
+            button.className = 'french-phrase';
+            button.lang = 'fr';
+            button.textContent = text.slice(match.start, match.end);
+            button.setAttribute('aria-expanded', 'false');
+            button.dataset.translation = l10n.t('french.' + match.phrase[1], match.phrase[2]);
+            fragment.appendChild(button);
+            offset = match.end;
+        });
+        fragment.appendChild(document.createTextNode(text.slice(offset)));
+        textNode.replaceWith(fragment);
+    });
+};
+
+privateChat.closeFrenchTranslation = function () {
+    $('.french-phrase[aria-expanded="true"]').attr('aria-expanded', 'false').removeAttr('aria-describedby');
+    $('.french-translation').remove();
+};
+
+privateChat.showFrenchTranslation = function (button) {
+    privateChat.closeFrenchTranslation();
+    $('.french-phrase').not(button).data('pinned', false);
+    var tip = document.createElement('span');
+    tip.className = 'french-translation';
+    tip.id = 'french-translation-current';
+    tip.setAttribute('role', 'tooltip');
+    tip.lang = l10n.getLanguage();
+    tip.textContent = button.dataset.translation;
+    button.after(tip);
+    button.setAttribute('aria-expanded', 'true');
+    button.setAttribute('aria-describedby', tip.id);
+};
+
+$(document).on('mouseenter focusin', '.french-phrase', function () {
+    if (this.getAttribute('aria-expanded') !== 'true') privateChat.showFrenchTranslation(this);
+}).on('mouseleave focusout', '.french-phrase', function () {
+    if (!$(this).data('pinned') && !$(this).is(':focus') && !$(this).is(':hover')) privateChat.closeFrenchTranslation();
+}).on('click', '.french-phrase', function (event) {
+    event.stopPropagation();
+    var pinned = !$(this).data('pinned');
+    $('.french-phrase').data('pinned', false);
+    $(this).data('pinned', pinned);
+    if (pinned) { privateChat.stopSkipping(); privateChat.showFrenchTranslation(this); }
+    else privateChat.closeFrenchTranslation();
+}).on('click', function (event) {
+    if (!$(event.target).closest('.french-phrase, .french-translation').length) {
+        $('.french-phrase').data('pinned', false);
+        privateChat.closeFrenchTranslation();
+    }
+}).on('keydown', '.french-phrase', function (event) {
+    if (event.key === 'Escape') {
+        $(this).data('pinned', false);
+        privateChat.closeFrenchTranslation();
+        event.stopPropagation();
+    }
+});
+
 privateChat.stopSkipping = function () {
     clearTimeout(privateChat.skipTimer);
     privateChat.skipTimer = null;
@@ -154,6 +250,7 @@ privateChat.makeChat = function (entry, chatID, roomID, record) {
         privateChat.updateSkipButton(counter);
         if (typeof dialogue !== "undefined") dialogue.onEntry(entry, thisSpeaker, record);
         else $('.room-chatBox').scrollTop(0);
+        privateChat.addFrenchTranslations(entry, roomID);
     }
     else {
         g.error("chat", "chatID:" + chatID + " roomID: " + roomID);
@@ -185,7 +282,7 @@ privateChat.speakerInfo = function (charName) {
         var getTrivial = sc.trivial(charName);
         return {
             img: "./images/speaker/trivial/" + getTrivial.image,
-            name: getTrivial.display
+            name: sc.n(charName)
         };
     }
     else if (charName[0] === "*") {

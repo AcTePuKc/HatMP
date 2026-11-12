@@ -250,7 +250,7 @@ room125.btnclick = function (name) {
                 top: 100,
                 font: 50,
                 hex: "#ffffff",
-                text: "Pot $" + g.pass.pot
+                text: l10n.t("room.125.poker.pot", "Pot ${amount}", { amount: g.pass.pot })
             }, 125);
             chat(999, 125);
             break;
@@ -293,7 +293,7 @@ room125.btnclick = function (name) {
                 top: 100,
                 font: 50,
                 hex: "#ffffff",
-                text: "Pot $" + g.pass.pot
+                text: l10n.t("room.125.poker.pot", "Pot ${amount}", { amount: g.pass.pot })
             }, 125);
             invoker.invokeCurrent("btnclick", "winner");
             break;
@@ -331,7 +331,7 @@ room125.btnclick = function (name) {
                         top: ca[i].ct - 50,
                         font: 50,
                         hex: i === 0 ? "#ffffff" : "#000000",
-                        text: "Total: " + g.internal[i].t
+                        text: l10n.t("room.125.poker.total", "Total: {total}", { total: g.internal[i].t })
                     }, 125);
                     if (g.internal[i].t > winningTotal)
                         winningTotal = g.internal[i].t;
@@ -608,7 +608,7 @@ room125.chatcatch = function (callback) {
                     top: 100,
                     font: 50,
                     hex: "#ffffff",
-                    text: "Pot $4"
+                    text: l10n.t("room.125.poker.pot", "Pot ${amount}", { amount: g.pass.pot })
                 }, 125);
 
                 nav.button({
@@ -676,7 +676,7 @@ room125.chatcatch = function (callback) {
                     top: 1020,
                     font: 50,
                     hex: "#ffffff",
-                    text: "Total: " + g.internal[3].t
+                    text: l10n.t("room.125.poker.total", "Total: {total}", { total: g.internal[3].t })
                 }, 125);
                 nav.next("theirTurn");
             }

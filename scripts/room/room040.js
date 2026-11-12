@@ -91,6 +91,7 @@ room40.chatcatch = function (callback) {
                 "width": 385,
                 "height": 149,
                 "title": "Rat trap",
+                "titleKey": "room.40.hover.ratTrap",
                 "image": "40_garage/rat.png"
             }, 40);
             break;

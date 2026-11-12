@@ -227,9 +227,9 @@ room956.chat = function (chatID) {
         },
         {
             chatID: 11,
-            speaker: "dr",
+            speaker: "dr", l10nValues: { ubel: sc.n("ubel") },
             text: "*ugh* Surrounded by idiots. That's your uterus. Schrödinger cat confirmed! You will make " +
-                "a fine specimen for my experiment. That is when the time is right. I'll let Ubel know right away. " +
+                "a fine specimen for my experiment. That is when the time is right. I'll let " + sc.n("ubel") + " know right away. " +
                 "I would hate for him to throw you away. I have so many missing specimens. You do have one of the " +
                 "most pronounced uteri I've seen and will make a great test for my improved experiment. I'm so excited! ",
             button: [
@@ -238,9 +238,9 @@ room956.chat = function (chatID) {
         },
         {
             chatID: 12,
-            speaker: "dr",
+            speaker: "dr", l10nValues: { ubel: sc.n("ubel") },
             text: "Cult person. I'm done with this one. You can return *her* to *her* cell. hehe. I'll go let " +
-                "Ubel know that we have another candidate! ",
+                sc.n("ubel") + " know that we have another candidate! ",
             button: [
                 { chatID: -1, text: "...", callback: "leave" }
             ]
@@ -339,7 +339,7 @@ room956.chat = function (chatID) {
         },
         {
             chatID: 24,
-            speaker: "dr",
+            speaker: "dr", l10nValues: { doctor: sc.n("dr") },
             text: "This newest specimen is the finest of the hidden uterus I've ever had! I mean really, " +
                 "it's amazing her penis even existed. Mother nature made a mistake with this one, but I " +
                 sc.n("dr") + " have fixed her mistake! ",
@@ -375,8 +375,8 @@ room956.chat = function (chatID) {
             ]
         },
         {
-            chatID: 29,
-            speaker: "missy",
+            chatID: 28,
+            speaker: "missy", l10nValues: { doctor: sc.n("dr") },
             text: "Ooooo. Wow. As much as I hate " + sc.n("dr") + " and his forced penectomies, he really did " +
                 "some amazing work! I mean wow! Your vagina is so much prettier than mine! I want so much to " +
                 "play with it! Wow! ",
@@ -385,7 +385,7 @@ room956.chat = function (chatID) {
             ]
         },
         {
-            chatID: 30,
+            chatID: 29,
             speaker: "missy",
             text: "*hrumph* We don't really have time right now! We have to go! On your feet. I know a way. Let's get " +
                 "out of here! ",
@@ -443,8 +443,8 @@ room956.chat = function (chatID) {
         },
         {
             chatID: 35,
-            speaker: "ubel",
-            text: "Not only are you the chosen one, but you have gifted me a new pet. Missy will make an " +
+            speaker: "ubel", l10nValues: { missy: sc.n("missy") },
+            text: "Not only are you the chosen one, but you have gifted me a new pet. " + sc.n("missy") + " will make an " +
                 "excelling doggy to serve us all as we bring about the coming of Azrael! Come let us " +
                 "join the masses and bring about the new age! ",
             button: [

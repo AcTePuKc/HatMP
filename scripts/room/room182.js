@@ -348,7 +348,7 @@ room182.chatcatch = function (callback) {
                 top: 50,
                 font: 40,
                 hex: "#ffffff",
-                text: "Energy"
+                text: l10n.t("stats.label.energy", "Energy")
             }, 1);
             var line = '<div id="room182_energy" class=" resize-height" style="position:absolute; width:' + (1320 * g.ratio) + 'px; height:' + (20 * g.ratio) + 'px; top:' + (100 * g.ratio) + 'px; left:' + (300 * g.ratio) + 'px; background:#333;">' +
                 '<div id="room182_energy_line" style="background: #20C000; border-radius: 20px; width:100%; height: 100%;" class="resize-height rl-bar"></div>' +

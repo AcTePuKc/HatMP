@@ -424,13 +424,14 @@ room502.chatcatch = function (callback) {
 
 room502.chat = function (chatID) {
     var cArray;
-    if (chatID === 999)
-        return {
-            chatID: 11,
-            speaker: "me",
-            text: g.pass,
-            button: []
-        };
+    if (chatID === 999) {
+        var match = String(g.pass).match(/^I'm missing my (.*?)\. I need to get dressed before I go out\. ?$/);
+        if (!match)
+            return { chatID: 11, speaker: "me", text: g.pass, l10nIgnore: true, button: [] };
+        var missing = match[1].replace(/<[^>]*>/g, "").trim();
+        var keys = { "shirt": "room.316.missing.shirt", "pants": "room.316.missing.pants", "shirt and pants": "room.316.missing.shirtAndPants", "underwear": "room.316.missing.underwear", "boy's underwear": "room.316.missing.boysUnderwear", "Can't wear a bra": "room.316.missing.bra", "bra": "room.316.missing.bra" };
+        return { chatID: 11, speaker: "me", text: g.pass, l10nKey: "room.502.missing", l10nValues: { missing: keys[missing] ? l10n.t(keys[missing], missing) : missing }, button: [] };
+    }
     else {
         cArray = [
             {
@@ -438,11 +439,11 @@ room502.chat = function (chatID) {
                 speaker: "me",
                 text: "What to wear.",
                 button: [
-                    { chatID: -1, text: '<img src="./images/general/shirt.png" /> ' + cl.saveOutfit[0].name, callback: "o0" },
-                    { chatID: -1, text: '<img src="./images/general/shirt.png" /> ' + cl.saveOutfit[1].name, callback: "o1" },
-                    { chatID: -1, text: '<img src="./images/general/shirt.png" /> ' + cl.saveOutfit[2].name, callback: "o2" },
-                    { chatID: -1, text: '<img src="./images/general/shirt.png" /> ' + cl.saveOutfit[3].name, callback: "o3" },
-                    { chatID: -1, text: '<img src="./images/general/shirt.png" /> ' + cl.saveOutfit[4].name, callback: "o4" },
+                    { chatID: -1, l10nIgnore: true, text: '<img src="./images/general/shirt.png" /> ' + cl.saveOutfit[0].name, callback: "o0" },
+                    { chatID: -1, l10nIgnore: true, text: '<img src="./images/general/shirt.png" /> ' + cl.saveOutfit[1].name, callback: "o1" },
+                    { chatID: -1, l10nIgnore: true, text: '<img src="./images/general/shirt.png" /> ' + cl.saveOutfit[2].name, callback: "o2" },
+                    { chatID: -1, l10nIgnore: true, text: '<img src="./images/general/shirt.png" /> ' + cl.saveOutfit[3].name, callback: "o3" },
+                    { chatID: -1, l10nIgnore: true, text: '<img src="./images/general/shirt.png" /> ' + cl.saveOutfit[4].name, callback: "o4" },
                     { chatID: -1, text: "Get Up", callback: "o5" }
                 ]
             },
@@ -460,7 +461,7 @@ room502.chat = function (chatID) {
                 speaker: "me",
                 text: "Time to check what's in the bag.",
                 button: [
-                    { chatID: 3, text: "[Open Bag From " + sc.n("tiffany") + "]", callback: "newClothing" }
+                    { chatID: 3, text: "[Open Bag From " + sc.n("tiffany") + "]", l10nValues: { tiffany: sc.n("tiffany") }, callback: "newClothing" }
                 ]
             },
             {
@@ -533,7 +534,7 @@ room502.chat = function (chatID) {
                 speaker: "zoey",
                 text: "It is ok. I will leave you to get dressed. Imagine such a large penis under that tiny skirt! You are too cute.",
                 button: [
-                    { chatID: -1, text: "See ya " + sc.n("zoey"), callback: "zoeyLeave" }
+                    { chatID: -1, text: "See ya " + sc.n("zoey"), l10nValues: { zoey: sc.n("zoey") }, callback: "zoeyLeave" }
                 ]
             },
             {
@@ -541,7 +542,7 @@ room502.chat = function (chatID) {
                 speaker: "zoey",
                 text: "It is ok. I know you are shy, but you will look sexy in those clothes",
                 button: [
-                    { chatID: -1, text: "See ya " + sc.n("zoey"), callback: "zoeyLeave" }
+                    { chatID: -1, text: "See ya " + sc.n("zoey"), l10nValues: { zoey: sc.n("zoey") }, callback: "zoeyLeave" }
                 ]
             },
             {
@@ -556,7 +557,7 @@ room502.chat = function (chatID) {
                 chatID: 14,
                 speaker: "me",
                 text: "That came from the living room.... I guess I should check it out. Probably " +
-                    "just " + sc.n("zoey") + " throwing her controller at the TV again. ",
+                    "just " + sc.n("zoey") + " throwing her controller at the TV again. ", l10nValues: { zoey: sc.n("zoey") },
                 button: [
                     { chatID: -1, text: "[Check out noise]", callback: "zoeySex2" }
                 ]
@@ -574,7 +575,7 @@ room502.chat = function (chatID) {
                 speaker: "stormy",
                 text: "Fuck that was hot. I've never cum to an audience before. I'll have to " +
                     "get you to watch us again. " + sc.n("zoey") + " you can get your cuddles " +
-                    "from dish washer. " + gender.pronoun("he") + " looks cuddly. Laters! ",
+                    "from dish washer. " + gender.pronoun("he") + " looks cuddly. Laters! ", l10nValues: { zoey: sc.n("zoey"), subject: gender.pronoun("he") },
                 button: [
                     { chatID: 17, text: "Bye. ", callback: "zoeySex7" }
                 ]
@@ -602,237 +603,237 @@ room502.chat = function (chatID) {
             {
                 chatID: 14,
                 speaker: "zoey",
-                text: "c'est trop amusant! You are so dirty!",
+                text: "c'est trop amusant! You are so dirty!", l10nKey: "room.502.legacy.14.text",
                 button: [
-                    { chatID: 15, text: "Hmm?", callback: "single3" }
+                    { chatID: 15, text: "Hmm?", l10nKey: "room.502.legacy.14.choice.0", callback: "single3" }
                 ]
             },
             {
                 chatID: 15,
                 speaker: "zoey",
-                text: "You taste amazing! Je pourrais te manger toute la nuit!",
+                text: "You taste amazing! Je pourrais te manger toute la nuit!", l10nKey: "room.502.legacy.15.text",
                 button: [
-                    { chatID: 16, text: "....", callback: "" }
+                    { chatID: 16, text: "....", l10nKey: "room.502.legacy.15.choice.0", callback: "" }
                 ]
             },
             {
                 chatID: 16,
                 speaker: "stormy",
-                text: "HHhhmmmMMmmmm ",
+                text: "HHhhmmmMMmmmm ", l10nKey: "room.502.legacy.16.text",
                 button: [
-                    { chatID: 17, text: "...", callback: "single4" }
+                    { chatID: 17, text: "...", l10nKey: "room.502.legacy.16.choice.0", callback: "single4" }
                 ]
             },
             {
                 chatID: 17,
                 speaker: "stormy",
-                text: "Huh?",
+                text: "Huh?", l10nKey: "room.502.legacy.17.text",
                 button: [
-                    { chatID: 18, text: "Oh hi", callback: "single5" }
+                    { chatID: 18, text: "Oh hi", l10nKey: "room.502.legacy.17.choice.0", callback: "single5" }
                 ]
             },
             {
                 chatID: 18,
                 speaker: "zoey",
-                text: "Oh.." + sc.n("me") + " sorry we were so loud, we get carried away sometimes... This is my friend " + sc.n("stormy") + ".",
+                text: "Oh.." + sc.n("me") + " sorry we were so loud, we get carried away sometimes... This is my friend " + sc.n("stormy") + ".", l10nKey: "room.502.legacy.18.text", l10nValues: { me: sc.n("me"), stormy: sc.n("stormy") },
                 button: [
-                    { chatID: 19, text: "That's ok, Please continue..", callback: "single6" }
+                    { chatID: 19, text: "That's ok, Please continue..", l10nKey: "room.502.legacy.18.choice.0", callback: "single6" }
                 ]
             },
             {
                 chatID: 19,
                 speaker: "stormy",
-                text: "The pervy roommate I've heard so much about. " + sc.n("zoey") + " says you like to watch. So what do you think?",
+                text: "The pervy roommate I've heard so much about. " + sc.n("zoey") + " says you like to watch. So what do you think?", l10nKey: "room.502.legacy.19.text", l10nValues: { zoey: sc.n("zoey") },
                 button: [
-                    { chatID: 20, text: "I uhhh. what?", callback: "" }
+                    { chatID: 20, text: "I uhhh. what?", l10nKey: "room.502.legacy.19.choice.0", callback: "" }
                 ]
             },
             {
                 chatID: 20,
                 speaker: "zoey",
-                text: "Oh " + sc.n("stormy") + "! Tu as promis. You would not say anything if he caught us!",
+                text: "Oh " + sc.n("stormy") + "! Tu as promis. You would not say anything if he caught us!", l10nKey: "room.502.legacy.20.text", l10nValues: { stormy: sc.n("stormy") },
                 button: [
-                    { chatID: 21, text: "Wait, what did you tell her? You are the one that's always naked!", callback: "" }
+                    { chatID: 21, text: "Wait, what did you tell her? You are the one that's always naked!", l10nKey: "room.502.legacy.20.choice.0", callback: "" }
                 ]
             },
             {
                 chatID: 21,
                 speaker: "zoey",
                 text: "Haha I know. Well, I think that's the end of our fun for the night. Au revoir " + sc.n("stormy") + ". Next time we'll " +
-                    "go to your house!",
+                    "go to your house!", l10nKey: "room.502.legacy.21.text", l10nValues: { stormy: sc.n("stormy") },
                 button: [
-                    { chatID: 22, text: "You don't have to leave.", callback: "single7" }
+                    { chatID: 22, text: "You don't have to leave.", l10nKey: "room.502.legacy.21.choice.0", callback: "single7" }
                 ]
             },
             {
                 chatID: 22,
                 speaker: "stormy",
                 text: "You are a perv! I love it! But I'm going to get going. I'm sure I'll see you again. " + sc.n("me") + ". " + sc.n("zoey") +
-                    " I'll see you again soon!",
+                    " I'll see you again soon!", l10nKey: "room.502.legacy.22.text", l10nValues: { me: sc.n("me"), zoey: sc.n("zoey") },
                 button: [
-                    { chatID: -1, text: "Bye " + sc.n("stormy") + " good night " + sc.n("zoey") + ".", callback: "singleReset" }
+                    { chatID: -1, text: "Bye " + sc.n("stormy") + " good night " + sc.n("zoey") + ".", l10nKey: "room.502.legacy.22.choice.0", l10nValues: { stormy: sc.n("stormy"), zoey: sc.n("zoey") }, callback: "singleReset" }
                 ]
             },
             {
                 chatID: 23,
                 speaker: "stormy",
-                text: "So, are you down?",
+                text: "So, are you down?", l10nKey: "room.502.legacy.23.text",
                 button: [
-                    { chatID: 24, text: "Down?", callback: "" }
+                    { chatID: 24, text: "Down?", l10nKey: "room.502.legacy.23.choice.0", callback: "" }
                 ]
             },
             {
                 chatID: 24,
                 speaker: "zoey",
-                text: "Mort de rire, hahaha. He is as you say, down. Pull down your pants and show her your appareil de chasteté. ",
+                text: "Mort de rire, hahaha. He is as you say, down. Pull down your pants and show her your appareil de chasteté. ", l10nKey: "room.502.legacy.24.text",
                 button: [
-                    { chatID: 25, text: "Sure", callback: "s2" }
+                    { chatID: 25, text: "Sure", l10nKey: "room.502.legacy.24.choice.0", callback: "s2" }
                 ]
             },
             {
                 chatID: 25,
                 speaker: "stormy",
                 text: "I'm so wet right now! I've always wanted my own cuck, and you are such a cute cuck! Ever since you caught us " +
-                    "I haven't been able to get it out of my mind. It's just so naughty! ",
+                    "I haven't been able to get it out of my mind. It's just so naughty! ", l10nKey: "room.502.legacy.25.text",
                 button: [
-                    { chatID: 26, text: "...", callback: "" }
+                    { chatID: 26, text: "...", l10nKey: "room.502.legacy.25.choice.0", callback: "" }
                 ]
             },
             {
                 chatID: 26,
                 speaker: "zoey",
-                text: "You have caught me twice now, so what is a third time? ",
+                text: "You have caught me twice now, so what is a third time? ", l10nKey: "room.502.legacy.26.text",
                 button: [
-                    { chatID: 27, text: "...", callback: "" }
+                    { chatID: 27, text: "...", l10nKey: "room.502.legacy.26.choice.0", callback: "" }
                 ]
             },
             {
                 chatID: 27,
                 speaker: "stormy",
-                text: "So, do you bring the handcuffs? ",
+                text: "So, do you bring the handcuffs? ", l10nKey: "room.502.legacy.27.text",
                 button: [
-                    { chatID: 28, text: "I did [Hand them over]", callback: "s3" }
+                    { chatID: 28, text: "I did [Hand them over]", l10nKey: "room.502.legacy.27.choice.0", callback: "s3" }
                 ]
             },
             {
                 chatID: 28,
                 speaker: "stormy",
-                text: "Come here my cuck!",
+                text: "Come here my cuck!", l10nKey: "room.502.legacy.28.text",
                 button: [
-                    { chatID: 29, text: "Huh!", callback: "s4" }
+                    { chatID: 29, text: "Huh!", l10nKey: "room.502.legacy.28.choice.0", callback: "s4" }
                 ]
             },
             {
                 chatID: 29,
                 speaker: "stormy",
-                text: "I'm going to lock you up so you don't try anything.",
+                text: "I'm going to lock you up so you don't try anything.", l10nKey: "room.502.legacy.29.text",
                 button: [
-                    { chatID: 30, text: "Ouch, that hurts", callback: "s5" }
+                    { chatID: 30, text: "Ouch, that hurts", l10nKey: "room.502.legacy.29.choice.0", callback: "s5" }
                 ]
             },
             {
                 chatID: 30,
                 speaker: "stormy",
-                text: "Sooo... What should we start with first?",
+                text: "Sooo... What should we start with first?", l10nKey: "room.502.legacy.30.text",
                 button: [
-                    { chatID: 31, text: "...", callback: "" }
+                    { chatID: 31, text: "...", l10nKey: "room.502.legacy.30.choice.0", callback: "" }
                 ]
             },
             {
                 chatID: 31,
                 speaker: "zoey",
-                text: "Tu sais ce que je veux.",
+                text: "Tu sais ce que je veux.", l10nKey: "room.502.legacy.31.text",
                 button: [
-                    { chatID: 32, text: "...", callback: "s6" }
+                    { chatID: 32, text: "...", l10nKey: "room.502.legacy.31.choice.0", callback: "s6" }
                 ]
             },
             {
                 chatID: 32,
                 speaker: "stormy",
-                text: "mmmMMMmmmmm slurp lick slobber",
+                text: "mmmMMMmmmmm slurp lick slobber", l10nKey: "room.502.legacy.32.text",
                 button: [
-                    { chatID: 33, text: "...", callback: "s7" }
+                    { chatID: 33, text: "...", l10nKey: "room.502.legacy.32.choice.0", callback: "s7" }
                 ]
             },
             {
                 chatID: 33,
                 speaker: "zoey",
-                text: "ooOOOOOoooo fuck yes!",
+                text: "ooOOOOOoooo fuck yes!", l10nKey: "room.502.legacy.33.text",
                 button: [
-                    { chatID: 34, text: "...", callback: "s8" }
+                    { chatID: 34, text: "...", l10nKey: "room.502.legacy.33.choice.0", callback: "s8" }
                 ]
             },
             {
                 chatID: 34,
                 speaker: "zoey",
-                text: "Nom nom nom",
+                text: "Nom nom nom", l10nKey: "room.502.legacy.34.text",
                 button: [
-                    { chatID: 35, text: "...", callback: "s9" }
+                    { chatID: 35, text: "...", l10nKey: "room.502.legacy.34.choice.0", callback: "s9" }
                 ]
             },
             {
                 chatID: 35,
                 speaker: "stormy",
-                text: "OOoooo yeah! You like what you see cuck!",
+                text: "OOoooo yeah! You like what you see cuck!", l10nKey: "room.502.legacy.35.text",
                 button: [
-                    { chatID: 36, text: "...", callback: "s10" }
+                    { chatID: 36, text: "...", l10nKey: "room.502.legacy.35.choice.0", callback: "s10" }
                 ]
             },
             {
                 chatID: 36,
                 speaker: "stormy",
-                text: "I love you way you lust after us. ",
+                text: "I love you way you lust after us. ", l10nKey: "room.502.legacy.36.text",
                 button: [
-                    { chatID: 37, text: "...", callback: "" }
+                    { chatID: 37, text: "...", l10nKey: "room.502.legacy.36.choice.0", callback: "" }
                 ]
             },
             {
                 chatID: 37,
                 speaker: "zoey",
-                text: "I want to do the soixante-neuf again. I love that so much",
+                text: "I want to do the soixante-neuf again. I love that so much", l10nKey: "room.502.legacy.37.text",
                 button: [
-                    { chatID: 38, text: "...", callback: "s11" }
+                    { chatID: 38, text: "...", l10nKey: "room.502.legacy.37.choice.0", callback: "s11" }
                 ]
             },
             {
                 chatID: 38,
                 speaker: "stormy",
-                text: "Oh fuck! Oh fuck, oh fuck, oh fuck. I'm going to cum again all over your face!",
+                text: "Oh fuck! Oh fuck, oh fuck, oh fuck. I'm going to cum again all over your face!", l10nKey: "room.502.legacy.38.text",
                 button: [
-                    { chatID: 39, text: "...", callback: "" }
+                    { chatID: 39, text: "...", l10nKey: "room.502.legacy.38.choice.0", callback: "" }
                 ]
             },
             {
                 chatID: 39,
                 speaker: "zoey",
-                text: "Oh ouiiii. Je viens aussi. ",
+                text: "Oh ouiiii. Je viens aussi. ", l10nKey: "room.502.legacy.39.text",
                 button: [
-                    { chatID: 40, text: "...", callback: "s12" }
+                    { chatID: 40, text: "...", l10nKey: "room.502.legacy.39.choice.0", callback: "s12" }
                 ]
             },
             {
                 chatID: 40,
                 speaker: "stormy",
                 text: "Does our little cuck want a taste? I'll be you do. You can smell the sex coming from my pussy can't you. " + 
-                    "just reach your tongue out and have a taste. ",
+                    "just reach your tongue out and have a taste. ", l10nKey: "room.502.legacy.40.text",
                 button: [
-                    { chatID: 41, text: "[Try to lick her pussy]", callback: "s13" }
+                    { chatID: 41, text: "[Try to lick her pussy]", l10nKey: "room.502.legacy.40.choice.0", callback: "s13" }
                 ]
             },
             {
                 chatID: 41,
                 speaker: "zoey",
-                text: "He has had enough. I'm going to free him. " + sc.n("me") + ", merci de nous faire plaisir. ",
+                text: "He has had enough. I'm going to free him. " + sc.n("me") + ", merci de nous faire plaisir. ", l10nKey: "room.502.legacy.41.text", l10nValues: { me: sc.n("me") },
                 button: [
-                    { chatID: 42, text: "Oh yeah, sure. ", callback: "" }
+                    { chatID: 42, text: "Oh yeah, sure. ", l10nKey: "room.502.legacy.41.choice.0", callback: "" }
                 ]
             },
             {
                 chatID: 42,
                 speaker: "zoey",
-                text: "I will return the favor, but it is late and I am tired now. Good night everyone. ",
+                text: "I will return the favor, but it is late and I am tired now. Good night everyone. ", l10nKey: "room.502.legacy.42.text",
                 button: [
-                    { chatID: -1, text: "Bonne nuit", callback: "s14" }
+                    { chatID: -1, text: "Bonne nuit", l10nKey: "room.502.legacy.42.choice.0", callback: "s14" }
                 ]
             },
         ];

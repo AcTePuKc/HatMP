@@ -20,6 +20,7 @@ Thumbs.db
 *.log
 node_modules/
 /tools/reports/
+/tools/tools/reports/
 dist/
 build/
 

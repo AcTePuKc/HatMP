@@ -125,11 +125,11 @@ room555.btnclick = function (name) {
             break;
         case "icon_g":
             nav.killall();
-            sc.select("icon_curls", "555_backgym/icon_curls.png", 0);
-            sc.select("icon_yoga", "555_backgym/icon_yoga.png", 1);
-            sc.select("icon_hipthruster", "555_backgym/icon_hipthruster.png", 2);
+            sc.selectLocalizedLabel("icon_curls", "555_backgym/icon_curls.png", 0, "room.555.select.curls", "Drippy Bicep Curls", "", { width: 430, fontSize: 27 });
+            sc.selectLocalizedLabel("icon_yoga", "555_backgym/icon_yoga.png", 1, "room.555.select.yoga", "Yoga", "", { width: 430, fontSize: 27 });
+            sc.selectLocalizedLabel("icon_hipthruster", "555_backgym/icon_hipthruster.png", 2, "room.555.select.hip", "Hip Thrusters", "", { width: 430, fontSize: 27 });
             if (missy.getenvelope("g").active) {
-                sc.select("icon_gcode", "555_backgym/icon_code.webp", 3);
+                sc.selectLocalizedLabel("icon_gcode", "555_backgym/icon_code.webp", 3, "room.555.select.code", "Ask about C.U.M.’s back door", "", { width: 430, fontSize: 27 });
                 sc.selectCancel("icon_back", 4);
             }
             else {
@@ -329,10 +329,10 @@ room555.btnclick = function (name) {
             break;
         case "icon_chad":
             nav.killall();
-            sc.select("icon_cockkiss", "555_backgym/icon_cockkiss.png", 0);
-            sc.select("icon_squat", "555_backgym/icon_cocksquat.png", 1);
+            sc.selectLocalizedLabel("icon_cockkiss", "555_backgym/icon_cockkiss.png", 0, "room.555.select.kiss", "Cock kisses", "", { width: 430, fontSize: 27 });
+            sc.selectLocalizedLabel("icon_squat", "555_backgym/icon_cocksquat.png", 1, "room.555.select.squat", "Cock squat", "", { width: 430, fontSize: 27 });
             if (missy.getenvelope("chad").active) {
-                sc.select("icon_chadcode", "555_backgym/icon_code.webp", 2);
+                sc.selectLocalizedLabel("icon_chadcode", "555_backgym/icon_code.webp", 2, "room.555.select.code", "Ask about C.U.M.’s back door", "", { width: 430, fontSize: 27 });
                 sc.selectCancel("icon_back", 3);
             }
             else {
@@ -417,12 +417,12 @@ room555.chatcatch = function (callback) {
             break;
         case "drawIcons":
             nav.killall();
-            sc.select("icon_chad", "555_backgym/icon_chad.png", 0);
+            sc.selectLocalizedLabel("icon_chad", "555_backgym/icon_chad.png", 0, "room.555.select.chad", "Personal Trainer", "", { width: 430, fontSize: 27 });
             if (!sc.getMissionTask("g", "mom", 2).startedOrComplete)
-                sc.select("icon_g", "555_backgym/icon_g.png", 1);
-            sc.select("icon_cardio", "555_backgym/icon_cardio.png", 2);
-            sc.select("icon_splits", "555_backgym/icon_splits.png", 3);
-            sc.select("icon_quad", "555_backgym/icon_quad.png", 4);
+                sc.selectLocalizedLabel("icon_g", "555_backgym/icon_g.png", 1, "room.555.select.g", "Personal Trainer", "", { width: 430, fontSize: 27 });
+            sc.selectLocalizedLabel("icon_cardio", "555_backgym/icon_cardio.png", 2, "room.555.select.cardio", "Cardio", "", { width: 430, fontSize: 27 });
+            sc.selectLocalizedLabel("icon_splits", "555_backgym/icon_splits.png", 3, "room.555.select.splits", "Splits", "", { width: 430, fontSize: 27 });
+            sc.selectLocalizedLabel("icon_quad", "555_backgym/icon_quad.png", 4, "room.555.select.quad", "Quad Stretch", "", { width: 430, fontSize: 27 });
             sc.selectCancel("icon_exit", 5);
             break;
         case "rows":
@@ -851,9 +851,9 @@ room555.chat = function (chatID) {
             return {
                 chatID: 0,
                 speaker: "g",
-                text: "No code for you girly arms. ",
+                text: "No code for you girly arms. ", l10nKey: "room.555.strength.low.text",
                 button: [
-                    { chatID: -1, text: "Damn. [Need a strength of 4 to get the code]", callback: "resetLeave" }
+                    { chatID: -1, text: "Damn. [Need a strength of 4 to get the code]", l10nKey: "room.555.strength.low.choice", callback: "resetLeave" }
                 ]
             };
 
@@ -869,7 +869,7 @@ room555.chat = function (chatID) {
             return {
                 chatID: 0,
                 speaker: "g",
-                text: "Damn! I'm proud to be your personal trainer! Good fuckin' job! ",
+                text: "Damn! I'm proud to be your personal trainer! Good fuckin' job! ", l10nKey: "room.555.strength.max.text",
                 button: [
                     { chatID: nextchat, text: "...", callback: "" }
                 ]
@@ -877,7 +877,7 @@ room555.chat = function (chatID) {
         return {
             chatID: 0,
             speaker: "g",
-            text: "Not bad. I'm better, but not bad.  ",
+            text: "Not bad. I'm better, but not bad.  ", l10nKey: "room.555.strength.pass.text",
             button: [
                 { chatID: nextchat, text: "...", callback: "" }
             ]
@@ -1160,7 +1160,7 @@ room555.chat = function (chatID) {
                 text: "Welcome to the secret back gym. " + sc.n("chad") + " and I built this because " +
                     "we needed a place for just the handsome and beautiful people can work out and not " +
                     "be around the gross ugly people. I've decided you're no longer a disgusting blob of human " +
-                    "so you're now invited to work out with the most beautiful people of Fetville. ",
+                    "so you're now invited to work out with the most beautiful people of Fetville. ", l10nValues: { chad: sc.n("chad") },
                 button: [
                     { chatID: 33, text: "Nice!", callback: "" },
                 ]
@@ -1341,7 +1341,7 @@ room555.chat = function (chatID) {
                 chatID: 53,
                 speaker: "chad",
                 text: "Alright " + gender.pronoun("faggot") + " sit up and kiss my superior cock. It's the closest to a " +
-                    "real man's cock you'll ever get. ",
+                    "real man's cock you'll ever get. ", l10nValues: { faggot: gender.pronoun("faggot") },
                 button: [
                     { chatID: 54, text: "[Situp]", callback: "" },
                 ]
@@ -1349,7 +1349,7 @@ room555.chat = function (chatID) {
             {
                 chatID: 54,
                 speaker: "chad",
-                text: "Good " + gender.pronoun("fag") + ". I can tell you really love the cock. Keep giving my cock more kisses. ",
+                text: "Good " + gender.pronoun("fag") + ". I can tell you really love the cock. Keep giving my cock more kisses. ", l10nValues: { fag: gender.pronoun("fag") },
                 button: [
                     { chatID: -1, text: "[Situp]", callback: "situp" },
                 ]
@@ -1366,7 +1366,7 @@ room555.chat = function (chatID) {
                 chatID: 56,
                 speaker: "chad",
                 text: "Ready to take my cock up your " + gender.pronoun("faggot") + " " + gender.pronoun("asshole") + "?" +
-                    "Now squat down you cock hungry slut! ",
+                    "Now squat down you cock hungry slut! ", l10nValues: { faggot: gender.pronoun("faggot"), asshole: gender.pronoun("asshole") },
                 button: [
                     { chatID: 57, text: "[Impale your ass on his cock]", callback: "squatDown" },
                 ]
@@ -1375,7 +1375,7 @@ room555.chat = function (chatID) {
                 chatID: 57,
                 speaker: "chad",
                 text: "Oh fuck you do have a tight fuck hole. Now get up and fuck yourself on my " +
-                    "superior cock " + gender.pronoun("faggot") + ". ",
+                    "superior cock " + gender.pronoun("faggot") + ". ", l10nValues: { faggot: gender.pronoun("faggot") },
                 button: [
                     { chatID: -1, text: "[Fuck yourself on his magnificent cock]", callback: "squatGo" },
                 ]
@@ -1402,7 +1402,7 @@ room555.chat = function (chatID) {
                 speaker: "me",
                 text: "So, uhh, " + sc.n("chad") + ". I uhh... wanted to visit a friend at that compound, but " +
                     "you know, they don't let me in the front door. So I was wondering, if uh, you would mind " +
-                    "helping me with the code so I can go in the back door and visit her really quick? ",
+                    "helping me with the code so I can go in the back door and visit her really quick? ", l10nValues: { chad: sc.n("chad") },
                 button: [
                     { chatID: 61, text: "...", callback: "" }
                 ]
@@ -1421,7 +1421,7 @@ room555.chat = function (chatID) {
                 chatID: 62,
                 speaker: "chad",
                 text: "heh. HEY EVERYBODY! Gather around, " + sc.n("me") + " is going to show everyone what a " +
-                    "giant loser " + gender.pronoun("she") + " is. ",
+                    "giant loser " + gender.pronoun("she") + " is. ", l10nValues: { me: sc.n("me"), she: gender.pronoun("she") },
                 button: [
                     { chatID: 63, text: "huh?", callback: "c0" },
                 ]
@@ -1430,7 +1430,7 @@ room555.chat = function (chatID) {
                 chatID: 63,
                 speaker: "chad",
                 text: "This bitch here thinks " + gender.pronoun("she") + " can break into the C.U.M. " +
-                    "compound and save " + gender.pronoun("her") + " little friend! ",
+                    "compound and save " + gender.pronoun("her") + " little friend! ", l10nValues: { she: gender.pronoun("she"), her: gender.pronoun("her") },
                 button: [
                     { chatID: 64, text: "...", callback: "c1" },
                 ]
@@ -1461,7 +1461,7 @@ room555.chat = function (chatID) {
                 speaker: "chad",
                 text: "Look at this bitch just slurping old cum off my dirty workout mat! I'll bet " +
                     gender.pronoun("she") + "'ll even lick an asshole. Who wants this loser to lick their " +
-                    "sweaty asshole? ",
+                    "sweaty asshole? ", l10nValues: { she: gender.pronoun("she") },
                 button: [
                     { chatID: 67, text: "*slurp* *lick*", callback: "c3" },
                 ]
@@ -1486,7 +1486,7 @@ room555.chat = function (chatID) {
                 chatID: 69,
                 speaker: "chad",
                 text: "I think " + gender.pronoun("her") + " other hole needs some love! Chet, show this freak " +
-                    "what " + gender.pronoun("she") + "'s good for! hahaha!",
+                    "what " + gender.pronoun("she") + "'s good for! hahaha!", l10nValues: { her: gender.pronoun("her"), she: gender.pronoun("she") },
                 button: [
                     { chatID: 70, text: "*licking* ?!?", callback: "c5" },
                 ]
@@ -1519,7 +1519,7 @@ room555.chat = function (chatID) {
                 chatID: 73,
                 speaker: "!girl",
                 text: "This fucking tease can't lick an asshole to save " + gender.pronoun("her") + " life! I'm going back to my work out. " + sc.n("chad") +
-                    " you can keep your loser. ",
+                    " you can keep your loser. ", l10nValues: { her: gender.pronoun("her"), chad: sc.n("chad") },
                 button: [
                     { chatID: -1, text: "*heavy panting* I can't help it. So big. ", callback: "c9" },
                 ]

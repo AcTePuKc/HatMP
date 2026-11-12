@@ -20,7 +20,8 @@ room904.btnclick = function (name) {
                     "width": 92,
                     "height": 161,
                     "image": "904_test/vib.png",
-                    "title": "Give her an orgasm"
+                    "title": "Give her an orgasm",
+                    "titleKey": "room.904.action.orgasm"
                 }, 904);
             }
             if (g.internal.s > 3)
@@ -87,7 +88,8 @@ room904.chatcatch = function (callback) {
                 "width": 92,
                 "height": 161,
                 "image": "904_test/vib.png",
-                "title": "Give her an orgasm"
+                "title": "Give her an orgasm",
+                "titleKey": "room.904.action.orgasm"
             }, 904);
             break;
         case "endNoButton":

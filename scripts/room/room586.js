@@ -238,14 +238,14 @@ room586.chat = function (chatID) {
             text: "Hey new girl! You shouldn't be drinking. Wouldn't want you hung over " +
                 "at practice tomorrow, or we'll kick your balls in! ",
             button: [
-                { chatID: -1, text: "*sigh* Yes Stacy", callback: "reset30" }
+                { chatID: -1, text: "*sigh* Yes " + sc.n("stacy"), l10nValues: { stacy: sc.n("stacy") }, callback: "reset30" }
             ]
         },
         {
             chatID: 5,
             speaker: "chuck",
-            text: "Heck of a party! There's so many people here I lost Stacy again. " +
-                "You haven't seen her have you?",
+            text: "Heck of a party! There's so many people here I lost " + sc.n("stacy") + " again. " +
+                "You haven't seen her have you?", l10nValues: { stacy: sc.n("stacy") },
             button: [
                 { chatID: 6, text: "Nope", callback: "" }
             ]
@@ -261,8 +261,8 @@ room586.chat = function (chatID) {
         {
             chatID: 7,
             speaker: "chuck",
-            text: "Heck of a party! There's so many people here I lost Stacy again. " +
-                "You haven't seen her have you?",
+            text: "Heck of a party! There's so many people here I lost " + sc.n("stacy") + " again. " +
+                "You haven't seen her have you?", l10nValues: { stacy: sc.n("stacy") },
             button: [
                 { chatID: 8, text: "I have. Can you keep a secret?", callback: "" },
                 { chatID: 6, text: "Nope", callback: "" }
@@ -287,8 +287,8 @@ room586.chat = function (chatID) {
         {
             chatID: 10,
             speaker: "me",
-            text: "*whispering* There's Stacy. Getting railed out by Utah. Happens all " +
-                "the time. ",
+            text: "*whispering* There's " + sc.n("stacy") + ". Getting railed out by " + sc.n("utah") + ". Happens all " +
+                "the time. ", l10nValues: { stacy: sc.n("stacy"), utah: sc.n("utah") },
             button: [
                 { chatID: 11, text: "...", callback: "" },
             ]
@@ -306,7 +306,7 @@ room586.chat = function (chatID) {
         {
             chatID: 12,
             speaker: "chuck",
-            text: "It's you again. You haven't seen Stacy...",
+            text: "It's you again. You haven't seen " + sc.n("stacy") + "...", l10nValues: { stacy: sc.n("stacy") },
             button: [
                 { chatID: 13, text: "*sigh* Yeah", callback: "" },
                 { chatID: 6, text: "Nope. ", callback: "" }
@@ -324,11 +324,11 @@ room586.chat = function (chatID) {
         {
             chatID: 14,
             speaker: "me",
-            text: "Look Chuck. I like you, but you have to stand up for yourself. " +
-                "Stacy doesn't love you, she's just using you for a ride so she can " +
-                "ride Utah's dick. It happens at cheer practice, it happens at parties, " +
+            text: "Look " + sc.n("chuck") + ". I like you, but you have to stand up for yourself. " +
+                sc.n("stacy") + " doesn't love you, she's just using you for a ride so she can " +
+                "ride " + sc.n("utah") + "'s dick. It happens at cheer practice, it happens at parties, " +
                 "it even happens after the game. You have to get over her and find someone " +
-                "that likes you for you. ",
+                "that likes you for you. ", l10nValues: { chuck: sc.n("chuck"), stacy: sc.n("stacy"), utah: sc.n("utah") },
             button: [
                 { chatID: 15, text: "...", callback: "" }
             ]
@@ -336,10 +336,10 @@ room586.chat = function (chatID) {
         {
             chatID: 15,
             speaker: "chuck",
-            text: "You're right! She is such a bitch! Always Chuck do this, or Chuck do that. " +
-                "It's never about what Chuck wants! Fuck! How could I be so stupid? She's in there " +
-                "getting fucked by that asshole Utah and I'm just standing out here ready to give " +
-                "her a ride home. I'm so stupid! ",
+            text: "You're right! She is such a bitch! Always " + sc.n("chuck") + " do this, or " + sc.n("chuck") + " do that. " +
+                "It's never about what " + sc.n("chuck") + " wants! Fuck! How could I be so stupid? She's in there " +
+                "getting fucked by that asshole " + sc.n("utah") + " and I'm just standing out here ready to give " +
+                "her a ride home. I'm so stupid! ", l10nValues: { chuck: sc.n("chuck"), utah: sc.n("utah") },
             button: [
                 { chatID: 16, text: "Hey, do you want to get back at her? ", callback: "" }
             ]
@@ -363,8 +363,8 @@ room586.chat = function (chatID) {
         {
             chatID: 18,
             speaker: "chuck",
-            text: "What are we doing in Doofus's room. Stacy told me the rooms are " +
-                "off limits. ",
+            text: "What are we doing in " + sc.n("!doofus") + "'s room. " + sc.n("stacy") + " told me the rooms are " +
+                "off limits. ", l10nValues: { doofus: sc.n("!doofus"), stacy: sc.n("stacy") },
             button: [
                 { chatID: 19, text: "They aren't. You're really uptight. Let me help you relax.", callback: "chuck_3" }
             ]
@@ -389,8 +389,8 @@ room586.chat = function (chatID) {
             chatID: 21,
             speaker: "thinking",
             text: "Dammit! He came too quickly! Next time I'll get him to fuck me " +
-                "and yell out his name really loud so Stacy can hear. Then I'll have my " +
-                "revenge! Hahahahahahah",
+                "and yell out his name really loud so " + sc.n("stacy") + " can hear. Then I'll have my " +
+                "revenge! Hahahahahahah", l10nValues: { stacy: sc.n("stacy") },
             button: [
                 { chatID: -1, text: "...", callback: "chuck_7_end" }
             ]
@@ -410,7 +410,7 @@ room586.chat = function (chatID) {
             speaker: "chuck",
             text: "Really? You don't think we can try again? I really want to lose my " +
                 "virginity, and I think you're the perfect girl to lose it to. Just don't " +
-                "tell Stacy. I don't want the drama, you know. ",
+                "tell " + sc.n("stacy") + ". I don't want the drama, you know. ", l10nValues: { stacy: sc.n("stacy") },
             button: [
                 { chatID: 24, text: "Yeah, sure. Our secret. Follow me. ", callback: "chuck_2" }
             ]

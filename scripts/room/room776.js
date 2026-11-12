@@ -68,9 +68,9 @@ room776.main = function () {
         }
     }
     else if (missy.getenvelope("priest").active) {
-        sc.select("icon_sneak", "776_church/icon_sneak.webp", 1);
+        sc.selectLocalizedLabel("icon_sneak", "776_church/icon_sneak.webp", 1, "room.776.select.sneak", "Clandestinely seek the code", "", { width: 430, fontSize: 25 });
     }
-    sc.select("pray", "776_church/pray.webp", 0);
+    sc.selectLocalizedLabel("pray", "776_church/pray.webp", 0, "room.776.select.pray", "Pray", "", { width: 430, fontSize: 25 });
     nav.buildnav([0]);
 };
 
@@ -125,9 +125,9 @@ room776.btnclick = function (name) {
         case "icon_sneak":
             nav.kill();
             nav.bg("776_church/hall.webp");
-            sc.select("icon_office", "776_church/icon_office.webp", 0);
-            sc.select("icon_basement", "776_church/icon_basement.webp", 1);
-            sc.select("icon_leave", "316_livingroom/icon_leave.png", 2);
+            sc.selectLocalizedLabel("icon_office", "776_church/icon_office.webp", 0, "room.776.select.office", "Check his office", "", { width: 430, fontSize: 25 });
+            sc.selectLocalizedLabel("icon_basement", "776_church/icon_basement.webp", 1, "room.776.select.basement", "Check the basement", "", { width: 430, fontSize: 25 });
+            sc.selectLocalizedLabel("icon_leave", "316_livingroom/icon_leave.png", 2, "room.776.select.leave", "Leave", "", { width: 430, fontSize: 25 });
             break;
         case "icon_leave":
             char.room(0);
@@ -349,6 +349,12 @@ room776.chatcatch = function (callback) {
         default:
             break;
     }
+};
+
+room776.fightChanceLabel = function () {
+    var result = quickFight.getStats(8, 100).winProb;
+    var keys = { "Even match": "even", "Little hard": "littleHard", "Little easy": "littleEasy", "Hard": "hard", "Easy": "easy", "Extremely Hard": "extremelyHard", "Extremely Easy": "extremelyEasy" };
+    return keys[result] ? l10n.t("room.487.fight." + keys[result], result) : result;
 };
 
 room776.chat = function (chatID) {
@@ -723,7 +729,7 @@ room776.chat = function (chatID) {
             chatID: 41,
             speaker: "priest",
             text: "She's here of her own volition. " + sc.n("nun") + ", tell this sinner that you wish to stay " +
-                "tell him you are where you belong. ",
+                "tell him you are where you belong. ", l10nValues: { nun: sc.n("nun") },
             button: [
                 { chatID: 42, text: "...", callback: "" },
             ]
@@ -740,10 +746,10 @@ room776.chat = function (chatID) {
             chatID: 43,
             speaker: "priest",
             text: "You have no business here. Now begone before I involve that simpleton, " + sc.n("ubel") +
-                ", and his squad of goons to take care of you! ",
+                ", and his squad of goons to take care of you! ", l10nValues: { ubel: sc.n("ubel") },
             button: [
                 { chatID: 44, text: "I will leave, but only if you tell me the code to the back door of C.U.M.", callback: "" },
-                { chatID: -1, text: "I'm not leaving her here with you! [Fight chance: " + quickFight.getStats(8, 100).winProb + "]", callback: "fight" },
+                { chatID: -1, text: "I'm not leaving her here with you! [Fight chance: " + quickFight.getStats(8, 100).winProb + "]", l10nValues: { chance: room776.fightChanceLabel() }, callback: "fight" },
             ]
         },
         {
@@ -775,7 +781,7 @@ room776.chat = function (chatID) {
             chatID: 47,
             speaker: "priest",
             text: "A fool to the last. Gentlemen, take the garbage out. " + gender.pronoun("he") + 
-                " is no longer welcome in this place of worship. ",
+                " is no longer welcome in this place of worship. ", l10nValues: { playerPronoun: gender.pronoun("he") },
             button: [
                 { chatID: -1, text: "Grrr! Someday you'll pay for all this!", callback: "nolongerwelcom" },
             ]
@@ -783,7 +789,7 @@ room776.chat = function (chatID) {
         {
             chatID: 48,
             speaker: "nun",
-            text: "Did.. Did you just punch out " + sc.n("priest") + "? ",
+            text: "Did.. Did you just punch out " + sc.n("priest") + "? ", l10nValues: { priest: sc.n("priest") },
             button: [
                 { chatID: 49, text: "Yes. I suppose I did.", callback: "" },
             ]
@@ -801,7 +807,7 @@ room776.chat = function (chatID) {
             speaker: "nun",
             text: sc.n("priest") + " said you did. You used the power of satan to trick and seduce me against " +
                 "my will. That's why I had to be punished. I have the power of satan over me and punishment " +
-                "is the only way to save my child. ",
+                "is the only way to save my child. ", l10nValues: { priest: sc.n("priest") },
             button: [
                 { chatID: 52, text: "Oh wow. Ok. How about this. Let me call the police. Hopefully they can help. [Call the police]", callback: "basement7" },
             ]
@@ -819,7 +825,7 @@ room776.chat = function (chatID) {
             speaker: "wyatt",
             text: "Thank you for the call. That poor nun is going to take years of therapy to get over " +
                 "the ghastly events that happened to her. Turns out " + sc.n("priest") + " was also helping C.U.M. out with " +
-                "some app. ",
+                "some app. ", l10nValues: { priest: sc.n("priest") },
             button: [
                 { chatID: 53, text: "Some app?", callback: "" },
             ]
@@ -848,7 +854,7 @@ room776.chat = function (chatID) {
             speaker: "river",
             text: "Well well well. Look who finally woke up. ",
             button: [
-                { chatID: 56, text: sc.n("river") + "!", callback: "" },
+                { chatID: 56, text: sc.n("river") + "!", l10nValues: { river: sc.n("river") }, callback: "" },
             ]
         },
         {
@@ -857,7 +863,7 @@ room776.chat = function (chatID) {
             text: "We were going to leave you alone until the heat died off, but not now. Can't have you " +
                 "messing with our friend " + sc.n("priest") + ". Let's take you back to your new home so " +
                 "we can all take turns on you then throw you in the swamps. " +
-                "I'm going to enjoy this more than you know. Hehehe",
+                "I'm going to enjoy this more than you know. Hehehe", l10nValues: { priest: sc.n("priest") },
             button: [
                 { chatID: -1, text: "...fuck", callback: "badend" },
             ]
@@ -866,7 +872,7 @@ room776.chat = function (chatID) {
             chatID: 57,
             speaker: "thinking",
             text: "Crap! That was scary. I need to avoid this place from now on. " + sc.n("priest") +
-                " now knows that I know all his secrets. ",
+                " now knows that I know all his secrets. ", l10nValues: { priest: sc.n("priest") },
             button: [
                 { chatID: -1, text: "[Leave]", callback: "nolongerwelcom" },
             ]
@@ -884,14 +890,14 @@ room776.chat = function (chatID) {
             speaker: "!butler",
             text: "*sigh* Can you two wrap this up. My boner pills won't last forever. ",
             button: [
-                { chatID: 60, text: "Oh. " + sc.n("priest") + " do you have the code for the back door to C.U.M.?", callback: "" },
+                { chatID: 60, text: "Oh. " + sc.n("priest") + " do you have the code for the back door to C.U.M.?", l10nValues: { priest: sc.n("priest") }, callback: "" },
             ]
         },
         {
             chatID: 60,
             speaker: "!rex",
             text: "You came here for some stupid code. " + sc.n("priest") + " just give 'em the code so " +
-                "we can have our fun!",
+                "we can have our fun!", l10nValues: { priest: sc.n("priest") },
             button: [
                 { chatID: -1, text: "...", callback: "orgycode" },
             ]

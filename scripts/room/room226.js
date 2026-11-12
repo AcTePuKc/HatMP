@@ -519,7 +519,8 @@ room226.btnclick = function (name) {
                         "width": 229,
                         "height": 80,
                         "image": "225_sewer/redbox.png",
-                        "title": "Red Box"
+                        "title": "Red Box",
+                        "titleKey": "room.226.hover.redBox"
                     }, 226);
                     chat(0, 226);
                 }

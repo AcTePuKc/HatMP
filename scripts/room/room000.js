@@ -34,7 +34,7 @@ room0.btnclick = function (name) {
     if (name === "money") {
         nav.killbutton("money");
         daily.set("foundmoney");
-        g.popUpNotice("You found money! ");
+        g.popUpNotice(l10n.t("room.0.money.found", "You found money! "));
         gv.mod("money", g.rand(10, 50));
     }
     else if (name === "moveChar") {

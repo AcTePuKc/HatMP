@@ -129,15 +129,15 @@ room800.btnclick = function (name) {
                 "image": "800_ralph/door.png",
                 "night": "800_ralph/door_night.png"
             }, 800);
-            sc.select("gift", "252_waitress/icon_gift.png", 0);
-            sc.select("chat", "252_waitress/icon_chat.png", 1);
-            sc.select("dick", "752_whore/whore_dick.png", 2);
+            sc.selectLocalizedLabel("gift", "252_waitress/icon_gift.png", 0, "room.800.select.gift", "Gift", "", { width: 430, fontSize: 25 });
+            sc.selectLocalizedLabel("chat", "252_waitress/icon_chat.png", 1, "room.800.select.chat", "Chat", "", { width: 430, fontSize: 25 });
+            sc.selectLocalizedLabel("dick", "752_whore/whore_dick.png", 2, "room.800.select.dick", "Take your dick out", "", { width: 430, fontSize: 25 });
             if (sc.getMissionTask("ralphsmom", "room", 4).complete && !daily.get("room800dad")) {
-                sc.select("sissy", "800_ralph/icon_middle.webp", 3);
-                sc.selectCancel("cancel", 4);
+                sc.selectLocalizedLabel("sissy", "800_ralph/icon_middle.webp", 3, "room.800.select.middle", "Sissy in the middle", "", { width: 430, fontSize: 25 });
+                sc.selectLocalizedLabel("cancel", "1001_rand/icon_cancel.png", 4, "room.800.select.cancel", "Cancel", "", { width: 430, fontSize: 25 });
             }
             else
-                sc.selectCancel("cancel", 3);
+                sc.selectLocalizedLabel("cancel", "1001_rand/icon_cancel.png", 3, "room.800.select.cancel", "Cancel", "", { width: 430, fontSize: 25 });
             break;
         case "wass":
             nav.killbutton("wass");
@@ -311,15 +311,15 @@ room800.btnclick = function (name) {
             for (let i = 0; i < tl.length; i++) {
                 if (tl[i].count > 0) {
                     switch (tl[i].name) {
-                        case "bouquet": sc.select("bouquet", "252_waitress/icon_bouquet.png", jl); jl++; break;
-                        case "roses": sc.select("roses", "252_waitress/icon_roses.png", jl); jl++; break;
-                        case "seal": sc.select("seal", "252_waitress/icon_seal.png", jl); jl++; break;
-                        case "mug": sc.select("mug", "252_waitress/icon_mug.png", jl); jl++; break;
-                        case "whoopee": sc.select("whoopee", "252_waitress/icon_whoopee.png", jl); jl++; break;
+                        case "bouquet": sc.selectLocalizedLabel("bouquet", "252_waitress/icon_bouquet.png", jl, "room.800.select.bouquet", "Bouquet", "", { width: 430, fontSize: 25 }); jl++; break;
+                        case "roses": sc.selectLocalizedLabel("roses", "252_waitress/icon_roses.png", jl, "room.800.select.roses", "Roses", "", { width: 430, fontSize: 25 }); jl++; break;
+                        case "seal": sc.selectLocalizedLabel("seal", "252_waitress/icon_seal.png", jl, "room.800.select.seal", "Seal plush toy", "", { width: 430, fontSize: 25 }); jl++; break;
+                        case "mug": sc.selectLocalizedLabel("mug", "252_waitress/icon_mug.png", jl, "room.800.select.mug", "Travel mug", "", { width: 430, fontSize: 25 }); jl++; break;
+                        case "whoopee": sc.selectLocalizedLabel("whoopee", "252_waitress/icon_whoopee.png", jl, "room.800.select.whoopee", "Whoopee cushion", "", { width: 430, fontSize: 25 }); jl++; break;
                     }
                 }
             }
-            sc.selectBack("choices", jl);
+            sc.selectLocalizedLabel("choices", "1001_rand/icon_back.png", jl, "room.800.select.back", "Go back", "", { width: 430, fontSize: 25 });
             break;
         case "bouquet":
         case "roses":
@@ -448,15 +448,15 @@ room800.chatcatch = function (callback) {
             char.room(800);
             break;
         case "choices":
-            sc.select("gift", "252_waitress/icon_gift.png", 0);
-            sc.select("chat", "252_waitress/icon_chat.png", 1);
-            sc.select("dick", "752_whore/whore_dick.png", 2);
+            sc.selectLocalizedLabel("gift", "252_waitress/icon_gift.png", 0, "room.800.select.gift", "Gift", "", { width: 430, fontSize: 25 });
+            sc.selectLocalizedLabel("chat", "252_waitress/icon_chat.png", 1, "room.800.select.chat", "Chat", "", { width: 430, fontSize: 25 });
+            sc.selectLocalizedLabel("dick", "752_whore/whore_dick.png", 2, "room.800.select.dick", "Take your dick out", "", { width: 430, fontSize: 25 });
             if (sc.getMissionTask("ralphsmom", "room", 4).complete && !daily.get("room800dad")) {
-                sc.select("sissy", "800_ralph/icon_middle.webp", 3);
-                sc.selectCancel("cancel", 4);
+                sc.selectLocalizedLabel("sissy", "800_ralph/icon_middle.webp", 3, "room.800.select.middle", "Sissy in the middle", "", { width: 430, fontSize: 25 });
+                sc.selectLocalizedLabel("cancel", "1001_rand/icon_cancel.png", 4, "room.800.select.cancel", "Cancel", "", { width: 430, fontSize: 25 });
             }
             else
-                sc.selectCancel("cancel", 3);
+                sc.selectLocalizedLabel("cancel", "1001_rand/icon_cancel.png", 3, "room.800.select.cancel", "Cancel", "", { width: 430, fontSize: 25 });
             break;
         case "cockgrabpremature":
             gv.mod("arousal", 100);
@@ -529,14 +529,20 @@ room800.chatcatch = function (callback) {
     }
 };
 
+room800.fightChanceLabel = function () {
+    var result = quickFight.getStats(20).winProb;
+    var keys = { "Even match": "even", "Little hard": "littleHard", "Little easy": "littleEasy", "Hard": "hard", "Easy": "easy", "Extremely Hard": "extremelyHard", "Extremely Easy": "extremelyEasy" };
+    return keys[result] ? l10n.t("room.487.fight." + keys[result], result) : result;
+};
+
 room800.chat = function (chatID) {
     if (chatID === 999) {
         var getProb = quickFight.getStats(20).winProb;
         var btnList = new Array();
-        btnList.push({ chatID: -1, text: "Talk them out of it " + charisma.getStats(17).txt, callback: "charroll" });
+        btnList.push({ chatID: -1, text: "Talk them out of it " + charisma.getStats(17).txt, l10nValues: { chance: charisma.getStats(17).n }, callback: "charroll" });
 
-        btnList.push({ chatID: -1, text: "Fight [" + getProb + "]", callback: "fightStart" });
-        btnList.push({ chatID: -1, text: "Run. Leave Ralph with them. ", callback: "fightRun" });
+        btnList.push({ chatID: -1, text: "Fight [" + getProb + "]", l10nValues: { chance: room800.fightChanceLabel() }, callback: "fightStart" });
+        btnList.push({ chatID: -1, text: "Run. Leave " + sc.n("ralph") + " with them. ", l10nValues: { ralph: sc.n("ralph") }, callback: "fightRun" });
         return {
             chatID: 999,
             speaker: "cult",
@@ -566,12 +572,14 @@ room800.chat = function (chatID) {
                 carray.push("You remind me of me when I was younger. Wild, free and hot!");
 
             }
+            let lowAppearance = cl.appearance() < 2 ? "masculine" : "feminine";
+            let lowIndex = g.rand(0, carray.length);
             return {
                 chatID: 500,
                 speaker: "ralphsmom",
-                text: carray[g.rand(0, carray.length)],
+                text: carray[lowIndex], l10nKey: "room.800.random.low." + lowAppearance + "." + lowIndex,
                 button: [
-                    { chatID: -1, text: "Thanks " + sc.n("ralphsmom"), callback: "choices" }
+                    { chatID: -1, text: "Thanks " + sc.n("ralphsmom"), l10nKey: "room.800.random.low.choice", l10nValues: { ralphsmom: sc.n("ralphsmom") }, callback: "choices" }
                 ]
             };
         }
@@ -591,12 +599,14 @@ room800.chat = function (chatID) {
                 carray.push("You know, women are so much better at eating vagina than men. We know how it all works down there! ");
                 carray.push("You sure do have a pretty face and sexy tongue.. uhh. never mind. ");
             }
+            let highAppearance = cl.appearance() < 2 ? "masculine" : "feminine";
+            let highIndex = g.rand(0, carray.length);
             return {
                 chatID: 500,
                 speaker: "ralphsmom",
-                text: carray[g.rand(0, carray.length)],
+                text: carray[highIndex], l10nKey: "room.800.random.high." + highAppearance + "." + highIndex,
                 button: [
-                    { chatID: -1, text: "Oh Ralph's mom! You really do know how to make a " + gender.pronoun("boy") + " blush. ", callback: "choices" }
+                    { chatID: -1, text: "Oh " + sc.n("ralphsmom") + "! You really do know how to make a " + gender.pronoun("boy") + " blush. ", l10nKey: "room.800.random.high.choice", l10nValues: { ralphsmom: sc.n("ralphsmom"), playerTerm: gender.pronoun("boy") }, callback: "choices" }
                 ]
             };
         }
@@ -607,24 +617,24 @@ room800.chat = function (chatID) {
     var cArray = [
         {
             chatID: 0,
-            speaker: "ralphsmom",
-            text: "Oh you must be Ralph's little friend, " + sc.n("me") + ". We've heard so much about you. He's inside if " +
+            speaker: "ralphsmom", l10nValues: { me: sc.n("me"), ralph: sc.n("ralph") },
+            text: "Oh you must be " + sc.n("ralph") + "'s little friend, " + sc.n("me") + ". We've heard so much about you. He's inside if " +
                 "you want to play in his room. It's so good that he has friends to play with. ",
             button: [
-                { chatID: -1, text: "Thanks Ralph's mom!", callback: "reset" }
+                { chatID: -1, text: "Thanks " + sc.n("ralphsmom") + "!", l10nValues: { ralphsmom: sc.n("ralphsmom") }, callback: "reset" }
             ]
         },
         {
             chatID: 1,
-            speaker: "ralphsmom",
-            text: "Ralph's inside if you want to play. ",
+            speaker: "ralphsmom", l10nValues: { ralph: sc.n("ralph") },
+            text: sc.n("ralph") + "'s inside if you want to play. ",
             button: [
-                { chatID: -1, text: "Thanks Ralph's mom!", callback: "reset" }
+                { chatID: -1, text: "Thanks " + sc.n("ralphsmom") + "!", l10nValues: { ralphsmom: sc.n("ralphsmom") }, callback: "reset" }
             ]
         },
         {
             chatID: 2,
-            speaker: "thinking",
+            speaker: "thinking", l10nValues: { ralph: sc.n("ralph") },
             text: sc.n("ralph") + "'s parents don't like visitors at night. ",
             button: [
                 { chatID: -1, text: "...", callback: "" }
@@ -689,9 +699,9 @@ room800.chat = function (chatID) {
         },
         {
             chatID: 10,
-            speaker: "me",
-            text: "Before you pound my face into the ground hear me out. That's my friend, Ralph. I know you're on a quest " +
-                "to pick up sissies to take part in the transformation ceremony, but Ralph there isn't going to work. He's " +
+            speaker: "me", l10nValues: { ralph: sc.n("ralph") },
+            text: "Before you pound my face into the ground hear me out. That's my friend, " + sc.n("ralph") + ". I know you're on a quest " +
+                "to pick up sissies to take part in the transformation ceremony, but " + sc.n("ralph") + " there isn't going to work. He's " +
                 "a lost cause. ",
             button: [
                 { chatID: 11, text: "...", callback: "" }
@@ -707,10 +717,10 @@ room800.chat = function (chatID) {
         },
         {
             chatID: 12,
-            speaker: "me",
+            speaker: "me", l10nValues: { ralph: sc.n("ralph") },
             text: "A friend of mine is, but that's not the point. You see you go around kidnapping people for the ceremony " +
                 "at the commands from higher, but you're not quite sure why. In this case they don't have their facts straight " +
-                "about Ralph. To transform you have to want to transform in your heart. Ralph here just likes crossdressing. " +
+                "about " + sc.n("ralph") + ". To transform you have to want to transform in your heart. " + sc.n("ralph") + " here just likes crossdressing. " +
                 "He doesn't desire to be a girl, just to wear women's clothing. So you're about to kidnap some poor crossdresser " +
                 "and subject him to all the evils and tortures for nothing. ",
             button: [
@@ -749,11 +759,11 @@ room800.chat = function (chatID) {
         },
         {
             chatID: 16,
-            speaker: "me",
+            speaker: "me", l10nValues: { ralph: sc.n("ralph") },
             text: "You know what the right thing is. I know you're not evil, just doing what you're told to do. You may have joined " +
-                "the Carnal Union, but Ralph here didn't. You're sneaking around at night wearing dark cloaks kidnapping people, " +
+                "the Carnal Union, but " + sc.n("ralph") + " here didn't. You're sneaking around at night wearing dark cloaks kidnapping people, " +
                 "torturing them, and just doing evil things. It's time to stop doing evil things and let the good in your heart " +
-                "guide you. Go back and tell your superiors that Ralph left town before you got here. Then do yourself a favor, " +
+                "guide you. Go back and tell your superiors that " + sc.n("ralph") + " left town before you got here. Then do yourself a favor, " +
                 "set yourself free. Leave the cult and live the life you want to live, not the life where you live in fear. ",
             button: [
                 { chatID: 17, text: "...", callback: "" }
@@ -769,16 +779,16 @@ room800.chat = function (chatID) {
         },
         {
             chatID: 18,
-            speaker: "me",
-            text: "You do know. Do the right thing. Leave Ralph to me. Stop doing evil things out of fear and go live your life. ",
+            speaker: "me", l10nValues: { ralph: sc.n("ralph") },
+            text: "You do know. Do the right thing. Leave " + sc.n("ralph") + " to me. Stop doing evil things out of fear and go live your life. ",
             button: [
                 { chatID: 19, text: "...", callback: "" }
             ]
         },
         {
             chatID: 19,
-            speaker: "cult",
-            text: "..ok. But tell Ralph to lay low for a while. Do us a favor and don't tell anyone about us being here.  ",
+            speaker: "cult", l10nValues: { ralph: sc.n("ralph") },
+            text: "..ok. But tell " + sc.n("ralph") + " to lay low for a while. Do us a favor and don't tell anyone about us being here.  ",
             button: [
                 { chatID: 27, text: "I will. ", callback: "case6_6GoodEnd" }
             ]
@@ -801,8 +811,8 @@ room800.chat = function (chatID) {
         },
         {
             chatID: 22,
-            speaker: "thinking",
-            text: "There was no way I was going to win. It's too bad I had to leave Ralph there. I hope he survives " +
+            speaker: "thinking", l10nValues: { ralph: sc.n("ralph") },
+            text: "There was no way I was going to win. It's too bad I had to leave " + sc.n("ralph") + " there. I hope he survives " +
                 "his kidnapping. I do feel terrible. ",
             button: [
                 { chatID: -1, text: "...", callback: "case6_badEnd" }
@@ -818,7 +828,7 @@ room800.chat = function (chatID) {
         },
         {
             chatID: 24,
-            speaker: "thinking",
+            speaker: "thinking", l10nValues: { ralph: sc.n("ralph") },
             text: "Oh no. They're all gone. I failed " + sc.n("ralph") + "! Sorry I wasn't strong enough dear friend. I'll find a way to get you " +
                 "free. ",
             button: [
@@ -827,8 +837,8 @@ room800.chat = function (chatID) {
         },
         {
             chatID: 25,
-            speaker: "me",
-            text: "You're going to go back to your leaders and tell them that Ralph left town and he's no longer here. " +
+            speaker: "me", l10nValues: { ralph: sc.n("ralph") },
+            text: "You're going to go back to your leaders and tell them that " + sc.n("ralph") + " left town and he's no longer here. " +
                 "Then you're never going to come back here 'cause if you do you're not going to be walking away next time! " +
                 "Do you understand? ",
             button: [
@@ -845,7 +855,7 @@ room800.chat = function (chatID) {
         },
         {
             chatID: 27,
-            speaker: "me",
+            speaker: "me", l10nValues: { ralph: sc.n("ralph") },
             text: "Hi " + sc.n("ralph") + "'s parent. I found him like this. I think he fell and knocked " +
                 "himself out. ",
             button: [
@@ -854,7 +864,7 @@ room800.chat = function (chatID) {
         },
         {
             chatID: 28,
-            speaker: "ralphsmom",
+            speaker: "ralphsmom", l10nValues: { me: sc.n("me") },
             text: "Oh wow. Uhhh... Honey, take him from " + sc.n("me") + ". Put him on the couch. We'll take " +
                 "it from here. ",
             button: [
@@ -863,7 +873,7 @@ room800.chat = function (chatID) {
         },
         {
             chatID: 29,
-            speaker: "ralphsmom",
+            speaker: "ralphsmom", l10nValues: { ralph: sc.n("ralph") },
             text: "Oh you. " + sc.n("ralph") + "'s inside. Now you two stay out of trouble " +
                 "I know how hard the world is on your girls like yourselves. ",
             button: [
@@ -872,7 +882,7 @@ room800.chat = function (chatID) {
         },
         {
             chatID: 30,
-            speaker: "ralphsmom",
+            speaker: "ralphsmom", l10nValues: { ralph: sc.n("ralph") },
             text: "oh! oh my. Did you just swat my apple? I'm sure you didn't mean to. " +
                 sc.n("ralph") + "'s upstairs in his room again. ",
             button: [
@@ -889,7 +899,7 @@ room800.chat = function (chatID) {
         },
         {
             chatID: 32,
-            speaker: "ralphsmom",
+            speaker: "ralphsmom", l10nValues: { ralph: sc.n("ralph") },
             text: "Oh no. You're one of those sissies aren't you. If you're going to show your caged " +
                 "penis to a girl, I hope you are extremely good at licking her fun bean. hahaha. " +
                 "I guess it makes sense that my little " + sc.n("ralph") + " would " +
@@ -917,7 +927,7 @@ room800.chat = function (chatID) {
         },
         {
             chatID: 35,
-            speaker: "ralphsmom",
+            speaker: "ralphsmom", l10nValues: { ralph: sc.n("ralph") },
             text: "Oh honey. Look at the tiny little penis. You poor thing. I do hope " +
                 "you are good giving the lotus a kiss because " +
                 "no girl's going to want to have that inside her. You can do what " +
@@ -1017,7 +1027,7 @@ room800.chat = function (chatID) {
         },
         {
             chatID: 46,
-            speaker: "ralphsmom",
+            speaker: "ralphsmom", l10nValues: { ralph: sc.n("ralph") },
             text: "Hehehe. See I told you I was good at using my hands. I've got your victory splash all over " +
                 "my honey pot. Gotta go change. I hope " + sc.n("ralph") + " doesn't see me going " +
                 "to my room with your splash all over me. ",
@@ -1099,7 +1109,7 @@ room800.chat = function (chatID) {
         },
         {
             chatID: 55,
-            speaker: "ralphsmom",
+            speaker: "ralphsmom", l10nValues: { ralph: sc.n("ralph") },
             text: "I'm so happy you've decided to come back. My husband and I were talking and we agreed to " +
                 "speak to you together. Once he gets back we'll talk. You can play with " + sc.n("ralph") + 
                 " when he's out playing. ",
@@ -1125,7 +1135,7 @@ room800.chat = function (chatID) {
         },
         {
             chatID: 58,
-            speaker: "thinking",
+            speaker: "thinking", l10nValues: { ralph: sc.n("ralph") },
             text: "With " + sc.n("ralph") + " gone, there isn't a reason to go to his house anymore. 😢",
             button: [
                 { chatID: -1, text: "....", callback: "leave" }

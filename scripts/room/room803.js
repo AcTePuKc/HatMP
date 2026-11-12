@@ -91,7 +91,7 @@ room803.btnclick = function (name) {
                 "color": "pink",
                 "maxVal": 100,
                 "val": g.internal.p,
-                "title": sc.n("ralphsmom") + "'s arousal"
+                "title": l10n.t("room.803.arousal", "{name}'s arousal", { name: sc.n("ralphsmom") })
             }, 322);
 
             break;
@@ -182,8 +182,8 @@ room803.btnclick = function (name) {
             else {
                 nav.kill();
                 nav.bg("803_parentbedroom/peek0.webp");
-                sc.select("keephiding", "803_parentbedroom/icon_hide0.webp", 0);
-                sc.select("cancelHide", "13_sisterRoom/icon_cancel.png", 1);
+                sc.selectLocalizedLabel("keephiding", "803_parentbedroom/icon_hide0.webp", 0, "room.803.select.keepHiding", "Keep hiding", "", { width: 430, fontSize: 25 });
+                sc.selectLocalizedLabel("cancelHide", "13_sisterRoom/icon_cancel.png", 1, "room.803.select.cancel", "Cancel", "", { width: 430, fontSize: 25 });
             }
             break;
         case "cancelHide":
@@ -201,7 +201,7 @@ room803.btnclick = function (name) {
                     chat(7, 803);
                 }
                 else {
-                    g.popUpNotice("45 minutes passed...");
+                    g.popUpNotice(l10n.t("room.803.notice.timePassed", "45 minutes passed..."));
                 }
             }
             break;
@@ -556,9 +556,9 @@ room803.chatcatch = function (callback) {
         case "closet":
             nav.kill();
             nav.bg("803_parentbedroom/insidecloset.webp");
-            sc.select("search", "803_parentbedroom/icon_search.webp", 0);
-            sc.select("hide", "803_parentbedroom/icon_hide.webp", 1);
-            sc.select("reset", "301_living/icon_leave.png", 2);
+            sc.selectLocalizedLabel("search", "803_parentbedroom/icon_search.webp", 0, "room.803.select.search", "Search her closet", "", { width: 430, fontSize: 25 });
+            sc.selectLocalizedLabel("hide", "803_parentbedroom/icon_hide.webp", 1, "room.803.select.hide", "Hide in the closet", "", { width: 430, fontSize: 25 });
+            sc.selectLocalizedLabel("reset", "301_living/icon_leave.png", 2, "room.803.select.leave", "Leave", "", { width: 430, fontSize: 25 });
             break;
         case "peekLeave":
             daily.set("noRoom803");
@@ -792,7 +792,7 @@ room803.chat = function (chatID) {
     var cArray = [
         {
             chatID: 0,
-            speaker: "ralphsdad",
+            speaker: "ralphsdad", l10nValues: { ralph: sc.n("ralph") },
             text: "Hey champ, I think you're a bit lost. " + sc.n("ralph") + "'s room is the other " +
                 "way. ",
             button: [
@@ -810,7 +810,7 @@ room803.chat = function (chatID) {
         },
         {
             chatID: 2,
-            speaker: "thinking",
+            speaker: "thinking", l10nValues: { ralphsmom: sc.n("ralphsmom") },
             text: "It's getting pretty late. I better leave before " + sc.n("ralphsmom") + 
                 " gets back. She doesn't like us playing after dark. ",
             button: [
@@ -843,7 +843,7 @@ room803.chat = function (chatID) {
         },
         {
             chatID: 6,
-            speaker: "thinking",
+            speaker: "thinking", l10nValues: { ralphsmom: sc.n("ralphsmom"), ralph: sc.n("ralph") },
             text: "Damn " + sc.n("ralphsmom") + "! What a dirty girl you are! I wonder if your " +
                 "husband knows you have such a big fake cock. Well, not anymore. Hopefully " +
                 sc.n("ralph") + " doesn't get blamed for me taking this. ",
@@ -853,7 +853,7 @@ room803.chat = function (chatID) {
         },
         {
             chatID: 7,
-            speaker: "thinking",
+            speaker: "thinking", l10nValues: { ralphsmom: sc.n("ralphsmom") },
             text: "That's " + sc.n("ralphsmom") + "! I know that butt anywhere! Shake me dem titties " +
                 "girl! Take them out and shake 'em!",
             button: [
@@ -881,7 +881,7 @@ room803.chat = function (chatID) {
         },
         {
             chatID: 10,
-            speaker: "thinking",
+            speaker: "thinking", l10nValues: { ralphsmom: sc.n("ralphsmom"), ralphsdad: sc.n("ralphsdad") },
             text: "You dirty girl, " + sc.n("ralphsmom") + "! Crotchless panties and see through bra. " +
                 "I'll bet you wore this for " + sc.n("ralphsdad") + " a few times to seduce him. " +
                 "I'm so going to dress up in my closet and check my slutty self out later when I put " +
@@ -917,7 +917,7 @@ room803.chat = function (chatID) {
         },
         {
             chatID: 14,
-            speaker: "ralphsdad",
+            speaker: "ralphsdad", l10nValues: { me: sc.n("me") },
             text: "You came in here hoping I'd follow you, didn't you? You wanted me to " +
                 "follow you, didn't you " + sc.n("me") + "? But why would you want me to " +
                 "follow you into my bedroom? ",
@@ -1032,7 +1032,7 @@ room803.chat = function (chatID) {
         },
         {
             chatID: 27,
-            speaker: "ralphsdad",
+            speaker: "ralphsdad", l10nValues: { ralph: sc.n("ralph") },
             text: "Oh wow! That was so close! She didn't see you did she? Of course she " +
                 "didn't or she would be in here screaming at me. You should probably just " +
                 "go upstairs and play with " + sc.n("ralph") + ". My heart's beating too hard " +
@@ -1131,7 +1131,7 @@ room803.chat = function (chatID) {
         },
         {
             chatID: 38,
-            speaker: "me",
+            speaker: "me", l10nValues: { ralphsmom: sc.n("ralphsmom") },
             text: "Hi " + sc.n("ralphsmom") + " what are you up to? ",
             button: [
                 { chatID: 39, text: "...", callback: "" },
@@ -1157,7 +1157,7 @@ room803.chat = function (chatID) {
         },
         {
             chatID: 41,
-            speaker: "ralphsmom",
+            speaker: "ralphsmom", l10nValues: { ralph: sc.n("ralph") },
             text: "Oh. I've never had anyone ask me about what I'm reading. It seems like " +
                 "my husband only cares about football, and my little " + sc.n("ralph") + 
                 " only cares about his little dolls. ",
@@ -1247,7 +1247,7 @@ room803.chat = function (chatID) {
                 "woman in a stale marriage in a secret romance with a much younger man. " +
                 "Really saucy. ",
             button: [
-                { chatID: -1, text: "So hot! [Need " + sc.n("ralphsmom") + " level 6 to progress]", callback: "resettalk" },
+                { chatID: -1, text: "So hot! [Need " + sc.n("ralphsmom") + " level 6 to progress]", l10nValues: { ralphsmom: sc.n("ralphsmom") }, callback: "resettalk" },
             ]
         },
         {
@@ -1465,7 +1465,7 @@ room803.chat = function (chatID) {
         },
         {
             chatID: 75,
-            speaker: "ralphsdad",
+            speaker: "ralphsdad", l10nValues: { ralph: sc.n("ralph") },
             text: "I knew you wanted to get fucked! Let's go to the bathroom so we don't make too much noise. " +
                 "Wouldn't want " + sc.n("ralph") + " to walk in on us. ",
             button: [
@@ -1570,7 +1570,7 @@ room803.chat = function (chatID) {
         },
         {
             chatID: 87,
-            speaker: "ralphsmom",
+            speaker: "ralphsmom", l10nValues: { ralph: sc.n("ralph") },
             text: "I'm spent. I'm not a spring chicken anymore. Why don't you go play with my little " + sc.n("ralph") + ". ",
             button: [
                 { chatID: -1, text: "Sure ", callback: "ralphroom" },
@@ -1578,7 +1578,7 @@ room803.chat = function (chatID) {
         },
         {
             chatID: 88,
-            speaker: "ralphsmom",
+            speaker: "ralphsmom", l10nValues: { ralph: sc.n("ralph") },
             text: "Oh honey. I like being the object of desire, but if I'm going to let you rub your naked " +
                 "body all over mine I need to feel some pleasure. Now I know you'll find a nice someone that " +
                 "is happy with your size, but I'm going to need something bigger. Surely you're aware how " +

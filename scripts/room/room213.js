@@ -426,7 +426,8 @@ room213.chatcatch = function (callback) {
                         "width": 335,
                         "height": 324,
                         "image": "216_pinkglory/" + g.internal.holes[i] + "_s.png",
-                        "title": "Free Use Slut"
+                        "title": "Free Use Slut",
+                        "titleKey": "shared.hover.freeUseSlut"
                     }, 171);
                     nav.button({
                         "type": "img",
@@ -436,7 +437,8 @@ room213.chatcatch = function (callback) {
                         "width": 335,
                         "height": 570,
                         "image": "216_pinkglory/" + g.internal.holes[i] + "_d.png",
-                        "title": "Free Use Slut"
+                        "title": "Free Use Slut",
+                        "titleKey": "shared.hover.freeUseSlut"
                     }, 171);
                 }
             invoker.invoke(171, "btnclick", "fuckers");

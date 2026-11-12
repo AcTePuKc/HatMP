@@ -100,7 +100,26 @@ room460.chatcatch = function (callback) {
     }
 };
 
+room460.localizeWorkoutMissing = function (value) {
+    var missingClothing = String(value).replace(/<[^>]*>/g, "").trim();
+    if (missingClothing) {
+        var clothingKeys = {
+            "running shoes": "room.460.missing.shoes",
+            "t-shirt": "room.460.missing.shirt",
+            "shorts": "room.460.missing.shorts"
+        };
+        var missingItems = missingClothing.split(/,\s*(?:and\s+)?|\s+and\s+/);
+        if (missingItems.every(function (item) { return clothingKeys[item]; })) {
+            missingItems = missingItems.map(function (item) { return l10n.t(clothingKeys[item], item); });
+            missingClothing = missingItems.length < 2 ? missingItems[0] :
+                missingItems.slice(0, -1).join(", ") + l10n.t("room.460.missing.and", " and ") + missingItems[missingItems.length - 1];
+        }
+    }
+    return missingClothing;
+};
+
 room460.chat = function (chatID) {
+    var missingClothing = chatID === 2 ? room460.localizeWorkoutMissing(g.pass) : "";
     var cArray = [
         {
             chatID: 0,
@@ -123,6 +142,7 @@ room460.chat = function (chatID) {
             speaker: "me",
             text: "I can't run in this! I'm missing my " + g.pass + ". I can change in the men's bathroom if I saved " +
                 "a set of running clothes in my wardrobe saves. ",
+            l10nValues: { missing: missingClothing },
             button: [
                 { chatID: -1, text: "......", callback: "" }
             ]

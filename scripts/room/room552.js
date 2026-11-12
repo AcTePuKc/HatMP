@@ -156,7 +156,7 @@ room552.chat = function (chatID) {
         {
             chatID: 7,
             speaker: "!bbc",
-            text: "Hehehe. That's what you get for rubing a man's penis. Cum on yo face! Thanks " + gender.pronoun("boy") + ". ",
+            text: "Hehehe. That's what you get for rubing a man's penis. Cum on yo face! Thanks " + gender.pronoun("boy") + ". ", l10nValues: { boy: gender.pronoun("boy") },
             button: [
                 { chatID: -1, text: "hehe. Yeah", callback: "reset" }
             ]

@@ -1,6 +1,10 @@
 ﻿//Fight Room
 //Fight Room
 var room227 = {};
+room227.actionName = function (action, capitalized) {
+    var fallback = capitalized ? action.charAt(0).toUpperCase() + action.slice(1) : action;
+    return l10n.t("room.227.action." + action, fallback);
+};
 room227.main = function () {
     //after x steps put text("it appears I'm totally lost,")
     //g.pass = { enemy0: "goo", enemy1: null, bg: "sewer", roomID: 226 };
@@ -73,7 +77,7 @@ room227.btnclick = function (name) {
                 case "lb_cumjar": energyGains = 100; inv.use("cumjar"); break;
             }
             tEnemy.changeEnergy(energyGains, null, null);
-            g.popUpNoticeBottom("You gained " + energyGains + " energy. ");
+            g.popUpNoticeBottom(l10n.t("room.227.notice.energyGained", "You gained {amount} energy. ", { amount: energyGains }));
             g.roomTimeout = setTimeout(function () {
                 invoker.invokeCurrent("chatcatch", "counterAction");
             }, g.fight.fighttimer);
@@ -93,7 +97,7 @@ room227.btnclick = function (name) {
                 tEnemy.drawChar("block");
                 var blockDmg = ea.p * .1 > 1 ? 1 : ea.p * .1;
                 tEnemy.changeEnergy(blockDmg * (-1), null, { t: "block", me: false });
-                g.popUpNoticeBottom("Blocked " + ea.a + " for " + blockDmg + " damage. ");
+                g.popUpNoticeBottom(l10n.t("room.227.notice.blockedAction", "Blocked {action} for {damage} damage. ", { action: room227.actionName(ea.a, false), damage: blockDmg }));
                 g.fight.e[0].p = ea.a === "grapple" ? "punch" : ea.a;
             }
             else if (ea.a === "punch" || ea.a === "kick") {
@@ -101,7 +105,7 @@ room227.btnclick = function (name) {
                 nav.modbutton("pow", "227_fight/b_ePow.png", null, null);
                 tEnemy.drawChar("recoil");
                 tEnemy.changeEnergy(ea.p * (-1), null, { t: "hit", me: false });
-                g.popUpNoticeBottom(ea.a.charAt(0).toUpperCase() + ea.a.slice(1) + " for " + ea.p + " damage. ");
+                g.popUpNoticeBottom(l10n.t("room.227.notice.actionDamage", "{action} for {damage} damage. ", { action: room227.actionName(ea.a, true), damage: ea.p }));
 
             }
             else if (ea.a === "strip") {
@@ -109,7 +113,7 @@ room227.btnclick = function (name) {
                 tEnemy.drawChar("striprip");
                 tEnemy.changeEnergy(ea.p * (-1), null, { t: "steal", me: false });
                 g.fight.e[0].p = "punch";
-                g.popUpNoticeBottom("Oh no! You've been stripped!");
+                g.popUpNoticeBottom(l10n.t("room.227.notice.stripped", "Oh no! You've been stripped!"));
             }
             else if (ea.a === "grapple") {
                 //if enemy returns grapple, but is wearing clothes, remove those clothes
@@ -254,13 +258,13 @@ room227.btnclick = function (name) {
                 if (damageMult === .1) {
                     nav.modbutton("pow", "227_fight/b_block.png", null, null);
                     g.fight.e[0].p = "block";
-                    g.popUpNoticeBottom("Blocked for " + totalDamage + " damage. ");
+                    g.popUpNoticeBottom(l10n.t("room.227.notice.blocked", "Blocked for {damage} damage. ", { damage: totalDamage }));
                     tEnemy.changeEnergy(null, totalDamage * -1, { t: "block", me: true });
                 }
                 else {
                     nav.modbutton("pow", "227_fight/b_pow.png", null, null);
                     g.fight.e[0].p = "recoil";
-                    g.popUpNoticeBottom(g.fight.me.action.charAt(0).toUpperCase() + g.fight.me.action.slice(1) + " for " + totalDamage + " damage. ");
+                    g.popUpNoticeBottom(l10n.t("room.227.notice.actionDamage", "{action} for {damage} damage. ", { action: room227.actionName(g.fight.me.action, true), damage: totalDamage }));
                     tEnemy.changeEnergy(null, totalDamage * -1, { t: "hit", me: true });
                 }
                 tEnemy.drawEnemy();
@@ -355,7 +359,7 @@ room227.btnclick = function (name) {
             else {
                 nav.modbutton("pow", "227_fight/b_block.png", null, null);
                 tEnemy.drawChar("pose");
-                g.popUpNoticeBottom("You've been blocked! ");
+                g.popUpNoticeBottom(l10n.t("room.227.notice.beenBlocked", "You've been blocked! "));
                 g.fight.e[0].p = "block";
                 tEnemy.drawEnemy();
                 g.roomTimeout2 = setTimeout(function () {
@@ -377,7 +381,7 @@ room227.chatcatch = function (callback) {
             if (money === -999) {
                 tEnemy.updatePlayerStats(0);
                 tEnemy.myEnergy(-15, null);
-                g.popUpNotice("You lost 15 energy");
+                g.popUpNotice(l10n.t("room.227.notice.lostEnergy", "You lost 15 energy"));
                 g.pass = "runaway";
             }
             else {
@@ -423,9 +427,10 @@ room227.chatcatch = function (callback) {
                     "width": 350,
                     "height": 103,
                     "image": "227_fight/cum.png",
-                    "title": "Make them cum, slut"
+                    "title": "Make them cum, slut",
+                    "titleKey": "room.227.hover.makeCum"
                 }, 227);
-                g.popUpNoticeBottom("You've been dominated!");
+                g.popUpNoticeBottom(l10n.t("room.227.notice.dominated", "You've been dominated!"));
                 //they control
             }
             else if (g.fight.cPower < -99) {

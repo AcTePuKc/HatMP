@@ -121,19 +121,19 @@ room601.btnclick = function (name) {
                 }, 601);
 
                 var stxt = [
-                    "Dat ASS!",
-                    "I want to<br/>squeeze dem!",
-                    "Cum here!<br/>Gimmie sum of dat!",
-                    "I'm gunna make<br/>you my future x-girlfriend",
-                    "I wanna see<br/>where you pee from!",
-                    "Say hello<br/>to my cock!",
-                    "Girl! You hurtin'<br/>for a squirtin'",
-                    "Mama!",
-                    "Shake dem<br/>titties girl!",
-                    "Nice ass",
-                    "I'm gunna take<br/>you home to mom!",
-                    "Shake dat<br/>ass ho!",
-                    "I'm gunna fill<br/>dat ass up!"
+                    l10n.t("room.601.heckle.0", "Dat ASS!"),
+                    l10n.t("room.601.heckle.1", "I want to<br/>squeeze dem!"),
+                    l10n.t("room.601.heckle.2", "Cum here!<br/>Gimmie sum of dat!"),
+                    l10n.t("room.601.heckle.3", "I'm gunna make<br/>you my future x-girlfriend"),
+                    l10n.t("room.601.heckle.4", "I wanna see<br/>where you pee from!"),
+                    l10n.t("room.601.heckle.5", "Say hello<br/>to my cock!"),
+                    l10n.t("room.601.heckle.6", "Girl! You hurtin'<br/>for a squirtin'"),
+                    l10n.t("room.601.heckle.7", "Mama!"),
+                    l10n.t("room.601.heckle.8", "Shake dem<br/>titties girl!"),
+                    l10n.t("room.601.heckle.9", "Nice ass"),
+                    l10n.t("room.601.heckle.10", "I'm gunna take<br/>you home to mom!"),
+                    l10n.t("room.601.heckle.11", "Shake dat<br/>ass ho!"),
+                    l10n.t("room.601.heckle.12", "I'm gunna fill<br/>dat ass up!")
                 ];
                 
                 for (let i = 0; i < (baseLevel[0] + 1) * 2; i++) {
@@ -262,7 +262,7 @@ room601.btnclick = function (name) {
             var danceMoney = Math.floor((g.internal.cust + (levels.get("stripper").l * 3) + (g.internal.excitement / 12)) * (g.rand(1, 7) / 1.5));
             if (danceMoney > 0) {
                 g.internal.money += danceMoney;
-                g.popUpNotice("You received $" + danceMoney + " in tips");
+                g.popUpNotice(l10n.t("room.601.notice.tips", "You received ${amount} in tips", { amount: danceMoney }));
             }
             zcl.kill();
             var newPose = g.rand(0, 5);
@@ -307,17 +307,17 @@ room601.btnclick = function (name) {
                     break;
             }
 
-            sc.select("dance", "601_dance/icon_stage.png", -2);
-            sc.select("dance", "601_dance/icon_stage.png", -2);
+            sc.selectLocalizedLabel("dance", "601_dance/icon_stage.png", -2, "room.601.select.stage", "Dance on stage", "", { width: 430, fontSize: 26 });
+            sc.selectLocalizedLabel("dance", "601_dance/icon_stage.png", -2, "room.601.select.stage", "Dance on stage", "", { width: 430, fontSize: 26 });
 
             if (cl.c.bra !== null) {
-                sc.select("topless", "601_dance/icon_topless.png", -1);
+                sc.selectLocalizedLabel("topless", "601_dance/icon_topless.png", -1, "room.601.select.topless", "Take your top off", "", { width: 430, fontSize: 26 });
             }
             else if (cl.c.panties !== null) {
-                sc.select("panties", "601_dance/icon_panties.png", -1);
+                sc.selectLocalizedLabel("panties", "601_dance/icon_panties.png", -1, "room.601.select.panties", "Take your panties off", "", { width: 430, fontSize: 26 });
             }
 
-            sc.select("mingle", "601_dance/icon_mingle.png", 11);
+            sc.selectLocalizedLabel("mingle", "601_dance/icon_mingle.png", 11, "room.601.select.mingle", "Mingle", "", { width: 430, fontSize: 26 });
 
             var thisExcite = levels.get("stripper").l;
 
@@ -364,16 +364,16 @@ room601.btnclick = function (name) {
                 g.internal.excitement += 4;
             break;
         case "btnDefault":
-            sc.select("dance", "601_dance/icon_stage.png", -2);
-            sc.select("mingle", "601_dance/icon_mingle.png", -1);
-            sc.select("finish", "601_dance/icon_finish.png", 11);
+            sc.selectLocalizedLabel("dance", "601_dance/icon_stage.png", -2, "room.601.select.stage", "Dance on stage", "", { width: 430, fontSize: 26 });
+            sc.selectLocalizedLabel("mingle", "601_dance/icon_mingle.png", -1, "room.601.select.mingle", "Mingle", "", { width: 430, fontSize: 26 });
+            sc.selectLocalizedLabel("finish", "601_dance/icon_finish.png", 11, "room.601.select.finish", "End your shift", "", { width: 430, fontSize: 26 });
             break;
         case "mingleBtn":
-            sc.select("private", "601_dance/icon_private.png", 10);
-            sc.select("bar", "601_dance/icon_bar.png", 11);
+            sc.selectLocalizedLabel("private", "601_dance/icon_private.png", 10, "room.601.select.private", "Look for private dances", "", { width: 430, fontSize: 26 });
+            sc.selectLocalizedLabel("bar", "601_dance/icon_bar.png", 11, "room.601.select.bar", "Hang out at the bar", "", { width: 430, fontSize: 26 });
             if (g.internal.mingleCounter > 2)
-                sc.select("dance1", "601_dance/icon_stage.png", 12);
-            sc.select("finish", "601_dance/icon_finish.png", 13);
+                sc.selectLocalizedLabel("dance1", "601_dance/icon_stage.png", 12, "room.601.select.stage", "Dance on stage", "", { width: 430, fontSize: 26 });
+            sc.selectLocalizedLabel("finish", "601_dance/icon_finish.png", 13, "room.601.select.finish", "End your shift", "", { width: 430, fontSize: 26 });
             break;
         case "fatfrank":
             nav.killall();
@@ -463,17 +463,17 @@ room601.btnclick = function (name) {
             nav.killbutton("private_hand");
             nav.killbutton("private_lick");
             
-            sc.select("private_lap", "601_dance/icon_lap.png", 0);
+            sc.selectLocalizedLabel("private_lap", "601_dance/icon_lap.png", 0, "room.601.select.lap", "Lap Dance", "", { width: 430, fontSize: 26 });
             if (cl.c.bra !== null)
-                sc.select("private_bra", "601_dance/icon_topless.png", -2);
+                sc.selectLocalizedLabel("private_bra", "601_dance/icon_topless.png", -2, "room.601.select.topless", "Take your top off", "", { width: 430, fontSize: 26 });
             else if (cl.c.panties !== null)
-                sc.select("private_panties", "601_dance/icon_panties.png", -2);
+                sc.selectLocalizedLabel("private_panties", "601_dance/icon_panties.png", -2, "room.601.select.panties", "Take your panties off", "", { width: 430, fontSize: 26 });
             else 
-                sc.select("private_getDressed", "601_dance/icon_getdressed.png", -2);
+                sc.selectLocalizedLabel("private_getDressed", "601_dance/icon_getdressed.png", -2, "room.601.select.dressed", "Get dressed", "", { width: 430, fontSize: 26 });
 
-            sc.select("private_rub", "601_dance/icon_rub.png", 6);
-            sc.select("private_hand", "601_dance/icon_hand.png", 2);
-            sc.select("private_lick", "601_dance/icon_lick.png", 4);
+            sc.selectLocalizedLabel("private_rub", "601_dance/icon_rub.png", 6, "room.601.select.rub", "Rub his dick with your ass", "", { width: 430, fontSize: 26 });
+            sc.selectLocalizedLabel("private_hand", "601_dance/icon_hand.png", 2, "room.601.select.hand", "Rub his penis with your hand", "", { width: 430, fontSize: 26 });
+            sc.selectLocalizedLabel("private_lick", "601_dance/icon_lick.png", 4, "room.601.select.lick", "Lick him", "", { width: 430, fontSize: 26 });
 
             invoker.invokeCurrent("btnclick", "privateExcitement");
             break;
@@ -603,7 +603,7 @@ room601.btnclick = function (name) {
             nav.kill();
             levels.swallowCum("m", "!man");
             nav.bg("601_dance/handjobcum2.webp");
-            sc.select("private_hand2", "601_dance/icon_getdressed.png", -1);
+            sc.selectLocalizedLabel("private_hand2", "601_dance/icon_getdressed.png", -1, "room.601.select.dressed", "Get dressed", "", { width: 430, fontSize: 26 });
             break;
         case "private_hand2":
             cl.c.privateExcitement = 100;
@@ -793,7 +793,7 @@ room601.chatcatch = function (callback) {
             break;
         case "chrisPrivateEnd":
             g.internal.money += 150;
-            g.popUpNotice("You earned $150");
+            g.popUpNotice(l10n.t("room.601.notice.earned", "You earned ${amount}", { amount: 150 }));
             invoker.invokeCurrent("btnclick", "mingle");
             break;
         case "mingle":
@@ -811,7 +811,7 @@ room601.chatcatch = function (callback) {
         case "excitementInc":
             g.internal.excitement += levels.get("stripper").l + 12;
             invoker.invokeCurrent("btnclick", "showExcitement");
-            g.popUpNoticeBottom("Everyone loved that!");
+            g.popUpNoticeBottom(l10n.t("room.601.notice.loved", "Everyone loved that!"));
             break;
         case "dance":
             g.internal.danceCounter = 0;
@@ -906,11 +906,11 @@ room601.chat = function (chatID) {
         g.internal.money += g.internal.privateMoney;
         return {
             chatID: 902,
-            speaker: "!frank",
+            speaker: "!frank", l10nKey: "room.601.private.tip.text", l10nValues: { amount: g.internal.privateMoney },
             text: "That guy tipped you $" + g.internal.privateMoney + " good job. Now " +
                 "get back on da floor and make us some more money, toots. ",
             button: [
-                { chatID: -1, text: "Ok.", callback: "mingleInc" }
+                { chatID: -1, l10nKey: "room.601.private.tip.choice.0", text: "Ok.", callback: "mingleInc" }
             ]
         };
     }
@@ -921,20 +921,20 @@ room601.chat = function (chatID) {
         if (g.gethourdecimal() > 3)
             return {
                 chatID: 13,
-                speaker: "!frank",
+                speaker: "!frank", l10nKey: "room.601.shift.closed.text", l10nValues: { total: g.internal.money, share: moneyMade },
                 text: "Hey! Clubs closed. You made $" + g.internal.money + " tonight. You " +
                     "get half, $" + moneyMade + ". Now go change. ",
                 button: [
-                    { chatID: -1, text: "ok!", callback: "leave" },
+                    { chatID: -1, l10nKey: "room.601.shift.closed.choice.0", text: "ok!", callback: "leave" },
                 ]
             };
         return {
             chatID: 13,
-            speaker: "!frank",
+            speaker: "!frank", l10nKey: "room.601.shift.early.text", l10nValues: { total: g.internal.money, share: moneyMade },
             text: "Duckin' out early? You made $" + g.internal.money + " tonight. You " +
                 "get half, $" + moneyMade + ". Now go change. ",
                 button: [
-                    { chatID: -1, text: "ok!", callback: "leave" },
+                    { chatID: -1, l10nKey: "room.601.shift.early.choice.0", text: "ok!", callback: "leave" },
                 ]
         };
     }
@@ -944,14 +944,14 @@ room601.chat = function (chatID) {
                 if (g.internal.sissySchool) {
                     return {
                         chatID: 900,
-                        speaker: "!sporty",
+                        speaker: "!sporty", l10nKey: "room.601.bar.sporty.school.text",
                         text: "This is so awesome! Love having all our sissy friends here! " +
                             "No bitchy girls, just a bunch of horny fun loving sissies! I " +
                             "wish it could be like this all the time! Maybe they'll let us " +
                             "do Femboy Friday every week! Well, gotta make that money! Love you " +
                             "sweetie!",
                         button: [
-                            { chatID: -1, text: "Love you too! ", callback: "mingleInc" }
+                            { chatID: -1, l10nKey: "room.601.bar.sporty.school.choice.0", text: "Love you too! ", callback: "mingleInc" }
                         ]
                     };
                 }
@@ -960,24 +960,24 @@ room601.chat = function (chatID) {
                         sc.completeMissionTask("sporty", "corrupt", 1);
                         return {
                             chatID: 900,
-                            speaker: "!sporty",
+                            speaker: "!sporty", l10nKey: "room.601.bar.sporty.cabin.text",
                             text: "Hi! I don't know if you've taken a walk in the forest, but stay away " +
                                 "from the cabin! I got lost and ended up there and it was AMAZING!!!" +
                                 "...err, well amazing for me. You may not like it, but I had so much fun! " +
                                 "but really. Don't go there. Unless you like danger. ",
                             button: [
-                                { chatID: -1, text: "Ok.", callback: "mingleInc" }
+                                { chatID: -1, l10nKey: "room.601.bar.sporty.cabin.choice.0", text: "Ok.", callback: "mingleInc" }
                             ]
                         };
                     }
                     return {
                         chatID: 900,
-                        speaker: "!sporty",
+                        speaker: "!sporty", l10nKey: "room.601.bar.sporty.regular.text",
                         text: "So much fun here, but some of these girls are total bitches! I just " +
                             "want to grind on some cock and get rent money and they act like I'm " +
                             "stealing from them. Oh well. I'm going to go twerk on some cock! Love you!",
                         button: [
-                            { chatID: -1, text: "Love you! ", callback: "mingleInc" }
+                            { chatID: -1, l10nKey: "room.601.bar.sporty.regular.choice.0", text: "Love you! ", callback: "mingleInc" }
                         ]
                     };
                 }
@@ -985,84 +985,84 @@ room601.chat = function (chatID) {
                 if (g.internal.sissySchool) {
                     return {
                         chatID: 900,
-                        speaker: "!chris",
+                        speaker: "!chris", l10nKey: "room.601.bar.chris.school.text",
                         text: "Is it just me or does something feel off to you? My regulars are " +
                             "a bit more handsy today and one even said he was going to cum so " +
                             "deep in me I'll be coughing his cum up. Usually he's really nice. ",
                         button: [
-                            { chatID: -1, text: "I'm sure it's nothing. Probably " + sc.n("!timothy") + " getting them all worked up.", callback: "mingleInc" }
+                            { chatID: -1, l10nKey: "room.601.bar.chris.school.choice.0", text: "I'm sure it's nothing. Probably " + sc.n("!timothy") + " getting them all worked up.", l10nValues: { timothy: l10n.t(sissy.st[10].ach ? "room.601.name.trixy" : "room.601.name.timothy", sc.n("!timothy")) }, callback: "mingleInc" }
                         ]
                     };
                 }
                 return {
                     chatID: 900,
-                    speaker: "!chris",
+                    speaker: "!chris", l10nKey: "room.601.bar.chris.private.text",
                     text: "So glad I found you! I'm about to do a private dance for one " +
                         "of my regulars. Do you want to join me? He loves seeing two girls " +
                         "dyke out. ",
                     button: [
-                        { chatID: -1, text: "Totally", callback: "chrisPrivate0" },
-                        { chatID: -1, text: "Naw. I'm working on something", callback: "mingleInc" },
+                        { chatID: -1, l10nKey: "room.601.bar.chris.private.choice.0", text: "Totally", callback: "chrisPrivate0" },
+                        { chatID: -1, l10nKey: "room.601.bar.chris.private.choice.1", text: "Naw. I'm working on something", callback: "mingleInc" },
                     ]
                 };
             case 2:
                 if (sissy.st[28].ach)
                     return {
                         chatID: 900,
-                        speaker: "!bbc",
+                        speaker: "!bbc", l10nKey: "room.601.bar.patron.school.text",
                         text: "Hey! Didn't I see you in that Sissy School? My boy came deep " +
                             "in that ass! Hahaha. He said you wiggle them hips like a real " +
                             "hungry slut. I like to fuck fem bois like you at the Pink Room. " +
                             "Maybe I'll see you there. ",
                         button: [
-                            { chatID: -1, text: "I'll be looking for you! ", callback: "mingleInc" }
+                            { chatID: -1, l10nKey: "room.601.bar.patron.school.choice.0", text: "I'll be looking for you! ", callback: "mingleInc" }
                         ]
                     };
                 return {
                     chatID: 900,
-                    speaker: "!bbc",
+                    speaker: "!bbc", l10nKey: "room.601.bar.patron.regular.text",
                     text: "I don't do private dances. Just here with my boys. ",
                     button: [
-                        { chatID: -1, text: "Oh. ok", callback: "mingleInc" },
+                        { chatID: -1, l10nKey: "room.601.bar.patron.regular.choice.0", text: "Oh. ok", callback: "mingleInc" },
                     ]
                 };
             case 3:
                 if (g.internal.sissySchool)
                     return {
                         chatID: 900,
-                        speaker: "!bbc",
+                        speaker: "!bbc", l10nKey: "room.601.bar.patron2.school.text",
                         text: "I'm going to love fucking those holes of yours later!",
                         button: [
-                            { chatID: -1, text: "Huh? I have to keep my panties on mister. ", callback: "mingleInc" },
+                            { chatID: -1, l10nKey: "room.601.bar.patron2.school.choice.0", text: "Huh? I have to keep my panties on mister. ", callback: "mingleInc" },
                         ]
                     };
                 return {
                     chatID: 900,
-                    speaker: "!bbc",
+                    speaker: "!bbc", l10nKey: "room.601.bar.patron2.regular.text",
                     text: "Hey. I do love a girl-boy, but I'm here to get some pussy. Maybe " +
                         "I'll catch you later. ",
                     button: [
-                        { chatID: -1, text: "Oh. ok", callback: "mingleInc" },
+                        { chatID: -1, l10nKey: "room.601.bar.patron2.regular.choice.0", text: "Oh. ok", callback: "mingleInc" },
                     ]
                 };
             case 4:
                 return {
                     chatID: 900,
-                    speaker: "!girl",
+                    speaker: "!girl", l10nKey: "room.601.bar.girl.text",
                     text: "hiccup! You are so sexy! Maybe it's the beer, but I didn't see your " +
                         "balls hanging from your panties I would totally think you're a chick! ",
                     button: [
-                        { chatID: -1, text: "Oh. Thanks?", callback: "mingleInc" },
+                        { chatID: -1, l10nKey: "room.601.bar.girl.choice.0", text: "Oh. Thanks?", callback: "mingleInc" },
                     ]
                 };
             case 5:
                 return {
                     chatID: 900,
-                    speaker: "!bwc",
+                    speaker: "!bwc", l10nKey: "room.601.bar.rude.text",
                     text: "Ugh. Another boy pretending to be a girl. How quaint.  ",
                     button: [
-                        { chatID: -1, text: "ok...", callback: "mingleInc" },
-                        { chatID: 2, text: "Well I think you're quaint.", callback: "" },
+                        { chatID: -1, l10nKey: "room.601.bar.rude.choice.0", text: "ok...", callback: "mingleInc" },
+                        { chatID: 2, l10nKey: "room.601.bar.rude.choice.1", text: "Well I think you're quaint.", callback: "" },
                     ]
                 };
             case 6:
@@ -1070,32 +1070,32 @@ room601.chat = function (chatID) {
                     sc.completeMissionTask("chloe", "random", 0);
                     return {
                         chatID: 900,
-                        speaker: "chloe",
-                        text: "Oh hi! I don't think we've talked since you told on me to " + sc.n("zoey") + ". ",
+                        speaker: "chloe", l10nKey: "room.601.bar.chloe.first.text",
+                        text: "Oh hi! I don't think we've talked since you told on me to " + sc.n("zoey") + ". ", l10nValues: { zoey: sc.n("zoey") },
                         button: [
-                            { chatID: 7, text: "Oh no...", callback: "" }
+                            { chatID: 7, l10nKey: "room.601.bar.chloe.first.choice.0", text: "Oh no...", callback: "" }
                         ]
                     };
                 }
                 return {
                     chatID: 900,
-                    speaker: "chloe",
+                    speaker: "chloe", l10nKey: "room.601.bar.chloe.repeat.text",
                     text: "So. Do you and that cute little butt of yours want to join me " +
                         "in visiting the C.U.M. church?",
                     button: [
-                        { chatID: -1, text: "Not right now. Thanks...", callback: "mingleInc" }
+                        { chatID: -1, l10nKey: "room.601.bar.chloe.repeat.choice.0", text: "Not right now. Thanks...", callback: "mingleInc" }
                     ]
                 };
             case 7:
                 return {
                     chatID: 900,
-                    speaker: "!thomas",
+                    speaker: "!thomas", l10nKey: "room.601.bar.thomas.text",
                     text: "This is so crazy right? I would never dream about going into " +
                         "a place like this, and here I am in my underwear just chatting with " +
                         "random guys! I hope I look ok. Everyone's so nice to me, but I can't " +
                         "tell if they think I'm cute. ",
                     button: [
-                        { chatID: 26, text: "You're crazy! You're hot as hell!", callback: "" }
+                        { chatID: 26, l10nKey: "room.601.bar.thomas.choice.0", text: "You're crazy! You're hot as hell!", callback: "" }
                     ]
                 };
         }
@@ -1271,7 +1271,7 @@ room601.chat = function (chatID) {
             speaker: "!chris",
             text: "Hi daddy. I brought my friend, " + sc.n("me") + ". She's the one I told " +
                 "you about. One of the few girls dirtier than me and we're going to do " +
-                "anything you want daddy.",
+                "anything you want daddy.", l10nValues: { me: sc.n("me") },
             button: [
                 { chatID: 19, text: "Mmmm", callback: "" },
             ]
@@ -1290,7 +1290,7 @@ room601.chat = function (chatID) {
             chatID: 20,
             speaker: "!boy",
             text: "Fuck yeah! Love horny sluts! " + sc.n("!chris") + " I want to see you " +
-                "eat her ass! It gets me so hard to see a chick just get to it!",
+                "eat her ass! It gets me so hard to see a chick just get to it!", l10nValues: { chris: l10n.t(sissy.st[10].ach ? "room.601.name.chrissy" : "room.601.name.chris", sc.n("!chris")) },
             button: [
                 { chatID: 21, text: "...but we're not supposed to take off our panties.", callback: "" },
             ]
@@ -1334,8 +1334,8 @@ room601.chat = function (chatID) {
         {
             chatID: 25,
             speaker: "!chris",
-            text: "You were wonderful! I'll tell Frank to give you half my tip. You earned it with that " +
-                "sweet tasting ass baby! ",
+            text: "You were wonderful! I'll tell " + sc.n("!frank") + " to give you half my tip. You earned it with that " +
+                "sweet tasting ass baby! ", l10nValues: { frank: sc.n("!frank") },
             button: [
                 { chatID: -1, text: "Thanks! You eat ass like a champ! ", callback: "chrisPrivateEnd" },
             ]
@@ -1511,8 +1511,8 @@ room601.chat = function (chatID) {
             chatID: 44,
             speaker: "thinking",
             text: "I wonder if the Sissy School knew this was going to happen? Did they set " +
-                "us up? No! Missy would never do that. This is so.... oh! He's cumming down " +
-                "my throat. I hope that big guy over there takes my ass next!!",
+                "us up? No! " + sc.n("missy") + " would never do that. This is so.... oh! He's cumming down " +
+                "my throat. I hope that big guy over there takes my ass next!!", l10nValues: { missy: sc.n("missy") },
             button: [
                 { chatID: 45, text: "...", callback: "sissyEvent8" },
             ]

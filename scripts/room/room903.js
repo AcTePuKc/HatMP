@@ -8,13 +8,22 @@ room903.localizedMissingClothing = function (clothing) {
         "panties": "panties",
         "bra": "bra",
         "boy's underwear": "boysUnderwear",
-        "Can't wear a bra": "cannotWearBra"
+        "Can't wear a bra": "cannotWearBra",
+        "bikini": "bikini",
+        "lingerie": "lingerie",
+        "dress": "dress"
     };
-    var items = Array.isArray(clothing) ? clothing : [clothing];
-    return items.map(function (item) {
+    var text = (Array.isArray(clothing) ? clothing.join(", ") : String(clothing)).replace(/<[^>]*>/g, "").trim();
+    var uncomfortable = /^self aweness! I don' feel comfortable wearing these (.+)\.$/.exec(text);
+    if (uncomfortable) text = uncomfortable[1];
+    var items = text.split(/,\s*(?:and\s+)?|\s+and\s+/).map(function (item) { return item.trim(); });
+    if (!items.length || !items.every(function (item) { return itemKeys[item]; })) return uncomfortable ? uncomfortable[0] : text;
+    items = items.map(function (item) {
         var key = itemKeys[item];
         return key ? l10n.t("room.903.outfit." + key, item) : item;
-    }).join(", ");
+    });
+    var list = items.length < 2 ? items[0] : items.slice(0, -1).join(", ") + l10n.t("room.460.missing.and", " and ") + items[items.length - 1];
+    return uncomfortable ? l10n.t("room.903.outfit.uncomfortable", "I don't feel comfortable wearing: {outfit}", { outfit: list }) : list;
 };
 
 room903.main = function () {
@@ -65,12 +74,13 @@ room903.chatcatch = function (callback) {
 
 room903.chat = function (chatID) {
     if (chatID === 999) {
+        var missingOutfit = g.internal;
         return {
             chatID: 999,
             speaker: "thinking",
             l10nKey: "room.903.locker.warning",
             text: "I can't go out like this: {outfit}.",
-            l10nValues: { outfit: room903.localizedMissingClothing(g.internal) },
+            l10nValues: { get outfit() { return room903.localizedMissingClothing(missingOutfit); } },
             button: [{ chatID: -1, l10nKey: "room.903.locker.getDressed", text: "Get Dressed", callback: "" }]
         };
     }

@@ -2626,6 +2626,9 @@ room316.chat = function (chatID) {
             {
                 chatID: 125,
                 speaker: "janice",
+                l10nValues: { hair: cl.c.hairLength > 1
+                    ? l10n.t("room.316.chat.125.hair.long", "I do love the length of your hair.")
+                    : l10n.t("room.316.chat.125.hair.short", "You really should grow out your hair.") },
                 text: "Since it's my stream, and you're my femboy, just follow my lead and " +
                     "do what I tell you to do. You know you do make a sexy girl. " +
                     (cl.c.hairLength > 1 ? " I do love the length of your hair. " : "You really should grow out your hair. ") +
@@ -2837,15 +2840,15 @@ room316.chat = function (chatID) {
             },
              {
                 chatID: 146,
-                speaker: "janice",
+                speaker: "janice", l10nValues: { dog: sc.n("dog") },
                 text: "Why are you naked? And where is " + sc.n("dog") + "? ",
                 button: [
-                    { chatID: 147, text: "Oh! Uhh... I was attacked in the park. They took my clothes and I lost " + sc.n("dog") + " during that attack! ", callback: "" },
+                    { chatID: 147, text: "Oh! Uhh... I was attacked in the park. They took my clothes and I lost " + sc.n("dog") + " during that attack! ", l10nValues: { dog: sc.n("dog") }, callback: "" },
                 ]
             },
             {
                 chatID: 147,
-                speaker: "janice",
+                speaker: "janice", l10nValues: { dog: sc.n("dog") },
                 text: "Oh no! I'm going to look for " + sc.n("dog") +
                     ". I'm so sorry. People are so terrible! You can change back in my " +
                     "bathroom. ",
@@ -2855,7 +2858,7 @@ room316.chat = function (chatID) {
             },
             {
                 chatID: 148,
-                speaker: "janice",
+                speaker: "janice", l10nValues: { dog: sc.n("dog") },
                 text: "Is this what you've been doing on your walks? When I found " +
                     sc.n("dog") + " someone told me about your little endeavors. I " +
                     "didn't believe them, but I had to see for myself, and here you are " +
@@ -2869,7 +2872,7 @@ room316.chat = function (chatID) {
             },
             {
                 chatID: 149,
-                speaker: "janice",
+                speaker: "janice", l10nValues: { dog: sc.n("dog") },
                 text: "Don't you try to blame my sweet little " + sc.n("dog") + " for your " +
                     "nastiness! This is all your doing. You're a very very bad " + gender.pronoun("boy") +
                     " and must be punished for being bad! Come with me! ",
@@ -2879,7 +2882,7 @@ room316.chat = function (chatID) {
             },
             {
                 chatID: 150,
-                speaker: "janice",
+                speaker: "janice", l10nValues: { dog: sc.n("dog") },
                 text: "What you chose to do was just absolutely disgusting! Maybe you want " +
                     "to date " + sc.n("dog") + "? Is that it? That's it isn't it. ",
                 button: [
@@ -2944,7 +2947,7 @@ room316.chat = function (chatID) {
             },
             {
                 chatID: 157,
-                speaker: "me",
+                speaker: "me", l10nValues: { dog: sc.n("dog") },
                 text: "Bad doggy! Bad! Don't pee on me! Oooofff it's so pungent. I get no respect, not  " +
                     "even from " + sc.n("dog") + ".",
                 button: [
@@ -2953,7 +2956,7 @@ room316.chat = function (chatID) {
             },
             {
                 chatID: 158,
-                speaker: "me",
+                speaker: "me", l10nValues: { janice: sc.n("janice") },
                 text: "Great now I just have to lay here next to dog piss and hope that " + sc.n("janice") +
                     " comes back soon! She's been gone so long!",
                 button: [
@@ -2966,12 +2969,12 @@ room316.chat = function (chatID) {
                 text: "What the fuck! You pissed outside your dog cage while I was gone! You are " +
                     "a really bad doggy!!!! I just can't! I'm so mad right now!",
                 button: [
-                    { chatID: 160, text: "It wasn't me it was " + sc.n("dog") + "!", callback: "dog5" },
+                    { chatID: 160, text: "It wasn't me it was " + sc.n("dog") + "!", l10nValues: { dog: sc.n("dog") }, callback: "dog5" },
                 ]
             },
             {
                 chatID: 160,
-                speaker: "janice",
+                speaker: "janice", l10nValues: { dog: sc.n("dog") },
                 text: sc.n("dog") + " is house broken and NEVER pees inside!!! How dare you blame " +
                     "him! First you don't tell me you're a crossdresser, then I catch you getting " +
                     "fucked by my dog in the park, and now, the cherry on top, you piss on my floor " +

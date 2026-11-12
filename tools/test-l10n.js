@@ -33,14 +33,16 @@ window.HatMPLocales.${locale} = { "_meta": {"locale":"${locale}"}, "strings": ${
     fs.writeFileSync(path.join(root, 'scripts', 'room', 'room001.js'), `
         room1.chat = function(chatID) {
             var cArray = [{speaker:'test', text:'Hello {person}', button:[{text:'Go',chatID:-1}]},
-                {speaker:'test',text:'Hello '+ sc.n('person'),l10nValues:{person:sc.n('person')},button:[]}];
+                {speaker:'test',text:'Hello '+ sc.n('person'),l10nValues:{person:sc.n('person')},button:[]},
+                {speaker:'test',text:' NOOP ',button:[{text:'A real choice',chatID:-1}]},
+                {speaker:'test',text:'Noop is a word here',button:[]}];
             return cArray[chatID];
         };
         l10n.t('runtime.literal','Hello {name}',{name:sc.n('person')});
         l10n.t('runtime.dynamic', makeGreeting(), {person:sc.n('person')});
         l10n.t('runtime.sourceOnly','Only in source');
     `);
-    const report = check(root, { locales: ['es'] });
+    const report = check(root, { locales: ['es'], includeSource: false });
     const has = (key, type) => report.issues.some(i => i.key === key && i.type === type);
     assert.ok(has('ui.missing', 'missing'));
     assert.ok(has('ui.empty', 'missing'));
@@ -57,6 +59,10 @@ window.HatMPLocales.${locale} = { "_meta": {"locale":"${locale}"}, "strings": ${
     const inventory = check(root, { locales: ['es'], includeSource: true, prefix: 'runtime.' });
     assert.ok(inventory.issues.some(i => i.key === 'runtime.sourceOnly' && i.type === 'missing'));
     assert.ok(inventory.issues.every(i => !i.key || i.key.startsWith('runtime.')));
+    const noopReport = check(root, { locales: ['es'], prefix: 'room.1.chat.' });
+    assert.ok(!noopReport.issues.some(i => i.key === 'room.1.chat.2.text' && i.type === 'missing'));
+    assert.ok(noopReport.issues.some(i => i.key === 'room.1.chat.2.choice.0' && i.type === 'missing'));
+    assert.ok(noopReport.issues.some(i => i.key === 'room.1.chat.3.text' && i.type === 'missing'));
     assert.deepEqual(markupProblems('1 < 2 and 3 > 2'), []);
     assert.deepEqual(markupProblems('<abbr title="a > b">word</abbr><br/>'), []);
     assert.ok(markupProblems('<span title="broken>text').length);

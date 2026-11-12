@@ -126,13 +126,13 @@ missy.checkPop = function (name, amount) {
     switch (name) {
         case "mood":
             if (amount > 14)
-                g.popUpNotice("Missy really liked that!");
+                g.popUpNotice(l10n.t("missy.notice.likedMuch", "Missy really liked that!", { missy: sc.n("missy") }));
             else if (amount > 0)
-                g.popUpNotice("Missy liked that");
+                g.popUpNotice(l10n.t("missy.notice.liked", "Missy liked that", { missy: sc.n("missy") }));
             else if (amount < -14)
-                g.popUpNotice("Missy really hated that");
+                g.popUpNotice(l10n.t("missy.notice.hated", "Missy really hated that", { missy: sc.n("missy") }));
             else if (amount !== 0)
-                g.popUpNotice("Missy didn't like that");
+                g.popUpNotice(l10n.t("missy.notice.disliked", "Missy didn't like that", { missy: sc.n("missy") }));
             break;
     }
 }
@@ -257,8 +257,8 @@ missy.setenvelope = function (name) {
                 if (missy.envelope[i].key) {
                     sc.completeMissionTask("p", "*missy", 3);
                     sc.startMissionTask("p", "*missy", 4);
-                    g.popUpNotice("YOU HAVE THE CODE!!");
-                    g.popUpNotice("Return to " + sc.n("p") + " at Missy's Detective Agency!");
+                    g.popUpNotice(l10n.t("missy.notice.code", "YOU HAVE THE CODE!!"));
+                    missy.noticeReturnToAgency();
                 }
                 else {
                     let eligible = missy.envelope.filter(function (e) { return e.canBe === true; });
@@ -269,19 +269,23 @@ missy.setenvelope = function (name) {
                         missy.envelope[i].key = true;
                         sc.completeMissionTask("p", "*missy", 3);
                         sc.startMissionTask("p", "*missy", 4);
-                        g.popUpNotice("YOU HAVE THE CODE!!");
-                        g.popUpNotice("Return to " + sc.n("p") + " at Missy's Detective Agency!");
+                        g.popUpNotice(l10n.t("missy.notice.code", "YOU HAVE THE CODE!!"));
+                        missy.noticeReturnToAgency();
                     }
                     else {
-                        g.popUpNotice(sc.n(name) + " crossed off this list. ");
+                        g.popUpNotice(l10n.t("missy.notice.crossedOff", "{name} crossed off this list. ", { name: sc.n(name) }));
                     }
                 }
             }
         }
     }
     else {
-        g.popUpNotice("Return to " + sc.n("p") + " at Missy's Detective Agency!");
+        missy.noticeReturnToAgency();
     }
+};
+
+missy.noticeReturnToAgency = function () {
+    g.popUpNotice(l10n.t("missy.notice.returnAgency", "Return to {detective} at Missy's Detective Agency!", { detective: sc.n("p"), missy: sc.n("missy") }));
 };
 
 missy.getcases = function () {

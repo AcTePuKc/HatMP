@@ -23,12 +23,12 @@ room476.main = function () {
             "height": 52,
             "image": "476_cabin/cross_tie.png",
         }, 476);
-        sc.select("cry", "476_cabin/icon_cry.png", 1);
-        sc.select("help", "476_cabin/icon_help.png", 3);
-        sc.select("free", "476_cabin/icon_free.png", 5);
-        sc.select("rest1", "476_cabin/icon_rest1.png", 7);
-        sc.select("rest3", "476_cabin/icon_rest3.png", 9);
-        sc.select("rest8", "476_cabin/icon_rest8.png", 11);
+        sc.selectLocalizedLabel("cry", "476_cabin/icon_cry.png", 1, "room.476.action.cry", "Whimper and cry");
+        sc.selectLocalizedLabel("help", "476_cabin/icon_help.png", 3, "room.476.action.help", "Cry for help");
+        sc.selectLocalizedLabel("free", "476_cabin/icon_free.png", 5, "room.476.action.free", "Try to pull your hands free");
+        sc.selectLocalizedLabel("rest1", "476_cabin/icon_rest1.png", 7, "room.476.action.rest1", "Rest for 1 hour");
+        sc.selectLocalizedLabel("rest3", "476_cabin/icon_rest3.png", 9, "room.476.action.rest3", "Rest for 3 hours");
+        sc.selectLocalizedLabel("rest8", "476_cabin/icon_rest8.png", 11, "room.476.action.rest8", "Rest for 8 hours");
     }
     else {
         if (g.isNight() && g.dt.getDay() !== 5) {
@@ -652,14 +652,14 @@ room476.chatcatch = function (callback) {
                 invoker.invokeCurrent("chatcatch", "nextEvent");
                 return;
             }
-            sc.select("cry", "476_cabin/icon_cry.png", 1);
-            sc.select("help", "476_cabin/icon_help.png", 3);
-            sc.select("free", "476_cabin/icon_free.png", 5);
-            sc.select("rest1", "476_cabin/icon_rest1.png", 7);
+            sc.selectLocalizedLabel("cry", "476_cabin/icon_cry.png", 1, "room.476.action.cry", "Whimper and cry");
+            sc.selectLocalizedLabel("help", "476_cabin/icon_help.png", 3, "room.476.action.help", "Cry for help");
+            sc.selectLocalizedLabel("free", "476_cabin/icon_free.png", 5, "room.476.action.free", "Try to pull your hands free");
+            sc.selectLocalizedLabel("rest1", "476_cabin/icon_rest1.png", 7, "room.476.action.rest1", "Rest for 1 hour");
             if(g.gethourdecimal() < 18)
-                sc.select("rest3", "476_cabin/icon_rest3.png", 9);
+                sc.selectLocalizedLabel("rest3", "476_cabin/icon_rest3.png", 9, "room.476.action.rest3", "Rest for 3 hours");
             if (g.gethourdecimal() < 13)
-                sc.select("rest8", "476_cabin/icon_rest8.png", 11);
+                sc.selectLocalizedLabel("rest8", "476_cabin/icon_rest8.png", 11, "room.476.action.rest8", "Rest for 8 hours");
             if (g.internal.walker.includes(g.dt.getHours())) {
                 nav.button({
                     "type": "img",
@@ -810,18 +810,26 @@ invoker.registerRoom(476, room476);
 room476.chat = function (chatID) {
     if (chatID === 999) {
         var message = "Damn the ropes are still really tight. ";
-        if (g.internal.rope < 25)
+        var messageKey = "room.476.rope.tight";
+        if (g.internal.rope < 25) {
             message = "The ropes are pretty loose. Just a bit more and I can be free. ";
-        else if (g.internal.rope < 50)
+            messageKey = "room.476.rope.almost";
+        }
+        else if (g.internal.rope < 50) {
             message = "I'm more than halfway there. The ropes are starting to get loose. ";
-        else if (g.internal.rope < 75)
+            messageKey = "room.476.rope.half";
+        }
+        else if (g.internal.rope < 75) {
             message = "The ropes are less tight. Still have a way to go. ";
+            messageKey = "room.476.rope.looser";
+        }
         return {
             chatID: 0,
             speaker: "thinking",
+            l10nKey: messageKey,
             text: message,
             button: [
-                { chatID: -1, text: g.internal.rope + "% free", callback: "cross_inc" }
+                { chatID: -1, text: g.internal.rope + "% rope remaining", l10nKey: "room.476.rope.remaining", l10nValues: { rope: g.internal.rope }, callback: "cross_inc" }
             ]
         };
     }
@@ -939,6 +947,7 @@ room476.chat = function (chatID) {
                 text: "Oh us? Are you worried that we aren't going to get the chance to enjoy " +
                     "ourselves since you're on the sybian. Don't worry little " + gender.pronoun("girl") +
                     " we're going to use your face hole for all our pleasure. Hehehe.  ",
+                l10nValues: { address: gender.pronoun("girl") },
                 button: [
                     { chatID: -1, text: "b-b-b-bbb ooooooo", callback: "bg_night_cult9" }
                 ]
@@ -1036,7 +1045,7 @@ room476.chat = function (chatID) {
                     "rip your sissy ass open! Hope you love the taste of your own ass " +
                     "'cause our cocks are going straight from your ass to your mouth! ",
                 button: [
-                    { chatID: 23, text: "Fuck you " + sc.n("river") + "!", callback: "" },
+                    { chatID: 23, text: "Fuck you " + sc.n("river") + "!", l10nValues: { river: sc.n("river") }, callback: "" },
                 ]
             },
             {
@@ -1119,6 +1128,7 @@ room476.chat = function (chatID) {
                     "I get done with this little sissy " + gender.pronoun("she") + 
                     " won't be able to walk for a week! Hope you like it deep little " +
                     "girl. ",
+                l10nValues: { river: sc.n("river"), playerPronoun: gender.pronoun("she") },
                 button: [
                     { chatID: -1, text: "*glug* *glug*", callback: "pillory9" },
                 ]
@@ -1268,7 +1278,7 @@ room476.chat = function (chatID) {
                 speaker: "!damselle",
                 text: "You're a little short for a Cum Cultist ",
                 button: [
-                    { chatID: 49, text: "What? No. I'm " + sc.n("me") + ". I'm here to rescue you.", callback: "" }
+                    { chatID: 49, text: "What? No. I'm " + sc.n("me") + ". I'm here to rescue you.", l10nValues: { me: sc.n("me") }, callback: "" }
                 ]
             },
             {
@@ -1337,8 +1347,9 @@ room476.chat = function (chatID) {
                 text: "Well holy fucking shit! If it isn't " + sc.n("me") + "!! You won't be meeting your " +
                     "traitor of a friend. He spilled everything about his little meet up after only three " +
                     "hours of torture. He's such a pussy like you. ",
+                l10nValues: { me: sc.n("me") },
                 button: [
-                    { chatID: 57, text: sc.n("river") + "!!", callback: "" },
+                    { chatID: 57, text: sc.n("river") + "!!", l10nValues: { river: sc.n("river") }, callback: "" },
                 ]
             },
             {

@@ -284,6 +284,9 @@ room475.chat = function (chatID) {
         return {
             chatID: 0,
             speaker: "thinking",
+            l10nKey: cumJar === 0 ? "room.475.treasure.money" :
+                cumJar === 1 ? "room.475.treasure.oneJar" : "room.475.treasure.manyJars",
+            l10nValues: { gold: gold, jars: cumJar },
             text: "Sweet I received $" + gold.toString() + (cumJar > 0 ? " and " + cumJar + " jar " + (cumJar > 1 ? "s" : "") + " of cum!" : "!"),
             button: [
                 { chatID: -1, text: "...", callback: "reset" }

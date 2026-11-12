@@ -4,13 +4,13 @@ room625.main = function () {
     if (g.pass.who === "lola" || g.pass.who === "ll") {
         //g.pass = { who: "lola", ferrisWheel: false, bong: false, wheel: false };
         if (!g.pass.ferrisWheel)
-            sc.select("ferris", "625_fair/icon_wheel.png", 0);
+            sc.selectLocalizedLabel("ferris", "625_fair/icon_wheel.png", 0, "room.625.select.wheel", "Ferris Wheel", "", { width: 430, fontSize: 27 });
         if (!g.pass.bong)
-            sc.select("bong", "625_fair/icon_bong.png", 1);
+            sc.selectLocalizedLabel("bong", "625_fair/icon_bong.png", 1, "room.625.select.strength", "Test your strength", "", { width: 430, fontSize: 27 });
         if (!g.pass.ball)
-            sc.select("ball", "625_fair/icon_ball.png", 2);
+            sc.selectLocalizedLabel("ball", "625_fair/icon_ball.png", 2, "room.625.select.ball", "Ball Toss", "", { width: 430, fontSize: 27 });
 
-        sc.select("endDate", "625_fair/icon_enddate.png", 3);
+        sc.selectLocalizedLabel("endDate", "625_fair/icon_enddate.png", 3, "room.625.select.end", "End the date", "", { width: 430, fontSize: 27 });
     }
     else if (g.gethourdecimal() > 22 || g.gethourdecimal() < 7) {
         if (missy.activecase().caseId === 18) {
@@ -23,9 +23,9 @@ room625.main = function () {
         }
     }
     else {
-        sc.select("ferris", "625_fair/icon_wheel.png", 0);
-        sc.select("bong", "625_fair/icon_bong.png", 1);
-        sc.select("ball", "625_fair/icon_ball.png", 2);
+        sc.selectLocalizedLabel("ferris", "625_fair/icon_wheel.png", 0, "room.625.select.wheel", "Ferris Wheel", "", { width: 430, fontSize: 27 });
+        sc.selectLocalizedLabel("bong", "625_fair/icon_bong.png", 1, "room.625.select.strength", "Test your strength", "", { width: 430, fontSize: 27 });
+        sc.selectLocalizedLabel("ball", "625_fair/icon_ball.png", 2, "room.625.select.ball", "Ball Toss", "", { width: 430, fontSize: 27 });
         nav.buildnav([626, 627, 628, 0]);
         if (missy.activecase().caseId === 18) {
             if (!daily.get("625closemessage")) {
@@ -178,7 +178,7 @@ room625.chat = function (chatID) {
         {
             chatID: 1,
             speaker: "thinking",
-            text: "I'll have to come back after " + char.friendlyTime(22) + ", when they close. ",
+            text: "I'll have to come back after " + char.friendlyTime(22) + ", when they close. ", l10nValues: { time: char.friendlyTime(22) },
             button: [
                 { chatID: -1, text: "...", callback: "leave" }
             ]
@@ -204,7 +204,7 @@ room625.chat = function (chatID) {
             chatID: 4,
             speaker: "thinking",
             text: "I don't know if I'm more impressed with how much those two get around, or the size of " +
-                "that futa clown dick! Wow! I guess Orchid is really going to lose the dick size game here. ",
+                "that futa clown dick! Wow! I guess " + sc.n("orchid") + " is really going to lose the dick size game here. ", l10nValues: { orchid: sc.n("orchid") },
             button: [
                 { chatID: -1, text: "...", callback: "sneak0" }
             ]
@@ -213,7 +213,7 @@ room625.chat = function (chatID) {
             chatID: 5,
             speaker: "thinking",
             text: "Oh no. Is that one of the missing girls? Has to be, she's in a cage. I wonder what's going " +
-                "on? It really looks like the clown girl is selling her to them. I better call Missy. ",
+                "on? It really looks like the clown girl is selling her to them. I better call " + sc.n("missy") + ". ", l10nValues: { missy: sc.n("missy") },
             button: [
                 { chatID: 6, text: "...", callback: "t20" }
             ]
@@ -256,8 +256,8 @@ room625.chat = function (chatID) {
         {
             chatID: 10,
             speaker: "thinking",
-            text: "That was crazy!!! I don't know what happened, but I'll let Missy know and see her in the " +
-                "morning!",
+            text: "That was crazy!!! I don't know what happened, but I'll let " + sc.n("missy") + " know and see her in the " +
+                "morning!", l10nValues: { missy: sc.n("missy") },
             button: [
                 { chatID: -1, text: "[Go home]", callback: "" }
             ]

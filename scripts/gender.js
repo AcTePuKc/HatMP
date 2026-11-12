@@ -14,6 +14,10 @@ gender.isCockTooSmallForSex = function(){
 gender.isGirl = function () {
     let tpronoun = gv.get("pronouns");
     if (tpronoun === "a") {
+        // The initial room can render before a save or new game initializes clothes.
+        // Use the neutral default until player appearance data is available.
+        if (!cl.c)
+            return false;
         var appearance = cl.appearance();
         if (appearance === 5) {
             if (cl.c.chest > 2)

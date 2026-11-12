@@ -1,5 +1,9 @@
 //Room name
 var room728 = {};
+room728.itemName = function (name) {
+    var keys = { "bottle of wine": "wine", "coil of rope": "rope", "snacky cake": "cake", "bottle of beer": "beer", "baseball": "baseball", "eye drops": "eyeDrops", "sunglasses": "sunglasses", "camera": "camera" };
+    return keys[name] ? l10n.t("room.728.item." + keys[name], name) : name;
+};
 room728.main = function () {
     if (g.pass === "endSleepyTime") {
         cl.undo();
@@ -58,7 +62,7 @@ room728.chatcatch = function (callback) {
                 "width": 41,
                 "height": 149,
                 "image": "725_club/riverq_bottle_of_wine.webp",
-                "title": "Slutty Mommy wine"
+                "title": l10n.t("room.728.tooltip.wine", "Slutty Mommy wine")
             }, 728);
             nav.button({
                 "type": "btn",
@@ -68,7 +72,7 @@ room728.chatcatch = function (callback) {
                 "width": 150,
                 "height": 50,
                 "image": "725_club/riverq_coil_of_rope.webp",
-                "title": "Coil of rope"
+                "title": room728.itemName("coil of rope")
             }, 728);
             nav.button({
                 "type": "btn",
@@ -78,7 +82,7 @@ room728.chatcatch = function (callback) {
                 "width": 62,
                 "height": 43,
                 "image": "725_club/riverq_snacky_cake.webp",
-                "title": "Snacky cake"
+                "title": room728.itemName("snacky cake")
             }, 728);
             nav.button({
                 "type": "btn",
@@ -88,7 +92,7 @@ room728.chatcatch = function (callback) {
                 "width": 239,
                 "height": 83,
                 "image": "725_club/riverq_bottle_of_beer.webp",
-                "title": "Bottle of beer"
+                "title": room728.itemName("bottle of beer")
             }, 728);
             nav.button({
                 "type": "btn",
@@ -98,7 +102,7 @@ room728.chatcatch = function (callback) {
                 "width": 38,
                 "height": 38,
                 "image": "725_club/riverq_baseball.webp",
-                "title": "Baseball"
+                "title": room728.itemName("baseball")
             }, 728);
             nav.button({
                 "type": "btn",
@@ -108,7 +112,7 @@ room728.chatcatch = function (callback) {
                 "width": 21,
                 "height": 43,
                 "image": "725_club/riverq_eye_drops.webp",
-                "title": "Eye Drops"
+                "title": room728.itemName("eye drops")
             }, 728);
             nav.button({
                 "type": "btn",
@@ -118,7 +122,7 @@ room728.chatcatch = function (callback) {
                 "width": 86,
                 "height": 41,
                 "image": "725_club/riverq_sunglasses.webp",
-                "title": "Sunglasses"
+                "title": room728.itemName("sunglasses")
             }, 728);
             nav.button({
                 "type": "btn",
@@ -128,12 +132,12 @@ room728.chatcatch = function (callback) {
                 "width": 76,
                 "height": 51,
                 "image": "725_club/riverq_camera.webp",
-                "title": "Camera"
+                "title": room728.itemName("camera")
             }, 728);
             break;
         case "river3":
             nav.killbutton(g.internal.btn);
-            g.popUpNotice("Grabbed " + g.internal.text);
+            g.popUpNotice(l10n.t("room.728.grabbed", "Grabbed {item}", { item: room728.itemName(g.internal.text) }));
             nav.bg("725_club/river3.webp");
             if (cl.c.cock === 5)
                 chat(6, 728);
@@ -329,7 +333,7 @@ room728.chat = function (chatID) {
         return {
             chatID: 900,
             speaker: "random",
-            text: "Should I use this " + g.internal.text + " to try to take out " + sc.n("river") + "? ",
+            text: "Should I use this " + g.internal.text + " to try to take out " + sc.n("river") + "? ", l10nValues: { item: room728.itemName(g.internal.text), river: sc.n("river") },
             button: [
                 { chatID: -1, text: "Yes. ", callback: "river3" },
                 { chatID: -1, text: "Pick something else. ", callback: "" },
@@ -343,7 +347,7 @@ room728.chat = function (chatID) {
             text: "Really. I'm in love with you. ",
             button: [
                 { chatID: 11, text: "[Let him stick his tongue in your mouth]", callback: "river4" },
-                { chatID: -1, text: "[Use the " + g.internal.text + " on him]", callback: "river_hit" },
+                { chatID: -1, text: "[Use the " + g.internal.text + " on him]", l10nValues: { item: room728.itemName(g.internal.text) }, callback: "river_hit" },
             ]
         };
     }
@@ -356,7 +360,7 @@ room728.chat = function (chatID) {
                 "Bend that ass over! ",
             button: [
                 { chatID: 29, text: "[Present your naked anus]", callback: "river_anal0" },
-                { chatID: -1, text: "[Use the " + g.internal.text + " on him]", callback: "river_hit" }
+                { chatID: -1, text: "[Use the " + g.internal.text + " on him]", l10nValues: { item: room728.itemName(g.internal.text) }, callback: "river_hit" }
             ]
         };
     }
@@ -522,7 +526,7 @@ room728.chat = function (chatID) {
             {
                 chatID: 18,
                 speaker: "me",
-                text: "Take this " + sc.n("river") + "!!!",
+                text: "Take this " + sc.n("river") + "!!!", l10nValues: { river: sc.n("river") },
                 button: [
                     { chatID: 19, text: "...", callback: "river_out" },
                 ]
@@ -539,7 +543,7 @@ room728.chat = function (chatID) {
                 chatID: 20,
                 speaker: "thinking",
                 text: "Fuckin' sweet! Got the code. It's 1-2-3-4-5! Now to get back to " + sc.n("p") +
-                    " and let her know! ",
+                    " and let her know! ", l10nValues: { p: sc.n("p") },
                 button: [
                     { chatID: -1, text: "[Get out of there]", callback: "leave" },
                 ]
@@ -737,7 +741,7 @@ room728.chat = function (chatID) {
                 text: "Oh shit there totally is! I don't know the code though. Fuck. Maybe I'll just find you around. " +
                     "You know it's only a matter of time until you're brought back once the heat dies down. I'll talk " +
                     "to " + sc.n("ubel") + ". Maybe he'll let me keep you. He does do special favors sometimes, but you " +
-                    "usually have to do some fucked up shit for him when he does. I'll find a way for us to be together. ",
+                    "usually have to do some fucked up shit for him when he does. I'll find a way for us to be together. ", l10nValues: { ubel: sc.n("ubel") },
                 button: [
                     { chatID: 44, text: "I know you will", callback: "" },
                 ]

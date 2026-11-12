@@ -263,11 +263,11 @@ room955.chatcatch = function (callback) {
             break;
         case "choices":
             g.internal = 0;
-            sc.select("icon_bj", "955_milk/icon_bj.webp", 0);
-            sc.select("icon_boobjob", "955_milk/icon_boobjob.webp", 2);
-            sc.select("icon_hj", "955_milk/icon_hj.webp", 4);
-            sc.select("icon_anal", "955_milk/icon_anal.webp", 6);
-            sc.select("icon_footjob", "955_milk/icon_footjob.webp", 8);
+            sc.selectLocalizedLabel("icon_bj", "955_milk/icon_bj.webp", 0, "room.955.select.bj", "Blow job", "", { width: 430, fontSize: 25 });
+            sc.selectLocalizedLabel("icon_boobjob", "955_milk/icon_boobjob.webp", 2, "room.955.select.boobjob", "Boob job", "", { width: 430, fontSize: 25 });
+            sc.selectLocalizedLabel("icon_hj", "955_milk/icon_hj.webp", 4, "room.955.select.hj", "Hand job", "", { width: 430, fontSize: 25 });
+            sc.selectLocalizedLabel("icon_anal", "955_milk/icon_anal.webp", 6, "room.955.select.anal", "Anal sex", "", { width: 430, fontSize: 25 });
+            sc.selectLocalizedLabel("icon_footjob", "955_milk/icon_footjob.webp", 8, "room.955.select.footjob", "Foot job", "", { width: 430, fontSize: 25 });
             break;
         case "leave":
             sc.modLevel("cult", 15, 10);
@@ -282,6 +282,7 @@ room955.chatcatch = function (callback) {
 room955.chat = function (chatID) {
     if (chatID === 900) {
         let txt955 = "";
+        let key955 = "room.955.visitor." + g.pass.n.replace("!", "");
         switch (g.pass.n) {
             case "kei":
                 txt955 = "Hey girlie! So you think you can empty my balls of cum!"
@@ -314,11 +315,13 @@ room955.chat = function (chatID) {
                             return {
                                 chatID: 900,
                                 speaker: "bigguy",
+                                l10nKey: "room.955.visitor.bigguy.family",
+                                l10nValues: { chad: sc.n("chad"), el: sc.n("el"), landlord: sc.n("landlord") },
                                 text: sc.n("chad") + " and I are taking good care of your " + sc.n("el") +
                                     " and " + sc.n("landlord") + ". We started playing a game called who's " +
                                     "the daddy. ",
                                 button: [
-                                    { chatID: 10, text: "What's that?", callback: "" }
+                                    { chatID: 10, text: "What's that?", l10nKey: "room.955.visitor.bigguy.family.choice", callback: "" }
                                 ]
                             };
                         case 1:
@@ -326,14 +329,17 @@ room955.chat = function (chatID) {
                             return {
                                 chatID: 900,
                                 speaker: "bigguy",
+                                l10nKey: "room.955.visitor.bigguy.college",
+                                l10nValues: { el: sc.n("el") },
                                 text: "Got your " + sc.n("el") + " to drop out of college. They haven't been in " +
                                     "quite some time. Too busy making money on their backs, hehehe. It's amazing " +
                                     "how easily you can turn young women into whores. ",
                                 button: [
-                                    { chatID: 12, text: "Mother fucker!", callback: "" }
+                                    { chatID: 12, text: "Mother fucker!", l10nKey: "room.955.visitor.bigguy.college.choice", callback: "" }
                                 ]
                             };
                         default:
+                            key955 = "room.955.visitor.bigguy.familyLater";
                             txt955 = "Don't worry little " + gender.pronoun("girl") + " your " + sc.n("el") +
                                 " is taking good care of this dick while you're in here. Hehehe"
                             break;
@@ -356,9 +362,11 @@ room955.chat = function (chatID) {
                 txt955 = "Fuck yeah! I do love fucking sissies! "
                 break;
             case "!waiter":
-                if (sc.getMissionTask("janice", "date", 4).complete)
+                if (sc.getMissionTask("janice", "date", 4).complete) {
+                    key955 = "room.955.visitor.waiter.dated";
                     txt955 = "I got to fuck the girlfriend, now I get to fuck her " + gender.pronoun("boy") +
                         "friend too. I do love being me. ";
+                }
                 else
                 txt955 = "Are you a hot piece of ass."
                 break;
@@ -373,9 +381,11 @@ room955.chat = function (chatID) {
         return {
             chatID: 900,
             speaker: g.pass.n,
+            l10nKey: key955,
+            l10nValues: { el: sc.n("el"), landlord: sc.n("landlord") },
             text: txt955,
             button: [
-                { chatID: -1, text: "*sigh*", callback: "choices" }
+                { chatID: -1, text: "*sigh*", l10nKey: "room.955.visitor.choice", callback: "choices" }
             ]
         };
 
@@ -404,8 +414,8 @@ room955.chat = function (chatID) {
         },
         {
             chatID: 2,
-            speaker: "!milkmaid",
-            text: "Oh yes. Ubel says the girls are for pleasure, but you sissies have to be tough to birth " +
+            speaker: "!milkmaid", l10nValues: { ubel: sc.n("ubel") },
+            text: "Oh yes. " + sc.n("ubel") + " says the girls are for pleasure, but you sissies have to be tough to birth " +
                 "Azrael. I think he just cares about you sissies more than us. ",
             button: [
                 { chatID: 3, text: "...", callback: "" }
@@ -423,9 +433,9 @@ room955.chat = function (chatID) {
         },
         {
             chatID: 4,
-            speaker: "!milkmaid",
+            speaker: "!milkmaid", l10nValues: { ubel: sc.n("ubel") },
             text: "So the milking ritual happens each day. Well, except for Friday as you know. The boys can " +
-                "choose any girl they want. Ubel does that because he thinks some girls will get too attached " +
+                "choose any girl they want. " + sc.n("ubel") + " does that because he thinks some girls will get too attached " +
                 "to just one boy and pick him every time. ",
             button: [
                 { chatID: 5, text: "...", callback: "" }
@@ -433,10 +443,10 @@ room955.chat = function (chatID) {
         },
         {
             chatID: 5,
-            speaker: "!milkmaid",
+            speaker: "!milkmaid", l10nValues: { ubel: sc.n("ubel") },
             text: "But the girl gets to pick how to make him cum, but you have to be able to fill your chalice  " +
                 "with his cum. The girls get to pick how to make them cum. Too many boys with huge penises were " +
-                "picking the smallest girls and ramming it up their dirty dry butthole. So Ubel agreed that the girls get " +
+                "picking the smallest girls and ramming it up their dirty dry butthole. So " + sc.n("ubel") + " agreed that the girls get " +
                 "to pick it how they receive the cum. ",
             button: [
                 { chatID: 6, text: "That was nice of him. ", callback: "" }
@@ -454,8 +464,8 @@ room955.chat = function (chatID) {
         },
         {
             chatID: 7,
-            speaker: "!milkmaid",
-            text: "They wouldn't dare! No one defies Ubel. Terrible things happen to those few that have " +
+            speaker: "!milkmaid", l10nValues: { ubel: sc.n("ubel") },
+            text: "They wouldn't dare! No one defies " + sc.n("ubel") + ". Terrible things happen to those few that have " +
                 "tried. The swamp is full of bodies that pissed him off. You don't have to worry.",
             button: [
                 { chatID: 8, text: "Ok good. ", callback: "" }
@@ -463,8 +473,8 @@ room955.chat = function (chatID) {
         },
         {
             chatID: 8,
-            speaker: "!milkmaid",
-            text: "I'm going to take you each day, but them I have to go to Room One. Ubel has a standing " +
+            speaker: "!milkmaid", l10nValues: { ubel: sc.n("ubel") },
+            text: "I'm going to take you each day, but them I have to go to Room One. " + sc.n("ubel") + " has a standing " +
                 "request for me, hehe. I do kegels every day to keep him happy so he lets me keep the girls " +
                 "safe. Now let's see what those boys have for you in Milking Room Four.",
             button: [
@@ -500,7 +510,7 @@ room955.chat = function (chatID) {
         },
         {
             chatID: 12,
-            speaker: "bigguy",
+            speaker: "bigguy", l10nValues: { landlord: sc.n("landlord") },
             text: "That's right kid. I'm your " + sc.n("landlord") + "'s fucker! Hahaha! Even got her to " +
                 "take it up the ass. Love how she just lets me do whatever I want to her. I don't even " +
                 "have to get up from the couch when I have to piss. She just gulps it down. Love that " +

@@ -126,9 +126,9 @@ room626.chat = function (chatID) {
         return {
             chatID: 1,
             speaker: "lola",
-            text: "You're moving a little fast for a practice date. ",
+            text: "You're moving a little fast for a practice date. ", l10nKey: "room.626.boundary.text",
             button: [
-                { chatID: -1, text: "Let's just enjoy the ride. [Need level " + g.internal + "]", callback: "leave" },
+                { chatID: -1, text: "Let's just enjoy the ride. [Need level " + g.internal + "]", l10nKey: "room.626.boundary.choice", l10nValues: { level: g.internal }, callback: "leave" },
             ]
         };
     }

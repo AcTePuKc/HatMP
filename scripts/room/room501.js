@@ -12,6 +12,7 @@ room501.main = function () {
             "width": 354,
             "height": 721,
             "title": "Bedroom",
+            "titleKey": "room.501.hover.bedroom",
             "image": "501_jadaGame/door.png"
         }, 501);
         if (sc.getTimeline("zoey").thisRoom) {
@@ -71,9 +72,9 @@ room501.btnclick = function (name) {
                 return;
             }
             sc.selectBg("icon_kill");
-            sc.select("icon_chat", "501_jadaGame/icon_chat.png", 0);
-            sc.select("icon_game", "501_jadaGame/icon_game.png", 1);
-            sc.selectCancel("icon_kill", 2);
+            sc.selectLocalizedLabel("icon_chat", "501_jadaGame/icon_chat.png", 0, "room.501.action.chat", "Chat");
+            sc.selectLocalizedLabel("icon_game", "501_jadaGame/icon_game.png", 1, "room.501.action.game", "Game on!");
+            sc.selectLocalizedLabel("icon_kill", "1001_rand/icon_cancel.png", 2, "room.501.action.cancel", "Cancel");
             break;
         case "icon_kill":
             char.room(501);
@@ -269,6 +270,7 @@ room501.btnclick = function (name) {
                 "width": 298,
                 "height": 298,
                 "title": "Cancel",
+                "titleKey": "room.501.hover.cancel",
                 "image": "501_jadaGame/cancel.png"
             }];
             $.each(p11, function (i, v) {
@@ -301,33 +303,10 @@ room501.btnclick = function (name) {
                 "image": "501_jadaGame/notebookKill.png"
             }, 501);
             $('#room-buttons').append('<div class="zoey11KillMe" style="position:absolute; ' + g.makeCss(800, 500, 150, 450) + g.cssText("m") + ' z-index:100000; text-align:left; width">' +
-                'Dear Diary, <br/>' +
-                sc.n('zoey') + ' was getting ready to go out to a club tonight and she wanted to borrow one of my ' +
-                'sexy dresses before out. I found a hot little red dress that I love and handed it over to her to try on. ' +
-                'Without thinking she took off her dress freeing her big soft breasts and tiny thong right in front of me. ' +
-                'I couldn\'t help but lick my lips since she looked sooo yummy! When she saw the look on my face she immediately ' +
-                'turned a bright shade of pink and covered up her breasts in embarrassment. I told her it\'s ok, where just two friends ' +
-                'trying on clothes and she didn\'t need to cover up. She looked at me and said she didn\'t  ' + //);
-                //
-                'want to be friends and moved her ' +
-                ' hands to her hips pointing her pink nipples right at me and asked if I liked what ' +
-                'I see. I don\'t know what came over me, I just went to her and buried my face into her boobs and started ' +
-                'licking her nipples. She let out a little gasp as I circled my tongue around her hard nipples. She reached for ' +
-                'my top and peeled it off me then ran her fingernails from ' +
+                l10n.t("room.501.diary.first.left", "Dear Diary, <br/>{zoey} was getting ready to go out to a club tonight and she wanted to borrow one of my sexy dresses before out. I found a hot little red dress that I love and handed it over to her to try on. Without thinking she took off her dress freeing her big soft breasts and tiny thong right in front of me. I couldn't help but lick my lips since she looked sooo yummy! When she saw the look on my face she immediately turned a bright shade of pink and covered up her breasts in embarrassment. I told her it's ok, where just two friends trying on clothes and she didn't need to cover up. She looked at me and said she didn't  want to be friends and moved her  hands to her hips pointing her pink nipples right at me and asked if I liked what I see. I don't know what came over me, I just went to her and buried my face into her boobs and started licking her nipples. She let out a little gasp as I circled my tongue around her hard nipples. She reached for my top and peeled it off me then ran her fingernails from ", { zoey: sc.n("zoey") }) +
                 '</div>');
             $('#room-buttons').append('<div class="zoey11KillMe" style="position:absolute; ' + g.makeCss(800, 500, 150, 1110) + g.cssText("m") + ' z-index:100000; text-align:left; width">' +
-                ' my panty line to my own nipples. She ' +
-                'grabbed my boobies and told me that she liked how firm and perky my boobs were. ' + sc.n('zoey') +
-                ' then ran her hands down my shorts and smiled when she discovered that I don\'t wear underwear. ' +
-                '"Easy access" she breathed into my ear before kissing my on my lips.I\'ve never been molested with ' +
-                'such voracity by a girl before, it was so hot when she peeled down my short revealing my bare pussy. ' +
-                'She then pulled down her own panties and rubbed her clit and stuck her fingers inside her lubricating her own ' +
-                'fingers before moving to my clit and playfully rubbing it. I couldn\'t take it anymore, I had to sit on her ' +
-                'face!! I pushed her head down to my horny little clit and she just buried her face into my wet pussy! ' +
-                'It felt soooo good, I had to taste her pussy. I kneeled down to give her a kiss and I could taste myself ' +
-                'on her lips, I taste sooo good.I then pulled her down on her back and moved into a 69 with me on top. ' +
-                'I\'ve slept with plenty of boys, but I\'ve never cum harder than with ' + sc.n('zoey') + '\'s face ' +
-                'buried into my pussy as' +
+                l10n.t("room.501.diary.first.right", " my panty line to my own nipples. She grabbed my boobies and told me that she liked how firm and perky my boobs were. {zoey} then ran her hands down my shorts and smiled when she discovered that I don't wear underwear. \"Easy access\" she breathed into my ear before kissing my on my lips.I've never been molested with such voracity by a girl before, it was so hot when she peeled down my short revealing my bare pussy. She then pulled down her own panties and rubbed her clit and stuck her fingers inside her lubricating her own fingers before moving to my clit and playfully rubbing it. I couldn't take it anymore, I had to sit on her face!! I pushed her head down to my horny little clit and she just buried her face into my wet pussy! It felt soooo good, I had to taste her pussy. I kneeled down to give her a kiss and I could taste myself on her lips, I taste sooo good.I then pulled her down on her back and moved into a 69 with me on top. I've slept with plenty of boys, but I've never cum harder than with {zoey}'s face buried into my pussy as", { zoey: sc.n("zoey") }) +
                 '</div>');
             g.internal = 0;
             nav.next("cheatingDiary");
@@ -336,44 +315,19 @@ room501.btnclick = function (name) {
             if (g.internal === 0) {
                 $('.zoey11KillMe').remove();
                 $('#room-buttons').append('<div class="zoey11KillMe" style="position:absolute; ' + g.makeCss(800, 500, 150, 450) + g.cssText("m") + ' z-index:100000; text-align:left; width">' +
-                    'I ate her out. We made out for an hour after that both of our faces wet with ' +
-                    'each other\'s cum! I had to have her more!<br/><br/><br/>' +
-                    'Saw ' + sc.n('zoey') + ' again... I sat on her face for an hour. I think I had 5 different orgasms that night.' +
-                    'I\'ve never met someone who loves pussy like her!' +
-                    '<br/><br/><br/>' +
-                    'Went out with ' + sc.n('zoey') + ' to the Hard Cock Café. We had so many men drooling over us! ' +
-                    'One guy kept staring at us all night so while ' + sc.n('zoey') + ' was sitting on her bar stool ' +
-                    'I pulled up her dress and licked her asshole right in front of him! His cock was so hard I could see ' +
-                    'the outline almost down to his knees! He even had a wet spot where he was leaking cum while watching us! ' +
+                    l10n.t("room.501.diary.second.left", "I ate her out. We made out for an hour after that both of our faces wet with each other's cum! I had to have her more!<br/><br/><br/>Saw {zoey} again... I sat on her face for an hour. I think I had 5 different orgasms that night.I've never met someone who loves pussy like her!<br/><br/><br/>Went out with {zoey} to the Hard Cock Café. We had so many men drooling over us! One guy kept staring at us all night so while {zoey} was sitting on her bar stool I pulled up her dress and licked her asshole right in front of him! His cock was so hard I could see the outline almost down to his knees! He even had a wet spot where he was leaking cum while watching us! ", { zoey: sc.n("zoey") }) +
                     '</div>');
                 $('#room-buttons').append('<div class="zoey11KillMe" style="position:absolute; ' + g.makeCss(800, 500, 150, 1110) + g.cssText("m") + ' z-index:100000; text-align:left; width">' +
-                    'Took 5 deliveries of cum to ' + sc.n('priapus') + ' today. He only game me $50 this time! I don\'t ' +
-                    'think he knows how hard it is to collect so much cum in a single day and refrigerate it so it stays fresh! ' +
-                    'What a cheap fucker!' +
-                    '<br/><br/><br/>' +
-                    sc.n('zoey') + ' asked me to pee on her pussy today. I\'ve never peed on anyone before, but it sounded hot so ' +
-                    'we went into her tub and I peed all over her, I even got some on her face by accident! We showered off ' +
-                    'and she rewarded me. It was weird, but I kinda liked it, I may do it again.' +
-                    '<br/><br/><br/>' +
-                    sc.n('priapus') + ' demanded more cum! What a selfish asshole. I had to jerk off 7 men to get enough cum ' +
-                    'for him! My wrist was sooo sore when I was done I made ' + sc.n('priapus') + ' pay me $150 for all that cum!' +
+                    l10n.t("room.501.diary.second.right", "Took 5 deliveries of cum to {priapus} today. He only game me $50 this time! I don't think he knows how hard it is to collect so much cum in a single day and refrigerate it so it stays fresh! What a cheap fucker!<br/><br/><br/>{zoey} asked me to pee on her pussy today. I've never peed on anyone before, but it sounded hot so we went into her tub and I peed all over her, I even got some on her face by accident! We showered off and she rewarded me. It was weird, but I kinda liked it, I may do it again.<br/><br/><br/>{priapus} demanded more cum! What a selfish asshole. I had to jerk off 7 men to get enough cum for him! My wrist was sooo sore when I was done I made {priapus} pay me $150 for all that cum!", { priapus: sc.n("priapus"), zoey: sc.n("zoey") }) +
                     '</div>');
             }
             else {
                 $('.zoey11KillMe').remove();
                 $('#room-buttons').append('<div class="zoey11KillMe" style="position:absolute; ' + g.makeCss(800, 500, 150, 450) + g.cssText("m") + ' z-index:100000; text-align:left; width">' +
-                    'Just got the sexiest fuzzy green boots! They really make my ass pop out and ' + sc.n('zoey') + ' absolutely loved them' +
-                    '<br/><br/><br/>' +
-                    sc.n('priapus') + ' offered me $500 to sit for the C.U.M. cult and have the guys bust their nuts in my ' +
-                    'mouth. He promised it was only going to take an hour, but after the 30th cult follower finished in my mouth I had been sitting ' +
-                    'there for almost 2 HOURS!! My jaw is still sore! This one guy whose dick was only 2 inches long had to stroke it ' +
-                    'for like 20 minutes before he finally came! ' +
-                    '<br/><br/><br/>' +
-                    sc.n('zoey') + ' totally ate me out in front of ' + sc.n("me") + '. I love it when a guy watches, but can\'t touch ' +
+                    l10n.t("room.501.diary.third.left", "Just got the sexiest fuzzy green boots! They really make my ass pop out and {zoey} absolutely loved them<br/><br/><br/>{priapus} offered me $500 to sit for the C.U.M. cult and have the guys bust their nuts in my mouth. He promised it was only going to take an hour, but after the 30th cult follower finished in my mouth I had been sitting there for almost 2 HOURS!! My jaw is still sore! This one guy whose dick was only 2 inches long had to stroke it for like 20 minutes before he finally came! <br/><br/><br/>{zoey} totally ate me out in front of {me}. I love it when a guy watches, but can't touch ", { zoey: sc.n("zoey"), priapus: sc.n("priapus"), me: sc.n("me") }) +
                     '</div>');
                 $('#room-buttons').append('<div class="zoey11KillMe" style="position:absolute; ' + g.makeCss(800, 500, 150, 1110) + g.cssText("m") + ' z-index:100000; text-align:left; width">' +
-                    sc.n('priapus') + ' offered me $1000 to come by the ranch in the woods every Thursday and "be a more active participant" ' +
-                    'I don\'t know what that means, but I\'m a little scared. I can definitely use the money' +
+                    l10n.t("room.501.diary.third.right", "{priapus} offered me $1000 to come by the ranch in the woods every Thursday and \"be a more active participant\" I don't know what that means, but I'm a little scared. I can definitely use the money", { priapus: sc.n("priapus") }) +
                     '</div>');
                 nav.killbutton("cheatingDiary");
                 nav.close("cancelPeek");
@@ -584,6 +538,7 @@ room501.chatcatch = function (callback) {
                 "width": 354,
                 "height": 721,
                 "title": "Peek",
+                "titleKey": "room.501.hover.peek",
                 "image": "501_jadaGame/door.png"
             }, 501);
             nav.button({
@@ -593,8 +548,8 @@ room501.chatcatch = function (callback) {
                 "top": 608,
                 "width": 151,
                 "height": 100,
-                "title": "Sleep",
-                "titleKey": "room.10.hover.sleep",
+                "title": "Search the bag",
+                "titleKey": "room.501.hover.bag",
                 "image": "501_jadaGame/purse.png"
             }, 501);
 
@@ -724,44 +679,19 @@ room501.chatcatch = function (callback) {
         case "notbook11-1":
             $('.zoey11KillMe').remove();
             $('#room-buttons').append('<div class="zoey11KillMe" style="position:absolute; ' + g.makeCss(800, 500, 150, 450) + g.cssText("m") + ' z-index:100000; text-align:left; width">' +
-                'I ate her out. We made out for an hour after that both of our faces wet with ' +
-                'each other\'s cum! I had to have her more!<br/><br/><br/>' +
-                'Saw ' + sc.n('zoey') + ' again... I sat on her face for an hour. I think I had 5 different orgasms that night.' +
-                'I\'ve never met someone who loves pussy like her!' +
-                '<br/><br/><br/>' +
-                'Went out with ' + sc.n('zoey') + ' to the Hard Cock Café. We had so many men drooling over us! ' +
-                'One guy kept staring at us all night so while ' + sc.n('zoey') + ' was sitting on her bar stool ' +
-                'I pulled up her dress and licked her asshole right in front of him! His cock was so hard I could see ' +
-                'the outline almost down to his knees! He even had a wet spot where he was leaking cum while watching us! ' +
+                l10n.t("room.501.diary.second.left", "I ate her out. We made out for an hour after that both of our faces wet with each other's cum! I had to have her more!<br/><br/><br/>Saw {zoey} again... I sat on her face for an hour. I think I had 5 different orgasms that night.I've never met someone who loves pussy like her!<br/><br/><br/>Went out with {zoey} to the Hard Cock Café. We had so many men drooling over us! One guy kept staring at us all night so while {zoey} was sitting on her bar stool I pulled up her dress and licked her asshole right in front of him! His cock was so hard I could see the outline almost down to his knees! He even had a wet spot where he was leaking cum while watching us! ", { zoey: sc.n("zoey") }) +
                 '</div>');
             $('#room-buttons').append('<div class="zoey11KillMe" style="position:absolute; ' + g.makeCss(800, 500, 150, 1110) + g.cssText("m") + ' z-index:100000; text-align:left; width">' +
-                'Took 5 deliveries of cum to ' + sc.n('priapus') + ' today. He only game me $50 this time! I don\'t ' +
-                'think he knows how hard it is to collect so much cum in a single day and refrigerate it so it stays fresh! ' +
-                'What a cheap fucker!' +
-                '<br/><br/><br/>' +
-                sc.n('zoey') + ' asked me to pee on her pussy today. I\'ve never peed on anyone before, but it sounded hot so ' +
-                'we went into her tub and I peed all over her, I even got some on her face by accident! We showered off ' +
-                'and she rewarded me. It was weird, but I kinda liked it, I may do it again.' +
-                '<br/><br/><br/>' +
-                sc.n('priapus') + ' demanded more cum! What a selfish asshole. I had to jerk off 7 men to get enough cum ' +
-                'for him! My wrist was sooo sore when I was done I made ' + sc.n('priapus') + ' pay me $150 for all that cum!' +
+                l10n.t("room.501.diary.second.right", "Took 5 deliveries of cum to {priapus} today. He only game me $50 this time! I don't think he knows how hard it is to collect so much cum in a single day and refrigerate it so it stays fresh! What a cheap fucker!<br/><br/><br/>{zoey} asked me to pee on her pussy today. I've never peed on anyone before, but it sounded hot so we went into her tub and I peed all over her, I even got some on her face by accident! We showered off and she rewarded me. It was weird, but I kinda liked it, I may do it again.<br/><br/><br/>{priapus} demanded more cum! What a selfish asshole. I had to jerk off 7 men to get enough cum for him! My wrist was sooo sore when I was done I made {priapus} pay me $150 for all that cum!", { priapus: sc.n("priapus"), zoey: sc.n("zoey") }) +
                 '</div>');
             break;
         case "notbook11-2":
             $('.zoey11KillMe').remove();
             $('#room-buttons').append('<div class="zoey11KillMe" style="position:absolute; ' + g.makeCss(800, 500, 150, 450) + g.cssText("m") + ' z-index:100000; text-align:left; width">' +
-                'Just got the sexiest fuzzy green boots! They really make my ass pop out and ' + sc.n('zoey') + ' absolutely loved them' +
-                '<br/><br/><br/>' +
-                sc.n('priapus') + ' offered me $500 to sit in the middle of his free love cult and have the guys bust their nuts in my ' +
-                'mouth. He promised it was only going to take an hour, but after the 30th cult follower finished in my mouth I had been sitting ' +
-                'there for almost 2 HOURS!! My jaw is still sore! This one guy whose dick was only 2 inches long had to stroke it ' +
-                'for like 20 minutes before he finally came! ' +
-                '<br/><br/><br/>' +
-                sc.n('zoey') + ' totally ate me out in front of ' + sc.n("me") + '. I love it when a guy watches, but can\'t touch ' +
+                l10n.t("room.501.diary.third.alternateLeft", "Just got the sexiest fuzzy green boots! They really make my ass pop out and {zoey} absolutely loved them<br/><br/><br/>{priapus} offered me $500 to sit in the middle of his free love cult and have the guys bust their nuts in my mouth. He promised it was only going to take an hour, but after the 30th cult follower finished in my mouth I had been sitting there for almost 2 HOURS!! My jaw is still sore! This one guy whose dick was only 2 inches long had to stroke it for like 20 minutes before he finally came! <br/><br/><br/>{zoey} totally ate me out in front of {me}. I love it when a guy watches, but can't touch ", { zoey: sc.n("zoey"), priapus: sc.n("priapus"), me: sc.n("me") }) +
                 '</div>');
             $('#room-buttons').append('<div class="zoey11KillMe" style="position:absolute; ' + g.makeCss(800, 500, 150, 1110) + g.cssText("m") + ' z-index:100000; text-align:left; width">' +
-                sc.n('priapus') + ' offered me $1000 to come by the ranch in the woods every Thursday and "be a more active participant" ' +
-                'I don\'t know what that means, but I\'m a little scared. I can definitely use the money' +
+                l10n.t("room.501.diary.third.right", "{priapus} offered me $1000 to come by the ranch in the woods every Thursday and \"be a more active participant\" I don't know what that means, but I'm a little scared. I can definitely use the money", { priapus: sc.n("priapus") }) +
                 '</div>');
             break;
         case "killNotebook11":
@@ -943,12 +873,14 @@ room501.chat = function (chatID) {
             "You are the suck of prostitutes! ",
             "You are the poop biggest!"
         ];
+        var remarkIndex = g.rand(0, c.length);
         return {
             chatID: 0,
             speaker: "zoey",
-            text: c[g.rand(0, c.length)],
+            l10nKey: "room.501.game.remark." + remarkIndex,
+            text: c[remarkIndex],
             button: [
-                { chatID: -1, text: "Grrr.", callback: "resetEndGame" }
+                { chatID: -1, text: "Grrr.", l10nKey: "room.501.game.remark.choice", callback: "resetEndGame" }
             ]
         };
     }
@@ -962,25 +894,27 @@ room501.chat = function (chatID) {
                 chatID: 800,
                 speaker: "zoey",
                 text: "Did you catch her cheating yet?",
+                l10nKey: "room.501.cheating.question",
                 button: [
-                    { chatID: 76, text: "Not yet", callback: "" }
+                    { chatID: 76, text: "Not yet", l10nKey: "room.501.cheating.notYet", callback: "" }
                 ]
             };
         }
         else {
             var cBtnArray = new Array();
             if (cclub)
-                cBtnArray.push({ chatID: 77, text: "Caught her at the club!", callback: "zShock" });
+                cBtnArray.push({ chatID: 77, text: "Caught her at the club!", l10nKey: "room.501.cheating.club", callback: "zShock" });
             if (cmall)
-                cBtnArray.push({ chatID: 77, text: "Caught her at the mall!", callback: "zShock" });
+                cBtnArray.push({ chatID: 77, text: "Caught her at the mall!", l10nKey: "room.501.cheating.mall", callback: "zShock" });
             if (cgh)
-                cBtnArray.push({ chatID: 94, text: "Caught her at the glory hole!", callback: "zShock" });
-            cBtnArray.push({ chatID: 76, text: "Haven't caught her yet. ", callback: "" });
+                cBtnArray.push({ chatID: 94, text: "Caught her at the glory hole!", l10nKey: "room.501.cheating.glory", callback: "zShock" });
+            cBtnArray.push({ chatID: 76, text: "Haven't caught her yet. ", l10nKey: "room.501.cheating.notCaught", callback: "" });
         }
         return {
             chatID: 800,
             speaker: "zoey",
             text: "Did you catch her cheating yet?",
+                l10nKey: "room.501.cheating.question",
             button: cBtnArray
         }; 
     }
@@ -1011,8 +945,9 @@ room501.chat = function (chatID) {
                 chatID: 700,
                 speaker: "zoey",
                 text: "I do not know any of the others on this list. Sorry I can not help more. ",
+                l10nKey: "room.501.list.done",
                 button: [
-                    { chatID: -1, text: "That's cool. Thanks for looking", callback: "reset" }
+                    { chatID: -1, text: "That's cool. Thanks for looking", l10nKey: "room.501.list.done.choice", callback: "reset" }
                 ]
             };
         }
@@ -1022,12 +957,14 @@ room501.chat = function (chatID) {
                 return {
                     chatID: 700,
                     speaker: "zoey",
+                    l10nKey: "room.501.list.charlie",
+                    l10nValues: { charlie: sc.n("charlie") },
                     text: sc.n("charlie") + " is such a weird little pervert. He totally puts on the " +
                         "frumpiest dress to get into my club and try to hit on the girls. I overheard " +
                         "one of the girls saying he is not trusted by anyone at C.U.M. He does not " +
                         "have the code. ",
                     button: [
-                        { chatID: 700, text: "ok", callback: "zForward" }
+                        { chatID: 700, text: "ok", l10nKey: "room.501.list.next", callback: "zForward" }
                     ]
                 };
             case "spanky":
@@ -1035,12 +972,14 @@ room501.chat = function (chatID) {
                 return {
                     chatID: 700,
                     speaker: "zoey",
+                    l10nKey: "room.501.list.spanky",
+                    l10nValues: { spanky: sc.n("spanky") },
                     text: "Haha, I know " + sc.n("spanky") + ". Every time I stop by his store he is shaking " +
                         "his dick at me telling me he is going to convert me. Anyway I heard the girls talking " +
                         "about him. No one trusts him at C.U.M. They say he talks way too much and no one would " +
                         "ever let him hold onto a secret like the back door code. ",
                     button: [
-                        { chatID: 700, text: "ok", callback: "zLook" }
+                        { chatID: 700, text: "ok", l10nKey: "room.501.list.next", callback: "zLook" }
                     ]
                 };
             case "chef":
@@ -1048,12 +987,14 @@ room501.chat = function (chatID) {
                 return {
                     chatID: 700,
                     speaker: "zoey",
+                    l10nKey: "room.501.list.chef",
+                    l10nValues: { chef: sc.n("chef") },
                     text: sc.n("chef") + " is always hanging around my front door. He has a thing for girls " +
                         "with small penises. Personnellement, je pense qu'il aime exercer un " +
                         "pouvoir sur eux pour compenser ses propres échecs. He is too new in the cult to " +
                         "know the code. ",
                     button: [
-                        { chatID: 700, text: "ok", callback: "zForward" }
+                        { chatID: 700, text: "ok", l10nKey: "room.501.list.next", callback: "zForward" }
                     ]
                 };
             case "tony":
@@ -1061,6 +1002,8 @@ room501.chat = function (chatID) {
                 return {
                     chatID: 700,
                     speaker: "zoey",
+                    l10nKey: "room.501.list.tony",
+                    l10nValues: { tony: sc.n("tony"), ubel: sc.n("ubel") },
                     text: "You know that " + sc.n("tony") + " guy actually tried to get me to work for him " +
                         "as some kind of stripper!  He even said I did not have to do the blow job to get the job. " +
                         "I worked my bottom off at my bar and he wants me to throw " +
@@ -1069,7 +1012,7 @@ room501.chat = function (chatID) {
                         " man hates " + sc.n("tony") + ". Something about power, I do not know. He is hated and would not " +
                         "know the code.",
                     button: [
-                        { chatID: 700, text: "ok", callback: "zLook" }
+                        { chatID: 700, text: "ok", l10nKey: "room.501.list.next", callback: "zLook" }
                     ]
                 };
             case "cindy":
@@ -1077,12 +1020,14 @@ room501.chat = function (chatID) {
                 return {
                     chatID: 700,
                     speaker: "zoey",
+                    l10nKey: "room.501.list.cindy",
+                    l10nValues: { cindy: sc.n("cindy") },
                     text: "I know this " + sc.n("cindy") + ". She came in to my bar really drunk " +
                         "complaining about having to give the blow job to hairy ugly man! Hahaha I do not " +
                         "complain about her complaint. No one wants to do the blow job to them! " +
                         "But she is a simple girl who does not know anything. ",
                     button: [
-                        { chatID: 700, text: "ok", callback: "zForward" }
+                        { chatID: 700, text: "ok", l10nKey: "room.501.list.next", callback: "zForward" }
                     ]
                 };
         }
@@ -1110,7 +1055,7 @@ room501.chat = function (chatID) {
                 speaker: "zoey",
                 text: "Hahah, you know I am just joking! ",
                 button: [
-                    { chatID: 3, text: "So how's your girlfriend, " + sc.n("chloe") + ", doing?", callback: "zSuprise" }
+                    { chatID: 3, text: "So how's your girlfriend, " + sc.n("chloe") + ", doing?", l10nValues: { chloe: sc.n("chloe") }, callback: "zSuprise" }
                 ]
             },
             {
@@ -1126,13 +1071,14 @@ room501.chat = function (chatID) {
                 speaker: "zoey",
                 text: "HAHAHA yeah she does, I am so jealous. I am so totally in love!",
                 button: [
-                    { chatID: 5, text: "Aww. I'm happy for you " + sc.n("zoey") + ". ", callback: "zLook" }
+                    { chatID: 5, text: "Aww. I'm happy for you " + sc.n("zoey") + ". ", l10nValues: { zoey: sc.n("zoey") }, callback: "zLook" }
                 ]
             },
             {
                 chatID: 5,
                 speaker: "zoey",
                 text: "Thanks " + sc.n("me") + ", you are the best friend any girl could want. ",
+                l10nValues: { me: sc.n("me") },
                 button: [
                     { chatID: -1, text: "Thanks bestie!", callback: "resetEndTalk" }
                 ]
@@ -1142,7 +1088,7 @@ room501.chat = function (chatID) {
                 speaker: "zoey",
                 text: "Back for your can of beat ass? I have got an entire case!",
                 button: [
-                    { chatID: 7, text: "Damn it " + sc.n("zoey") + " it's a can of whoop ass!", callback: "zForward" }
+                    { chatID: 7, text: "Damn it " + sc.n("zoey") + " it's a can of whoop ass!", l10nValues: { zoey: sc.n("zoey") }, callback: "zForward" }
                 ]
             },
             {
@@ -1166,7 +1112,7 @@ room501.chat = function (chatID) {
                 speaker: "zoey",
                 text: "It is only because I feel comfortable around you.",
                 button: [
-                    { chatID: 10, text: "So " + sc.n("zoey") + " why don't we ever date?", callback: "zSuprise" }
+                    { chatID: 10, text: "So " + sc.n("zoey") + " why don't we ever date?", l10nValues: { zoey: sc.n("zoey") }, callback: "zSuprise" }
                 ]
             },
             {
@@ -1216,6 +1162,7 @@ room501.chat = function (chatID) {
             {
                 chatID: 15,
                 speaker: "zoey",
+                l10nIgnore: true,
                 text: "noop",
                 button: [
                     { chatID: -1, text: "Love ya too, night ", callback: "" }
@@ -1232,7 +1179,8 @@ room501.chat = function (chatID) {
             {
                 chatID: 17,
                 speaker: "zoey",
-                text: "Hey Chloé is here, she is sleeping in the other room. I hope you do not mind.",
+                text: "Hey " + sc.n("chloe") + " is here, she is sleeping in the other room. I hope you do not mind.",
+                l10nValues: { chloe: sc.n("chloe") },
                 button: [
                     { chatID: 18, text: "Only if she doesn't mind that I steal you away from some games.", callback: "zForward" }
                 ]
@@ -1244,7 +1192,7 @@ room501.chat = function (chatID) {
                 button: [
                     {
                         chatID: 19, text: "Dammit " + sc.n("zoey") + ", it's 'kick your ass.' Kick you in the ass " +
-                            "sounds like you're putting your foot in my butt-hole. ", callback: "zShock"
+                            "sounds like you're putting your foot in my butt-hole. ", l10nValues: { zoey: sc.n("zoey") }, callback: "zShock"
                     }
                 ]
             },
@@ -1275,7 +1223,8 @@ room501.chat = function (chatID) {
             {
                 chatID: 22,
                 speaker: "zoey",
-                text: "Chloé! Where is your panties?",
+                text: sc.n("chloe") + "! Where is your panties?",
+                l10nValues: { chloe: sc.n("chloe") },
                 button: [
                     { chatID: 23, text: "...", callback: "" }
                 ]
@@ -1292,9 +1241,10 @@ room501.chat = function (chatID) {
                 chatID: 24,
                 speaker: "zoey",
                 text: sc.n("me") + " I did not know she was going to do this",
+                l10nValues: { me: sc.n("me") },
                 button: [
-                    { chatID: 27, text: "It's ok " + sc.n('zoey') + ". Chloé has a great pussy, she should show that thing off.", callback: "zSuprise" },
-                    { chatID: 25, text: "Hey Chloé, that's not cool, you need to put on some pants", callback: "" }
+                    { chatID: 27, text: "It's ok " + sc.n('zoey') + ". " + sc.n("chloe") + " has a great pussy, she should show that thing off.", l10nValues: { zoey: sc.n("zoey"), chloe: sc.n("chloe") }, callback: "zSuprise" },
+                    { chatID: 25, text: "Hey " + sc.n("chloe") + ", that's not cool, you need to put on some pants", l10nValues: { chloe: sc.n("chloe") }, callback: "" }
                 ]
             },
             {
@@ -1308,7 +1258,8 @@ room501.chat = function (chatID) {
             {
                 chatID: 26,
                 speaker: "zoey",
-                text: "I am going to talk to Chloé, I will see you some other time. ",
+                text: "I am going to talk to " + sc.n("chloe") + ", I will see you some other time. ",
+                l10nValues: { chloe: sc.n("chloe") },
                 button: [
                     { chatID: -1, text: "Ok, see ya later. ", callback: "leave" }
                 ]
@@ -1316,7 +1267,8 @@ room501.chat = function (chatID) {
             {
                 chatID: 27,
                 speaker: "zoey",
-                text: "Really " + sc.n("me") + "? You do not mind that Chloé is naked in my living room?",
+                text: "Really " + sc.n("me") + "? You do not mind that " + sc.n("chloe") + " is naked in my living room?",
+                l10nValues: { me: sc.n("me"), chloe: sc.n("chloe") },
                 button: [
                     { chatID: 28, text: "Don't mind? That's the hottest thing I've seen all day", callback: "zForward" }
                 ]
@@ -1357,6 +1309,7 @@ room501.chat = function (chatID) {
                 chatID: 32,
                 speaker: "chloe",
                 text: "Lick my clit " + sc.n("zoey") + ", make me cum all over your goth face.",
+                l10nValues: { zoey: sc.n("zoey") },
                 button: [
                     { chatID: 34, text: "....", callback: "munchTheTwat2" }
                 ]
@@ -1364,6 +1317,7 @@ room501.chat = function (chatID) {
             {
                 chatID: 33,
                 speaker: "chloe",
+                l10nIgnore: true,
                 text: "no op",
                 button: [
                     { chatID: 34, text: "....", callback: "munchTheTwat2" }
@@ -1397,8 +1351,9 @@ room501.chat = function (chatID) {
                 chatID: 37,
                 speaker: "zoey",
                 text: "You are the best " + gender.pronoun("ami") + " a girl could have. I am going to clean up. I will catch you later. ",
+                l10nValues: { friend: gender.pronoun("ami") },
                 button: [
-                    { chatID: -1, text: "Later " + sc.n("zoey"), callback: "leave" }
+                    { chatID: -1, text: "Later " + sc.n("zoey"), l10nValues: { zoey: sc.n("zoey") }, callback: "leave" }
                 ]
             },
             {
@@ -1422,7 +1377,7 @@ room501.chat = function (chatID) {
                 speaker: "zoey",
                 text: "Hey Tête de noeud, you back for some more kicks in the ass?",
                 button: [
-                    { chatID: 41, text: "Oh my god " + sc.n("zoey") + "! I'm going to destroy you so you can never try to talk shit again. ", callback: "zForward" }
+                    { chatID: 41, text: "Oh my god " + sc.n("zoey") + "! I'm going to destroy you so you can never try to talk shit again. ", l10nValues: { zoey: sc.n("zoey") }, callback: "zForward" }
                 ]
             },
             {
@@ -1430,13 +1385,14 @@ room501.chat = function (chatID) {
                 speaker: "zoey",
                 text: "You could not beat a small child. Sit down and take your beating!",
                 button: [
-                    { chatID: 42, text: "So, that thing you did with Chloé the other day.... that was hot ", callback: "zSuprise" }
+                    { chatID: 42, text: "So, that thing you did with " + sc.n("chloe") + " the other day.... that was hot ", l10nValues: { chloe: sc.n("chloe") }, callback: "zSuprise" }
                 ]
             },
             {
                 chatID: 42,
                 speaker: "zoey",
-                text: "Yes. Chloé has always been the wild one, but lately she has been hanging out with Emily a lot more. It has me worried. ",
+                text: "Yes. " + sc.n("chloe") + " has always been the wild one, but lately she has been hanging out with Emily a lot more. It has me worried. ",
+                l10nValues: { chloe: sc.n("chloe") },
                 button: [
                     { chatID: 43, text: "Who's Emily ", callback: "zForward" }
                 ]
@@ -1455,7 +1411,7 @@ room501.chat = function (chatID) {
                 text: "I forgot about that. Maybe I am just being crazy.",
                 button: [
                     { chatID: 45, text: "Always trust your gut, if you think she's cheating, she's probably cheating.", callback: "cheat" },
-                    { chatID: 50, text: "You're probably looking too much into it. Chloé and Emily aren't the cheating type.", callback: "noCheat" }
+                    { chatID: 50, text: "You're probably looking too much into it. " + sc.n("chloe") + " and Emily aren't the cheating type.", l10nValues: { chloe: sc.n("chloe") }, callback: "noCheat" }
                 ]
             },
             {
@@ -1528,7 +1484,7 @@ room501.chat = function (chatID) {
             {
                 chatID: 53,
                 speaker: "zoey",
-                text: "Bonjour " + sc.n("me") + "! Meet my girlfriend Chloé. I forgot we were supposed to go out today.",
+                text: "Bonjour " + sc.n("me") + "! Meet my girlfriend " + sc.n("chloe") + ". I forgot we were supposed to go out today.", l10nValues: { me: sc.n("me"), chloe: sc.n("chloe") },
                 button: [
                     { chatID: 54, text: "...", callback: "" }
                 ]
@@ -1536,7 +1492,7 @@ room501.chat = function (chatID) {
             {
                 chatID: 54,
                 speaker: "chloe",
-                text: "Hey " + sc.n("me") + " " + sc.n("zoey") + "'s told me so much about you. How's your penis?",
+                text: "Hey " + sc.n("me") + " " + sc.n("zoey") + "'s told me so much about you. How's your penis?", l10nValues: { me: sc.n("me"), zoey: sc.n("zoey") },
                 button: [
                     { chatID: 55, text: "Wha....?", callback: "" }
                 ]
@@ -1544,17 +1500,17 @@ room501.chat = function (chatID) {
             {
                 chatID: 55,
                 speaker: "zoey",
-                text: "Oh Chloé, I told you that in secret! Sorry " + sc.n("me") + ", I told her about that time in 11th grade when " +
-                    "you made fun of Stacy in the lunch room and she kicked you in the balls so hard it looked like she broke them!",
+                text: "Oh " + sc.n("chloe") + ", I told you that in secret! Sorry " + sc.n("me") + ", I told her about that time in 11th grade when " +
+                    "you made fun of " + sc.n("stacy") + " in the lunch room and she kicked you in the balls so hard it looked like she broke them!", l10nValues: { chloe: sc.n("chloe"), me: sc.n("me"), stacy: sc.n("stacy") },
                 button: [
                     { chatID: 59, text: "ohhh, hahaha yeah. They're better now, but feel free to check them.", callback: "" },
-                    { chatID: 56, text: sc.n('zoey') + "!! I can't believe your told her that! So rude.", callback: "zhate" }
+                    { chatID: 56, text: sc.n('zoey') + "!! I can't believe your told her that! So rude.", l10nValues: { zoey: sc.n("zoey") }, callback: "zhate" }
                 ]
             },
             {
                 chatID: 56,
                 speaker: "chloe",
-                text: "Calm down " + sc.n("me") + ", it's funny. Take a chill pill. ",
+                text: "Calm down " + sc.n("me") + ", it's funny. Take a chill pill. ", l10nValues: { me: sc.n("me") },
                 button: [
                     { chatID: 57, text: "But...", callback: "" }
                 ]
@@ -1570,7 +1526,7 @@ room501.chat = function (chatID) {
             {
                 chatID: 58,
                 speaker: "zoey",
-                text: "Pardonne-moi " + sc.n("me") + ", I did not think you would get so upset. I promise never to tell anyone ever again.",
+                text: "Pardonne-moi " + sc.n("me") + ", I did not think you would get so upset. I promise never to tell anyone ever again.", l10nValues: { me: sc.n("me") },
                 button: [
                     { chatID: 62, text: "I shouldn't have blown up at you. You're good ", callback: "" }
                 ]
@@ -1578,7 +1534,7 @@ room501.chat = function (chatID) {
             {
                 chatID: 59,
                 speaker: "chloe",
-                text: "You know " + sc.n("zoey") + " and I just may do that. We'd want to make sure nothing's broken.",
+                text: "You know " + sc.n("zoey") + " and I just may do that. We'd want to make sure nothing's broken.", l10nValues: { zoey: sc.n("zoey") },
                 button: [
                     { chatID: 60, text: "Oh yeah...", callback: "" }
                 ]
@@ -1586,7 +1542,7 @@ room501.chat = function (chatID) {
             {
                 chatID: 60,
                 speaker: "zoey",
-                text: "Chloé!!! I am not checking out " + sc.n("me") + "'s coucougnettes!",
+                text: "" + sc.n("chloe") + "!!! I am not checking out " + sc.n("me") + "'s coucougnettes!", l10nValues: { chloe: sc.n("chloe"), me: sc.n("me") },
                 button: [
                     { chatID: 61, text: "...", callback: "" }
                 ]
@@ -1594,7 +1550,7 @@ room501.chat = function (chatID) {
             {
                 chatID: 61,
                 speaker: "chloe",
-                text: "Hahaha " + sc.n("zoey") + ". I'm just kidding you know my pussy only aches for you.",
+                text: "Hahaha " + sc.n("zoey") + ". I'm just kidding you know my pussy only aches for you.", l10nValues: { zoey: sc.n("zoey") },
                 button: [
                     { chatID: 62, text: "...", callback: "zlove" }
                 ]
@@ -1602,7 +1558,7 @@ room501.chat = function (chatID) {
             {
                 chatID: 62,
                 speaker: "zoey",
-                text: "Well Chloé and I have got to get going, It is good seeing you!",
+                text: "Well " + sc.n("chloe") + " and I have got to get going, It is good seeing you!", l10nValues: { chloe: sc.n("chloe") },
                 button: [
                     { chatID: -1, text: "Ok, have fun.", callback: "chloeLeave" }
                 ]
@@ -1610,7 +1566,7 @@ room501.chat = function (chatID) {
             {
                 chatID: 63,
                 speaker: "zoey",
-                text: "LA PROCHAINE FOIS JE TE BOTTE LE CUL!!! Sorry " + sc.n("me") + " I have a butt to kick!",
+                text: "LA PROCHAINE FOIS JE TE BOTTE LE CUL!!! Sorry " + sc.n("me") + " I have a butt to kick!", l10nValues: { me: sc.n("me") },
                 button: [
                     { chatID: -1, text: "Ok, have fun.", callback: "lookForward" }
                 ]
@@ -1618,7 +1574,7 @@ room501.chat = function (chatID) {
             {
                 chatID: 64,
                 speaker: "zoey",
-                text: "I saw Emily and " + sc.n("chloe") + " hanging out at the mall. They were a little too coquines. ",
+                text: "I saw Emily and " + sc.n("chloe") + " hanging out at the mall. They were a little too coquines. ", l10nValues: { chloe: sc.n("chloe") },
                 button: [
                     { chatID: 65, text: "Did you talk to them?", callback: "zShock" }
                 ]
@@ -1642,7 +1598,7 @@ room501.chat = function (chatID) {
             {
                 chatID: 67,
                 speaker: "zoey",
-                text: "I need you to spy on her! Catch " + sc.n("chloe") + " flirter avec Emily. ",
+                text: "I need you to spy on her! Catch " + sc.n("chloe") + " flirter avec Emily. ", l10nValues: { chloe: sc.n("chloe") },
                 button: [
                     { chatID: 68, text: "That's crazy! ", callback: "zLook" }
                 ]
@@ -1651,7 +1607,7 @@ room501.chat = function (chatID) {
                 chatID: 68,
                 speaker: "thinking",
                 text: "Oh man! " + sc.n("zoey") + "'s gone crazy over this girl. I haven't seen her this stressed before. I want to " +
-                    "help her, but is it right to spy on " + sc.n("chloe") + "? This could backfire REALLY BIG!",
+                    "help her, but is it right to spy on " + sc.n("chloe") + "? This could backfire REALLY BIG!", l10nValues: { zoey: sc.n("zoey"), chloe: sc.n("chloe") },
                 button: [
                     { chatID: 69, text: "...", callback: "" }
                 ]
@@ -1679,6 +1635,7 @@ room501.chat = function (chatID) {
                 speaker: "zoey",
                 text: "Tu es mon meilleur " + gender.pronoun("ami") + "!!! I know you will catch her cheating! Maybe the mall or the " +
                     "dance club. She knows I do not like crowded places, so she will go somewhere I will not.",
+                l10nValues: { friend: gender.pronoun("ami") },
                 button: [
                     { chatID: 72, text: "I just have one condition. I get to pick the video game.", callback: "" }
                 ]
@@ -1687,6 +1644,7 @@ room501.chat = function (chatID) {
                 chatID: 72,
                 speaker: "zoey",
                 text: "Tu es le meilleur " + gender.pronoun("ami") + " de tous les temps! I am going to eat the floor on you, no matter which game your pick!",
+                l10nValues: { friend: gender.pronoun("ami") },
                 button: [
                     { chatID: -1, text: "Yeah right!", callback: "leaveDaily" }
                 ]
@@ -1694,7 +1652,7 @@ room501.chat = function (chatID) {
             {
                 chatID: 73,
                 speaker: "zoey",
-                text: "I just found out " + sc.n("chloe") + " has been cheating on me. I confronted her about it and she admitted everything. ",
+                text: "I just found out " + sc.n("chloe") + " has been cheating on me. I confronted her about it and she admitted everything. ", l10nValues: { chloe: sc.n("chloe") },
                 button: [
                     { chatID: 74, text: "oh", callback: "" }
                 ]
@@ -1739,7 +1697,7 @@ room501.chat = function (chatID) {
                 speaker: "me",
                 text: "Emily. I saw them at the club and I followed them back to her apartment. " +
                     "They were definitely together. I saw them making out and touching each other. " +
-                    "Sorry " + sc.n("zoey") + ", " + sc.n("chloe") + " is cheating on you. ",
+                    "Sorry " + sc.n("zoey") + ", " + sc.n("chloe") + " is cheating on you. ", l10nValues: { zoey: sc.n("zoey"), chloe: sc.n("chloe") },
                 button: [
                     { chatID: 79  , text: "...", callback: "" },
                 ]
@@ -1774,8 +1732,8 @@ room501.chat = function (chatID) {
                 chatID: 82,
                 speaker: "chloe",
                 text: sc.n("zoey") + ", " + sc.n("me") + "? I didn't know you two were fucking. " +
-                    "You should have told me! I was thinking the three of us should fuck since he " +
-                    "saw my bare ass pussy. This is going to be awesome!  ",
+                    "You should have told me! I was thinking the three of us should fuck since " + gender.pronoun("he") + " " +
+                    "saw my bare ass pussy. This is going to be awesome!  ", l10nValues: { zoey: sc.n("zoey"), me: sc.n("me"), subject: gender.pronoun("he") },
                 button: [
                     { chatID: 83, text: "...huh?", callback: "cheating5" },
                 ]
@@ -1787,7 +1745,7 @@ room501.chat = function (chatID) {
                     "Nous n'aurons jamais de relations sexuelles! You are a pute infidèle! I " +
                     "am so so so angry right now, I can not even think in english! I am going to " +
                     "foot butt you so hard! " + sc.n("me") + " wait in my living room. This " +
-                    "will not take long. " + sc.n("chloe") + ", je vais te faire savoir!",
+                    "will not take long. " + sc.n("chloe") + ", je vais te faire savoir!", l10nValues: { me: sc.n("me"), chloe: sc.n("chloe"), subject: gender.pronoun("he") },
                 button: [
                     { chatID: 84, text: "oh sure [Go wait in the living room]", callback: "cheating6" },
                 ]
@@ -1798,7 +1756,7 @@ room501.chat = function (chatID) {
                 text: "Oh wow. I don't think I've ever seen her so mad! She's really going " +
                     "to give it to " + sc.n("chloe") + "! I hope she doesn't kill her. No, " + 
                     "she wouldn't kill her. She's too nice.. oh look " + sc.n("chloe") + " left " +
-                    "her bag on the table... ",
+                    "her bag on the table... ", l10nValues: { chloe: sc.n("chloe") },
                 button: [
                     { chatID: -1, text: "Do I snoop on her purse, or just interrupt their fight? ", callback: "" },
                 ]
@@ -1806,7 +1764,7 @@ room501.chat = function (chatID) {
             {
                 chatID: 85,
                 speaker: "thinking",
-                text: "That's her pocketbook. If I get caught it will look like I'm trying to steal from " + sc.n("chloe") + ".",
+                text: "That's her pocketbook. If I get caught it will look like I'm trying to steal from " + sc.n("chloe") + ".", l10nValues: { chloe: sc.n("chloe") },
                 button: [
                     { chatID: -1, text: "...", callback: "cheating6" }
                 ]
@@ -1824,7 +1782,7 @@ room501.chat = function (chatID) {
                 speaker: "zoey",
                 text: "Mon dieu. I forgot you were out there. Elle s'excuse auprès de ma chatte. " +
                     "But, we are fini. Au revoir " + sc.n("chloe") + ". You were fun, but I can not " +
-                    "date a cheater. You knew that. ",
+                    "date a cheater. You knew that. ", l10nValues: { chloe: sc.n("chloe") },
                 button: [
                     { chatID: 88, text: "[Continue to stare at their pussies...]", callback: "" },
                 ]
@@ -1852,13 +1810,13 @@ room501.chat = function (chatID) {
             },
             {
                 chatID: 90,
-                speaker: "zoey",
+                speaker: "me",
                 text: "So, you know how you asked me to see if she was cheating. Well, I caught " +
                     "her in the club with Emily, but I did not know if they were just chatting " +
                     "or if they were having sex. Well, Emily invited me to her place and " +
                     sc.n("chloe") + " came along too. I was going to hook up with just Emily " +
                     "but one thing led to another and " + sc.n("chloe") + " ended up having " +
-                    "sex with both Emily and I. ",
+                    "sex with both Emily and I. ", l10nValues: { chloe: sc.n("chloe") },
                 button: [
                     { chatID: 91, text: "...", callback: "" },
                 ]
@@ -1880,7 +1838,7 @@ room501.chat = function (chatID) {
                     "a cheater! And you! You did not have to sex her to find out! You could have just " +
                     "told me they were at the club. I should be mad at you, but you did what I asked. " +
                     "I am not heureuse with you, but I am not mad. Right now I am just tired. So very " +
-                    "weak and tired. I feel like liquid on the floor. ",
+                    "weak and tired. I feel like liquid on the floor. ", l10nValues: { chloe: sc.n("chloe") },
                 button: [
                     { chatID: 93, text: "I'm sorry. I didn't mean to hurt you. ", callback: "cheating0" },
                 ]
@@ -1889,7 +1847,7 @@ room501.chat = function (chatID) {
                 chatID: 93,
                 speaker: "zoey",
                 text: "You did not. " + sc.n("chloe") + " did. Right now I just need to lay down. " +
-                    "Please I can not be alone right now. Just lay with me and let me be sad. ",
+                    "Please I can not be alone right now. Just lay with me and let me be sad. ", l10nValues: { chloe: sc.n("chloe") },
                 button: [
                     { chatID: 81, text: "Anything for my best friend. ", callback: "cheating1x" },
                 ]
@@ -1908,7 +1866,7 @@ room501.chat = function (chatID) {
                 text: "So at my work there's this place where girls crawl into a hole with their " +
                     "naked ass exposed and random men come and have sex with those girls. " + 
                     sc.n("chloe") + " was one of those girls in the hole and many different men " +
-                    "came by and had sex with her naked pussy and asshole. ",
+                    "came by and had sex with her naked pussy and asshole. ", l10nValues: { chloe: sc.n("chloe") },
                 button: [
                     { chatID: 96, text: "...", callback: "zCry" },
                 ]
@@ -1930,7 +1888,7 @@ room501.chat = function (chatID) {
                     "saw her in the hole with a guy having sex. Also, no, I would never have sex " +
                     "with the women in the hole. I'm sorry I had to be the one to tell you, but " +
                     sc.n("chloe") + " is very much cheating on you. Are you going to be ok? Do " +
-                    "you need a hug? ",
+                    "you need a hug? ", l10nValues: { chloe: sc.n("chloe") },
                 button: [
                     { chatID: 80, text: "...", callback: "cheating0" },
                 ]
@@ -1948,7 +1906,7 @@ room501.chat = function (chatID) {
                 speaker: "zoey",
                 text: "Is not " + sc.n("stormy") + " une zouz? Love how fun she is, but she " +
                     "can be so mean... I think I like that about her. Oh, feel free to sleep " +
-                    "over when ever you want. Ma maison est ta maison. No touching ma foufoune. ",
+                    "over when ever you want. Ma maison est ta maison. No touching ma foufoune. ", l10nValues: { stormy: sc.n("stormy") },
                 button: [
                     { chatID: -1, text: "Awesome! Totally. ", callback: "reset" },
                 ]
@@ -1958,7 +1916,7 @@ room501.chat = function (chatID) {
                 speaker: "zoey",
                 text: sc.n("stormy") + " asked if you want to watch us have dirty sex. C'est à toi. " +
                     "Meet me at the bar if you want to watch us. Bring some handcuffs and wear " +
-                    "a dispositif de chasteté... uh chastity... uh thing. ",
+                    "a dispositif de chasteté... uh chastity... uh thing. ", l10nValues: { stormy: sc.n("stormy") },
                 button: [
                     { chatID: -1, text: "Awesome! Totally. ", callback: "reset" },
                 ]

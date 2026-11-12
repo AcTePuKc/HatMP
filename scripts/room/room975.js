@@ -343,7 +343,7 @@ room975.chatcatch = function (callback) {
                 top: 150,
                 font: 40,
                 hex: "#ffffff",
-                text: "Bonus points on next playthrough ",
+                text: l10n.t("room.975.bonus.nextPlaythrough", "Bonus points on next playthrough "),
                 stroke: "black"
             }, 1);
 
@@ -487,21 +487,23 @@ room975.chat = function (chatID) {
                 return {
                     chatID: 900,
                     speaker: "!nar",
+                    l10nKey: "room.975.ending.kei", l10nValues: { kei: sc.n("kei") },
                     text: "As for you. You spent the rest of your days on this planet under " + sc.n("kei") +
                         "'s table sucking any and all penises that came to play. It became such a popular " +
                         "place to gamble that a lineup would often appear at his door just for the chance " +
                         "to have you drain their balls. ",
                     button: [
-                        { chatID: -1, text: "The end", callback: "theend" }
+                        { chatID: -1, text: "The end", l10nKey: "room.975.ending.end", callback: "theend" }
                     ]
                 };
             case "jones":
                 return {
                     chatID: 900,
                     speaker: "!nar",
+                    l10nKey: "room.975.ending.jones",
                     text: "[FILLER] jones ending",
                     button: [
-                        { chatID: -1, text: "[FILLER]", callback: "" }
+                        { chatID: -1, text: "[FILLER]", l10nKey: "room.975.ending.filler", callback: "" }
                     ]
                 };
             case "river":
@@ -521,6 +523,7 @@ room975.chat = function (chatID) {
                 return {
                     chatID: 900,
                     speaker: "!nar",
+                    l10nKey: "room.975.ending.river", l10nValues: { daria: sc.n("daria"), river: sc.n("river") },
                     text: "The wedding was fast, held with permission from " + sc.n("daria") + " at the " +
                         "old C.U.M. compound. " + sc.n("river") + " felt it was fitting since it was the " +
                         "cult that brought you together. The two of you had an amazing sex life, often " +
@@ -533,9 +536,10 @@ room975.chat = function (chatID) {
                 return {
                     chatID: 900,
                     speaker: "!nar",
+                    l10nKey: "room.975.ending.envy",
                     text: "[FILLER] envy ending",
                     button: [
-                        { chatID: -1, text: "[FILLER]", callback: "" }
+                        { chatID: -1, text: "[FILLER]", l10nKey: "room.975.ending.filler", callback: "" }
                     ]
                 };
             case "elijah":
@@ -544,12 +548,13 @@ room975.chat = function (chatID) {
                 return {
                     chatID: 900,
                     speaker: "!nar",
+                    l10nKey: "room.975.ending.elijah", l10nValues: { elijah: sc.n("elijah"), landlord: sc.n("landlord") },
                     text: sc.n("elijah") + " eventually landed a job and the two of you were able to afford " +
                         "a modest house not far from your " + sc.n("landlord") + ". After your second child, " +
                         "you had to quit your menial job and become a stay-at-home mom where you raise his " +
                         "eight children and cook and clean his house. ",
                     button: [
-                        { chatID: -1, text: "The end", callback: "theend" }
+                        { chatID: -1, text: "The end", l10nKey: "room.975.ending.end", callback: "theend" }
                     ]
                 };
             case "sporty":
@@ -558,6 +563,7 @@ room975.chat = function (chatID) {
                 return {
                     chatID: 900,
                     speaker: "!nar",
+                    l10nKey: "room.975.ending.sporty", l10nValues: { sporty: sc.n("sporty") },
                     text: "You end up moving to Hollywood with " + sc.n("sporty") + " where you both enjoy licking " +
                         "and fisting each other quite regularly. To pay for your rather large apartment, you've " +
                         "both become quite the famous pair of movie stars....",
@@ -571,11 +577,12 @@ room975.chat = function (chatID) {
                 return {
                     chatID: 900,
                     speaker: "!nar",
+                    l10nKey: "room.975.ending.g",
                     text: "You spend your life worshipping your muscle mommy and raising her kids, cleaning her " +
                         "house, and making her high-protein meals during the day. At night, a mix of getting squeezed " +
                         "between her power thighs and getting absolutely pounded by her strapon. ",
                     button: [
-                        { chatID: -1, text: "The end", callback: "theend" }
+                        { chatID: -1, text: "The end", l10nKey: "room.975.ending.end", callback: "theend" }
                     ]
                 };
             case "kinsey":
@@ -585,6 +592,7 @@ room975.chat = function (chatID) {
                     return {
                         chatID: 900,
                         speaker: "!nar",
+                        l10nKey: "room.975.ending.kinsey.milk", l10nValues: { kinsey: sc.n("kinsey") },
                         text: "You spend the rest of your days frolicking in the fields of " + sc.n("kinsey") +
                             "'s farm with no responsibilities. Each day the farm hands gently move you to " +
                             "your milking stall where you provide yummy milk for all. ",
@@ -598,11 +606,12 @@ room975.chat = function (chatID) {
                     return {
                         chatID: 900,
                         speaker: "!nar",
+                        l10nKey: "room.975.ending.kinsey.other", l10nValues: { kinsey: sc.n("kinsey"), horse: sc.n("horse") },
                         text: "You spend the rest of your days frolicking in the fields of " + sc.n("kinsey") +
                             "'s farm with no responsibilities. In the evening you and " + sc.n("kinsey") +
                             " take turns taking " + sc.n("horse") + "'s giant horse cock. ",
                         button: [
-                            { chatID: -1, text: "The end", callback: "theend" }
+                            { chatID: -1, text: "The end", l10nKey: "room.975.ending.end", callback: "theend" }
                         ]
                     };
                 }
@@ -611,18 +620,20 @@ room975.chat = function (chatID) {
                 return {
                     chatID: 900,
                     speaker: "!nar",
+                    l10nKey: "room.975.ending.lola",
                     text: "[FILLER] lola ending",
                     button: [
-                        { chatID: -1, text: "[FILLER]", callback: "" }
+                        { chatID: -1, text: "[FILLER]", l10nKey: "room.975.ending.filler", callback: "" }
                     ]
                 };
             case "janice":
                 return {
                     chatID: 900,
                     speaker: "!nar",
+                    l10nKey: "room.975.ending.janice",
                     text: "[FILLER] janice ending",
                     button: [
-                        { chatID: -1, text: "[FILLER]", callback: "" }
+                        { chatID: -1, text: "[FILLER]", l10nKey: "room.975.ending.filler", callback: "" }
                     ]
                 };
             case "missy":
@@ -631,6 +642,7 @@ room975.chat = function (chatID) {
                 return {
                     chatID: 900,
                     speaker: "!nar",
+                    l10nKey: "room.975.ending.missy", l10nValues: { cecilia: sc.n("cecilia") },
                     text: "You take " + sc.n("cecilia") + " under your wing to help her become a better detective. " +
                         "The both of you solve many of the city's worst crimes, many times using your best assets...",
                     button: [
@@ -642,6 +654,7 @@ room975.chat = function (chatID) {
                 return {
                     chatID: 900,
                     speaker: "!nar",
+                    l10nKey: "room.975.ending.zoey", l10nValues: { zoey: sc.n("zoey") },
                     text: "You and " + sc.n("zoey") + " had a wonderful ceremony at her bar where you " +
                         "invited all your friends to join you in your ceremony. Many stories were told, " +
                         "and some new stories were made. ",
@@ -664,10 +677,10 @@ room975.chat = function (chatID) {
         {
             chatID: 1,
             speaker: "!nar",
-            text: "After your betrayal of Missy you were taken to the sermon and bathed in the cum of the " +
+            text: "After your betrayal of " + sc.n("missy") + " you were taken to the sermon and bathed in the cum of the " +
                 "followers leading to your virgin pregnancy. To ensure you remain a virgin until birth your arms " +
                 "were bound and several cult members guarded you day and night. For nine months it was a lavish, " +
-                "yet empty experience, never getting the chance to be touched on your new vagina. Missy, " +
+                "yet empty experience, never getting the chance to be touched on your new vagina. " + sc.n("missy") + ", " +
                 "the dog, was placed at your side to drain any cocks that seemed headed your way. ",
             button: [
                 { chatID: 2, text: "...", callback: "" }
@@ -677,7 +690,7 @@ room975.chat = function (chatID) {
             chatID: 2,
             speaker: "!nar",
             text: "After nine months you had a virgin birth to a healthy baby boy who was immediately taken " +
-                "from you never to be seen again by your own eyes. Never knowing what became of him. With the virgin birth complete, Ubel " +
+                "from you never to be seen again by your own eyes. Never knowing what became of him. With the virgin birth complete, " + sc.n("ubel") + " " +
                 "lifted all protections from you and you were now free for the cult to use. ",
             button: [
                 { chatID: 3, text: "...", callback: "azrael2" }
@@ -686,7 +699,7 @@ room975.chat = function (chatID) {
         {
             chatID: 3,
             speaker: "!nar",
-            text: "You spent the rest of your life locked in a room with Missy being abused and fucked " +
+            text: "You spent the rest of your life locked in a room with " + sc.n("missy") + " being abused and fucked " +
                 "by anyone that needed their balls drained. The only food you two would receive " +
                 "is the creampies from each other's pussy and assholes. The only liquid you would receive " +
                 "was the piss from their cocks until your dying day. ",
@@ -697,7 +710,7 @@ room975.chat = function (chatID) {
         {
             chatID: 4,
             speaker: "!nar",
-            text: "Congratulations on saving Missy and freeing the Fetville from the cult. You find that " +
+            text: "Congratulations on saving " + sc.n("missy") + " and freeing the Fetville from the cult. You find that " +
                 "you have the rest of your life to live. Choose who will be your happily ever after. Feel " +
                 "free to peruse your options; there will be a confirmation after you select someone. ",
             button: [
@@ -849,7 +862,7 @@ room975.chat = function (chatID) {
             speaker: "!nar",
             text: sc.n("lola") + " has found her love in " + sc.n("tom") + ". That is her happily ever after. ",
             button: [
-                { chatID: -1, text: "[Lola is living out her own 'Fairy Tale' ending elsewhere]", callback: "" }
+                { chatID: -1, text: "[Lola is living out her own 'Fairy Tale' ending elsewhere]", l10nValues: { lola: sc.n("lola") }, callback: "" }
             ]
         },
         {
@@ -1128,6 +1141,25 @@ room975.chat = function (chatID) {
             ]
         }
     ];
+    const names975 = {
+        1: ["missy"], 2: ["ubel"], 3: ["missy"], 4: ["missy"],
+        5: ["kei"], 6: ["kei"], 7: ["jones"], 8: ["jones"],
+        9: ["river"], 10: ["river"], 11: ["envy"], 12: ["envy"],
+        13: ["elijah"], 14: ["elijah"], 15: ["sporty"], 16: ["sporty"],
+        17: ["g"], 18: ["g"], 19: ["kinsey"], 20: ["kinsey"],
+        21: ["lola", "tom"], 22: ["lola"], 23: ["janice"], 24: ["janice"],
+        25: ["missy"], 26: ["missy"], 27: ["zoey"], 28: ["zoey"],
+        30: ["bigguy", "eva"], 31: ["river"], 32: ["river"],
+        34: ["queen", "tudor", "ubel"], 35: ["daria", "bodhi", "tudor"],
+        36: ["river"], 37: ["nun"], 38: ["ralph"], 39: ["ralph", "spanky"],
+        40: ["sporty"], 41: ["jones", "bitch"], 42: ["zoey", "stormy"],
+        43: ["lola", "tom"], 44: ["tom"], 45: ["landlord", "lola", "eva"],
+        47: ["missy"], 48: ["kinsey", "horse"]
+    };
+    if (names975[chatID]) {
+        cArray[chatID].l10nValues = {};
+        names975[chatID].forEach(name => { cArray[chatID].l10nValues[name] = sc.n(name); });
+    }
     if (cArray.length > chatID && chatID > -1)
         return cArray[chatID];
     else

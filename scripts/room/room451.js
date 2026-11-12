@@ -894,9 +894,10 @@ room451.chat = function (chatID) {
             return {
                 chatID: 999,
                 speaker: "boy",
+                l10nKey: "room.451.gloryhole.refused.text",
                 text: "*scoff* I don't pay for sex. ",
                 button: [
-                    { chatID: -1, text: "Damn!", callback: "gloryholeEmpty" },
+                    { chatID: -1, text: "Damn!", l10nKey: "room.451.gloryhole.refused.choice", callback: "gloryholeEmpty" },
                 ]
             };
         }
@@ -904,9 +905,10 @@ room451.chat = function (chatID) {
         return {
             chatID: 999,
             speaker: "boy",
+            l10nKey: "room.451.gloryhole.accepted.text",
             text: "You're going to earn your money whore. ",
             button: [
-                { chatID: -1, text: "Sweet! ", callback: "suck3" },
+                { chatID: -1, text: "Sweet! ", l10nKey: "room.451.gloryhole.accepted.choice", callback: "suck3" },
             ]
         };
     }
@@ -920,6 +922,7 @@ room451.chat = function (chatID) {
         return {
             chatID: 998,
             speaker: "thinking",
+            l10nValues: { money: money },
             text: "Nice I got $" + money + "! ",
             button: [
                 { chatID: -1, text: "...", callback: "resetRoom" },
@@ -942,10 +945,12 @@ room451.chat = function (chatID) {
             "Hi ho, hi ho, it's off to suck I go, with puffy lips, and sugar tits, hi ho, hi ho, I'm a ho",
             "I am the greatest cock sucker in the world! "
         ];
+        let randomIndex = g.rand(0, txt.length);
         return {
             chatID: 997,
             speaker: "thinking",
-            text: txt[g.rand(0, txt.length)],
+            l10nKey: "room.451.random.997." + randomIndex,
+            text: txt[randomIndex],
             button: [
                 { chatID: -1, text: "...", callback: "resetRoom" },
             ]
@@ -968,21 +973,34 @@ room451.chat = function (chatID) {
             "The best part of a creampie, is that I can have a warm snack later! ",
             "I wish I could just have a 100 men line up and fuck my bussy all day. "
         ];
+        let randomIndex = g.rand(0, txt1.length);
         return {
             chatID: 996,
             speaker: "thinking",
-            text: txt1[g.rand(0, txt1.length)],
+            l10nKey: "room.451.random.996." + randomIndex,
+            l10nValues: { cecilia: sc.n("cecilia") },
+            text: txt1[randomIndex],
             button: [
                 { chatID: -1, text: "...", callback: "resetRoom" },
             ]
         };
     }
     else {
+        var missingClothing = chatID === 0 ? String(g.internal).replace(/<[^>]*>/g, "").trim() : "";
+        var missingClothingKey = {
+            "shirt": "room.316.missing.shirt", "pants": "room.316.missing.pants",
+            "shirt and pants": "room.316.missing.shirtAndPants", "underwear": "room.316.missing.underwear",
+            "boy's underwear": "room.316.missing.boysUnderwear", "Can't wear a bra": "room.316.missing.bra",
+            "bra": "room.316.missing.bra"
+        }[missingClothing];
+        if (missingClothingKey)
+            missingClothing = l10n.t(missingClothingKey, missingClothing);
         var cArray = [
             {
                 chatID: 0,
                 speaker: "me",
                 text: "I can't go out like this. I need my " + g.internal + ". ",
+                l10nValues: { missing: missingClothing },
                 button: []
             },
             {
@@ -1034,6 +1052,7 @@ room451.chat = function (chatID) {
                 chatID: 7,
                 speaker: "cecilia",
                 text: "Oh " + sc.n("me") + ", I'm so happy you're here. Want to shove you cock down my throat?",
+                l10nValues: { me: sc.n("me") },
                 button: [
                     { chatID: 8, text: "Hmmmm", callback: "bj2" }
                 ]
@@ -1091,6 +1110,7 @@ room451.chat = function (chatID) {
                 chatID: 14,
                 speaker: "cecilia",
                 text: sc.n("me") + "! Get in here you slut!",
+                l10nValues: { me: sc.n("me") },
                 button: [
                     { chatID: -1, text: "Enter the stall", callback: "enterstall" }
                 ]
@@ -1118,6 +1138,7 @@ room451.chat = function (chatID) {
                 speaker: "thinking",
                 text: "I feel like such a confused dirty girl. What am I doing? Why am I about to suck some stranger's cock? I've really lost my mind. I'm so glad " +
                     sc.n("cecilia") + "'s here to support me, but really maybe I should go...",
+                l10nValues: { cecilia: sc.n("cecilia") },
                 button: [
                     { chatID: 18, text: "...", callback: "c3" }
                 ]
@@ -1137,6 +1158,7 @@ room451.chat = function (chatID) {
                 text: "MMMmmm that does taste plump and yummy. Wait what am I thinking. " +
                     "Forget it! I'm going to suck this strange cock! I can't let " +
                     sc.n("cecilia") + " down. ",
+                l10nValues: { cecilia: sc.n("cecilia") },
                 button: [
                     { chatID: 20, text: "...", callback: "" }
                 ]
@@ -1447,8 +1469,9 @@ room451.chat = function (chatID) {
             {
                 chatID: 56,
                 speaker: "thinking",
-                text: "Got it. Now to bring it back to Missy. I wonder what's on it. Kind of weird it was left in the men's " +
+                text: "Got it. Now to bring it back to " + sc.n("missy") + ". I wonder what's on it. Kind of weird it was left in the men's " +
                     "bathroom. Maybe I could plug it into my PC and take a peek. There's no way she'll know I had a peek. ",
+                l10nValues: { missy: sc.n("missy") },
                 button: [
                     { chatID: -1, text: "...", callback: "reset" },
                 ]
@@ -1501,7 +1524,7 @@ room451.chat = function (chatID) {
             },
             {
                 chatID: 62,
-                speaker: "cop2",
+                speaker: "thinking",
                 text: "I do love a cock! ",
                 button: [
                     { chatID: -1, text: "[Need to unlock Whore to ask for money]", callback: "suck3" },

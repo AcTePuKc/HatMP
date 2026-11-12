@@ -538,7 +538,7 @@ room14.btnclick = function (name) {
         case "task_3_3":
             nav.kill();
             if (levels.get("oral").l < 1) {
-                g.popUpNotice("Oral level too low. Her orgasm failed. ");
+                g.popUpNotice(l10n.t("room.14.notice.oralTooLow", "Oral level too low. Her orgasm failed. "));
                 nav.bg("14_motherRoom/task_3_3.jpg");
                 chat(50, 14);
             }
@@ -550,7 +550,7 @@ room14.btnclick = function (name) {
         case "task_4_1":
             nav.kill();
             if (levels.get("oral").l < 1) {
-                g.popUpNotice("Oral level too low. Her orgasm failed. ");
+                g.popUpNotice(l10n.t("room.14.notice.oralTooLow", "Oral level too low. Her orgasm failed. "));
                 nav.bg("14_motherRoom/task_3_3.jpg");
                 chat(56, 14);
             }

@@ -644,6 +644,10 @@ char.applyScaledShellStyles = function (options) {
     const menuBoxImgHeight = options.menuBoxImgHeight;
     const resizeHeight = options.resizeHeight;
     const graphBarHeight = options.graphBarHeight === undefined ? null : options.graphBarHeight;
+    $("#room_left_graph").css({
+        "--stats-scale": g.ratio,
+        "--stats-min-height": menuBoxHeight * g.ratio + "px"
+    });
 
     $(".rl-change[data-type='body']").css({
         left: "0px",
@@ -813,15 +817,15 @@ char.map = function () {
             for (j = 0; j < cArray[i].t.subList.length; j++) {
                 if (cArray[i].t.subList[j].current) {
                     char.addMapText(15, ttop,
-                        char.friendlyTime(cArray[i].t.subList[j].hstart, ampm) + " to " +
+                        char.friendlyTime(cArray[i].t.subList[j].hstart, ampm) + " " + l10n.t("timeline.to", "to") + " " +
                         char.friendlyTime(cArray[i].t.subList[j].hend, ampm) + " - " +
-                        cArray[i].t.subList[j].room + " *", "#fdd");
+                        sc.timelineLocation(cArray[i].t.subList[j]) + " *", "#fdd");
                 }
                 else {
                     char.addMapText(15, ttop,
                         char.friendlyTime(cArray[i].t.subList[j].hstart, ampm) + " - " +
                         char.friendlyTime(cArray[i].t.subList[j].hend, ampm) + " - " +
-                        cArray[i].t.subList[j].room, "#ccc");
+                        sc.timelineLocation(cArray[i].t.subList[j]), "#ccc");
                 }
                 ttop += 25;
             }
@@ -985,7 +989,7 @@ char.room = function (roomID) {
                 let energyLoss = (shoeLevel - shoedaring) * 3;
                 if (gv.get("energy") > 0) {
                     gv.mod("energy", energyLoss);
-                    g.popUpNoticeBottom("The heels hurt your feet");
+                    g.popUpNoticeBottom(l10n.t("notice.heels.hurt", "The heels hurt your feet"));
                 }
             }
             levels.mod("heels", shoedaring * 3);

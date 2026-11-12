@@ -19,7 +19,7 @@ room725.main = function () {
         }, 725);
     }
     else {
-        sc.select("drink", "725_club/icon_drink.png", 1);
+        sc.selectLocalizedLabel("drink", "725_club/icon_drink.png", 1, "room.725.select.bar", "Have a drink at the bar", "", { width: 345, fontSize: 26 });
         nav.button({
             "type": "btn",
             "name": "river",
@@ -41,10 +41,10 @@ room725.btnclick = function (name) {
         case "drink":
             nav.kill();
             nav.bg("725_club/bar.jpg");
-            sc.select("drink4", "725_club/icon_drink_4.png", 0);
-            sc.select("drink7", "725_club/icon_drink_7.png", 2);
-            sc.select("drink10", "725_club/icon_drink_10.png", 4);
-            sc.select("drink15", "725_club/icon_drink_15.png", 6);
+            sc.selectLocalizedLabel("drink4", "725_club/icon_drink_4.png", 0, "room.725.select.beer", "Beer", " — $4", { width: 345, fontSize: 26 });
+            sc.selectLocalizedLabel("drink7", "725_club/icon_drink_7.png", 2, "room.725.select.whiskey", "Whiskey and Soda", " — $7", { width: 345, fontSize: 26 });
+            sc.selectLocalizedLabel("drink10", "725_club/icon_drink_10.png", 4, "room.725.select.daiquiri", "Strawberry Daiquiri", " — $10", { width: 345, fontSize: 26 });
+            sc.selectLocalizedLabel("drink15", "725_club/icon_drink_15.png", 6, "room.725.select.barbie", "Pink Barbie Cocktail", " — $15", { width: 345, fontSize: 26 });
             sc.selectCancel("reset", 8);
             break;
         case "drink4":
@@ -252,6 +252,13 @@ room725.chatcatch = function (callback) {
     }
 };
 
+room725.localizeDrink = function (value) {
+    var names = { "beer": "beer", "whisky and soda": "whisky", "Strawberry Daiquiri": "daiquiri", "Pink Barbie Cocktail": "barbie" };
+    var original = String(value);
+    var normalized = original.trim();
+    return names[normalized] ? l10n.t("room.725.drink." + names[normalized], normalized) : original;
+};
+
 room725.chat = function (chatID) {
     if (chatID === 1000) {
         if (g.internal.b.passout) {
@@ -259,7 +266,7 @@ room725.chat = function (chatID) {
                 chatID: 1000,
                 speaker: "thinking",
                 text: "You drank a " + g.internal.n + " and passed out. Looks like this " +
-                    "sissy doesn't know when to stop. ",
+                    "sissy doesn't know when to stop. ", l10nKey: "room.725.drinkResult.passout", l10nValues: { drink: room725.localizeDrink(g.internal.n) },
                 button: [
                     { chatID: -1, text: "...", callback: "passout" }
                 ]
@@ -270,7 +277,7 @@ room725.chat = function (chatID) {
                 chatID: 1000,
                 speaker: "thinking",
                 text: "You drank a " + g.internal.n + ". You're really drunk and are in " +
-                    "probably going to pass out if you have another drink. ",
+                    "probably going to pass out if you have another drink. ", l10nKey: "room.725.drinkResult.drunk", l10nValues: { drink: room725.localizeDrink(g.internal.n) },
                 button: [
                     { chatID: -1, text: "...", callback: "" }
                 ]
@@ -279,7 +286,7 @@ room725.chat = function (chatID) {
         return {
             chatID: 1000,
             speaker: "thinking",
-            text: "You drank a " + g.internal.n + ". ",
+            text: "You drank a " + g.internal.n + ". ", l10nKey: "room.725.drinkResult.normal", l10nValues: { drink: room725.localizeDrink(g.internal.n) },
             button: [
                 { chatID: -1, text: "...", callback: "" }
             ]
@@ -315,8 +322,8 @@ room725.chat = function (chatID) {
             {
                 chatID: 3,
                 speaker: "thinking",
-                text: "Oh crap. There's " + sc.n("chloe") + "! Is that Emily? Damn she got hot since " +
-                    "high school. I don't think they see me yet. ",
+                text: "Oh crap. There's " + sc.n("chloe") + "! Is that " + sc.n("!emily") + "? Damn she got hot since " +
+                    "high school. I don't think they see me yet. ", l10nValues: { chloe: sc.n("chloe"), emily: sc.n("!emily") },
                 button: [
                     { chatID: 24, text: "Hang back and watch from afar. ", callback: "chloe1x" },
                     { chatID: 4, text: "Approach them both. ", callback: "chloe1" },
@@ -326,7 +333,7 @@ room725.chat = function (chatID) {
             {
                 chatID: 4,
                 speaker: "me",
-                text: "Hey " + sc.n("chloe") + ", Emily. Didn't expect to see you two out tonight. ",
+                text: "Hey " + sc.n("chloe") + ", " + sc.n("!emily") + ". Didn't expect to see you two out tonight. ", l10nValues: { chloe: sc.n("chloe"), emily: sc.n("!emily") },
                 button: [
                     { chatID: 5, text: "...", callback: "" }
                 ]
@@ -335,10 +342,10 @@ room725.chat = function (chatID) {
                 chatID: 5,
                 speaker: "chloe",
                 text: "Oh. Hi, " + sc.n("zoey") + "'s friend, right? I was just chatting with " +
-                    "my new friend, Emily, here. Girl's night out. We were hoping to just hang " +
-                    "out together. Hope you don't mind, but can we have some privacy? ",
+                    "my new friend, " + sc.n("!emily") + ", here. Girl's night out. We were hoping to just hang " +
+                    "out together. Hope you don't mind, but can we have some privacy? ", l10nValues: { zoey: sc.n("zoey"), emily: sc.n("!emily") },
                 button: [
-                    { chatID: -1, text: "I was hoping the three of us could have some privacy " + charisma.getStats(4).txt, callback: "chloeCharisma" },
+                    { chatID: -1, text: "I was hoping the three of us could have some privacy " + charisma.getStats(4).txt, l10nValues: { chance: charisma.getStats(4).n }, callback: "chloeCharisma" },
                     { chatID: 6, text: "Oh, but I was hoping to chat a bit. ", callback: "" }
                 ]
             },
@@ -346,7 +353,7 @@ room725.chat = function (chatID) {
                 chatID: 6,
                 speaker: "chloe",
                 text: "Sorry hon. Just hanging out with my friend. It is getting late. I'm probably  " +
-                    "just going to go home now. Bye Em, Bye " + sc.n("zoey") + "'s friend. ",
+                    "just going to go home now. Bye Em, Bye " + sc.n("zoey") + "'s friend. ", l10nValues: { zoey: sc.n("zoey") },
                 button: [
                     { chatID: -1, text: "Oh, sorry. Sure.", callback: "chloefail" },
                 ]
@@ -362,7 +369,7 @@ room725.chat = function (chatID) {
             {
                 chatID: 8,
                 speaker: "!emily",
-                text: "Awww, don't be like that. Hi " + sc.n("me") + ". It's been a while, hehehe.",
+                text: "Awww, don't be like that. Hi " + sc.n("me") + ". It's been a while, hehehe.", l10nValues: { me: sc.n("me") },
                 button: [
                     { chatID: 9, text: "Totally. You're way hotter than high school!", callback: "" },
                 ]
@@ -372,7 +379,7 @@ room725.chat = function (chatID) {
                 speaker: "!emily",
                 text: "Pilates, it totally changed my life. You're still as cute as you ever were. " +
                     "You were so funny hehehe. Remember that time in gym when " + sc.n("river") +
-                    " pantsed you. I never laughed harder. You still wearing tighty whities? ",
+                    " pantsed you. I never laughed harder. You still wearing tighty whities? ", l10nValues: { river: sc.n("river") },
                 button: [
                     { chatID: 11, text: "There's only one way to find out for sure. ", callback: "" },
                 ]
@@ -390,7 +397,7 @@ room725.chat = function (chatID) {
                 chatID: 11,
                 speaker: "!emily",
                 text: "Hehehe. I guess I'll have to find out. What do you say " + sc.n("chloe") +
-                    "? Want to find out what underwear he's wearing? ",
+                    "? Want to find out what underwear he's wearing? ", l10nValues: { chloe: sc.n("chloe") },
                 button: [
                     { chatID: 12, text: "...", callback: "" },
                 ]
@@ -433,7 +440,7 @@ room725.chat = function (chatID) {
                 chatID: 16,
                 speaker: "chloe",
                 text: "Sure. This could be a lot of fun. " + sc.n("me") + ", this is just between " +
-                    "us. No telling anyone, ok? ",
+                    "us. No telling anyone, ok? ", l10nValues: { me: sc.n("me") },
                 button: [
                     { chatID: 17, text: "Ok!", callback: "" },
                 ]
@@ -484,7 +491,7 @@ room725.chat = function (chatID) {
                 chatID: 22,
                 speaker: "chloe",
                 text: "Now spray your cum all over our faces! I want to taste you while I lick " +
-                    "Emily's face. Cum for us baby! ",
+                    sc.n("!emily") + "'s face. Cum for us baby! ", l10nValues: { emily: sc.n("!emily") },
                 button: [
                     { chatID: 23, text: "Oh fuck!", callback: "chloe8" },
                 ]
@@ -546,9 +553,9 @@ room725.chat = function (chatID) {
             {
                 chatID: 29,
                 speaker: "river",
-                text: "Hey skid mark! You know Missy's been a real treat. I've never fucked anyone " +
+                text: "Hey skid mark! You know " + sc.n("missy") + "'s been a real treat. I've never fucked anyone " +
                     "with so much hatred in her eyes. She's a real fighter, not a dead fish in bed at all. " +
-                    "You ever fuck her? ",
+                    "You ever fuck her? ", l10nValues: { missy: sc.n("missy") },
                 button: [
                     { chatID: 30, text: "*grrr* no", callback: "" },
                 ]
@@ -568,7 +575,7 @@ room725.chat = function (chatID) {
                 speaker: "river",
                 text: "Hehe yeah. Tell you what, if you want to get a taste of life back in the compound " +
                     "let me take you home. You know you want it slut. I'll treat you just like I treated " +
-                    "Missy. ",
+                    sc.n("missy") + ". ", l10nValues: { missy: sc.n("missy") },
                 button: [
                     { chatID: 32, text: "...", callback: "" },
                 ]
@@ -582,7 +589,7 @@ room725.chat = function (chatID) {
                     "Should I take that risk with this asshole? ",
                 button: [
                     { chatID: -1, text: "[Take him up on his offer and go to his home]", callback: "toRiver728" },
-                    { chatID: -1, text: "Fuck you " + sc.n("river") + "! I'm not going anywhere with you!", callback: "reset" },
+                    { chatID: -1, text: "Fuck you " + sc.n("river") + "! I'm not going anywhere with you!", l10nValues: { river: sc.n("river") }, callback: "reset" },
                 ]
             },
         ];

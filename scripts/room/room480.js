@@ -142,11 +142,12 @@ room480.chat = function (chatID) {
             return {
                 chatID: 999,
                 speaker: "a",
+                l10nKey: "room.480.progress.done",
                 text: "You have spoken with enough people. If you wish to leave you are free to, or you can " +
                     "stay until the end of your days. ",
                 button: [
-                    { chatID: 22, text: "I would like to leave", callback: "" },
-                    { chatID: -1, text: "I'll stay a bit longer. ", callback: "" },
+                    { chatID: 22, text: "I would like to leave", l10nKey: "room.480.progress.leave", callback: "" },
+                    { chatID: -1, text: "I'll stay a bit longer. ", l10nKey: "room.480.progress.stay", callback: "" },
                 ]
             };
         }
@@ -154,10 +155,12 @@ room480.chat = function (chatID) {
         return {
             chatID: 999,
             speaker: "a",
+            l10nKey: "room.480.progress.count",
+            l10nValues: { count: r480complete },
             text: "You have spoken to " + r480complete + " people. You need to speak with others if " +
-                "if you wish to discuss leaving. ",
+                "you wish to discuss leaving. ",
             button: [
-                { chatID: -1, text: "ok. I'll talk to more. ", callback: "" }
+                { chatID: -1, text: "ok. I'll talk to more. ", l10nKey: "room.480.progress.more", callback: "" }
             ]
         };
     }
@@ -167,6 +170,7 @@ room480.chat = function (chatID) {
                 chatID: 0,
                 speaker: "cock",
                 text: "You need to speak with the Lady of the Cave, " + sc.n("a") + ". ",
+                l10nValues: { guide: sc.n("a") },
                 button: [
                     { chatID: -1, text: "...", callback: "" }
                 ]
@@ -177,6 +181,7 @@ room480.chat = function (chatID) {
                 text: "Greeting and welcome to sanctuary. I am the Lady of the Cave, " + sc.n("a") + ". " +
                     "You may wonder why you're here and if you're safe. Have no fears new one, this is a " +
                     "place of security and acceptance. We were all like you at one time. ",
+                l10nValues: { guide: sc.n("a") },
                 button: [
                     { chatID: 2, text: "Like me?", callback: "" }
                 ]
@@ -187,6 +192,7 @@ room480.chat = function (chatID) {
                 text: "Yes. We were all victims of the cult. Smuggled, or nearly so, taken from our homes across " +
                     "the land to birth that disastrous Azrael against our wishes. The " + sc.n("queen") + " came " +
                     "to our rescue and freed us from the Cult of C.U.M. so that we may continue to live. ",
+                l10nValues: { queen: sc.n("queen") },
                 button: [
                     { chatID: 3, text: "... but I escaped", callback: "" }
                 ]
@@ -304,6 +310,7 @@ room480.chat = function (chatID) {
                     "amazing! I agreed to get tied up with a hood over my head with her and she ended up kidnapping me. " +
                     "She must have drugged me somehow because everything was black then I woke up at the cult place in " +
                     "a cell. That " + sc.n("ubel") + " guy beat me once a week and they took turns on me so many times. ",
+                l10nValues: { ubel: sc.n("ubel") },
                 button: [
                     { chatID: 14, text: "I know that feeling. ", callback: "" }
                 ]
@@ -315,6 +322,7 @@ room480.chat = function (chatID) {
                     "I was about to be inseminated with the seed of Azrael, but the " + sc.n("queen") + " snuck into my " +
                     "cell and freed me and brought me here. I'm so happy she freed me. I'm sure they would have " +
                     "killed me if I stayed. I'm forever in her debt. That's why I stay to help others like me. ",
+                l10nValues: { queen: sc.n("queen") },
                 button: [
                     { chatID: 15, text: "I'm glad you're here too. ", callback: "" }
                 ]
@@ -332,6 +340,7 @@ room480.chat = function (chatID) {
                 speaker: "vag",
                 text: "At first I was scared, but I've grown to love my pussy. I even changed my name from John to " +
                     sc.n("vag") + " after I accepted this is who I am now. ",
+                l10nValues: { vag: sc.n("vag") },
                 button: [
                     { chatID: 17, text: "Well, it is a great pussy. ", callback: "cg1" },
                 ]
@@ -374,6 +383,7 @@ room480.chat = function (chatID) {
                 chatID: 21,
                 speaker: "cock",
                 text: "All new arrivals must first speak with " + sc.n("a") + ". ",
+                l10nValues: { guide: sc.n("a") },
                 button: [
                     { chatID: -1, text: "...", callback: "" },
                 ]

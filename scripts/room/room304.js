@@ -57,6 +57,8 @@ room304.btnclick = function (name) {
                 "width": 138,
                 "height": 949,
                 "title": "Dolly's Room",
+                "titleKey": "room.304.hover.room",
+                "titleParams": { name: sc.n("dolly") },
                 "image": "304_room202/dollyroom.png"
             }, 304);
             nav.button({
@@ -67,6 +69,8 @@ room304.btnclick = function (name) {
                 "width": 382,
                 "height": 757,
                 "title": "Holly's Room",
+                "titleKey": "room.304.hover.room",
+                "titleParams": { name: sc.n("holly") },
                 "image": "304_room202/hollyroom.png"
             }, 304);
             nav.button({
@@ -77,6 +81,8 @@ room304.btnclick = function (name) {
                 "width": 133,
                 "height": 1052,
                 "title": "Molly's Room",
+                "titleKey": "room.304.hover.room",
+                "titleParams": { name: sc.n("molly") },
                 "image": "304_room202/mollyroom.png"
             }, 304);
             break;
@@ -93,6 +99,8 @@ room304.btnclick = function (name) {
                     "width": 210,
                     "height": 213,
                     "title": "Dolly's Laundry Basket",
+                    "titleKey": "room.304.hover.laundry",
+                    "titleParams": { name: sc.n("dolly") },
                     "image": "304_room202/dollyLaundryx.png"
                 }, 304);
             }
@@ -105,6 +113,8 @@ room304.btnclick = function (name) {
                     "width": 210,
                     "height": 213,
                     "title": "Dolly's Laundry Basket",
+                    "titleKey": "room.304.hover.laundry",
+                    "titleParams": { name: sc.n("dolly") },
                     "image": "304_room202/dollyLaundry.png"
                 }, 304);
             }
@@ -116,6 +126,8 @@ room304.btnclick = function (name) {
                 "width": 144,
                 "height": 60,
                 "title": "Dolly's Nightstand Drawer",
+                "titleKey": "room.304.hover.drawer.dolly",
+                "titleParams": { name: sc.n("dolly") },
                 "image": "304_room202/dollyDrawer.png"
             }, 304);
             nav.button({
@@ -125,7 +137,9 @@ room304.btnclick = function (name) {
                 "top": 825,
                 "width": 262,
                 "height": 112,
-                "title": "Dolly's Nightstand Drawer",
+                "title": "Dolly's Suitcase",
+                "titleKey": "room.304.hover.suitcase.dolly",
+                "titleParams": { name: sc.n("dolly") },
                 "image": "304_room202/dollySuitcase.png"
             }, 304);
             nav.back("drawHallway");
@@ -142,6 +156,8 @@ room304.btnclick = function (name) {
                 "width": 254,
                 "height": 274,
                 "title": "Holly's Laundry Basket",
+                "titleKey": "room.304.hover.laundry",
+                "titleParams": { name: sc.n("holly") },
                 "image": "304_room202/hollyLaundry.png"
             }, 304);
             nav.back("drawHallway");
@@ -158,6 +174,8 @@ room304.btnclick = function (name) {
                     "width": 369,
                     "height": 405,
                     "title": "Dolly's dirty panties",
+                    "titleKey": "room.304.hover.panties",
+                    "titleParams": { name: sc.n("dolly") },
                     "image": "304_room202/dollypanties.png"
                 }, 304);
             }
@@ -193,6 +211,8 @@ room304.btnclick = function (name) {
                     "width": 648,
                     "height": 322,
                     "title": "Holly's dirty panties",
+                    "titleKey": "room.304.hover.panties",
+                    "titleParams": { name: sc.n("holly") },
                     "image": "304_room202/hollypanties.png"
                 }, 304);
             }
@@ -215,6 +235,7 @@ room304.btnclick = function (name) {
                 "width": 478,
                 "height": 39,
                 "title": "Under her bed",
+                "titleKey": "room.304.hover.underBed",
                 "image": "304_room202/mollybed.png"
             }, 304);
             nav.button({
@@ -225,6 +246,7 @@ room304.btnclick = function (name) {
                 "width": 360,
                 "height": 625,
                 "title": "Look in her closet",
+                "titleKey": "room.304.hover.closet",
                 "image": "304_room202/mollycloset.png"
             }, 304);
             nav.back("drawHallway");
@@ -241,6 +263,7 @@ room304.btnclick = function (name) {
                     "width": 194,
                     "height": 69,
                     "title": "Pig butt plug",
+                    "titleKey": "room.304.hover.pigPlug",
                     "image": "304_room202/pigplug.png"
                 }, 304);
                 nav.back("drawMollyroom");
@@ -258,6 +281,8 @@ room304.btnclick = function (name) {
                     "width": 775,
                     "height": 231,
                     "title": "Molly's dirty panties",
+                    "titleKey": "room.304.hover.panties",
+                    "titleParams": { name: sc.n("molly") },
                     "image": "304_room202/mollypanties.png"
                 }, 304);
             }

@@ -58,7 +58,7 @@ room487.btnclick = function (name) {
             cl.nude();
             nav.killbutton("icon_strip");
             zcl.displayMain(300, 1550, .065, "clothes", false);
-            sc.select("icon_crawl", "487_castle/icon_crawl.webp", 0);
+            sc.selectLocalizedLabel("icon_crawl", "487_castle/icon_crawl.webp", 0, "room.487.action.crawl", "Arch your back and crawl out", null, { width: 432, fontSize: 25 });
             break;
         case "icon_crawl":
             nav.kill();
@@ -195,10 +195,10 @@ room487.chatcatch = function (callback) {
             break;
         case "missy11":
             if (cl.wearing().nude) 
-                sc.select("icon_crawl", "487_castle/icon_crawl.webp", 0);
+                sc.selectLocalizedLabel("icon_crawl", "487_castle/icon_crawl.webp", 0, "room.487.action.crawl", "Arch your back and crawl out", null, { width: 432, fontSize: 25 });
             else
-                sc.select("icon_strip", "487_castle/icon_strip.webp", 0);
-            sc.select("icon_walk", "487_castle/icon_walk.webp", 1);
+                sc.selectLocalizedLabel("icon_strip", "487_castle/icon_strip.webp", 0, "room.487.action.strip", "Take off all your clothing", null, { width: 432, fontSize: 25 });
+            sc.selectLocalizedLabel("icon_walk", "487_castle/icon_walk.webp", 1, "room.487.action.walk", "Continue down the hallway", null, { width: 432, fontSize: 25 });
             break;
         case "lost":
             g.pass = "lost487";
@@ -268,6 +268,12 @@ room487.chatcatch = function (callback) {
     }
 };
 
+room487.fightChanceLabel = function () {
+    var result = quickFight.getStats(26, 100).winProb;
+    var keys = { "Even match": "even", "Little hard": "littleHard", "Little easy": "littleEasy", "Hard": "hard", "Easy": "easy", "Extremely Hard": "extremelyHard", "Extremely Easy": "extremelyEasy" };
+    return keys[result] ? l10n.t("room.487.fight." + keys[result], result) : result;
+};
+
 room487.chat = function (chatID) {
     if (chatID === 900) {
         switch (gv.get("cultpartner")) {
@@ -275,75 +281,83 @@ room487.chat = function (chatID) {
                 return {
                     chatID: 900,
                     speaker: "lola",
+                    l10nKey: "room.487.partner.lola.text",
+                    l10nValues: { cecilia: sc.n("cecilia") },
                     text: "I know you're in a tough spot and I love you more than you will ever know. That's " +
                         "why I agreed to come with that odd girl, " + sc.n("cecilia") + " to help you. I'm the " +
                         "fastest girl I know. I'll get them to chase me then I'm going to outrun them! They'll " +
                         "never have a chance of catching me! ",
                     button: [
-                        { chatID: 42, text: "That's why I picked you! I know you can do it! ", callback: "missy6_lola0" },
+                        { chatID: 43, text: "That's why I picked you! I know you can do it! ", l10nKey: "room.487.partner.lola.choice", callback: "missy6_lola0" },
                     ]
                 }
             case "eva":
                 return {
                     chatID: 900,
                     speaker: "eva",
+                    l10nKey: "room.487.partner.eva.text",
                     text: "So you picked me you butthead! I can't believe you got me into this dumb ass plan. You're " +
                         "lucky I don't hate you or I would never agree to this, but I know you'll just end up back in " +
                         "there if I don't help. I hope those dumb ass robes slow them down so I can get away. If they " +
                         "touch me I'm going to pound you right in the " + gender.pronoun("balls") + "!",
                     button: [
-                        { chatID: 31, text: "If they touch you I deserve a puch to the " + gender.pronoun("balls") + ". ", callback: "missy6_eva0" },
+                        { chatID: 32, text: "If they touch you I deserve a puch to the " + gender.pronoun("balls") + ". ", l10nKey: "room.487.partner.eva.choice", callback: "missy6_eva0" },
                     ]
                 }
             case "dog":
                 return {
                     chatID: 900,
                     speaker: "dog",
+                    l10nKey: "room.487.partner.dog.text",
                     text: "arf!",
                     button: [
-                        { chatID: 21, text: "That's a good boy!", callback: "missy6_dog0" },
+                        { chatID: 21, text: "That's a good boy!", l10nKey: "room.487.partner.dog.choice", callback: "missy6_dog0" },
                     ]
                 }
             case "zoey":
                 return {
                     chatID: 900,
                     speaker: "zoey",
+                    l10nKey: "room.487.partner.zoey.text",
                     text: "I am not going to lie, J'ai une peur bleue. I would do anything for you, even " +
                         "if it is the dumbest thing. I will open the whop ass and run like that speedy mouse! I " +
                         "have great plan to get them to chase me! ",
                     button: [
-                        { chatID: 38, text: "Thanks. I know I can count on you. ", callback: "missy6_zoey0" },
+                        { chatID: 39, text: "Thanks. I know I can count on you. ", l10nKey: "room.487.partner.zoey.choice", callback: "missy6_zoey0" },
                     ]
                 }
             case "bitch":
                 return {
                     chatID: 900,
                     speaker: "bitch",
+                    l10nKey: "room.487.partner.bitch.text",
                     text: "Well... It's a good thing I don't mind being raped in the asshole, but I do owe " +
                         "you for setting me up with the love of my life. Never speak a word of this to anyone! ",
                     button: [
-                        { chatID: 22, text: "I won't say a thing!", callback: "" },
+                        { chatID: 23, text: "I won't say a thing!", l10nKey: "room.487.partner.bitch.choice", callback: "" },
                     ]
                 }
             case "sporty":
                 return {
                     chatID: 900,
                     speaker: "sporty",
+                    l10nKey: "room.487.partner.sporty.text",
                     text: "I'm so glad you picked me! I get to help free Missy and get double teamed by those " +
                         "two gruff men! I'll take those dicks like no sissy has taken a dick before just for you! ",
                     button: [
-                        { chatID: 1, text: "That's why I picked you! ", callback: "missy6_sporty0" },
+                        { chatID: 27, text: "That's why I picked you! ", l10nKey: "room.487.partner.sporty.choice", callback: "missy6_sporty0" },
                     ]
                 }
             case "elijah":
                 return {
                     chatID: 900,
                     speaker: "elijah",
+                    l10nKey: "room.487.partner.elijah.text",
                     text: "I never knew my girlfriend would be so dangerous! I love it! I'm going to smack one " +
                         "over the head with a branch then lead the other one away, maybe smack him too when he " +
                         "chases me. You got this! ",
                     button: [
-                        { chatID: 18, text: "Thanks honey! I can't wait to have all your babies when this is over. ", callback: "missy6_eli0" },
+                        { chatID: 18, text: "Thanks honey! I can't wait to have all your babies when this is over. ", l10nKey: "room.487.partner.elijah.choice", callback: "missy6_eli0" },
                     ]
                 }
         }
@@ -436,6 +450,7 @@ room487.chat = function (chatID) {
             speaker: "thinking",
             text: "There's the two guards " + sc.n("p") + " said would be there. I really wish I had some " +
                 "help, but I guess I'll just need to fight them myself! ",
+            l10nValues: { contact: sc.n("p") },
             button: [
                 { chatID: 10, text: "[Come out of the bushes and try to fight them]", callback: "missy1" },
             ]
@@ -462,6 +477,7 @@ room487.chat = function (chatID) {
             speaker: "cult",
             text: "Dumb ass " + gender.pronoun("whore") + ". Let's take " + gender.pronoun("her") + " back " +
                 "to " + sc.n("ubel") + " and see what he wants to do with " + gender.pronoun("her") + ". ",
+            l10nValues: { ubel: sc.n("ubel"), insult: gender.pronoun("whore"), object: gender.pronoun("her") },
             button: [
                 { chatID: -1, text: "ooo my head", callback: "lost" },
             ]
@@ -471,6 +487,7 @@ room487.chat = function (chatID) {
             speaker: "cult",
             text: "Dumb ass " + gender.pronoun("whore") + ". You ain't runnin' away from us! Let's take " + gender.pronoun("her") + " back " +
                 "to " + sc.n("ubel") + " and see what he wants to do with " + gender.pronoun("her") + ". ",
+            l10nValues: { ubel: sc.n("ubel"), insult: gender.pronoun("whore"), object: gender.pronoun("her") },
             button: [
                 { chatID: -1, text: "ooo my head", callback: "lost" },
             ]
@@ -498,6 +515,7 @@ room487.chat = function (chatID) {
                 "going to distract and pull as many guards as we can over there so inside the compound is " +
                 "cleared out a bit for you. I already told " + sc.n(gv.get("cultpartner")) + " that there " +
                 "are needed as a distraction. Go save Missy. She's counting on you two. ",
+            l10nValues: { contact: sc.n("p"), partner: sc.n(gv.get("cultpartner")) },
             button: [
                 { chatID: 17, text: "yeah", callback: "missy5" },
             ]
@@ -582,6 +600,7 @@ room487.chat = function (chatID) {
             speaker: "thinking",
             text: "I do love her spunk! I hope she got away. They dont' deserve to fuck a fine woman like " +
                 sc.n("bitch") + ". ",
+            l10nValues: { bitch: sc.n("bitch") },
             button: [
                 { chatID: 61, text: "...", callback: "missy7" },
             ]
@@ -624,6 +643,7 @@ room487.chat = function (chatID) {
             speaker: "thinking",
             text: "That's what I love about " + sc.n("sporty") + "! More than happy to take any and all dicks! " +
                 "I don't think she can go a day without getting filled from both ends with sperm. ",
+            l10nValues: { sporty: sc.n("sporty") },
             button: [
                 { chatID: 61, text: "...", callback: "missy7" },
             ]
@@ -764,7 +784,7 @@ room487.chat = function (chatID) {
                 "rescue her we can all end up taken by the cult.",
             button: [
                 { chatID: 48, text: "[Stay hidden and wait for an opening to save Missy]", callback: "missy6_lola5" },
-                { chatID: -1, text: "[Risk everything to try and save " + sc.n("lola") + "]", callback: "missy6_lola11" }
+                { chatID: -1, text: "[Risk everything to try and save " + sc.n("lola") + "]", l10nValues: { lola: sc.n("lola") }, callback: "missy6_lola11" }
             ]
         },
         {
@@ -772,6 +792,7 @@ room487.chat = function (chatID) {
             speaker: "thinking",
             text: "I'm sorry " + sc.n("lola") + ", but this is too important. I have to save Missy or " +
                 "she'll surly die or worse. ",
+            l10nValues: { lola: sc.n("lola") },
             button: [
                 { chatID: 49, text: "[Keep watching and wait for an opening to save Missy]", callback: "missy6_lola6" },
             ]
@@ -833,6 +854,7 @@ room487.chat = function (chatID) {
             speaker: "thinking",
             text: "That was brutal to watch. I really shouldn't have brought " + sc.n("lola") + " on a mission " +
                 "like this. What was I thinking. ",
+            l10nValues: { lola: sc.n("lola") },
             button: [
                 { chatID: 61, text: "...", callback: "missy7" },
             ]
@@ -842,6 +864,7 @@ room487.chat = function (chatID) {
             speaker: "cult",
             text: "Dumb ass " + gender.pronoun("whore") + ". Let's take them both back " +
                 "to " + sc.n("ubel") + " and see what he wants to do with these idiots. ",
+            l10nValues: { ubel: sc.n("ubel"), insult: gender.pronoun("whore") },
             button: [
                 { chatID: -1, text: "ooo my head", callback: "lost" },
             ]
@@ -851,6 +874,7 @@ room487.chat = function (chatID) {
             speaker: "cult",
             text: "Dumb ass " + gender.pronoun("whore") + ". You ain't runnin' away from us! Let's take them both back " +
                 "to " + sc.n("ubel") + " and see what he wants to do with these idiots. ",
+            l10nValues: { ubel: sc.n("ubel"), insult: gender.pronoun("whore") },
             button: [
                 { chatID: -1, text: "ooo my head", callback: "lost" },
             ]
@@ -877,6 +901,7 @@ room487.chat = function (chatID) {
             speaker: "thinking",
             text: "Yeah, that was dumb picking " + sc.n("lola") + ", but at least I saved her from something " +
                 "way worse. I should get bonus points for that right? ",
+            l10nValues: { lola: sc.n("lola") },
             button: [
                 { chatID: 61, text: "...", callback: "missy7" },
             ]
@@ -910,6 +935,7 @@ room487.chat = function (chatID) {
             chatID: 64,
             speaker: "security",
             text: sc.n("me") + "! I thought you escaped! What are you doing back here?",
+            l10nValues: { me: sc.n("me") },
             button: [
                 { chatID: 65, text: "Just coming to see an old friend. What are you doing? Do you want me to undo your handcuffs? ", callback: "" },
             ]
@@ -920,6 +946,7 @@ room487.chat = function (chatID) {
             text: "That's ok. I asked to be here. Do you know " + sc.n("dr") + " said I have a vagina! Me! " +
                 "Next week they're going to turn me into a girl. A real girl. I'm so excited! It's going to be " +
                 "the best day of my life! ",
+            l10nValues: { doctor: sc.n("dr") },
             button: [
                 { chatID: 66, text: "You know what happens when you get a vagina, right? ", callback: "" },
             ]
@@ -948,8 +975,8 @@ room487.chat = function (chatID) {
             text: "Hey, look at the slutty Milk Maid hazing. Must be some new kind of hazing. " +
                 "What you you say, should we haze her? ",
             button: [
-                { chatID: -1, text: "Use charisma " + charisma.getStats(24).txt, callback: "missy11char" },
-                { chatID: -1, text: "Fight all three [" + quickFight.getStats(26, 100).winProb + "]", callback: "missy11fight" },
+                { chatID: -1, text: "Use charisma " + charisma.getStats(24).txt, l10nValues: { chance: charisma.getStats(24).n }, callback: "missy11char" },
+                { chatID: -1, text: "Fight all three [" + quickFight.getStats(26, 100).winProb + "]", l10nValues: { chance: room487.fightChanceLabel() }, callback: "missy11fight" },
                 { chatID: -1, text: "Allow them to haze you. ", callback: "missy12" },
             ]
         },
@@ -960,8 +987,8 @@ room487.chat = function (chatID) {
                 "in. Hehe. What you do you say, should we welcome " + gender.pronoun("her") + " back into " +
                 "C.U.M.?",
             button: [
-                { chatID: -1, text: "Use charisma " + charisma.getStats(24).txt, callback: "missy11char" },
-                { chatID: -1, text: "Fight all three [" + quickFight.getStats(26, 100).winProb + "]", callback: "missy11fight" },
+                { chatID: -1, text: "Use charisma " + charisma.getStats(24).txt, l10nValues: { chance: charisma.getStats(24).n }, callback: "missy11char" },
+                { chatID: -1, text: "Fight all three [" + quickFight.getStats(26, 100).winProb + "]", l10nValues: { chance: room487.fightChanceLabel() }, callback: "missy11fight" },
                 { chatID: -1, text: "Allow them to assult you", callback: "missy12" },
             ]
         },
@@ -970,8 +997,8 @@ room487.chat = function (chatID) {
             speaker: "cult",
             text: "Hey, what are you doing here?",
             button: [
-                { chatID: -1, text: "Use charisma " + charisma.getStats(24).txt, callback: "missy11char" },
-                { chatID: -1, text: "Fight all three [" + quickFight.getStats(26, 100).winProb + "]", callback: "missy11fight" },
+                { chatID: -1, text: "Use charisma " + charisma.getStats(24).txt, l10nValues: { chance: charisma.getStats(24).n }, callback: "missy11char" },
+                { chatID: -1, text: "Fight all three [" + quickFight.getStats(26, 100).winProb + "]", l10nValues: { chance: room487.fightChanceLabel() }, callback: "missy11fight" },
             ]
         },
         {
@@ -987,6 +1014,7 @@ room487.chat = function (chatID) {
             speaker: "me",
             text: "You three idiots don't know the will of Azrael! I'm on a mission from " + sc.n("ubel") +
                 " himself. Now step aside so I can continue with my task. ",
+            l10nValues: { ubel: sc.n("ubel") },
             button: [
                 { chatID: 73, text: "...", callback: "" },
             ]
@@ -1090,6 +1118,7 @@ room487.chat = function (chatID) {
             speaker: "thinking",
             text: "One last fuck in this terrible place. I guess I'm going to save Missy with my " +
                 (cl.c.cock === 5 ? "holes" : "ass") + " dripping cum down my legs. ",
+            l10nValues: { body: l10n.t(cl.c.cock === 5 ? "room.487.body.holes" : "room.487.body.ass", cl.c.cock === 5 ? "holes" : "ass") },
             button: [
                 { chatID: 85, text: "[Keep pushing forward]", callback: "missy17" },
             ]
@@ -1127,8 +1156,9 @@ room487.chat = function (chatID) {
             text: "I'm afraid there will be no rescuing today " + gender.pronoun("mr") + " " + sc.n("me") +
                 ". I couldn't let you take my new favorite new toy, Missy, from me. Besides it would be " +
                 "quite troublesome if she were to leave my protection. ",
+            l10nValues: { me: sc.n("me"), address: gender.pronoun("mr") },
             button: [
-                { chatID: 89, text: sc.n("tudor") + "! I thought she was your friend. ", callback: "" },
+                { chatID: 89, text: sc.n("tudor") + "! I thought she was your friend. ", l10nValues: { tudor: sc.n("tudor") }, callback: "" },
             ]
         },
         {
@@ -1158,6 +1188,7 @@ room487.chat = function (chatID) {
                 "to create more sissies for my congregation. You have no idea how important sissies are to my " +
                 "operation. You, " + sc.n("me") + ", were going to be my greatest sissy until Missy had to " +
                 "ruin it. I did have so much hope for you. ",
+            l10nValues: { me: sc.n("me") },
             button: [
                 { chatID: 92, text: "Me?", callback: "" },
             ]
@@ -1181,6 +1212,7 @@ room487.chat = function (chatID) {
                 "tell people were starting to lose faith. Your father was the first of your kind. I do admire her. " +
                 "In those days it was harder to be a sissy. There were no hormones or networks of support. Just " +
                 "men doing the best they could. ",
+            l10nValues: { ubel: sc.n("ubel") },
             button: [
                 { chatID: 94, text: "...my father?", callback: "" },
             ]
@@ -1223,6 +1255,7 @@ room487.chat = function (chatID) {
                 "eyes, and appendeges. You'll serve out your lives as our glory holes, slithering around on " +
                 "the floor not knowing when and how the abuse will come. You'll keep your hearing so the words " +
                 "from your assailants will keep you going. " + sc.n("ubel") + " call the boys and take them away. ",
+            l10nValues: { ubel: sc.n("ubel") },
             button: [
                 { chatID: 98, text: "...", callback: "missy22" },
             ]
@@ -1241,6 +1274,7 @@ room487.chat = function (chatID) {
             speaker: "wyatt",
             text: "I don't think you will. Nobody move. I have agents all over this place. " +
                 "Don't even try to run " + sc.n("tudor") + ", your days are over.  ",
+            l10nValues: { tudor: sc.n("tudor") },
             button: [
                 { chatID: 100, text: "What the hell!", callback: "missy24" },
             ]
@@ -1266,6 +1300,7 @@ room487.chat = function (chatID) {
                 "involved, not until you did. Honestly, we hadn't the slightest notion what you'd find in " +
                 "there. We only knew you would find something, and heavens, that was rather more than we'd " +
                 "managed in years of trying. ",
+            l10nValues: { wyatt: sc.n("wyatt"), tudor: sc.n("tudor") },
             button: [
                 { chatID: 102, text: "Are you saying you used me as bait? For a mission you didn't know how it would come out? ", callback: " " },
             ]
@@ -1276,6 +1311,7 @@ room487.chat = function (chatID) {
             text: "Heck yeah! That was my idea. I knew you could take whatever they dished out! " +
                 sc.n("martha") + " here thought it was stupid, but when I got " + sc.n("p") +
                 " to agree to it she was outvoted! You did well kid. ",
+            l10nValues: { martha: sc.n("martha"), contact: sc.n("p") },
             button: [
                 { chatID: 103, text: "...", callback: " " },
             ]
@@ -1287,6 +1323,7 @@ room487.chat = function (chatID) {
                 sc.n("cecilia") + " and I had to draw the guards to the front door so you could get here " +
                 "without too many cultist around. It's a good thing I'm on the pill or I would now be " +
                 "pregnant with octuplets. So Missy, what you say we hose you off and get you back? ",
+            l10nValues: { black: sc.n("black"), cecilia: sc.n("cecilia") },
             button: [
                 { chatID: 104, text: "...", callback: " " },
             ]
@@ -1297,6 +1334,7 @@ room487.chat = function (chatID) {
             text: "*ugh* You're going to have to stick that hose up my ass to wash out all the " +
                 "cum. " + sc.n("black") + " do you think you can carry me out. I've been tied up so long " +
                 "I can't use my legs. ",
+            l10nValues: { black: sc.n("black") },
             button: [
                 { chatID: 105, text: "...", callback: "missy25" },
             ]
