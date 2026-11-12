@@ -7,7 +7,7 @@ window.HatMPLocales.es = {
     "author": "Unassigned (draft)",
     "translator": "AI-assisted draft; needs review",
     "packVersion": "0.5.4",
-    "targetGameVersion": "0.28.2",
+    "targetGameVersion": "0.28.3",
     "lastTestedGameVersion": "0.28.2",
     "fallbackLocale": "en",
     "completeness": "partial"
@@ -5318,7 +5318,7 @@ window.HatMPLocales.es = {
     "room.601.chat.17.text": "¡Eh! ¡He dicho que te dejes las bragas puestas! ¿Quieres meternos en problemas con la ley? Has terminado por hoy. ¡Tienes que seguir mis reglas! Por esto me quedaré con todas tus propinas de hoy. ¡Ahora vete!",
     "room.601.chat.17.choice.0": "¡Maldición!",
     "location.room.600": "Club de striptease",
-    "location.room.601": "Club de striptease",
+    "location.room.601": "Escenario de baile",
     "location.room.602": "Bastidores",
     "room.601.chat.18.text": "Hola, papi. He traído a mi [[player:amigo|amiga]], {me}. Es [[player:el chico del que|la chica de la que]] te hablé. Una de las pocas personas más sucias que yo, y haremos lo que quieras, papi.",
     "room.601.chat.18.choice.0": "Mmmm.",

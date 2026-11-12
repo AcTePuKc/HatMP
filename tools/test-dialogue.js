@@ -14,7 +14,7 @@ async function game(stored) {
     if (stored !== undefined) w.localStorage.setItem('hatmp.dialogue', stored);
     w.HTMLDialogElement.prototype.showModal = function () { this.open = true; };
     w.HTMLDialogElement.prototype.close = function () { this.open = false; this.dispatchEvent(new w.Event('close')); };
-    w.g = { version: "28.2", ratio: 1, roomID: -1, skipChat: false, error: () => {} };
+    w.g = { version: "28.3", ratio: 1, roomID: -1, skipChat: false, error: () => {} };
     w.sc = { char: [{ name: 'test', image: 'rand.png' }], n: () => 'Test speaker' };
     w.calls = [];
     w.invoker = { invoke: (...args) => { w.calls.push(args); return w.nextEntry; } };

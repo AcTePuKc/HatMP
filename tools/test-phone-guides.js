@@ -13,7 +13,7 @@ async function createGame(locale, clock) {
         localStorage: { getItem: () => locale },
         document: { documentElement: {}, querySelectorAll: () => [] },
         g: {
-            version: '28.2', startDate: new Date(2026, 9, 23), dt: new Date(2026, 9, 23, 12),
+            version: '28.3', startDate: new Date(2026, 9, 23), dt: new Date(2026, 9, 23, 12),
             gethourdecimal: () => 12,
             getRooms: id => ({ name: 'Room ' + id }),
             fr: id => ({ name: 'Room ' + id })

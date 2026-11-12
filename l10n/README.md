@@ -26,7 +26,7 @@ window.HatMPLocales.es = {
     "author": "Translator name",
     "translator": "Translator name",
     "packVersion": "0.1.0",
-    "targetGameVersion": "0.28.2",
+    "targetGameVersion": "0.28.3",
     "lastTestedGameVersion": "0.28.2",
     "fallbackLocale": "en",
     "completeness": "partial"

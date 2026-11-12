@@ -7,7 +7,7 @@ window.HatMPLocales.bg = {
     "author": "Unassigned (draft)",
     "translator": "AI-assisted draft; needs review by a Bulgarian speaker",
     "packVersion": "0.6.4",
-    "targetGameVersion": "0.28.2",
+    "targetGameVersion": "0.28.3",
     "lastTestedGameVersion": "0.28.2",
     "fallbackLocale": "en",
     "completeness": "partial"
@@ -5320,7 +5320,7 @@ window.HatMPLocales.bg = {
     "room.601.chat.17.choice.0": "По дяволите!",
     "speaker.freddy": "Дебелия Фреди",
     "location.room.600": "Стриптийз клуб",
-    "location.room.601": "Стриптийз клуб",
+    "location.room.601": "Танцовата сцена",
     "location.room.602": "Зад сцената",
     "room.601.chat.18.text": "Здрасти, татенце. Доведох [[player:приятеля|приятелката]] си {me}. Това е [[player:онзи, за когото|онази, за която]] ти говорих. [[player:Едно от малкото момчета|Едно от малкото момичета]], които са по-мръсни от мен, и ще направим всичко, което поискаш, татенце.",
     "room.601.chat.18.choice.0": "Мммм.",

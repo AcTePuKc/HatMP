@@ -7,7 +7,7 @@ window.HatMPLocales.en = {
     "author": "FapForce5",
     "translator": "Original English source",
     "packVersion": "0.5.3",
-    "targetGameVersion": "0.28.2",
+    "targetGameVersion": "0.28.3",
     "lastTestedGameVersion": "0.28.2",
     "fallbackLocale": "en",
     "completeness": "partial"
