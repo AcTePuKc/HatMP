@@ -13,9 +13,10 @@ try {
         fs.writeFileSync(path.join(root, 'l10n', locale + '.js'), `window.HatMPLocales = window.HatMPLocales || {};
 window.HatMPLocales.${locale} = { "_meta": {"locale":"${locale}"}, "strings": ${strings} ${tail} };`);
     }
-    pack('en', JSON.stringify({ 'ui.welcome': 'Welcome {me}, meet {els}.', 'ui.missing': 'Missing', 'ui.empty': 'Empty', 'ui.object': 'Value', 'ui.html': '<b>Hello</b>', 'ui.order': '{name} has {amount}.', 'ui.good': '<br>Good', 'ui.duplicate': 'Duplicate', 'ui.shadow': 'Shadow' }));
+    pack('en', JSON.stringify({ 'ui.welcome': 'Welcome {me}, meet {els}.', 'ui.relation': 'Thank you, {landlord}.', 'ui.missing': 'Missing', 'ui.empty': 'Empty', 'ui.object': 'Value', 'ui.html': '<b>Hello</b>', 'ui.order': '{name} has {amount}.', 'ui.good': '<br>Good', 'ui.duplicate': 'Duplicate', 'ui.shadow': 'Shadow' }));
     pack('es', `{
         "ui.welcome": "Hola {me}, conoce a {els:pluralDefinite}.",
+        "ui.relation": "Gracias, {landlady:vocative}.",
         "ui.empty": "",
         "ui.object": {"text":"Incorrect shape", "values":["me"]},
         "ui.html": "<b>Hola</i>",
@@ -60,7 +61,7 @@ window.HatMPLocales.${locale} = { "_meta": {"locale":"${locale}"}, "strings": ${
     assert.ok(has('room.1.chat.0.choice.0', 'placeholders'));
     assert.ok(has('runtime.dynamic', 'placeholders'));
     assert.ok(has('unknown.key', 'unverified-source'));
-    for (const key of ['ui.welcome', 'ui.good', 'runtime.literal', 'room.1.chat.0.text', 'room.1.chat.1.text']) assert.ok(!report.issues.some(i => i.key === key), key + ' should pass');
+    for (const key of ['ui.welcome', 'ui.relation', 'ui.good', 'runtime.literal', 'room.1.chat.0.text', 'room.1.chat.1.text']) assert.ok(!report.issues.some(i => i.key === key), key + ' should pass');
     assert.ok(!has('runtime.sourceOnly', 'missing'));
     const inventory = check(root, { locales: ['es'], includeSource: true, prefix: 'runtime.' });
     assert.ok(inventory.issues.some(i => i.key === 'runtime.sourceOnly' && i.type === 'missing'));

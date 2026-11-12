@@ -9229,6 +9229,7 @@ window.HatMPLocales.es = {
     "relationship.form.singularDefinite": "Singular con artículo",
     "relationship.form.pluralDefinite": "Plural con artículo",
     "relationship.form.definite": "Forma con artículo",
+    "relationship.form.vocative": "Forma para dirigirse a ella",
     "inventory.type.a": "Regalo para dar",
     "inventory.type.b": "Bolso",
     "inventory.type.d": "Consolador",

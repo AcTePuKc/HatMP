@@ -1331,7 +1331,9 @@ phone.relationshipTermsEditor = function (section) {
         formInput.addEventListener("input", function () { manual = true; });
         baseInput.addEventListener("input", function () {
             if (!manual && l10n.getLanguage() === "bg")
-                formInput.value = phone.suggestBulgarianDefinite(baseInput.value, formId === "pluralDefinite");
+                formInput.value = formId === "vocative"
+                    ? sc.suggestBulgarianVocative(baseInput.value)
+                    : phone.suggestBulgarianDefinite(baseInput.value, formId === "pluralDefinite");
         });
     }
 
@@ -1349,7 +1351,7 @@ phone.relationshipTermsEditor = function (section) {
             var formInput = addTermInput("phone_landlady_form_" + form.id, "relationship.form." + form.id,
                 form.label, typeof value === "string" ? value : initialLandladyForms[form.id]);
             formInput.title = l10n.t("phone.relationshipTerms.landladyHelp", "Enter the form used in dialogue.");
-            if (form.id === "definite")
+            if (form.id === "definite" || form.id === "vocative")
                 bindBulgarianSuggestion(landladyInput, formInput, form.id, typeof value === "string");
         });
         $("#phone_landlady_relationship").on("input", function () {

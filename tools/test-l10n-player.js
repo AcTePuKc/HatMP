@@ -102,17 +102,28 @@ const source = file => fs.readFileSync(path.join(__dirname, '..', file), 'utf8')
     }
     // Definite lowercase must use the chosen definite form, not the uninflected label.
     await w.l10n.setLanguage('bg');
+    const vocativeFunction = source('scripts/supportingChar.js').match(/sc\.suggestBulgarianVocative = function \(value\) \{[\s\S]*?\n\};/);
+    assert.ok(vocativeFunction, 'Bulgarian vocative suggestion exists');
+    w.eval(vocativeFunction[0]);
     const landladyFunction = source('scripts/supportingChar.js').match(/sc\.landlady = function \(form\) \{[\s\S]*?\n\};/);
     assert.ok(landladyFunction, 'Landlady form resolver exists');
     w.eval(landladyFunction[0]);
     let landlady = { display: 'Landlady' };
     w.sc.get = () => landlady;
     assert.equal(w.sc.landlady('definiteLower'), 'хазайката');
-    landlady = { display: 'Леля', relationshipForms: { definite: 'Лелята' } };
+    assert.equal(w.sc.landlady('vocative'), 'хазайке');
+    assert.ok(w.l10n.t('room.26.chat.151.choice.0').includes('хазайке'));
+    landlady = { display: 'Леля', relationshipForms: { definite: 'Лелята', vocative: 'лельо' } };
     assert.equal(w.sc.landlady('definiteLower'), 'лелята');
+    assert.equal(w.sc.landlady('vocative'), 'лельо');
+    assert.equal(w.sc.landlady('vocativeCapitalized'), 'Лельо');
+    assert.ok(w.l10n.t('room.26.chat.167.text', '', { lola: 'Лола' }).includes('Лола, лельо'));
     assert.ok(w.l10n.t('room.350.chat.21.choice.0').includes('лелята'));
     landlady = { display: 'Леля', relationshipForms: {} };
     assert.equal(w.sc.landlady('definiteLower'), 'леля');
+    assert.equal(w.sc.landlady('vocative'), 'лельо');
+    landlady = { display: 'Майка', relationshipForms: {} };
+    assert.equal(w.sc.landlady('vocative'), 'майко');
     dom.window.close();
     // Exercise the standalone translator page using its actual script order and controls.
     const previewHTML = source('tools/dialogue-preview.html');

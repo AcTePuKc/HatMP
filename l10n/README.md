@@ -85,6 +85,8 @@ In translated dialogue, use stable form placeholders directly in the localized s
 
 Use `{landlady:definiteLower}` when the definite form needs lowercase, for example in the middle of a Bulgarian sentence. It lowercases the selected definite form, including a custom one; if no custom definite form is supplied, it uses the same fallback as `{landlady:definite}` before changing case. Use `{landlady:definite}` at the start of a sentence when the stored form has the desired capitalization.
 
+For direct Bulgarian address, use `{landlady:vocative}` after a comma and `{landlady:vocativeCapitalized}` at the start of a sentence or choice. The BG relationship editor exposes an optional vocative field (for example `хазайке`, `майко`, `лельо`). Common custom names receive a suggestion; a saved custom vocative always wins. English and Spanish can keep the plain `{landlord}` in direct address.
+
 ### Agreed implementation plan
 
 - Keep the existing singular and plural fields as the required, player-facing relationship labels. Use locale-specific, non-familial examples, such as `сънаемателка` / `сънаемателки` or `съквартирантка` / `съквартирантки`, rather than complete phrases.

@@ -1950,12 +1950,26 @@ sc.els = function (form) {
         : character.display;
 };
 
+sc.suggestBulgarianVocative = function (value) {
+    var word = String(value || "").trim().toLocaleLowerCase("bg");
+    return ({ "майка": "майко", "мама": "мамо", "леля": "лельо",
+        "хазайка": "хазайке", "хазяйка": "хазяйке" })[word] || "";
+};
+
 sc.landlady = function (form) {
     var character = sc.get("landlord");
     if (form && character.relationshipForms && typeof character.relationshipForms[form] === "string" && character.relationshipForms[form].trim())
         return character.relationshipForms[form];
     if (form === "definiteLower")
         return sc.landlady("definite").toLocaleLowerCase(l10n.getLanguage());
+    if (form === "vocativeCapitalized") {
+        var vocative = sc.landlady("vocative");
+        return vocative.charAt(0).toLocaleUpperCase(l10n.getLanguage()) + vocative.slice(1);
+    }
+    if (form === "vocative" && l10n.getLanguage() === "bg") {
+        var suggested = sc.suggestBulgarianVocative(character.display);
+        if (suggested) return suggested;
+    }
     if (form && l10n.characterTermForms("landlady").some(function (item) { return item.id === form; }))
         return l10n.characterTerm("landlady", form, character.display, "Landlady");
     if (form && !["display", "lower", "upper", "capitalize"].includes(form))

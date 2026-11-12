@@ -1856,6 +1856,7 @@ window.HatMPLocales.en = {
     "relationship.form.singularDefinite": "Singular with article",
     "relationship.form.pluralDefinite": "Plural with article",
     "relationship.form.definite": "Form with article",
+    "relationship.form.vocative": "Form used when addressing her",
     "inventory.type.a": "Givable gift",
     "inventory.type.b": "Purse",
     "inventory.type.d": "Dildo",

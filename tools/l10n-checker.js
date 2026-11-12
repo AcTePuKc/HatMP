@@ -275,7 +275,10 @@ function check(root, options = {}) {
                 const declared = new Set(sources.refs.get(key)?.allowed || []);
                 const formNames = new Set(Array.from(variant.text.matchAll(/\{(el|els|landlady):[a-zA-Z0-9_]+\}/g), match => match[1]));
                 const extra = [...actual].filter(name => !expected.has(name) && !declared.has(name) && !formNames.has(name));
-                const absent = sourceText == null ? [] : [...expected].filter(name => !actual.has(name));
+                // A localized relationship form resolves the same configurable character
+                // as the source's plain {landlord} placeholder.
+                const absent = sourceText == null ? [] : [...expected].filter(name =>
+                    !actual.has(name) && !(name === 'landlord' && formNames.has('landlady')));
                 if (extra.length || absent.length) addVariant({ severity: extra.length ? 'error' : 'warning', type: 'placeholders', message: [absent.length ? 'Source placeholders omitted: ' + absent.join(', ') : '', extra.length ? 'Unexpected placeholders: ' + extra.join(', ') : ''].filter(Boolean).join('. ') + (extra.length ? '. Check spelling and the values supplied by the game.' : '. Review whether the omission or grammatical rephrasing is intentional. Placeholder order and grammatical form suffixes may change.') });
             }
         }
