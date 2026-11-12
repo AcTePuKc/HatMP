@@ -1244,7 +1244,7 @@ room12.chat = function(chatID){
             speaker: "lola",
             text: "Oh no. I can't stop peeing once I start! I'm not trying to pee into your face!",
             button: [
-                { chatID: 63, text: "[Drink up her pee pee piss " + gender.pronoun("boy") + "]", callback: "lolapeesup" },
+                { chatID: 63, text: "[Drink up her pee pee piss, [[player:boy|girl]]]", callback: "lolapeesup" },
             ]
         },
         {
@@ -1258,7 +1258,8 @@ room12.chat = function(chatID){
         {
             chatID: 64,
             speaker: "thinking",
-            text: "Wow! " + sc.n("lola") + " has really turned into a big ol' slut! There's no way she would ever let me fuck her on the toilet! ",
+            text: "Wow! {lola} has really turned into a big ol' slut! There's no way she would ever let me fuck her on the toilet! ",
+            l10nValues: { lola: sc.n("lola") },
             button: [
                 { chatID: 65, text: "[Fill her uterus with your hot sticky cum]", callback: "lolapee3" },
             ]
@@ -1315,7 +1316,8 @@ room12.chat = function(chatID){
         {
             chatID: 71,
             speaker: "landlord",
-            text: "That's my good baby. Make your " + sc.n("landlord") + " happy. ",
+            text: "That's my good baby. Make your {landlord} happy. ",
+            l10nValues: { landlord: sc.n("landlord") },
             button: [
                 { chatID: 72, text: "mmm", callback: "lick2_vag" },
             ]
@@ -1333,7 +1335,7 @@ room12.chat = function(chatID){
             speaker: "landlord",
             text: "That's my good little baby. Now run along. I gotta get cleaned up. ",
             button: [
-                { chatID: -1, text: "Yes " + sc.n("landlord") + ". ", callback: "leave" },
+                { chatID: -1, text: "Yes, {landlord}.", l10nValues: { landlord: sc.n("landlord") }, callback: "leave" },
             ]
         },
     ];
