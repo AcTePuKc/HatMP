@@ -633,9 +633,9 @@ room32.chat = function (chatID) {
         {
             chatID: 28,
             speaker: "chad",
-            text: "Oh, don't think you're getting out of cleaning your " + g.makeSingular(sc.n("el")) + "'s ass off my cock. " + sc.n("me") +
-                ", you can join her though. Two tongues are better than none! Get down here, I'm just about to blow a load up " + sc.n("lola") +
-                "'s tight little asshole! ",
+            text: "Oh, don't think you're getting out of cleaning your {el}'s ass off my cock. {me}, you can join her though. " +
+                "Two tongues are better than none! Get down here, I'm just about to blow a load up {lola}'s tight little asshole! ",
+            l10nValues: { el: g.makeSingular(sc.n("el")), me: sc.n("me"), lola: sc.n("lola") },
             button: [
                 { chatID: 29, text: "Yes sir! ", callback: "lola_anal1" },
             ]
@@ -643,8 +643,9 @@ room32.chat = function (chatID) {
         {
             chatID: 29,
             speaker: "chad",
-            text: "That's my good little cock cleaners. You all like the taste of " + sc.n("lola") + "'s ass and my cum, don't you? You sluts " +
+            text: "That's my good little cock cleaners. You all like the taste of {lola}'s ass and my cum, don't you? You sluts " +
                 "will lick anything I tell you, won't you? Dumb ass dirty whores. I got shit to do, but I'll be back once I'm horny enough. ",
+            l10nValues: { lola: sc.n("lola") },
             button: [
                 { chatID: 30, text: "*slurp*", callback: "lola_anal2" },
             ]
@@ -653,7 +654,8 @@ room32.chat = function (chatID) {
             chatID: 30,
             speaker: "lola",
             text: "You know, if it isn't cum falling out of my vagina, then it's cum leaking out of my ass. I love the attention, but sometimes it " +
-                "would be nice if you took a cock up the ass, " + sc.n("eva") + ". ",
+                "would be nice if you took a cock up the ass, {eva}. ",
+            l10nValues: { eva: sc.n("eva") },
             button: [
                 { chatID: 31, text: "...", callback: "" },
             ]
@@ -662,8 +664,9 @@ room32.chat = function (chatID) {
             chatID: 31,
             speaker: "eva",
             text: "This bitch is crazy. She's taken one cock up her ass today. I've already had four! And seven in my pussy. I've taken so much cock " +
-                "I don't even fart anymore. The air just flows out. But " + sc.n("me") + ", we all know, is the queen of anal! " + gender.pronoun("she").capitalize() +
-                " could fit two hands up her ass! Anyway, I'm going to relax for a bit. My legs are cramped from kneeling so much. ",
+                "I don't even fart anymore. The air just flows out. But {me}, we all know, is the queen of anal! [[player:He|She]]" +
+                " could fit two hands up [[player:his|her]] ass! Anyway, I'm going to relax for a bit. My legs are cramped from kneeling so much. ",
+            l10nValues: { me: sc.n("me") },
             button: [
                 { chatID: -1, text: "...", callback: "" },
             ]
@@ -681,7 +684,8 @@ room32.chat = function (chatID) {
             chatID: 33,
             speaker: "eva",
             text: "We could just be a sperm lottery. Sometimes you win great sperm, sometimes it's old hairy fat man sperm. hehe. Thanks " +
-                sc.n("me") + " for taking some of those cocks. It's nice having you back even if you are a pervert. ",
+                "{me} for taking some of those cocks. It's nice having you back even if you are a pervert. ",
+            l10nValues: { me: sc.n("me") },
             button: [
                 { chatID: -1, text: "No problem. ", callback: "" },
             ]
