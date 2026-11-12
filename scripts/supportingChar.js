@@ -1952,8 +1952,8 @@ sc.els = function (form) {
 
 sc.suggestBulgarianVocative = function (value) {
     var word = String(value || "").trim().toLocaleLowerCase("bg");
-    return ({ "мама": "мамо", "леля": "лельо",
-        "хазайка": "хазайке", "хазяйка": "хазяйке" })[word] || "";
+    return ({ "хазайка": "хазайке", "хазяйка": "хазяйке",
+        "съседка": "съседке", "началничка": "началничке" })[word] || "";
 };
 
 sc.landlady = function (form) {

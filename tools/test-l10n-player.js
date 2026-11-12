@@ -113,17 +113,17 @@ const source = file => fs.readFileSync(path.join(__dirname, '..', file), 'utf8')
     assert.equal(w.sc.landlady('definiteLower'), 'хазайката');
     assert.equal(w.sc.landlady('vocative'), 'хазайке');
     assert.ok(w.l10n.t('room.26.chat.151.choice.0').includes('хазайке'));
-    landlady = { display: 'Леля', relationshipForms: { definite: 'Лелята', vocative: 'лельо' } };
-    assert.equal(w.sc.landlady('definiteLower'), 'лелята');
-    assert.equal(w.sc.landlady('vocative'), 'лельо');
-    assert.equal(w.sc.landlady('vocativeCapitalized'), 'Лельо');
-    assert.ok(w.l10n.t('room.26.chat.167.text', '', { lola: 'Лола' }).includes('Лола, лельо'));
-    assert.ok(w.l10n.t('room.350.chat.21.choice.0').includes('лелята'));
-    landlady = { display: 'Леля', relationshipForms: {} };
-    assert.equal(w.sc.landlady('definiteLower'), 'леля');
-    assert.equal(w.sc.landlady('vocative'), 'лельо');
-    landlady = { display: 'Майка', relationshipForms: {} };
-    assert.equal(w.sc.landlady('vocative'), 'Майка');
+    landlady = { display: 'Пазителка', relationshipForms: { definite: 'Пазителката', vocative: 'пазителке' } };
+    assert.equal(w.sc.landlady('definiteLower'), 'пазителката');
+    assert.equal(w.sc.landlady('vocative'), 'пазителке');
+    assert.equal(w.sc.landlady('vocativeCapitalized'), 'Пазителке');
+    assert.ok(w.l10n.t('room.26.chat.167.text', '', { lola: 'Лола' }).includes('Лола, пазителке'));
+    assert.ok(w.l10n.t('room.350.chat.21.choice.0').includes('пазителката'));
+    landlady = { display: 'Пазителка', relationshipForms: {} };
+    assert.equal(w.sc.landlady('definiteLower'), 'пазителка');
+    assert.equal(w.sc.landlady('vocative'), 'Пазителка');
+    landlady = { display: 'Съседка', relationshipForms: {} };
+    assert.equal(w.sc.landlady('vocative'), 'съседке');
     dom.window.close();
     // Exercise the standalone translator page using its actual script order and controls.
     const previewHTML = source('tools/dialogue-preview.html');
