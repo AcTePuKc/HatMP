@@ -2601,7 +2601,8 @@ room26.chat = function (chatID) {
             {
                 chatID: 159,
                 speaker: "lola",
-                text: "Oh, hello " + sc.n("me") + ". Care to join us? We're just enjoying the show " + sc.n("eva") + " is putting on for us. ",
+                text: "Oh, hello {me}. Care to join us? We're just enjoying the show {eva} is putting on for us. ",
+                l10nValues: { me: sc.n("me"), eva: sc.n("eva") },
                 button: [
                     { chatID: 160, text: "oh wow. She's really taking them all? ", callback: "" },
                 ]
@@ -2618,8 +2619,9 @@ room26.chat = function (chatID) {
             {
                 chatID: 161,
                 speaker: "eva",
-                text: "Hey, these penises are really big, like really big. How about " + sc.n("me") + " takes a couple. I promise not to drip cum " +
+                text: "Hey, these penises are really big, like really big. How about {me} takes a couple. I promise not to drip cum " +
                     "on your floor again. ",
+                l10nValues: { me: sc.n("me") },
                 button: [
                     { chatID: 162, text: "me?", callback: "" },
                 ]
@@ -2627,8 +2629,9 @@ room26.chat = function (chatID) {
             {
                 chatID: 162,
                 speaker: "landlord",
-                text: "Good idea! Hakeem, go ahead and put your dick up " + sc.n("me") + "'s ass! " + gender.pronoun("she").capitalize() + "'s been a bit " +
+                text: "Good idea! Hakeem, go ahead and put your dick up {me}'s ass! [[player:He|She]]'s been a bit " +
                     "of a chore lately too! ",
+                l10nValues: { me: sc.n("me") },
                 button: [
                     { chatID: 163, text: "huh", callback: "trio1" },
                 ]
@@ -2636,8 +2639,9 @@ room26.chat = function (chatID) {
             {
                 chatID: 163,
                 speaker: "lola",
-                text: "Oh wow! You just took that whole thing! Wow! " + sc.n("eva") + " had to work up to that girth. You really are the sluttiest " +
+                text: "Oh wow! You just took that whole thing! Wow! {eva} had to work up to that girth. You really are the sluttiest " +
                     "one here! ",
+                l10nValues: { eva: sc.n("eva") },
                 button: [
                     { chatID: 164, text: "*moan*", callback: "" },
                 ]
@@ -2655,9 +2659,10 @@ room26.chat = function (chatID) {
             {
                 chatID: 165,
                 speaker: "!bbc",
-                text: "Your " + sc.n("landlord") + " ain't wrong! Imma 'bout to bust my nut up that ass!!",
+                text: "Your {landlord} ain't wrong! Imma 'bout to bust my nut up that ass!!",
+                l10nValues: { landlord: sc.n("landlord") },
                 button: [
-                    { chatID: 169, text: "[Get back at " + sc.n("eva") + " and take the dick from your ass and shove it in her mouth]", callback: "trio10" },
+                    { chatID: 169, text: "[Get back at {eva} and take the dick from your ass and shove it in her mouth]", l10nValues: { eva: sc.n("eva") }, callback: "trio10" },
                     { chatID: 166, text: "[Take his thick creamy load up your ass]", callback: "trio2" },
                 ]
             },
@@ -2673,9 +2678,10 @@ room26.chat = function (chatID) {
             {
                 chatID: 167,
                 speaker: "!bbc",
-                text: "G'night " + sc.n("lola") + "'s " + sc.n("landlord") + ". Thanks for the milk and cookies. Also thanks for letting us cum " +
+                text: "G'night {lola}'s {landlord}. Thanks for the milk and cookies. Also thanks for letting us cum " +
                     "in your girls. It was lovely. We'll be by next time after practice. Tell those two to take care of their butts. We'll be " +
                     "filling them again real soon. ",
+                l10nValues: { lola: sc.n("lola"), landlord: sc.n("landlord") },
                 button: [
                     { chatID: 168, text: "*huff* *huff*", callback: "trio4" },
                 ]
@@ -2691,8 +2697,9 @@ room26.chat = function (chatID) {
             {
                 chatID: 169,
                 speaker: "lola",
-                text: "I've never seen " + sc.n("me") + " share cum before! " + gender.pronoun("he").capitalize() + " pulled that man's penis right out of " + gender.pronoun("her") +
-                    " butt and shoved it in " + sc.n("eva") + "'s mouth!",
+                text: "I've never seen {me} share cum before! [[player:He|She]] pulled that man's penis right out of " +
+                    "[[player:his|her]] butt and shoved it in {eva}'s mouth!",
+                l10nValues: { me: sc.n("me"), eva: sc.n("eva") },
                 button: [
                     { chatID: 170, text: "hehehe", callback: "trio11" },
                 ]
@@ -2758,7 +2765,8 @@ room26.chat = function (chatID) {
             {
                 chatID: 177,
                 speaker: "!bbc",
-                text: "Mmm mmm mmm! You lucky kid, You 'bout to see your " + sc.n("landlord") + " take the best fuckin' o' her life!",
+                text: "Mmm mmm mmm! You lucky kid, You 'bout to see your {landlord} take the best fuckin' o' her life!",
+                l10nValues: { landlord: sc.n("landlord") },
                 button: [
                     { chatID: 178, text: "...", callback: "preg2" },
                 ]
@@ -2774,8 +2782,9 @@ room26.chat = function (chatID) {
             {
                 chatID: 179,
                 speaker: "!bbc",
-                text: "Naw man. Imma enjoy this sweet ass. You can take that other one. This this is " + gender.pronoun("her") + " " +
-                    sc.n("landlord") + " if ya want. ",
+                text: "Naw man. Imma enjoy this sweet ass. You can take that other one. This is [[player:his|her]] " +
+                    "{landlord} if ya want. ",
+                l10nValues: { landlord: sc.n("landlord") },
                 button: [
                     { chatID: 180, text: "...", callback: "" },
                 ]
@@ -2783,7 +2792,7 @@ room26.chat = function (chatID) {
             {
                 chatID: 180,
                 speaker: "!bbc2",
-                text: "Awww damn! alright. You, face down ass up Imma destroy that " + gender.pronoun("pussy") + ". ",
+                text: "Awww damn! Alright. You, face down ass up. Imma destroy that [[player:bussy|pussy]]. ",
                 button: [
                     { chatID: 181, text: "*gulp*", callback: "preg3" },
                 ]
@@ -2791,8 +2800,9 @@ room26.chat = function (chatID) {
             {
                 chatID: 181,
                 speaker: "landlord",
-                text: "Look at my little " + gender.pronoun("girl") + " getting taking that BBC. I knew I raised you right. Not as good as " +
-                    sc.n("bigguy") + "'s penis, but it's so fun to try different penises. ",
+                text: "Look at my little [[player:boy|girl]] taking that BBC. I knew I raised you right. Not as good as " +
+                    "{bigguy}'s penis, but it's so fun to try different penises. ",
+                l10nValues: { bigguy: sc.n("bigguy") },
                 button: [
                     { chatID: 182, text: "*oof*", callback: "preg4" },
                 ]
@@ -2800,10 +2810,10 @@ room26.chat = function (chatID) {
             {
                 chatID: 182,
                 speaker: "landlord",
-                text: "Such a good " + gender.pronoun("girl") + ". Don't forget to wash up or the sperm running down your leg get hard and crusty " +
+                text: "Such a good [[player:boy|girl]]. Don't forget to wash up or the sperm running down your leg gets hard and crusty " +
                     "an such a pain to peel off. Now go wash up baby. ",
                 button: [
-                    { chatID: -1, text: "Yes " + sc.n("landlord") + ". ", callback: "preg5" },
+                    { chatID: -1, text: "Yes, {landlord}.", l10nValues: { landlord: sc.n("landlord") }, callback: "preg5" },
                 ]
             },
         ];

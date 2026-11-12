@@ -1304,7 +1304,7 @@ room16.chat = function (chatID) {
         {
             chatID: 78,
             speaker: "landlord",
-            text: "That's right. Fuck " + gender.pronoun("her") + " hard! " + gender.pronoun("she") + " needs to learn that " + gender.pronoun("she") +
+            text: "That's right. Fuck [[player:him|her]] hard! [[player:He|She]] needs to learn that [[player:he|she]]" +
                 "'s not better than anyone here! ",
             button: [
                 { chatID: 79, text: "*grunt*", callback: "notlewd_2" },
@@ -1313,8 +1313,9 @@ room16.chat = function (chatID) {
         {
             chatID: 79,
             speaker: "!bbc",
-            text: "Hey " + sc.n("me") + "'s " + sc.n("landlord") + ". Mind if I piss on " + gender.pronoun("her") + "? Really let " +
-                gender.pronoun("her") + " know her place? ",
+            text: "Hey, {me}'s {landlord}. Mind if I piss on [[player:him|her]]? Really let [[player:him|her]]" +
+                " know [[player:his|her]] place? ",
+            l10nValues: { me: sc.n("me"), landlord: sc.n("landlord") },
             button: [
                 { chatID: 80, text: "*moan*", callback: "" },
             ]
@@ -1322,7 +1323,7 @@ room16.chat = function (chatID) {
         {
             chatID: 80,
             speaker: "landlord",
-            text: "Yeah. Piss all over " + gender.pronoun("her") + " stupid slutty face. Hehehe",
+            text: "Yeah. Piss all over [[player:his|her]] stupid slutty face. Hehehe",
             button: [
                 { chatID: 81, text: "*grunt*", callback: "notlewd_3" },
             ]
@@ -1330,8 +1331,8 @@ room16.chat = function (chatID) {
         {
             chatID: 81,
             speaker: "landlord",
-            text: gender.pronoun("she").capitalize() + " gets of on being mistreated. Look " + gender.pronoun("she") + "'s cummin all over the " +
-                "floor. My dirty little " + gender.pronoun("girl") + ". ",
+            text: "[[player:He|She]] gets off on being mistreated. Look, [[player:he|she]]'s cumming all over the " +
+                "floor. My dirty little [[player:boy|girl]]. ",
             button: [
                 { chatID: -1, text: "*orgasmic moaning*", callback: "reset" },
             ]

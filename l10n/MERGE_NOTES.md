@@ -295,3 +295,13 @@ Implement in small groups after the merge: shared location/navigation labels and
 - Third post-merge pass: added BG/ES for eight further `.3` entries (Room 16 reactions and Room 32 dialogue/choices), reusing the established sound-word choices in the existing catalogs. The checker now reports 84 missing source-backed BG keys and 84 ES keys, all in Rooms 12, 16, 26 and 32. There are 27 dynamic expressions among these; replace their string concatenation with placeholders and `l10nValues` before catalog completion. Keep source-equal manual placeholders distinguishable from actual translations in QA.
 - Room 12's new `.3` dialogue (chats 59–73) is now fully covered by 33 BG/ES keys. The four dynamic name/gender fragments in chats 62, 64, 71 and 73 now use player tokens or `l10nValues`; callbacks and navigation are unchanged. Automated l10n check: 51 source-backed missing keys per BG/ES catalog, 0 hard errors. In-game QA of the new scene is still outstanding.
 - Room 32's new chats 28–33 now have six BG/ES translations. Source dialogue passes renamed `el`, `me`, `lola` and `eva` through `l10nValues`, and the English player reference in chat 31 now inflects both the subject and possessive pronoun. The checker reports 45 missing source-backed keys per BG/ES catalog, all in Rooms 16 and 26. The updated scene still needs in-game QA.
+
+### Manual translations still pending after the 0.28.3 source merge
+
+The l10n checker now shows **0 missing BG/ES keys**, but this does not mean this new release is fully translated. The following **28 new keys in each of `bg.js` and `es.js` deliberately contain the English source as an editable placeholder**. They are in the two remaining sensitive scenes and need manual BG/ES translation. Keep them in the catalogs and replace only their values; source English and `l10nValues` are wired already.
+
+- Room 16 text: chats 78, 79, 80, 81.
+- Room 26 text: chats 160, 161, 162, 163, 164, 165, 166, 167, 169, 170, 171, 172, 173, 174, 176, 177, 178, 179, 180, 181, 182.
+- Room 26 choices: chat 165 choices 0 and 1; chat 182 choice 0.
+
+The remaining Room 26 short reactions and chat 159 are translated in both catalogs. Room 16 and Room 26 source lines now use localized placeholders for renamed characters and player gender. `npm run l10n:scan --prefix tools` reports source-equal candidates; use this explicit list for the manual queue because other source-equal strings can be proper names or intentional unchanged text. In-game scene QA and old-save QA are still required before publishing the `.3` branch.
