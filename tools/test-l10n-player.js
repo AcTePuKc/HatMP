@@ -123,7 +123,7 @@ const source = file => fs.readFileSync(path.join(__dirname, '..', file), 'utf8')
     assert.equal(w.sc.landlady('definiteLower'), 'леля');
     assert.equal(w.sc.landlady('vocative'), 'лельо');
     landlady = { display: 'Майка', relationshipForms: {} };
-    assert.equal(w.sc.landlady('vocative'), 'майко');
+    assert.equal(w.sc.landlady('vocative'), 'Майка');
     dom.window.close();
     // Exercise the standalone translator page using its actual script order and controls.
     const previewHTML = source('tools/dialogue-preview.html');
