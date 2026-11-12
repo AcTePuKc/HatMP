@@ -13,11 +13,11 @@ This is the handoff record for moving the localization branch onto newer develop
 
 The reference point for local tracked edits is the branch HEAD above. Compare a new release against that commit and the working-tree changes. Git diffs do not include untracked files unless they are added to a commit or otherwise included deliberately.
 
-## Developer update .3 — not yet compared
+## Developer update 0.28.3 — not yet compared
 
-- The user reports that the developer updated the game to version “.3” on 2026-11-01. The full version string, release commit, and source files have not been recorded or inspected in this checkout.
+- The user reports that the developer updated the game to version 0.28.3 on 2026-11-01. At the time of this note, the release commit and source files had not been recorded or inspected in this checkout.
 - The developer granted access to the game's PSD files so the user can prepare multilingual buttons and other artwork with embedded text. The user has not downloaded them yet; no PSD has been inspected or edited.
-- It is unknown which of the localization runtime, UI, source corrections, or translation changes from this branch were adopted in .3. Do not assume any have been merged. Once the .3 source is available locally, compare it with this branch and its uncommitted changes file by file.
+- It was unknown which of the localization runtime, UI, source corrections, or translation changes from this branch were adopted in 0.28.3. Once the 0.28.3 source became available locally, the comparison and merge were recorded in `MERGE_NOTES.md`.
 - Continue text translation in this separate localization copy. Track image and button localization as a later asset task after the PSDs are available.
 
 ## Change groups
@@ -49,7 +49,7 @@ These room scripts have local edits. Most changes add translated keys, dynamic-n
 
 `room000`, `room002`, `room004`, `room005`, `room007`–`room014`, `room018`, `room020`, `room023`–`room028`, `room030`, `room031`, `room032`, `room040`, `room041`, `room050`–`room055`, `room057`, `room058`, `room075`, `room077`, `room078`, `room100`–`room103`, `room125`, `room150`–`room152`, `room154`, `room155`, `room170`–`room178` (except `room172`, which is unchanged), `room180`–`room186`, `room193`, `room195`–`room201`, `room228`, `room375`, `room400`, `room455`, `room481`, `room589`, `room602`, and `room775`.
 
-Key-specific QA status and the exact next translation key are in the progress note in `l10n/README.md`. The current work is incomplete: the latest full source scan recorded 9,198 untranslated keys per locale across this checkout on 2026-11-04. Rooms 0–200 are covered, and Rooms 213–252 have also been translated; the next key in room order is `room.300.chat.0.text`. These counts describe this checkout only and must be refreshed after source extraction against developer .3.
+Key-specific QA status and the exact next translation key are in the progress note in `l10n/README.md`. The current work is incomplete: the latest full source scan recorded 9,198 untranslated keys per locale across this checkout on 2026-11-04. Rooms 0–200 are covered, and Rooms 213–252 have also been translated; the next key in room order is `room.300.chat.0.text`. These historical counts describe this checkout before source extraction against developer version 0.28.3.
 
 ### Intentional English-source/content corrections to review with v1.0
 
@@ -86,4 +86,4 @@ These tools are not automatically part of the public game release. Decide separa
 
 - Rooms 213–252 are translated in BG/ES; Room 252 also has explicit keys for runtime-selected order/response and gift lines; next key is `room.300.chat.0.text`.
 - Latest checker result on 2026-11-04: 0 errors; 9,198 source keys remain untranslated per locale across this checkout.
-- No comparison or merge with developer .3, conflict resolution, commit, or push has been performed.
+- At the time of this note, no comparison or merge with developer version 0.28.3, conflict resolution, commit, or push had been performed. See `MERGE_NOTES.md` for the subsequent merge.
