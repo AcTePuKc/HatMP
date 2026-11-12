@@ -15808,7 +15808,7 @@ window.HatMPLocales.es = {
     "room.26.chat.104.choice.0": "[Murmurar contra su culo]",
     "room.26.chat.105.text": "Silencio. Las chicas buenas no se quejan con la boca llena. Tú quisiste esto al enseñarme el culo, así que ahora te aguantas. Déjame ver mis programas.",
     "room.26.chat.105.choice.0": "[Llorar contra su ano]",
-    "room.26.chat.106.text": "[Confiesas que eres [[player:un guarro asqueroso|una guarra asquerosa]] y te has acostado con su novio.]",
+    "room.26.chat.106.text": "[Confieso que soy [[player:un guarro asqueroso|una guarra asquerosa]] y que me he acostado con tu novio.]",
     "room.26.chat.107.text": "¿¡Qué has hecho!? ¡Es mi novio! ¡Jamás me engañaría! ¡Ven a mi habitación! Voy a llamarlo para escuchar su versión. ¡Los dos estáis en un buen lío!",
     "room.26.chat.107.choice.0": "Sí, {landlord}.",
     "room.26.chat.108.text": "¿Quieres ver la tele con nosotras?",
