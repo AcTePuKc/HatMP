@@ -43,42 +43,58 @@ room25.main = function () {
         }
     }
     else if (thisMother.roomID === 26) {
-        if (sc.getMission("landlord", "*cumdump").inProgress) {
-            btnList.push({
-                "type": "btn",
-                "name": "livingroom",
-                "left": 275,
-                "top": 12,
-                "width": 455,
-                "height": 375,
-                "image": "25_dining/livingroom_preg_.png",
-                "night": "25_dining/livingroom_preg_N.png",
-            });
+        if (thisSister.roomID === 26) {
+            if (sc.getMission("landlord", "*cumdump").inProgress) {
+                btnList.push({
+                    "type": "btn",
+                    "name": "livingroom",
+                    "left": 275,
+                    "top": 12,
+                    "width": 455,
+                    "height": 375,
+                    "image": "25_dining/livingroom_trio.webp",
+                    "night": "25_dining/livingroom_trio_night.webp",
+                });
+            }
+            else {
+                btnList.push({
+                    "type": "btn",
+                    "name": "livingroom",
+                    "left": 275,
+                    "top": 12,
+                    "width": 455,
+                    "height": 375,
+                    "image": "25_dining/livingroomS.png",
+                    "night": "25_dining/livingroomSN.png",
+                });
+            }
         }
         else {
-            btnList.push({
-                "type": "btn",
-                "name": "livingroom",
-                "left": 275,
-                "top": 12,
-                "width": 455,
-                "height": 375,
-                "image": "25_dining/livingroomM.png",
-                "night": "25_dining/livingroomMN.png",
-            });
+            if (sc.getMission("landlord", "*cumdump").inProgress) {
+                btnList.push({
+                    "type": "btn",
+                    "name": "livingroom",
+                    "left": 275,
+                    "top": 12,
+                    "width": 455,
+                    "height": 375,
+                    "image": "25_dining/livingroom_preg_.png",
+                    "night": "25_dining/livingroom_preg_N.png",
+                });
+            }
+            else {
+                btnList.push({
+                    "type": "btn",
+                    "name": "livingroom",
+                    "left": 275,
+                    "top": 12,
+                    "width": 455,
+                    "height": 375,
+                    "image": "25_dining/livingroomM.png",
+                    "night": "25_dining/livingroomMN.png",
+                });
+            }
         }
-    }
-    else if (thisSister.roomID === 26) {
-        btnList.push({
-            "type": "btn",
-            "name": "livingroom",
-            "left": 275,
-            "top": 12,
-            "width": 455,
-            "height": 375,
-            "image": "25_dining/livingroomS.png",
-            "night": "25_dining/livingroomSN.png",
-        });
     }
     else {
         btnList.push({
@@ -94,16 +110,30 @@ room25.main = function () {
     }
 
     if (thisDick.thisRoom) {
-        nav.bg("25_dining/025_diningRoomMom.jpg");
-        btnList.push({
-            "type": "btn",
-            "name": "dick",
-            "left": 641,
-            "top": 42,
-            "width": 1181,
-            "height": 1038,
-            "image": "25_dining/bigguy.png"
-        });
+        if (sc.getMission("landlord", "*cumdump").inProgress) {
+            nav.bg("25_dining/025_diningRoom.jpg", "25_dining/025_diningRoomNight.jpg");
+            btnList.push({
+                "type": "btn",
+                "name": "dick_cumdump",
+                "left": 641,
+                "top": 42,
+                "width": 1181,
+                "height": 1038,
+                "image": "25_dining/bigguy_cumdump.webp"
+            });
+        }
+        else {
+            nav.bg("25_dining/025_diningRoomMom.jpg");
+            btnList.push({
+                "type": "btn",
+                "name": "dick",
+                "left": 641,
+                "top": 42,
+                "width": 1181,
+                "height": 1038,
+                "image": "25_dining/bigguy.png"
+            });
+        }
         if (sc.taskGetStep("lola", "sissy") === 12) {
             chat(110, 26);
         }
@@ -178,6 +208,9 @@ room25.btnclick = function (name) {
             break;
         case "dick":
             chat(0, 25);
+            break;
+        case "dick_cumdump":
+            chat(47, 25);
             break;
     }
 };
@@ -649,7 +682,22 @@ room25.chat = function (chatID) {
                 { chatID: -1, l10nValues: { landlord: sc.n("landlord") }, text: "OK, {landlord}.", callback: "" }
             ]
         },
-        
+        {
+            chatID: 47,
+            speaker: "me",
+            text: "Good morning " + sc.n("bigguy") + ". Where's my " + sc.n("landlord") + "?",
+            button: [
+                { chatID: 48, text: "...", callback: "" }
+            ]
+        },
+        {
+            chatID: 48,
+            speaker: "bigguy",
+            text: "She's sucking my dick under the table. Now scram so I can go back to enjoying it. ",
+            button: [
+                { chatID: -1, text: "oh", callback: "" }
+            ]
+        },
     ];
     if (cArray.length > chatID && chatID > -1)
         return cArray[chatID];

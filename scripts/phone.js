@@ -887,7 +887,7 @@ phone.addCharacterCard = function (character, row, column) {
         g.makeCss(150, 150, top, left) + '">' +
         '</div>');
 
-    nav.button({
+    privateChat.speakerButton({
         "type": "zbtn",
         "name": "phone_charselect_" + character.name,
         "left": left,
@@ -895,7 +895,7 @@ phone.addCharacterCard = function (character, row, column) {
         "width": 150,
         "height": 150,
         "image": "../speaker/" + character.image,
-    }, 9999);
+    }, character.name, 9999);
 
     nav.t({
         type: "zimg",
@@ -908,7 +908,7 @@ phone.addCharacterCard = function (character, row, column) {
     }, 1);
 
     $('#room-buttons').append('<div class="resize room-img" data-name="phone_char_" data-room="999" style=" ' +
-        g.makeCss(5, (character.l * 15), top + 180, left) +
+        g.makeCss(5, ((character.l > 10 ? 10 : character.l) * 15), top + 180, left) +
         '  background: #00ff00; border-radius:100px; z-index:2" ></div>');
 
     nav.t({
@@ -1578,7 +1578,7 @@ phone.characterSelect = function (name) {
     phone.addLocalizedPanelText("relationships_title", "phone.section.relationships",
         "Relationships", 610, 870, 1000, 55, { font: 30, background: "#111111" });
 
-    nav.button({
+    privateChat.speakerButton({
         "type": "zimg",
         "name": "phone_",
         "left": 500,
@@ -1586,7 +1586,7 @@ phone.characterSelect = function (name) {
         "width": isMainStory ? 180 : 250,
         "height": isMainStory ? 180 : 250,
         "image": "../speaker/" + thisChar.image,
-    }, 9999);
+    }, name, 9999);
     var displayName = sc.n(name);
     if (!canRename) {
         nav.t({

@@ -391,7 +391,8 @@ room28.main = function () {
             }, 28);
         }
     }
-    room28.endSleepyTime(true);
+    if (!txtDisplay)
+        room28.endSleepyTime(true);
 };
 
 room28.future = function () {
@@ -508,7 +509,7 @@ room28.dreams = function () {
                 nav.bg("10_mainchar/lola_sleep6_" + (cl.c.cock === 5 ? "f" : "m") + ".webp");
                 break;
             case 7:
-                if (sc.getMission("lola", "*wife").startedOrComplete) {
+                if (sc.getMission("lola", "*wife").inProgress) {
                     nav.bg("28_transformation/sleep_wife.webp");
                 }
                 else if (gv.get("cat") > 0) {

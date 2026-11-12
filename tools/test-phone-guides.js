@@ -29,6 +29,7 @@ async function createGame(locale, clock) {
     context.drawn = [];
     context.nav.t = item => context.drawn.push(item);
     context.nav.button = item => context.drawn.push(item);
+    context.privateChat = { speakerButton: item => context.drawn.push(item) };
     context.nav.killbuttonStartsWith = () => {};
     for (const method of ['clear', 'backbutton', 'showPanel', 'addLocalizedPanelText', 'addStatBar'])
         context.phone[method] = () => {};

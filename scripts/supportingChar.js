@@ -2615,6 +2615,7 @@ sc.load = function (ra) {
 
     //fix for v 0.25.3 for people that started it 
     if (sc.getMissionTask("lola", "sissy", 5).startedOrComplete && future.get("lolaboy") < 0) {
+        future.kill("lolaboy");
         sc.completeMissionTask("lola", "sissy", 5, false);
         sc.completeMission("lola", "tom", false); 
     }
@@ -2672,7 +2673,7 @@ sc.getTimeline = function (char) {
             ];
             break;
         case "bigguy":
-            if (sc.getMission("bigguy", "ex").notStarted) {
+            if (!sc.getMission("bigguy", "ex").inProgress) {
                 timeline = [
                     //Sunday
                     { d: [0], hstart: 0, hend: 7, roomId: 14, alt: null }, //bedroom
@@ -3408,6 +3409,7 @@ sc.trivialLookup = {
     "!boxes": { display: "Mike", image: "boxes.png" },
     "!bwc": { display: "BWC", image: "bwc.png" },
     "!bbc": { display: "BBC", image: "bbc.png" },
+    "!bbc2": { display: "Other BBC", image: "bbc.png" },
     "!deb": { display: "Deb", image: "deb.png" },
     "!latika": { display: "Latika", image: "latika.png" },
     "!doofus": { display: "Doofus", image: "doofus.png" },
