@@ -203,12 +203,27 @@ function check(root, options = {}) {
     }
     const sources = sourceReferences(root);
     sources.diagnostics.forEach(add);
+    const pendingPath = path.join(root, 'l10n', 'pending-manual.json');
+    let pendingManual = { locales: [], keys: [] };
+    if (fs.existsSync(pendingPath)) {
+        try {
+            const parsed = JSON.parse(fs.readFileSync(pendingPath, 'utf8'));
+            if (!Array.isArray(parsed.locales) || !Array.isArray(parsed.keys) ||
+                !parsed.locales.every(value => typeof value === 'string') ||
+                !parsed.keys.every(value => typeof value === 'string'))
+                throw new Error('Expected arrays of locale codes and translation keys.');
+            pendingManual = parsed;
+        } catch (error) {
+            add({ severity: 'error', type: 'pending-manual-file', locale: 'source', file: pendingPath,
+                line: 1, key: '', message: 'Invalid manual translation list: ' + error.message });
+        }
+    }
     const summaries = [];
     const matches = key => !options.prefix || key.startsWith(options.prefix);
     for (const locale of selected) {
         const catalog = catalogs.get(locale);
         if (!catalog) continue;
-        let missing = 0, compared = 0, dynamic = 0, noReference = 0, sourceOnly = 0;
+        let missing = 0, compared = 0, dynamic = 0, noReference = 0, sourceOnly = 0, pending = 0;
         const keys = new Set([...english.keys(), ...catalog.entries.keys()]);
         // Scan source-only keys by default so whole rooms cannot be silently omitted
         // merely because their English entries have not yet been extracted to en.js.
@@ -275,7 +290,17 @@ function check(root, options = {}) {
             const scope = room ? 'room.' + Number(room[1]) : key.split('.').slice(0, 2).join('.');
             missingByScope[scope] = (missingByScope[scope] || 0) + 1;
         }
-        summaries.push({ locale, keys: [...catalog.entries.keys()].filter(matches).length, missing, compared, dynamic, sourceOnly, sourceKeys: sourceKeys.length, sourceMissing: sourceMissing.length, missingByScope, noReference });
+        if (pendingManual.locales.includes(locale)) for (const key of new Set(pendingManual.keys)) {
+            if (!matches(key)) continue;
+            const translated = catalog.entries.get(key);
+            if (!translated) continue;
+            const reference = english.get(key) || sources.refs.get(key);
+            pending++;
+            add({ ...translated, locale, severity: 'warning', type: 'pending-manual', key,
+                source: reference?.value, referenceFile: reference?.file, referenceLine: reference?.line,
+                message: 'Listed for manual translation review in l10n/pending-manual.json. Remove the key from that list after the translation is reviewed.' });
+        }
+        summaries.push({ locale, keys: [...catalog.entries.keys()].filter(matches).length, missing, pending, compared, dynamic, sourceOnly, sourceKeys: sourceKeys.length, sourceMissing: sourceMissing.length, missingByScope, noReference });
     }
     const filtered = issues.filter(i => (!i.key || matches(i.key)) && (selected.includes(i.locale) || i.locale === 'source' || i.locale === 'en'));
     return { generatedAt: new Date().toISOString(), root, options, summaries, issues: filtered,

@@ -746,6 +746,7 @@ window.HatMPLocales.es = {
     "speaker.pig": "Cerdito",
     "speaker.horse": "Caballo",
     "speaker.cowboy": "Vaquero",
+    "speaker.bbc2": "El otro hombre",
     "speaker.info": "Información",
     "speaker.fatman": "Hombre gordo",
     "speaker.milkmaid": "Lechera",

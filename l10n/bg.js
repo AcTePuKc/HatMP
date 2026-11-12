@@ -746,6 +746,7 @@ window.HatMPLocales.bg = {
     "speaker.pig": "Прасенце",
     "speaker.horse": "Кон",
     "speaker.cowboy": "Каубой",
+    "speaker.bbc2": "Другият мъж",
     "speaker.info": "Информация",
     "speaker.fatman": "Дебелак",
     "speaker.milkmaid": "Доячка",

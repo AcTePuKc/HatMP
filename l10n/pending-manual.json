@@ -1,0 +1,36 @@
+{
+  "locales": [
+    "bg",
+    "es"
+  ],
+  "keys": [
+    "room.16.chat.78.text",
+    "room.16.chat.79.text",
+    "room.16.chat.80.text",
+    "room.16.chat.81.text",
+    "room.26.chat.160.text",
+    "room.26.chat.161.text",
+    "room.26.chat.162.text",
+    "room.26.chat.163.text",
+    "room.26.chat.164.text",
+    "room.26.chat.165.text",
+    "room.26.chat.166.text",
+    "room.26.chat.167.text",
+    "room.26.chat.169.text",
+    "room.26.chat.170.text",
+    "room.26.chat.171.text",
+    "room.26.chat.172.text",
+    "room.26.chat.173.text",
+    "room.26.chat.174.text",
+    "room.26.chat.176.text",
+    "room.26.chat.177.text",
+    "room.26.chat.178.text",
+    "room.26.chat.179.text",
+    "room.26.chat.180.text",
+    "room.26.chat.181.text",
+    "room.26.chat.182.text",
+    "room.26.chat.165.choice.0",
+    "room.26.chat.165.choice.1",
+    "room.26.chat.182.choice.0"
+  ]
+}

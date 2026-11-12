@@ -42,8 +42,14 @@ window.HatMPLocales.${locale} = { "_meta": {"locale":"${locale}"}, "strings": ${
         l10n.t('runtime.dynamic', makeGreeting(), {person:sc.n('person')});
         l10n.t('runtime.sourceOnly','Only in source');
     `);
+    const pendingPath = path.join(root, 'l10n', 'pending-manual.json');
+    fs.writeFileSync(pendingPath, JSON.stringify({ locales: ['es'], keys: ['ui.shadow'] }));
     const report = check(root, { locales: ['es'], includeSource: false });
     const has = (key, type) => report.issues.some(i => i.key === key && i.type === type);
+    assert.ok(has('ui.shadow', 'pending-manual'));
+    assert.equal(report.summaries[0].pending, 1);
+    assert.ok(renderReport(report).includes('Pending manual review'));
+    fs.unlinkSync(pendingPath);
     assert.ok(has('ui.missing', 'missing'));
     assert.ok(has('ui.empty', 'missing'));
     assert.ok(has('ui.object', 'value-type'));
