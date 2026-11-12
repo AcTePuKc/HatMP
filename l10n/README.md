@@ -4,6 +4,8 @@ For carrying this work onto the developer's upcoming release, see the [version p
 
 For scene wording that needs a visual check, use the [in-game wording review list](IN_GAME_QA.md).
 
+For the active 0.28.3 release checks, use the [QA record](QA-0.28.3.md).
+
 Before submitting a translation batch, use the [translation checker](../tools/TRANSLATION_CHECKS.md). It creates an offline report with file/line locations, source comparisons, and filters for language, key prefix, and severity. Run `npm ci --prefix tools` once from the game folder, then `npm run l10n --prefix tools`. Missing translations and intentional placeholder omissions are review items; malformed entries and likely runtime breakages are errors. The checker does not modify language packs.
 
 ## Pending navigation audit

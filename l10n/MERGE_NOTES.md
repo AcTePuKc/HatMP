@@ -296,17 +296,17 @@ Implement in small groups after the merge: shared location/navigation labels and
 - Room 12's new 0.28.3 dialogue (chats 59–73) is now fully covered by 33 BG/ES keys. The four dynamic name/gender fragments in chats 62, 64, 71 and 73 now use player tokens or `l10nValues`; callbacks and navigation are unchanged. Automated l10n check: 51 source-backed missing keys per BG/ES catalog, 0 hard errors. In-game QA of the new scene is still outstanding.
 - Room 32's new chats 28–33 now have six BG/ES translations. Source dialogue passes renamed `el`, `me`, `lola` and `eva` through `l10nValues`, and the English player reference in chat 31 now inflects both the subject and possessive pronoun. The checker reports 45 missing source-backed keys per BG/ES catalog, all in Rooms 16 and 26. The updated scene still needs in-game QA.
 
-### Manual translations still pending after the 0.28.3 source merge
+### Historical manual translation queue — completed
 
-The l10n checker now shows **0 missing BG/ES keys**, but this does not mean this new release is fully translated. The following **28 new keys in each of `bg.js` and `es.js` deliberately contain the English source as an editable placeholder**. They are in the two remaining sensitive scenes and need manual BG/ES translation. Keep them in the catalogs and replace only their values; source English and `l10nValues` are wired already.
+At this checkpoint, the checker showed **0 missing BG/ES keys** but the following **28 new keys in each catalog still held the English source as a placeholder**. They have since been translated in both catalogs. The list remains here as a record of what was reviewed.
 
 - Room 16 text: chats 78, 79, 80, 81.
 - Room 26 text: chats 160, 161, 162, 163, 164, 165, 166, 167, 169, 170, 171, 172, 173, 174, 176, 177, 178, 179, 180, 181, 182.
 - Room 26 choices: chat 165 choices 0 and 1; chat 182 choice 0.
 
-The remaining Room 26 short reactions and chat 159 are translated in both catalogs. Room 16 and Room 26 source lines now use localized placeholders for renamed characters and player gender. `npm run l10n:scan --prefix tools` reports source-equal candidates; use this explicit list for the manual queue because other source-equal strings can be proper names or intentional unchanged text. In-game scene QA and old-save QA are still required before publishing the 0.28.3 branch.
+The remaining Room 26 short reactions and chat 159 were also translated in both catalogs. Room 16 and Room 26 source lines use localized placeholders for renamed characters and player gender. In-game scene QA and old-save QA are still required before publishing the 0.28.3 branch.
 
-The queue is also stored in `l10n/pending-manual.json`, and `npm run l10n --prefix tools` now reports **28 pending manual review keys per BG/ES language** alongside the zero missing-key count. Remove a key from that manifest only after its values are translated and reviewed in both catalogs. The upstream `!bbc2` speaker is now localized as “Другият мъж” / “El otro hombre”; the automatic source-key scan had not included this new dynamic speaker label.
+The queue in `l10n/pending-manual.json` is now empty. The upstream `!bbc2` speaker is localized as “Другият мъж” / “El otro hombre”; the automatic source-key scan had not included this new dynamic speaker label.
 
 Compared the remaining small upstream code changes with the merged branch: makeup award logic in `clothes.js`; layered portraits and a capped relationship bar in `phone.js`/Room 6; Room 13's decline target; Room 14's `wife` → `partner` wording (BG/ES already said partner); Room 28's dream conditions; Room 125's typo (BG/ES already conveyed the corrected meaning); Room 328's new image callback; Room 601's additive excitement; Room 949's clothing reset; and `supportingChar.js` timeline/save fixes. No translation conflict was found in those paths beyond `!bbc2`. The code/tests pass, but the portrait, dream, clothing and scene transitions still need in-game review.
 
@@ -319,3 +319,5 @@ The context-sensitive wording of these Room 26 labels is open for rendered-scene
 Room 26 chats 160–182 are now translated in BG/ES, including the three remaining choices. The explicit manual queue is empty. Spanish chats 165 and 179 use `{landlady:definiteLower}` in place of the English `{landlord}` placeholder so the relation has an article; the scanner recognizes this equivalent relationship form. Chat 161's source speaker/promise ambiguity is recorded in `IN_GAME_QA.md` for scene review.
 
 Bulgarian direct address now uses an editable `{landlady:vocative}` form (and `{landlady:vocativeCapitalized}` at line starts) in the obvious dialogue and choice occurrences, including Room 26 chats 151 and 167. The relationship editor shows the new optional form with a neutral example; a few common custom terms have fallback suggestions. Other `{landlord}` occurrences refer to the character rather than address her and were not changed. Verify custom forms and the edited choices in game during 0.28.3 QA.
+
+The active 0.28.3 release checks and disposition of the 47 static unlocalized-text candidates are in [`QA-0.28.3.md`](QA-0.28.3.md). The latest scanner pass found four ES speaker keys absent; they are now present in `es.js`.
