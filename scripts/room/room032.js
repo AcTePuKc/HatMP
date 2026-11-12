@@ -689,7 +689,8 @@ room32.chat = function (chatID) {
         {
             chatID: 34,
             speaker: "thinking",
-            text: "They are really going at it... Should've been me, but " + sc.n("tom") + " is the guy for her.",
+            text: "They are really going at it... Should've been me, but {tom} is the guy for her.",
+            l10nValues: { tom: sc.n("tom") },
             button: [
                 { chatID: -1, text: "[Leave]", callback: "leave" },
             ]
@@ -705,7 +706,8 @@ room32.chat = function (chatID) {
         {
             chatID: 36,
             speaker: "lola",
-            text: sc.n("tom") + "!!!!",
+            text: "{tom}!!!!",
+            l10nValues: { tom: sc.n("tom") },
             button: [
                 { chatID: 37, text: "...", callback: "" },
             ]

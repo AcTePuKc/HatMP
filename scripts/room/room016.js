@@ -1296,7 +1296,7 @@ room16.chat = function (chatID) {
         {
             chatID: 77,
             speaker: "landlord",
-            text: "That's right! Hakeem! Come teach my " + gender.pronoun("son") + " a lesson! ",
+            text: "That's right! Hakeem! Come teach my [[player:son|daughter]] a lesson! ",
             button: [
                 { chatID: 78, text: "oh no...", callback: "notlewd_1" },
             ]
