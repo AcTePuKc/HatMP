@@ -9,8 +9,9 @@ g.map = null;
 g.roomAdd = new Array();
 g.saveState = null;
 g.startDate = new Date(2012, 0, 1, 0, 0, 0, 0);
+// Save compatibility still follows the upstream 0.28.3 data format.
 g.version = 28.3;
-g.versionText = "0.28.3 - NOV 2026";
+g.versionText = "0.28.31 - NOV 2026";
 g.newLoad = true;
 g.back = false;
 g.altview = false;

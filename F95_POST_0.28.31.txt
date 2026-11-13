@@ -1,0 +1,17 @@
+[B]Hermaphrodity 0.28.31 — Bulgarian & European Spanish[/B]
+
+Based on the official 0.28.3 release. This is our localization build, now available for players to try.
+
+[B]What's new[/B]
+• Bulgarian and European Spanish translations for the story, choices, phone, map, character schedules, and much of the interface. You can change the language from the title screen or phone.
+• A new Enhanced dialogue view alongside Classic, with text size, spacing, and background settings. Recent dialogue history is available during the current session.
+• Continue on the title screen, automatic return to the current room after a page refresh, and Phone → Settings → Main Menu.
+• Better wording for the player's selected gender and customizable names. Additional relationship forms help Bulgarian and Spanish sentences sound natural.
+• A small glossary, inline translations for Zoey's French phrases, and translated labels on many action buttons.
+• Interface and scene fixes, including the Naked Beaver interaction after the cult letter, several dialogue routes, and some overlapping controls.
+
+[B]Download 0.28.31:[/B] [URL=ARCHIVE_URL]Download here[/URL]
+Extract the archive and open [B]startGame.html[/B] to play.
+[B]Feedback:[/B] [URL=FEEDBACK_FORM_URL]Report a problem[/URL]
+
+[QUOTE]This is a test build. Some text embedded in images remains in English. Refresh resumes at the start of the current room, so the latest dialogue may need to be replayed.[/QUOTE]
