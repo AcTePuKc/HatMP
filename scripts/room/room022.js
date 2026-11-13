@@ -54,16 +54,16 @@ room22.btnclick = function (name) {
         case "drawIconsMaster":
             invoker.invokeCurrent("btnclick", "clearRoom");
             if (gv.get("bladder") > 0) {
-                sc.select("pee", "22_toilet/icon_pee.png", 0);
+                sc.selectLocalizedLabel("pee", "22_toilet/icon_pee.png", 0, "room.22.action.pee", "Piss", "", { width: 330, fontSize: 24 });
             }
             else {
                 sc.select("peex", "22_toilet/icon_peex.png", 0);
             }
             if (gv.getButtCum().total > 0) {
-                sc.select("cum", "22_toilet/icon_expel.png", 1);
+                sc.selectLocalizedLabel("cum", "22_toilet/icon_expel.png", 1, "room.22.action.expel", "Expel the cum", "", { width: 330, fontSize: 24 });
             }
             else {
-                sc.select("cumx", "22_toilet/icon_expelx.png", 1);
+                sc.selectLocalizedLabel("cumx", "22_toilet/icon_expelx.png", 1, "room.22.action.expel", "Expel the cum", "", { width: 330, fontSize: 24 });
             }
             sc.selectCancel("leave", 2);
             break;
@@ -78,14 +78,14 @@ room22.btnclick = function (name) {
         case "pee":
             invoker.invokeCurrent("btnclick", "clearRoom");
             if (cl.c.chastity !== null) {
-                sc.select("peemanx", "22_toilet/icon_peeMan.png", 0);
-                sc.select("peebitch", "22_toilet/icon_peeBitch.png", 1);
+                sc.selectLocalizedLabel("peemanx", "22_toilet/icon_peeManx.png", 0, "room.22.action.peeMan", "Piss like a man", "", { width: 330, fontSize: 24 });
+                sc.selectLocalizedLabel("peebitch", "22_toilet/icon_peeBitch.png", 1, "room.22.action.peeBitch", "Piss like a bitch", "", { width: 330, fontSize: 24 });
                 sc.selectCancel("drawIconsMaster", 2);
             }
             else {
-                sc.select("peeman", "22_toilet/icon_peeMan.png", 0);
+                sc.selectLocalizedLabel("peeman", "22_toilet/icon_peeMan.png", 0, "room.22.action.peeMan", "Piss like a man", "", { width: 330, fontSize: 24 });
                 if (sissy.st[6].ach) {
-                    sc.select("peebitch", "22_toilet/icon_peeBitch.png", 1);
+                    sc.selectLocalizedLabel("peebitch", "22_toilet/icon_peeBitch.png", 1, "room.22.action.peeBitch", "Piss like a bitch", "", { width: 330, fontSize: 24 });
                     sc.selectCancel("drawIconsMaster", 2);
                 }
                 else
@@ -148,16 +148,16 @@ room22.btnclick = function (name) {
             break;
         case "cum":
             if (inv.has("emptyjar")) {
-                sc.select("cumtoilet", "22_toilet/icon_expelToilet.png", 0);
+                sc.selectLocalizedLabel("cumtoilet", "22_toilet/icon_expelToilet.png", 0, "room.22.action.expelToilet", "Expel creampie in the toilet", "", { width: 330, fontSize: 24 });
                 if(levels.get("cum").l > 2)
-                    sc.select("expelJar", "22_toilet/icon_expelJar.png", 1);
+                    sc.selectLocalizedLabel("expelJar", "22_toilet/icon_expelJar.png", 1, "room.22.action.expelJar", "Fill a cum jar", "", { width: 330, fontSize: 24 });
                 else
-                    sc.select("expelJary", "22_toilet/icon_expelJarx.png", 1);
+                    sc.selectLocalizedLabel("expelJary", "22_toilet/icon_expelJarx.png", 1, "room.22.action.expelJar", "Fill a cum jar", "", { width: 330, fontSize: 24 });
                 sc.selectCancel("drawIconsMaster", 2);
             }
             else {
-                sc.select("cumtoilet", "22_toilet/icon_expelToilet.png", 0);
-                sc.select("expelJarx", "22_toilet/icon_expelJarx.png", 1);
+                sc.selectLocalizedLabel("cumtoilet", "22_toilet/icon_expelToilet.png", 0, "room.22.action.expelToilet", "Expel creampie in the toilet", "", { width: 330, fontSize: 24 });
+                sc.selectLocalizedLabel("expelJarx", "22_toilet/icon_expelJarx.png", 1, "room.22.action.expelJar", "Fill a cum jar", "", { width: 330, fontSize: 24 });
                 sc.selectCancel("drawIconsMaster", 2);
             }
             break;
