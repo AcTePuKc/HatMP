@@ -172,11 +172,16 @@ room2.chatcatch = function (callback) {
         l10n.characterTermForms("coTenant").forEach(function (form) {
             relationshipFormDefaults[form.id] = form.suggested;
             var label = l10n.t("relationship.form." + form.id, form.label);
+            var helpKey = form.id === "singularDefinite"
+                ? "phone.relationshipTerms.singularDefiniteHelp"
+                : "phone.relationshipTerms.pluralDefiniteHelp";
+            var help = l10n.t(helpKey, "Enter the form used in dialogue.");
             var value = sc.get("el").relationshipForms && sc.get("el").relationshipForms[form.id];
             if (typeof value !== "string") value = relationshipHasLocalizedDefaults ? form.suggested : "";
-            var field = $('<label class="intro-relationship-extra"></label>').text(label + " ");
+            var field = $('<label class="intro-relationship-extra"></label>').text(label + " ").attr("title", help);
             $('<input type="text" maxlength="80" autocomplete="off" />')
                 .attr("id", "room_002RelationshipForm_" + form.id)
+                .attr("title", help)
                 .val(value).appendTo(field);
             $('#room_002RelationshipForms').append(field);
         });
