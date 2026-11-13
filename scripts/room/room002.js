@@ -272,9 +272,10 @@ room2.chatcatch = function (callback) {
         function suggestedCoTenantSingular(plural) {
             if (l10n.getLanguage() !== "bg") return "";
             var word = String(plural || "").trim();
-            if (!/^[а-яѝ]+$/.test(word)) return "";
-            if (word.endsWith("ки")) return word.slice(0, -2) + "ка";
-            if (word.endsWith("тели")) return word.slice(0, -1);
+            var lower = word.toLocaleLowerCase("bg");
+            if (!/^[а-яѝ]+$/.test(lower)) return "";
+            if (lower.endsWith("ки")) return word.slice(0, -2) + "ка";
+            if (lower.endsWith("тели")) return word.slice(0, -1);
             return "";
         }
         function refreshOptionalRelationshipForms(pluralChanged) {

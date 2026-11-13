@@ -1257,11 +1257,12 @@ phone.characters = function () {
     }
 };
 
-// Conservative suggestions for single lowercase Bulgarian nouns; users can override them.
+// Conservative suggestions for single Bulgarian nouns; users can override them.
 phone.suggestBulgarianDefinite = function (value, plural) {
     var word = String(value || "").trim();
-    if (word.length > 78 || !/^[а-яѝ]+$/.test(word)) return "";
-    var last = word.charAt(word.length - 1);
+    var lower = word.toLocaleLowerCase("bg");
+    if (word.length > 78 || !/^[а-яѝ]+$/.test(lower)) return "";
+    var last = lower.charAt(lower.length - 1);
     if (plural && (last === "и" || last === "е")) return word + "те";
     if (last === "а" || last === "я") return word + "та";
     return "";
