@@ -19,7 +19,7 @@ room954.main = function () {
                 "image": "225_sewer/up.png",
                 "title": "Notify the police.",
                 "titleKey": "room.954.hover.police"
-            }, 228);
+            }, 954);
             chat(74, 954);
             break;
         case "martin":
@@ -33,6 +33,10 @@ room954.main = function () {
 
 room954.btnclick = function (name) {
     switch (name) {
+        case "t29":
+            room954.chatcatch("t29");
+            chat(53, 954);
+            break;
         case "tnext":
             if (g.internal < 11) {
                 g.internal++;
@@ -130,7 +134,7 @@ room954.chatcatch = function (callback) {
                 "image": "225_sewer/up.png",
                 "title": "Notify the police.",
                 "titleKey": "room.954.hover.police"
-            }, 228);
+            }, 954);
             break;
         case "t29":
             nav.killall();

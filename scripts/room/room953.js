@@ -65,6 +65,7 @@ room953.chatcatch = function (callback) {
         case "x4":
         case "x5":
         case "x6":
+        case "xend":
         case "change1":
             nav.bg("953_chaple/" + callback + ".webp");
             break;
@@ -119,8 +120,10 @@ room953.chatcatch = function (callback) {
             break;
         case "e17":
             gv.set("cultRank", "Sissy?");
-            gv.set("cultRank", "Sissy?");
             sc.modLevel("cult", 25, 10);
+            nav.modbutton("cell", "953_chaple/wall_fg3.webp", null, null);
+            break;
+        case "e17provider":
             nav.modbutton("cell", "953_chaple/wall_fg3.webp", null, null);
             break;
         case "e18":
@@ -362,7 +365,7 @@ room953.chat = function (chatID) {
             speaker: "thinking",
             text: "Hmmm... Well, who am I to judge. Fine. ",
             button: [
-                { chatID: 14, text: "...", callback: "e17" }
+                { chatID: 14, text: "...", callback: "e17provider" }
             ]
         }, 
         {
