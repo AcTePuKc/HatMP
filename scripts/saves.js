@@ -14,10 +14,14 @@ saves.mode = "save";       // "save" | "load"
 saves.renderToken = 0;
 saves.dbPromise = null;
 saves.resumeKey = "HatMP_resume_room_v1";
+saves.resumeTitleKey = "HatMP_resume_title_v1";
 
 // A room-entry checkpoint, kept separately from the player's save slots.
 saves.rememberResume = function (data) {
-    try { sessionStorage.setItem(saves.resumeKey, data); }
+    try {
+        sessionStorage.setItem(saves.resumeKey, data);
+        sessionStorage.removeItem(saves.resumeTitleKey);
+    }
     catch (err) {
         saves.clearResume();
         console.warn("Unable to remember the current room.", err);
@@ -25,25 +29,52 @@ saves.rememberResume = function (data) {
 };
 
 saves.clearResume = function () {
-    try { sessionStorage.removeItem(saves.resumeKey); }
+    try {
+        sessionStorage.removeItem(saves.resumeKey);
+        sessionStorage.removeItem(saves.resumeTitleKey);
+    }
     catch (err) { }
 };
 
+saves.getResumeData = function () {
+    try {
+        var data = sessionStorage.getItem(saves.resumeKey);
+        if (!data)
+            return null;
+        var state = JSON.parse(data);
+        if (!state || !state.g || !Array.isArray(state.g.roomMap) ||
+            !Number.isInteger(state.g.roomID) || state.g.roomID <= 3 ||
+            typeof state.version !== "number" ||
+            state.version < saves.minVersion || state.version > g.version)
+            throw new Error("Invalid room checkpoint");
+        return data;
+    }
+    catch (err) {
+        saves.clearResume();
+        return null;
+    }
+};
+
+saves.shouldAutoResume = function () {
+    try { return sessionStorage.getItem(saves.resumeTitleKey) !== "1"; }
+    catch (err) { return true; }
+};
+
+saves.returnToTitle = function () {
+    try { sessionStorage.setItem(saves.resumeTitleKey, "1"); }
+    catch (err) { }
+    phone.close();
+    g.newLoad = true;
+    char.room(1, true);
+};
+
 saves.restoreResume = function () {
-    var data;
-    try { data = sessionStorage.getItem(saves.resumeKey); }
-    catch (err) { return false; }
+    var data = saves.getResumeData();
     if (!data)
         return false;
 
     try {
         var state = JSON.parse(data);
-        if (!state || !state.g || !state.g.roomMap ||
-            !Number.isInteger(state.g.roomID) || state.g.roomID <= 1 ||
-            typeof state.version !== "number" ||
-            state.version < saves.minVersion || state.version > g.version)
-            throw new Error("Invalid room checkpoint");
-
         g.newLoad = false;
         var saveVersion = char.applyLoadedState(state);
         char.finishLoadedState(saveVersion, {
@@ -52,6 +83,8 @@ saves.restoreResume = function () {
             resetPastSaves: true,
             restoreRoom: true
         });
+        try { sessionStorage.removeItem(saves.resumeTitleKey); }
+        catch (err) { }
         return true;
     }
     catch (err) {

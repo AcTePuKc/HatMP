@@ -12722,6 +12722,7 @@ window.HatMPLocales.es = {
     "phone.settings.label.transformations": "Transformación",
     "phone.settings.label.identity": "Identidad",
     "phone.settings.label.title": "Ajustes",
+    "phone.settings.mainMenu": "Menú principal",
     "phone.settings.option.easy": "Fácil",
     "phone.settings.option.normal": "Normal",
     "phone.settings.option.hard": "Difícil",

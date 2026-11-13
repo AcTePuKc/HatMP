@@ -250,7 +250,7 @@ $(document).ready(function () {
 
     nav.setRatio();
     l10n.ready.then(function () {
-        if (!saves.restoreResume())
+        if (!saves.shouldAutoResume() || !saves.restoreResume())
             nav.buildRoom();
     });
     //cl.display();
@@ -1080,7 +1080,7 @@ menu.makeSaves = function () {
     menu.buildSaveState();
     var roomEntry = menu.save(" ", false);
     g.pastSaves.push({ roomID: g.roomID, name: g.getRooms(g.roomID).name, data: roomEntry });
-    if (g.roomID > 1)
+    if (g.roomID > 3)
         saves.rememberResume(roomEntry);
     if (g.pastSaves.length > 20)
         g.pastSaves.splice(0, 1);

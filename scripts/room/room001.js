@@ -50,14 +50,20 @@ room1.main = function () {
 
     addTextButton("start", "start.menu.startGame", "Start Game", 322, 375, 316, 45);
     addTextButton("load", "start.menu.loadGame", "Load Game", 1280, 375, 321, 46);
-    saves.findLatestSave().then(function (key) {
-        if (!key || g.roomID !== 1 || renderToken !== room1.renderToken)
-            return;
-        room1.continueKey = key;
-        addTextButton("continue", "start.menu.continue", "Continue", 802, 375, 316, 46);
-    }).catch(function (err) {
-        console.warn("Unable to find a save to continue.", err);
-    });
+    if (saves.getResumeData()) {
+        room1.continueKey = "__resume__";
+        addTextButton("continue", "start.menu.continue", "Continue", 802, 325, 316, 46);
+    }
+    else {
+        saves.findLatestSave().then(function (key) {
+            if (!key || g.roomID !== 1 || renderToken !== room1.renderToken)
+                return;
+            room1.continueKey = key;
+            addTextButton("continue", "start.menu.continue", "Continue", 802, 325, 316, 46);
+        }).catch(function (err) {
+            console.warn("Unable to find a save to continue.", err);
+        });
+    }
 
     $.each(btnList, function (i, v) {
         nav.button(v, 1);
@@ -100,13 +106,19 @@ room1.btnclick = function (name) {
             break;
         case "continue":
             if (room1.continueKey) {
-                saves.load(room1.continueKey).then(function (loaded) {
-                    if (!loaded)
+                if (room1.continueKey === "__resume__") {
+                    if (!saves.restoreResume())
                         phone.build("save");
-                }).catch(function (err) {
-                    console.warn("Unable to continue the last save.", err);
-                    phone.build("save");
-                });
+                }
+                else {
+                    saves.load(room1.continueKey).then(function (loaded) {
+                        if (!loaded)
+                            phone.build("save");
+                    }).catch(function (err) {
+                        console.warn("Unable to continue the last save.", err);
+                        phone.build("save");
+                    });
+                }
             }
             break;
         case "patron":

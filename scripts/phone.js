@@ -238,6 +238,10 @@ phone.handleSaveMenuAction = function (name) {
 };
 
 phone.handleSettingsAction = function (name) {
+    if (name === "phone_return_title") {
+        saves.returnToTitle();
+        return true;
+    }
     if (name.startsWith("phone_setting_diff")) {
         gv.set("difficulty", parseInt(name.replace("phone_setting_diff", "")));
         phone.settings();
@@ -1200,6 +1204,8 @@ phone.settings = function () {
     readingButton.textContent = readingLabel;
     readingButton.addEventListener("click", function () { dialogue.open("settings"); });
     document.getElementById("room-buttons").appendChild(readingButton);
+    phone.addLocalizedButton("phone_return_title", "phone.settings.mainMenu", "Main Menu",
+        600, 935, 300, 50, false, "setting");
 }
 
 phone.pictures = function () {

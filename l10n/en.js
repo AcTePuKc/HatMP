@@ -3686,6 +3686,7 @@ window.HatMPLocales.en = {
     "phone.settings.label.transformations": "Transformations",
     "phone.settings.label.identity": "Identity",
     "phone.settings.label.title": "Settings",
+    "phone.settings.mainMenu": "Main Menu",
     "phone.settings.option.easy": "Easy",
     "phone.settings.option.normal": "Normal",
     "phone.settings.option.hard": "Hard",
