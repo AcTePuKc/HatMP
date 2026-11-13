@@ -22,6 +22,8 @@ room1.main = function () {
     $('.room-left').hide();
     $('#room_footer').hide();
     $(".room-topper").hide();
+    $('.hide-start').hide();
+    $('.rl-change').hide();
 
     function addTextButton(name, key, fallback, left, top, width, height) {
         var label = l10n.t(key, fallback);

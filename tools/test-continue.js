@@ -5,7 +5,7 @@ const { JSDOM } = require('jsdom');
 
 const root = path.join(__dirname, '..');
 const source = file => fs.readFileSync(path.join(root, file), 'utf8');
-const dom = new JSDOM('<div id="room-buttons"></div><div class="room-left"></div><div id="room_footer"></div><div class="room-topper"></div>', {
+const dom = new JSDOM('<div id="room-buttons"></div><div class="room-left"></div><div id="room_footer"></div><div class="room-topper"></div><div id="room-menu" class="hide-start"></div><div id="room-inv" class="hide-start"></div><div id="room-numbers" class="hide-start"></div><button class="rl-change"></button>', {
     url: 'https://hatmp.test/startGame.html', runScripts: 'outside-only'
 });
 const w = dom.window;
@@ -40,7 +40,12 @@ w.saves.getData = async key => key === '2' ? '{broken' : valid(7);
     assert.equal(await w.saves.findLatestSave(), 'auto-2', 'Skip corrupt and newer saves');
     const loaded = [];
     w.saves.load = async key => { loaded.push(key); return true; };
+    w.$('.hide-start').show();
+    w.$('.rl-change').show();
     w.room1.main();
+    assert.equal(w.$('#room-menu').css('display'), 'none', 'Returning to the title hides the game toolbar');
+    assert.equal(w.$('#room-numbers').css('display'), 'none', 'Returning to the title hides the game clock');
+    assert.equal(w.$('.rl-change').css('display'), 'none', 'Returning to the title hides the sidebar tabs');
     await new Promise(resolve => setTimeout(resolve, 0));
     const button = w.document.querySelector('[data-name="continue"]');
     assert.equal(button.textContent, 'Continue');
