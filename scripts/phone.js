@@ -1351,6 +1351,7 @@ phone.relationshipTermsEditor = function (section) {
             var formInput = addTermInput("phone_landlady_form_" + form.id, "relationship.form." + form.id,
                 form.label, typeof value === "string" ? value : initialLandladyForms[form.id]);
             formInput.title = l10n.t("phone.relationshipTerms.landladyHelp", "Enter the form used in dialogue.");
+            formInput.parentElement.title = formInput.title;
             if (form.id === "definite" || form.id === "vocative")
                 bindBulgarianSuggestion(landladyInput, formInput, form.id, typeof value === "string");
         });
@@ -1396,6 +1397,7 @@ phone.relationshipTermsEditor = function (section) {
                 coTenantFormInput.title = l10n.t("phone.relationshipTerms.singularDefiniteHelp", "Example: co-tenant → the co-tenant.");
             else if (form.id === "pluralDefinite")
                 coTenantFormInput.title = l10n.t("phone.relationshipTerms.pluralDefiniteHelp", "Example: co-tenants → the co-tenants.");
+            coTenantFormInput.parentElement.title = coTenantFormInput.title;
             if (form.id === "singularDefinite" || form.id === "pluralDefinite")
                 bindBulgarianSuggestion(form.id === "pluralDefinite" ? pluralInput : singularInput,
                     coTenantFormInput, form.id, typeof value === "string");
