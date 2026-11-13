@@ -19,8 +19,9 @@ This is the shareable list of **gameplay code fixes made after the 0.28.3 merge*
 | 650, Charlie/cult letter | Callback `cx` checks `.haskey`, while `missy.getenvelope()` returns `.hasKey`. | The clue-bearing dialogue branch at chat 64 cannot be selected. | Changed the property to `.hasKey` in `scripts/room/room650.js`, commit `dbb95ef9`. |
 | 552, changing room | Chat 7's final choice calls `reset`, but `room552.chatcatch` has no `reset` case. | The encounter ends without rebuilding the changing room. | Added `reset` → `char.room(552)` in `scripts/room/room552.js`, commit `40e2cba9`. |
 | 725, club bar | Drinks save `levels.beer()` under `g.internal.b`, while chat 1000 checks `g.internal.nextOneDrunk`. | The warning before another drink/passout does not appear when the flag is true. | Read `g.internal.b.nextOneDrunk` in `scripts/room/room725.js`, commit `40e2cba9`. |
+| 902, girls' locker room | The source has two dialogue choices calling `resest` and a matching misspelled handler, while chat 23 calls `reset` without a dialogue callback handler. | Chat 23's return action does nothing. The duplicate reset spelling also makes the routes easy to diverge. | Standardized the dialogue handler and both `resest` callers to `reset` before the 0.28.3 merge; the old `resest` trigger is absent from our branch. This change was included in the pre-merge localization checkpoint `cd833ba5`. |
 
-All three conditions above are present in developer commit `81788c32`. Automated tests cover the Room 552 return and Room 725 warning; Room 650's property name was checked against `missy.getenvelope()`.
+All four conditions above are present in developer commit `81788c32`. Automated tests cover the Room 552 return and Room 725 warning; Room 650's property name and Room 902's dialogue callbacks were checked against their handlers.
 
 ## Open observations, not yet reports
 
