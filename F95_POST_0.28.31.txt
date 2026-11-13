@@ -1,17 +1,28 @@
-[B]Hermaphrodity 0.28.31 — Bulgarian & European Spanish[/B]
+[B]Unofficial Hermaphrodity 0.28.31 - AI Assisted Bulgarian & European Spanish[/B]
 
-Based on the official 0.28.3 release. This is our localization build, now available for players to try.
+Based on the official 0.28.3 release. This is localization build, now available for players to try.
 
 [B]What's new[/B]
-• Bulgarian and European Spanish translations for the story, choices, phone, map, character schedules, and much of the interface. You can change the language from the title screen or phone.
+• Bulgarian and European Spanish translations for the story, choices, phone, map, character schedules, and much of the interface. You can change the language from the title screen or phone settings.
 • A new Enhanced dialogue view alongside Classic, with text size, spacing, and background settings. Recent dialogue history is available during the current session.
 • Continue on the title screen, automatic return to the current room after a page refresh, and Phone → Settings → Main Menu.
 • Better wording for the player's selected gender and customizable names. Additional relationship forms help Bulgarian and Spanish sentences sound natural.
 • A small glossary, inline translations for Zoey's French phrases, and translated labels on many action buttons.
 • Interface and scene fixes, including the Naked Beaver interaction after the cult letter, several dialogue routes, and some overlapping controls.
+[B]• THERE IS NO NEW STORY ADDED ONLY FIXES OF 0.28.3
 
-[B]Download 0.28.31:[/B] [URL=ARCHIVE_URL]Download here[/URL]
-Extract the archive and open [B]startGame.html[/B] to play.
-[B]Feedback:[/B] [URL=FEEDBACK_FORM_URL]Report a problem[/URL]
+Download 0.28.31:[/B]
+GitHub [URL='https://github.com/AcTePuKc/HatMP/archive/refs/heads/feature/localization-0.28.3.zip']Download here[/URL]
+Mega [URL='https://mega.nz/file/xFlizZyA#FtbYTpLXbIzzwZHYCKwc0PlXZROjDycsIUe4SGW55qY']Download here[/URL]
 
-[QUOTE]This is a test build. Some text embedded in images remains in English. Refresh resumes at the start of the current room, so the latest dialogue may need to be replayed.[/QUOTE]
+Extract the archive and open [CODE]startGame.html[/CODE] to play.
+
+[B]Feedback:[/B] [URL='https://github.com/fapforce5/HatMP/issues']Report a problem[/URL] or join [URL='https://discord.gg/qgmvWVPJA']Discord[/URL]
+Please report any untranslated text, awkward wording, layout problems or save-loading issues, ideally with a screenshot and the room number.
+[HR][/HR]
+[B]How to get the room number? [/B]
+Any browser: [B]Right click or F12 → Inspect → Console[/B]
+[CODE=javascript]g.roomID[/CODE]
+[QUOTE]
+This is a test build. Some text embedded in images remains in English. Refresh resumes at the start of the current room, so the latest dialogue may need to be replayed. If anyone wants to add their native localization they can use my as base, as there were many more changes to make this work, they can either push to my repository or fork mine and send it to Fap5. The game has approximately 25k lines of translated text to translate
+[/QUOTE]
