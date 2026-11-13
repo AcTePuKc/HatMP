@@ -42,9 +42,6 @@ room250.main = function () {
             chat(21, 250);
         }
     }
-    else if (missy.getenvelope("jeffery").active) {
-
-    }
     else {
         if (sc.getMission("holly", "mad").fail) {
             nav.button({
@@ -75,7 +72,10 @@ room250.main = function () {
 room250.btnclick = function (name) {
     switch (name) {
         case "hollyStand":
-            if (missy.activecase().caseId === 14) {
+            if (missy.getenvelope("jeffery").active) {
+                chat(26, 250);
+            }
+            else if (missy.activecase().caseId === 14) {
                 if (missy.get("reusableCaseCounter") === 0) {
                     chat(10, 250);
                 }
@@ -91,12 +91,7 @@ room250.btnclick = function (name) {
                 chat(5, 250);
             }
             else {
-                if (missy.envelope("jeffery")) {
-                    chat(26, 250);
-                }
-                else {
-                    chat(0, 250);
-                }
+                chat(0, 250);
             }
             break;
         case "k1":
