@@ -3118,11 +3118,11 @@ sc.selectLocalizedLabel = function (name, img, index, key, fallback, suffix, opt
 };
 
 sc.selectCancel = function (name, i) {
-    sc.select(name, "1001_rand/icon_cancel.png", i);
+    sc.selectLocalizedLabel(name, "1001_rand/icon_cancel.png", i, "ui.cancel", "Cancel", "", { width: 330, fontSize: 26 });
 };
 
 sc.selectBack = function (name, i) {
-    sc.select(name, "1001_rand/icon_back.png", i);
+    sc.selectLocalizedLabel(name, "1001_rand/icon_back.png", i, "ui.back", "Go back", "", { width: 330, fontSize: 26 });
 };
 
 sc.swimgirl = function () {

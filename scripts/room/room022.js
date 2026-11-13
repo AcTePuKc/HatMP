@@ -57,7 +57,7 @@ room22.btnclick = function (name) {
                 sc.selectLocalizedLabel("pee", "22_toilet/icon_pee.png", 0, "room.22.action.pee", "Piss", "", { width: 330, fontSize: 24 });
             }
             else {
-                sc.select("peex", "22_toilet/icon_peex.png", 0);
+                sc.selectLocalizedLabel("peex", "22_toilet/icon_peex.png", 0, "room.22.action.pee", "Piss", "", { width: 330, fontSize: 24 });
             }
             if (gv.getButtCum().total > 0) {
                 sc.selectLocalizedLabel("cum", "22_toilet/icon_expel.png", 1, "room.22.action.expel", "Expel the cum", "", { width: 330, fontSize: 24 });

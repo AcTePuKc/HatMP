@@ -3773,6 +3773,7 @@ window.HatMPLocales.es = {
     "ui.history": "Historial",
     "ui.none": "Ninguno",
     "ui.back": "Volver",
+    "ui.cancel": "Cancelar",
     "ui.previous": "Anterior",
     "ui.dayAndWeekday": "Día: {day}, {weekday}",
     "ui.backToLocation": "Volver a: {location}",

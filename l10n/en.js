@@ -167,6 +167,7 @@ window.HatMPLocales.en = {
     "ui.history": "History",
     "ui.none": "None",
     "ui.back": "Back",
+    "ui.cancel": "Cancel",
     "ui.previous": "Previous",
     "ui.dayAndWeekday": "Day: {day}, {weekday}",
     "ui.backToLocation": "Back to: {location}",

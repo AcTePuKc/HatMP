@@ -210,7 +210,7 @@ room322.btnclick = function (name) {
             sc.select("nap2", "322_dog/icon_nap2.webp", 0);
             sc.select("nap4", "322_dog/icon_nap4.webp", 1);
             sc.select("napAll", "322_dog/icon_napAll.webp", 2);
-            sc.select("livingroom", "1001_rand/icon_cancel.png", 3);
+            sc.selectCancel("livingroom", 3);
             break;
         case "nap2":
             nav.kill();
@@ -338,7 +338,7 @@ room322.btnclick = function (name) {
             sc.select("nap2x", "322_dog/icon_nap2.webp", 1);
             sc.select("nap4x", "322_dog/icon_nap4.webp", 2);
             sc.select("napAllx", "322_dog/icon_napAll.webp", 3);
-            sc.select("livingroom", "1001_rand/icon_cancel.png", 4);
+            sc.selectCancel("livingroom", 4);
             //sleepfeet
             break;
         case "couch":
