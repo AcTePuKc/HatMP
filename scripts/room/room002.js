@@ -274,6 +274,7 @@ room2.chatcatch = function (callback) {
             var word = String(plural || "").trim();
             var lower = word.toLocaleLowerCase("bg");
             if (!/^[а-яѝ]+$/.test(lower)) return "";
+            if (lower === "сестри") return word.charAt(0) === "С" ? "Сестра" : "сестра";
             if (lower.endsWith("ки")) return word.slice(0, -2) + "ка";
             if (lower.endsWith("тели")) return word.slice(0, -1);
             return "";
