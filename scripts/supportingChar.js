@@ -1951,9 +1951,8 @@ sc.els = function (form) {
 };
 
 sc.suggestBulgarianVocative = function (value) {
-    var word = String(value || "").trim().toLocaleLowerCase("bg");
-    return ({ "хазайка": "хазайке", "хазяйка": "хазяйке",
-        "съседка": "съседке", "началничка": "началничке" })[word] || "";
+    return typeof l10n !== "undefined" && l10n.getLanguage() === "bg"
+        ? l10n.suggestForm("landladyVocative", value) : "";
 };
 
 sc.landlady = function (form) {

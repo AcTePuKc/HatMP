@@ -57,6 +57,16 @@ var l10n = (function () {
                 });
             });
         }
+        if (catalog.formSuggestions !== undefined) {
+            if (!catalog.formSuggestions || typeof catalog.formSuggestions !== "object" || Array.isArray(catalog.formSuggestions))
+                throw new Error("Invalid form suggestions in language pack " + code);
+            Object.keys(catalog.formSuggestions).forEach(function (group) {
+                var entries = catalog.formSuggestions[group];
+                if (!entries || typeof entries !== "object" || Array.isArray(entries) ||
+                    Object.keys(entries).some(function (value) { return typeof entries[value] !== "string"; }))
+                    throw new Error("Invalid form suggestions for " + group + " in language pack " + code);
+            });
+        }
         catalogs[code] = catalog;
         var language = languages.find(function (item) { return item.code === code; });
         if (language && catalog._meta.nativeName)
@@ -356,6 +366,13 @@ var l10n = (function () {
         });
     }
 
+    function suggestForm(group, value) {
+        var suggestions = catalogs[current] && catalogs[current].formSuggestions;
+        var entries = suggestions && suggestions[group];
+        var key = String(value || "").trim().toLocaleLowerCase(current);
+        return entries && Object.prototype.hasOwnProperty.call(entries, key) ? entries[key] : "";
+    }
+
     function characterName(name, currentName) {
         var value = currentName == null ? "" : String(currentName);
         var comparableValue = value.replace(/[’‘]/g, "'");
@@ -542,6 +559,7 @@ var l10n = (function () {
         applyGlossaryMarkup: applyGlossaryMarkup,
         characterTerm: characterTerm,
         characterTermForms: characterTermForms,
+        suggestForm: suggestForm,
         characterName: characterName,
         characterNameSource: characterNameSource,
         setLanguage: setLanguage,

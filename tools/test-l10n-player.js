@@ -105,6 +105,8 @@ const source = file => fs.readFileSync(path.join(__dirname, '..', file), 'utf8')
     const vocativeFunction = source('scripts/supportingChar.js').match(/sc\.suggestBulgarianVocative = function \(value\) \{[\s\S]*?\n\};/);
     assert.ok(vocativeFunction, 'Bulgarian vocative suggestion exists');
     w.eval(vocativeFunction[0]);
+    assert.equal(w.l10n.suggestForm('coTenantSingularFromPlural', 'Сестри'), 'сестра');
+    assert.equal(w.sc.suggestBulgarianVocative('Майка'), 'майко');
     const landladyFunction = source('scripts/supportingChar.js').match(/sc\.landlady = function \(form\) \{[\s\S]*?\n\};/);
     assert.ok(landladyFunction, 'Landlady form resolver exists');
     w.eval(landladyFunction[0]);
