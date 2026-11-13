@@ -8,6 +8,8 @@ For the active 0.28.3 release checks, use the [QA record](QA-0.28.3.md).
 
 For source bugs deferred until after the merge, use the [post-merge review](POST_MERGE_REVIEW.md).
 
+For confirmed local fixes to report to the developer, use the [upstream bug report list](UPSTREAM_BUG_REPORTS.md).
+
 Before submitting a translation batch, use the [translation checker](../tools/TRANSLATION_CHECKS.md). It creates an offline report with file/line locations, source comparisons, and filters for language, key prefix, and severity. Run `npm ci --prefix tools` once from the game folder, then `npm run l10n --prefix tools`. Missing translations and intentional placeholder omissions are review items; malformed entries and likely runtime breakages are errors. The checker does not modify language packs.
 
 ## Pending navigation audit

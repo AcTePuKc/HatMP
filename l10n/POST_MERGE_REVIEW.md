@@ -2,6 +2,8 @@
 
 The source bug notes in `MERGE_NOTES.md` and `README.md` are being checked against the merged 0.28.3 branch. A source observation alone does not settle the intended game rule; check the rendered route before changing prices, rewards or story conditions.
 
+The concise, shareable list of confirmed local gameplay fixes is in [UPSTREAM_BUG_REPORTS.md](UPSTREAM_BUG_REPORTS.md).
+
 | Room | 0.28.3 finding | Decision | Remaining check |
 | --- | --- | --- | --- |
 | 250 | The active Jeffery envelope branch skipped Holly's button and navigation. | Fixed locally; see `MERGE_NOTES.md` and focused test. | Old-save scene; compare the developer's later patch. |
