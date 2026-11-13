@@ -166,6 +166,7 @@ room2.chatcatch = function (callback) {
 
         $('#room-buttons').html(tempLine + "</div>");
         var relationshipFormDefaults = {};
+        var relationshipFormManual = {};
         var relationshipHasLocalizedDefaults =
             setupCharacterName(sc.get("el")) === defaultCoTenantPlural() &&
             setupCoTenantSingular() === defaultCoTenantSingular();
@@ -177,6 +178,7 @@ room2.chatcatch = function (callback) {
                 : "phone.relationshipTerms.pluralDefiniteHelp";
             var help = l10n.t(helpKey, "Enter the form used in dialogue.");
             var value = sc.get("el").relationshipForms && sc.get("el").relationshipForms[form.id];
+            relationshipFormManual[form.id] = typeof value === "string";
             if (typeof value !== "string") value = relationshipHasLocalizedDefaults ? form.suggested : "";
             var field = $('<label class="intro-relationship-extra"></label>').text(label + " ").attr("title", help);
             $('<input type="text" maxlength="80" autocomplete="off" />')
@@ -184,14 +186,17 @@ room2.chatcatch = function (callback) {
                 .attr("title", help)
                 .val(value).appendTo(field);
             $('#room_002RelationshipForms').append(field);
+            field.find("input").on("input", function () { relationshipFormManual[form.id] = true; });
         });
         if (!l10n.characterTermForms("coTenant").length)
             $('#room_002RelationshipAdvanced').hide();
         var landladyFormDefaults = {};
+        var landladyFormManual = {};
         var landladyUsesLocalizedDefault = setupCharacterName(sc.get("landlord")) === defaultCharacterName(sc.get("landlord"));
         l10n.characterTermForms("landlady").forEach(function (form) {
             landladyFormDefaults[form.id] = form.suggested;
             var value = sc.get("landlord").relationshipForms && sc.get("landlord").relationshipForms[form.id];
+            landladyFormManual[form.id] = typeof value === "string";
             if (typeof value !== "string") value = landladyUsesLocalizedDefault ? form.suggested : "";
             var field = $('<label class="intro-relationship-extra"></label>')
                 .text(l10n.t("relationship.form." + form.id, form.label) + " ");
@@ -200,6 +205,7 @@ room2.chatcatch = function (callback) {
                 .attr("title", l10n.t("setup.landladyRelationshipHelp", "Enter the form used in dialogue."))
                 .val(value).appendTo(field);
             $('#room_002LandladyFormFields').append(field);
+            field.find("input").on("input", function () { landladyFormManual[form.id] = true; });
         });
         if (!l10n.characterTermForms("landlady").length)
             $('#room_002LandladyAdvanced').hide();
@@ -262,44 +268,55 @@ room2.chatcatch = function (callback) {
 
         $('.room2-getName').on('input change', refreshRelationshipLabel);
         refreshRelationshipLabel();
-        function refreshOptionalRelationshipForms() {
-            var coTenantUsesDefaults = $('#room_002sa').val() === defaultCoTenantPlural() &&
-                $('#room_002saSingular').val() === defaultCoTenantSingular();
+        var singularEdited = setupCoTenantSingular() !== defaultCoTenantSingular();
+        function suggestedCoTenantSingular(plural) {
+            if (l10n.getLanguage() !== "bg") return "";
+            var word = String(plural || "").trim();
+            if (!/^[а-яѝ]+$/.test(word)) return "";
+            if (word.endsWith("ки")) return word.slice(0, -2) + "ка";
+            if (word.endsWith("тели")) return word.slice(0, -1);
+            return "";
+        }
+        function refreshOptionalRelationshipForms(pluralChanged) {
+            var plural = String($('#room_002sa').val()).trim();
+            var singularInput = $('#room_002saSingular');
+            if (pluralChanged && !singularEdited)
+                singularInput.val(plural === defaultCoTenantPlural()
+                    ? defaultCoTenantSingular() : suggestedCoTenantSingular(plural));
+            var singular = String(singularInput.val()).trim();
             l10n.characterTermForms("coTenant").forEach(function (form) {
                 var input = $('#room_002RelationshipForm_' + form.id);
-                if (!coTenantUsesDefaults && input.val() === relationshipFormDefaults[form.id])
-                    input.val("");
-                else if (coTenantUsesDefaults && !input.val())
-                    input.val(form.suggested);
+                if (relationshipFormManual[form.id]) return;
+                var base = form.id === "pluralDefinite" ? plural : singular;
+                var defaultBase = form.id === "pluralDefinite" ? defaultCoTenantPlural() : defaultCoTenantSingular();
+                input.val(base === defaultBase ? form.suggested :
+                    l10n.getLanguage() === "bg" ? phone.suggestBulgarianDefinite(base, form.id === "pluralDefinite") : "");
             });
             var landlordInput = $('#char_' + sc.i("landlord"));
             var landladyUsesDefault = landlordInput.val() === defaultCharacterName(sc.get("landlord"));
             l10n.characterTermForms("landlady").forEach(function (form) {
                 var input = $('#room_002LandladyForm_' + form.id);
-                if (!landladyUsesDefault && input.val() === landladyFormDefaults[form.id])
-                    input.val("");
-                else if (landladyUsesDefault && !input.val())
-                    input.val(form.suggested);
+                if (landladyFormManual[form.id]) return;
+                input.val(landladyUsesDefault ? form.suggested : l10n.getLanguage() === "bg"
+                    ? form.id === "vocative" ? sc.suggestBulgarianVocative(landlordInput.val())
+                        : phone.suggestBulgarianDefinite(landlordInput.val(), false)
+                    : "");
             });
         }
-        refreshOptionalRelationshipForms();
+        refreshOptionalRelationshipForms($('#room_002sa').val() !== defaultCoTenantPlural());
         $('#char_' + sc.i("landlord")).on('input change', function () {
             $('#room_002landladyError').text("");
             refreshOptionalRelationshipForms();
         });
 
         $('#room_002sa').on('input change', function () {
-            var pluralValue = String($(this).val()).trim();
-            var singularInput = $('#room_002saSingular');
-            var singularValue = String(singularInput.val()).trim();
-            if (pluralValue !== defaultCoTenantPlural() && singularValue === defaultCoTenantSingular())
-                singularInput.val("");
-            else if (pluralValue === defaultCoTenantPlural() && singularValue.length === 0)
-                singularInput.val(defaultCoTenantSingular());
             $('#room_002saError').text("");
+            refreshOptionalRelationshipForms(true);
+        });
+        $('#room_002saSingular').on('input change', function () {
+            singularEdited = true;
             refreshOptionalRelationshipForms();
         });
-        $('#room_002saSingular').on('input change', refreshOptionalRelationshipForms);
         
         $('.intro-changeDiff').on('click', function () {
             var currentDiff = parseInt($('#intro_diff').data('diff'));
@@ -346,10 +363,13 @@ room2.chatcatch = function (callback) {
             $('#char_-1').val($("<textarea/>").html(sc.n("me")).val());
             $('#room_002sa').val($("<textarea/>").html(defaultCoTenantPlural()).val());
             $('#room_002saSingular').val($("<textarea/>").html(defaultCoTenantSingular()).val());
+            singularEdited = false;
             l10n.characterTermForms("coTenant").forEach(function (form) {
+                relationshipFormManual[form.id] = false;
                 $('#room_002RelationshipForm_' + form.id).val(form.suggested);
             });
             l10n.characterTermForms("landlady").forEach(function (form) {
+                landladyFormManual[form.id] = false;
                 $('#room_002LandladyForm_' + form.id).val(form.suggested);
             });
             $('#room_002gn').val($("<textarea/>").html(defaultGirlName()).val());
