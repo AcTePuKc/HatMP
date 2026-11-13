@@ -272,7 +272,7 @@ room725.chat = function (chatID) {
                 ]
             };
         }
-        else if (g.internal.nextOneDrunk) {
+        else if (g.internal.b.nextOneDrunk) {
             return {
                 chatID: 1000,
                 speaker: "thinking",

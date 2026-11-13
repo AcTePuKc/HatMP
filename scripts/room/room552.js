@@ -65,6 +65,9 @@ room552.btnclick = function (name) {
 
 room552.chatcatch = function (callback) {
     switch (callback) {
+        case "reset":
+            char.room(552);
+            break;
         case "Complete":
             char.room(551);
             break;
