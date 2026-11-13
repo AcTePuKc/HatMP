@@ -257,7 +257,7 @@ room650.chatcatch = function (callback) {
             break;
         
         case "cx":
-            if (missy.getenvelope("charlie").haskey) {
+            if (missy.getenvelope("charlie").hasKey) {
                 chat(64, 650);
             }
             else
