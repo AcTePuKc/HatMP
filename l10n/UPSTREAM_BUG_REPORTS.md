@@ -1,6 +1,6 @@
 # Bug reports for FapForce5 — 0.28.3
 
-This is the shareable list of **gameplay code fixes made after the 0.28.3 merge**. Update it when another confirmed fix is committed. These are local fixes on `feature/localization-0.28.3`; none has been sent from this workspace. The base developer commit reviewed here is `81788c32` (`v 0.28.3 update`). Recheck each issue against the next developer patch before carrying the local fix forward.
+This is the shareable list of **gameplay code fixes retained or made during the 0.28.3 integration review**. Update it when another confirmed fix is committed. These are local fixes on `feature/localization-0.28.3`; none has been sent from this workspace. The base developer commit reviewed here is `81788c32` (`v 0.28.3 update`). Recheck each issue against the next developer patch before carrying the local fix forward.
 
 ## Ready to report: Naked Beaver interaction disappears (Room 250)
 
@@ -16,13 +16,15 @@ This is the shareable list of **gameplay code fixes made after the 0.28.3 merge*
 
 | Room | Developer 0.28.3 code | Expected symptom | Local fix |
 | --- | --- | --- | --- |
+| 479, repeat ledge scene | Chat 49's choice goes to nonexistent chat 999, although the first-entry chat 48 goes to chat 50 with the same `ledge2` callback. | The repeat route may lose its next dialogue. | Changed chat 49's destination to 50 in `scripts/room/room479.js`; verify the repeat scene in game. |
+| 527, Zoey bathroom | `zoey10` checks for piss level 2, but the failure choice says level 4. | The displayed requirement contradicts the actual gate. | Changed the EN source and BG/ES choice text to level 2; verify both boundary levels in game. |
 | 650, Charlie/cult letter | Callback `cx` checks `.haskey`, while `missy.getenvelope()` returns `.hasKey`. | The clue-bearing dialogue branch at chat 64 cannot be selected. | Changed the property to `.hasKey` in `scripts/room/room650.js`, commit `dbb95ef9`. |
 | 552, changing room | Chat 7's final choice calls `reset`, but `room552.chatcatch` has no `reset` case. | The encounter ends without rebuilding the changing room. | Added `reset` → `char.room(552)` in `scripts/room/room552.js`, commit `40e2cba9`. |
 | 725, club bar | Drinks save `levels.beer()` under `g.internal.b`, while chat 1000 checks `g.internal.nextOneDrunk`. | The warning before another drink/passout does not appear when the flag is true. | Read `g.internal.b.nextOneDrunk` in `scripts/room/room725.js`, commit `40e2cba9`. |
 | 902, girls' locker room | The source has two dialogue choices calling `resest` and a matching misspelled handler, while chat 23 calls `reset` without a dialogue callback handler. | Chat 23's return action does nothing. The duplicate reset spelling also makes the routes easy to diverge. | Standardized the dialogue handler and both `resest` callers to `reset` before the 0.28.3 merge; the old `resest` trigger is absent from our branch. This change was included in the pre-merge localization checkpoint `cd833ba5`. |
 
-All four conditions above are present in developer commit `81788c32`. Automated tests cover the Room 552 return and Room 725 warning; Room 650's property name and Room 902's dialogue callbacks were checked against their handlers.
+All six conditions above are present in developer commit `81788c32`. Automated tests cover the Room 552 return and Room 725 warning; Room 650's property name, Room 902's dialogue callbacks, and the Room 479/527 destinations and requirements were checked against their callers.
 
 ## Open observations, not yet reports
 
-Room 628's $10 payment and unused counter, Room 726's $20 drink, and Room 910's name-change price/limit still need the intended rules confirmed. Room 525's Chef route has missing dialogue and empty handlers. Their status and checks are in [POST_MERGE_REVIEW.md](POST_MERGE_REVIEW.md). Do not send these as established fixes yet.
+Room 628's $10 payment and unused counter, Room 726's $20 drink, and Room 910's name-change price/limit still need the intended rules confirmed. Rooms 486 and 751 have incomplete routes, while Room 525's Chef route has missing dialogue and empty handlers. Their status and checks are in [POST_MERGE_REVIEW.md](POST_MERGE_REVIEW.md). Do not send these as established fixes yet.

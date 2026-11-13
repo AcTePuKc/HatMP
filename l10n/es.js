@@ -4516,7 +4516,7 @@ window.HatMPLocales.es = {
     "room.527.chat.5.choice.0": "Ehhh, sí.",
     "room.527.chat.5.choice.1": "¿Qué? No. Qué asco.",
     "room.527.chat.6.text": "¿Qué estoy diciendo? ¡No quiero ser un retrete ni beberme su pis!",
-    "room.527.chat.6.choice.0": "[Necesitas nivel 4 de orina]",
+    "room.527.chat.6.choice.0": "[Necesitas nivel 2 de orina]",
     "room.527.chat.7.text": "¡Como en los videojuegos, beberás mi pipi! ¡Túmbate, [[player:chico meón|chica meona]]!",
     "room.527.chat.7.choice.0": "[Tumbarse y abrir la boca]",
     "room.527.chat.8.text": "Jeje. Tellement bizarre. Tengo que volver al trabajo. Miam miam.",

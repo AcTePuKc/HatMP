@@ -945,7 +945,7 @@ room479.chat = function (chatID) {
             speaker: "!ledja",
             text: "Welcome back fuck hole! ",
             button: [
-                { chatID: 999, text: "oh.", callback: "ledge2" }
+                { chatID: 50, text: "oh.", callback: "ledge2" }
             ]
         },
         {

@@ -256,7 +256,7 @@ room527.chat = function (chatID) {
             speaker: "thinking",
             text: "What am I saying? I don't want to be a toilet and drink her piss! ",
             button: [
-                { chatID: 0, text: "[Need Piss level 4]", callback: "" },
+                { chatID: 0, text: "[Need Piss level 2]", callback: "" },
             ]
         },
         {
