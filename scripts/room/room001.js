@@ -1,6 +1,10 @@
 ﻿//Girl GloryHole Broom
 var room1 = {};
+room1.continueKey = null;
+room1.renderToken = 0;
 room1.main = function () {
+    var renderToken = ++room1.renderToken;
+    room1.continueKey = null;
     var btnList = [
         {
             "type": "btn",
@@ -46,6 +50,14 @@ room1.main = function () {
 
     addTextButton("start", "start.menu.startGame", "Start Game", 322, 375, 316, 45);
     addTextButton("load", "start.menu.loadGame", "Load Game", 1280, 375, 321, 46);
+    saves.findLatestSave().then(function (key) {
+        if (!key || g.roomID !== 1 || renderToken !== room1.renderToken)
+            return;
+        room1.continueKey = key;
+        addTextButton("continue", "start.menu.continue", "Continue", 802, 375, 316, 46);
+    }).catch(function (err) {
+        console.warn("Unable to find a save to continue.", err);
+    });
 
     $.each(btnList, function (i, v) {
         nav.button(v, 1);
@@ -85,6 +97,17 @@ room1.btnclick = function (name) {
         case "load":
             g.newLoad = true;
             phone.build("save");
+            break;
+        case "continue":
+            if (room1.continueKey) {
+                saves.load(room1.continueKey).then(function (loaded) {
+                    if (!loaded)
+                        phone.build("save");
+                }).catch(function (err) {
+                    console.warn("Unable to continue the last save.", err);
+                    phone.build("save");
+                });
+            }
             break;
         case "patron":
             window.open("https://www.patreon.com/FF5", '_blank');

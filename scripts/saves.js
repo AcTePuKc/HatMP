@@ -164,6 +164,36 @@ saves.getData = function (key) {
     });
 };
 
+// The title screen can continue from the newest readable manual or auto save.
+saves.findLatestSave = function () {
+    return saves.folder.init().then(saves.getAllMeta).then(function (list) {
+        var keys = Object.keys(list).filter(function (key) {
+            var meta = list[key];
+            return meta && typeof meta.version === "number" &&
+                meta.version >= saves.minVersion && meta.version <= g.version;
+        }).sort(function (a, b) {
+            return (new Date(list[b].saveDt).getTime() || 0) -
+                (new Date(list[a].saveDt).getTime() || 0);
+        });
+
+        function check(index) {
+            if (index >= keys.length)
+                return null;
+            return saves.getData(keys[index]).then(function (data) {
+                try {
+                    var state = JSON.parse(data);
+                    if (state && state.g && Number.isInteger(state.g.roomID) &&
+                        state.g.roomID > 1 && state.version <= g.version)
+                        return keys[index];
+                }
+                catch (err) { }
+                return check(index + 1);
+            });
+        }
+        return check(0);
+    });
+};
+
 saves.putLocal = function (key, meta, data) {
     return saves.openDb().then(function (db) {
         if (db === null) {

@@ -81,15 +81,15 @@ room28.main = function () {
     //energy as propotion to horny
     if (arousal > 90) {
         gv.st[energyIndex].t = maxE * .5;
-        message = "You're so horny you didn't recover much energy. ";
+        message = l10n.t("room.28.sleep.restless", "You're so horny you didn't recover much energy. ");
     }
     else if (arousal > 50) {
         gv.st[energyIndex].t = maxE * .75;
-        message = "You're starting to get horny and are a little restless.";
+        message = l10n.t("room.28.sleep.unsettled", "You're starting to get horny and are a little restless.");
     }
     else {
         gv.st[energyIndex].t = maxE;
-        message = "You got a good night's sleep. ";
+        message = l10n.t("room.28.sleep.good", "You got a good night's sleep. ");
     }
     g.popUpNotice(message);
 

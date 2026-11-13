@@ -454,8 +454,8 @@ room451.btnclick = function (name) {
         case "gh_oral1":
             nav.killbutton("gh_oral1");
             nav.bg("451_parkMensRoom/g_1_" + g.internal.c + (cl.c.cumface ? "_c" : "") + ".jpg");
-            sc.select("gh_swallow", "451_parkMensRoom/icon_swallow.png", 0);
-            sc.select("gh_facial", "451_parkMensRoom/icon_facial.png", 1);
+            sc.selectLocalizedLabel("gh_swallow", "451_parkMensRoom/icon_swallow.png", 0, "room.451.action.swallow", "Swallow", "", { width: 430, fontSize: 27 });
+            sc.selectLocalizedLabel("gh_facial", "451_parkMensRoom/icon_facial.png", 1, "room.451.action.facial", "Facial", "", { width: 430, fontSize: 27 });
             break;
         case "gh_swallow":
             nav.killall();
@@ -670,7 +670,7 @@ room451.chatcatch = function (callback) {
                     "height": 195,
                     "image": "451_parkMensRoom/g" + g.internal.c + ".png"
                 }, 451);
-                sc.select("gh_pass", "451_parkMensRoom/icon_pass.png", 11);
+                sc.selectLocalizedLabel("gh_pass", "451_parkMensRoom/icon_pass.png", 11, "room.451.action.pass", "Pass", "", { width: 430, fontSize: 27 });
             }
             else {
                 chat(31, 451);
@@ -873,8 +873,8 @@ room451.chatcatch = function (callback) {
                 "height": 1080,
                 "image": "1002_quickfight/black20Alpha.png"
             }, 451);
-            sc.select("gh_oral", "451_parkMensRoom/icon_suck.png", 10);
-            sc.select("gh_anal", "451_parkMensRoom/icon_anal.png", 11);
+            sc.selectLocalizedLabel("gh_oral", "451_parkMensRoom/icon_suck.png", 10, "room.451.action.suck", "Suck it", "", { width: 430, fontSize: 27 });
+            sc.selectLocalizedLabel("gh_anal", "451_parkMensRoom/icon_anal.png", 11, "room.451.action.anal", "Shove it up your ass", "", { width: 430, fontSize: 27 });
             break;
         case "resetRoom":
             invoker.invokeCurrent("btnclick", "stall1");
@@ -1420,7 +1420,7 @@ room451.chat = function (chatID) {
             },
             {
                 chatID: 50,
-                speaker: "random",
+                speaker: "!cowboy",
                 text: "You better back off of a man while he's pissin' or you're liable to get a fist to your face there partner",
                 button: [
                     { chatID: -1, text: "oh. Sorry. ", callback: "" },
