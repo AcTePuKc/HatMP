@@ -13,6 +13,55 @@ saves.page = 1;            // 0 = auto page, 1..pageCount = manual pages
 saves.mode = "save";       // "save" | "load"
 saves.renderToken = 0;
 saves.dbPromise = null;
+saves.resumeKey = "HatMP_resume_room_v1";
+
+// A room-entry checkpoint, kept separately from the player's save slots.
+saves.rememberResume = function (data) {
+    try { sessionStorage.setItem(saves.resumeKey, data); }
+    catch (err) {
+        saves.clearResume();
+        console.warn("Unable to remember the current room.", err);
+    }
+};
+
+saves.clearResume = function () {
+    try { sessionStorage.removeItem(saves.resumeKey); }
+    catch (err) { }
+};
+
+saves.restoreResume = function () {
+    var data;
+    try { data = sessionStorage.getItem(saves.resumeKey); }
+    catch (err) { return false; }
+    if (!data)
+        return false;
+
+    try {
+        var state = JSON.parse(data);
+        if (!state || !state.g || !state.g.roomMap ||
+            !Number.isInteger(state.g.roomID) || state.g.roomID <= 1 ||
+            typeof state.version !== "number" ||
+            state.version < saves.minVersion || state.version > g.version)
+            throw new Error("Invalid room checkpoint");
+
+        g.newLoad = false;
+        var saveVersion = char.applyLoadedState(state);
+        char.finishLoadedState(saveVersion, {
+            updateMap: true,
+            hideExportDialog: false,
+            resetPastSaves: true,
+            restoreRoom: true
+        });
+        return true;
+    }
+    catch (err) {
+        console.warn("Unable to restore the previous room.", err);
+        saves.clearResume();
+        g.roomID = 1;
+        g.newLoad = true;
+        return false;
+    }
+};
 
 //---------------------------------------------------------------------------
 // Storage

@@ -250,7 +250,8 @@ $(document).ready(function () {
 
     nav.setRatio();
     l10n.ready.then(function () {
-        nav.buildRoom();
+        if (!saves.restoreResume())
+            nav.buildRoom();
     });
     //cl.display();
 
@@ -971,8 +972,8 @@ char.getDaysPlayed = function () {
 //    }
 //};
 
-char.room = function (roomID) {
-    if (g.roomChange.includes(roomID) && roomID !== g.roomID)
+char.room = function (roomID, restoring) {
+    if (!restoring && g.roomChange.includes(roomID) && roomID !== g.roomID)
         cl.cTemp = $.extend(true, {}, cl.c);
 
     if (!$('#room_footer').is(":visible"))
@@ -980,7 +981,7 @@ char.room = function (roomID) {
     if ($('#room-menuButtons').is(":visible"))
         inv.close();
     let ignoreShoeRooms = [8, 28];
-    if (g.prevRoom === roomID && !ignoreShoeRooms.includes(roomID)) {
+    if (!restoring && g.prevRoom === roomID && !ignoreShoeRooms.includes(roomID)) {
         let shoedaring = cl.getEntry("shoes", cl.c.shoes).daring;
         let actualshoeLevel = levels.get("heels").l;
         let shoeLevel = Math.round(actualshoeLevel / 2);
@@ -995,11 +996,14 @@ char.room = function (roomID) {
             levels.mod("heels", shoedaring * 3);
         }
     }
-    g.prevRoom = g.roomID;
-    g.internal = null;
+    if (!restoring) {
+        g.prevRoom = g.roomID;
+        g.internal = null;
+    }
 
     g.roomID = roomID;
-    g.dt = char.addMinutes(g.dt, 2);
+    if (!restoring)
+        g.dt = char.addMinutes(g.dt, 2);
     if (g.skipNextRoomSave) {
         g.skipNextRoomSave = false;
     }
@@ -1074,7 +1078,10 @@ menu.makeSaves = function () {
         });
     });
     menu.buildSaveState();
-    g.pastSaves.push({ roomID: g.roomID, name: g.getRooms(g.roomID).name, data: menu.save(" ", false) });
+    var roomEntry = menu.save(" ", false);
+    g.pastSaves.push({ roomID: g.roomID, name: g.getRooms(g.roomID).name, data: roomEntry });
+    if (g.roomID > 1)
+        saves.rememberResume(roomEntry);
     if (g.pastSaves.length > 20)
         g.pastSaves.splice(0, 1);
 };
@@ -1265,7 +1272,7 @@ char.finishLoadedState = function (saveVersion, options) {
         char.map();
 
     cl.display();
-    char.room(g.roomID);
+    char.room(g.roomID, options.restoreRoom === true);
     char.menu();
 
     if (saveVersion < 22) {

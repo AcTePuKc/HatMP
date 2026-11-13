@@ -2,7 +2,7 @@
   "name": "hatmp-checks",
   "private": true,
   "scripts": {
-    "test": "node test-dialogue.js && node test-phone-guides.js && node test-l10n.js && node test-l10n-player.js && node test-scan-unlocalized.js && node test-sidebar.js && node test-timeline.js && node test-relationship-setup.js && node test-beaver-envelope.js && node test-post-merge-routes.js",
+    "test": "node test-dialogue.js && node test-phone-guides.js && node test-l10n.js && node test-l10n-player.js && node test-scan-unlocalized.js && node test-sidebar.js && node test-timeline.js && node test-relationship-setup.js && node test-beaver-envelope.js && node test-post-merge-routes.js && node test-resume.js",
     "l10n": "node check-l10n.js",
     "l10n:scan": "node scan-unlocalized.js"
   },

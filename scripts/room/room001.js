@@ -69,6 +69,7 @@ room1.main = function () {
 room1.btnclick = function (name) {
     switch (name) {
         case "start":
+            saves.clearResume();
             g.pass = "";
             g.newLoad = false;
             char.initGame();
