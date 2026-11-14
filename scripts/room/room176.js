@@ -799,8 +799,8 @@ room176.chat = function (chatID) {
             {
                 chatID: 33,
                 speaker: "!philbert",
-                l10nValues: { els: sc.n("els"), eva: sc.n("eva"), lola: sc.n("lola") },
-                text: "So are " + sc.n("eva") + " and " + sc.n("lola") + " your " + sc.n("els") + "? You know I know them " +
+                l10nValues: { els: sc.els("lower"), eva: sc.n("eva"), lola: sc.n("lola") },
+                text: "So are " + sc.n("eva") + " and " + sc.n("lola") + " your " + sc.els("lower") + "? You know I know them " +
                     "from school. ",
                 button: [
                     { chatID: 36, text: "They are ", callback: "oral20" },

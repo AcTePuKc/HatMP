@@ -1740,9 +1740,9 @@ room174.chat = function (chatID) {
             {
                 chatID: 100,
                 speaker: "thinking",
-                l10nValues: { els: sc.n("els") },
-                text: "I love how her ass is just out waiting to let me eat it. My " + sc.n("els") +
-                    "are the best! ",
+                l10nValues: { els: sc.els("lower") },
+                text: "I love how her ass is just out waiting to let me eat it. My " + sc.els("lower") +
+                    " are the best! ",
                 button: [
                     { chatID: -1, text: "Eat that pussy!", callback: "el_twat1" },
                 ]
@@ -1903,8 +1903,8 @@ room174.chat = function (chatID) {
             {
                 chatID: 119,
                 speaker: "chad",
-                l10nValues: { els: sc.n("els") },
-                text: "Fuck yeah! My best girl friend and her two " + sc.n("els") + "! All of you, " +
+                l10nValues: { els: sc.els("lower") },
+                text: "Fuck yeah! My best girl friend and her two " + sc.els("lower") + "! All of you, " +
                     "up on the bed. Face down ass up. I want to see what I'm working with! ",
                 button: [
                     { chatID: 120, text: "*blush*", callback: "sissy1" },
