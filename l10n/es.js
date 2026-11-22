@@ -11520,6 +11520,8 @@ window.HatMPLocales.es = {
     "inventory.item.hypno6.description": "Ser una bimbo es mejor.",
     "inventory.item.hypno7.name": "Lección de hipnosis n.º 7",
     "inventory.item.hypno7.description": "Eres un objeto. Deja que los hombres te usen por todos tus agujeros.",
+    "inventory.item.dollmakerTeddy.name": "Snuggle Ruffles",
+    "inventory.item.dollmakerTeddy.description": "El osito de la fabricante de muñecas",
     "phone.character.rename": "Cambiar nombre",
     "phone.character.level": "Nivel {level}",
     "phone.character.levelProgress": "Hasta el siguiente nivel",
