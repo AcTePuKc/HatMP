@@ -407,7 +407,8 @@ nav.applyModButtonType = function (element, newType) {
 
 nav.buildnav = function (roomIDList, rebuild = false) {
     var i;
-    if (!$('#room_footer').is(":visible") && !$(".room-speachGroup").is(":visible"))
+    if (document.getElementById('room_footer').style.display === 'none' &&
+        !$(".room-speachGroup").is(":visible"))
         $('#room_footer').show();
 
     if (rebuild)

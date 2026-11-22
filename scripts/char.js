@@ -976,8 +976,7 @@ char.room = function (roomID, restoring) {
     if (!restoring && g.roomChange.includes(roomID) && roomID !== g.roomID)
         cl.cTemp = $.extend(true, {}, cl.c);
 
-    if (!$('#room_footer').is(":visible"))
-        $('#room_footer').show();
+    $('#room_footer').show();
     if ($('#room-menuButtons').is(":visible"))
         inv.close();
     let ignoreShoeRooms = [8, 28];

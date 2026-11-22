@@ -1,5 +1,5 @@
 // Measure the offline game in a fresh headless Chrome profile without touching player saves.
-// Usage: node tools/perf-probe.js [--root PATH] [--runs 3] [--rooms 10,28,250] [--actions 456:cop2] [--save-slots 500] [--cpu-rate 4] [--trace-nav]
+// Usage: node tools/perf-probe.js [--root PATH] [--runs 3] [--rooms 10,28,250] [--actions 456:cop2] [--save-slots 500] [--cpu-rate 4] [--trace-nav] [--smoke-route]
 const fs = require('node:fs');
 const os = require('node:os');
 const path = require('node:path');
@@ -21,6 +21,7 @@ const actions = String(option('--actions', '')).split(',').filter(Boolean).map(e
 const saveSlots = Math.max(0, Math.min(2000, Number(option('--save-slots', '0')) || 0));
 const cpuRate = Math.max(1, Math.min(10, Number(option('--cpu-rate', '1')) || 1));
 const traceNav = args.includes('--trace-nav');
+const smokeRoute = args.includes('--smoke-route');
 const chrome = option('--chrome', 'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe');
 const entry = path.join(root, 'startGame.html');
 if (!fs.existsSync(chrome) || !fs.existsSync(entry)) throw new Error('Chrome or startGame.html not found');
@@ -152,16 +153,29 @@ async function measure(run) {
                     const begin = performance.now();
                     try { return original.apply(this, args); }
                     finally {
-                        const item = window.__navTrace[label] || { calls: 0, ms: 0 };
+                        const traceLabel = label === '$.is' ? label + ':' + String(args[0]) + ':' +
+                            (this[0]?.id || this[0]?.className || 'unknown') : label;
+                        const item = window.__navTrace[traceLabel] || { calls: 0, ms: 0 };
                         item.calls++;
                         item.ms += performance.now() - begin;
-                        window.__navTrace[label] = item;
+                        window.__navTrace[traceLabel] = item;
                     }
                 };
             };
             for (const name of ['bg', 'button', 'buildnav', 'bars', 'buildclock']) wrap(nav, name, 'nav.' + name);
             wrap(char, 'syncVisibleRoomShortcutTitles', 'char.syncShortcutTitles');
             wrap(invoker, 'invoke', 'invoker.invoke');
+            wrap(room10, 'main', 'room10.main');
+            wrap(room10, 'btnclick', 'room10.btnclick');
+            wrap(room10, 'showWhenLoaded', 'room10.showWhenLoaded');
+            wrap(cl, 'hasoutfit', 'cl.hasoutfit');
+            wrap(sc, 'getTimeline', 'sc.getTimeline');
+            wrap(sc, 'getMission', 'sc.getMission');
+            wrap(inv, 'has', 'inv.has');
+            wrap(inv, 'createElements', 'inv.createElements');
+            wrap(room401, 'main', 'room401.main');
+            wrap(l10n, 't', 'l10n.t');
+            for (const name of ['show', 'hide', 'append', 'html', 'is', 'css']) wrap($.fn, name, '$.' + name);
         })()`);
         const transitions = [];
         for (const room of rooms) {
@@ -209,6 +223,48 @@ async function measure(run) {
             })()`, true);
             transitions.push(result);
         }
+        let route = null;
+        if (smokeRoute) {
+            route = await cdp.evaluate(`(async () => {
+                try {
+                    if (!window.__perfGameInit) { char.initGame(); window.__perfGameInit = true; }
+                    const visited = [];
+                    const clickRoom = destination => {
+                        const button = document.querySelector('#room_footer .room-changeRoomBtn[data-roomid="' + destination + '"]');
+                        if (!button) throw new Error('Missing navigation button for Room ' + destination);
+                        button.click();
+                        visited.push(g.roomID);
+                        if (g.roomID !== destination) throw new Error('Navigation did not enter Room ' + destination);
+                    };
+                    cl.c.shirt = 'g';
+                    cl.c.pants = 'j';
+                    char.room(10, true);
+                    visited.push(g.roomID);
+                    clickRoom(11);
+                    clickRoom(10);
+                    $('#room_footer').hide();
+                    $('#room_chatOverlay').show();
+                    nav.buildnav([11], true);
+                    const footerHiddenDuringDialogue = document.getElementById('room_footer').style.display === 'none';
+                    $('#room_chatOverlay').hide();
+                    nav.buildnav([11], true);
+                    const footerRestoredAfterDialogue = document.getElementById('room_footer').style.display !== 'none';
+                    const imgs = [...document.querySelectorAll('#room-background img, #room-buttons img')];
+                    await Promise.all(imgs.map(img => img.complete ? Promise.resolve() : new Promise(resolve => {
+                        img.addEventListener('load', resolve, {once:true});
+                        img.addEventListener('error', resolve, {once:true});
+                    })));
+                    return { visited, footerHiddenDuringDialogue, footerRestoredAfterDialogue,
+                        images: imgs.length, loaded: imgs.filter(img => img.complete && img.naturalWidth > 0).length,
+                        visibleLayers: ['room-background', 'room-buttons'].every(id => {
+                            const element = document.getElementById(id);
+                            return element && element.getClientRects().length > 0;
+                        }) };
+                } catch (error) { return { error: String(error), room: g.roomID,
+                    footer: [...document.querySelectorAll('#room_footer .room-changeRoomBtn')].map(button => button.dataset.roomid),
+                    outfit: cl.hasoutfit('public') }; }
+            })()`, true);
+        }
         let saveMeta = null;
         if (saveSlots > 0) {
             saveMeta = await cdp.evaluate(`(async () => {
@@ -235,7 +291,7 @@ async function measure(run) {
                 return { requestedSlots: count, samples };
             })()`, true);
         }
-        return { run, cpuRate, startup, transitions, saveMeta, pageErrors: cdp.pageErrors.slice(0, 10) };
+        return { run, cpuRate, startup, transitions, route, saveMeta, pageErrors: cdp.pageErrors.slice(0, 10) };
     } finally {
         cdp?.ws.close();
         browser.proc.kill();
@@ -252,6 +308,10 @@ async function measure(run) {
         const result = await measure(run);
         results.push(result);
         console.log(JSON.stringify(result));
+        if (smokeRoute && (result.route?.error || !result.route?.visibleLayers ||
+            !result.route?.footerHiddenDuringDialogue || !result.route?.footerRestoredAfterDialogue ||
+            result.route.loaded !== result.route.images || result.pageErrors.length > 0))
+            throw new Error('Room 10 → 11 → 10 browser route failed');
     }
     console.error('Measured ' + results.length + ' fresh Chrome profiles from ' + root);
 })().catch(error => { console.error(error.stack || error); process.exitCode = 1; });
