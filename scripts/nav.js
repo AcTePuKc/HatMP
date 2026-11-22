@@ -1,5 +1,8 @@
 ﻿var nav = {};
 
+// Images created later by room transitions share one drag handler.
+$(document).on('dragstart', 'img', function (event) { event.preventDefault(); });
+
 nav.clearRoomTimeouts = function () {
     if (g.roomTimeout !== null) {
         clearTimeout(g.roomTimeout);
@@ -252,7 +255,6 @@ nav.button = function (btn, roomNum) {
         if (typeof char !== "undefined" && typeof char.syncVisibleRoomShortcutTitles === "function")
             char.syncVisibleRoomShortcutTitles();
     }
-    $('img').on('dragstart', function (event) { event.preventDefault(); });
 };
 
 nav.localizedTextButton = function (name, key, fallback, left, top, width, height, roomID, style = "setting") {
