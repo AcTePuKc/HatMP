@@ -793,7 +793,8 @@ saves.buildCard = function (key, meta, newestKey) {
         head.append($('<span class="sv-badge"></span>').text(l10n.t("save.new", "NEW")));
     }
     if (meta.edited > 0)
-        head.append($('<span class="sv-badge sv-badge-edited">EDITED</span>').attr('title', "Changed with the save editor " + meta.edited + (meta.edited === 1 ? " time" : " times")));
+        head.append($('<span class="sv-badge sv-badge-edited"></span>').text(l10n.t("save.editor.edited", "EDITED"))
+            .attr('title', l10n.t("save.editor.editedCount", "Changed with the save editor {count} times", { count: meta.edited })));
     card.append(saves.buildThumb(meta));
 
     var info = $('<div class="sv-card-info"></div>');
@@ -987,6 +988,20 @@ document.addEventListener('keydown', saves.handleKey, true);
 
 saves.editSave = {};
 saves.editSave.fields = [];
+saves.editSave.t = function (key, fallback, values) {
+    return l10n.t("save.editor." + key, fallback, values);
+};
+saves.editSave.groupLabel = function (group) {
+    if (group.indexOf("Owned clothes: ") === 0)
+        return saves.editSave.t("group.ownedClothes", "Owned clothes: {type}", { type: group.slice(15) });
+    var keys = {
+        General: "general", Names: "names", Stats: "stats", Levels: "levels", Looks: "looks",
+        "Hidden levels": "hiddenLevels", "Relationship levels": "relationshipLevels",
+        "Counters and flags": "countersAndFlags", Body: "body", "Worn clothes": "wornClothes",
+        Inventory: "inventory", Missy: "missy", "Activity counters": "activityCounters"
+    };
+    return keys[group] ? saves.editSave.t("group." + keys[group], group) : group;
+};
 
 saves.editSave.safeStats = {
     money: { label: "Money", min: 0, max: 999999999 },
@@ -1052,7 +1067,7 @@ saves.editSave.open = function (key, label) {
             state = JSON.parse(data);
         }
         catch (err) {
-            g.popUpNotice("This save can't be read, so it can't be edited.");
+            g.popUpNotice(saves.editSave.t("unreadable", "This save can't be read, so it can't be edited."));
             return;
         }
         saves.editSave.render(key, label, state, data);
@@ -1113,7 +1128,7 @@ saves.editSave.buildFields = function (state) {
     //------------------------------ SAFE ------------------------------
     if (typeof state.savename === "string") {
         es.add({
-            section: "safe", group: "General", label: "Save name", type: "text",
+            section: "safe", group: "General", label: es.t("saveName", "Save name"), type: "text",
             get: function () { return state.savename; },
             set: function (s, v) { s.savename = v; }
         });
@@ -1126,7 +1141,7 @@ saves.editSave.buildFields = function (state) {
         if (saved === null || typeof saved.display !== "string")
             return;
         es.add({
-            section: "safe", group: "Names", label: c.name === "me" ? "Your name" : saved.display + " (" + c.name + ")",
+            section: "safe", group: "Names", label: c.name === "me" ? es.t("yourName", "Your name") : saved.display + " (" + c.name + ")",
             type: "text", name: true,
             get: function () { return saved.display; },
             set: function (s, v) { saved.display = v; }
@@ -1136,7 +1151,7 @@ saves.editSave.buildFields = function (state) {
     $.each(es.safeStats, function (n, cfg) {
         var entry = es.findBy(gvList, "n", n);
         if (entry !== null)
-            es.addAuto("safe", "Stats", cfg.label, entry, "t", { min: cfg.min, max: cfg.max, maxFrom: cfg.maxFrom, options: cfg.options, statName: n });
+            es.addAuto("safe", "Stats", es.t("stat." + n, cfg.label), entry, "t", { min: cfg.min, max: cfg.max, maxFrom: cfg.maxFrom, options: cfg.options, statName: n });
     });
 
     $.each(levels.st, function (i, v) {
@@ -1151,9 +1166,9 @@ saves.editSave.buildFields = function (state) {
 
     if (cur !== null) {
         var looks = [
-            { p: "makeup", label: "Makeup", options: cl.makeup.map(function (m) { return m.name; }) },
-            { p: "eyes", label: "Eye color", options: cl.eyes.map(function (m) { return m.name; }) },
-            { p: "hairColor", label: "Hair color", options: cl.hairColor.map(function (m) { return m.color; }) }
+            { p: "makeup", label: es.t("makeup", "Makeup"), options: cl.makeup.map(function (m) { return m.name; }) },
+            { p: "eyes", label: es.t("eyeColor", "Eye color"), options: cl.eyes.map(function (m) { return m.name; }) },
+            { p: "hairColor", label: es.t("hairColor", "Hair color"), options: cl.hairColor.map(function (m) { return m.color; }) }
         ];
         $.each(looks, function (i, v) {
             if (typeof cur[v.p] === "string") {
@@ -1182,15 +1197,15 @@ saves.editSave.buildFields = function (state) {
             return;
         var charLabel = (c.display || c.name).trim() || c.name;
         es.add({
-            section: "risky", group: "Relationship levels", label: charLabel + " level", type: "num", min: 0, max: 999,
-            row: c.name, rowLabel: charLabel, columns: ["Level", "Secret"],
+            section: "risky", group: "Relationship levels", label: es.t("characterLevel", "{name} level", { name: charLabel }), type: "num", min: 0, max: 999,
+            row: c.name, rowLabel: charLabel, columns: [es.t("level", "Level"), es.t("secret", "Secret")],
             get: function () { return c.l; },
             set: function (s, nv) { c.l = nv; }
         });
         //older saves store secret as null for characters that never had one; treat that as 0
         if (typeof c.secret === "number" || c.secret === null || c.secret === undefined) {
             es.add({
-                section: "risky", group: "Relationship levels", label: charLabel + " secret", type: "num", min: 0, max: 100,
+                section: "risky", group: "Relationship levels", label: es.t("characterSecret", "{name} secret", { name: charLabel }), type: "num", min: 0, max: 100,
                 row: c.name, rowLabel: charLabel,
                 get: function () { return typeof c.secret === "number" ? c.secret : 0; },
                 set: function (s, nv) { c.secret = nv; }
@@ -1315,16 +1330,16 @@ saves.editSave.render = function (key, label, state, data) {
     panel.css('--r', g.ratio);
 
     var intro = $('<div class="sv-edit-intro"></div>');
-    intro.append($('<div class="sv-edit-header"></div>').text("Edit your save"));
-    intro.append($('<div class="sv-edit-note"></div>').text("You're probably going to break the game somehow if you edit this, but here it is. " +
+    intro.append($('<div class="sv-edit-header"></div>').text(es.t("title", "Edit your save")));
+    intro.append($('<div class="sv-edit-note"></div>').text(es.t("warning", "You're probably going to break the game somehow if you edit this, but here it is. " +
         "It may not break when you load, but you can get stuck in a story or a mission if you do. " +
         "I recommend not editing your main save, but here's the power to edit. " +
-        "If you edit something and break it, don't go complaining about it. I told you not to."));
+        "If you edit something and break it, don't go complaining about it. I told you not to.")));
     panel.append(intro);
 
     var top = $('<div class="sv-edit-top"></div>');
     top.append($('<div class="sv-edit-title"></div>').text(label));
-    var filter = $('<input type="text" class="sv-edit-filter" placeholder="Search fields..." />');
+    var filter = $('<input type="text" class="sv-edit-filter" />').attr("placeholder", es.t("search", "Search fields..."));
     top.append(filter);
     panel.append(top);
 
@@ -1339,12 +1354,13 @@ saves.editSave.render = function (key, label, state, data) {
         var gKey = f.section + "|" + f.group;
         if (!groups[gKey]) {
             groups[gKey] = $('<div class="sv-edit-group"></div>');
-            groups[gKey].append($('<div class="sv-edit-head"></div>').text(f.group));
+            groups[gKey].append($('<div class="sv-edit-head"></div>').text(es.groupLabel(f.group)));
             var grid = $('<div class="sv-edit-grid"></div>');
             //row fields (one line per item, several inputs) use a single column with column headers
             if (f.row !== undefined) {
                 grid.addClass("sv-edit-rows");
-                var header = $('<div class="sv-edit-field sv-edit-colhead"><span>Name</span></div>');
+                var header = $('<div class="sv-edit-field sv-edit-colhead"><span></span></div>');
+                header.find('span').text(es.t("name", "Name"));
                 $.each(f.columns || [], function (j, col) {
                     header.append($('<span class="sv-edit-col"></span>').text(col));
                 });
@@ -1371,11 +1387,11 @@ saves.editSave.render = function (key, label, state, data) {
 
     body.append(sections.safe);
     var riskyToggle = $('<div class="sv-edit-warn"></div>');
-    riskyToggle.append($('<div></div>').text("Risky fields: these can skip story content, unlock scenes early or show missing art. Only change them if you know what they do."));
-    var showBtn = $('<span class="sv-tab">Show risky fields</span>');
+    riskyToggle.append($('<div></div>').text(es.t("riskyWarning", "Risky fields: these can skip story content, unlock scenes early or show missing art. Only change them if you know what they do.")));
+    var showBtn = $('<span class="sv-tab"></span>').text(es.t("showRisky", "Show risky fields"));
     showBtn.on('click', function () {
         sections.risky.toggle();
-        showBtn.text(sections.risky.is(':visible') ? "Hide risky fields" : "Show risky fields");
+        showBtn.text(sections.risky.is(':visible') ? es.t("hideRisky", "Hide risky fields") : es.t("showRisky", "Show risky fields"));
     });
     riskyToggle.append(showBtn);
     body.append(riskyToggle);
@@ -1393,15 +1409,15 @@ saves.editSave.render = function (key, label, state, data) {
         });
         if (q !== "" && sections.risky.find('.sv-edit-field:not(.sv-edit-colhead)').filter(function () { return this.style.display !== "none"; }).length > 0) {
             sections.risky.show();
-            showBtn.text("Hide risky fields");
+            showBtn.text(es.t("hideRisky", "Hide risky fields"));
         }
     });
 
     var error = $('<div class="sv-edit-error"></div>');
     var buttons = $('<div class="sv-edit-buttons"></div>');
     buttons.append(error);
-    buttons.append($('<span class="sv-tab">Cancel</span>').on('click', es.close));
-    buttons.append($('<span class="sv-tab sv-tab-current">Save changes</span>').on('click', function () {
+    buttons.append($('<span class="sv-tab"></span>').text(es.t("cancel", "Cancel")).on('click', es.close));
+    buttons.append($('<span class="sv-tab sv-tab-current"></span>').text(es.t("saveChanges", "Save changes")).on('click', function () {
         es.apply(key, state, data, panel, error);
     }));
     panel.append(buttons);
@@ -1461,25 +1477,31 @@ saves.editSave.apply = function (key, state, data, panel, error) {
         var f = c.f;
         if (f.type === "num") {
             if (isNaN(c.value)) {
-                errors.push(f.label + ": whole numbers only");
+                errors.push(es.t("error.wholeNumber", "{label}: whole numbers only", { label: f.label }));
                 return;
             }
             var max = f.maxFrom ? newValueOf(f.maxFrom) : f.max;
             if (c.value < f.min || c.value > max)
-                errors.push(f.label + ": must be between " + f.min + " and " + max);
+                errors.push(es.t("error.range", "{label}: must be between {min} and {max}", { label: f.label, min: f.min, max: max }));
         }
         else if (f.type === "text") {
             if (f.name && (c.raw.length < 1 || c.raw.length > 20 || /[<>#"\\]/.test(c.raw)))
-                errors.push(f.label + ": 1 to 20 characters, no < > # \" or \\");
+                errors.push(es.t("error.characterName", "{label}: 1 to 20 characters; no < > # quotation marks or backslashes", { label: f.label }));
             else if (!f.name && (c.raw.length > 60 || /[<>]/.test(c.raw)))
-                errors.push(f.label + ": up to 60 characters, no < or >");
+                errors.push(es.t("error.shortText", "{label}: up to 60 characters; no < or >", { label: f.label }));
             else if (!f.nullable && c.raw === "")
-                errors.push(f.label + ": can't be empty");
+                errors.push(es.t("error.required", "{label}: can't be empty", { label: f.label }));
         }
     });
 
     if (errors.length > 0) {
-        error.html(errors.slice(0, 6).join("<br/>") + (errors.length > 6 ? "<br/>...and " + (errors.length - 6) + " more" : ""));
+        error.empty();
+        $.each(errors.slice(0, 6), function (i, message) {
+            if (i > 0) error.append('<br/>');
+            error.append(document.createTextNode(message));
+        });
+        if (errors.length > 6)
+            error.append('<br/>').append(document.createTextNode(es.t("error.more", "...and {count} more", { count: errors.length - 6 })));
         return;
     }
 
@@ -1519,7 +1541,7 @@ saves.editSave.save = function (key, originalData, state) {
             }
         }
         var backupMeta = $.extend(true, {}, meta);
-        backupMeta.room = "Before edit: " + (meta.room || meta.savename);
+        backupMeta.room = saves.editSave.t("beforeEdit", "Before edit: {room}", { room: meta.room || meta.savename });
         backupMeta.saveDt = new Date().toISOString();
 
         var newMeta = $.extend(true, {}, meta);
@@ -1532,11 +1554,11 @@ saves.editSave.save = function (key, originalData, state) {
             return saves.put(key, newMeta, JSON.stringify(state));
         }).then(function () {
             saves.editSave.close();
-            g.popUpNotice("Save edited. The original was copied to " + saves.slotLabel(backupKey) + ".");
+            g.popUpNotice(saves.editSave.t("saved", "Save edited. The original was copied to {slot}.", { slot: saves.slotLabel(backupKey) }));
             saves.renderScreen();
         });
     }).catch(function (err) {
         console.error("Save edit failed:", err);
-        g.popUpNotice("Unable to save the edit.");
+        g.popUpNotice(saves.editSave.t("saveFailed", "Unable to save the edit."));
     });
 };
