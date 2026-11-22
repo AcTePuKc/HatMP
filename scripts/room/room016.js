@@ -1,4 +1,4 @@
-﻿//living room
+//living room
 var room16 = {};
 
 room16.main = function () {

@@ -1,4 +1,4 @@
-﻿//Room name
+//Room name
 var room324 = {};
 room324.main = function () {
     if (sc.getMissionTask("janice", "*doggy", 0).notStarted) {

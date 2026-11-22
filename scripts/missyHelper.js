@@ -1,4 +1,4 @@
-﻿var missy = {};
+var missy = {};
 
 missy.st = new Array();
 missy.cases = new Array();
@@ -78,7 +78,7 @@ missy.init = function () {
     missy.envelope = [
         { n: "charlie", roomID: 650, key: false, ach: false, canBe: true }, //d
         { n: "treyvon", roomID: 50, key: false, ach: false, canBe: true }, //d
-        { n: "utah", roomID: 875, key: false, ach: false, canBe: false },   ////////////////// add this
+        { n: "librarian", roomID: 875, key: false, ach: false, canBe: true },//d
         { n: "jimmy", roomID: 125, key: false, ach: false, canBe: true },//d
         { n: "spanky", roomID: 404, key: false, ach: false, canBe: true },//d
         { n: "construction", roomID: 101, key: false, ach: false, canBe: true },//d
@@ -86,13 +86,13 @@ missy.init = function () {
         { n: "chad", roomID: 551, key: false, ach: false, canBe: true },//d
         { n: "g", roomID: 551, key: false, ach: false, canBe: true },//d
         { n: "jeffery", roomID: 250, key: false, ach: false, canBe: true },//d
-        { n: "chef", roomID: 150, key: false, ach: false, canBe: false },  ////////////////// add this
+        { n: "chef", roomID: 150, key: false, ach: false, canBe: true },
         { n: "cindy", roomID: 901, key: false, ach: false, canBe: true },//d
         { n: "cop", roomID: 450, key: false, ach: false, canBe: false },//d
         { n: "doc", roomID: 750, key: false, ach: false, canBe: true },//d
         { n: "whore", roomID: 752, key: false, ach: false, canBe: true },//d
         { n: "priest", roomID: 776, key: false, ach: false, canBe: false },//d
-        { n: "dollmaker", roomID: 300, key: false, ach: false, canBe: true },
+        { n: "dollmaker", roomID: 300, key: false, ach: false, canBe: true },//d
         { n: "tony", roomID: 600, key: false, ach: false, canBe: false },  ////////////////// add this
         { n: "!jail0", roomID: 376, key: false, ach: false, canBe: true },//d
         { n: "!seller", roomID: 485, key: false, ach: false, canBe: true },//d
@@ -345,7 +345,7 @@ missy.getcases = function () {
                             caseList.push(missy.buildCaseEntry(i, canDoCase, "Work everyday till Missy decides you're worthy of the lock picking class Intelligence Level 4. ", missy.cases[i].name));
                         }
                         break;
-                    case "case_elijah_origin": 
+                    case "case_elijah_origin":
                         if (piLevel > 2) {
                             canDoCase = piLevel > 3;
                             caseList.push(missy.buildCaseEntry(i, canDoCase, "Raise your PI Level. ", missy.cases[i].name));
@@ -396,7 +396,7 @@ missy.getcases = function () {
                             caseList.push(missy.buildCaseEntry(i, true, "N/A. ", missy.cases[i].name));
                         }
                         break;
-                    case "case_cult": 
+                    case "case_cult":
                         if (missy.cases[20].complete) {
                             caseList.push(missy.buildCaseEntry(i, true, "N/A. ", missy.cases[i].name));
                         }
@@ -421,7 +421,7 @@ missy.caseComplete = function (caseId) {
     missy.cases[caseId].complete = true;
 };
 
-missy.save = function () { 
+missy.save = function () {
     var i;
     var saveRet = {
         st: new Array(),
@@ -475,7 +475,7 @@ missy.afterLunch = function () {
         { id: 6, name: "Sissy School", char: "c", room: 211 },
         { id: 7, name: "Afternoon", char: "a", room: 193 },
     ];
-    
+
     //build weekly schedule
     if (g.dt.getDay() === 1 || weekly === null || weekly.length < 7) {
         var subweek;

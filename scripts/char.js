@@ -1,4 +1,4 @@
-﻿var char = {};
+var char = {};
 var menu = {};
 //char.clothesholder = null;
 
@@ -1272,6 +1272,7 @@ char.finishLoadedState = function (saveVersion, options) {
         char.map();
 
     cl.display();
+    sstat.makeGraph();
     char.room(g.roomID, options.restoreRoom === true);
     char.menu();
 
@@ -1302,6 +1303,10 @@ char.import = function (importData) {
         tp = JSON.parse($("#room_export_data").val().trim());
     else
         tp = JSON.parse(importData);
+
+    // saves-folder files (slot-N.save) wrap the real save in { format, key, meta, data }
+    if (tp && tp.format === "HatMP-slot" && typeof tp.data === "string")
+        tp = JSON.parse(tp.data);
 
     g.newLoad = false;
     char.showGameShell();

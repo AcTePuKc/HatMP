@@ -1,4 +1,4 @@
-﻿//Living Room
+//Living Room
 var room26 = {};
 room26.landlordOverlayButtons = [
     "chatbg",

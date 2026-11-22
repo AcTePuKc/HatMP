@@ -1,4 +1,4 @@
-﻿//Room name
+//Room name
 var room322 = {};
 room322.main = function () {
     if (g.pass === "endSleepyTime") {

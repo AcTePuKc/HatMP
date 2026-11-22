@@ -1,4 +1,4 @@
-﻿//Truth or Dare
+//Truth or Dare
 var room23 = {};
 
 room23.main = function () {

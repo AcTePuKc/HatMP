@@ -1,4 +1,4 @@
-﻿//Room name
+//Room name
 var room588 = {};
 room588.main = function () {
     if (g.pass === "sporty_588") {

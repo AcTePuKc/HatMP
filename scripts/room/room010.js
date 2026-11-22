@@ -1,4 +1,4 @@
-﻿//bedroom
+//bedroom
 var room10 = {};
 room10.showWhenLoaded = function () {
     var roomLayers = $('#room-background, #room-buttons');

@@ -1,4 +1,4 @@
-﻿//Sister's Room
+//Sister's Room
 var room13 = {};
 room13.selectTranslated = function (name, image, index) {
     const labels = {

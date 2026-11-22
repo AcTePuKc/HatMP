@@ -1,4 +1,4 @@
-﻿//motherRoom
+//motherRoom
 var room14 = {};
 room14.prefetchImages = function (images) {
     for (let i = 0; i < images.length; i++) {

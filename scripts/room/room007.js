@@ -1,4 +1,4 @@
-﻿//Room name
+//Room name
 var room7 = {};
 room7.main = function () {
     

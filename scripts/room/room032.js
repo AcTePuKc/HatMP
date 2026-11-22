@@ -1,4 +1,4 @@
-﻿//Room name
+//Room name
 var room32 = {};
 room32.main = function () {
     let sisRoomList = [13, 32];

@@ -2273,6 +2273,8 @@ room9999.btnclick = function (name) {
                 phone.build();
                 break;
             case "phone_save":
+                //opening from the phone starts on Save; only a new load (no game yet) starts on Load
+                saves.mode = g.newLoad ? "load" : "save";
                 phone.saveMenu();
                 break;
             case "phone_rel":

@@ -1,4 +1,4 @@
-﻿//sperm bank
+//sperm bank
 
 var room350 = {};
 room350.main = function () {

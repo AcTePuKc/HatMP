@@ -350,3 +350,11 @@ Upstream `ed740fad` (fetched 2026-11-14): FapForce5 has implemented `##name##` m
 - Added Bulgarian names for new trivial characters Michael and Mike, Spanish source names, and escaped the visible name inside the hover card. Verify card layout in the game.
 - Follow-up crash reported in Room 174: `sc.n("els")` attempted to look up `els` as a character. Fixed both Room 174 occurrences and the same call in Room 176 to use `sc.els("lower")`, preserving the `{els}` values for BG/ES. Applied the same fix to the published worktree so it is available before the upstream integration finishes.
 - The existing automated suite and the l10n check pass. Before committing or publishing: translate or explicitly queue Room 324's remaining 57 keys, check new room flows and name-card appearance in the game, and inspect upstream's new mission/save paths with an old save. The worktree is still a draft integration.
+
+## `fd4dfb37` upstream follow-up (2026-11-22)
+
+- Merged FapForce5's "Doll maker and edit game update" after `ed740fad` in the separate `codex/integrate-ed740fad` worktree. This is a local integration draft; do not publish a new version or package from it yet.
+- Room 310 is a rewritten doll-maker mission. Kept the new source flow and images. Chat IDs 10–17 now have different meanings, so their 20 old BG and 20 old ES entries were removed to prevent unrelated dialogue appearing in the new scene. Re-translate the full revised room after checking its route in game.
+- Combined upstream `##name:s##` singular-name rendering with our HTML escaping; retained localized `l10nValues` in dialogue conflicts. Kept upstream's save editor and graph refresh while preserving our refresh-room restoration and localized save controls. The Missy mission destination in `supportingChar.js` is now Room 487 as upstream intended.
+- The source scan has **175 missing BG and 175 missing ES entries**: Room 310 (48), Room 324 (57), Room 525 (39), Room 601 (13), Room 825 (2), Room 905 (16). These use English source fallback until translated. The new save-editor action label is translated in both languages; the rest of its newly added English UI still needs localization review.
+- Automated tests and l10n syntax/placeholder checks pass. In-game checks remain for old saves, the save editor, the revised Room 310 mission, hover-name cards, and new scenes before any release.

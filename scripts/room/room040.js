@@ -1,4 +1,4 @@
-﻿//Room name
+//Room name
 var room40 = {};
 room40.main = function () {
     daily.set("bigguyGarage")
