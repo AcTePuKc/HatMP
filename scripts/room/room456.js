@@ -28,7 +28,7 @@ room456.btnclick = function (name) {
                 "top": 0,
                 "width": 1186,
                 "height": 1080,
-                "image": "450_park/head.gif"
+                "image": "450_park/head.webp"
             }, 456);
             break;
         case "cop3":

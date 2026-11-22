@@ -1,5 +1,5 @@
 // Measure the offline game in a fresh headless Chrome profile without touching player saves.
-// Usage: node tools/perf-probe.js [--root PATH] [--runs 3] [--rooms 10,28,250] [--save-slots 500] [--cpu-rate 4]
+// Usage: node tools/perf-probe.js [--root PATH] [--runs 3] [--rooms 10,28,250] [--actions 456:cop2] [--save-slots 500] [--cpu-rate 4]
 const fs = require('node:fs');
 const os = require('node:os');
 const path = require('node:path');
@@ -14,6 +14,10 @@ function option(name, fallback) {
 const root = path.resolve(option('--root', path.resolve(__dirname, '..')));
 const runs = Math.max(1, Math.min(10, Number(option('--runs', '3')) || 3));
 const rooms = String(option('--rooms', '10,28,250')).split(',').map(Number).filter(Number.isInteger);
+const actions = String(option('--actions', '')).split(',').filter(Boolean).map(entry => {
+    const split = entry.indexOf(':');
+    return { room: Number(entry.slice(0, split)), name: entry.slice(split + 1) };
+}).filter(action => Number.isInteger(action.room) && action.name);
 const saveSlots = Math.max(0, Math.min(2000, Number(option('--save-slots', '0')) || 0));
 const cpuRate = Math.max(1, Math.min(10, Number(option('--cpu-rate', '1')) || 1));
 const chrome = option('--chrome', 'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe');
@@ -158,6 +162,26 @@ async function measure(run) {
                     return { room: ${room}, renderedRoom: g.roomID, builtMs, imagesReadyMs: performance.now() - begin,
                         images: imgs.length, loaded: imgs.filter(img => img.complete && img.naturalWidth > 0).length };
                 } catch (error) { return { room: ${room}, error: String(error) }; }
+            })()`, true);
+            transitions.push(result);
+        }
+        for (const action of actions) {
+            const result = await cdp.evaluate(`(async () => {
+                try {
+                    char.room(${action.room}, true);
+                    const begin = performance.now();
+                    invoker.invoke(${action.room}, 'btnclick', ${JSON.stringify(action.name)});
+                    const imgs = [...document.querySelectorAll('#room-buttons img')];
+                    await Promise.race([
+                        Promise.all(imgs.map(img => img.complete ? Promise.resolve() : new Promise(resolve => {
+                            img.addEventListener('load', resolve, {once:true});
+                            img.addEventListener('error', resolve, {once:true});
+                        }))),
+                        new Promise(resolve => setTimeout(resolve, 10000))
+                    ]);
+                    return { room: ${action.room}, action: ${JSON.stringify(action.name)}, elapsedMs: performance.now() - begin,
+                        images: imgs.map(img => ({ src: img.getAttribute('src'), loaded: img.complete && img.naturalWidth > 0 })) };
+                } catch (error) { return { room: ${action.room}, action: ${JSON.stringify(action.name)}, error: String(error) }; }
             })()`, true);
             transitions.push(result);
         }
