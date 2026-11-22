@@ -252,8 +252,16 @@ nav.button = function (btn, roomNum) {
         }
         line = '<img src="./images/room/' + thisImage + '" class="' + classes + '" data-name="' + btn.name + '" data-room="' + roomNum + '"' + spaceAdvanceAttr + ' title="' + hoverTitle + '"' + hoverTitleKeyAttr + hoverTitleParamsAttr + charAttr + ' style="width:' + btnWidth + 'px; height:' + btnHeight + 'px; top:' + top + 'px; left:' + left + 'px;" />';
         $('#room-buttons').append(line);
-        if (typeof char !== "undefined" && typeof char.syncVisibleRoomShortcutTitles === "function")
-            char.syncVisibleRoomShortcutTitles();
+        if (typeof char !== "undefined" && char.roomButtonShortcutRooms &&
+            char.roomButtonShortcutRooms[roomNum] &&
+            typeof char.syncVisibleRoomShortcutTitles === "function" &&
+            !nav.shortcutTitlesQueued) {
+            nav.shortcutTitlesQueued = true;
+            Promise.resolve().then(function () {
+                nav.shortcutTitlesQueued = false;
+                char.syncVisibleRoomShortcutTitles();
+            });
+        }
     }
 };
 

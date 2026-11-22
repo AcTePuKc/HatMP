@@ -1,5 +1,5 @@
 // Measure the offline game in a fresh headless Chrome profile without touching player saves.
-// Usage: node tools/perf-probe.js [--root PATH] [--runs 3] [--rooms 10,28,250] [--actions 456:cop2] [--save-slots 500] [--cpu-rate 4]
+// Usage: node tools/perf-probe.js [--root PATH] [--runs 3] [--rooms 10,28,250] [--actions 456:cop2] [--save-slots 500] [--cpu-rate 4] [--trace-nav]
 const fs = require('node:fs');
 const os = require('node:os');
 const path = require('node:path');
@@ -20,6 +20,7 @@ const actions = String(option('--actions', '')).split(',').filter(Boolean).map(e
 }).filter(action => Number.isInteger(action.room) && action.name);
 const saveSlots = Math.max(0, Math.min(2000, Number(option('--save-slots', '0')) || 0));
 const cpuRate = Math.max(1, Math.min(10, Number(option('--cpu-rate', '1')) || 1));
+const traceNav = args.includes('--trace-nav');
 const chrome = option('--chrome', 'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe');
 const entry = path.join(root, 'startGame.html');
 if (!fs.existsSync(chrome) || !fs.existsSync(entry)) throw new Error('Chrome or startGame.html not found');
@@ -143,6 +144,25 @@ async function measure(run) {
             if (['JSHeapUsedSize', 'ScriptDuration', 'TaskDuration', 'LayoutDuration'].includes(metric.name))
                 startup[metric.name] = metric.value;
         }
+        if (traceNav) await cdp.evaluate(`(() => {
+            window.__navTrace = {};
+            const wrap = (object, name, label) => {
+                const original = object[name];
+                object[name] = function (...args) {
+                    const begin = performance.now();
+                    try { return original.apply(this, args); }
+                    finally {
+                        const item = window.__navTrace[label] || { calls: 0, ms: 0 };
+                        item.calls++;
+                        item.ms += performance.now() - begin;
+                        window.__navTrace[label] = item;
+                    }
+                };
+            };
+            for (const name of ['bg', 'button', 'buildnav', 'bars', 'buildclock']) wrap(nav, name, 'nav.' + name);
+            wrap(char, 'syncVisibleRoomShortcutTitles', 'char.syncShortcutTitles');
+            wrap(invoker, 'invoke', 'invoker.invoke');
+        })()`);
         const transitions = [];
         for (const room of rooms) {
             const result = await cdp.evaluate(`(async () => {
@@ -160,10 +180,14 @@ async function measure(run) {
                         new Promise(resolve => setTimeout(resolve, 10000))
                     ]);
                     return { room: ${room}, renderedRoom: g.roomID, builtMs, imagesReadyMs: performance.now() - begin,
-                        images: imgs.length, loaded: imgs.filter(img => img.complete && img.naturalWidth > 0).length };
+                        images: imgs.length, loaded: imgs.filter(img => img.complete && img.naturalWidth > 0).length,
+                        shortcutTitles: ${traceNav} ? [...document.querySelectorAll('#room-buttons .rom-event')]
+                            .map(button => button.title).filter(title => title && title.includes('Shortcut:')) : undefined,
+                        trace: window.__navTrace ? structuredClone(window.__navTrace) : undefined };
                 } catch (error) { return { room: ${room}, error: String(error) }; }
             })()`, true);
             transitions.push(result);
+            if (traceNav) await cdp.evaluate('window.__navTrace = {}');
         }
         for (const action of actions) {
             const result = await cdp.evaluate(`(async () => {
