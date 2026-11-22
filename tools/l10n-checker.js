@@ -33,7 +33,7 @@ function literal(node) {
         if (left !== undefined && right !== undefined) return left + right;
     }
 }
-const tokens = value => new Set(Array.from(value.matchAll(/\{([a-zA-Z0-9_]+)(?::([a-zA-Z0-9_]+))?\}/g), m => m[1]));
+const tokens = value => new Set(Array.from(value.matchAll(/\{([a-zA-Z0-9_]+)(?::([a-zA-Z0-9_]+))?\}|##([a-zA-Z0-9_]+)##/g), m => m[1] || m[3]));
 const voidTags = new Set('area base br col embed hr img input link meta param source track wbr'.split(' '));
 const optionalTags = new Set('html head body p li dt dd rt rp optgroup option colgroup thead tbody tfoot tr td th'.split(' '));
 

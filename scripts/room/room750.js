@@ -550,7 +550,7 @@ room750.chat = function (chatID) {
             "Public restroom faucets that use infrared sensors are actually taking high resolution digital scans of your palm prints while you wait for the water to start. They’ve convinced us it’s 'touchless hygiene,' but it’s actually the world’s largest biometric database disguised as a quest for clean hands.",
             "LED smart bulbs don't just emit light; they act as high speed optical sensors that track movement by measuring the microscopic fluctuations in photon bounce back. Your 'energy efficient' lighting is actually a 360 motion capture studio that sells your walking gait to footwear marketing firms.",
             "Every grocery store intentionally maintains a fleet of carts with one wobbly wheel to subtly influence your walking path toward high margin end cap displays. ",
-            "The word around is that " + sc.n("ubel") + " is the leader of the CUM cult. But he's not. There's another rich powerful man above him pulling the strings in this town.",
+            "The word around is that ##ubel## is the leader of the CUM cult. But he's not. There's another rich powerful man above him pulling the strings in this town.",
             "That plastic 'private investigator' card isn't just ID; it’s a high-frequency RFID beacon that broadcasts your location to the local zoning board. They want to make sure you're not investigating the cult and their crimes in this town.",
             "The coffee served at the diner contains transgender cum that raises your female hormone levels and makes you more susceptible to transforming into a real girl. ",
             "The 'mystery' is a psychological smokescreen designed to keep the most inquisitive minds occupied with 'clues' while the real architectural overhaul of reality happens right under our noses. There is no solution because the investigation itself is the prison, intended to loop your logic centers until the transition to the new world order is finalized."
@@ -880,7 +880,7 @@ room750.chat = function (chatID) {
             {
                 chatID: 35,
                 speaker: "elijah",
-                text: "I'm so glad you found me! " + sc.n("stormy") + " was really getting on my case about " +
+                text: "I'm so glad you found me! ##stormy## was really getting on my case about " +
                     "staying at her place. Luckily one of her clients was moving out of this tent, since he " +
                     "got a job, and just gave it to me. Dude's so awesome. Now I have a place to sleep till " +
                     "I get back on my feet! ", l10nValues: { stormy: sc.n("stormy") },

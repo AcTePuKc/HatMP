@@ -720,7 +720,7 @@ room975.chat = function (chatID) {
         {
             chatID: 5,
             speaker: "!nar",
-            text: "You never proved that you were willing to be the blow job bitch. " + sc.n("kei") +
+            text: "You never proved that you were willing to be the blow job bitch. ##kei##" +
                 " is not interested in a happily ever after with you. ",
             button: [
                 { chatID: -1, text: "[Needed to complete the 'Boy\'s Game, Blowjob bitch']", callback: "" }
@@ -729,7 +729,7 @@ room975.chat = function (chatID) {
         {
             chatID: 6,
             speaker: "!nar",
-            text: "Do you want to spend your happily ever after with " + sc.n("kei") + "?",
+            text: "Do you want to spend your happily ever after with ##kei##?",
             button: [
                 { chatID: -1, text: "Yes, he's my dream life!", callback: "sel_kei" },
                 { chatID: -1, text: "Let me look at my other options. ", callback: "" },
@@ -738,7 +738,7 @@ room975.chat = function (chatID) {
         {
             chatID: 7,
             speaker: "!nar",
-            text: "You've never been close enough to " + sc.n("jones") + ". ",
+            text: "You've never been close enough to ##jones##. ",
             button: [
                 { chatID: -1, text: "[Needed to complete 'Service, Missing bitch']", callback: "" }
             ]
@@ -746,7 +746,7 @@ room975.chat = function (chatID) {
         {
             chatID: 8,
             speaker: "!nar",
-            text: "Do you want to spend your happily ever after with " + sc.n("jones") + "?",
+            text: "Do you want to spend your happily ever after with ##jones##?",
             button: [
                 { chatID: -1, text: "Yes, he's my dream life!", callback: "sel_jones" },
                 { chatID: -1, text: "Let me look at my other options. ", callback: "" },
@@ -755,7 +755,7 @@ room975.chat = function (chatID) {
         {
             chatID: 9,
             speaker: "!nar",
-            text: "You've never proven to " + sc.n("river") + " that you would make his perfect little " +
+            text: "You've never proven to ##river## that you would make his perfect little " +
                 "housewife.",
             button: [
                 { chatID: -1, text: "[Needed to start 'Girlfriend, I think I'm in love']", callback: "" }
@@ -764,7 +764,7 @@ room975.chat = function (chatID) {
         {
             chatID: 10,
             speaker: "!nar",
-            text: "Do you want to spend your happily ever after with " + sc.n("river") + "?",
+            text: "Do you want to spend your happily ever after with ##river##?",
             button: [
                 { chatID: -1, text: "I want to be his housewife", callback: "sel_river" },
                 { chatID: -1, text: "Let me look at my other options. ", callback: "" },
@@ -773,7 +773,7 @@ room975.chat = function (chatID) {
         {
             chatID: 11,
             speaker: "!nar",
-            text: "You never proved you were " + sc.n("envy") + "'s perfect " + gender.pronoun("boyfriend") + ". ",
+            text: "You never proved you were ##envy##'s perfect " + gender.pronoun("boyfriend") + ". ",
             button: [
                 { chatID: -1, text: "[Needed to start 'Girlfriend, Emotional Connection.']", callback: "" }
             ]
@@ -781,7 +781,7 @@ room975.chat = function (chatID) {
         {
             chatID: 12,
             speaker: "!nar",
-            text: "Do you want to spend your happily ever after with " + sc.n("envy") + "?",
+            text: "Do you want to spend your happily ever after with ##envy##?",
             button: [
                 { chatID: -1, text: "Yes! She's the one for me!", callback: "sel_envy" },
                 { chatID: -1, text: "Let me look at my other options. ", callback: "" },
@@ -790,7 +790,7 @@ room975.chat = function (chatID) {
         {
             chatID: 13,
             speaker: "!nar",
-            text: "You've never proven to " + sc.n("elijah") + " that you would make his perfect little " +
+            text: "You've never proven to ##elijah## that you would make his perfect little " +
                 "housewife and give him lots of babies.",
             button: [
                 { chatID: -1, text: "[Needed to complete 'Date, Wait for the day we can get married']", callback: "" }
@@ -799,7 +799,7 @@ room975.chat = function (chatID) {
         {
             chatID: 14,
             speaker: "!nar",
-            text: "Be " + sc.n("elijah") + "'s perfect little " +
+            text: "Be ##elijah##'s perfect little " +
                 "housewife and give him lots of babies?",
             button: [
                 { chatID: -1, text: "Yes! This is my happily ever after!", callback: "sel_elijah" },
@@ -809,7 +809,7 @@ room975.chat = function (chatID) {
         {
             chatID: 15,
             speaker: "!nar",
-            text: sc.n("sporty") + " doesn't know you well enough. ",
+            text: "##sporty## doesn't know you well enough. ",
             button: [
                 { chatID: -1, text: "[Needed to complete the Sissy mid-term]", callback: "" }
             ]
@@ -817,7 +817,7 @@ room975.chat = function (chatID) {
         {
             chatID: 16,
             speaker: "!nar",
-            text: "Do you want to spend your happily ever after with " + sc.n("sporty") + "?",
+            text: "Do you want to spend your happily ever after with ##sporty##?",
             button: [
                 { chatID: -1, text: "We'll make the cutest pair of sluts! ", callback: "sel_sporty" },
                 { chatID: -1, text: "Let me look at my other options. ", callback: "" },
@@ -826,7 +826,7 @@ room975.chat = function (chatID) {
         {
             chatID: 17,
             speaker: "!nar",
-            text: "You never knocked up " + sc.n("g") + ". ",
+            text: "You never knocked up ##g##. ",
             button: [
                 { chatID: -1, text: "[Needed to complete 'Muscle Mommy, My baby's mama.']", callback: "" }
             ]
@@ -834,7 +834,7 @@ room975.chat = function (chatID) {
         {
             chatID: 18,
             speaker: "!nar",
-            text: "Do you want to spend your happily ever after with " + sc.n("g") + "?",
+            text: "Do you want to spend your happily ever after with ##g##?",
             button: [
                 { chatID: -1, text: "That's my muscle mommy!", callback: "sel_g" },
                 { chatID: -1, text: "Let me look at my other options. ", callback: "" },
@@ -843,7 +843,7 @@ room975.chat = function (chatID) {
         {
             chatID: 19,
             speaker: "!nar",
-            text: "You never freed " + sc.n("kinsey") + " from the evil clutches of the farm. ",
+            text: "You never freed ##kinsey## from the evil clutches of the farm. ",
             button: [
                 { chatID: -1, text: "[Needed to progress 'Owner, I'm the boss around here']", callback: "" }
             ]
@@ -851,7 +851,7 @@ room975.chat = function (chatID) {
         {
             chatID: 20,
             speaker: "!nar",
-            text: "Do you want to spend your happily ever after with " + sc.n("kinsey") + "?",
+            text: "Do you want to spend your happily ever after with ##kinsey##?",
             button: [
                 { chatID: -1, text: "I'm going to be a farm bitch! ", callback: "sel_kinsey" },
                 { chatID: -1, text: "Let me look at my other options. ", callback: "" },
@@ -860,7 +860,7 @@ room975.chat = function (chatID) {
         {
             chatID: 21,
             speaker: "!nar",
-            text: sc.n("lola") + " has found her love in " + sc.n("tom") + ". That is her happily ever after. ",
+            text: "##lola## has found her love in ##tom##. That is her happily ever after. ",
             button: [
                 { chatID: -1, text: "[Lola is living out her own 'Fairy Tale' ending elsewhere]", l10nValues: { lola: sc.n("lola") }, callback: "" }
             ]
@@ -868,7 +868,7 @@ room975.chat = function (chatID) {
         {
             chatID: 22,
             speaker: "!nar",
-            text: "Do you want to spend your happily ever after with " + sc.n("lola") + "?",
+            text: "Do you want to spend your happily ever after with ##lola##?",
             button: [
                 { chatID: -1, text: "She's my girl! ", callback: "sel_lola" },
                 { chatID: -1, text: "Let me look at my other options. ", callback: "" },
@@ -877,7 +877,7 @@ room975.chat = function (chatID) {
         {
             chatID: 23,
             speaker: "!nar",
-            text: "You never proved you would be " + sc.n("janice") + "'s perfect little bitch. ",
+            text: "You never proved you would be ##janice##'s perfect little bitch. ",
             button: [
                 { chatID: -1, text: "[Needed to progress 'My Boyfriend, You don't matter to me.']", callback: "" }
             ]
@@ -885,7 +885,7 @@ room975.chat = function (chatID) {
         {
             chatID: 24,
             speaker: "!nar",
-            text: "Do you want to spend your happily ever after with " + sc.n("janice") + "?",
+            text: "Do you want to spend your happily ever after with ##janice##?",
             button: [
                 { chatID: -1, text: "I'm so her bitch! ", callback: "sel_janice" },
                 { chatID: -1, text: "Let me look at my other options. ", callback: "" },
@@ -894,7 +894,7 @@ room975.chat = function (chatID) {
         {
             chatID: 25,
             speaker: "!nar",
-            text: "[FILLER] Rejection reason for " + sc.n("missy") + ". ",
+            text: "[FILLER] Rejection reason for ##missy##. ",
             button: [
                 { chatID: -1, text: "[FILLER] Needed condition reminder", callback: "" }
             ]
@@ -902,7 +902,7 @@ room975.chat = function (chatID) {
         {
             chatID: 26,
             speaker: "!nar",
-            text: "Do you want to spend your happily ever after with " + sc.n("missy") + "?",
+            text: "Do you want to spend your happily ever after with ##missy##?",
             button: [
                 { chatID: -1, text: "I crave the life of excitement!", callback: "sel_missy" },
                 { chatID: -1, text: "Let me look at my other options. ", callback: "" },
@@ -911,7 +911,7 @@ room975.chat = function (chatID) {
         {
             chatID: 27,
             speaker: "!nar",
-            text: "You need to prove your love and vagina for " + sc.n("zoey") + ". ",
+            text: "You need to prove your love and vagina for ##zoey##. ",
             button: [
                 { chatID: -1, text: "[Needed to progress 'Wives?, Our forever']", callback: "" }
             ]
@@ -919,7 +919,7 @@ room975.chat = function (chatID) {
         {
             chatID: 28,
             speaker: "!nar",
-            text: "Do you want to spend your happily ever after with " + sc.n("zoey") + "?",
+            text: "Do you want to spend your happily ever after with ##zoey##?",
             button: [
                 { chatID: -1, text: "We will make such a cute pair of lesbians! ", callback: "sel_zoey" },
                 { chatID: -1, text: "Let me look at my other options. ", callback: "" },
@@ -937,7 +937,7 @@ room975.chat = function (chatID) {
         {
             chatID: 30,
             speaker: "!nar",
-            text: "After college " + sc.n("bigguy") + " kicked " + sc.n("eva") + " out of the house. " +
+            text: "After college ##bigguy## kicked ##eva## out of the house. " +
                 "After searching for life's meaning she found two bicurious boys with large penises to enjoy a long and orgasmic " +
                 "polyamorous relationship with. ",
             button: [
@@ -947,9 +947,9 @@ room975.chat = function (chatID) {
         {
             chatID: 31,
             speaker: "!nar",
-            text: "...but as time passed and " + sc.n("river") + " moved up to foreman at the construction " +
+            text: "...but as time passed and ##river## moved up to foreman at the construction " +
                 "company and you two felt it was time to start a family. You became a stay-at-home mom " +
-                "to cook, clean, and raise " + sc.n("river") + "'s kids until the day you both grew old. ",
+                "to cook, clean, and raise ##river##'s kids until the day you both grew old. ",
             button: [
                 { chatID: -1, text: "The end", callback: "theend" }
             ]
@@ -957,9 +957,9 @@ room975.chat = function (chatID) {
         {
             chatID: 32,
             speaker: "!nar",
-            text: "...but as time passed and " + sc.n("river") + " moved up to foreman at the construction " +
+            text: "...but as time passed and ##river## moved up to foreman at the construction " +
                 "company and you two felt it was time to adopt a child. You became a stay-at-home mom " +
-                "to cook, clean, and raise " + sc.n("river") + "'s kids until the day you both grew old. ",
+                "to cook, clean, and raise ##river##'s kids until the day you both grew old. ",
             button: [
                 { chatID: -1, text: "The end", callback: "theend" }
             ]
@@ -979,8 +979,8 @@ room975.chat = function (chatID) {
             chatID: 34,
             speaker: "!nar",
             text: "Once word got out that the C.U.M. had to answer for their crimes, all the good " +
-                "sissies under the " + sc.n("queen") + " came to the trial to make " + sc.n("tudor") +
-                " and " + sc.n("ubel") + " answer for their crimes against them. ",
+                "sissies under the ##queen## came to the trial to make ##tudor##" +
+                " and ##ubel## answer for their crimes against them. ",
             button: [
                 { chatID: 29, text: "...", callback: "" }
             ]
@@ -988,10 +988,10 @@ room975.chat = function (chatID) {
         {
             chatID: 35,
             speaker: "!nar",
-            text: "After running and hiding out for a while, " + sc.n("daria") + " and " + sc.n("bodhi") +
-                " eventually settled down in " + sc.n("daria") + "'s cabin. With her father, " +
-                sc.n("tudor") + ", going away she inherited the castle and turned it into a " +
-                "home for all the newly freed sissies. To this day " + sc.n("bodhi") + " is " +
+            text: "After running and hiding out for a while, ##daria## and ##bodhi##" +
+                " eventually settled down in ##daria##'s cabin. With her father, " +
+                "##tudor##, going away she inherited the castle and turned it into a " +
+                "home for all the newly freed sissies. To this day ##bodhi## is " +
                 "still happily serving her every need. ",
             button: [
                 { chatID: -1, text: "...", callback: "endings1" }
@@ -1000,7 +1000,7 @@ room975.chat = function (chatID) {
         {
             chatID: 36,
             speaker: "!nar",
-            text: sc.n("river") + ", for his part, was sentenced to jail for a year where he " +
+            text: "##river##, for his part, was sentenced to jail for a year where he " +
                 "learned humility and compassion from two very horny prison mates. ",
             button: [
                 { chatID: -1, text: "...", callback: "endings1" }
@@ -1009,7 +1009,7 @@ room975.chat = function (chatID) {
         {
             chatID: 37,
             speaker: "!nar",
-            text: "While you never saw " + sc.n("nun") + " again, she is happily living her " +
+            text: "While you never saw ##nun## again, she is happily living her " +
                 "life raising your daughter in a not-too-distant town. Although she is no longer " +
                 "a nun, she has found purpose in her own life. ",
             button: [
@@ -1019,7 +1019,7 @@ room975.chat = function (chatID) {
         {
             chatID: 38,
             speaker: "!nar",
-            text: sc.n("ralph") + "'s time with the cult was hard on him. After he was freed, " +
+            text: "##ralph##'s time with the cult was hard on him. After he was freed, " +
                 "he wandered around the country for some time before coming back to Fetville " +
                 "and found his purpose in the glory hole where he would spend many years of " +
                 "his life relishing the feeling of taking cock after cock. ",
@@ -1030,10 +1030,10 @@ room975.chat = function (chatID) {
         {
             chatID: 39,
             speaker: "!nar",
-            text: sc.n("ralph") + " did finally accept his feminine side and found a man who " +
-                "also found beauty in his femininity in " + sc.n("spanky") + ". After dating for " +
+            text: "##ralph## did finally accept his feminine side and found a man who " +
+                "also found beauty in his femininity in ##spanky##. After dating for " +
                 "only a couple weeks they eloped in the night to Las Vegas and were married by " +
-                "Elvis. " + sc.n("ralph") + " happily helps around the store and those two " +
+                "Elvis. ##ralph## happily helps around the store and those two " +
                 "have more dirty sex together than any couple known to man. ",
             button: [
                 { chatID: -1, text: "...", callback: "endings1" }
@@ -1042,7 +1042,7 @@ room975.chat = function (chatID) {
         {
             chatID: 40,
             speaker: "!nar",
-            text: sc.n("sporty") + " eventually moved to Paris where she's become one of " +
+            text: "##sporty## eventually moved to Paris where she's become one of " +
                 "the biggest porn actresses of our time. She was so famous she played an " +
                 "extra in a prime time show loosely based on her life. Her fetish videos " +
                 "are said to be the best ever made. ",
@@ -1053,9 +1053,9 @@ room975.chat = function (chatID) {
         {
             chatID: 41,
             speaker: "!nar",
-            text: sc.n("jones") + " and " + sc.n("bitch") + " will spend the rest of their " +
+            text: "##jones## and ##bitch## will spend the rest of their " +
                 "lives together. They still enjoy their bondage events together, but " +
-                sc.n("jones") + " has softened and now allows " + sc.n("bitch") + " to share " +
+                "##jones## has softened and now allows ##bitch## to share " +
                 "his bed. ",
             button: [
                 { chatID: -1, text: "...", callback: "endings1" }
@@ -1064,7 +1064,7 @@ room975.chat = function (chatID) {
         {
             chatID: 42,
             speaker: "!nar",
-            text: sc.n("zoey") + " and " + sc.n("stormy") + " have had a long on-again, off-" +
+            text: "##zoey## and ##stormy## have had a long on-again, off-" +
                 "again relationship over the years. While they never did move in together, they " +
                 "both enjoy each other's company and have practiced and perfected the tibbing " +
                 "technique so much so that they both have light calluses on their clits. ",
@@ -1075,10 +1075,10 @@ room975.chat = function (chatID) {
         {
             chatID: 43,
             speaker: "!nar",
-            text: "After " + sc.n("lola") + " finished college, she was able to get a well-paying " +
+            text: "After ##lola## finished college, she was able to get a well-paying " +
                 "office job where she fills spreadsheets with numbers all day. She and " +
-                sc.n("tom") + " are expecting their first child together where the plan is " +
-                "that " + sc.n("tom") + " will be a stay-at-home dad while " + sc.n("lola") +
+                "##tom## are expecting their first child together where the plan is " +
+                "that ##tom## will be a stay-at-home dad while ##lola##" +
                 " pays the bills. ",
             button: [
                 { chatID: 30, text: "...", callback: "extra_eva0" }
@@ -1088,7 +1088,7 @@ room975.chat = function (chatID) {
             chatID: 44,
             speaker: "!nar",
             text: "After getting rejected by you, the father of her child, she found love in " +
-                "the arms of another boy, " + sc.n("tom") + ". She's a stay-at-home mother and " +
+                "the arms of another boy, ##tom##. She's a stay-at-home mother and " +
                 "they are expecting their second child in the next nine months. ",
             button: [
                 { chatID: 30, text: "...", callback: "extra_eva0" }
@@ -1097,7 +1097,7 @@ room975.chat = function (chatID) {
         {
             chatID: 45,
             speaker: "!nar",
-            text: "Your " + sc.n("landlord") + ", " + sc.n("lola") + ", and " + sc.n("eva") +
+            text: "Your ##landlord##, ##lola##, and ##eva##" +
                 " all gave birth around the same time. Wisely they gave the three children up " +
                 "for adoption so they could continue their new lifestyle of copious amounts of " +
                 "sex all the time by their many many suitors. ",
@@ -1118,7 +1118,7 @@ room975.chat = function (chatID) {
             chatID: 47,
             speaker: "!nar",
             text: "When you two aren't out there busting bad guys, and sometimes girls, you're serving all of " +
-                sc.n("missy") + "'s most intimate needs. ",
+                "##missy##'s most intimate needs. ",
             button: [
                 { chatID: -1, text: "The end", callback: "theend" }
             ]
@@ -1126,7 +1126,7 @@ room975.chat = function (chatID) {
         {
             chatID: 48,
             speaker: "!nar",
-            text: "In the evenings you and " + sc.n("kinsey") + " take turns taking " + sc.n("horse") +
+            text: "In the evenings you and ##kinsey## take turns taking ##horse##" +
                 "'s giant horse cock. ",
             button: [
                 { chatID: -1, text: "The end", callback: "theend" }

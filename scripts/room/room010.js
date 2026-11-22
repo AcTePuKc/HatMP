@@ -1870,7 +1870,7 @@ room10.chat = function (chatID) {
                 text: "*sigh* {me}, don't harass your {el}. If I have to come up here again, you're out of here. DON'T interrupt my shows again! ",
                 l10nValues: { me: sc.n("me"), el: sc.el() },
                 button: [
-                    { chatID: -1, text: "Yes " + sc.n("landlord") + ". ", callback: "reset" },
+                    { chatID: -1, text: "Yes ##landlord##. ", callback: "reset" },
                 ]
             },
             {

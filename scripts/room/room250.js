@@ -25,7 +25,7 @@ room250.main = function () {
                 chat(12, 250);
             }
         }
-        else if (sc.getMission("dolly", "mad").complete()) {
+        else if (sc.getMission("dolly", "mad").success) {
             nav.bg("250_beaver/hollymad.jpg");
             chat(19, 250);
         }
@@ -41,6 +41,19 @@ room250.main = function () {
             }, 250);
             chat(21, 250);
         }
+    }
+    else if (missy.getenvelope("jeffery").active) {
+        nav.button({
+            "type": "btn",
+            "name": "hollyStand",
+            "left": 1094,
+            "top": 77,
+            "width": 540,
+            "height": 1003,
+            "image": "250_beaver/holly_stand_mad.png"
+        }, 250);
+        chat(26, 250);
+        nav.buildnav([0]);
     }
     else {
         if (sc.getMission("holly", "mad").fail) {

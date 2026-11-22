@@ -1008,8 +1008,8 @@ room501.chat = function (chatID) {
                         "as some kind of stripper!  He even said I did not have to do the blow job to get the job. " +
                         "I worked my bottom off at my bar and he wants me to throw " +
                         "it away for him. " +
-                        " Putain de connard. Talking with the girls it seems like that " + sc.n("ubel") +
-                        " man hates " + sc.n("tony") + ". Something about power, I do not know. He is hated and would not " +
+                        " Putain de connard. Talking with the girls it seems like that ##ubel##" +
+                        " man hates ##tony##. Something about power, I do not know. He is hated and would not " +
                         "know the code.",
                     button: [
                         { chatID: 700, text: "ok", l10nKey: "room.501.list.next", callback: "zLook" }
@@ -1834,7 +1834,7 @@ room501.chat = function (chatID) {
             {
                 chatID: 92,
                 speaker: "zoey",
-                text: "I am so angry at " + sc.n("chloe") + ", but I knew it! I knew she was always " +
+                text: "I am so angry at ##chloe##, but I knew it! I knew she was always " +
                     "a cheater! And you! You did not have to sex her to find out! You could have just " +
                     "told me they were at the club. I should be mad at you, but you did what I asked. " +
                     "I am not heureuse with you, but I am not mad. Right now I am just tired. So very " +
@@ -1904,7 +1904,7 @@ room501.chat = function (chatID) {
             {
                 chatID: 99,
                 speaker: "zoey",
-                text: "Is not " + sc.n("stormy") + " une zouz? Love how fun she is, but she " +
+                text: "Is not ##stormy## une zouz? Love how fun she is, but she " +
                     "can be so mean... I think I like that about her. Oh, feel free to sleep " +
                     "over when ever you want. Ma maison est ta maison. No touching ma foufoune. ", l10nValues: { stormy: sc.n("stormy") },
                 button: [
@@ -1914,7 +1914,7 @@ room501.chat = function (chatID) {
             {
                 chatID: 100,
                 speaker: "zoey",
-                text: sc.n("stormy") + " asked if you want to watch us have dirty sex. C'est à toi. " +
+                text: "##stormy## asked if you want to watch us have dirty sex. C'est à toi. " +
                     "Meet me at the bar if you want to watch us. Bring some handcuffs and wear " +
                     "a dispositif de chasteté... uh chastity... uh thing. ", l10nValues: { stormy: sc.n("stormy") },
                 button: [

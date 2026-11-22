@@ -650,7 +650,7 @@ room408.chat = function (chatID) {
         {
             chatID: 19,
             speaker: "stormy",
-            text: "That's my " + sc.n("charlie") + ". He's a perv, but one of the good ones. He offers to take me to " +
+            text: "That's my ##charlie##. He's a perv, but one of the good ones. He offers to take me to " +
                 "C.U.M. At first I didn't want to go, but he convinced me to just attend one sermon and if I didn't like " +
                 "it he would pay me for coming. So I ended up going and met so many great people! Ubel really is a visionary. " +
                 "I guess you could say I found my place. Azrael will bring about equality for us all. ",
@@ -735,8 +735,8 @@ room408.chat = function (chatID) {
         {
             chatID: 28,
             speaker: "stormy",
-            text: "So I don't know how to get there 'cause " + sc.n("daddy") + " always drives me, but I do know the code to " +
-                "get into the compound. " + sc.n("daddy") + " makes me hop out and open the door since I ride shotgun. It " +
+            text: "So I don't know how to get there 'cause ##daddy## always drives me, but I do know the code to " +
+                "get into the compound. ##daddy## makes me hop out and open the door since I ride shotgun. It " +
                 "would be fun to see you there.. I really shouldn't.",
             l10nValues: { daddy: sc.n("daddy") },
             button: [
@@ -756,7 +756,7 @@ room408.chat = function (chatID) {
         {
             chatID: 30,
             speaker: "me",
-            text: sc.n("stormy") + " I've been lost for a long time, and I think I can find myself with C.U.M. " +
+            text: "##stormy## I've been lost for a long time, and I think I can find myself with C.U.M. " +
                 "I'm just so scared to go with everyone around. I just want to take a look and know that it's safe for me " +
                 "without any pressure. I know I'll find what I've been searching for once I can get a peek. ",
             l10nValues: { stormy: sc.n("stormy") },
@@ -811,7 +811,7 @@ room408.chat = function (chatID) {
             chatID: 36,
             speaker: "stormy",
             text: "I know meeting a big group is scary, but they're all very nice and you'll fit right in. I can tell. " +
-                "besides I don't even know how to get in. " + sc.n("daddy") + " or " + sc.n("charlie") + " take me there " +
+                "besides I don't even know how to get in. ##daddy## or ##charlie## take me there " +
                 "since I don't have a ride, and I don't know how to get in without them. ",
             l10nValues: { daddy: sc.n("daddy"), charlie: sc.n("charlie") },
             button: [
@@ -925,7 +925,7 @@ room408.chat = function (chatID) {
         {
             chatID: 49,
             speaker: "elijah",
-            text: "Is that " + sc.n("me") + "!!! I'm so glad you're here! Oh wow! Sorry about running " +
+            text: "Is that ##me##!!! I'm so glad you're here! Oh wow! Sorry about running " +
                 "off on you. I was just shocked. I've been thinking about you every day since. You're so " +
                 "beautiful and wonderful. Did I say how glad I am that I found you? ",
             l10nValues: { me: sc.n("me") },
@@ -945,7 +945,7 @@ room408.chat = function (chatID) {
             chatID: 51,
             speaker: "elijah",
             text: "Haha. I'm not going to date my step sister. Gross. " +
-                sc.n("stormy") + "'s just letting me crash here for a bit. " +
+                "##stormy##'s just letting me crash here for a bit. " +
                 "I totally lost my job and ended up losing my apartment " +
                 "trying to get even with that asshole, Mr. Rex! I'll make him pay for what he did to " +
                 "My sister, Reya! ",
@@ -1108,7 +1108,7 @@ room408.chat = function (chatID) {
         {
             chatID: 68,
             speaker: "molly",
-            text: sc.n("elijah") + ", you're on a date with the most wonderful girl we've ever met. " +
+            text: "##elijah##, you're on a date with the most wonderful girl we've ever met. " +
                 "You sure are a lucky boy, just treat her right ok. I'll go get your food.",
             l10nValues: { elijah: sc.n("elijah") },
             button: [
@@ -1166,7 +1166,7 @@ room408.chat = function (chatID) {
         {
             chatID: 74,
             speaker: "stormy",
-            text: "Looking for my step bro, " + sc.n("elijah") + "? He found a place at the homeless camp. Last tent in the " +
+            text: "Looking for my step bro, ##elijah##? He found a place at the homeless camp. Last tent in the " +
                 "middle. It is really nice. You should go see him. I haven't seen him this happy since " +
                 "our dad died. ",
             l10nValues: { elijah: sc.n("elijah") },

@@ -1269,7 +1269,7 @@ room601.chat = function (chatID) {
         {
             chatID: 18,
             speaker: "!chris",
-            text: "Hi daddy. I brought my friend, " + sc.n("me") + ". She's the one I told " +
+            text: "Hi daddy. I brought my friend, ##me##. She's the one I told " +
                 "you about. One of the few girls dirtier than me and we're going to do " +
                 "anything you want daddy.", l10nValues: { me: sc.n("me") },
             button: [

@@ -2997,7 +2997,7 @@ room14.chat = function (chatID) {
             {
                 chatID: 188,
                 speaker: "me",
-                text: "Maybe we're taking this too far. I should go take a cold shower. Love you " + sc.n("landlord") +
+                text: "Maybe we're taking this too far. I should go take a cold shower. Love you ##landlord##" +
                     ". ",
                 button: [
                     { chatID: -1, text: "...", callback: "leave" },
@@ -3015,7 +3015,7 @@ room14.chat = function (chatID) {
                 chatID: 190,
                 speaker: "thinking",
                 text: "This should let her sleep better. She's so tired she doesn't even have the energy to " +
-                    "clean the cum from her pussy. Sleep well " + sc.n("landlord") + ". ",
+                    "clean the cum from her pussy. Sleep well ##landlord##. ",
                 button: [
                     { chatID: -1, text: "...", callback: "reset" },
                 ]

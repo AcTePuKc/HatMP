@@ -312,7 +312,7 @@ room51.chat = function (chatID) {
         {
             chatID: 1,
             speaker: "candy",
-            text: "Oh awesome, it's " + sc.n("me") + "! I was hoping we could play with him! He looked like so much fun at the store! What is that " +
+            text: "Oh awesome, it's ##me##! I was hoping we could play with him! He looked like so much fun at the store! What is that " +
             "thing he's wearing?",
             l10nValues: { me: sc.n("me") },
             button: [
@@ -338,7 +338,7 @@ room51.chat = function (chatID) {
         {
             chatID: 4,
             speaker: "candy",
-            text: "Hahaha you are so silly! Why do boys like you always fall for the ugly dress game? You really are the worst, " + sc.n("tiffany") +
+            text: "Hahaha you are so silly! Why do boys like you always fall for the ugly dress game? You really are the worst, ##tiffany##" +
                 "! Picking on this simple silly boy!",
             l10nValues: { tiffany: sc.n("tiffany") },
             button: [
@@ -372,7 +372,7 @@ room51.chat = function (chatID) {
         {
             chatID: 8,
             speaker: "candy",
-            text: "Aww, you poor thing. You know he's got such a pretty face. He's really pulling off that dress. So " + sc.n("me") + ", do you want " +
+            text: "Aww, you poor thing. You know he's got such a pretty face. He's really pulling off that dress. So ##me##, do you want " +
                 "to show me what you have under there?",
             l10nValues: { me: sc.n("me") },
             button: [
@@ -392,7 +392,7 @@ room51.chat = function (chatID) {
             chatID: 10,
             speaker: "candy",
             text: "Hahaha, we're not going to take off our clothes for you! You should be happy just being here with us. We both can fuck " +
-                "much hotter and manlier men than you. " + sc.n("tiffany") + " brought you here 'cause we get bored fucking big hot guys all the time, " +
+                "much hotter and manlier men than you. ##tiffany## brought you here 'cause we get bored fucking big hot guys all the time, " +
                 "she thought you might be fun.",
             l10nValues: { tiffany: sc.n("tiffany") },
             button: [
@@ -402,7 +402,7 @@ room51.chat = function (chatID) {
         {
             chatID: 11,
             speaker: "tiffany",
-            text: sc.n("missy") + " told me what a sissy you were! I've always wanted to have a sissy best friend that I could dress up, " +
+            text: "##missy## told me what a sissy you were! I've always wanted to have a sissy best friend that I could dress up, " +
             "tease, and play with. That's why I brought you here!",
             l10nValues: { missy: sc.n("missy") },
             button: [
@@ -595,7 +595,7 @@ room51.chat = function (chatID) {
         {
             chatID: 34,
             speaker: "tiffany",
-            text: sc.n("candy") + "!!! You're going to scare the poor boy! No one is cutting off your boy cock. Let's see the back side, " +
+            text: "##candy##!!! You're going to scare the poor boy! No one is cutting off your boy cock. Let's see the back side, " +
             "turn around girl.",
             l10nValues: { candy: sc.n("candy") },
             button: [

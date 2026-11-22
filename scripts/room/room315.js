@@ -36,7 +36,7 @@ room315.btnclick = function (name) {
                 char.room(316);
             }
             else if (g.gethourdecimal() > 22 || g.gethourdecimal() < 6) {
-                if (inv.has("keyJanice")) 
+                if (inv.has("keyJanice"))
                     chat(28, 315)
                 else if (inv.has("lockpick"))
                     chat(15, 315);
@@ -48,34 +48,30 @@ room315.btnclick = function (name) {
                 nav.bg("315_girlfriend/day.jpg", "315_girlfriend/night.jpg");
                 chat(14, 315);
             }
-            else if (gv.get("cultEscape") !== null) {
-                let currentEvent = sc.taskGetStepEndMission("janice");
-                switch (currentEvent.missionName) {
-                    case "*boyfriend":
-                        nav.bg("315_girlfriend/bg.jpg", "315_girlfriend/bg_night.jpg");
-                        nav.button({
-                            "type": "img",
-                            "name": "janice",
-                            "left": 958,
-                            "top": 0,
-                            "width": 728,
-                            "height": 1080,
-                            "image": "315_girlfriend/boyfriend.webp"
-                        }, 315);
-                        if (currentEvent.step < 1) {
-                            sc.completeMissionTask("janice", "*boyfriend", 0);
-                            chat(29, 315);
-                        }
-                        else {
-                            chat(32, 315);
-                        }
-                        break;
-                    case "*doggy":
-                    case "*cuck":
-                        nav.bg("315_girlfriend/day.jpg", "315_girlfriend/night.jpg")
-                        chat(33, 315);
-                        break;
+            else if (sc.getMission("janice", "*boyfriend").inProgress) {
+                nav.bg("315_girlfriend/bg.jpg", "315_girlfriend/bg_night.jpg");
+                nav.button({
+                    "type": "img",
+                    "name": "janice",
+                    "left": 958,
+                    "top": 0,
+                    "width": 728,
+                    "height": 1080,
+                    "image": "315_girlfriend/boyfriend.webp"
+                }, 315);
+                if (sc.getMissionTask("janice", "*boyfriend", 0).notStarted) {
+                    sc.completeMissionTask("janice", "*boyfriend", 0);
+                    chat(29, 315);
                 }
+                else {
+                    chat(32, 315);
+                }
+            }
+            else if (sc.getMission("janice", "*doggy").inProgress &&
+                !sc.getMissionTask("janice", "*doggy", 0).fail) {
+                nav.kill();
+                nav.bg("315_girlfriend/day.jpg", "315_girlfriend/night.jpg");
+                chat(33, 315);
             }
             else if (sc.taskGetStep("janice", "femdom") === 1) {
                 sc.completeMissionTask("janice", "femdom", 1);
@@ -217,7 +213,7 @@ room315.chatcatch = function (callback) {
             char.room(316);
             break;
         case "room323":
-            char.room(323);
+            char.room(324);
             break;
         default:
             break;
@@ -527,6 +523,14 @@ room315.chat = function (chatID) {
             text: "Hey sexy! Come on in! ",
             button: [
                 { chatID: -1, text: "[Go in]", callback: "room323" },
+            ]
+        },
+        {
+            chatID: 34,
+            speaker: "janice",
+            text: "Story coming around! I hate you. You were never a good doggy!",
+            button: [
+                { chatID: -1, text: "ok", callback: "leave" },
             ]
         },
     ];

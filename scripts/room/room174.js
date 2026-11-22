@@ -1422,7 +1422,7 @@ room174.chat = function (chatID) {
                 speaker: "eva",
                 l10nValues: { lola: sc.n("lola") },
                 text: "Oh hahahaha! I know what she wants! You want to dyke out with us don't you? " +
-                    "What do you think " + sc.n("lola") + ", does she want to learn how to be a girl " +
+                    "What do you think ##lola##, does she want to learn how to be a girl " +
                     "or get a taste of our girl dicks? ",
                 button: [
                     { chatID: 66, text: "oh. uhhh. yeah", callback: "" },
@@ -1517,7 +1517,7 @@ room174.chat = function (chatID) {
                 l10nValues: { lola: sc.n("lola") },
                 text: "Sometimes I think you're just this pervert that is trying to sneak into the " +
                     "girls locker room, but sometimes I think you're a girl, like the way you kiss. " +
-                    "It's so feminine, like " + sc.n("lola") + ". ",
+                    "It's so feminine, like ##lola##. ",
                 button: [
                     { chatID: -1, text: "MMmmMMmm", callback: "evalolateachme" },
                 ]
@@ -1614,7 +1614,7 @@ room174.chat = function (chatID) {
             {
                 chatID: 86,
                 speaker: "eva",
-                text: "Sweet! We usually take turns. I'll blow " + sc.n("lola") + " first! ",
+                text: "Sweet! We usually take turns. I'll blow ##lola## first! ",
                 button: [
                     { chatID: 87, text: "ok!", callback: "el_bj0" },
                 ]
@@ -1624,7 +1624,7 @@ room174.chat = function (chatID) {
                 speaker: "eva",
                 l10nValues: { lola: sc.n("lola"), me: sc.n("me") },
                 text: "She's so gentle with her dick. I wish guys were this nice when they put their " +
-                    "dicks in my mouth. Now " + sc.n("lola") + " it's your turn to blow " + sc.n("me") +
+                    "dicks in my mouth. Now ##lola## it's your turn to blow ##me##" +
                     ". You'll love her blow jobs. She's so caring when she sucks a dick. ",
                 button: [
                     { chatID: 88, text: "sweet!", callback: "el_bj1" },
@@ -1740,9 +1740,9 @@ room174.chat = function (chatID) {
             {
                 chatID: 100,
                 speaker: "thinking",
-                l10nValues: { els: sc.n("els") },
-                text: "I love how her ass is just out waiting to let me eat it. My " + sc.n("els") +
-                    "are the best! ",
+                l10nValues: { els: sc.els("lower") },
+                text: "I love how her ass is just out waiting to let me eat it. My " + sc.els("lower") +
+                    " are the best! ",
                 button: [
                     { chatID: -1, text: "Eat that pussy!", callback: "el_twat1" },
                 ]
@@ -1903,8 +1903,8 @@ room174.chat = function (chatID) {
             {
                 chatID: 119,
                 speaker: "chad",
-                l10nValues: { els: sc.n("els") },
-                text: "Fuck yeah! My best girl friend and her two " + sc.n("els") + "! All of you, " +
+                l10nValues: { els: sc.els("lower") },
+                text: "Fuck yeah! My best girl friend and her two " + sc.els("lower") + "! All of you, " +
                     "up on the bed. Face down ass up. I want to see what I'm working with! ",
                 button: [
                     { chatID: 120, text: "*blush*", callback: "sissy1" },
@@ -2114,7 +2114,7 @@ room174.chat = function (chatID) {
                 speaker: "chad",
                 l10nValues: { landlord: sc.n("landlord") },
                 text: "Isn't that beautiful! Four cream filled cum dumpsters! I guess it's true what " +
-                    "they say about that girls do follow after their " + sc.n("landlord") + ". ",
+                    "they say about that girls do follow after their ##landlord##. ",
                 button: [
                     { chatID: 142, text: "...", callback: "" },
                 ]

@@ -1033,8 +1033,8 @@ room876.chat = function (chatID) {
                 speaker: "thinking", l10nValues: { stacy: sc.n("stacy"), courtney: sc.n("courtney") },
                 text: "I really thought they accepted me, instead I'm just a washing machine for them to clean their " +
                     "dirty spankies. Those girls are such bitches. I'm going to show them. I'm going to practice and be " +
-                    "the best cheerleader. Everyone will know how awesome I am and how terrible " + sc.n("stacy") + 
-                    " and " + sc.n("courtney") + " are. They're going to see!",
+                    "the best cheerleader. Everyone will know how awesome I am and how terrible ##stacy##" + 
+                    " and ##courtney## are. They're going to see!",
                 button: [
                     { chatID: -1, text: "[Finish up and go home]", callback: "routine1_7" }
                 ]
@@ -1506,7 +1506,7 @@ room876.chat = function (chatID) {
                 chatID: 119,
                 speaker: "thinking", l10nValues: { candy: sc.n("candy") },
                 text: "That was unexpected. I wonder if they person that fucks me will be mad that I have balls? Maybe I'll take " +
-                    sc.n("candy") + "'s place so Jarome just fucks me in the ass. He didn't see to check, just shoved it right in, " +
+                    "##candy##'s place so Jarome just fucks me in the ass. He didn't see to check, just shoved it right in, " +
                     "maybe he won't notice my balls...",
                 button: [
                     { chatID: 120, text: "...", callback: "cheer6_8" }

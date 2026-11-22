@@ -621,7 +621,7 @@ room326.chat = function (chatID) {
         {
             chatID: 26,
             speaker: "security",
-            text: "Stop right there scum! " + sc.n("rachel") + " sent me to make sure you weren't sucking that horse's cock. " +
+            text: "Stop right there scum! ##rachel## sent me to make sure you weren't sucking that horse's cock. " +
                 "Gross, you little weird-o. Put your clothes back on and get out of here before you take a beating. ",
             l10nValues: { rachel: sc.n("rachel") },
             button: [

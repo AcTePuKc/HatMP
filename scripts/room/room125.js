@@ -2043,7 +2043,7 @@ room125.chat = function (chatID) {
             {
                 chatID: 100,
                 speaker: "me",
-                text: sc.n("jimmy") + " can you do me a solid. I need to save some people from the cult. " +
+                text: "##jimmy## can you do me a solid. I need to save some people from the cult. " +
                     "Do you know the code to the back gate? ",
                 l10nValues: { jimmy: sc.n("jimmy") },
                 button: [

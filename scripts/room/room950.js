@@ -1844,7 +1844,7 @@ room950.chat = function (chatID) {
                 chatID: 65,
                 speaker: "missy", l10nValues: { martin: sc.n("!martin") },
                 text: "We don't have a lot of time, I had to rush my plan so your dumb ass didn't kill " +
-                    "poor " + sc.n("!martin") + " here. Just follow me and don't stop running!",
+                    "poor ##!martin## here. Just follow me and don't stop running!",
                 button: [
                     { chatID: -1, text: "Yeah!", callback: "room954" },
                 ]
@@ -1942,7 +1942,7 @@ room950.chat = function (chatID) {
                 chatID: 77,
                 speaker: "daria", l10nValues: { me: sc.n("me") },
                 text: "Oh hahaha. You almost got me. I almost totally let you out. Almost. So I was asking around about you. Are you " +
-                    sc.n("me") + "?",
+                    "##me##?",
                 button: [
                     { chatID: 78, text: "Yes, that's me. ", callback: "" }
                 ]
@@ -2493,7 +2493,7 @@ room950.chat = function (chatID) {
                 speaker: "priest", l10nValues: { ubel: sc.n("ubel") },
                 text: "Oh yeah. Can you feel my penis growing hard in your mouth? I spent so many years " +
                     "denying my own humanity. The need for sexual gratification until I figured out the " +
-                    "answer. Admittedly " + sc.n("ubel") + " assisted in my epiphany. Turn around " +
+                    "answer. Admittedly ##ubel## assisted in my epiphany. Turn around " +
                     "show me your anus. I do love seeing a bare anus winking at me. ",
                 button: [
                     { chatID: 142, text: "*suck* *slurp*", callback: "priest5" }

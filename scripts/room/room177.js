@@ -277,7 +277,7 @@ room177.chat = function (chatID) {
             l10nValues: { p: sc.n("p") },
             text: "I wanted to ask you about that. I am totally under your control, but I like having a penis. C-c-c-could I maybe " +
                 "not do chastity? I promise not to have sex with anyone unless I ask first. And you let me. It's just I really " +
-                "like having a penis. I like the other stuff too. Mostly I like dressing up, and " + sc.n("p") + "'s classes are " +
+                "like having a penis. I like the other stuff too. Mostly I like dressing up, and ##p##'s classes are " +
                 "fun. But I was wondering if I can keep my penis. Please. I er mean please ma'am. ",
             button: [
                 { chatID: 8, text: "...", callback: "" }

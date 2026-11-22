@@ -837,7 +837,7 @@ room7.chat = function (chatID) {
             return {
                 chatID: 999,
                 speaker: "bigguy",
-                text: "You worked off all your rent. You're lucky your " + sc.n("landlord") +
+                text: "You worked off all your rent. You're lucky your ##landlord##" +
                     "is so generous.",
                 button: [
                     { chatID: 9, text: "Sweet! [Wakeup]", callback: "clearRoom" }
@@ -1204,7 +1204,7 @@ room7.chat = function (chatID) {
                 l10nKey: "room.7.eva.analRequest",
                 l10nValues: { landlord: sc.n("landlord") },
                 text: "Put it in my butt. We went off birth control months ago 'cause " +
-                    "it killed our sex drive. " + sc.n("landlord") + " would kill us if " +
+                    "it killed our sex drive. ##landlord## would kill us if " +
                     "she knew, so don't say anything. ",
                 button: [
                     { chatID: 33, l10nKey: "room.7.eva.analRequest.choice", text: "Oh yeah! [Put your dick in her butthole]", callback: "e6" },
@@ -1274,7 +1274,7 @@ room7.chat = function (chatID) {
                 l10nValues: { landlord: sc.n("landlord") },
                 text: "What was that! I might have thrown myself at him, but he " +
                     "didn't need to be so rough! Didn't care about me at all! Worst " +
-                    "of all I made him cheat on my " + sc.n("landlord") + "! I don't know if I " +
+                    "of all I made him cheat on my ##landlord##! I don't know if I " +
                     "should tell her. Maybe I should just keep it a secret. I don't want her to " +
                     "hate me forever. ",
                 button: [

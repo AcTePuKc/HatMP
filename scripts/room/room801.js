@@ -204,7 +204,7 @@ room801.chat = function (chatID) {
             chatID: 0,
             speaker: "ralphsdad", l10nValues: { ralph: sc.n("ralph") },
             text: "Hey champ! Just watching the big game. I guess you came over to see my boy " +
-                sc.n("ralph") + "! You'll find him upstairs playing in his room. You know you " +
+                "##ralph##! You'll find him upstairs playing in his room. You know you " +
                 "boys should go outside and play a bit. A little kick ball is good for ya. ",
             button: [
                 { chatID: -1, text: "Sure " + sc.n("ralphsdad") + ". Maybe we will. ", l10nValues: { ralphsdad: sc.n("ralphsdad") }, callback: "" }
@@ -360,7 +360,7 @@ room801.chat = function (chatID) {
             chatID: 17,
             speaker: "ralphsdad", l10nValues: { ralph: sc.n("ralph") },
             text: "You're so soft in all the right places. I could squeeze you forever, " +
-                "but you should go see " + sc.n("ralph") + ". ",
+                "but you should go see ##ralph##. ",
             button: [
                 { chatID: -1, text: "uuuh, yeah. I'll go see " + sc.n("ralph") + ".", l10nValues: { ralph: sc.n("ralph") }, callback: "reset" },
             ]
@@ -377,7 +377,7 @@ room801.chat = function (chatID) {
             chatID: 19,
             speaker: "thinking", l10nValues: { ralphsmom: sc.n("ralphsmom") },
             text: "hmmm! Is he kissing me? And fondling my chest. He's squeezing me so " +
-                "tight I can't pull away. What if " + sc.n("ralphsmom") + " walked in. " +
+                "tight I can't pull away. What if ##ralphsmom## walked in. " +
                 "She would totally kill me! I should pull away.. He's too strong, I can't.",
             button: [
                 { chatID: 20, text: "...", callback: "kiss2" },

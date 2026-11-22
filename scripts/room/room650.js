@@ -613,8 +613,8 @@ room650.chat = function (chatID) {
         {
             chatID: 26,
             speaker: "candy",
-            text: "Yeah. Me and " + sc.n("tiffany") + " bought the store a year ago. We were working at Popular Girl " +
-                "and hated our shifts, so we said 'fuck it, lets buy our own store.' So we talked to " + sc.n("charlie") +
+            text: "Yeah. Me and ##tiffany## bought the store a year ago. We were working at Popular Girl " +
+                "and hated our shifts, so we said 'fuck it, lets buy our own store.' So we talked to ##charlie##" +
                 " and he agreed to sell it to us, and even agreed to work nights a weekends. He says he hates doing the " +
                 "books and there's more pussy during the nights and weekends. So we got it for cheap. So awesome!", l10nValues: { tiffany: sc.n("tiffany"), charlie: sc.n("charlie") },
             button: [
@@ -851,7 +851,7 @@ room650.chat = function (chatID) {
         {
             chatID: 53,
             speaker: "thinking",
-            text: "I hope " + sc.n("missy") + " appreciates what I have to do to free her. " + sc.n("charlie") + " is such " +
+            text: "I hope ##missy## appreciates what I have to do to free her. ##charlie## is such " +
                 "a creep and he smells bad. Oh well, here I go being a whore again. I'll try to convince him I would make " +
                 "the perfect Milk Maiden so he'll tell me how to get in the compound. ", l10nValues: { missy: sc.n("missy"), charlie: sc.n("charlie") },
             button: [

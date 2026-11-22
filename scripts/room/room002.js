@@ -459,9 +459,9 @@ room2.chat = function(chatID){
             chatID: 0,
             speaker: "thinking",
             l10nKey: "release.notice.body",
-            text: "This release ends after the Sissy School final.",
+            text: "The story continues beyond the Sissy School final. Some storylines are still in development.",
             button: [
-                { chatID: -1, l10nKey: "release.notice.continue", text: "Next release around October", callback: "proceed" }
+                { chatID: -1, l10nKey: "release.notice.continue", text: "Continue", callback: "proceed" }
             ]
         },
     ];

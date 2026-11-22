@@ -155,7 +155,7 @@ var l10n = (function () {
         return { parsed: safeKey.error || safeKey.branched ? messageFormat.parse("") : safeKey, language: "en" };
     }
 
-    function translate(key, fallback, values) {
+    function translate(key, fallback, values, chatNames) {
         var resolved = resolveMessage(key, fallback);
         // Resolve at display time, including appearance mode; do not cache player state.
         // Select before interpolation so player-entered values cannot become grammar.
@@ -164,8 +164,15 @@ var l10n = (function () {
         var message = messageFormat.render(resolved.parsed, feminine);
         if (values || /\{(?:el|els|landlady):[a-zA-Z0-9_]+\}/.test(message)) {
             message = message.replace(/\{([a-zA-Z0-9_]+)(?::([a-zA-Z0-9_]+))?\}/g, function (token, name, form) {
-                if (!form && values && Object.prototype.hasOwnProperty.call(values, name))
+                if (!form && values && Object.prototype.hasOwnProperty.call(values, name)) {
+                    // Keep character IDs until the chat renderer can add the name card.
+                    // Inflected relationship forms and other dynamic values remain plain text.
+                    if (chatNames && typeof sc !== "undefined" && Array.isArray(sc.char) &&
+                        sc.char.some(function (character) { return character.name === name; }) &&
+                        values[name] === sc.n(name))
+                        return "##" + name + "##";
                     return escapeHtml(values[name]);
+                }
                 if (form && typeof sc !== "undefined") {
                     if (name === "el" && typeof sc.el === "function")
                         return escapeHtml(sc.el(form));
@@ -514,14 +521,14 @@ var l10n = (function () {
         var textKey = entry.l10nKey || (prefix + ".text");
         copy.textLanguage = messageLanguage(textKey);
         copy.text = entry.text
-            ? translate(textKey, entry.text, entry.l10nValues)
+            ? translate(textKey, entry.text, entry.l10nValues, true)
             : entry.text;
         copy.button = (entry.button || []).map(function (button, index) {
             var localizedButton = Object.assign({}, button);
             var key = button.l10nKey || (prefix + ".choice." + index);
             localizedButton.textLanguage = messageLanguage(key);
             if (button.text)
-                localizedButton.text = translate(key, button.text, button.l10nValues);
+                localizedButton.text = translate(key, button.text, button.l10nValues, true);
             return localizedButton;
         });
         return copy;

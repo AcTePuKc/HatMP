@@ -110,6 +110,7 @@ privateChat.resetButtons = function () {
 };
 
 privateChat.hideOverlay = function () {
+    privateChat.hideNameCard();
     privateChat.stopSkipping();
     if (typeof dialogue !== "undefined") dialogue.show(false);
     privateChat.currentEntry = null;
@@ -231,8 +232,11 @@ privateChat.makeChat = function (entry, chatID, roomID, record) {
         }
         var counter = 0;
         privateChat.resetButtons();
-        $('#room_footerSpeach').html(entry.text).attr('lang', entry.textLanguage || l10n.getLanguage());
-        if (entry.text && entry.text.indexOf("data-glossary-id") !== -1)
+        privateChat.hideNameCard();
+        var renderedText = typeof sc !== "undefined" && typeof sc.replaceChat === "function"
+            ? sc.replaceChat(entry.text) : entry.text;
+        $('#room_footerSpeach').html(renderedText).attr('lang', entry.textLanguage || l10n.getLanguage());
+        if (renderedText && renderedText.indexOf("data-glossary-id") !== -1)
             l10n.applyGlossaryMarkup(document.getElementById("room_footerSpeach"));
         var speakerImg;
         if (thisSpeaker.layers) {
@@ -251,7 +255,9 @@ privateChat.makeChat = function (entry, chatID, roomID, record) {
         }
         else {
             $.each(entry.button, function (i, v) {
-                privateChat.setButton(i, v.text, v.chatID, roomID, v.callback, v.textLanguage);
+                var buttonText = typeof sc !== "undefined" && typeof sc.replaceChat === "function"
+                    ? sc.replaceChat(v.text) : v.text;
+                privateChat.setButton(i, buttonText, v.chatID, roomID, v.callback, v.textLanguage);
                 counter++;
             });
         }
@@ -387,6 +393,39 @@ privateChat.speakerButton = function (btn, name, roomNum) {
     });
 };
 
+//Hover (desktop) / tap (mobile) card for ##name## spans in the speech text: face + name.
+privateChat.showNameCard = function (el) {
+    var info = privateChat.speakerInfo(String($(el).data("char")));
+    var face;
+    if (info.layers) {
+        face = '<div class="room-chatSpeaker-layers">';
+        $.each(info.layers, function (i, v) {
+            face += '<img src="./images/mainChar/speaker/' + v + '" />';
+        });
+        face += '</div>';
+    }
+    else
+        face = '<img src="' + info.img + '" />';
+
+    var card = $('#chat_nameCard');
+    if (card.length === 0)
+        card = $('<div id="chat_nameCard" class="chat-nameCard"></div>').appendTo('body');
+    card.html(face + '<div class="chat-nameCard-name"></div>').show();
+    card.find('.chat-nameCard-name').css('color', $(el).css('color')).text($(el).text());
+
+    var rect = el.getBoundingClientRect();
+    var left = rect.left + rect.width / 2 - card.outerWidth() / 2;
+    left = Math.max(4, Math.min(left, window.innerWidth - card.outerWidth() - 4));
+    var top = rect.top - card.outerHeight() - 8;
+    if (top < 4)
+        top = rect.bottom + 8;
+    card.css({ left: left + "px", top: top + "px" });
+};
+
+privateChat.hideNameCard = function () {
+    $('#chat_nameCard').hide();
+};
+
 privateChat.skipChat = function () {
     if (typeof dialogue !== "undefined" && (dialogue.isOpen() || dialogue.isHidden())) {
         privateChat.stopSkipping();
@@ -456,6 +495,21 @@ $(document).ready(function () {
                 }
             }
         }
+    });
+
+    $(document).on('mouseenter', '#room_footerSpeach .chat-name', function () {
+        privateChat.showNameCard(this);
+    });
+    $(document).on('mouseleave', '#room_footerSpeach .chat-name', function () {
+        privateChat.hideNameCard();
+    });
+    $(document).on('click', '#room_footerSpeach .chat-name', function (e) {
+        e.stopPropagation();
+        privateChat.showNameCard(this);
+    });
+    $(document).on('click', function (e) {
+        if ($(e.target).closest('.chat-name').length === 0)
+            privateChat.hideNameCard();
     });
 
     $("#room_chatskip").on('click', function () {

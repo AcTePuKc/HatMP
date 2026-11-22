@@ -965,7 +965,7 @@ room451.chat = function (chatID) {
             "I do love shoving cocks up my bussy!",
             "I wonder if I knew that man...",
             "Why does anal feel so much better than regular sex? ",
-            "If only " + sc.n("cecilia") + " was here to eat my drippy hole. ",
+            "If only ##cecilia## was here to eat my drippy hole. ",
             "I wonder if it's possible to overdose on creampies? ",
             "Everyone should try anal, at least 500 times.",
             "Why am I so anally obsessed!",

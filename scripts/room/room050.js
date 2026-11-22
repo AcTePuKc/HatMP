@@ -379,7 +379,7 @@ room50.chat = function (chatID) {
         {
             chatID: 26,
             speaker: "treyvon",
-            text: sc.n("treyvon") + " only fucks a bitch once. Need to spread my seed far and wide, ya know. " +
+            text: "##treyvon## only fucks a bitch once. Need to spread my seed far and wide, ya know. " +
                 "Start fucking the same bitch too many times and you get hooked. Why do you think I work here. " +
                 "New opportunities keep flowing to this dick. ",
             l10nValues: { treyvon: sc.n("treyvon") },

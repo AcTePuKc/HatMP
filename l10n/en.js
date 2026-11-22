@@ -13,6 +13,7 @@ window.HatMPLocales.en = {
     "completeness": "partial"
   },
   "strings": {
+    "ui.pageTitle": "Hermaphrodity and the Mystery of the Missing Specimens",
     "stats.section.transformation": "Trans",
     "stats.section.abilities": "Abilities",
     "stats.section.skills": "Skills",
@@ -128,8 +129,8 @@ window.HatMPLocales.en = {
     "intro.farewell": "Happy Fapping!",
     "intro.next": "Next",
     "intro.exit": "Exit Game (Underage)",
-    "release.notice.body": "This release ends after the Sissy School final.",
-    "release.notice.continue": "Next release around October",
+    "release.notice.body": "The story continues beyond the Sissy School final. Some storylines are still in development.",
+    "release.notice.continue": "Continue",
     "phone.help.title": "Keyboard Shortcuts",
     "phone.help.glossary": "Glossary",
     "phone.help.shortcuts": "Keyboard Shortcuts",

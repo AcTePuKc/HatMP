@@ -342,7 +342,7 @@ room956.chat = function (chatID) {
             speaker: "dr", l10nValues: { doctor: sc.n("dr") },
             text: "This newest specimen is the finest of the hidden uterus I've ever had! I mean really, " +
                 "it's amazing her penis even existed. Mother nature made a mistake with this one, but I " +
-                sc.n("dr") + " have fixed her mistake! ",
+                "##dr## have fixed her mistake! ",
             button: [
                 { chatID: 25, text: "...", callback: "f6" }
             ]

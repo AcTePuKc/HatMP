@@ -374,7 +374,7 @@ room955.chat = function (chatID) {
                 txt955 = "Hehehe. So where you want this dick? "
                 break;
             case "raven":
-                txt955 = "I'm going to fuck you then fuck your " + sc.n("landlord") + " over and take her property " +
+                txt955 = "I'm going to fuck you then fuck your ##landlord## over and take her property " +
                     "and there isn't a damn thing you can do about it sissy."
                 break;
         }

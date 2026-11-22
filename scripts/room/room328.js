@@ -1182,6 +1182,7 @@ room328.btnclick = function (name) {
                         "image": "328_farm/pig_kinsey_bump.webp"
                     }, 328);
                     nav.next("pig_bump");
+                    break;
                 }
             }
             if (g.map.pig[1] === null) {
@@ -1220,6 +1221,7 @@ room328.btnclick = function (name) {
                     "image": "328_farm/pig_kinsey_bump.webp"
                 }, 328);
                 nav.next("pig_bump");
+                break;
             }
             if (g.map.pig[0] === null) {
                 g.roomTimeout = setTimeout(function () {
@@ -1280,6 +1282,7 @@ room328.btnclick = function (name) {
                         "image": "328_farm/pig_kinsey_bump.webp"
                     }, 328);
                     nav.next("pig_bump");
+                    break;
                 }
                 else {
                     nav.button({

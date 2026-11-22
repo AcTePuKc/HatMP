@@ -778,7 +778,7 @@ room952.chat = function (chatID) {
             chatID: 16,
             speaker: "!timothy", l10nValues: { chris: sc.n("!chris") },
             text: "Those pills really do make us hot. And that penis shrinking cream is the best! So glad " +
-                sc.n("!chris") + " was able to talk the doctor into letting us use it. ",
+                "##!chris## was able to talk the doctor into letting us use it. ",
             button: [
                 { chatID: 17, text: "Penis shrinking cream?", callback: "" }
             ]
@@ -926,7 +926,7 @@ room952.chat = function (chatID) {
             speaker: "daria", l10nValues: { ubel: sc.n("ubel") },
             text: "Oh that. It's funny how word gets around and it's always wrong. The cum bath ritual that brings about the coming " +
                 "of Azrael is done with girl that was born a boy. They have a lot of dumb rituals, but this one is for real. " +
-                sc.n("ubel") + " has figured out how to turn a guy into a full on chick, pussy and everything. ",
+                "##ubel## has figured out how to turn a guy into a full on chick, pussy and everything. ",
             button: [
                 { chatID: 33, text: "Really, how do they do that?", callback: "" }
             ]
@@ -968,7 +968,7 @@ room952.chat = function (chatID) {
             chatID: 36,
             speaker: "daria", l10nValues: { bodhi: sc.n("bodhi") },
             text: "After the way is cleared you'll need to follow me. I know a side trail in the swamp that will take us to the city, but once we reach " +
-                "the city " + sc.n("bodhi") + " and I are going to disappear so you'll be on your own. Now the door to the side entrance is locked and I'll " +
+                "the city ##bodhi## and I are going to disappear so you'll be on your own. Now the door to the side entrance is locked and I'll " +
                 "need your help unlocking it. ",
             button: [
                 { chatID: 37, text: "What do you need from me?", callback: "" }
@@ -1157,7 +1157,7 @@ room952.chat = function (chatID) {
             chatID: 57,
             speaker: "bodhi", l10nValues: { daria: sc.n("daria") },
             text: "I haven't had a normal manly orgasm in almost 2 years! Once you get in touch with your sissy pussy it's the only way! " +
-                "My orgasms are so intense they usually last for 5 minutes. " + sc.n("daria") + " really is the best! ",
+                "My orgasms are so intense they usually last for 5 minutes. ##daria## really is the best! ",
             button: [
                 { chatID: 58, text: "Wow", callback: "" }
             ]
@@ -1348,7 +1348,7 @@ room952.chat = function (chatID) {
             speaker: "!chris", l10nValues: { timothy: sc.n("!timothy") },
             text: "They took her. She's gone",
             button: [
-                { chatID: 80, text: sc.n("!timothy") + "? Where did she go? ", callback: "" },
+                { chatID: 80, text: "##!timothy##? Where did she go? ", callback: "" },
             ]
         },
         {

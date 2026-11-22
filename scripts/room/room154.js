@@ -185,7 +185,7 @@ room154.chat = function (chatID) {
             speaker: "bitch",
             l10nValues: { me: sc.n("me") },
             text: "Gentlemen, your main course. Just give us 5 minutes to place " + gender.pronoun("her") +
-                ". " + sc.n("me") + ", lay down on the table. ",
+                ". ##me##, lay down on the table. ",
             button: [
                 { chatID: 2, text: "Yes ma'am", callback: "c1" }
             ]
@@ -303,7 +303,7 @@ room154.chat = function (chatID) {
             speaker: "bitch",
             l10nValues: { jones: sc.n("jones") },
             text: "Did you hear that? He's going to let me sleep in his room! I've got to clean " +
-                "all this cum out of my butt. Don't want to drip on his floor. " + sc.n("jones") + " gets so " +
+                "all this cum out of my butt. Don't want to drip on his floor. ##jones## gets so " +
                 "mad if this place is dirty! Oh I'm so excited!!!",
             button: [
                 { chatID: 15, text: "...", callback: "c25" },

@@ -563,7 +563,7 @@ room727.chat = function (chatID) {
             {
                 chatID: 24,
                 speaker: "tina",
-                text: "No. " + sc.n("construction") + " let's me sleep in the office, but those outhouses " +
+                text: "No. ##construction## let's me sleep in the office, but those outhouses " +
                     "are so gross I can't stand to go in them. So I come here. Anyway. It's pretty late. I " +
                     "should get home. ", l10nValues: { construction: sc.n("construction") },
                 button: [

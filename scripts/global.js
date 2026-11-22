@@ -11,7 +11,7 @@ g.saveState = null;
 g.startDate = new Date(2012, 0, 1, 0, 0, 0, 0);
 // Save compatibility still follows the upstream 0.28.3 data format.
 g.version = 28.3;
-g.versionText = "0.28.31 - NOV 2026";
+g.versionText = "0.28.32 - NOV 2026";
 g.newLoad = true;
 g.back = false;
 g.altview = false;
@@ -335,6 +335,7 @@ g.rooms = [
     { roomID: 321, name: "GF's Webcam", image: "321_whorechat/bg.jpg", nightImage: "321_whorechat/bg.jpg", houseID: 300, btn: "roomBtn_316.png" },
     { roomID: 322, name: "GF's Living Room", image: "316_livingroom/bg.jpg", nightImage: "316_livingroom/bg.jpg", houseID: 300, btn: "roomBtn_316.png" },
     { roomID: 323, name: "GF's Living Room", image: "316_livingroom/bg.jpg", nightImage: "316_livingroom/bg.jpg", houseID: 300, btn: "roomBtn_316.png" },
+    { roomID: 324, name: "GF's Living Room", image: "316_livingroom/bg.jpg", nightImage: "316_livingroom/bg.jpg", houseID: 300, btn: "roomBtn_316.png" },
 
     { roomID: 325, name: "Farm", image: "325_farm/bg.jpg", nightImage: "325_farm/bg_night.jpg", houseID: 325, btn: "roomBtn_325.png" },
     { roomID: 326, name: "Stable", image: "326_stable/bg1.jpg", nightImage: "326_stable/bg1.jpg", houseID: 325, btn: "roomBtn_326.png" },

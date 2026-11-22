@@ -144,6 +144,9 @@ room954.chatcatch = function (callback) {
             nav.bg("954_torture/t30.jpg");
             break;
         case "restart":
+            if (sc.getMissionTask("landlord", "misc", 4).inProgress) {
+                sc.completeMissionTask("landlord", "misc", 4);
+            }
             if (sc.getMissionTask("lola", "sissy", 6).success) {
                 sc.completeMission("lola", "*wife", false, true);
                 sc.completeMission("lola", "*tom2", false, true);
@@ -180,20 +183,13 @@ room954.chatcatch = function (callback) {
                 sc.completeMission("landlord", "*cumdump", false, true);
             }
 
-            if (sc.getMission("janice", "breakup").startedOrComplete || sc.getMission("janice", "datr").startedOrSuccess) {
-                sc.startMission("janice", "*boyfriend");
-                sc.completeMission("janice", "*doggy", false, true);
-                sc.completeMission("janice", "*cuck", false, true);
-            }
-            else if (sc.getMissionTask("janice", "dog-x", 3).startedOrComplete) {
+            if (sc.getMissionTask("janice", "dog-x", 3).startedOrComplete) {
                 sc.completeMission("janice", "*boyfriend", false, true);
                 sc.startMission("janice", "*doggy");
-                sc.completeMission("janice", "*cuck", false, true);
             }
             else {
-                sc.completeMission("janice", "*boyfriend", false, true);
+                sc.startMission("janice", "*boyfriend");
                 sc.completeMission("janice", "*doggy", false, true);
-                sc.startMission("janice", "*cuck");
             }
 
             if (missy.cases[19].success) {
@@ -406,7 +402,7 @@ room954.chat = function (chatID) {
             chatID: 6,
             speaker: "daria", l10nValues: { bodhi: sc.n("bodhi") },
             text: "I know I can come off as some big bad dominatrix, but this is really just too much. I only wanted to be with " +
-                sc.n("bodhi") + " in a place where we could just focus on each other. ",
+                "##bodhi## in a place where we could just focus on each other. ",
             button: [
                 { chatID: 7, text: "...", callback: "" }
             ]
@@ -566,7 +562,7 @@ room954.chat = function (chatID) {
             speaker: "missy", l10nValues: { missy: sc.n("missy") },
             text: "Now to release you three and get out of here.  ",
             button: [
-                { chatID: 25, text: sc.n("missy") + "!!!", callback: "t18" }
+                { chatID: 25, text: "##missy##!!!", callback: "t18" }
             ]
         },
         {
@@ -689,7 +685,7 @@ room954.chat = function (chatID) {
             speaker: "daria", l10nValues: { missy: sc.n("missy") },
             text: "Look! That log holding the roof the cave is rotting. If we can kick it down the entire roof my fall in!",
             button: [
-                { chatID: 39, text: "What about " + sc.n("missy") + "!", callback: "" }
+                { chatID: 39, text: "What about ##missy##!", callback: "" }
             ]
         },
         {
@@ -714,7 +710,7 @@ room954.chat = function (chatID) {
             speaker: "daria", l10nValues: { missy: sc.n("missy") },
             text: "Oh wow! That did it! There's no way they're getting through that. ",
             button: [
-                { chatID: 42, text: "I'm so sorry " + sc.n("missy") + ". ", callback: "" }
+                { chatID: 42, text: "I'm so sorry ##missy##. ", callback: "" }
             ]
         },
         {
@@ -777,7 +773,7 @@ room954.chat = function (chatID) {
             text: "There isn't! If we go back there we'll end up dead. It's suicide. You need to just tell the cops and let them handle " +
                 "it. This is too big for you, or us. ",
             button: [
-                { chatID: 49, text: "You heard " + sc.n("missy") + ". The cops are in on it! ", callback: "" }
+                { chatID: 49, text: "You heard ##missy##. The cops are in on it! ", callback: "" }
             ]
         },
         {
@@ -895,7 +891,7 @@ room954.chat = function (chatID) {
             chatID: 62,
             speaker: "cop2", l10nValues: { missy: sc.n("missy") },
             text: "I don't think you really understand how the real world works. Maybe you've played too many video games. You come " +
-                "into my station, naked, and demand we storm the compound saying " + sc.n("missy") + " is trapped in there. Now I've " +
+                "into my station, naked, and demand we storm the compound saying ##missy## is trapped in there. Now I've " +
                 "dealt with her a few times with her crazy conspiracies with the cult. Just because they worship some strange shit " +
                 "don't make illegal. We don't just go storming places of worship based on crazy stories made up by naked people " +
                 "that show up here. ",

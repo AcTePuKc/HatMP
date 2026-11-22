@@ -2052,7 +2052,7 @@ room486.chat = function (chatID) {
             {
                 chatID: 16,
                 speaker: "!barker",
-                text: "Onto the stage is " + sc.n("!seller") + "!!! The destroyer of asses, the breaker of souls, " +
+                text: "Onto the stage is ##!seller##!!! The destroyer of asses, the breaker of souls, " +
                     "the crusher of dreams!! With him, his trusty paddle! I feel sorry for our poor contestant! " +
                     gender.pronoun("she") + " is about to get the paddling of " + gender.pronoun("her") + " life!!",
                 l10nValues: { seller: sc.n("!seller"), subject: gender.pronoun("she"), possessive: gender.pronoun("her") },
@@ -2073,7 +2073,7 @@ room486.chat = function (chatID) {
             {
                 chatID: 18,
                 speaker: "!barker",
-                text: sc.n("!seller") + " you may unlock " + gender.pronoun("her") + "! Let's see her crawl to " +
+                text: "##!seller## you may unlock " + gender.pronoun("her") + "! Let's see her crawl to " +
                     "our next game!!!",
                 l10nValues: { seller: sc.n("!seller"), object: gender.pronoun("her") },
                 button: [
@@ -2390,7 +2390,7 @@ room486.chat = function (chatID) {
             {
                 chatID: 52,
                 speaker: "thinking",
-                text: "That " + sc.n("!barker") + " is on my list. I should try to find him and see if " +
+                text: "That ##!barker## is on my list. I should try to find him and see if " +
                     "he knows the code. ",
                 l10nValues: { barker: sc.n("!barker") },
                 button: [

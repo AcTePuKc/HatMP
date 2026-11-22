@@ -931,7 +931,7 @@ room526.chat = function (chatID) {
         {
             chatID: 52,
             speaker: "zoey",
-            text: "Oh no. " + sc.n("stormy") + " did the pee on you. I am sorry. Very much sorry. " +
+            text: "Oh no. ##stormy## did the pee on you. I am sorry. Very much sorry. " +
                 "She does that. She made the promise she would not do that to you. I will help you " +
                 "and help you clean up. I need to make this better for you tomorrow, but tonight " +
                 "we will clean up and get some sleep. ", l10nValues: { stormy: sc.n("stormy") },
@@ -1141,7 +1141,7 @@ room526.chat = function (chatID) {
         {
             chatID: 75,
             speaker: "zoey",
-            text: "I'm not promising they're not going to blow up a penis, but my friend, " + sc.n("ralph") +
+            text: "I'm not promising they're not going to blow up a penis, but my friend, ##ralph##" +
                 ", will totally clean stuff. She's a good girl and really good at doing what you tell her " +
                 "to. ", l10nValues: { ralph: sc.n("ralph") },
             button: [
@@ -1169,7 +1169,7 @@ room526.chat = function (chatID) {
         {
             chatID: 78,
             speaker: "ralph",
-            text: "Thanks. hehe. I first came by with a kilt and " + sc.n("zoey") + " told me I had to try " +
+            text: "Thanks. hehe. I first came by with a kilt and ##zoey## told me I had to try " +
                 "harder. She totally took me to the store to get it! I've never bought girl's clothes before. " +
                 "I was so scared, but having " + sc.n("zoey") + " there totally made it easier. Do you think " +
                 "she's into me? She did talk to me. I'm so in love with her. ", l10nValues: { zoey: sc.n("zoey") },
@@ -1198,7 +1198,7 @@ room526.chat = function (chatID) {
         {
             chatID: 81,
             speaker: "spanky",
-            text: "Hey there. Good to see you! You know I always tell " + sc.n("ralph") + " here he needs to " +
+            text: "Hey there. Good to see you! You know I always tell ##ralph## here he needs to " +
                 "get out more. Maybe work with people. I would have hired her, but I totally don't make enough " +
                 "money to hire new help, ya know. People think because I own my own business I'm rich, but that's " +
                 "just not true. I'm barely making it. So I'm so happy you got my girl here a job. You know I dated " +
@@ -1210,9 +1210,9 @@ room526.chat = function (chatID) {
         {
             chatID: 82,
             speaker: "spanky",
-            text: "I sell " + sc.n("zoey") + " some of my excess liquor bottles, ya know. I get a good deal from this " +
+            text: "I sell ##zoey## some of my excess liquor bottles, ya know. I get a good deal from this " +
                 "dude that I'm good friends with and they sell me a bunch of good stuff, ya know. So sometimes I get too " +
-                "much, so I sells them to your friend " + sc.n("zoey") + " for a good price. She makes out and I make out " +
+                "much, so I sells them to your friend ##zoey## for a good price. She makes out and I make out " +
                 "so win, win, ya know. Plus I get to check out all these hot chicks that are totally into my dick! Heheheh. " +
                 "I mean. I totally get to see my girlfriend at work. ", l10nValues: { zoey: sc.n("zoey") },
             button: [

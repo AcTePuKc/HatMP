@@ -846,7 +846,7 @@ room803.chat = function (chatID) {
             speaker: "thinking", l10nValues: { ralphsmom: sc.n("ralphsmom"), ralph: sc.n("ralph") },
             text: "Damn " + sc.n("ralphsmom") + "! What a dirty girl you are! I wonder if your " +
                 "husband knows you have such a big fake cock. Well, not anymore. Hopefully " +
-                sc.n("ralph") + " doesn't get blamed for me taking this. ",
+                "##ralph## doesn't get blamed for me taking this. ",
             button: [
                 { chatID: -1, text: "[BBC dildo added to inventory]", callback: "closet" },
             ]
@@ -919,7 +919,7 @@ room803.chat = function (chatID) {
             chatID: 14,
             speaker: "ralphsdad", l10nValues: { me: sc.n("me") },
             text: "You came in here hoping I'd follow you, didn't you? You wanted me to " +
-                "follow you, didn't you " + sc.n("me") + "? But why would you want me to " +
+                "follow you, didn't you ##me##? But why would you want me to " +
                 "follow you into my bedroom? ",
             button: [
                 { chatID: 15, text: "well", callback: "suck1" },
@@ -1035,7 +1035,7 @@ room803.chat = function (chatID) {
             speaker: "ralphsdad", l10nValues: { ralph: sc.n("ralph") },
             text: "Oh wow! That was so close! She didn't see you did she? Of course she " +
                 "didn't or she would be in here screaming at me. You should probably just " +
-                "go upstairs and play with " + sc.n("ralph") + ". My heart's beating too hard " +
+                "go upstairs and play with ##ralph##. My heart's beating too hard " +
                 "to get a BJ right now. ",
             button: [
                 { chatID: -1, text: "Sure. I'll go play with my little friend. ", callback: "bjAlmostleave" },
@@ -1159,7 +1159,7 @@ room803.chat = function (chatID) {
             chatID: 41,
             speaker: "ralphsmom", l10nValues: { ralph: sc.n("ralph") },
             text: "Oh. I've never had anyone ask me about what I'm reading. It seems like " +
-                "my husband only cares about football, and my little " + sc.n("ralph") + 
+                "my husband only cares about football, and my little ##ralph##" + 
                 " only cares about his little dolls. ",
             button: [
                 { chatID: 42, text: "Well, I'm interested in you. ", callback: "" },
@@ -1467,7 +1467,7 @@ room803.chat = function (chatID) {
             chatID: 75,
             speaker: "ralphsdad", l10nValues: { ralph: sc.n("ralph") },
             text: "I knew you wanted to get fucked! Let's go to the bathroom so we don't make too much noise. " +
-                "Wouldn't want " + sc.n("ralph") + " to walk in on us. ",
+                "Wouldn't want ##ralph## to walk in on us. ",
             button: [
                 { chatID: 76, text: "Yes daddy!", callback: "anal0" },
             ]
@@ -1583,7 +1583,7 @@ room803.chat = function (chatID) {
                 "body all over mine I need to feel some pleasure. Now I know you'll find a nice someone that " +
                 "is happy with your size, but I'm going to need something bigger. Surely you're aware how " +
                 "small and limp your fun stick is. It's nice, just not for me. Why don't you go play with " +
-                "my little " + sc.n("ralph") + ", I'm going to work on this book. ",
+                "my little ##ralph##, I'm going to work on this book. ",
             button: [
                 { chatID: -1, text: "oh ok ", callback: "ralphroom" },
             ]

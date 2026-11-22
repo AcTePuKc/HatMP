@@ -178,7 +178,7 @@ room480.chat = function (chatID) {
             {
                 chatID: 1,
                 speaker: "a",
-                text: "Greeting and welcome to sanctuary. I am the Lady of the Cave, " + sc.n("a") + ". " +
+                text: "Greeting and welcome to sanctuary. I am the Lady of the Cave, ##a##. " +
                     "You may wonder why you're here and if you're safe. Have no fears new one, this is a " +
                     "place of security and acceptance. We were all like you at one time. ",
                 l10nValues: { guide: sc.n("a") },
@@ -190,7 +190,7 @@ room480.chat = function (chatID) {
                 chatID: 2,
                 speaker: "a",
                 text: "Yes. We were all victims of the cult. Smuggled, or nearly so, taken from our homes across " +
-                    "the land to birth that disastrous Azrael against our wishes. The " + sc.n("queen") + " came " +
+                    "the land to birth that disastrous Azrael against our wishes. The ##queen## came " +
                     "to our rescue and freed us from the Cult of C.U.M. so that we may continue to live. ",
                 l10nValues: { queen: sc.n("queen") },
                 button: [
@@ -319,7 +319,7 @@ room480.chat = function (chatID) {
                 chatID: 14,
                 speaker: "vag",
                 text: "After about six months I was taken to the cum bath ritual and changed into the girl you see now. " +
-                    "I was about to be inseminated with the seed of Azrael, but the " + sc.n("queen") + " snuck into my " +
+                    "I was about to be inseminated with the seed of Azrael, but the ##queen## snuck into my " +
                     "cell and freed me and brought me here. I'm so happy she freed me. I'm sure they would have " +
                     "killed me if I stayed. I'm forever in her debt. That's why I stay to help others like me. ",
                 l10nValues: { queen: sc.n("queen") },

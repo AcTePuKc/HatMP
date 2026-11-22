@@ -1154,7 +1154,7 @@ room170.chat = function (chatID) {
                 speaker: "bitch",
                 l10nValues: { black: sc.n("black") },
                 text: "These must be the *ugh* sissies that are going to model for Mr. Jones. " +
-                    "You can go " + sc.n("black") + ". I'll take them from here. ",
+                    "You can go ##black##. I'll take them from here. ",
                 button: [
                     { chatID: 3, text: "...", callback: "ex317_2" }
                 ]
@@ -1372,7 +1372,7 @@ room170.chat = function (chatID) {
                 text: "No? No one ever tells me no! Get out of here! I'm going to ruin " +
                     "your career! You'll never model for another soul again! I should " +
                     "have known you were just another air head, idiot bimbo! Get out " +
-                    "of my hallway and back to the trash you are! " + sc.n("black") +
+                    "of my hallway and back to the trash you are! ##black##" +
                     " is going to get an ear full from me, loaning me her undesirables! " +
                     "You ruined my fucking show! ",
                 button: [
@@ -1384,7 +1384,7 @@ room170.chat = function (chatID) {
                 speaker: "missy",
                 l10nValues: { black: sc.n("black") },
                 text: "What the hell? Why are you streaking across my foyer? Is " +
-                    "this one of " + sc.n("black") + "'s tasks?",
+                    "this one of ##black##'s tasks?",
                 button: [
                     { chatID: 26, text: "[Tell Missy what happened]", callback: "" },
                 ]
@@ -1394,7 +1394,7 @@ room170.chat = function (chatID) {
                 speaker: "missy",
                 l10nValues: { black: sc.n("black") },
                 text: "What the hell? Why are you streaking across my foyer? Is " +
-                    "this one of " + sc.n("black") + "'s tasks?",
+                    "this one of ##black##'s tasks?",
                 button: [
                     { chatID: 26, text: "[Tell Missy what happened]", callback: "" },
                 ]
@@ -1499,7 +1499,7 @@ room170.chat = function (chatID) {
                 speaker: "me",
                 l10nValues: { judge: sc.n("!judge") },
                 text: "Aaaaah. The curious mind. I do love a lady who is always looking for a little " +
-                    "more. I'm " + sc.n("!judge") + ", one of the judges for the show. Tell me are you one of the " +
+                    "more. I'm ##!judge##, one of the judges for the show. Tell me are you one of the " +
                     "contestants?",
                 button: [
                     { chatID: 37, text: "[Walk closer to the mysterious man]", callback: "fashion1" },

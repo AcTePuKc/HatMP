@@ -86,6 +86,17 @@ const source = file => fs.readFileSync(path.join(__dirname, '..', file), 'utf8')
     assert.equal(female.button[0].callback, 'keep-me');
     assert.equal(female.button[0].chatID, 4);
     assert.equal(female.speaker, 'npc', 'The selector is the player, not the current speaker');
+    w.sc.char = [{ name: 'eva' }];
+    w.sc.n = name => name === 'eva' ? 'Ev<a>' : name;
+    w.HatMPLocales.es.strings['test.chatNames'] = 'Hola, {eva}. {el:singularDefinite}';
+    const named = w.l10n.chatEntry({ l10nKey: 'test.chatNames', text: 'Hi, {eva}.',
+        l10nValues: { eva: 'Ev<a>' }, button: [] }, 2, 2);
+    assert.equal(named.text, 'Hola, ##eva##. сънаемателката', 'Chat name keeps its ID for the hover card');
+    assert.equal(w.l10n.t('test.chatNames', '', { eva: 'Ev<a>' }), 'Hola, Ev&lt;a&gt;. сънаемателката',
+        'Non-chat translation still escapes custom names');
+    assert.equal(w.l10n.chatEntry({ l10nKey: 'test.chatNames', text: 'Hi, {eva}.',
+        l10nValues: { eva: 'Different name' }, button: [] }, 2, 2).text,
+        'Hola, Different name. сънаемателката', 'A value that is not the character name stays plain text');
 
     // First real migrated lines, checked in both packs and both player modes.
     for (const [locale, busy, ready] of [['bg', ['зает', 'заета'], ['готов', 'готова']], ['es', ['ocupado', 'ocupada'], ['listo', 'lista']]]) {

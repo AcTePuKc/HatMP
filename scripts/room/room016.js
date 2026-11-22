@@ -624,7 +624,7 @@ room16.chat = function (chatID) {
         {
             chatID: 0,
             speaker: "me",
-            text: "I have to talk to " + sc.n("landlord") + " before heading out.",
+            text: "I have to talk to ##landlord## before heading out.",
             button: []
         },
         {

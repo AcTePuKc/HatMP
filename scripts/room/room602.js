@@ -232,7 +232,7 @@ room602.chat = function (chatID) {
             l10nKey: "room.602.sissyEvent.jeremy",
             l10nValues: { jeremy: sc.n("!jeremy") },
             text: "Hahah! Fo' real. He's made it all the way through the Sissy School, but " +
-                "he thinks he's some kinda dom! Remember " + sc.n("!jeremy") + "? He knew this wasn't " +
+                "he thinks he's some kinda dom! Remember ##!jeremy##? He knew this wasn't " +
                 "for him. ",
             button: [
                 { chatID: 8, text: "...", callback: "" }

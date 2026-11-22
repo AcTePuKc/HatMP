@@ -805,7 +805,7 @@ room776.chat = function (chatID) {
         {
             chatID: 50,
             speaker: "nun",
-            text: sc.n("priest") + " said you did. You used the power of satan to trick and seduce me against " +
+            text: "##priest## said you did. You used the power of satan to trick and seduce me against " +
                 "my will. That's why I had to be punished. I have the power of satan over me and punishment " +
                 "is the only way to save my child. ", l10nValues: { priest: sc.n("priest") },
             button: [
@@ -861,7 +861,7 @@ room776.chat = function (chatID) {
             chatID: 56,
             speaker: "river",
             text: "We were going to leave you alone until the heat died off, but not now. Can't have you " +
-                "messing with our friend " + sc.n("priest") + ". Let's take you back to your new home so " +
+                "messing with our friend ##priest##. Let's take you back to your new home so " +
                 "we can all take turns on you then throw you in the swamps. " +
                 "I'm going to enjoy this more than you know. Hehehe", l10nValues: { priest: sc.n("priest") },
             button: [

@@ -722,7 +722,7 @@ room9.chat = function(chatID){
             l10nValues: { bigguy: sc.n("bigguy") },
             text: "It's ok sweetie. You know your dad used to jack off 10 times a day. He was always playing " +
                 "with his penis. That man would have had enough sperm to keep my store stocked up for a year. " +
-                sc.n("bigguy") + " on the other hand, never masturbates. He says his hands don't feel as good " +
+                "##bigguy## on the other hand, never masturbates. He says his hands don't feel as good " +
                 "as my... well, you know. Masturbation is fine. Like practicing for real sex. ",
             button: [
                 { chatID: 8, text: "*blush*", callback: "" }

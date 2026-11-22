@@ -635,7 +635,7 @@ room25.chat = function (chatID) {
             speaker: "landlord",
             text: "So much sperm moving in and out of my office. I just love all those big huge cocks I play with... Off to masturbate!",
             button: [
-                { chatID: -1, text: "Oh. Have fun " + sc.n("landlord"), callback: "motherPassTime" }
+                { chatID: -1, text: "Oh. Have fun ##landlord##", callback: "motherPassTime" }
             ]
         },
         {

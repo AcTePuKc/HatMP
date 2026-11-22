@@ -743,7 +743,7 @@ room450.chat = function(chatID){
         {
             chatID: 15,
             speaker: "lola",
-            text: "I'm so glad " + sc.n("landlord") + " had us go on a practice date! " +
+            text: "I'm so glad ##landlord## had us go on a practice date! " +
                 "I really needed to get out.  ",
             l10nValues: { landlord: sc.n("landlord") },
             button: [
@@ -858,7 +858,7 @@ room450.chat = function(chatID){
         {
             chatID: 28,
             speaker: "thinking",
-            text: "Oh man. " + sc.n("lola") + " is really serious about this. I've never seen her " +
+            text: "Oh man. ##lola## is really serious about this. I've never seen her " +
                 "show any interest in any boy. For the longest time I just thought she was a " +
                 "lesbian. I know that she's going to want someone who is true to her, and " +
                 "there's no way I can be true to just her. On the other hand if I didn't " +
@@ -1255,7 +1255,7 @@ room450.chat = function(chatID){
             text: "What kind of cop rapes someone's face? And fuck that dick was huge! My jaw " +
                 "is aching. That wasn't fun at all! It was just demeaning and painful. But why " +
                 "did I get so hard when he was raping my face? Do I enjoy getting raped? Fuck. " +
-                "I've got to clean this cum off my face before " + sc.n("landlord") + " sees it and " +
+                "I've got to clean this cum off my face before ##landlord## sees it and " +
                 "asks what happened. ",
             l10nValues: { landlord: sc.n("landlord") },
             button: [
@@ -1412,7 +1412,7 @@ room450.chat = function(chatID){
             chatID: 91,
             speaker: "cop",
             text: "Damn bitch! That " + gender.pronoun("pussy") + "'s just " +
-                "too good. Imma make you my personal cum dump slave. " + sc.n("ubel") +
+                "too good. Imma make you my personal cum dump slave. ##ubel##" +
                 " said to leave you alone until " +
                 "the heat dies down, but fuck it. Imma smash your head in and take you in myself. I'll " +
                 "just tell that " + sc.n("wyatt") + " twerp you skipped town. ",

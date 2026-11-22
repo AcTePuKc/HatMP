@@ -1124,7 +1124,7 @@ room476.chat = function (chatID) {
             {
                 chatID: 31,
                 speaker: "cult",
-                text: "Don't worry " + sc.n("river") + " I'll tear that ass up! When " +
+                text: "Don't worry ##river## I'll tear that ass up! When " +
                     "I get done with this little sissy " + gender.pronoun("she") + 
                     " won't be able to walk for a week! Hope you like it deep little " +
                     "girl. ",
@@ -1344,7 +1344,7 @@ room476.chat = function (chatID) {
             {
                 chatID: 56,
                 speaker: "river",
-                text: "Well holy fucking shit! If it isn't " + sc.n("me") + "!! You won't be meeting your " +
+                text: "Well holy fucking shit! If it isn't ##me##!! You won't be meeting your " +
                     "traitor of a friend. He spilled everything about his little meet up after only three " +
                     "hours of torture. He's such a pussy like you. ",
                 l10nValues: { me: sc.n("me") },

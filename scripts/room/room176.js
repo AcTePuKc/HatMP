@@ -799,8 +799,8 @@ room176.chat = function (chatID) {
             {
                 chatID: 33,
                 speaker: "!philbert",
-                l10nValues: { els: sc.n("els"), eva: sc.n("eva"), lola: sc.n("lola") },
-                text: "So are " + sc.n("eva") + " and " + sc.n("lola") + " your " + sc.n("els") + "? You know I know them " +
+                l10nValues: { els: sc.els("lower"), eva: sc.n("eva"), lola: sc.n("lola") },
+                text: "So are " + sc.n("eva") + " and " + sc.n("lola") + " your " + sc.els("lower") + "? You know I know them " +
                     "from school. ",
                 button: [
                     { chatID: 36, text: "They are ", callback: "oral20" },
@@ -1021,7 +1021,7 @@ room176.chat = function (chatID) {
                 l10nValues: { me: sc.n("me") },
                 text: "Now enough chit chat. Time for the real thing. My friend Svetlana is kind enough to " +
                     "lend us her pussy to practice on. Each of you will get a turn trying to please her. It " +
-                    "shouldn't be too hard. Svetlana is multiorgasmic, cums really easy. " + sc.n("me") +
+                    "shouldn't be too hard. Svetlana is multiorgasmic, cums really easy. ##me##" +
                     "why don't you try first. ",
                 button: [
                     { chatID: -1, text: "Fuck yeah! ", callback: "oral203_lick_start" },
@@ -1323,7 +1323,7 @@ room176.chat = function (chatID) {
                 l10nValues: { chris: sc.n("!chris") },
                 text: "It's so crazy that it's over. I feel like a totally new girl " +
                     "and can't remember life before this school. I'll miss seeing all " +
-                    "of you, but I guess I'll see you around. Hey, where's " + sc.n("!chris") +
+                    "of you, but I guess I'll see you around. Hey, where's ##!chris##" +
                     "?",
                 button: [
                     { chatID: 85, text: "...", callback: "" },
@@ -1334,7 +1334,7 @@ room176.chat = function (chatID) {
                 speaker: "!thomas",
                 l10nValues: { sporty: sc.n("sporty") },
                 text: "She's already inside. A better question is why are you naked " + 
-                    sc.n("sporty") + "? We're in the middle of a public hallway!",
+                    "##sporty##? We're in the middle of a public hallway!",
                 button: [
                     { chatID: 86, text: "...", callback: "" },
                 ]

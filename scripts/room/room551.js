@@ -837,7 +837,7 @@ room551.chat = function (chatID) {
         {
             chatID: 39,
             speaker: "g",
-            text: "I'm going to let " + sc.n("chad") + " know you can go in the Employee only door and get some special training. " +
+            text: "I'm going to let ##chad## know you can go in the Employee only door and get some special training. " +
                 "The back room is about pure training of the total body, only the trainer and trainee with nothing in between them, no equipment, " +
                 "weights, bars, bands..... or clothes. It's pretty advanced for such a little bitch like you, but with my help I think you can handle it.", l10nValues: { chad: sc.n("chad") },
             button: [
@@ -963,7 +963,7 @@ room551.chat = function (chatID) {
         {
             chatID: 53,
             speaker: "g",
-            text: "Oh don't worry, I don't expect you to raise our child. My wife " + sc.n("!madison") +
+            text: "Oh don't worry, I don't expect you to raise our child. My wife ##!madison##" +
                 " and I have wanted a little baby for a while. She works down at the Sperm Bank. " +
                 "I asked her to grab some sperm to give to me, but she said it's better to get it " +
                 "from a person, not a bottle. ", l10nValues: { madison: sc.n("!madison") },
