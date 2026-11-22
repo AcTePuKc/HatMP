@@ -340,7 +340,7 @@ Upstream `ed740fad` (fetched 2026-11-14): FapForce5 has implemented `##name##` m
 
 ## `ed740fad` integration worktree (2026-11-14)
 
-- Separate worktree `dist/integration-ed740fad`, branch `codex/integrate-ed740fad`; published `feature/localization-0.28.3` remains unchanged. Merge of `origin/master` is in progress and uncommitted.
+- Separate worktree `dist/integration-ed740fad`, branch `feature/localization-upstream`; published `feature/localization-0.28.3` remains unchanged. The upstream merge was first prepared here as a local draft.
 - Resolved 1,286 conflict blocks across 157 files. In 1,268 marker-only blocks, retained our source and `l10nValues` so translated text can keep its grammatical order. Reconciled the other 18 blocks individually, including Room 250's active-envelope Holly route, Room 322's source corrections, and the new closeup images for assault scenes.
 - `privateChat.makeChat()` now renders `##name##` after `l10n.chatEntry()` for dialogue and choices. Chat interpolation converts `{name}` to `##name##` only for an existing character whose supplied value equals its current display name. Other dynamic values, including inflected relationship forms, remain escaped plain text. `sc.replaceChat()` escapes names before adding HTML.
 - The checker recognizes `##name##` as a character placeholder; its 101 initial false-positive errors dropped to zero. BG/ES Room 952 choice 79 uses `##!timothy##` to match the upstream trivial-character ID.
@@ -353,10 +353,12 @@ Upstream `ed740fad` (fetched 2026-11-14): FapForce5 has implemented `##name##` m
 
 ## `fd4dfb37` upstream follow-up (2026-11-22)
 
-- Merged FapForce5's "Doll maker and edit game update" after `ed740fad` in the separate `codex/integrate-ed740fad` worktree. This is a local integration draft; do not publish a new version or package from it yet.
+- Merged FapForce5's "Doll maker and edit game update" after `ed740fad` in the separate `feature/localization-upstream` worktree. This is a local integration draft; do not publish a new version or package from it yet.
 - Room 310 is a rewritten doll-maker mission. Kept the new source flow and images. Chat IDs 10–17 now have different meanings, so their 20 old BG and 20 old ES entries were removed to prevent unrelated dialogue appearing in the new scene. Re-translate the full revised room after checking its route in game.
 - Combined upstream `##name:s##` singular-name rendering with our HTML escaping; retained localized `l10nValues` in dialogue conflicts. Kept upstream's save editor and graph refresh while preserving our refresh-room restoration and localized save controls. The Missy mission destination in `supportingChar.js` is now Room 487 as upstream intended.
 - The source scan has **175 missing BG and 175 missing ES entries**: Room 310 (48), Room 324 (57), Room 525 (39), Room 601 (13), Room 825 (2), Room 905 (16). These use English source fallback until translated. The new save-editor action label is translated in both languages; the rest of its newly added English UI still needs localization review.
 - Automated tests and l10n syntax/placeholder checks pass. In-game checks remain for old saves, the save editor, the revised Room 310 mission, hover-name cards, and new scenes before any release.
 
 Translation follow-up (2026-11-22): all 175 newly missing BG and ES source keys have been filled. The checker now reports **0 missing BG/ES keys and 0 errors**, and the automated suite passes. This is still a draft until the new routes and old-save loading have been checked in game. Room 324 assigns the hardcoded English player name `Worthless Cunt Mutt`; its translated dialogue deliberately keeps that name for consistency. Consider a language-aware name only after testing save and language-switch behavior. The newly added save editor contains additional literal English UI beyond its translated action button and still needs an interface review.
+
+The published 0.28.32 branch was merged back into this integration branch after the translation pass, so this draft contains both the latest released fixes and the two upstream commits. The release branch and archive remain unchanged.
