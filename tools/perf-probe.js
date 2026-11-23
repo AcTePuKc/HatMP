@@ -1,5 +1,5 @@
 // Measure the offline game in a fresh headless Chrome profile without touching player saves.
-// Usage: node tools/perf-probe.js [--root PATH] [--runs 3] [--rooms 10,28,250] [--actions 456:cop2] [--save-slots 500] [--cpu-rate 4] [--trace-nav] [--smoke-route]
+// Usage: node tools/perf-probe.js [--root PATH] [--runs 3] [--rooms 10,28,250] [--actions 456:cop2] [--save-slots 500] [--cpu-rate 4] [--trace-nav] [--smoke-route] [--smoke-tony]
 const fs = require('node:fs');
 const os = require('node:os');
 const path = require('node:path');
@@ -22,6 +22,7 @@ const saveSlots = Math.max(0, Math.min(2000, Number(option('--save-slots', '0'))
 const cpuRate = Math.max(1, Math.min(10, Number(option('--cpu-rate', '1')) || 1));
 const traceNav = args.includes('--trace-nav');
 const smokeRoute = args.includes('--smoke-route');
+const smokeTony = args.includes('--smoke-tony');
 const chrome = option('--chrome', 'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe');
 const entry = path.join(root, 'startGame.html');
 if (!fs.existsSync(chrome) || !fs.existsSync(entry)) throw new Error('Chrome or startGame.html not found');
@@ -265,6 +266,36 @@ async function measure(run) {
                     outfit: cl.hasoutfit('public') }; }
             })()`, true);
         }
+        let tonyScene = null;
+        if (smokeTony) {
+            tonyScene = await cdp.evaluate(`(async () => {
+                try {
+                    if (!window.__perfGameInit) { char.initGame(); window.__perfGameInit = true; }
+                    char.room(601, true);
+                    const entries = {};
+                    for (const language of ['en', 'bg', 'es']) {
+                        if (!await l10n.setLanguage(language)) throw new Error('Could not load ' + language);
+                        entries[language] = [50, 52, 53, 54, 55, 56].map(id => {
+                            const entry = l10n.chatEntry(room601.chat(id), id, 601);
+                            return { id, text: sc.replaceChat(entry.text), choices: entry.button.map(b => sc.replaceChat(b.text)) };
+                        });
+                    }
+                    const branches = [];
+                    const originalGet = missy.getenvelope, originalSet = missy.setenvelope, originalChat = window.chat;
+                    try {
+                        for (const hasKey of [true, false]) {
+                            let called = null, completed = null;
+                            missy.getenvelope = () => ({ hasKey });
+                            missy.setenvelope = name => { completed = name; };
+                            window.chat = id => { called = id; };
+                            room601.chatcatch('missy8');
+                            branches.push({ hasKey, called, completed });
+                        }
+                    } finally { missy.getenvelope = originalGet; missy.setenvelope = originalSet; window.chat = originalChat; }
+                    return { entries, branches };
+                } catch (error) { return { error: String(error) }; }
+            })()`, true);
+        }
         let saveMeta = null;
         if (saveSlots > 0) {
             saveMeta = await cdp.evaluate(`(async () => {
@@ -291,7 +322,7 @@ async function measure(run) {
                 return { requestedSlots: count, samples };
             })()`, true);
         }
-        return { run, cpuRate, startup, transitions, route, saveMeta, pageErrors: cdp.pageErrors.slice(0, 10) };
+        return { run, cpuRate, startup, transitions, route, tonyScene, saveMeta, pageErrors: cdp.pageErrors.slice(0, 10) };
     } finally {
         cdp?.ws.close();
         browser.proc.kill();
@@ -312,6 +343,11 @@ async function measure(run) {
             !result.route?.footerHiddenDuringDialogue || !result.route?.footerRestoredAfterDialogue ||
             result.route.loaded !== result.route.images || result.pageErrors.length > 0))
             throw new Error('Room 10 → 11 → 10 browser route failed');
+        if (smokeTony && (result.tonyScene?.error || result.pageErrors.length ||
+            result.tonyScene?.branches?.some(b => b.called !== (b.hasKey ? 55 : 56) || b.completed !== 'tony') ||
+            ['bg', 'es'].some(lang => result.tonyScene?.entries?.[lang]?.some((entry, i) =>
+                entry.text === result.tonyScene.entries.en[i].text))))
+            throw new Error('Room 601 Tony scene browser check failed');
     }
     console.error('Measured ' + results.length + ' fresh Chrome profiles from ' + root);
 })().catch(error => { console.error(error.stack || error); process.exitCode = 1; });

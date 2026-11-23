@@ -1,5 +1,7 @@
 # 0.28.3 localization QA
 
+- Upstream `9dfae558`: play the complete Room 601 Tony envelope route, including both outcomes and both body variants, and inspect the new images. Browser smoke checks cover localized dialogue and simulated key/no-key outcomes; they do not reproduce the entire mission. In the save editor, the new upgrade names and tooltips currently use their English source text and need localization; class and trophy names reuse existing translations. Verify changes to classes, upgrades and trophies with an actual save and backup.
+
 This is the active release check after merging upstream `81788c32`. Keep `lastTestedGameVersion` at `0.28.2` until the localized 0.28.3 build has been exercised in the game.
 
 ## Static checks completed
